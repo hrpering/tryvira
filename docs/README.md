@@ -39,7 +39,23 @@ Use this page as the documentation map.
 | [MCP tool catalog](reference/mcp-tools.md) | tool-by-tool read/effectful reference |
 | [API routes](reference/api.md) | public HTTP route map |
 | [Existing API reference](api-reference.md) | compact route list |
-| [Troubleshooting](reference/troubleshooting.md) | common integration failures |
+
+## Troubleshooting
+
+Start with the [Troubleshooting center](troubleshooting/README.md).
+
+It includes error → cause → fix → verify guides for:
+
+- API/HTTP and retry behavior;
+- authentication and scope;
+- JavaScript/Python SDK validation;
+- MCP startup and tool authorization;
+- Semantic routing and Behavior Points;
+- Signals;
+- Packs;
+- Strategies;
+- Teach and evaluation;
+- Runtime and release.
 
 ## Examples
 

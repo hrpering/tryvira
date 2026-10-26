@@ -32,7 +32,19 @@ const requiredFiles = [
   "docs/reference/mcp-tools.md",
   "docs/reference/api.md",
   "docs/reference/troubleshooting.md",
-  "docs/guides/connect-an-ai-system.md"
+  "docs/guides/connect-an-ai-system.md",
+  "docs/troubleshooting/README.md",
+  "docs/troubleshooting/api-errors.md",
+  "docs/troubleshooting/authentication-and-scope.md",
+  "docs/troubleshooting/sdk-errors.md",
+  "docs/troubleshooting/mcp-errors.md",
+  "docs/troubleshooting/semantic-routing.md",
+  "docs/troubleshooting/behavior-points.md",
+  "docs/troubleshooting/signals.md",
+  "docs/troubleshooting/packs.md",
+  "docs/troubleshooting/strategies.md",
+  "docs/troubleshooting/teach-and-evaluation.md",
+  "docs/troubleshooting/runtime-and-release.md"
 ];
 
 for (const file of requiredFiles) {
