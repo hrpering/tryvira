@@ -68,13 +68,61 @@ except ViraApiError as error:
     print(error.status, error.request_id, error.body)
 ```
 
+---
+
 ## Connection
 
-`connect`, `connect_adapter`, and `connect_once` create the AI system and adapter connection. `connection_health`, `test_connection`, and `inventory` inspect the connection.
+### `connect(name, system_type, scope, ...)`
+
+Creates/connects an AI system.
+
+### `connect_adapter(system_id, adapter_type, adapter_version, ...)`
+
+Connects the adapter.
+
+### `connect_once(...)`
+
+Convenience flow returning system + connection + handshake.
+
+### `connection_health(connection_id)`
+
+Reads health.
+
+### `test_connection(connection_id, ...)`
+
+Runs connection test.
+
+### `inventory(system_id)`
+
+Reads system inventory.
+
+---
 
 ## Observations
 
-`observe`, `observe_batch`, `trace`, `feedback`, and `outcome` submit evidence. The Python client also exposes agent-native lifecycle helpers such as workflow start/step/complete, action proposed/completed, checkpoint, handoff, and compensation observations.
+### `observe(event, ...)`
+
+Submits one observation.
+
+### `observe_batch(events, ...)`
+
+Submits a bounded batch.
+
+### `trace(event, ...)`
+
+Emits `model.response`.
+
+### `feedback(event, ...)`
+
+Emits `feedback.user`.
+
+### `outcome(event, ...)`
+
+Emits `business.outcome`.
+
+The Python client also exposes agent-native lifecycle helpers such as workflow start/step/complete, action proposed/completed, checkpoint, handoff, and compensation observations.
+
+---
 
 ## Signals
 
@@ -101,12 +149,22 @@ proposal = client.create_signal_discovery_proposal({
 })
 
 proposal_id = proposal.body["proposal"]["id"]
-client.review_signal_discovery_proposal(proposal_id, "APPROVE")
-client.materialize_signal_discovery(proposal_id, {
-    "valueType": "boolean",
-    "description": "The response omitted required measurement",
-})
+
+client.review_signal_discovery_proposal(
+    proposal_id,
+    "APPROVE",
+)
+
+client.materialize_signal_discovery(
+    proposal_id,
+    {
+        "valueType": "boolean",
+        "description": "The response omitted required measurement",
+    },
+)
 ```
+
+---
 
 ## Semantic + Runtime
 
@@ -129,7 +187,11 @@ runtime = client.resolve_runtime({
 })
 ```
 
-Advanced methods include `execute_runtime`, `compile_behavior_capsule`, and `serve_behavior_projection`.
+### `execute_runtime(request)`
+
+Use this when your workflow already receives the required execution values from Vira. Most integrations should begin with `resolve_runtime`.
+
+---
 
 ## Behavior Programs
 
@@ -138,6 +200,8 @@ list_behavior_programs
 get_behavior_program
 create_behavior_program
 ```
+
+---
 
 ## Behavior Strategies
 
@@ -149,17 +213,9 @@ validate_behavior_strategy
 simulate_behavior_strategy
 ```
 
-Advanced execution:
+For normal integrations, create and validate Strategies, release them through the standard lifecycle, and resolve them through runtime.
 
-```text
-start_strategy_execution
-get_strategy_execution
-get_strategy_execution_trace
-continue_strategy_execution
-cancel_strategy_execution
-```
-
-Public documentation keeps Strategy trace output high-level and does not reproduce internal receipt structures.
+---
 
 ## Packs
 
@@ -179,6 +235,8 @@ Lifecycle:
 import → install → evaluate → approve → release
 ```
 
+---
+
 ## Discovery, Teach, Evaluation, Release
 
 ```text
@@ -189,29 +247,3 @@ start_evaluation
 get_evaluation
 create_release
 ```
-
-## Capabilities + model serving
-
-Capability APIs:
-
-```text
-attest_host_capabilities
-resolve_with_capabilities
-trace_with_capabilities
-```
-
-Model-serving APIs:
-
-```text
-model_selection
-served_trace
-```
-
-## Deployment health
-
-```text
-compare_rollout
-rollout_health
-```
-
-Use advanced runtime and deployment methods only when your integration owns those responsibilities.

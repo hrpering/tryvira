@@ -1,6 +1,6 @@
-# Public Vira demo
+# Vira demo
 
-Use a fictional marketing assistant.
+This example uses a fictional marketing assistant to show the Vira lifecycle.
 
 ## Baseline
 
@@ -8,7 +8,7 @@ User:
 
 > Create a go-to-market plan for a new subscription product.
 
-Assistant produces an acquisition-heavy plan.
+The first response focuses on acquisition and misses retention and measurement.
 
 ## Correction
 
@@ -16,7 +16,7 @@ User:
 
 > For launch plans, cover the full funnel, include retention, and define how each stage will be measured.
 
-## Vira flow
+## Lifecycle
 
 ```text
 Observation
@@ -27,7 +27,7 @@ Observation
 → Approval
 → Release
 → Runtime
-→ Simple trace
+→ Trace
 ```
 
 ## Proposed behavior
@@ -38,36 +38,14 @@ conversion, and retention. Include an objective and measurement approach
 for each stage.
 ```
 
-State:
+The proposal is reviewed and evaluated before release.
 
-```text
-PROPOSED
-```
+## Example checks
 
-not:
-
-```text
-ACTIVE
-```
-
-## Evaluation
-
-Public-safe checks:
-
-- full funnel covered;
+- full-funnel coverage;
 - measurement included;
-- user format preserved;
+- requested format preserved;
 - no invented performance results.
-
-## Release
-
-After evaluation and approval, release the behavior.
-
-## New request
-
-> Plan the launch of a new meal-delivery membership.
-
-The user should not repeat the old correction.
 
 ## Trace
 
@@ -79,6 +57,4 @@ Applied          yes
 Result           completed
 ```
 
-That is enough for a public demo.
-
-Do not show raw internal receipts, digests, private prompts, credentials, or customer identifiers.
+Use fictional or publishable data in public demos.

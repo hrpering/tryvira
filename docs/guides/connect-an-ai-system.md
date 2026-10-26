@@ -1,6 +1,6 @@
 # Connect an AI system
 
-This guide shows the normal public integration sequence.
+This guide shows the normal integration sequence.
 
 ## 1. Configure the process
 
@@ -91,7 +91,7 @@ const semantic = await vira.resolveSemantic({
 });
 ```
 
-Semantic selection is evidence, not authorization.
+A semantic match does not activate behavior by itself.
 
 ## 7. Resolve runtime behavior
 
@@ -118,4 +118,4 @@ your application
        └─ governed runtime resolution
 ```
 
-Do not reproduce private Vira authority rules inside your application.
+Keep policy and behavior decisions in Vira rather than duplicating them in application code.

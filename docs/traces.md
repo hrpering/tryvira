@@ -1,6 +1,6 @@
 # Simple traces
 
-Public traces should be useful without exposing internal authority metadata.
+Traces should make runtime behavior easy to understand at a glance.
 
 ## Recommended developer view
 
@@ -36,17 +36,7 @@ A public trace may show:
 - high-level result;
 - user-safe reason when appropriate.
 
-## What not to expose
+## Public examples
 
-This public repository deliberately avoids documenting or displaying:
-
-- raw internal receipts;
-- authority digests;
-- internal composition identities;
-- private deployment identifiers;
-- hidden policy payloads;
-- proprietary scoring;
-- secret references;
-- customer-sensitive metadata.
-
-If a developer needs deeper incident debugging, use the authenticated product surfaces intended for that purpose.
+For documentation, demos, screenshots, and issue reports, use the compact trace fields shown above.
+Never include credentials, personal data, or confidential application data in material shared publicly.

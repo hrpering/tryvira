@@ -2,7 +2,11 @@
 
 ## `VIRA_API_401`
 
-Check the API key, target API, and environment.
+Check:
+
+- API key exists;
+- key is sent to the expected Vira API;
+- key belongs to the intended environment.
 
 ## Scope mismatch
 
@@ -18,34 +22,56 @@ The request scope must match the credential/MCP configured scope.
 
 ## Semantic resolver returns no selection
 
-This can be correct. Check that the Semantic Task exists, aliases/examples describe the request, the task is eligible in the current scope, and the resolver is allowed to abstain.
+This can be correct.
+
+Check:
+
+- the Semantic Task exists;
+- aliases/examples describe the request;
+- the task is eligible in the current scope;
+- the resolver is allowed to abstain.
 
 Do not turn an uncertain result into a fake confident match.
 
 ## Runtime resolution fails after semantic selection
 
-Semantic selection is not authorization. Check the Behavior Point release state, scope, runtime identity, and policy.
+A semantic match does not activate behavior by itself.
+
+Check:
+
+- Behavior Point is released/eligible;
+- scope is correct;
+- required runtime values are present;
+- policy allows the operation.
 
 ## Mutation duplicated after network failure
 
-Use a stable idempotency key. Do not generate a new logical key for every retry.
+Use a stable idempotency key.
+
+Do not generate a new logical key for every retry.
 
 ## MCP tool is denied
 
-Check `VIRA_MCP_AUTHORITY_URL`, configured scope, required role, release state, and effectful tool authorization.
+Check:
+
+- `VIRA_MCP_AUTHORITY_URL`;
+- configured scope;
+- required role;
+- release state;
+- tool authorization.
 
 ## MCP scope mismatch
 
-The MCP server has one configured organization/project/environment scope. Tool arguments must match it.
+The MCP server has one configured organization/project/environment scope.
+
+Tool arguments must match it.
 
 ## Strategy simulation says no providers were called
 
-That is expected for structural simulation. Use runtime Strategy execution for real provider/tool calls.
+That is expected for structural simulation.
 
-## Strategy execution is waiting
+Use runtime execution when you need real provider or tool calls.
 
-Continue the same execution with the SDK or MCP continuation operation. Do not start a new execution just to bypass a waiting state.
+## Trace looks too small
 
-## Public trace looks too small
-
-That is intentional. Public documentation keeps the trace view simple and does not expose private receipt/digest structures.
+Documentation examples use the compact trace format described in `docs/traces.md`.

@@ -10,8 +10,8 @@ Explain the problem.
 
 - [ ] `npm run verify` passes.
 - [ ] Examples use fictional data.
-- [ ] No credentials or customer data are included.
-- [ ] No private Vira source, prompts, thresholds, or raw receipt internals are included.
+- [ ] No credentials, personal data, or confidential information are included.
+- [ ] Examples and documentation use publishable data and supported public interfaces.
 - [ ] Public contract documentation was updated if required.
 
 ## Related issue

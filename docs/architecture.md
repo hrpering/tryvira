@@ -15,16 +15,6 @@ flowchart LR
     K --> C
 ```
 
-## Public boundary
+## Scope of this diagram
 
-This diagram intentionally describes product concepts rather than private service topology.
-
-It does not expose:
-
-- private infrastructure;
-- customer data;
-- internal prompts;
-- scoring formulas;
-- authority digests;
-- raw receipt formats;
-- secret material.
+This diagram describes the product-level integration flow. Deployment-specific architecture is documented in the environment where it is operated.

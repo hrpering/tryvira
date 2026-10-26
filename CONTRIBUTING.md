@@ -13,13 +13,10 @@ This repository accepts improvements to public documentation, examples, and supp
 
 ## Do not submit
 
-- private Vira server source;
-- internal prompts;
-- proprietary thresholds;
-- raw internal receipts;
-- customer data;
-- production credentials;
-- private infrastructure details.
+- credentials or access tokens;
+- personal, customer, or confidential data;
+- production logs or configuration containing sensitive values;
+- material you do not have permission to publish.
 
 ## Verify
 

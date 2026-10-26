@@ -302,38 +302,16 @@ await vira.resolveRuntime({
 });
 ```
 
-This is an enforcing boundary.
+Runtime resolution applies the configured release and policy checks.
 
 ### `executeRuntime(input)`
 
 Executes a versioned runtime request.
 
-Runtime execution requires server-issued identities such as revision and execution data. Do not invent revision, nonce, or server-owned authority fields in application code.
+Runtime execution uses revision and execution values returned by Vira. Reuse those values rather than constructing them in application code.
 
-### `compileBehaviorCapsule(input)`
-
-Compiles the supported scoped Behavior VM capsule for a persisted program.
-
-```ts
-await vira.compileBehaviorCapsule({
-  programId,
-  input: "Create a launch plan",
-  candidates: ["marketing.launch_plan"],
-});
-```
-
-### `serveBehaviorProjection(input)`
-
-Serves a provider-specific public behavior projection through the governed runtime boundary.
-
-```ts
-await vira.serveBehaviorProjection({
-  programId,
-  input: "Create a launch plan",
-  provider: "provider-key",
-  protocol: "chat",
-});
-```
+For most application integrations, start with `resolveRuntime`.
+Use `executeRuntime` only when your workflow already receives the required execution values from Vira.
 
 ---
 
@@ -385,46 +363,9 @@ Simulation does not mean real model/tool providers executed.
 
 ---
 
-## Strategy execution methods
+## Strategy execution
 
-### `startStrategyExecution(input)`
-
-Starts execution of a persisted immutable Strategy artifact.
-
-The input contains server-issued runtime identities and bounded execution information, including:
-
-- artifact digest;
-- scope;
-- revision ID;
-- idempotency key;
-- nonce + expiry;
-- decision plan;
-- candidates;
-- policy;
-- optional Behavior Point;
-- optional execution boundary;
-- optional trace/execution IDs;
-- optional state.
-
-This is an advanced runtime API. Prefer higher-level resolve flows unless your integration manages Strategy execution directly.
-
-### `getStrategyExecution(executionId)`
-
-Reads execution state.
-
-### `getStrategyExecutionTrace(executionId)`
-
-Reads authenticated trace evidence for the execution.
-
-Public documentation intentionally does not reproduce internal receipt payload structures.
-
-### `continueStrategyExecution(executionId, continuation?)`
-
-Continues a waiting execution with pinned state/references.
-
-### `cancelStrategyExecution(executionId)`
-
-Cancels a non-terminal execution.
+For normal integrations, create and validate Strategies, release them through the standard lifecycle, and resolve them through runtime.
 
 ---
 
@@ -481,7 +422,7 @@ import → install → evaluate → approve → release
 
 ### `submitTeachEvidence(evidence, options?)`
 
-Submits admitted Teach evidence.
+Submits Teach evidence.
 
 ### `startEvaluation(input, options?)`
 
@@ -495,47 +436,7 @@ Reads evaluation state/result.
 
 Creates a governed release using the server-versioned release contract.
 
-Use server-generated revision/evaluation identities. Do not manufacture internal release metadata.
-
----
-
-## Capability methods
-
-### `attestCapabilities(attestation, options?)`
-
-Records supported host/runtime capability attestation.
-
-### `resolveCapabilities(attestationId, request, options?)`
-
-Resolves an enforcing capability decision.
-
-### `recordCapabilityTrace(decisionDigest, trace, options?)`
-
-Records the supported trace result for a capability decision.
-
----
-
-## Model-serving methods
-
-### `resolveModelServing(request, options?)`
-
-Resolves model-serving selection through the governed boundary.
-
-### `recordModelServingTrace(trace, selection, options?)`
-
-Records the supported serving trace.
-
----
-
-## Deployment methods
-
-### `recordDeploymentComparison(deploymentId, comparison, options?)`
-
-Records a deployment comparison.
-
-### `recordDeploymentHealth(deploymentId, health, options?)`
-
-Records authoritative deployment health.
+Use revision and evaluation values returned by Vira when creating a release.
 
 ---
 
@@ -571,16 +472,4 @@ Strategies
 Teach
 Evaluation
 Release
-```
-
-### Level 4: Advanced runtime
-
-Use only when needed:
-
-```text
-Strategy execution
-Capabilities
-Model serving
-Behavior capsule/projection
-Deployment comparison/health
 ```

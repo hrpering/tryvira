@@ -42,6 +42,6 @@ runtime
 → runtime
 ```
 
-## Keep one authority path
+## Keep one behavior-control path
 
-Do not recreate private Vira authority inside an SDK wrapper, MCP client, or custom adapter.
+Use Vira as the behavior-control layer instead of duplicating policy and release logic inside SDK wrappers, MCP clients, or custom adapters.

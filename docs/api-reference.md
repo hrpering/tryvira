@@ -1,6 +1,6 @@
 # Public API reference
 
-This page lists the documented public control-plane routes available in the current API contract.
+This page lists documented Vira routes available to public integrations.
 
 Base URL:
 
@@ -49,7 +49,7 @@ SDK equivalents include `observe`, `trace`, `feedback`, and `outcome`.
 | POST | `/v1/discovery/candidates/{kind}/{key}/publish` | Publish an approved candidate |
 | POST | `/v1/semantic/resolve` | Resolve a semantic task |
 
-Semantic resolution is not runtime authorization.
+Semantic resolution does not activate behavior by itself.
 
 ## Behavior Programs
 
@@ -78,11 +78,6 @@ A structural simulation is not proof of real model/tool execution.
 | --- | --- | --- |
 | POST | `/v1/runtime/resolve` | Resolve released behavior |
 | POST | `/v1/runtime/execute` | Execute through runtime |
-| GET | `/v1/runtime/strategy-executions` | List strategy executions |
-| GET | `/v1/runtime/strategy-executions/{executionId}` | Get an execution |
-| GET | `/v1/runtime/strategy-executions/{executionId}/trace` | Get execution trace |
-| POST | `/v1/runtime/strategy-executions/{executionId}/continue` | Continue waiting execution |
-| POST | `/v1/runtime/strategy-executions/{executionId}/cancel` | Cancel execution |
 
 This repository documents only simplified developer trace output.
 
@@ -103,7 +98,6 @@ This repository documents only simplified developer trace output.
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| POST | `/v1/teach` | Submit Teach evidence through compatibility route |
 | POST | `/v1/teach/evidence` | Submit Teach evidence |
 
 The Teach product surface also supports proposal review/evaluation/promotion flows. Use the versioned product docs/SDK for those operations.
@@ -141,4 +135,4 @@ Expect structured API errors.
 
 Keep the returned request identifier when available.
 
-Do not paste credentials or customer payloads into public bug reports.
+Do not paste credentials or confidential payloads into public bug reports.

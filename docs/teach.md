@@ -1,6 +1,6 @@
 # Teach
 
-Teach turns admitted evidence into a reviewable behavior proposal.
+Teach turns evidence into a reviewable behavior proposal.
 
 It does not silently rewrite production behavior.
 
@@ -82,14 +82,9 @@ Evaluation attaches a score and evaluation identity to the proposal.
 
 Promotion moves a sufficiently evaluated proposal forward.
 
-Promotion is still not a shortcut around release authority.
+Promotion still does not skip evaluation, approval, or release checks.
 
-## Public safety boundary
+## Data handling
 
-This repository does not publish:
-
-- private Teach prompts;
-- hidden synthesis templates;
-- proprietary proposal-ranking logic;
-- internal provider configuration;
-- customer evidence.
+Teach evidence should contain only the information required for the approved workflow.
+Use synthetic or publishable data in examples, demos, and public issue reports.

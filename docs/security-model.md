@@ -4,11 +4,11 @@
 
 Requests operate inside an organization, project, and environment boundary.
 
-## Semantic selection is not authorization
+## Semantic selection does not activate behavior
 
 A semantic match identifies a candidate task.
 
-Runtime authority still depends on governed released state.
+Runtime use still depends on released, eligible behavior.
 
 ## Proposals are not releases
 
@@ -32,4 +32,4 @@ Never commit:
 
 ## Public examples use fictional data
 
-No customer conversations, customer IDs, private prompts, or production traces belong in this repository.
+Do not place real user conversations, identifiers, credentials, or production traces in this repository.

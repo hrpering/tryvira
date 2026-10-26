@@ -71,6 +71,6 @@ semantic = client.resolve_semantic({
 })
 ```
 
-The Python and JavaScript clients use the same server authority boundary.
+The Python and JavaScript clients use the same Vira integration APIs.
 
-Do not build a second behavior authority inside the client.
+Keep behavior-control logic in Vira instead of duplicating it inside the client.

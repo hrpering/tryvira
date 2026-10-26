@@ -24,7 +24,7 @@ Use the SDK or another supported integration boundary.
 
 Send supported model responses, user feedback, and business outcomes.
 
-Observation is evidence. It is not authority.
+Observation is evidence. It does not activate behavior by itself.
 
 ## Resolve
 
@@ -54,7 +54,7 @@ A released artifact becomes eligible for runtime.
 
 ## Runtime
 
-The runtime resolves behavior through the governed boundary.
+Runtime resolves the released behavior for the request.
 
 ## Trace
 

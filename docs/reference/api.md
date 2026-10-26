@@ -45,7 +45,9 @@ POST /v1/semantic/resolve
 
 ## Signals
 
-Signal proposal/mapping routes are exposed through the SDK and MCP integration surfaces. Use the versioned SDK when possible so the client contract stays aligned with the server.
+Signal proposal/mapping routes are exposed through the SDK and MCP integration surfaces.
+
+Use the versioned SDK when possible so the client contract stays aligned with the server.
 
 ## Behavior Programs
 
@@ -71,39 +73,17 @@ POST /v1/behavior-strategies/{strategyId}/simulate
 ```text
 POST /v1/runtime/resolve
 POST /v1/runtime/execute
-POST /v1/runtime/behavior-capsule
-POST /v1/runtime/behavior-projection
-
-GET  /v1/runtime/strategy-executions
-GET  /v1/runtime/strategy-executions/{executionId}
-GET  /v1/runtime/strategy-executions/{executionId}/trace
-POST /v1/runtime/strategy-executions/{executionId}/continue
-POST /v1/runtime/strategy-executions/{executionId}/cancel
 ```
 
-## Capabilities
-
-```text
-POST /v1/runtime/capabilities/attest
-POST /v1/runtime/capabilities/resolve
-POST /v1/runtime/capabilities/traces
-```
-
-## Model serving
-
-```text
-POST /v1/model-serving/resolve
-POST /v1/model-serving/traces
-```
+Use the SDK for normal runtime integrations.
 
 ## Teach
 
 ```text
-POST /v1/teach
 POST /v1/teach/evidence
 ```
 
-The complete Teach proposal/review/evaluation/promotion lifecycle is versioned by the product server.
+Teach proposal review, evaluation, and promotion are available through the versioned product workflow.
 
 ## Evaluation
 
@@ -131,15 +111,15 @@ POST /v1/packs/{packId}/release
 
 The SDK also exposes Pack upgrade preview.
 
-## Deployment evidence
-
-```text
-POST /v1/deployments/{deploymentId}/comparisons
-POST /v1/deployments/{deploymentId}/authoritative-health
-```
-
 ## Prefer the SDK for application code
 
 Raw HTTP is useful for inspection and platform integrations.
 
-For normal application code, `@vira/sdk` or `vira-sdk` provides request construction, bearer auth, request IDs, retry behavior, idempotency handling, and fail-open vs fail-closed distinction.
+For normal application code, `@vira/sdk` or `vira-sdk` provides:
+
+- request construction;
+- bearer auth;
+- request IDs;
+- retry behavior;
+- idempotency handling;
+- fail-open vs fail-closed distinction.

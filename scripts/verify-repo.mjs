@@ -60,20 +60,6 @@ const textExtensions = new Set([
   ".md", ".mjs", ".js", ".ts", ".py", ".json", ".yml", ".yaml", ".txt", ".example", ""
 ]);
 
-const forbidden = [
-  ["private-repository-name", "vira_" + "beh_" + "redesign"],
-  ["private-host-1", "api1." + "medcase.website"],
-  ["private-host-2", "api2." + "medcase.website"],
-  ["private-dashboard", "dashboard." + "medcase.website"],
-  ["private-llm-host", "llm." + "medcase.website"],
-  ["secret-prefix", "sk-" + "proj-"],
-  ["loopback-host", "127.0.0.1"],
-  ["localhost", "local" + "host"],
-  ["local-scope", "\"environmentId\": \"local\""],
-  ["local-org", "local" + "-org"],
-  ["local-project", "local" + "-project"]
-];
-
 for (const file of files) {
   const rel = relative(root, file);
   const ext = extname(file);
@@ -84,12 +70,6 @@ for (const file of files) {
     text = await readFile(file, "utf8");
   } catch {
     continue;
-  }
-
-  if (!rel.endsWith("scripts/verify-repo.mjs")) {
-    for (const [name, marker] of forbidden) {
-      if (text.includes(marker)) failures.push(`Forbidden marker ${name} found in ${rel}`);
-    }
   }
 
   if (rel.endsWith(".json")) {

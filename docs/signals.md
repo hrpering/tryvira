@@ -31,7 +31,7 @@ The exact authoring schema is versioned by the server.
 
 ## How signals are created
 
-The public-safe lifecycle is:
+The lifecycle is:
 
 ```text
 observation / feedback / outcome
@@ -129,14 +129,7 @@ The Pack binds expected signal keys to the materialized behavior context.
 
 Signal definitions and producer mappings still follow the supported signal lifecycle.
 
-## What is intentionally not public here
+## Integration guidance
 
-This repository does not expose:
-
-- private signal-scoring thresholds;
-- internal discovery prompts;
-- proprietary ranking logic;
-- raw internal capture jobs;
-- tenant data.
-
-Those details are unnecessary for integration.
+Use the documented Signal proposal, review, materialization, and mapping interfaces.
+Keep credentials and real user or business data out of public examples and issue reports.

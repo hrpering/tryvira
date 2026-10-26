@@ -1,8 +1,8 @@
 # Packs
 
-Packs are the supported bulk authoring format for public Behavior Point workflows.
+Packs are the supported bulk authoring format for Behavior Point workflows.
 
-They are not a second authority system.
+They package related behavior resources for a single lifecycle.
 
 ## Lifecycle
 
@@ -19,7 +19,7 @@ Import alone never activates behavior.
 
 ## What a Pack can contain
 
-Public authoring collections can include:
+Authoring collections can include:
 
 - semantic tasks;
 - Behavior Points;
@@ -57,7 +57,7 @@ await vira.installPack(packId, {});
 await vira.evaluatePack(packId, {
   passed: true,
   score: 1,
-  runId: "public-example-eval"
+  runId: "example-eval"
 });
 await vira.approvePack(packId);
 await vira.releasePack(packId);
@@ -67,4 +67,4 @@ The exact response fields are versioned by the server.
 
 ## Why Packs are useful
 
-They let a developer author related behavior resources together without bypassing evaluation, approval, release, or runtime authority.
+They let a developer author related behavior resources together while preserving evaluation, approval, release, and runtime checks.

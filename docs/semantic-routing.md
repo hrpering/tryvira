@@ -58,8 +58,8 @@ This is a valid product outcome.
 
 ## Important
 
-Semantic resolution is not authorization.
+Semantic resolution does not activate behavior by itself.
 
 A semantic result can identify a candidate task or Behavior Point.
 
-Runtime authority still depends on the released governed state.
+Runtime use still depends on released, eligible behavior.

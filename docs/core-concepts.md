@@ -46,7 +46,7 @@ A structured set of behavior modules such as guards, judgments, transforms, veri
 
 A bounded execution graph for a Behavior Point.
 
-Strategies describe how work may proceed. Hard policy authority remains separate.
+Strategies describe how work may proceed. Policy and release checks remain separate.
 
 ## Teach
 
@@ -68,4 +68,4 @@ The process of resolving released behavior for a request.
 
 A developer-facing explanation of what task and behavior were selected and what happened.
 
-This public repository intentionally keeps traces simple and does not expose internal receipt internals.
+Trace examples in this repository use a compact developer-facing format.

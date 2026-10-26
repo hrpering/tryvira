@@ -11,7 +11,7 @@ Never include:
 - database credentials;
 - provider secrets;
 - customer data;
-- private prompts;
+- confidential prompts or application content;
 - production traces.
 
 If a real secret is committed, rotate it. Deleting a commit is not sufficient.

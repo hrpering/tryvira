@@ -2,13 +2,13 @@
 
 ## Included
 
-- public product documentation;
+- product documentation;
 - JavaScript / TypeScript SDK guidance;
 - Python SDK guidance;
 - MCP guidance;
-- public API route reference;
+- API route reference;
 - Behavior Point authoring via Packs;
-- public-safe Signal lifecycle guidance;
+- Signal lifecycle guidance;
 - Semantic routing;
 - Behavior Programs;
 - Strategies;
@@ -17,23 +17,15 @@
 - release;
 - runtime;
 - simple traces;
-- fictional examples and tutorials.
+- examples and tutorials.
 
-## Excluded
+## Scope
 
-- private server source;
-- private authority algorithms;
-- internal prompts;
-- proprietary thresholds;
-- raw internal receipts;
-- private deployment identifiers;
-- customer-specific policy;
-- production infrastructure;
-- secrets;
-- unreleased roadmap implementation.
+This repository is the public documentation and integration surface for Vira.
+Service implementation and hosted operations are maintained separately.
 
 ## Licensing boundary
 
 Apache-2.0 applies to the contents of this repository unless a file states otherwise.
 
-It does not grant a license to source code or services not included here.
+The license applies to the files distributed in this repository.

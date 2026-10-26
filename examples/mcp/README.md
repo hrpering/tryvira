@@ -33,7 +33,7 @@ list_discovery_candidates
 list_packs
 ```
 
-Effectful tools such as runtime resolution, Signal review/materialization, Pack lifecycle, evaluation, and Strategy execution remain authority-gated.
+Effectful tools such as runtime resolution, Signal review/materialization, Pack lifecycle, and evaluation require authorization.
 
 See:
 

@@ -25,7 +25,7 @@ const vira = new ViraClient({
 });
 ```
 
-The client sends requests to Vira. It does not execute tools or recreate a second behavior authority inside the application.
+The client sends requests to Vira and keeps behavior-control logic in the Vira service.
 
 ## Connect
 
@@ -96,7 +96,7 @@ const semantic = await vira.resolveSemantic({
 });
 ```
 
-Do not treat the semantic result as authorization.
+A semantic match does not activate behavior by itself.
 
 ## Runtime resolution
 
@@ -116,7 +116,7 @@ Runtime resolution requires a governed released target.
 
 ## Combined semantic + runtime flow
 
-When your SDK version exposes `resolveSemanticRuntime`, use it only as a convenience around the same two boundaries. Semantic selection does not grant runtime authority.
+When your SDK version exposes `resolveSemanticRuntime`, use it as a convenience around semantic selection and runtime resolution.
 
 ## Packs
 
@@ -132,14 +132,6 @@ await vira.releasePack(packId);
 
 Import does not activate behavior.
 
-Release requires the lifecycle gates configured by the server.
-
-## Strategy execution
-
-The SDK also supports strategy execution and continuation for released immutable strategy artifacts.
-
-Continuation is for an existing waiting execution. Do not create a new execution to work around a waiting state.
-
 ## Failure modes
 
 Observation-only paths may be configured differently from enforcing runtime paths.
@@ -150,4 +142,4 @@ Effectful runtime behavior should remain fail-closed when required.
 
 When an API error exposes a request ID, keep it for debugging.
 
-Do not publish raw production traces or credentials in public issues.
+Do not publish production traces or credentials in public issues.

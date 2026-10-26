@@ -7,7 +7,7 @@ Release makes approved behavior eligible for runtime.
 ```text
 proposal ≠ released behavior
 evaluation pass ≠ automatic release
-semantic match ≠ authorization
+semantic match ≠ released behavior
 ```
 
 ## Public API
@@ -16,7 +16,7 @@ semantic match ≠ authorization
 POST /v1/releases
 ```
 
-The release boundary verifies the required revision, policy, evaluation, and release evidence for the target deployment.
+A release is created only after the required revision, policy, and evaluation checks pass.
 
 ## Public Pack release
 
@@ -36,12 +36,4 @@ A release gives the system an explicit answer to:
 
 > Which behavior is active?
 
-That supports reproducibility and rollback without exposing private authority internals.
-
-## What this repository intentionally does not document
-
-- internal release digests;
-- private manifest internals;
-- raw promotion receipts;
-- customer deployment topology;
-- proprietary rollout logic.
+That supports reproducibility, review, and rollback.

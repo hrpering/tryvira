@@ -28,7 +28,7 @@
 
 ---
 
-## One correction should not become another hidden prompt
+## One correction should not become another prompt patch
 
 A useful AI system gets corrected constantly.
 
@@ -58,9 +58,9 @@ flowchart LR
 
 > **AI can propose. Released behavior remains explicit.**
 
-Semantic selection is not authorization.  
-Observation is not authority.  
-A Teach proposal is not a production release.
+Semantic selection does not activate behavior.  
+Observation records evidence.  
+A Teach proposal still needs evaluation, approval, and release.
 
 ---
 
@@ -197,9 +197,6 @@ The MCP server exposes governed tools for semantic resolution, runtime, Signals,
 
 **References:** [MCP setup](docs/reference/mcp.md) · [MCP tool catalog](docs/reference/mcp-tools.md)
 
-> [!NOTE]
-> Package publication is managed separately from this repository. The public package names are `@vira/sdk`, `@vira/mcp`, and `vira-sdk`; registry availability can lag the documentation release.
-
 ---
 
 ## Pick a path
@@ -237,14 +234,9 @@ The public clients cover more than connect-and-observe.
 | Semantic + Runtime | `resolveSemantic`, `resolveRuntime`, `resolveSemanticRuntime`, `executeRuntime` |
 | Programs | list/get/create Behavior Programs |
 | Strategies | list/get/create/validate/simulate Strategy |
-| Strategy execution | start/get/trace/continue/cancel |
 | Packs | list/import/install/evaluate/approve/release/upgrade preview |
 | Teach + Evaluation | submit Teach evidence, start/get evaluation |
 | Release | create governed release |
-| Capabilities | attest, resolve, trace |
-| Model serving | resolve selection, record served trace |
-| Deployments | comparison and authoritative health |
-| Projections | behavior capsule and provider projection |
 
 See the [complete method reference](docs/reference/javascript-sdk.md).
 
@@ -261,12 +253,12 @@ MCP host
    ↓
 scope + authentication
    ↓
-Vira authority boundary
+Vira behavior-control APIs
    ↓
 read / propose / evaluate / resolve / execute
 ```
 
-Effectful tools remain authority-gated.
+Effectful tools require authorization.
 
 See [all MCP tools](docs/reference/mcp-tools.md).
 
@@ -340,7 +332,7 @@ Applied          yes
 Result           completed
 ```
 
-This repository intentionally does not document raw internal receipt payloads, private authority digests, hidden deployment identities, proprietary scoring, or customer-sensitive metadata.
+For documentation and demos, use this compact trace format. Never include credentials, personal data, or confidential application data in material shared publicly.
 
 ---
 
@@ -411,34 +403,23 @@ flowchart TD
 
 ---
 
-## What is public here
+## Repository scope
 
-Included:
+This repository contains:
 
 - product concepts;
-- JavaScript / TypeScript SDK guidance;
-- Python SDK guidance;
+- JavaScript / TypeScript and Python SDK guidance;
 - MCP setup and tool catalog;
-- public API reference;
+- API reference;
 - Behavior Point and Pack authoring;
-- Signal discovery and mapping lifecycle;
+- Signal discovery and mapping;
 - Semantic routing;
 - Behavior Programs and Strategies;
 - Teach;
-- evaluation, approval, release, runtime, and simple traces;
-- fictional examples and tutorials.
+- evaluation, approval, release, runtime, and trace documentation;
+- examples and tutorials.
 
-Not included:
-
-- private Vira server source;
-- private authority-resolution algorithms;
-- proprietary thresholds or ranking logic;
-- private prompts;
-- customer configuration;
-- production secrets;
-- private infrastructure topology;
-- raw internal receipts;
-- unreleased implementation.
+Service implementation and hosted operations are maintained separately from this documentation repository.
 
 See [Repository scope](docs/repository-scope.md).
 
@@ -446,7 +427,7 @@ See [Repository scope](docs/repository-scope.md).
 
 ## Security
 
-Never put API keys, MCP tokens, customer data, private prompts, or production traces in public issues or examples.
+Never put API keys, MCP tokens, personal data, confidential information, or production traces in public issues or examples.
 
 Read [SECURITY.md](SECURITY.md).
 
@@ -458,4 +439,4 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), [GOVERNANCE.md](GOVERNANCE.md), and [CO
 
 The contents of this public repository are licensed under the [Apache License 2.0](LICENSE), unless a file states otherwise.
 
-The license for this repository does not imply that private Vira services or proprietary server-side implementation are open source.
+The license applies to the files distributed in this repository.

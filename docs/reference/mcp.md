@@ -12,9 +12,7 @@ Runtime:
 Node.js >= 20
 ```
 
-Vira MCP is an npx-ready Model Context Protocol server over Vira's existing scoped authority boundary.
-
-It does not create a second behavior authority.
+Vira MCP is an npx-ready Model Context Protocol server for Vira's scoped integration APIs.
 
 ## Run
 
@@ -34,15 +32,13 @@ The default launcher uses the official MCP transport and stdio.
 | `VIRA_PROJECT_ID` | configured project scope |
 | `VIRA_ENVIRONMENT_ID` | configured environment scope |
 | `VIRA_MCP_AUTH_TOKEN` | auth token for the MCP HTTP surface when used |
-| `VIRA_MCP_AUTHORITY_URL` | authority endpoint used for effectful tool authorization |
+| `VIRA_MCP_AUTHORITY_URL` | authorization endpoint used for effectful MCP tools |
 
 Optional:
 
 | Variable | Purpose |
 | --- | --- |
 | `VIRA_MCP_SERVER_NAME` | custom MCP server name |
-| `VIRA_MCP_PROTOCOL_MODE` | compatibility protocol mode; default is official transport |
-| `VIRA_MCP_BIND_PUBLIC` | only for an authenticated network boundary |
 
 ## Generic client configuration
 
@@ -98,7 +94,6 @@ list_ai_systems
 list_behavior_programs
 list_behavior_strategies
 get_behavior_strategy
-get_strategy_execution
 list_discovery_candidates
 list_packs
 ```
@@ -112,10 +107,9 @@ Signal proposal/review/materialization
 review_discovery_candidate
 start_evaluation
 Pack import/install/evaluate/approve/release
-start/continue/cancel Strategy execution
 ```
 
-Effectful tools require the configured authority path and can still be denied by scope, role, policy, release state, or runtime requirements.
+Effectful tools require authorization and can be denied by scope, role, policy, release state, or runtime requirements.
 
 ## HTTP transport
 
@@ -131,11 +125,9 @@ Use it only behind the authentication/network controls appropriate for your depl
 
 See [MCP tool catalog](mcp-tools.md).
 
-## Public trace policy
+## Trace view
 
-Some runtime tools can retrieve detailed authenticated execution evidence.
-
-This public repository documents only a simple developer trace view:
+For documentation and demos, use the compact developer trace view:
 
 ```text
 Task             support.answer_billing
@@ -145,7 +137,7 @@ Applied          yes
 Result           completed
 ```
 
-It intentionally does not document raw internal receipt payloads or private authority metadata.
+Never include credentials, personal data, or confidential application data in traces shared publicly.
 
 ## Troubleshooting
 

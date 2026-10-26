@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Do not include secrets, customer data, private prompts, or production traces.
+        Do not include credentials, personal data, confidential information, or production traces.
 
   - type: dropdown
     id: area
@@ -56,5 +56,5 @@ body:
     attributes:
       label: Data safety
       options:
-        - label: I removed secrets, customer data, private prompts, and production data.
+        - label: I removed credentials, personal data, confidential information, and production data.
           required: true

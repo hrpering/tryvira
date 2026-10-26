@@ -45,6 +45,6 @@ Do not expose an unauthenticated public bind.
 
 ## Effectful tools
 
-Effectful operations remain authority-gated.
+Effectful operations require authorization.
 
-MCP is an integration surface, not a second authority path.
+MCP is an integration surface over the same Vira behavior lifecycle.

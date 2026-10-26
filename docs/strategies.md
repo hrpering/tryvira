@@ -6,7 +6,7 @@ It answers:
 
 > How should this governed task proceed?
 
-It does not replace hard policy authority.
+It does not replace policy and release checks.
 
 ## Execution modes
 
@@ -138,14 +138,13 @@ Supported strategy concepts include:
 }
 ```
 
-The server adds and validates immutable identity, program binding, provenance, and digests.
-
+Vira validates the Strategy definition and binds it to the relevant Behavior Program.
 
 ## Recommended authoring path
 
 For a new Behavior Point, prefer Pack authoring.
 
-When a Strategy definition is supplied as part of the SDK Pack `objects` payload, Vira binds it to the materialized Behavior Program and adds the governed program binding and Pack provenance. This avoids asking the application developer to manufacture server-owned digests.
+When a Strategy definition is supplied as part of a Pack, Vira binds it to the materialized Behavior Program as part of installation.
 
 See:
 
@@ -154,7 +153,7 @@ examples/strategy/marketing-launch.strategy.json
 tutorials/marketing-agent/05-pack-lifecycle.mjs
 ```
 
-For direct `POST /v1/behavior-strategies`, the request uses the server-versioned complete Strategy definition, including its valid program binding. Use direct authoring only when those identifiers come from Vira rather than being invented by the client.
+For direct `POST /v1/behavior-strategies`, use the versioned Strategy schema documented for your Vira release.
 
 ## Public API
 
@@ -178,4 +177,4 @@ Use runtime execution for real calls.
 
 A strategy can reference only tools allowed by its tool policy.
 
-Hard authority should stay outside strategy heuristics.
+Policy and release checks remain separate from Strategy heuristics.
