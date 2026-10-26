@@ -24,6 +24,7 @@ Before pasting anything into an AI assistant:
 | Install/configure JavaScript / TypeScript SDK | [JavaScript SDK setup](setup-javascript-sdk.md) |
 | Install/configure Python SDK | [Python SDK setup](setup-python-sdk.md) |
 | Install/configure MCP | [MCP setup](setup-mcp.md) |
+| Integrate the public HTTP API directly | [HTTP API setup](setup-http-api.md) |
 | Configure the first Semantic Task / Behavior Point / Signal / Strategy / Teach flow | [Behavior lifecycle setup](setup-behavior-lifecycle.md) |
 | Debug HTTP, auth, scope, and SDK validation errors | [API, auth, and SDK errors](errors-api-auth-sdk.md) |
 | Debug semantic routing and Behavior Points | [Semantic + Behavior Point errors](errors-semantic-behavior.md) |

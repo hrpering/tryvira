@@ -50,6 +50,7 @@ const requiredFiles = [
   "docs/ai-prompts/setup-javascript-sdk.md",
   "docs/ai-prompts/setup-python-sdk.md",
   "docs/ai-prompts/setup-mcp.md",
+  "docs/ai-prompts/setup-http-api.md",
   "docs/ai-prompts/setup-behavior-lifecycle.md",
   "docs/ai-prompts/errors-api-auth-sdk.md",
   "docs/ai-prompts/errors-semantic-behavior.md",

@@ -66,6 +66,7 @@ It contains guarded copy-paste prompts for:
 - JavaScript / TypeScript SDK setup;
 - Python SDK setup;
 - MCP setup;
+- direct HTTP API integration;
 - first Behavior Point / Pack / Signal / Strategy / Teach configuration;
 - HTTP/auth/scope/SDK errors;
 - Semantic routing and Behavior Points;
