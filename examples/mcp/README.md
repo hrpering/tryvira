@@ -1,7 +1,41 @@
 # MCP example
 
-Copy the example configuration into the format expected by your MCP client.
+Run the Vira MCP launcher:
 
-Replace every placeholder.
+```bash
+npx -y @vira/mcp
+```
 
-Never commit real values.
+Use `client-config.example.json` as the generic shape for an MCP host.
+
+Required production values:
+
+```text
+VIRA_API_URL
+VIRA_API_KEY
+VIRA_MCP_AUTH_TOKEN
+VIRA_MCP_AUTHORITY_URL
+VIRA_ORGANIZATION_ID
+VIRA_PROJECT_ID
+VIRA_ENVIRONMENT_ID
+```
+
+After the host initializes the server, use MCP tool discovery to see the catalog supported by your package version.
+
+Start with read-only tools:
+
+```text
+resolve_semantic
+list_ai_systems
+list_behavior_programs
+list_behavior_strategies
+list_discovery_candidates
+list_packs
+```
+
+Effectful tools such as runtime resolution, Signal review/materialization, Pack lifecycle, evaluation, and Strategy execution remain authority-gated.
+
+See:
+
+- [MCP reference](../../docs/reference/mcp.md)
+- [MCP tool catalog](../../docs/reference/mcp-tools.md)

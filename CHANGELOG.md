@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0
+
+- Redesigned the root README for a stronger product + developer first impression.
+- Added complete JavaScript / TypeScript SDK method reference.
+- Added expanded Python SDK reference.
+- Added production-safe MCP configuration reference.
+- Added full MCP tool catalog with read-only/effectful classification.
+- Added expanded HTTP API route map.
+- Added connection guide and troubleshooting guide.
+- Improved examples navigation.
+- Added explicit package publication status note.
+- Kept public traces intentionally simple; raw internal receipt structures remain out of scope.
+
 ## 0.2.0
 
 - Added Behavior Point authoring guide.
