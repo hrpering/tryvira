@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.1
+
+- Added the direct HTTP API setup prompt to the AI Prompt Library.
+- Refreshed the root README navigation to expose Troubleshooting and AI prompts directly.
+- Added AI setup links beside JavaScript, Python, MCP, and HTTP integration paths.
+- Updated the repository map and public scope summary for the troubleshooting and AI prompt sections.
+
 ## 0.5.0
 
 - Added an AI Setup & Troubleshooting Prompt Library for repository-aware coding assistants and normal chat workflows.
