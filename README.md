@@ -19,10 +19,11 @@
 <p align="center">
   <a href="#quickstart">Quickstart</a> ·
   <a href="docs/README.md">Docs</a> ·
+  <a href="docs/troubleshooting/README.md">Troubleshooting</a> ·
+  <a href="docs/ai-prompts/README.md">AI prompts</a> ·
   <a href="docs/reference/javascript-sdk.md">JavaScript SDK</a> ·
   <a href="docs/reference/python-sdk.md">Python SDK</a> ·
   <a href="docs/reference/mcp.md">MCP</a> ·
-  <a href="docs/reference/mcp-tools.md">MCP tools</a> ·
   <a href="tutorials/marketing-agent/README.md">Tutorial</a>
 </p>
 
@@ -131,7 +132,7 @@ const runtime = await vira.resolveRuntime({
 });
 ```
 
-**Full reference:** [JavaScript SDK](docs/reference/javascript-sdk.md)
+**Reference:** [JavaScript SDK](docs/reference/javascript-sdk.md) · **AI setup prompt:** [JavaScript setup](docs/ai-prompts/setup-javascript-sdk.md)
 
 ### Python
 
@@ -163,7 +164,7 @@ with ViraClient(
     )
 ```
 
-**Full reference:** [Python SDK](docs/reference/python-sdk.md)
+**Reference:** [Python SDK](docs/reference/python-sdk.md) · **AI setup prompt:** [Python setup](docs/ai-prompts/setup-python-sdk.md)
 
 ### MCP
 
@@ -195,7 +196,9 @@ Generic MCP client configuration:
 
 The MCP server exposes governed tools for semantic resolution, runtime, Signals, Behavior Programs, Strategies, observations, discovery, evaluation, Packs, and Strategy execution.
 
-**References:** [MCP setup](docs/reference/mcp.md) · [MCP tool catalog](docs/reference/mcp-tools.md)
+**References:** [MCP setup](docs/reference/mcp.md) · [MCP tool catalog](docs/reference/mcp-tools.md) · **AI setup prompt:** [MCP setup](docs/ai-prompts/setup-mcp.md)
+
+For direct HTTP integration, use the [HTTP API reference](docs/reference/api.md) and [HTTP API AI setup prompt](docs/ai-prompts/setup-http-api.md).
 
 ---
 
@@ -214,9 +217,32 @@ The MCP server exposes governed tools for semantic resolution, runtime, Signals,
 | Evaluate and release | [Evaluation](docs/evaluation-and-approval.md) · [Release](docs/release.md) |
 | Integrate with JavaScript | [JavaScript SDK reference](docs/reference/javascript-sdk.md) |
 | Integrate with Python | [Python SDK reference](docs/reference/python-sdk.md) |
+| Integrate directly over HTTP | [HTTP API reference](docs/reference/api.md) |
 | Connect an MCP host | [MCP reference](docs/reference/mcp.md) |
+| Fix an integration or lifecycle error | [Troubleshooting center](docs/troubleshooting/README.md) |
+| Let an AI inspect/setup/debug the integration | [AI Prompt Library](docs/ai-prompts/README.md) |
 | See every MCP tool | [MCP tool catalog](docs/reference/mcp-tools.md) |
 | Follow one complete example | [Marketing Agent tutorial](tutorials/marketing-agent/README.md) |
+
+---
+
+## AI-assisted setup and troubleshooting
+
+Vira includes public, copy-paste prompts for repository-aware coding assistants and normal chat workflows.
+
+Use the [AI Prompt Library](docs/ai-prompts/README.md) for:
+
+- JavaScript / TypeScript SDK setup;
+- Python SDK setup;
+- MCP setup;
+- direct HTTP API integration;
+- first Behavior Point / Pack / Signal / Strategy / Teach configuration;
+- error-specific diagnosis for API/auth/scope, SDK, Semantic routing, Behavior Points, Signals, Packs, Strategies, Teach/evaluation, runtime, and release;
+- end-to-end diagnosis when you do not yet know which layer is failing.
+
+The prompts are designed to ask for sanitized evidence, rank likely causes, propose the smallest reversible fix, and verify that fix before making another change. They explicitly avoid requesting credentials or bypassing authorization, evaluation, approval, or release gates.
+
+For manual diagnosis, start with the [Troubleshooting center](docs/troubleshooting/README.md).
 
 ---
 
@@ -344,6 +370,8 @@ For documentation and demos, use this compact trace format. Never include creden
 ├── docs/
 │   ├── guides/          # task-oriented integration guides
 │   ├── reference/       # SDK, MCP, and API references
+│   ├── troubleshooting/ # error → cause → fix → verify guides
+│   ├── ai-prompts/      # guarded setup and debugging prompts
 │   ├── behavior-*.md    # behavior concepts
 │   ├── signals.md
 │   ├── semantic-routing.md
@@ -410,13 +438,15 @@ This repository contains:
 - product concepts;
 - JavaScript / TypeScript and Python SDK guidance;
 - MCP setup and tool catalog;
-- API reference;
+- public HTTP API reference;
 - Behavior Point and Pack authoring;
 - Signal discovery and mapping;
 - Semantic routing;
 - Behavior Programs and Strategies;
 - Teach;
 - evaluation, approval, release, runtime, and trace documentation;
+- troubleshooting guides;
+- guarded AI setup and debugging prompts;
 - examples and tutorials.
 
 Service implementation and hosted operations are maintained separately from this documentation repository.
@@ -427,7 +457,7 @@ See [Repository scope](docs/repository-scope.md).
 
 ## Security
 
-Never put API keys, MCP tokens, personal data, confidential information, or production traces in public issues or examples.
+Never put API keys, MCP tokens, personal data, confidential information, or production traces in public issues, examples, or AI prompts.
 
 Read [SECURITY.md](SECURITY.md).
 
