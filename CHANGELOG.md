@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.0
+
+- Added an AI Setup & Troubleshooting Prompt Library for repository-aware coding assistants and normal chat workflows.
+- Added guarded setup prompts for JavaScript/TypeScript SDK, Python SDK, MCP, and first behavior lifecycle configuration.
+- Added a master Vira integration debugger prompt that ranks root causes, proposes the smallest safe fix, and requires verification before further changes.
+- Added error-aware prompts for HTTP/auth/scope/SDK validation, Semantic routing, Behavior Points, Signals, Packs, Strategies, Teach/evaluation, and runtime/release.
+- Added prompts for the documented Signal, Pack, Teach/evaluation, SDK, MCP, Strategy, and lifecycle error codes.
+- Added prompt guardrails against exposing credentials, bypassing scope/auth/release gates, fabricating IDs/evidence/evaluation results, mutating released Packs, or making broad destructive changes without evidence.
+- Linked the AI prompt library from the documentation and troubleshooting maps.
+- Added the AI prompt library to repository verification.
+
 ## 0.4.0
 
 - Added a full troubleshooting center organized by API, SDK, MCP, semantic routing, Behavior Points, Signals, Packs, Strategies, Teach/evaluation, and runtime/release.

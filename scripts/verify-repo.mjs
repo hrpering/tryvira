@@ -44,7 +44,20 @@ const requiredFiles = [
   "docs/troubleshooting/packs.md",
   "docs/troubleshooting/strategies.md",
   "docs/troubleshooting/teach-and-evaluation.md",
-  "docs/troubleshooting/runtime-and-release.md"
+  "docs/troubleshooting/runtime-and-release.md",
+  "docs/ai-prompts/README.md",
+  "docs/ai-prompts/master-debugger.md",
+  "docs/ai-prompts/setup-javascript-sdk.md",
+  "docs/ai-prompts/setup-python-sdk.md",
+  "docs/ai-prompts/setup-mcp.md",
+  "docs/ai-prompts/setup-behavior-lifecycle.md",
+  "docs/ai-prompts/errors-api-auth-sdk.md",
+  "docs/ai-prompts/errors-semantic-behavior.md",
+  "docs/ai-prompts/errors-signals.md",
+  "docs/ai-prompts/errors-packs.md",
+  "docs/ai-prompts/errors-strategies.md",
+  "docs/ai-prompts/errors-teach-evaluation.md",
+  "docs/ai-prompts/errors-runtime-release.md"
 ];
 
 for (const file of requiredFiles) {

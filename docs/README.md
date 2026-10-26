@@ -57,6 +57,27 @@ It includes error → cause → fix → verify guides for:
 - Teach and evaluation;
 - Runtime and release.
 
+## AI setup & fix prompts
+
+Use the [AI Prompt Library](ai-prompts/README.md) when you want a repository-aware assistant to help install, configure, or debug Vira.
+
+It contains guarded copy-paste prompts for:
+
+- JavaScript / TypeScript SDK setup;
+- Python SDK setup;
+- MCP setup;
+- first Behavior Point / Pack / Signal / Strategy / Teach configuration;
+- HTTP/auth/scope/SDK errors;
+- Semantic routing and Behavior Points;
+- Signals;
+- Packs;
+- Strategies;
+- Teach and evaluation;
+- Runtime and release;
+- full end-to-end diagnosis.
+
+The prompts explicitly avoid asking for credentials and instruct the AI to make the smallest reversible change, verify it, and stop at the first failing lifecycle stage.
+
 ## Examples
 
 - [JavaScript](../examples/javascript/)

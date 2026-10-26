@@ -15,19 +15,21 @@ The goal is simple: identify the failure, fix the smallest likely cause, and ver
 
 ## Troubleshooting map
 
-| Area | Guide |
-| --- | --- |
-| HTTP status, retries, `ViraApiError` | [API errors](api-errors.md) |
-| API keys, roles, organization/project/environment | [Authentication and scope](authentication-and-scope.md) |
-| JavaScript / Python client validation | [SDK errors](sdk-errors.md) |
-| MCP startup, scope and tool authorization | [MCP errors](mcp-errors.md) |
-| `select`, uncertain/no-match, runtime after semantic routing | [Semantic routing](semantic-routing.md) |
-| Missing/invalid Behavior Point | [Behavior Points](behavior-points.md) |
-| Signal proposal, review, materialization and mapping | [Signals](signals.md) |
-| Pack import → install → evaluate → approve → release | [Packs](packs.md) |
-| Strategy validation, simulation and execution | [Strategies](strategies.md) |
-| Evidence, consent, Teach review and evaluation | [Teach and evaluation](teach-and-evaluation.md) |
-| Runtime resolve and release eligibility | [Runtime and release](runtime-and-release.md) |
+| Area | Guide | AI prompt |
+| --- | --- | --- |
+| HTTP status, retries, `ViraApiError` | [API errors](api-errors.md) | [API/auth/SDK prompts](../ai-prompts/errors-api-auth-sdk.md) |
+| API keys, roles, organization/project/environment | [Authentication and scope](authentication-and-scope.md) | [API/auth/SDK prompts](../ai-prompts/errors-api-auth-sdk.md) |
+| JavaScript / Python client validation | [SDK errors](sdk-errors.md) | [API/auth/SDK prompts](../ai-prompts/errors-api-auth-sdk.md) |
+| MCP startup, scope and tool authorization | [MCP errors](mcp-errors.md) | [MCP setup prompts](../ai-prompts/setup-mcp.md) |
+| `select`, uncertain/no-match, runtime after semantic routing | [Semantic routing](semantic-routing.md) | [Semantic prompts](../ai-prompts/errors-semantic-behavior.md) |
+| Missing/invalid Behavior Point | [Behavior Points](behavior-points.md) | [Semantic + Behavior Point prompts](../ai-prompts/errors-semantic-behavior.md) |
+| Signal proposal, review, materialization and mapping | [Signals](signals.md) | [Signal prompts](../ai-prompts/errors-signals.md) |
+| Pack import → install → evaluate → approve → release | [Packs](packs.md) | [Pack prompts](../ai-prompts/errors-packs.md) |
+| Strategy validation, simulation and execution | [Strategies](strategies.md) | [Strategy prompts](../ai-prompts/errors-strategies.md) |
+| Evidence, consent, Teach review and evaluation | [Teach and evaluation](teach-and-evaluation.md) | [Teach/evaluation prompts](../ai-prompts/errors-teach-evaluation.md) |
+| Runtime resolve and release eligibility | [Runtime and release](runtime-and-release.md) | [Runtime/release prompts](../ai-prompts/errors-runtime-release.md) |
+
+If you do not know which layer is failing, start with the [Master Vira integration debugger prompt](../ai-prompts/master-debugger.md).
 
 ## The standard error workflow
 
@@ -44,6 +46,8 @@ fix
 ↓
 verify
 ```
+
+The AI prompt library extends that flow with ranked root-cause hypotheses, exact files/commands to change, a single verification step, and a next diagnostic branch if the verification fails.
 
 ## Before opening an issue
 
