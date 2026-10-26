@@ -2,6 +2,27 @@
 
 Use this page as the documentation map.
 
+## Start here by goal
+
+| Goal | Start here |
+| --- | --- |
+| Understand the product quickly | [What is Vira?](what-is-vira.md) |
+| Understand the architecture and lifecycle | [How Vira works](how-vira-works.md) |
+| Connect an application or agent | [Connect an AI system](guides/connect-an-ai-system.md) |
+| Debug an issue | [Troubleshooting center](troubleshooting/README.md) |
+| Use AI to help install or debug Vira | [AI Prompt Library](ai-prompts/README.md) |
+| Walk through a complete example | [Marketing Agent tutorial](../tutorials/marketing-agent/README.md) |
+
+---
+
+## Visual map
+
+![Vira behavior-control lifecycle](../assets/vira-overview.svg)
+
+![Vira request path](../assets/vira-request-path.svg)
+
+---
+
 ## Get started
 
 | Guide | Purpose |
@@ -29,16 +50,14 @@ Use this page as the documentation map.
 | [Runtime](runtime.md) | resolve and execute |
 | [Simple traces](traces.md) | developer-facing result view |
 
-## Reference
+## Integrate
 
-| Reference | What is inside |
+| Integration | Start here |
 | --- | --- |
-| [JavaScript / TypeScript SDK](reference/javascript-sdk.md) | complete method groups, options, errors, retry/idempotency |
-| [Python SDK](reference/python-sdk.md) | client construction and method groups |
-| [MCP](reference/mcp.md) | install, auth, scope, transport, config |
-| [MCP tool catalog](reference/mcp-tools.md) | tool-by-tool read/effectful reference |
-| [API routes](reference/api.md) | public HTTP route map |
-| [Existing API reference](api-reference.md) | compact route list |
+| JavaScript / TypeScript SDK | [Reference](reference/javascript-sdk.md) · [AI setup prompt](ai-prompts/setup-javascript-sdk.md) |
+| Python SDK | [Reference](reference/python-sdk.md) · [AI setup prompt](ai-prompts/setup-python-sdk.md) |
+| MCP | [Reference](reference/mcp.md) · [Tool catalog](reference/mcp-tools.md) · [AI setup prompt](ai-prompts/setup-mcp.md) |
+| Direct HTTP API | [Reference](reference/api.md) · [AI setup prompt](ai-prompts/setup-http-api.md) |
 
 ## Troubleshooting
 
@@ -77,7 +96,9 @@ It contains guarded copy-paste prompts for:
 - Runtime and release;
 - full end-to-end diagnosis.
 
-The prompts explicitly avoid asking for credentials and instruct the AI to make the smallest reversible change, verify it, and stop at the first failing lifecycle stage.
+## Repository presentation
+
+Maintainers: keep the GitHub About description, topics, and social preview aligned with [GitHub repository metadata](github-repository-metadata.md).
 
 ## Examples
 

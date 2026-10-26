@@ -1,11 +1,26 @@
 # Changelog
 
+## 0.6.0
+
+- Reworked the root README to improve positioning, visual hierarchy, and developer navigation.
+- Added public SVG illustrations for the behavior lifecycle, request/runtime path, integration surfaces, and use cases.
+- Added a social preview asset for GitHub repository presentation.
+- Expanded `What is Vira?` and `How Vira works` into full product and architecture explanations.
+- Added clearer product positioning, use-case framing, and public repository scope language.
+- Added direct troubleshooting and AI prompt entry points to the root README.
+- Added direct HTTP, JavaScript, Python, and MCP setup entry points from the root README.
+- Expanded the docs index with visual maps and clearer goal-based navigation.
+- Added a maintainers' GitHub metadata guide for About description, topics, website, and social preview.
+- Added presentation assets and metadata docs to repository verification.
+- Synced repository package metadata to version 0.6.0.
+
 ## 0.5.1
 
-- Added the direct HTTP API setup prompt to the AI Prompt Library.
-- Refreshed the root README navigation to expose Troubleshooting and AI prompts directly.
-- Added AI setup links beside JavaScript, Python, MCP, and HTTP integration paths.
-- Updated the repository map and public scope summary for the troubleshooting and AI prompt sections.
+- Added a guarded AI setup prompt for direct public HTTP API integration.
+- Linked the HTTP API setup prompt from the documentation maps.
+- Added the HTTP API setup prompt to repository verification.
+- Refreshed root README navigation to expose troubleshooting and AI prompt surfaces.
+- Synced the changelog with the new documentation navigation.
 
 ## 0.5.0
 

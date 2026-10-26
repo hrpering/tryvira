@@ -58,12 +58,18 @@ const requiredFiles = [
   "docs/ai-prompts/errors-packs.md",
   "docs/ai-prompts/errors-strategies.md",
   "docs/ai-prompts/errors-teach-evaluation.md",
-  "docs/ai-prompts/errors-runtime-release.md"
+  "docs/ai-prompts/errors-runtime-release.md",
+  "docs/github-repository-metadata.md",
+  "assets/vira-overview.svg",
+  "assets/vira-request-path.svg",
+  "assets/vira-integrations.svg",
+  "assets/vira-use-cases.svg",
+  "assets/social-preview.png"
 ];
 
 for (const file of requiredFiles) {
   try {
-    await readFile(join(root, file), "utf8");
+    await readFile(join(root, file));
   } catch {
     failures.push(`Missing required file: ${file}`);
   }
@@ -83,7 +89,7 @@ async function walk(dir) {
 
 const files = await walk(root);
 const textExtensions = new Set([
-  ".md", ".mjs", ".js", ".ts", ".py", ".json", ".yml", ".yaml", ".txt", ".example", ""
+  ".md", ".mjs", ".js", ".ts", ".py", ".json", ".yml", ".yaml", ".txt", ".example", ".svg", ""
 ]);
 
 for (const file of files) {
@@ -118,6 +124,10 @@ for (const file of files) {
     if (checked.status !== 0) {
       failures.push(`Python syntax failed for ${rel}: ${checked.stderr}`);
     }
+  }
+
+  if (rel.endsWith(".svg") && !text.includes("<svg")) {
+    failures.push(`Invalid SVG in ${rel}: missing <svg root>`);
   }
 }
 

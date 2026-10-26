@@ -5,7 +5,7 @@
 <h1 align="center">Behavior control for AI systems</h1>
 
 <p align="center">
-  Turn repeated corrections into behavior you can observe, review, evaluate, release, resolve, and trace.
+  Move from prompt patching to governed behavior: observe, teach, evaluate, release, resolve, and trace how AI systems behave.
 </p>
 
 <p align="center">
@@ -19,6 +19,7 @@
 <p align="center">
   <a href="#quickstart">Quickstart</a> ·
   <a href="docs/README.md">Docs</a> ·
+  <a href="#how-vira-works">How it works</a> ·
   <a href="docs/troubleshooting/README.md">Troubleshooting</a> ·
   <a href="docs/ai-prompts/README.md">AI prompts</a> ·
   <a href="docs/reference/javascript-sdk.md">JavaScript SDK</a> ·
@@ -27,41 +28,63 @@
   <a href="tutorials/marketing-agent/README.md">Tutorial</a>
 </p>
 
+<p align="center">
+  <img src="assets/vira-overview.svg" alt="Vira behavior control lifecycle: observe, teach, evaluate, approve, release, runtime, trace, and new evidence" width="100%">
+</p>
+
 ---
 
-## One correction should not become another prompt patch
+## What Vira is
 
-A useful AI system gets corrected constantly.
+Vira is a behavior-control layer for AI systems.
 
-A launch plan misses retention.  
-A support agent escalates too late.  
-A research assistant mixes sourced claims with inference.  
-A tool-using agent tries an action that needs approval.
+Instead of solving every repeated AI mistake by adding one more hidden prompt, Vira gives teams a governed lifecycle for behavior:
 
-Most teams solve each case by adding another instruction somewhere.
+- **observe** what happened,
+- **identify** the task and behavior point,
+- **teach** from evidence,
+- **evaluate** proposed behavior,
+- **approve and release** what should run,
+- **resolve at runtime** what behavior applies,
+- **trace** what was selected and applied.
 
-Vira gives those corrections a governed lifecycle instead.
+That makes Vira useful for product teams, agent builders, and platform teams that need AI systems to be more consistent, auditable, and easier to improve.
 
-```mermaid
-flowchart LR
-    A["AI system"] --> B["Observe"]
-    B --> C["Semantic task"]
-    C --> D["Behavior Point"]
-    D --> E["Behavior / Strategy"]
-    B --> F["Teach proposal"]
-    F --> G["Evaluate"]
-    G --> H["Approve"]
-    H --> I["Release"]
-    I --> J["Runtime"]
-    J --> K["Simple trace"]
-    K --> B
-```
+---
+
+## Why this matters
+
+| Without Vira | With Vira |
+| --- | --- |
+| Corrections live in scattered prompts | Corrections become governed behavior |
+| Teams cannot tell what changed | Behavior changes move through a visible lifecycle |
+| Semantic intent and runtime behavior blur together | Semantic routing, behavior release, and runtime resolution stay distinct |
+| Debugging becomes prompt archaeology | Debugging follows trace, lifecycle, and release state |
+| AI improvements are hard to operationalize | AI proposals can be evaluated before they are released |
+
+---
+
+## The control loop
+
+Vira separates **learning about behavior** from **activating behavior**. Evidence can create a proposal, but a proposal does not silently become production behavior. Evaluation, approval, release, and runtime resolution remain visible stages.
 
 > **AI can propose. Released behavior remains explicit.**
 
-Semantic selection does not activate behavior.  
-Observation records evidence.  
-A Teach proposal still needs evaluation, approval, and release.
+---
+
+## How Vira works
+
+### Request → behavior → runtime
+
+![Vira request path from user input through Semantic Task, Behavior Point, Behavior Program or Strategy, runtime, and trace](assets/vira-request-path.svg)
+
+Semantic routing identifies the kind of work. A Behavior Point is the stable place where governed behavior can attach. Runtime only resolves behavior that is eligible for the request and environment.
+
+### Integrate through the surface that fits your stack
+
+![Vira integration surfaces for JavaScript SDK, Python SDK, HTTP API, and MCP](assets/vira-integrations.svg)
+
+The SDKs, HTTP API, and MCP are integration surfaces around the same behavior-control model. They are not separate behavior systems.
 
 ---
 
@@ -107,20 +130,12 @@ const connected = await vira.connectOnce({
   adapterVersion: "1",
   idempotencyKey: "connect:marketing-agent:v1",
 });
-```
 
-Then resolve a governed task:
-
-```ts
 const semantic = await vira.resolveSemantic({
   input: "Build a launch plan for a membership product",
   profile: { domain: "marketing" },
 });
-```
 
-And resolve released runtime behavior:
-
-```ts
 const runtime = await vira.resolveRuntime({
   behaviorPoint: "marketing.launch_plan",
   executionBoundary: {
@@ -132,7 +147,8 @@ const runtime = await vira.resolveRuntime({
 });
 ```
 
-**Reference:** [JavaScript SDK](docs/reference/javascript-sdk.md) · **AI setup prompt:** [JavaScript setup](docs/ai-prompts/setup-javascript-sdk.md)
+**Reference:** [JavaScript SDK](docs/reference/javascript-sdk.md)  
+**AI setup prompt:** [JavaScript setup](docs/ai-prompts/setup-javascript-sdk.md)
 
 ### Python
 
@@ -164,15 +180,14 @@ with ViraClient(
     )
 ```
 
-**Reference:** [Python SDK](docs/reference/python-sdk.md) · **AI setup prompt:** [Python setup](docs/ai-prompts/setup-python-sdk.md)
+**Reference:** [Python SDK](docs/reference/python-sdk.md)  
+**AI setup prompt:** [Python setup](docs/ai-prompts/setup-python-sdk.md)
 
 ### MCP
 
 ```bash
 npx -y @vira/mcp
 ```
-
-Generic MCP client configuration:
 
 ```json
 {
@@ -194,19 +209,21 @@ Generic MCP client configuration:
 }
 ```
 
-The MCP server exposes governed tools for semantic resolution, runtime, Signals, Behavior Programs, Strategies, observations, discovery, evaluation, Packs, and Strategy execution.
+**Reference:** [MCP setup](docs/reference/mcp.md) · [MCP tools](docs/reference/mcp-tools.md)  
+**AI setup prompt:** [MCP setup](docs/ai-prompts/setup-mcp.md)
 
-**References:** [MCP setup](docs/reference/mcp.md) · [MCP tool catalog](docs/reference/mcp-tools.md) · **AI setup prompt:** [MCP setup](docs/ai-prompts/setup-mcp.md)
+### Direct HTTP API
 
-For direct HTTP integration, use the [HTTP API reference](docs/reference/api.md) and [HTTP API AI setup prompt](docs/ai-prompts/setup-http-api.md).
+If you are integrating Vira without an SDK, use the [HTTP API reference](docs/reference/api.md) and the [HTTP API AI setup prompt](docs/ai-prompts/setup-http-api.md).
 
 ---
 
-## Pick a path
+## Choose your path
 
 | I want to… | Start here |
 | --- | --- |
 | Understand Vira in 5 minutes | [What is Vira?](docs/what-is-vira.md) |
+| Understand the end-to-end lifecycle | [How Vira works](docs/how-vira-works.md) |
 | Connect an existing agent | [Connect an AI system](docs/guides/connect-an-ai-system.md) |
 | Create a Behavior Point | [Behavior Points](docs/behavior-points.md) |
 | Create and review Signals | [Signals](docs/signals.md) |
@@ -215,135 +232,22 @@ For direct HTTP integration, use the [HTTP API reference](docs/reference/api.md)
 | Build multi-step behavior | [Strategies](docs/strategies.md) |
 | Learn from evidence | [Teach](docs/teach.md) |
 | Evaluate and release | [Evaluation](docs/evaluation-and-approval.md) · [Release](docs/release.md) |
-| Integrate with JavaScript | [JavaScript SDK reference](docs/reference/javascript-sdk.md) |
-| Integrate with Python | [Python SDK reference](docs/reference/python-sdk.md) |
-| Integrate directly over HTTP | [HTTP API reference](docs/reference/api.md) |
-| Connect an MCP host | [MCP reference](docs/reference/mcp.md) |
-| Fix an integration or lifecycle error | [Troubleshooting center](docs/troubleshooting/README.md) |
-| Let an AI inspect/setup/debug the integration | [AI Prompt Library](docs/ai-prompts/README.md) |
-| See every MCP tool | [MCP tool catalog](docs/reference/mcp-tools.md) |
+| Debug a broken integration | [Troubleshooting center](docs/troubleshooting/README.md) |
+| Use AI to help install or debug Vira | [AI Prompt Library](docs/ai-prompts/README.md) |
 | Follow one complete example | [Marketing Agent tutorial](tutorials/marketing-agent/README.md) |
 
 ---
 
-## AI-assisted setup and troubleshooting
+## Example use cases
 
-Vira includes public, copy-paste prompts for repository-aware coding assistants and normal chat workflows.
+![Vira use cases across marketing, support, research, and operations](assets/vira-use-cases.svg)
 
-Use the [AI Prompt Library](docs/ai-prompts/README.md) for:
-
-- JavaScript / TypeScript SDK setup;
-- Python SDK setup;
-- MCP setup;
-- direct HTTP API integration;
-- first Behavior Point / Pack / Signal / Strategy / Teach configuration;
-- error-specific diagnosis for API/auth/scope, SDK, Semantic routing, Behavior Points, Signals, Packs, Strategies, Teach/evaluation, runtime, and release;
-- end-to-end diagnosis when you do not yet know which layer is failing.
-
-The prompts are designed to ask for sanitized evidence, rank likely causes, propose the smallest reversible fix, and verify that fix before making another change. They explicitly avoid requesting credentials or bypassing authorization, evaluation, approval, or release gates.
-
-For manual diagnosis, start with the [Troubleshooting center](docs/troubleshooting/README.md).
-
----
-
-## Developer surface
-
-### SDK
-
-The public clients cover more than connect-and-observe.
-
-| Area | JavaScript / TypeScript |
-| --- | --- |
-| Connections | `connectSystem`, `connectAdapter`, `connectOnce`, `connectionHealth`, `testConnection`, `inventory` |
-| Observations | `observe`, `trace`, `feedback`, `outcome`, `observeBatch`, `observeSdk`, `discover` |
-| Signals | discovery proposal, review, materialization, mapping create/read/review |
-| Semantic + Runtime | `resolveSemantic`, `resolveRuntime`, `resolveSemanticRuntime`, `executeRuntime` |
-| Programs | list/get/create Behavior Programs |
-| Strategies | list/get/create/validate/simulate Strategy |
-| Packs | list/import/install/evaluate/approve/release/upgrade preview |
-| Teach + Evaluation | submit Teach evidence, start/get evaluation |
-| Release | create governed release |
-
-See the [complete method reference](docs/reference/javascript-sdk.md).
-
-### MCP
-
-MCP is not a second Vira runtime.
-
-It exposes the same governed boundaries through MCP discovery and tool calls.
-
-```text
-MCP host
-   ↓
-@vira/mcp
-   ↓
-scope + authentication
-   ↓
-Vira behavior-control APIs
-   ↓
-read / propose / evaluate / resolve / execute
-```
-
-Effectful tools require authorization.
-
-See [all MCP tools](docs/reference/mcp-tools.md).
-
----
-
-## Behavior Point example
-
-A Behavior Point is a stable place where governed behavior can apply.
-
-```yaml
-- key: marketing.launch_plan
-  taskKey: marketing.launch_plan
-  requirement: Cover the full funnel and include measurement
-  verification: Confirm every stage has an objective and measurement approach
-```
-
-For public programmatic authoring, Vira Packs keep related task, Behavior Point, program, strategy, policy, evaluation, and release lifecycle together.
-
-```text
-import
-→ inspect
-→ install draft
-→ evaluate
-→ approve
-→ release
-```
-
-Import does **not** activate behavior.
-
-See [Behavior Points](docs/behavior-points.md) and [Packs](docs/packs.md).
-
----
-
-## Signal example
-
-Signals are typed evidence, not magic labels invented at runtime.
-
-```text
-observation / feedback / outcome
-        ↓
-signal discovery proposal
-        ↓
-review
-        ↓
-materialize definition + producer mapping
-        ↓
-future evidence can produce the signal
-```
-
-Example stable keys:
-
-```text
-feedback.user_correction
-quality.missing_measurement
-risk.requires_review
-outcome.accepted
-```
-
-See [Signals](docs/signals.md).
+| Domain | Example task | What Vira helps control |
+| --- | --- | --- |
+| **Marketing** | Launch plan generation | full-funnel coverage, measurement checks, approval flow |
+| **Support** | Billing response agent | escalation rules, runtime guidance, traceability |
+| **Research** | Brief or synthesis workflow | sourced claims, review checkpoints, structured output |
+| **Operations** | Tool-using internal assistant | task routing, controlled actions, release-based behavior |
 
 ---
 
@@ -358,7 +262,7 @@ Applied          yes
 Result           completed
 ```
 
-For documentation and demos, use this compact trace format. Never include credentials, personal data, or confidential application data in material shared publicly.
+For documentation and demos, keep traces compact and safe. Never include credentials, personal data, customer data, or confidential information in public material.
 
 ---
 
@@ -367,12 +271,13 @@ For documentation and demos, use this compact trace format. Never include creden
 ```text
 .
 ├── README.md
+├── assets/              # public diagrams + social preview
 ├── docs/
-│   ├── guides/          # task-oriented integration guides
-│   ├── reference/       # SDK, MCP, and API references
-│   ├── troubleshooting/ # error → cause → fix → verify guides
-│   ├── ai-prompts/      # guarded setup and debugging prompts
-│   ├── behavior-*.md    # behavior concepts
+│   ├── guides/
+│   ├── reference/
+│   ├── troubleshooting/
+│   ├── ai-prompts/
+│   ├── behavior-*.md
 │   ├── signals.md
 │   ├── semantic-routing.md
 │   ├── teach.md
@@ -395,69 +300,26 @@ For documentation and demos, use this compact trace format. Never include creden
 
 ---
 
-## Public architecture
-
-```mermaid
-flowchart TD
-    APP["Agent / App / MCP host"]
-    SDK["SDK / MCP integration"]
-    OBS["Observation + feedback + outcome"]
-    SEM["Semantic resolver"]
-    BP["Behavior Point"]
-    PROG["Behavior Program"]
-    STRAT["Behavior Strategy"]
-    TEACH["Teach"]
-    EVAL["Evaluation + approval"]
-    REL["Release"]
-    RUN["Runtime"]
-    TRACE["Simple trace"]
-
-    APP --> SDK
-    SDK --> OBS
-    SDK --> SEM
-    SEM --> BP
-    BP --> PROG
-    BP --> STRAT
-    OBS --> TEACH
-    TEACH --> EVAL
-    PROG --> EVAL
-    STRAT --> EVAL
-    EVAL --> REL
-    REL --> RUN
-    SDK --> RUN
-    RUN --> TRACE
-    TRACE --> OBS
-```
-
----
-
-## Repository scope
+## What this public repository includes
 
 This repository contains:
 
-- product concepts;
-- JavaScript / TypeScript and Python SDK guidance;
+- product positioning and concept docs;
+- JavaScript / TypeScript and Python SDK references;
 - MCP setup and tool catalog;
-- public HTTP API reference;
-- Behavior Point and Pack authoring;
-- Signal discovery and mapping;
-- Semantic routing;
-- Behavior Programs and Strategies;
-- Teach;
-- evaluation, approval, release, runtime, and trace documentation;
+- HTTP API route reference;
+- Behavior Point, Signal, Program, Strategy, Teach, Evaluation, Release, Runtime, and Trace documentation;
 - troubleshooting guides;
-- guarded AI setup and debugging prompts;
+- AI-assisted setup and debugging prompts;
 - examples and tutorials.
 
 Service implementation and hosted operations are maintained separately from this documentation repository.
-
-See [Repository scope](docs/repository-scope.md).
 
 ---
 
 ## Security
 
-Never put API keys, MCP tokens, personal data, confidential information, or production traces in public issues, examples, or AI prompts.
+Never put API keys, MCP tokens, personal data, confidential information, or production traces in public issues or examples.
 
 Read [SECURITY.md](SECURITY.md).
 
@@ -468,5 +330,3 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), [GOVERNANCE.md](GOVERNANCE.md), and [CO
 ## License
 
 The contents of this public repository are licensed under the [Apache License 2.0](LICENSE), unless a file states otherwise.
-
-The license applies to the files distributed in this repository.

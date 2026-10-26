@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+<title id="title">Vira integration surfaces</title><desc id="desc">Applications, agents and MCP hosts connect through JavaScript SDK, Python SDK, HTTP API or MCP to Vira.</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#7C3AED"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.10"/></filter><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#94A3B8"/></marker></defs>
+<rect width="1200" height="520" rx="28" fill="#F8FAFC"/>
+<text x="70" y="72" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#4F46E5">INTEGRATE YOUR WAY</text>
+<text x="70" y="116" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="34" font-weight="750" fill="#0F172A">One behavior layer, multiple developer surfaces</text>
+<g filter="url(#s)">
+<rect x="70" y="215" width="220" height="150" rx="24" fill="#FFFFFF"/>
+<rect x="390" y="180" width="185" height="90" rx="20" fill="#FFFFFF"/>
+<rect x="390" y="285" width="185" height="90" rx="20" fill="#FFFFFF"/>
+<rect x="595" y="180" width="185" height="90" rx="20" fill="#FFFFFF"/>
+<rect x="595" y="285" width="185" height="90" rx="20" fill="#FFFFFF"/>
+<rect x="890" y="215" width="240" height="150" rx="24" fill="url(#g)"/>
+</g>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<text x="110" y="265" font-size="22" font-weight="750" fill="#0F172A">Your AI system</text><text x="110" y="297" font-size="15" fill="#64748B">app · agent · workflow</text><text x="110" y="326" font-size="15" fill="#64748B">or MCP host</text>
+<text x="425" y="224" font-size="18" font-weight="700" fill="#0F172A">JavaScript SDK</text>
+<text x="425" y="329" font-size="18" font-weight="700" fill="#0F172A">Python SDK</text>
+<text x="632" y="224" font-size="18" font-weight="700" fill="#0F172A">HTTP API</text>
+<text x="632" y="329" font-size="18" font-weight="700" fill="#0F172A">MCP</text>
+<text x="945" y="268" font-size="26" font-weight="780" fill="#FFFFFF">Vira</text><text x="945" y="302" font-size="15" fill="#EDE9FE">behavior control APIs</text><text x="945" y="332" font-size="14" fill="#DDD6FE">observe · teach · evaluate · resolve</text>
+</g>
+<g fill="none" stroke="#94A3B8" stroke-width="3" marker-end="url(#a)"><path d="M290 290H380"/><path d="M575 225H585"/><path d="M575 330H585"/><path d="M780 225C830 225 835 255 880 270"/><path d="M780 330C830 330 835 300 880 290"/></g>
+</svg>
