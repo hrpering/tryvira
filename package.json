@@ -1,0 +1,10 @@
+{
+  "name": "vira-public-repository",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Public product documentation, SDK guides, API reference, tutorials, and examples for Vira.",
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "scripts": {"verify": "node scripts/verify-repo.mjs", "test": "npm run verify"},
+  "license": "Apache-2.0"
+}

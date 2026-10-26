@@ -1,0 +1,11 @@
+{
+  "name": "vira-js-example",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@vira/sdk": "^0.1.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "vira": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@vira/mcp"
+      ],
+      "env": {
+        "VIRA_API_URL": "https://api.example.com",
+        "VIRA_API_KEY": "<api-key>",
+        "VIRA_MCP_AUTH_TOKEN": "<mcp-token>",
+        "VIRA_ORGANIZATION_ID": "<organization>",
+        "VIRA_PROJECT_ID": "<project>",
+        "VIRA_ENVIRONMENT_ID": "<environment>"
+      }
+    }
+  }
+}

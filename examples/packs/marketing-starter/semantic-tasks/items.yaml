@@ -1,0 +1,10 @@
+- taskKey: marketing.launch_plan
+  description: Build a launch plan for a product or service
+  aliases:
+    - go to market plan
+    - launch strategy
+  examples:
+    - Create a launch plan for a subscription product
+    - Build a go-to-market plan for a membership service
+  negativeExamples:
+    - Rewrite this headline

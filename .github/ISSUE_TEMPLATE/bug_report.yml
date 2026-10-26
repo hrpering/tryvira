@@ -1,0 +1,60 @@
+name: Bug report
+description: Report a reproducible public SDK, MCP, example, tutorial, or documentation problem.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include secrets, customer data, private prompts, or production traces.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - "@vira/sdk"
+        - "vira-sdk"
+        - "@vira/mcp"
+        - "Public API"
+        - "Documentation"
+        - "Tutorial"
+        - "Example"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "0.1.0"
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Data safety
+      options:
+        - label: I removed secrets, customer data, private prompts, and production data.
+          required: true
