@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "strategyKey": "marketing.launch_plan.behavior_plan",
+  "behaviorPointKey": "marketing.launch_plan",
+  "executionMode": "STAGED",
+  "resultMode": "behavior_plan",
+  "goal": {
+    "type": "produce",
+    "artifact": "behavior-plan",
+    "successCriteria": [
+      "Preserve the user's explicit launch constraints and confirmed preferences",
+      "Require full-funnel coverage and measurement in the downstream answer",
+      "Separate facts, assumptions, hypotheses, and unknowns",
+      "Do not draft the final user-visible launch plan"
+    ]
+  },
+  "entryStepKey": "plan",
+  "steps": [
+    {
+      "stableKey": "plan",
+      "type": "model",
+      "purpose": "Produce a compact behavior plan containing intent, explicit constraints, confirmed preferences, at most two labeled assumptions, required response shape, measurement checks, and anti-patterns. Do not draft the final launch plan; the downstream chatbot owns final prose.",
+      "requires": ["context:request"],
+      "produces": ["state:behaviorPlan"],
+      "outputSchemaRef": "schema:behavior-plan"
+    },
+    {
+      "stableKey": "verify",
+      "type": "verify",
+      "purpose": "Verify that the behavior plan is compact, request-specific, full-funnel aware, measurement-aware, preference-safe, and contains no full draft answer.",
+      "requires": ["state:behaviorPlan"],
+      "produces": ["state:verified"],
+      "verifierKeys": [
+        "marketing.full_funnel",
+        "marketing.measurement"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "stableKey": "plan-to-verify",
+      "from": "plan",
+      "to": "verify"
+    }
+  ],
+  "stateSlots": [
+    {
+      "key": "state:behaviorPlan",
+      "schemaRef": "schema:behavior-plan",
+      "privacy": "tenant",
+      "source": "model",
+      "maxBytes": 12000
+    },
+    {
+      "key": "state:verified",
+      "schemaRef": "schema:boolean",
+      "privacy": "tenant",
+      "source": "derived",
+      "maxBytes": 100
+    }
+  ],
+  "contextPolicy": {
+    "allowedRefs": ["context:request"],
+    "maxBytes": 100000
+  },
+  "evidencePolicy": {
+    "requiredRefs": [],
+    "allowMissing": true
+  },
+  "toolPolicy": {
+    "allowedToolKeys": [],
+    "effectfulToolKeys": []
+  },
+  "generationPolicy": {
+    "structuredOnly": true
+  },
+  "verificationPolicy": {
+    "requiredVerifierKeys": [
+      "marketing.full_funnel",
+      "marketing.measurement"
+    ],
+    "requireFinalComposeVerification": false
+  },
+  "recoveryPolicy": {
+    "maxTotalRecoveries": 1,
+    "defaultAction": "block"
+  },
+  "budgets": {
+    "maxStepExecutions": 5,
+    "maxModelCalls": 1,
+    "maxToolCalls": 0,
+    "maxDecisionCalls": 0,
+    "maxRepairAttempts": 1,
+    "maxSerializedStateBytes": 50000
+  }
+}
