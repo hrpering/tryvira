@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "strategyKey": "marketing.launch_plan.response",
+  "behaviorPointKey": "marketing.launch_plan",
+  "executionMode": "STAGED",
+  "resultMode": "response",
+  "goal": {
+    "type": "produce",
+    "artifact": "launch-plan",
+    "successCriteria": [
+      "Cover awareness, consideration, conversion, and retention",
+      "Give every required funnel stage a measurable objective",
+      "Do not present invented historical performance as observed fact"
+    ]
+  },
+  "entryStepKey": "draft",
+  "steps": [
+    {
+      "stableKey": "draft",
+      "type": "model",
+      "purpose": "Draft a structured full-funnel launch plan from the request context",
+      "requires": ["context:request"],
+      "produces": ["state:draft"]
+    },
+    {
+      "stableKey": "verify",
+      "type": "verify",
+      "purpose": "Verify funnel coverage, measurement, and unsupported-result claims",
+      "requires": ["state:draft"],
+      "produces": ["state:verified"],
+      "verifierKeys": ["marketing.full_funnel", "marketing.measurement"]
+    },
+    {
+      "stableKey": "compose",
+      "type": "compose",
+      "purpose": "Return only the verified launch plan",
+      "requires": ["state:verified"],
+      "produces": ["state:final"],
+      "verifierKeys": ["marketing.full_funnel", "marketing.measurement"]
+    }
+  ],
+  "edges": [
+    {"stableKey": "draft-to-verify", "from": "draft", "to": "verify"},
+    {"stableKey": "verify-to-compose", "from": "verify", "to": "compose"}
+  ],
+  "stateSlots": [
+    {"key": "state:draft", "schemaRef": "schema:launch-plan", "privacy": "tenant", "source": "model", "maxBytes": 100000},
+    {"key": "state:verified", "schemaRef": "schema:launch-plan", "privacy": "tenant", "source": "derived", "maxBytes": 100000},
+    {"key": "state:final", "schemaRef": "schema:launch-plan", "privacy": "public", "source": "derived", "maxBytes": 100000}
+  ],
+  "contextPolicy": {"allowedRefs": ["context:request"], "maxBytes": 100000},
+  "evidencePolicy": {"requiredRefs": [], "allowMissing": true},
+  "toolPolicy": {"allowedToolKeys": [], "effectfulToolKeys": []},
+  "generationPolicy": {"structuredOnly": true},
+  "verificationPolicy": {"requiredVerifierKeys": ["marketing.full_funnel", "marketing.measurement"], "requireFinalComposeVerification": true},
+  "recoveryPolicy": {"maxTotalRecoveries": 1, "defaultAction": "block"},
+  "budgets": {"maxStepExecutions": 8, "maxModelCalls": 1, "maxToolCalls": 0, "maxDecisionCalls": 0, "maxRepairAttempts": 1, "maxSerializedStateBytes": 500000}
+}
