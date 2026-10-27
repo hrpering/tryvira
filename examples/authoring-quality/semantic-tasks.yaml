@@ -1,0 +1,48 @@
+# Educational comparison. Confirm the versioned schema before importing.
+
+weak:
+  - taskKey: marketing.help
+    description: Help with marketing
+    aliases:
+      - marketing
+      - campaign
+      - plan
+    examples:
+      - Help me with marketing
+      - Make a campaign
+
+productionQuality:
+  - taskKey: marketing.launch_plan
+    description: >-
+      Create a cross-funnel launch plan for a product or service, including
+      stage objectives, channel roles, sequencing, and measurement.
+    aliases:
+      - launch strategy
+      - go-to-market plan
+      - gtm plan
+      - product launch plan
+    examples:
+      - Create a launch plan for our new subscription product
+      - Build a go-to-market plan for a membership service
+      - Plan the launch across awareness, consideration, conversion, and retention
+    negativeExamples:
+      - Rewrite this ad headline
+      - Analyze last month's campaign performance
+      - Create five social media captions
+      - Summarize this market research report
+
+  - taskKey: support.refund_explanation
+    description: >-
+      Explain refund eligibility, policy, or next steps using the available
+      customer context without performing the refund action itself.
+    aliases:
+      - explain refund policy
+      - am i eligible for a refund
+      - refund eligibility question
+    examples:
+      - Can you explain whether this purchase is eligible for a refund?
+      - What is the refund policy for my order?
+    negativeExamples:
+      - Refund this order now
+      - Cancel my account
+      - Explain why my card was declined
