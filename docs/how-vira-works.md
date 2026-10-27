@@ -20,8 +20,6 @@ This classification step does not activate behavior by itself.
 
 A Behavior Point is the stable governed attachment point for behavior.
 
-It answers a different question from semantic routing:
-
 ```text
 Semantic Task  → what kind of work is this?
 Behavior Point → where can governed behavior attach?
@@ -32,6 +30,17 @@ Behavior Point → where can governed behavior attach?
 A Behavior Program can express guards, judgments, transforms, verification, escalation, rubrics, examples, and anti-patterns.
 
 A Strategy can express a bounded multi-step flow for tasks that require more than one operation.
+
+Strategies now have an explicit final-output ownership decision:
+
+```text
+response      → Vira Strategy owns the final answer
+behavior_plan → Vira produces a compact plan; downstream model owns final prose
+```
+
+The second mode is especially useful when Vira is inserted into an existing chatbot. It avoids generating a full answer twice.
+
+See [Strategy result modes](strategy-result-modes.md).
 
 ### Runtime
 
@@ -61,15 +70,15 @@ AI assistance can help identify patterns or propose candidate behavior, but that
 
 ### Evaluate
 
-Evaluation checks whether the candidate satisfies the required assertions and quality conditions.
+Evaluation checks whether the candidate satisfies required assertions and quality conditions.
 
 ### Approve
 
-Approval is a separate lifecycle transition where required. Evaluation success and approval are not treated as the same thing.
+Approval is a separate lifecycle transition where required. Evaluation success and approval are not the same thing.
 
 ### Release
 
-Release makes the approved behavior eligible for runtime. Importing, installing, or proposing behavior does not equal release.
+Release makes approved behavior eligible for runtime. Importing, installing, or proposing behavior does not equal release.
 
 ### Runtime → new evidence
 
@@ -77,7 +86,26 @@ Once released behavior is used, new observations and outcomes can feed the next 
 
 ---
 
-## 3. Integration surfaces
+## 3. Preference-aware behavior
+
+Behavior may depend on user-owned preferences such as audience, geography, budget, channels, tone, timeframe, constraints, or success metrics.
+
+Those values should remain user-owned state rather than hard-coded Strategy constants.
+
+A preference-aware design should:
+
+- use explicitly stated or confirmed preferences;
+- preserve unchanged preferences;
+- replace changed preferences;
+- stop using removed preferences;
+- avoid inventing missing preferences;
+- label proposed defaults as hypotheses.
+
+See [Authoring quality](authoring-quality.md).
+
+---
+
+## 4. Integration surfaces
 
 ![Vira integration surfaces](../assets/vira-integrations.svg)
 
@@ -90,37 +118,61 @@ Vira can be integrated through:
 
 These are different integration surfaces around the same behavior-control model.
 
-## 4. A concrete example
+---
 
-Imagine a marketing agent receives:
+## 5. Accelerator direction
+
+![Vira GPU acceleration vision](../assets/vira-gpu-vision.svg)
+
+Vira is exploring an accelerator path where released behavior execution can sit closer to model inference, including same-device GPU execution when that path is accepted.
+
+The goals are to reduce unnecessary runtime boundaries while preserving the exact governance model:
+
+```text
+released behavior
+→ bounded behavior execution
+→ model inference
+→ verification / trace
+```
+
+This work is experimental and is **not** presented as generally available production functionality. CPU/conventional runtime remains a first-class path and a parity reference.
+
+See [GPU acceleration vision](gpu-acceleration-vision.md).
+
+---
+
+## 6. A concrete example
+
+Imagine a marketing chatbot receives:
 
 ```text
 Build a launch plan for a membership product.
 ```
 
-A simplified Vira path can look like:
+A simplified path can look like:
 
 ```text
 Semantic Task   marketing.launch_plan
 Behavior Point  marketing.launch_plan
-Behavior        full_funnel_launch_planning
-Evaluation      funnel stages + measurement checks
-Release         approved revision
-Runtime         behavior resolved for this request
+Strategy        resultMode=behavior_plan
+Behavior plan   full-funnel + measurement + confirmed preferences
+Downstream AI   writes final user-visible plan once
 Trace           applied=yes, result=completed
 ```
 
-If users repeatedly correct the agent because it forgets retention or measurement, those corrections can become evidence for a reviewed behavior improvement instead of another ad hoc prompt patch.
+If users repeatedly correct the agent because it forgets retention, measurement, or confirmed preferences, those corrections can become evidence for a reviewed behavior improvement instead of another ad hoc prompt patch.
 
-## 5. Where to go next
+## 7. Where to go next
 
 | Goal | Guide |
 | --- | --- |
 | Connect an application or agent | [Connect an AI system](guides/connect-an-ai-system.md) |
 | Understand attachment points | [Behavior Points](behavior-points.md) |
-| Understand evidence | [Signals](signals.md) |
 | Build behavior | [Behavior Programs](behavior-programs.md) |
 | Build multi-step behavior | [Strategies](strategies.md) |
+| Choose Strategy output ownership | [Strategy result modes](strategy-result-modes.md) |
+| Learn authoring quality | [Authoring quality](authoring-quality.md) |
+| Understand accelerator direction | [GPU acceleration vision](gpu-acceleration-vision.md) |
 | Learn from evidence | [Teach](teach.md) |
 | Test candidates | [Evaluation and approval](evaluation-and-approval.md) |
 | Make behavior eligible | [Release](release.md) |

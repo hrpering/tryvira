@@ -20,6 +20,9 @@ Semantic Task:
 Repeated correction / desired behavior:
 <describe what the AI keeps getting wrong or what must stay consistent>
 
+User-owned preferences that may affect the behavior:
+<audience, geography, budget, channels, tone, timeframe, KPI, constraints, etc. or none>
+
 Examples of acceptable output:
 <sanitized examples>
 
@@ -27,14 +30,16 @@ Examples of unacceptable output:
 <sanitized examples>
 
 Your job:
-1. Decide whether this correction belongs at this Behavior Point or should be a separate task, Signal, Program module, Strategy step, or evaluation case.
+1. Decide whether this correction belongs at this Behavior Point or should be a separate task, Signal, Program module, Strategy step, preference state, or evaluation case.
 2. Propose a stable Behavior Point key.
 3. Write a requirement that describes observable governed behavior, not subjective adjectives.
 4. Write verification that can become pass/fail evaluation logic.
 5. Identify anti-patterns the requirement should reject.
-6. Identify which parts are task-level behavior and which are implementation details that should not be frozen into the Behavior Point.
-7. Produce 5 positive and 5 negative evaluation cases.
-8. Score the candidate against boundary, stable naming, observability, negative boundary, verification, runtime safety, and maintainability.
+6. Separate policy-like behavior from user-owned preferences. Do not hard-code preference values into the Behavior Point unless they are genuine policy constants.
+7. If preferences matter, require the system to use explicit/confirmed values, preserve unchanged values, replace changed values, stop using removed values, and avoid inventing missing preferences.
+8. Identify implementation details that should not be frozen into the Behavior Point.
+9. Produce positive, negative, and preference-update/removal evaluation cases where relevant.
+10. Score the candidate against boundary, stable naming, observability, negative boundary, verification, preference ownership, runtime safety, and maintainability.
 
 Avoid vague requirements such as:
 - be helpful
@@ -50,8 +55,9 @@ B. Behavior Point candidate
 C. Why the key is stable
 D. Requirement
 E. Verification
-F. Anti-patterns
-G. Positive/negative cases
-H. Quality scorecard
-I. Final public-safe candidate
+F. Preference-state handling
+G. Anti-patterns
+H. Positive/negative/boundary cases
+I. Quality scorecard
+J. Final public-safe candidate
 ```

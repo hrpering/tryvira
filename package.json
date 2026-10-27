@@ -1,8 +1,8 @@
 {
   "name": "vira-public-repository",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
-  "description": "Public product documentation, SDK and MCP references, tutorials, examples, troubleshooting, and AI-assisted setup guides for Vira.",
+  "description": "Public product documentation, SDK and MCP references, behavior authoring guides, accelerator architecture vision, examples, troubleshooting, and AI-assisted workflows for Vira.",
   "type": "module",
   "engines": {
     "node": ">=20"

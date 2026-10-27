@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.8.0
+
+- Synced public Strategy documentation with the current `response` and `behavior_plan` result contracts.
+- Added explicit response-owned and downstream-chatbot behavior-plan Strategy examples.
+- Updated the canonical marketing Strategy example to the compact behavior-plan architecture used for existing-chatbot integrations.
+- Added guidance to keep user preferences user-owned, updateable, removable, and separate from Strategy policy constants.
+- Updated AI authoring prompts to choose final-answer ownership before designing a Strategy and to reject duplicate full-answer generation.
+- Added current runtime architecture notes covering Strategy output ownership, preference handling, and optional provider timing metrics.
+- Added a public GPU acceleration architecture vision and FAQ.
+- Added a GPU architecture illustration showing same-device behavior + model inference as an experimental direction.
+- Documented CPU/conventional runtime as a first-class path and accelerator promotion as parity-gated staged rollout.
+- Explicitly marked accelerator work as experimental rather than generally production available.
+- Added all new Strategy/GPU documentation and examples to repository verification.
+- Synced repository package metadata to version 0.8.0.
+
 ## 0.7.0
 
 - Added an Authoring Quality Guide covering Semantic Tasks, Behavior Points, Behavior Programs, Strategies, Signals, and evaluation design.

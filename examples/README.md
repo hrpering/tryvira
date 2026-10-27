@@ -4,22 +4,28 @@ Small, focused examples live here.
 
 | Example | What it demonstrates |
 | --- | --- |
-| [Authoring quality](authoring-quality/) | weak/generic vs production-quality Semantic Tasks, Behavior Points, and Strategies |
+| [Authoring quality](authoring-quality/) | weak vs production-quality Tasks, Points, response Strategies, and behavior-plan Strategies |
 | [JavaScript](javascript/) | connect + observe using `@vira/sdk` |
 | [Python](python/) | connect using `vira-sdk` |
 | [Semantic + runtime](semantic-runtime/) | semantic selection followed by governed runtime resolution |
 | [MCP](mcp/) | generic MCP host configuration |
 | [Marketing Pack](packs/marketing-starter/) | Semantic Task + Behavior Point + Program + Signal keys + evaluation reference |
-| [Strategy](strategy/marketing-launch.strategy.json) | bounded staged Strategy definition |
+| [Strategy](strategy/marketing-launch.strategy.json) | compact `behavior_plan` Strategy for a downstream chatbot/model |
 
-## Learning authoring quality
+## Strategy examples
 
-Start with [Authoring quality](authoring-quality/) if you are creating your own Tasks, Points, Programs, or Strategies.
+If Vira owns the final artifact, start with:
 
-The examples deliberately include plausible-but-weak configurations so you can see why “valid-looking” does not necessarily mean “well governed”.
+```text
+authoring-quality/marketing-launch.response.strategy.json
+```
 
-For the full rubric, read [Authoring quality guide](../docs/authoring-quality.md).
+If an existing chatbot/model owns final prose, start with:
 
-For AI-assisted authoring, use the [AI Prompt Library](../docs/ai-prompts/README.md).
+```text
+authoring-quality/marketing-launch.behavior-plan.strategy.json
+```
+
+Read [Strategy result modes](../docs/strategy-result-modes.md) before copying a Strategy into a real integration.
 
 For a complete multi-step walkthrough, use the [Marketing Agent tutorial](../tutorials/marketing-agent/README.md).

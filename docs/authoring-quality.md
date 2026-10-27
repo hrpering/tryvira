@@ -19,6 +19,7 @@ A strong Vira object should be:
 5. **Reviewable** — a human can explain why the behavior exists.
 6. **Testable** — success and failure can be represented as cases, not vibes.
 7. **Release-safe** — authoring does not silently bypass evaluation, approval, or release.
+8. **Ownership-aware** — the object makes clear which layer owns state, planning, and final output.
 
 ---
 
@@ -42,13 +43,12 @@ A Semantic Task answers:
     - Make a campaign
 ```
 
-Why it is weak:
+Problems:
 
-- `marketing.help` is too broad;
-- aliases overlap with many unrelated tasks;
-- examples do not define a useful boundary;
-- there are no negative examples;
-- the resolver has little evidence for when **not** to select it.
+- too broad;
+- aliases overlap with unrelated tasks;
+- no useful negative boundary;
+- resolver gets little evidence for when **not** to select it.
 
 ### Production-quality
 
@@ -75,14 +75,12 @@ Why it is weak:
 
 Why it is stronger:
 
-- the task boundary is concrete;
-- positive examples vary in wording while preserving intent;
-- negative examples separate adjacent marketing tasks;
-- the key can remain stable even if the implementation changes.
+- concrete task boundary;
+- positive examples vary wording while preserving intent;
+- negative examples separate adjacent tasks;
+- key can stay stable while implementation changes.
 
-### Quality check
-
-A Semantic Task is probably too generic if the same task would reasonably contain more than one independent workflow such as “plan”, “analyze”, “rewrite”, and “report”.
+A Semantic Task is probably too generic if it would reasonably contain multiple independent workflows such as plan, analyze, rewrite, and report.
 
 ---
 
@@ -92,7 +90,7 @@ A Behavior Point answers:
 
 > Where should governed behavior attach for this task?
 
-### Weak / generic
+### Weak
 
 ```yaml
 - key: marketing.good_answer
@@ -101,14 +99,7 @@ A Behavior Point answers:
   verification: Check that the answer is good
 ```
 
-Why it is weak:
-
-- `good_answer` is not a stable business boundary;
-- “detailed” and “high quality” are subjective;
-- verification merely restates the requirement;
-- the point does not explain what behavior must remain consistent.
-
-### Production-quality
+### Stronger
 
 ```yaml
 - key: marketing.launch_plan
@@ -122,28 +113,44 @@ Why it is weak:
     performance results presented as observed facts.
 ```
 
-Why it is stronger:
+A Behavior Point should define governed behavior, not freeze a model/provider/tool implementation unless that implementation is itself a policy requirement.
 
-- the key expresses the governed task, not a quality adjective;
-- the requirement is observable;
-- the verification can be translated into evaluation cases;
-- the point is model- and provider-independent.
+---
 
-### Avoid two opposite failures
+## User-owned preferences are state, not policy constants
 
-**Too generic**
+A common authoring mistake is hard-coding user preferences into a Strategy or Behavior Point.
 
-```text
-Be helpful, accurate, and detailed.
-```
-
-**Too implementation-specific**
+For example, this is weak when those values actually belong to the user:
 
 ```text
-Always call model-x with temperature 0.2, then run internal_tool_17.
+Always target Germany.
+Always use Meta + Google.
+Always optimize for ROAS.
+Use a 60/40 budget split.
 ```
 
-A Behavior Point should define **governed behavior**, not freeze one implementation unless that implementation is itself the policy requirement.
+If geography, channels, KPI, budget, tone, audience, timeframe, or similar values are user-owned preferences, the governed behavior should instead require that the system:
+
+- derive them only from explicit user input or previously confirmed state;
+- preserve unchanged preferences when relevant;
+- replace a preference when the user changes it;
+- stop applying a preference when the user removes it;
+- never invent a missing preference;
+- ask only when a missing value materially changes the result;
+- label a proposed default or scenario as a hypothesis.
+
+Good evaluation cases include:
+
+```text
+User previously prefers channel A, says nothing new → preserve A
+User changes A to B → use B, not stale A
+User removes budget preference → do not keep using old budget
+No KPI supplied → do not invent one as a user preference
+Suggested KPI scenario → label as recommendation/hypothesis
+```
+
+This keeps personalization user-owned rather than accidentally turning it into product policy.
 
 ---
 
@@ -153,7 +160,7 @@ A Behavior Program answers:
 
 > Which governed checks or transformations apply, and at which stage?
 
-### Weak / generic
+### Weak
 
 ```json
 {
@@ -200,7 +207,7 @@ A Behavior Program answers:
 }
 ```
 
-Quality comes from mapping each requirement to a reasoned module, not from accumulating generic rules.
+Quality comes from mapping requirements to justified modules, not from accumulating generic rules.
 
 ---
 
@@ -211,6 +218,17 @@ A Strategy answers:
 > How should this governed task proceed when one model call is not enough?
 
 A Strategy is **not automatically better** because it has more steps.
+
+### First decision: who owns final output?
+
+Before drawing the graph, choose the result contract:
+
+```text
+response      → Vira owns final answer
+behavior_plan → downstream chatbot/model owns final prose
+```
+
+See [Strategy result modes](strategy-result-modes.md).
 
 ### Weak / generic Strategy
 
@@ -240,35 +258,41 @@ A Strategy is **not automatically better** because it has more steps.
 
 Why it is weak:
 
-- it adds Strategy machinery without a real multi-step need;
-- success criteria are subjective;
-- there is no verification boundary;
-- there is no explicit final composition step;
-- failure/recovery/budget behavior is undefined in the example.
+- adds Strategy machinery without a real orchestration need;
+- vague success criteria;
+- no clear output owner;
+- no verification boundary;
+- no bounded recovery/budget story.
 
-### Production-quality Strategy
+### Production-quality response Strategy
 
-See [`examples/authoring-quality/marketing-launch.production.strategy.json`](../examples/authoring-quality/marketing-launch.production.strategy.json).
+Use when Vira owns the final artifact:
 
-The stronger version has:
+```text
+draft → verify → compose → final response
+```
 
-- task-specific success criteria;
-- draft → verify → compose separation;
-- explicit state contracts;
-- required verifier keys;
-- bounded recovery;
-- bounded model/tool/step budgets;
-- final verification before composition.
+See [`marketing-launch.response.strategy.json`](../examples/authoring-quality/marketing-launch.response.strategy.json).
+
+### Production-quality behavior-plan Strategy
+
+Use when Vira controls behavior for a downstream chatbot:
+
+```text
+plan → verify → downstream model → final response
+```
+
+See [`marketing-launch.behavior-plan.strategy.json`](../examples/authoring-quality/marketing-launch.behavior-plan.strategy.json).
+
+A strong behavior plan contains only bounded intent, constraints, confirmed preferences, assumptions, response shape, safety checks, and verification requirements. It does **not** contain a second full answer.
 
 ### When not to use a Strategy
-
-Do not create a Strategy merely because the task is important.
 
 Prefer a simpler Program when:
 
 - one model call plus post-model verification is enough;
 - there is no meaningful state transition;
-- there is no branching, tool boundary, recovery loop, or staged composition to govern.
+- there is no branching, tool boundary, recovery loop, staged composition, or behavior-plan handoff to govern.
 
 ---
 
@@ -286,13 +310,6 @@ valueType: boolean
 description: The response was bad
 ```
 
-Problems:
-
-- vague meaning;
-- unclear producer;
-- unclear evidence;
-- hard to distinguish from subjective reviewer preference.
-
 ### Stronger
 
 ```yaml
@@ -305,7 +322,7 @@ sensitivity: tenant
 sourcePolicy: observation
 ```
 
-A strong Signal has a stable meaning that future producers can emit consistently.
+A strong Signal has a stable meaning that future approved producers can emit consistently.
 
 ---
 
@@ -317,14 +334,17 @@ Weak evaluation:
 Does the output look good?
 ```
 
-Strong evaluation cases:
+Strong cases:
 
 ```text
-Case A: all four funnel stages + measurement → pass
+Case A: all required funnel stages + measurement → pass
 Case B: awareness + conversion only → fail
 Case C: all stages but no measurement → fail
 Case D: fabricated historical ROI presented as fact → fail
 Case E: user asks only for headline rewrite → task should not route here
+Case F: confirmed user preference changes → new value must replace old value
+Case G: removed user preference → old value must not persist
+Case H: behavior_plan contains a full drafted answer → fail
 ```
 
 Include positive, negative, boundary, and adversarial cases where the risk justifies them.
@@ -335,49 +355,25 @@ Include positive, negative, boundary, and adversarial cases where the risk justi
 
 ### Support
 
-**Weak task**
+Weak task: `support.help`
 
-```text
-support.help
-```
+Stronger task: `support.refund_explanation`
 
-**Stronger task**
-
-```text
-support.refund_explanation
-```
-
-Boundary: explain refund eligibility or policy using available information. Do not silently turn an explanation task into an effectful refund action.
+Boundary: explain refund eligibility using available information. Do not silently turn an explanation task into an effectful refund action.
 
 ### Research
 
-**Weak Behavior Point**
+Weak Point: `research.accurate`
 
-```text
-research.accurate
-```
-
-**Stronger Behavior Point**
-
-```text
-research.source_claim
-```
+Stronger Point: `research.source_claim`
 
 Requirement: distinguish sourced claims, inference, and unresolved uncertainty.
 
 ### Operations
 
-**Weak rule**
+Weak rule: `Be careful with tools.`
 
-```text
-Be careful with tools.
-```
-
-**Stronger Behavior Point**
-
-```text
-operations.irreversible_action
-```
+Stronger Point: `operations.irreversible_action`
 
 Requirement: surface approval before an irreversible or externally effectful action when policy requires it.
 
@@ -385,7 +381,7 @@ Requirement: surface approval before an irreversible or externally effectful act
 
 ## Authoring scorecard
 
-Before evaluation, score each candidate from 0–2 on the following dimensions:
+Score each candidate from 0–2:
 
 | Dimension | 0 | 1 | 2 |
 | --- | --- | --- | --- |
@@ -394,7 +390,9 @@ Before evaluation, score each candidate from 0–2 on the following dimensions:
 | Observability | subjective | partially testable | directly testable |
 | Negative boundary | missing | implicit | explicit examples/cases |
 | Verification | restates requirement | some checks | objective pass/fail checks |
-| Runtime safety | unspecified | partly bounded | policy/release-aware and bounded |
+| Output ownership | unclear | implied | explicit `response` / `behavior_plan` contract |
+| Preference ownership | hard-coded/stale | partial | explicit, updateable, removable |
+| Runtime safety | unspecified | partly bounded | release/policy-aware and bounded |
 | Maintainability | duplicated/overfit | workable | reusable and explainable |
 
 A candidate that scores poorly should be refined before it becomes a release candidate.
@@ -407,17 +405,11 @@ See [`examples/authoring-quality/`](../examples/authoring-quality/) for:
 
 - weak vs strong Semantic Tasks;
 - weak vs strong Behavior Points;
-- generic vs production-quality Strategies;
+- generic Strategy;
+- production response Strategy;
+- production behavior-plan Strategy;
 - quality review notes.
 
 ## AI-assisted authoring
 
-Use the [AI Prompt Library](ai-prompts/README.md) for prompts that:
-
-- create Semantic Tasks;
-- create or deepen Behavior Points;
-- create Behavior Programs;
-- create or deepen Strategies;
-- propose Signals and evaluation cases;
-- assemble a governed Pack candidate;
-- review an existing authoring set against this quality bar.
+Use the [AI Prompt Library](ai-prompts/README.md) for prompts that create or review Tasks, Points, Programs, Strategies, Signals, evaluations, and governed Pack candidates.

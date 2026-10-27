@@ -21,7 +21,13 @@ const requiredFiles = [
   "docs/semantic-routing.md",
   "docs/behavior-programs.md",
   "docs/strategies.md",
+  "docs/strategies-current.md",
+  "docs/strategy-result-modes.md",
+  "docs/strategy-authoring-checklist.md",
   "docs/authoring-quality.md",
+  "docs/current-runtime-notes.md",
+  "docs/gpu-acceleration-vision.md",
+  "docs/gpu-acceleration-faq.md",
   "docs/teach.md",
   "docs/evaluation-and-approval.md",
   "docs/release.md",
@@ -75,12 +81,15 @@ const requiredFiles = [
   "examples/authoring-quality/behavior-points.yaml",
   "examples/authoring-quality/marketing-launch.generic.strategy.json",
   "examples/authoring-quality/marketing-launch.production.strategy.json",
+  "examples/authoring-quality/marketing-launch.response.strategy.json",
+  "examples/authoring-quality/marketing-launch.behavior-plan.strategy.json",
   "examples/authoring-quality/quality-review.md",
   "docs/github-repository-metadata.md",
   "assets/vira-overview.svg",
   "assets/vira-request-path.svg",
   "assets/vira-integrations.svg",
   "assets/vira-use-cases.svg",
+  "assets/vira-gpu-vision.svg",
   "assets/social-preview.png"
 ];
 
@@ -131,21 +140,15 @@ for (const file of files) {
 
   if (rel.endsWith(".mjs")) {
     const checked = spawnSync(process.execPath, ["--check", file], { encoding: "utf8" });
-    if (checked.status !== 0) {
-      failures.push(`JavaScript syntax failed for ${rel}: ${checked.stderr}`);
-    }
+    if (checked.status !== 0) failures.push(`JavaScript syntax failed for ${rel}: ${checked.stderr}`);
   }
 
   if (rel.endsWith(".py")) {
     const checked = spawnSync("python3", ["-m", "py_compile", file], { encoding: "utf8" });
-    if (checked.status !== 0) {
-      failures.push(`Python syntax failed for ${rel}: ${checked.stderr}`);
-    }
+    if (checked.status !== 0) failures.push(`Python syntax failed for ${rel}: ${checked.stderr}`);
   }
 
-  if (rel.endsWith(".svg") && !text.includes("<svg")) {
-    failures.push(`Invalid SVG in ${rel}: missing <svg root>`);
-  }
+  if (rel.endsWith(".svg") && !text.includes("<svg")) failures.push(`Invalid SVG in ${rel}: missing <svg root>`);
 }
 
 if (failures.length) {

@@ -12,7 +12,7 @@
   <img alt="Apache 2.0" src="https://img.shields.io/badge/License-Apache--2.0-2563EB">
   <img alt="Node 20+" src="https://img.shields.io/badge/Node-%E2%89%A520-339933?logo=node.js&logoColor=white">
   <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-%E2%89%A53.10-3776AB?logo=python&logoColor=white">
-  <img alt="MCP" src="https://img.shields.io/badge/MCP-supported-7C3AED">
+  <img alt="MCP" src="https://img.shields.io/badge/MCP-supported-0F766E">
   <img alt="SDKs" src="https://img.shields.io/badge/SDK-JavaScript%20%7C%20Python-111827">
 </p>
 
@@ -20,11 +20,9 @@
   <a href="#quickstart">Quickstart</a> ·
   <a href="docs/README.md">Docs</a> ·
   <a href="#how-vira-works">How it works</a> ·
+  <a href="#accelerator-vision">Accelerator vision</a> ·
   <a href="docs/troubleshooting/README.md">Troubleshooting</a> ·
   <a href="docs/ai-prompts/README.md">AI prompts</a> ·
-  <a href="docs/reference/javascript-sdk.md">JavaScript SDK</a> ·
-  <a href="docs/reference/python-sdk.md">Python SDK</a> ·
-  <a href="docs/reference/mcp.md">MCP</a> ·
   <a href="tutorials/marketing-agent/README.md">Tutorial</a>
 </p>
 
@@ -40,15 +38,15 @@ Vira is a behavior-control layer for AI systems.
 
 Instead of solving every repeated AI mistake by adding one more hidden prompt, Vira gives teams a governed lifecycle for behavior:
 
-- **observe** what happened,
-- **identify** the task and behavior point,
-- **teach** from evidence,
-- **evaluate** proposed behavior,
-- **approve and release** what should run,
-- **resolve at runtime** what behavior applies,
+- **observe** what happened;
+- **identify** the task and Behavior Point;
+- **teach** from evidence;
+- **evaluate** proposed behavior;
+- **approve and release** what should run;
+- **resolve at runtime** what behavior applies;
 - **trace** what was selected and applied.
 
-That makes Vira useful for product teams, agent builders, and platform teams that need AI systems to be more consistent, auditable, and easier to improve.
+Vira is for product teams, agent builders, and platform teams that need AI behavior to be more consistent, reviewable, testable, and easier to improve.
 
 ---
 
@@ -58,15 +56,16 @@ That makes Vira useful for product teams, agent builders, and platform teams tha
 | --- | --- |
 | Corrections live in scattered prompts | Corrections become governed behavior |
 | Teams cannot tell what changed | Behavior changes move through a visible lifecycle |
-| Semantic intent and runtime behavior blur together | Semantic routing, behavior release, and runtime resolution stay distinct |
+| Semantic intent and runtime behavior blur together | Routing, behavior, release, and runtime stay distinct |
 | Debugging becomes prompt archaeology | Debugging follows trace, lifecycle, and release state |
-| AI improvements are hard to operationalize | AI proposals can be evaluated before they are released |
+| AI improvements are hard to operationalize | Candidates can be evaluated before release |
+| A behavior layer may accidentally become a second chatbot | `behavior_plan` lets Vira guide the downstream model without duplicating the final answer |
 
 ---
 
 ## The control loop
 
-Vira separates **learning about behavior** from **activating behavior**. Evidence can create a proposal, but a proposal does not silently become production behavior. Evaluation, approval, release, and runtime resolution remain visible stages.
+Vira separates **learning about behavior** from **activating behavior**. Evidence can create a proposal, but a proposal does not silently become production behavior.
 
 > **AI can propose. Released behavior remains explicit.**
 
@@ -78,7 +77,25 @@ Vira separates **learning about behavior** from **activating behavior**. Evidenc
 
 ![Vira request path from user input through Semantic Task, Behavior Point, Behavior Program or Strategy, runtime, and trace](assets/vira-request-path.svg)
 
-Semantic routing identifies the kind of work. A Behavior Point is the stable place where governed behavior can attach. Runtime only resolves behavior that is eligible for the request and environment.
+Semantic routing identifies the kind of work. A Behavior Point is the stable place where governed behavior can attach. Runtime resolves behavior that is released and eligible for the request.
+
+### Strategy can own the answer or guide the answer
+
+Current Strategy design supports two result contracts:
+
+```text
+response
+Vira Strategy → final answer
+```
+
+```text
+behavior_plan
+Vira Strategy → compact behavior plan → downstream chatbot/model → final answer
+```
+
+For an existing chatbot or agent, `behavior_plan` is usually the cleaner architecture because Vira can control intent, constraints, preferences, response shape, safety checks, and verification without writing a second full answer first.
+
+See [Strategy result modes](docs/strategy-result-modes.md).
 
 ### Integrate through the surface that fits your stack
 
@@ -96,11 +113,86 @@ The SDKs, HTTP API, and MCP are integration surfaces around the same behavior-co
 | **Behavior Point** | Where should governed behavior attach? | `marketing.launch_plan` |
 | **Signals** | What typed evidence matters? | `quality.missing_measurement` |
 | **Behavior Program** | What should be guarded, judged, transformed, verified, or escalated? | full-funnel requirement |
-| **Strategy** | How should a bounded multi-step task proceed? | draft → verify → compose |
-| **Evaluation** | Did the candidate pass the required checks? | full funnel + measurement |
+| **Strategy** | How should a bounded task proceed, and who owns final output? | `behavior_plan` or `response` |
+| **Evaluation** | Did the candidate pass required checks? | funnel + measurement + preference cases |
 | **Release** | Which approved behavior is eligible for runtime? | released revision |
 | **Runtime** | What governed behavior applies now? | resolved Behavior Point |
 | **Trace** | What was selected and applied? | task + behavior + result |
+
+---
+
+## Authoring quality matters
+
+A syntactically valid object can still be conceptually weak.
+
+Vira’s public authoring guidance distinguishes between:
+
+```text
+marketing.help
+```
+
+and a bounded task such as:
+
+```text
+marketing.launch_plan
+```
+
+It also distinguishes subjective rules such as:
+
+```text
+Make the answer high quality.
+```
+
+from observable behavior such as:
+
+```text
+Cover every required funnel stage and give each stage a measurable objective.
+```
+
+See [Authoring quality](docs/authoring-quality.md) and the [weak vs production-quality examples](examples/authoring-quality/).
+
+### User preferences stay user-owned
+
+Preferences such as audience, geography, budget, channels, tone, timeframe, or KPI should not become hard-coded Strategy constants by accident.
+
+A good behavior design derives them from explicit or confirmed user state, preserves unchanged values, replaces changed values, stops using removed values, and does not invent missing ones.
+
+---
+
+## Accelerator vision
+
+> **Experimental architecture. Not general production availability.**
+
+![Vira GPU acceleration vision](assets/vira-gpu-vision.svg)
+
+Vira is exploring a runtime path that moves released behavior execution closer to model inference, including same-device GPU execution when that path is accepted.
+
+The goal is not “put everything on GPU.” The goal is to reduce unnecessary runtime boundaries while preserving behavior semantics and traceability:
+
+```text
+request
+→ semantic selection
+→ released behavior
+→ bounded behavior execution
+→ model inference
+→ verification / trace
+```
+
+The accelerator direction is provider-neutral and can target common CUDA serving patterns such as PyTorch CUDA, vLLM, TensorRT-LLM, and Triton-style runtimes.
+
+CPU/conventional runtime remains first-class for compatibility, development, smaller deployments, parity comparison, and safe fallback where explicitly authorized.
+
+Promotion is intentionally staged:
+
+```text
+OFF → SHADOW → CANARY → LIMITED → GENERAL
+```
+
+GPU execution must preserve the same governed task, released behavior, Strategy semantics, and explicit fallback policy before promotion.
+
+Experimental CUDA work exists, but this public repository does **not** claim the accelerator path is generally production-ready today.
+
+Read the full [GPU acceleration vision](docs/gpu-acceleration-vision.md) and [GPU FAQ](docs/gpu-acceleration-faq.md).
 
 ---
 
@@ -180,8 +272,7 @@ with ViraClient(
     )
 ```
 
-**Reference:** [Python SDK](docs/reference/python-sdk.md)  
-**AI setup prompt:** [Python setup](docs/ai-prompts/setup-python-sdk.md)
+**Reference:** [Python SDK](docs/reference/python-sdk.md)
 
 ### MCP
 
@@ -189,32 +280,11 @@ with ViraClient(
 npx -y @vira/mcp
 ```
 
-```json
-{
-  "mcpServers": {
-    "vira": {
-      "command": "npx",
-      "args": ["-y", "@vira/mcp"],
-      "env": {
-        "VIRA_API_URL": "https://api.example.com",
-        "VIRA_API_KEY": "<api-key>",
-        "VIRA_MCP_AUTH_TOKEN": "<mcp-auth-token>",
-        "VIRA_MCP_AUTHORITY_URL": "https://api.example.com/v1/mcp/authorize",
-        "VIRA_ORGANIZATION_ID": "<organization>",
-        "VIRA_PROJECT_ID": "<project>",
-        "VIRA_ENVIRONMENT_ID": "<environment>"
-      }
-    }
-  }
-}
-```
-
-**Reference:** [MCP setup](docs/reference/mcp.md) · [MCP tools](docs/reference/mcp-tools.md)  
-**AI setup prompt:** [MCP setup](docs/ai-prompts/setup-mcp.md)
+See [MCP setup](docs/reference/mcp.md) and the [MCP tool catalog](docs/reference/mcp-tools.md).
 
 ### Direct HTTP API
 
-If you are integrating Vira without an SDK, use the [HTTP API reference](docs/reference/api.md) and the [HTTP API AI setup prompt](docs/ai-prompts/setup-http-api.md).
+Use the [HTTP API reference](docs/reference/api.md) and [HTTP API AI setup prompt](docs/ai-prompts/setup-http-api.md).
 
 ---
 
@@ -224,16 +294,15 @@ If you are integrating Vira without an SDK, use the [HTTP API reference](docs/re
 | --- | --- |
 | Understand Vira in 5 minutes | [What is Vira?](docs/what-is-vira.md) |
 | Understand the end-to-end lifecycle | [How Vira works](docs/how-vira-works.md) |
+| Learn authoring quality | [Authoring quality](docs/authoring-quality.md) |
+| Understand Strategy result modes | [Strategy result modes](docs/strategy-result-modes.md) |
+| Understand the GPU direction | [GPU acceleration vision](docs/gpu-acceleration-vision.md) |
 | Connect an existing agent | [Connect an AI system](docs/guides/connect-an-ai-system.md) |
 | Create a Behavior Point | [Behavior Points](docs/behavior-points.md) |
-| Create and review Signals | [Signals](docs/signals.md) |
-| Route requests semantically | [Semantic routing](docs/semantic-routing.md) |
-| Author behavior | [Behavior Programs](docs/behavior-programs.md) |
 | Build multi-step behavior | [Strategies](docs/strategies.md) |
-| Learn from evidence | [Teach](docs/teach.md) |
 | Evaluate and release | [Evaluation](docs/evaluation-and-approval.md) · [Release](docs/release.md) |
 | Debug a broken integration | [Troubleshooting center](docs/troubleshooting/README.md) |
-| Use AI to help install or debug Vira | [AI Prompt Library](docs/ai-prompts/README.md) |
+| Use AI to author/install/debug Vira | [AI Prompt Library](docs/ai-prompts/README.md) |
 | Follow one complete example | [Marketing Agent tutorial](tutorials/marketing-agent/README.md) |
 
 ---
@@ -244,7 +313,7 @@ If you are integrating Vira without an SDK, use the [HTTP API reference](docs/re
 
 | Domain | Example task | What Vira helps control |
 | --- | --- | --- |
-| **Marketing** | Launch plan generation | full-funnel coverage, measurement checks, approval flow |
+| **Marketing** | Launch plan generation | full-funnel coverage, measurement, confirmed preferences |
 | **Support** | Billing response agent | escalation rules, runtime guidance, traceability |
 | **Research** | Brief or synthesis workflow | sourced claims, review checkpoints, structured output |
 | **Operations** | Tool-using internal assistant | task routing, controlled actions, release-based behavior |
@@ -257,7 +326,7 @@ If you are integrating Vira without an SDK, use the [HTTP API reference](docs/re
 Request          Build a launch plan for a membership product
 Task             marketing.launch_plan
 Behavior Point   marketing.launch_plan
-Behavior         full_funnel_launch_planning
+Strategy mode    behavior_plan
 Applied          yes
 Result           completed
 ```
@@ -271,47 +340,35 @@ For documentation and demos, keep traces compact and safe. Never include credent
 ```text
 .
 ├── README.md
-├── assets/              # public diagrams + social preview
+├── assets/              # product diagrams + accelerator vision + social preview
 ├── docs/
 │   ├── guides/
 │   ├── reference/
 │   ├── troubleshooting/
 │   ├── ai-prompts/
-│   ├── behavior-*.md
-│   ├── signals.md
-│   ├── semantic-routing.md
-│   ├── teach.md
+│   ├── authoring-quality.md
+│   ├── strategy-result-modes.md
+│   ├── gpu-acceleration-vision.md
 │   ├── strategies.md
 │   ├── runtime.md
 │   └── traces.md
 ├── examples/
+│   ├── authoring-quality/
 │   ├── javascript/
 │   ├── python/
 │   ├── mcp/
 │   ├── packs/
 │   ├── semantic-runtime/
 │   └── strategy/
-├── tutorials/
-│   └── marketing-agent/
-└── .github/
-    ├── workflows/
-    └── ISSUE_TEMPLATE/
+└── tutorials/
+    └── marketing-agent/
 ```
 
 ---
 
 ## What this public repository includes
 
-This repository contains:
-
-- product positioning and concept docs;
-- JavaScript / TypeScript and Python SDK references;
-- MCP setup and tool catalog;
-- HTTP API route reference;
-- Behavior Point, Signal, Program, Strategy, Teach, Evaluation, Release, Runtime, and Trace documentation;
-- troubleshooting guides;
-- AI-assisted setup and debugging prompts;
-- examples and tutorials.
+This repository contains product positioning and concept docs, SDK/MCP/HTTP references, behavior authoring guidance, Strategy result-mode guidance, troubleshooting, AI-assisted authoring/debugging prompts, examples, tutorials, and the public accelerator architecture vision.
 
 Service implementation and hosted operations are maintained separately from this documentation repository.
 
