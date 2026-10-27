@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "strategyKey": "marketing.launch_plan.generic",
+  "behaviorPointKey": "marketing.launch_plan",
+  "executionMode": "STAGED",
+  "goal": {
+    "type": "produce",
+    "artifact": "answer",
+    "successCriteria": [
+      "Create a high quality answer"
+    ]
+  },
+  "entryStepKey": "generate",
+  "steps": [
+    {
+      "stableKey": "generate",
+      "type": "model",
+      "purpose": "Generate answer",
+      "requires": ["context:request"],
+      "produces": ["state:draft"]
+    }
+  ],
+  "edges": [],
+  "stateSlots": [
+    {
+      "key": "state:draft",
+      "schemaRef": "schema:launch-plan",
+      "privacy": "tenant",
+      "source": "model",
+      "maxBytes": 100000
+    }
+  ],
+  "contextPolicy": {
+    "allowedRefs": ["context:request"],
+    "maxBytes": 100000
+  },
+  "evidencePolicy": {
+    "requiredRefs": [],
+    "allowMissing": true
+  },
+  "toolPolicy": {
+    "allowedToolKeys": [],
+    "effectfulToolKeys": []
+  },
+  "generationPolicy": {
+    "structuredOnly": true
+  },
+  "verificationPolicy": {
+    "requiredVerifierKeys": [],
+    "requireFinalComposeVerification": false
+  },
+  "recoveryPolicy": {
+    "maxTotalRecoveries": 0,
+    "defaultAction": "block"
+  },
+  "budgets": {
+    "maxStepExecutions": 2,
+    "maxModelCalls": 1,
+    "maxToolCalls": 0,
+    "maxDecisionCalls": 0,
+    "maxRepairAttempts": 0,
+    "maxSerializedStateBytes": 200000
+  }
+}

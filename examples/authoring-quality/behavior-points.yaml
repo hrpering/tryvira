@@ -1,0 +1,41 @@
+# Educational comparison. Confirm the versioned schema before importing.
+
+weak:
+  - key: marketing.good_answer
+    taskKey: marketing.launch_plan
+    requirement: Make the answer detailed and high quality
+    verification: Check that the answer is good
+
+  - key: support.helpful
+    taskKey: support.refund_explanation
+    requirement: Be helpful and safe
+    verification: Make sure the answer is helpful
+
+productionQuality:
+  - key: marketing.launch_plan
+    taskKey: marketing.launch_plan
+    requirement: >-
+      Produce a full-funnel launch plan that covers awareness, consideration,
+      conversion, and retention, and gives every stage a measurable objective.
+    verification: >-
+      Confirm every required funnel stage is present and each stage includes
+      an objective plus a measurement approach. Reject invented historical
+      performance presented as observed fact.
+
+  - key: support.refund_explanation
+    taskKey: support.refund_explanation
+    requirement: >-
+      Explain refund eligibility and next steps using available policy/context,
+      clearly separating explanation from any effectful refund action.
+    verification: >-
+      Confirm the answer states the relevant policy or uncertainty, does not
+      claim an action was performed, and does not promise eligibility when the
+      required evidence is missing.
+
+  - key: research.source_claim
+    taskKey: research.write_summary
+    requirement: >-
+      Distinguish sourced claims from model inference and unresolved uncertainty.
+    verification: >-
+      Confirm material factual claims are attributable to supplied sources or
+      explicitly labeled as inference/uncertain when sourcing is unavailable.

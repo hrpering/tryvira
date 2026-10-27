@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.7.0
+
+- Added an Authoring Quality Guide covering Semantic Tasks, Behavior Points, Behavior Programs, Strategies, Signals, and evaluation design.
+- Added side-by-side generic/weak versus production-quality examples.
+- Added cross-domain authoring examples for marketing, support, research, and operations.
+- Added paired generic and production-quality Strategy JSON examples.
+- Expanded the AI Prompt Library with authoring prompts for Semantic Tasks, Behavior Points, Behavior Programs, Strategies, Signals/evaluation, governed Packs, and quality review.
+- Added dedicated prompts for deepening generic Behavior Points and simplifying or deepening existing Strategies.
+- Added authoring-quality examples to documentation and examples navigation.
+- Added all authoring-quality guides, examples, and prompts to repository verification.
+- Synced repository package metadata to version 0.7.0.
+
 ## 0.6.0
 
 - Reworked the root README to improve positioning, visual hierarchy, and developer navigation.
