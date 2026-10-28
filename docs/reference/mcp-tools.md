@@ -1,11 +1,33 @@
 # MCP tool catalog
 
-`@tryvira/mcp` exposes the current Vira MCP tool catalog. The current package surface contains **31 tools**.
+`@tryvira/mcp` `0.1.6` exposes the current Vira MCP tool catalog. The current package surface contains **41 tools**.
 
 Every call is scoped to the configured organization, project, and environment.
 
 - **Read**: does not intentionally mutate Vira state.
 - **Effectful**: can mutate state, advance a lifecycle, or trigger governed runtime work and therefore requires authorization.
+
+## Capability discovery and canonical authoring
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
+| `list_capabilities` | Read | Show which scoped Vira capabilities are available and on which public surfaces. |
+| `list_semantic_tasks` | Read | List scoped Semantic Tasks. |
+| `create_semantic_task` | Effectful | Create a scoped Semantic Task for governed authoring. |
+| `list_behavior_points` | Read | List scoped canonical Behavior Points. |
+| `create_behavior_point` | Effectful | Create a Behavior Point bound to one or more Semantic Tasks. |
+| `activate_behavior_strategy` | Effectful | Explicitly activate a validated Strategy revision. |
+
+## Teach and release lifecycle
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
+| `submit_teach_evidence` | Effectful | Submit scoped evidence to Teach AI. |
+| `create_teach_proposal` | Effectful | Create a Teach proposal from admitted evidence. |
+| `transition_teach_proposal` | Effectful | Review, evaluate, or promote a Teach proposal. |
+| `create_release` | Effectful | Create a scoped release after the required governed lifecycle. |
+
+Promotion is not a hidden release shortcut. Release authority remains explicit.
 
 ## Core resolution and Signals
 
@@ -68,8 +90,60 @@ Every call is scoped to the configured organization, project, and environment.
 | `release_pack` | Effectful | Release an approved Pack. |
 | `preview_pack_upgrade` | Effectful | Preview an incoming Pack upgrade. |
 
+## Current 41-tool list
+
+```text
+list_capabilities
+list_semantic_tasks
+create_semantic_task
+list_behavior_points
+create_behavior_point
+activate_behavior_strategy
+submit_teach_evidence
+create_teach_proposal
+transition_teach_proposal
+create_release
+resolve_semantic
+resolve_runtime
+create_signal_discovery_proposal
+review_signal_discovery_proposal
+materialize_signal_discovery
+create_signal_mapping
+get_signal_mapping
+review_signal_mapping
+list_behavior_programs
+list_behavior_strategies
+get_behavior_strategy
+simulate_behavior_strategy
+start_strategy_execution
+get_strategy_execution
+get_strategy_execution_trace
+continue_strategy_execution
+cancel_strategy_execution
+list_ai_systems
+list_discovery_candidates
+review_discovery_candidate
+create_observation
+start_evaluation
+compile_behavior_capsule
+serve_behavior_projection
+list_packs
+import_pack
+install_pack
+evaluate_pack
+approve_pack
+release_pack
+preview_pack_upgrade
+```
+
 ## Not currently MCP tools
 
-The current package does **not** expose dedicated tools for `connectOnce`, Teach evidence submission, Response Quality & Decision, capability attestation/model-serving selection, or deployment comparison/health recording.
+The current package does **not** expose dedicated MCP tools for:
 
-Use the JavaScript SDK, Python SDK, or HTTP surface for those capabilities.
+- `connectOnce` / adapter connection helpers;
+- Response Quality & Decision (`evaluateQuality` / `evaluate_quality`);
+- runtime capability attestation/resolution;
+- model-serving selection/traces;
+- deployment comparison/health recording.
+
+Use JavaScript, Python, or HTTP for those capabilities. Use `list_capabilities` to discover the current scoped product surface rather than assuming every integration exposes identical operations.
