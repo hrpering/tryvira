@@ -1,47 +1,83 @@
 # Capability map
 
-This page maps the current Vira product/runtime capabilities to the public integration surfaces.
+This page maps the current Vira capabilities to the public integration surfaces.
 
 Legend:
 
 - **Yes**: directly exposed on that surface.
-- **Underlying routes**: supported by HTTP primitives rather than the same SDK convenience helper.
-- **Partial**: a related operation exists, but not the full lifecycle.
-- **No tool**: not currently exposed as an MCP tool.
+- **Underlying routes**: available through HTTP primitives rather than the same convenience helper.
+- **Partial**: related operations exist, but not the complete lifecycle.
+- **No tool**: no dedicated MCP tool today.
 
 | Capability | JavaScript `@tryvira/sdk` | Python `tryvira-sdk` | HTTP | MCP `@tryvira/mcp` |
 | --- | --- | --- | --- | --- |
-| Connect system | `connectSystem` | `connect` | Yes | list only |
+| **Product capability discovery** | `listCapabilities` | `list_capabilities` | `GET /v1/capabilities` | `list_capabilities` |
+| List/read AI systems | `listAISystems`, `getAISystem` | `list_ai_systems`, `get_ai_system` | Yes | `list_ai_systems` |
+| Connect system | `connectSystem` | `connect` | Yes | No create/connect tool |
 | Connect adapter | `connectAdapter` | `connect_adapter` | Yes | No tool |
 | **Connect once** | **`connectOnce`** | **`connect_once`** | underlying routes | No tool |
 | Connection health/test | `connectionHealth`, `testConnection` | `connection_health`, `test_connection` | Yes | No tool |
 | Inventory | `inventory` | `inventory` | Yes | No tool |
 | Observe / trace / feedback / outcome | Yes | Yes | Yes | `create_observation` |
 | Observation batch / SDK delivery | Yes | Yes | Yes | No tool |
+| **Semantic Task authoring** | list/create | list/create | list/create/read | list/create |
+| **Behavior Point authoring** | list/create | list/create | list/create/read | list/create |
 | Semantic resolve | `resolveSemantic` | `resolve_semantic` | Yes | `resolve_semantic` |
 | Semantic → runtime convenience | `resolveSemanticRuntime` | supported client flow | underlying routes | separate tools |
 | Boundary-first runtime resolve | `resolveBoundary` / `resolveRuntime` | current client equivalents | Yes | `resolve_runtime` |
-| Signal discovery/mapping | Yes | Yes | current governed routes | Yes |
+| Signal discovery/mapping | Yes | Yes | governed routes | Yes |
 | Behavior Programs | list/get/create | list/get/create | Yes | list |
-| Strategy definitions | list/get/create/variant/validate/simulate | Yes | Yes | list/get/simulate |
-| **Strategy execution** | start/get/trace/continue/cancel | Yes | Yes | **Yes** |
+| Strategy definitions | list/get/create/variant/validate/simulate/**activate** | Yes | Yes | list/get/simulate/**activate** |
+| **Strategy execution** | start/get/trace/continue/cancel | Yes | Yes | Yes |
 | Packs | full lifecycle | full lifecycle | Yes | full lifecycle |
-| **Teach evidence** | `submitTeachEvidence` | `submit_teach_evidence` | Yes | No dedicated tool |
+| **Teach evidence** | `submitTeachEvidence` | `submit_teach_evidence` | Yes | `submit_teach_evidence` |
+| **Teach proposals** | create + review/evaluate/promote transition | Yes | Yes | create + transition |
 | **Behavior Evaluation** | `startEvaluation`, `getEvaluation` | `start_evaluation`, `get_evaluation` | Yes | `start_evaluation` |
 | **Response Quality & Decision** | `evaluateQuality` | `evaluate_quality` | `POST /v1/quality/evaluate` | No tool |
-| Release | `createRelease` | `create_release` | Yes | Pack release only |
+| Release | `createRelease` | `create_release` | Yes | `create_release` + Pack release |
 | Runtime execute/resolve | Yes | Yes | Yes | `resolve_runtime` |
-| Capability attestation/resolution | Yes | Yes | Yes | No tool |
+| Runtime capability attestation/resolution | Yes | Yes | Yes | No dedicated tool |
 | Model-serving resolve/trace | Yes | Yes | Yes | No tool |
 | Behavior capsule | `compileBehaviorCapsule` | current client equivalent | Yes | `compile_behavior_capsule` |
 | Behavior projection | `serveBehaviorProjection` | current client equivalent | Yes | `serve_behavior_projection` |
 | Deployment comparison/health | Yes | Yes | Yes | No tool |
 
-## Why the surfaces are not identical
+## Capability discovery versus runtime capability negotiation
 
-An SDK convenience helper does not imply a same-named HTTP or MCP operation. For example, `connectOnce` composes system creation and adapter connection for application code. MCP is intentionally oriented around discoverable governed tools and does not duplicate every client helper.
+These are different layers:
 
-Likewise, Response Quality & Decision is currently an SDK/HTTP capability rather than an MCP tool. Documentation should describe the real surface rather than pretend all clients are symmetrical.
+- **Product capability discovery** answers: “What can this scoped credential use, and on which public surfaces?”
+- **Runtime capability attestation/resolution** participates in governed runtime selection.
+
+Use [Capability discovery](capability-discovery.md) before hard-coding assumptions about SDK, Python, MCP, API, or Studio availability.
+
+## Two public authoring paths
+
+### Direct canonical authoring
+
+```text
+SDK / Python / HTTP / MCP
+→ Semantic Task
+→ Behavior Point
+→ Program / Strategy
+→ validate / simulate
+→ explicit activation or governed release path
+```
+
+### Pack authoring
+
+```text
+Pack candidate
+→ import
+→ install
+→ evaluate
+→ approve
+→ release
+```
+
+Direct authoring is useful for incremental tools and Studio-style workflows. Packs remain useful when multiple related objects should move as one portable, reviewable bundle.
+
+See [Canonical authoring](canonical-authoring.md).
 
 ## Product lifecycle
 
@@ -49,11 +85,11 @@ Likewise, Response Quality & Decision is currently an SDK/HTTP capability rather
 Connect
 → Observe
 → Discover / Semantic Resolve
-→ Govern (Point / Program / Strategy / Signals)
+→ Author Task / Point / Program / Strategy
 → Teach AI proposal
 → Review
 → Behavior Evaluation
-→ Approve / Release
+→ activate / approve / release as required
 → Runtime resolve / execute
 → optional Response Quality & Decision
 → Trace / Outcome
@@ -70,7 +106,7 @@ Tests a behavior artifact or candidate before approval/release.
 candidate behavior
 → dataset / assertions
 → evaluation result
-→ human/governed approval decision
+→ governed approval decision
 → release
 ```
 
