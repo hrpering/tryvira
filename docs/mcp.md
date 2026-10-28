@@ -1,50 +1,13 @@
 # MCP
 
-Package:
-
-```text
-@vira/mcp
-```
-
-## Run
+The published MCP package is `@tryvira/mcp`.
 
 ```bash
-npx -y @vira/mcp
+npx -y @tryvira/mcp
 ```
 
-The default transport is stdio.
+This legacy entry page is intentionally short. Use the canonical references:
 
-## Configuration
-
-```json
-{
-  "mcpServers": {
-    "vira": {
-      "command": "npx",
-      "args": ["-y", "@vira/mcp"],
-      "env": {
-        "VIRA_API_URL": "https://api.example.com",
-        "VIRA_API_KEY": "<api-key>",
-        "VIRA_MCP_AUTH_TOKEN": "<mcp-token>",
-        "VIRA_ORGANIZATION_ID": "<organization>",
-        "VIRA_PROJECT_ID": "<project>",
-        "VIRA_ENVIRONMENT_ID": "<environment>"
-      }
-    }
-  }
-}
-```
-
-## Optional HTTP transport
-
-```bash
-npx -y @vira/mcp --http
-```
-
-Do not expose an unauthenticated public bind.
-
-## Effectful tools
-
-Effectful operations require authorization.
-
-MCP is an integration surface over the same Vira behavior lifecycle.
+- [MCP setup and security](reference/mcp.md)
+- [Current MCP tool catalog](reference/mcp-tools.md)
+- [Capability × integration surface map](capability-map.md)

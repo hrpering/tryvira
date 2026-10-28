@@ -14,9 +14,9 @@ body:
     attributes:
       label: Area
       options:
-        - "@vira/sdk"
-        - "vira-sdk"
-        - "@vira/mcp"
+        - "@tryvira/sdk"
+        - "tryvira-sdk"
+        - "@tryvira/mcp"
         - "Public API"
         - "Documentation"
         - "Tutorial"
@@ -28,7 +28,7 @@ body:
     id: version
     attributes:
       label: Version
-      placeholder: "0.1.0"
+      placeholder: "package/docs version"
 
   - type: textarea
     id: reproduction

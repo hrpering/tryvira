@@ -1,11 +1,7 @@
 {
-  "name": "vira-semantic-runtime-example",
+  "name": "tryvira-semantic-runtime-example",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=20"
-  },
-  "dependencies": {
-    "@vira/sdk": "^0.1.0"
-  }
+  "engines": {"node": ">=20"},
+  "dependencies": {"@tryvira/sdk": "^0.1.5"}
 }
