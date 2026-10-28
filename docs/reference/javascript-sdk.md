@@ -1,6 +1,6 @@
 # JavaScript / TypeScript SDK reference
 
-Published package: `@tryvira/sdk` (`0.1.5`). Runtime: Node.js 20+.
+Published package: `@tryvira/sdk` (`0.1.6`). Runtime: Node.js 20+.
 
 ```bash
 npm install @tryvira/sdk
@@ -24,9 +24,11 @@ const vira = new ViraClient({
 });
 ```
 
-## Connection
+## Connected systems
 
 ```text
+listAISystems
+getAISystem
 connectSystem
 connectAdapter
 connectOnce
@@ -41,6 +43,20 @@ inventory
 connectSystem → connectAdapter → system + connection + handshake
 ```
 
+## Scoped capability discovery
+
+```text
+listCapabilities
+```
+
+```ts
+const capabilities = await vira.listCapabilities({ surface: "sdk" });
+```
+
+This describes the current scoped product capability surface. It is separate from runtime capability attestation/resolution.
+
+See [Capability discovery](../capability-discovery.md).
+
 ## Observations and evidence
 
 ```text
@@ -54,6 +70,43 @@ discover
 ```
 
 Observations are evidence; they do not publish behavior.
+
+## Canonical authoring
+
+Semantic Tasks:
+
+```text
+listSemanticTasks
+createSemanticTask
+```
+
+Behavior Points:
+
+```text
+listBehaviorPoints
+createBehaviorPoint
+```
+
+Example:
+
+```ts
+const task = await vira.createSemanticTask({
+  taskKey: "marketing.launch_plan",
+  description: "Create a measurable launch plan",
+  examples: ["Build a launch plan for a membership product"],
+  negativeExamples: ["Write a single ad headline"],
+});
+
+const taskId = String(task?.body.task?.id ?? "");
+
+await vira.createBehaviorPoint({
+  key: "marketing.launch_plan",
+  taskId,
+  constraints: ["cover required funnel stages", "include measurement"],
+});
+```
+
+See [Canonical authoring](../canonical-authoring.md).
 
 ## Signals
 
@@ -88,7 +141,7 @@ createBehaviorProgram
 
 ## Behavior Strategies
 
-Definitions:
+Definitions and lifecycle:
 
 ```text
 listBehaviorStrategies
@@ -97,7 +150,10 @@ createBehaviorStrategy
 createBehaviorStrategyVariant
 validateBehaviorStrategy
 simulateBehaviorStrategy
+activateBehaviorStrategy
 ```
+
+Activation is an explicit server-side state transition. It is not a client-side status edit and does not bypass the relevant evaluation/release/runtime rules.
 
 Execution:
 
@@ -127,9 +183,33 @@ Lifecycle: `import → install → evaluate → approve → release`.
 
 ```text
 submitTeachEvidence
+createTeachProposal
+transitionTeachProposal
 ```
 
-Evidence enters a proposal/review/evaluation/release cycle. Evidence submission is not an authority change.
+Proposal transitions are:
+
+```text
+review
+evaluate
+promote
+```
+
+Example:
+
+```ts
+const proposal = await vira.createTeachProposal({
+  evidenceId,
+  controlPointId,
+  summary: "Launch plans should preserve full-funnel coverage and measurement.",
+});
+
+await vira.transitionTeachProposal(proposalId, "review", { decision: "APPROVE" });
+await vira.transitionTeachProposal(proposalId, "evaluate", { score: 0.94, evaluationId });
+await vira.transitionTeachProposal(proposalId, "promote", {});
+```
+
+Promotion still does not silently grant release authority. See [Teach AI](../teach.md).
 
 ## Behavior Evaluation
 
@@ -165,13 +245,15 @@ This evaluates bounded response candidates; it does not grant release authority.
 createRelease
 ```
 
-## Capability negotiation
+## Runtime capability negotiation
 
 ```text
 attestCapabilities
 resolveCapabilities
 recordCapabilityTrace
 ```
+
+Do not confuse these methods with `listCapabilities`, which discovers the scoped product surface.
 
 ## Model serving
 
@@ -202,10 +284,11 @@ Responses expose `status`, `body`, and `requestId`. Non-2xx responses raise `Vir
 
 ```text
 1. connectOnce + testConnection
-2. observe / feedback / outcome
-3. resolveSemantic + resolveRuntime
-4. Signals / Points / Programs / Strategies
-5. Teach AI + Behavior Evaluation + Release
-6. optional Response Quality & Decision
-7. advanced Strategy execution / serving / projection / deployment evidence
+2. listCapabilities
+3. observe / feedback / outcome
+4. author or resolve Semantic Tasks / Behavior Points
+5. Programs / Strategies / Signals
+6. Teach AI + Behavior Evaluation + explicit activation/release
+7. optional Response Quality & Decision
+8. advanced Strategy execution / serving / projection / deployment evidence
 ```
