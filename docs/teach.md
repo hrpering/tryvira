@@ -13,7 +13,7 @@ observations / feedback / outcomes / approved context
 → proposal synthesis
 → review
 → Behavior Evaluation
-→ approval / promotion
+→ promotion
 → explicit release
 → runtime result
 → outcome attribution
@@ -39,15 +39,22 @@ AI proposal
 ≠ released behavior
 ```
 
-The normal path remains:
+The public proposal lifecycle is:
 
 ```text
-proposal → review → evaluate → approve → release
+evidence
+→ proposal
+→ review
+→ evaluate
+→ promote
+→ explicit release
 ```
 
-## Submit Teach evidence
+Promotion moves an eligible proposal forward. It does **not** silently create production authority or bypass release requirements.
 
-JavaScript:
+## JavaScript
+
+Submit evidence:
 
 ```ts
 await vira.submitTeachEvidence({
@@ -59,7 +66,28 @@ await vira.submitTeachEvidence({
 });
 ```
 
-Python:
+Create and transition a proposal:
+
+```ts
+const proposal = await vira.createTeachProposal({
+  evidenceId: "evidence-marketing-001",
+  controlPointId: "<behavior-point-id>",
+  summary: "Launch plans should preserve full-funnel coverage and measurement.",
+});
+
+await vira.transitionTeachProposal(proposalId, "review", {
+  decision: "APPROVE",
+});
+
+await vira.transitionTeachProposal(proposalId, "evaluate", {
+  evaluationId,
+  score: 0.94,
+});
+
+await vira.transitionTeachProposal(proposalId, "promote", {});
+```
+
+## Python
 
 ```python
 client.submit_teach_evidence({
@@ -69,17 +97,49 @@ client.submit_teach_evidence({
     "privacy": "CONSENTED_TENANT",
     "consent": True,
 })
+
+proposal = client.create_teach_proposal({
+    "evidenceId": "evidence-marketing-001",
+    "controlPointId": behavior_point_id,
+    "summary": "Launch plans should preserve full-funnel coverage and measurement.",
+})
+
+client.transition_teach_proposal(proposal_id, "review", {"decision": "APPROVE"})
+client.transition_teach_proposal(proposal_id, "evaluate", {"evaluationId": evaluation_id, "score": 0.94})
+client.transition_teach_proposal(proposal_id, "promote", {})
 ```
 
-HTTP:
+Allowed transition names are currently:
+
+```text
+review
+evaluate
+promote
+```
+
+## HTTP
 
 ```text
 POST /v1/teach/evidence
+POST /v1/teach/proposals
+POST /v1/teach/proposals/{proposalId}/review
+POST /v1/teach/proposals/{proposalId}/evaluate
+POST /v1/teach/proposals/{proposalId}/promote
+POST /v1/releases
 ```
 
-## MCP status
+## MCP
 
-The current MCP package does not expose a dedicated Teach evidence tool. Teach is available through SDK/HTTP surfaces; MCP does expose observation, discovery, Signal review, evaluation, Pack, and runtime tools that participate in adjacent governed workflows.
+The current `@tryvira/mcp` package exposes Teach and release lifecycle tools:
+
+```text
+submit_teach_evidence
+create_teach_proposal
+transition_teach_proposal
+create_release
+```
+
+These are effectful and remain scope/authorization gated.
 
 ## Outcome-driven re-teaching
 
