@@ -12,9 +12,11 @@ from vira import ViraClient, ViraApiError
 
 The package is MIT-licensed. The Vira service/backend are governed separately.
 
-## Connection
+## Connected systems
 
 ```text
+list_ai_systems
+get_ai_system
 connect
 connect_adapter
 connect_once
@@ -24,6 +26,18 @@ inventory
 ```
 
 `connect_once` is the recommended convenience flow and returns system + connection + handshake state.
+
+## Scoped capability discovery
+
+```text
+list_capabilities
+```
+
+```python
+capabilities = client.list_capabilities(surface="python")
+```
+
+This discovers product capabilities for the current scope/surface. Runtime capability attestation/resolution is a separate concern.
 
 ## Observations
 
@@ -36,6 +50,43 @@ outcome
 ```
 
 The current client also exposes agent-native observation helpers for workflow/action/checkpoint/handoff style events.
+
+## Canonical authoring
+
+Semantic Tasks:
+
+```text
+list_semantic_tasks
+create_semantic_task
+```
+
+Behavior Points:
+
+```text
+list_behavior_points
+create_behavior_point
+```
+
+Example:
+
+```python
+task = client.create_semantic_task({
+    "taskKey": "marketing.launch_plan",
+    "description": "Create a measurable launch plan",
+    "examples": ["Build a launch plan for a membership product"],
+    "negativeExamples": ["Write a single ad headline"],
+})
+
+task_id = task.body["task"]["id"]
+
+client.create_behavior_point({
+    "key": "marketing.launch_plan",
+    "taskId": task_id,
+    "constraints": ["cover required funnel stages", "include measurement"],
+})
+```
+
+See [Canonical authoring](../canonical-authoring.md).
 
 ## Signals
 
@@ -62,7 +113,7 @@ create_behavior_program
 
 ## Behavior Strategies
 
-Definitions:
+Definitions and lifecycle:
 
 ```text
 list_behavior_strategies
@@ -71,7 +122,10 @@ create_behavior_strategy
 create_behavior_strategy_variant
 validate_behavior_strategy
 simulate_behavior_strategy
+activate_behavior_strategy
 ```
+
+Activation is explicit and server-side. It does not replace evaluation/release/runtime eligibility checks that apply to the target flow.
 
 Execution:
 
@@ -99,7 +153,19 @@ preview_pack_upgrade
 
 ```text
 submit_teach_evidence
+create_teach_proposal
+transition_teach_proposal
 ```
+
+Allowed proposal transitions are:
+
+```text
+review
+evaluate
+promote
+```
+
+Promotion still does not silently grant release authority.
 
 ## Behavior Evaluation
 
@@ -135,6 +201,6 @@ create_release
 
 ## Advanced runtime surfaces
 
-The current Python client mirrors advanced runtime capabilities available to the JavaScript client, including capability admission/resolution, model-serving selection/traces, behavior capsule/projection, and deployment evidence.
+The current Python client mirrors advanced runtime capabilities available to the JavaScript client, including runtime capability attestation/resolution, model-serving selection/traces, behavior capsule/projection, and deployment evidence.
 
 See [Capability map](../capability-map.md).
