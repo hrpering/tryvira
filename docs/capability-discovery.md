@@ -6,6 +6,24 @@ Capability discovery answers a simple operational question:
 
 Do not infer this from package version alone. Scope, role, surface, and deployment policy can all matter.
 
+## Studio
+
+The current Studio surface exposes a scoped capability view at:
+
+```text
+/capabilities
+```
+
+It is intended to show what the current actor can use without implying extra authority. The Studio view can present:
+
+- capability key;
+- available / unavailable state;
+- required roles;
+- supported surfaces;
+- a reason when an action is unavailable.
+
+Capability visibility is evidence about the current scoped actor. It does not grant a role or bypass authorization.
+
 ## HTTP
 
 ```text
@@ -68,11 +86,11 @@ Example arguments:
 
 The current public catalog includes capability families for connected AI systems, semantic resolution, Behavior Point authoring, Strategy execution/activation, Teach, evaluation, release, Packs, and MCP effectful execution.
 
-The exact result is scoped. Treat the API result as the current answer instead of copying a static role matrix into application code.
+The exact result is scoped. Treat the API/Studio result as the current answer instead of copying a static role matrix into application code.
 
 ## Discovery is not runtime capability negotiation
 
-`listCapabilities` / `list_capabilities` / `list_capabilities` (MCP) describes product capability availability.
+`listCapabilities`, `list_capabilities`, MCP `list_capabilities`, and the Studio capability view describe product capability availability.
 
 Runtime capability attestation/resolution is a separate governed runtime surface used when selecting runtime capabilities. See [Capability map](capability-map.md).
 
@@ -86,4 +104,4 @@ startup
 → enable only supported UI/actions
 ```
 
-This is especially useful for Studio-like clients, MCP hosts, admin tooling, and SDK integrations that support multiple Vira deployment profiles.
+This is especially useful for Studio, MCP hosts, admin tooling, and SDK integrations that support multiple Vira deployment profiles.
