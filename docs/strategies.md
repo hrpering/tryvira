@@ -6,11 +6,9 @@ It answers:
 
 > How should this governed task proceed?
 
-It does not replace policy, scope, evaluation, approval, or release checks.
+It does not replace scope, policy, evaluation, authorization, or release checks.
 
-## Two independent choices
-
-A Strategy has two different design dimensions:
+## Two independent design choices
 
 ### Execution mode
 
@@ -27,15 +25,11 @@ Execution mode answers **how the workflow runs**.
 
 Result mode answers **who owns the final user-visible answer**.
 
-Do not conflate the two.
-
-A Strategy can be `STAGED + response` or `STAGED + behavior_plan` depending on the integration.
+A Strategy can be `STAGED + response` or `STAGED + behavior_plan`. Do not conflate execution mode with output ownership.
 
 See [Strategy result modes](strategy-result-modes.md).
 
-## `response`: Vira owns the final answer
-
-Use `response` when the Strategy is expected to return the final artifact.
+## `response`: Vira owns the final artifact
 
 ```text
 model / tool steps
@@ -44,29 +38,19 @@ model / tool steps
 → final response
 ```
 
-This is appropriate when Vira is the direct task runtime and there is no downstream chatbot that should independently rewrite the answer.
+Use this when Vira is the direct task runtime and no downstream model should independently rewrite the answer.
 
 ## `behavior_plan`: downstream model owns final prose
-
-Use `behavior_plan` when Vira is inserted as a behavior layer in front of an existing chatbot or model provider.
 
 ```text
 request
 → Vira Strategy
 → compact behavior plan
-→ downstream chatbot / model
+→ downstream chatbot/model
 → final user-visible answer
 ```
 
-A behavior plan should contain only what the downstream model needs to behave correctly, such as:
-
-- intent;
-- explicit constraints;
-- confirmed user preferences;
-- a small number of labeled assumptions;
-- response shape;
-- safety or policy checks;
-- verification checklist.
+A behavior plan should contain only what the downstream model needs to behave correctly, such as intent, explicit constraints, confirmed user preferences, bounded assumptions, response shape, safety/policy checks, and verification criteria.
 
 It should not contain a hidden full answer for the downstream model to repeat.
 
@@ -83,93 +67,78 @@ Supported Strategy concepts include:
 - `decision`
 - `transform`
 
-## Example: behavior-plan Strategy
+## Direct Strategy lifecycle
 
-```json
-{
-  "schemaVersion": 1,
-  "strategyKey": "marketing.launch_plan.behavior_plan",
-  "behaviorPointKey": "marketing.launch_plan",
-  "executionMode": "STAGED",
-  "resultMode": "behavior_plan",
-  "goal": {
-    "type": "produce",
-    "artifact": "behavior-plan",
-    "successCriteria": [
-      "Preserve explicit launch constraints",
-      "Require full-funnel coverage and measurement",
-      "Do not draft the final user-visible answer"
-    ]
-  },
-  "entryStepKey": "plan",
-  "steps": [
-    {
-      "stableKey": "plan",
-      "type": "model",
-      "purpose": "Create a compact behavior plan for the downstream chatbot",
-      "requires": ["context:request"],
-      "produces": ["state:behaviorPlan"],
-      "outputSchemaRef": "schema:behavior-plan"
-    },
-    {
-      "stableKey": "verify",
-      "type": "verify",
-      "purpose": "Verify the plan is bounded, request-specific, and does not contain a full answer",
-      "requires": ["state:behaviorPlan"],
-      "produces": ["state:verified"],
-      "verifierKeys": ["marketing.full_funnel"]
-    }
-  ],
-  "edges": [
-    {"stableKey": "plan-to-verify", "from": "plan", "to": "verify"}
-  ],
-  "stateSlots": [
-    {
-      "key": "state:behaviorPlan",
-      "schemaRef": "schema:behavior-plan",
-      "privacy": "tenant",
-      "source": "model",
-      "maxBytes": 12000
-    },
-    {
-      "key": "state:verified",
-      "schemaRef": "schema:boolean",
-      "privacy": "tenant",
-      "source": "derived",
-      "maxBytes": 100
-    }
-  ],
-  "contextPolicy": {"allowedRefs": ["context:request"], "maxBytes": 100000},
-  "evidencePolicy": {"requiredRefs": [], "allowMissing": true},
-  "toolPolicy": {"allowedToolKeys": [], "effectfulToolKeys": []},
-  "generationPolicy": {"structuredOnly": true},
-  "verificationPolicy": {
-    "requiredVerifierKeys": ["marketing.full_funnel"],
-    "requireFinalComposeVerification": false
-  },
-  "recoveryPolicy": {"maxTotalRecoveries": 1, "defaultAction": "block"},
-  "budgets": {
-    "maxStepExecutions": 5,
-    "maxModelCalls": 1,
-    "maxToolCalls": 0,
-    "maxDecisionCalls": 0,
-    "maxRepairAttempts": 1,
-    "maxSerializedStateBytes": 50000
-  }
-}
-```
-
-For a direct response-owned example, see:
+Current public authoring supports an explicit lifecycle:
 
 ```text
-examples/authoring-quality/marketing-launch.response.strategy.json
+create
+→ optional immutable variant
+→ validate
+→ simulate structurally
+→ activate explicitly
+→ runtime/release eligibility still follows the governed target flow
 ```
 
-For a downstream-chatbot example, see:
+JavaScript:
+
+```ts
+const created = await vira.createBehaviorStrategy(definition);
+const strategyId = String(created?.body.strategy?.id ?? created?.body.id ?? "");
+
+await vira.validateBehaviorStrategy(strategyId);
+await vira.simulateBehaviorStrategy(strategyId, {});
+await vira.activateBehaviorStrategy(strategyId);
+```
+
+Python uses:
 
 ```text
-examples/authoring-quality/marketing-launch.behavior-plan.strategy.json
+create_behavior_strategy
+validate_behavior_strategy
+simulate_behavior_strategy
+activate_behavior_strategy
 ```
+
+MCP exposes:
+
+```text
+activate_behavior_strategy
+```
+
+### Activation is explicit
+
+Strategy activation is a server-side state transition. It is not a client-side status edit and it is not permission to skip evaluation, release, scope, or runtime authority checks.
+
+### Variants are real revisions
+
+`createBehaviorStrategyVariant` / the Strategy variant route compiles and persists an immutable variant artifact. Treat variants as governed revisions, not mutable runtime switches.
+
+## Strategy execution
+
+Authoring/activation and execution are separate concerns.
+
+Execution surface:
+
+```text
+startStrategyExecution
+getStrategyExecution
+getStrategyExecutionTrace
+continueStrategyExecution
+cancelStrategyExecution
+```
+
+MCP exposes the corresponding Strategy execution tools as well.
+
+A waiting execution can be continued with pinned state/references. It should not silently change the Strategy artifact it started from.
+
+## Validation versus simulation
+
+**Validation** checks structural validity.
+
+**Simulation** is a structural dry run. It is not proof that real model/tool providers executed.
+
+Use governed runtime execution for real provider/tool work.
 
 ## User-owned preferences are not Strategy constants
 
@@ -180,17 +149,17 @@ If behavior depends on preferences such as audience, geography, budget, channels
 - replace them when the user changes them;
 - stop applying them when the user removes them;
 - do not invent missing values;
-- label proposed defaults or scenarios as hypotheses.
+- label proposed defaults/scenarios as hypotheses.
 
 Hard-coding a user preference into a Strategy turns personalization into policy by accident.
 
-## Recommended authoring path
+## Direct authoring versus Packs
 
-For a new Behavior Point, prefer Pack authoring.
+Use direct Strategy authoring for incremental UI/SDK/MCP workflows.
 
-When a Strategy is supplied as part of a Pack, Vira binds it to the relevant governed behavior lifecycle as part of installation.
+Use Packs when a Semantic Task, Behavior Point, Program, Strategy, Signals, and evaluation references should move together as one portable reviewed bundle.
 
-Use the versioned Strategy schema supported by your Vira release. Do not invent result-mode or edge fields that are not present in the current schema.
+See [Canonical authoring](canonical-authoring.md) and [Packs](packs.md).
 
 ## Public API
 
@@ -198,24 +167,24 @@ Use the versioned Strategy schema supported by your Vira release. Do not invent 
 GET  /v1/behavior-strategies
 POST /v1/behavior-strategies
 GET  /v1/behavior-strategies/{strategyId}
+POST /v1/behavior-strategies/{strategyId}/variants
 POST /v1/behavior-strategies/{strategyId}/validate
 POST /v1/behavior-strategies/{strategyId}/simulate
+POST /v1/behavior-strategies/{strategyId}/activate
 ```
 
-## Validation versus simulation
+## Examples
 
-Validation checks structural validity.
+For a direct response-owned Strategy:
 
-Simulation is a structural dry run. It should not be presented as proof that real model or tool providers executed.
+```text
+examples/authoring-quality/marketing-launch.response.strategy.json
+```
 
-Use runtime execution for real provider/tool calls.
+For an existing-chatbot `behavior_plan` Strategy:
 
-## Tool safety
+```text
+examples/authoring-quality/marketing-launch.behavior-plan.strategy.json
+```
 
-A Strategy can reference only tools allowed by its tool policy.
-
-Effectful tools remain subject to authorization and policy. Strategy logic does not replace those boundaries.
-
-## Authoring checklist
-
-Before release, use the [Strategy authoring checklist](strategy-authoring-checklist.md).
+Before activation/release, use the [Strategy authoring checklist](strategy-authoring-checklist.md) and [Authoring quality](authoring-quality.md).
