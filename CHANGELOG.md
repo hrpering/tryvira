@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.10.0
+
+- Synced the public repository with the latest canonical authoring and capability-discovery surfaces.
+- Updated published `@tryvira/sdk` and `@tryvira/mcp` documentation to `0.1.6`; Python remains `tryvira-sdk` `0.1.6`.
+- Added scoped product capability discovery through `listCapabilities`, `list_capabilities`, `GET /v1/capabilities`, and MCP `list_capabilities`.
+- Added direct Semantic Task and Behavior Point authoring across JavaScript, Python, HTTP, and MCP.
+- Added explicit Strategy activation across JavaScript, Python, HTTP, and MCP.
+- Documented compiled/persisted Strategy variants as governed immutable revisions rather than placeholders.
+- Expanded Teach AI from evidence submission to proposal creation plus `review`, `evaluate`, and `promote` transitions.
+- Added MCP Teach evidence/proposal/transition/release tooling and corrected the previous documentation that said Teach was not exposed through MCP.
+- Expanded the MCP catalog from 31 to 41 tools.
+- Added canonical authoring and capability-discovery guides plus a runnable JavaScript canonical-authoring example.
+- Expanded JS/Python references with AI-system list/read helpers and the new authoring/lifecycle methods.
+- Updated the canonical HTTP route map with capability discovery, Task/Point authoring, Strategy activation, and Teach proposal transitions.
+- Bumped public documentation metadata and verification contract to `0.10.0`.
+
 ## 0.9.0
 
 - Synced docs with published `@tryvira/sdk`, `@tryvira/mcp`, and `tryvira-sdk` package identities.
@@ -10,7 +26,7 @@
 - Split Behavior Evaluation from Response Quality & Decision.
 - Documented `evaluateQuality` / `evaluate_quality` and `POST /v1/quality/evaluate` without binding the product to a specific decision provider.
 - Expanded JS/Python docs with Strategy execution, capability negotiation, model-serving, behavior projection, deployment evidence, and release surfaces.
-- Expanded MCP docs from 24 to the current 31-tool surface.
+- Expanded MCP docs from 24 to the then-current 31-tool surface.
 - Made `docs/reference/api.md` the canonical HTTP route reference.
 - Updated tutorials/examples to published package names and added response-quality examples.
 - Added AI prompt for bounded response-quality selection/abstention.
