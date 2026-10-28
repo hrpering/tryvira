@@ -1,13 +1,15 @@
 # Vira documentation
 
-Use this page as the documentation map for the current public product and client surfaces.
+Use this page as the map for the current public product, authoring, runtime, and integration surfaces.
 
 ## Start here by goal
 
 | Goal | Start here |
 | --- | --- |
 | Understand the full public surface | [Capability map](capability-map.md) |
-| See the published client packages | [Published packages](published-packages.md) |
+| Discover what a scoped credential can use | [Capability discovery](capability-discovery.md) |
+| Author Semantic Tasks / Behavior Points directly | [Canonical authoring](canonical-authoring.md) |
+| See published client packages | [Published packages](published-packages.md) |
 | Understand the product quickly | [What is Vira?](what-is-vira.md) |
 | Understand architecture/lifecycle | [How Vira works](how-vira-works.md) |
 | Connect an application or agent | [Connect an AI system](guides/connect-an-ai-system.md) |
@@ -26,12 +28,11 @@ Use this page as the documentation map for the current public product and client
 ```text
 Connect
 → Observe
-→ Discover / Resolve
-→ Govern behavior
+→ Discover / Semantic Resolve
+→ Canonical Authoring
 → Teach AI proposal
-→ Review
-→ Behavior Evaluation
-→ Approve / Release
+→ Review / Behavior Evaluation
+→ Strategy activation and/or governed release
 → Runtime
 → optional Response Quality & Decision
 → Trace / Outcome
@@ -40,19 +41,20 @@ Connect
 
 ![Vira behavior-control lifecycle](../assets/vira-overview.svg)
 
-## Build behavior
+## Author and govern behavior
 
 | Topic | Purpose |
 | --- | --- |
+| [Canonical authoring](canonical-authoring.md) | direct Task/Point authoring + Strategy activation |
 | [Semantic routing](semantic-routing.md) | select / uncertain / no-match |
 | [Behavior Points](behavior-points.md) | stable governed attachment points |
 | [Signals](signals.md) | typed evidence + discovery/mapping |
 | [Behavior Programs](behavior-programs.md) | guard/judge/transform/verify/escalate |
-| [Strategies](strategies.md) | bounded multi-step behavior |
+| [Strategies](strategies.md) | bounded multi-step behavior, variants, validation, activation |
 | [Strategy result modes](strategy-result-modes.md) | `response` vs `behavior_plan` |
 | [Authoring quality](authoring-quality.md) | weak vs production-quality authoring |
-| [Packs](packs.md) | governed bulk authoring lifecycle |
-| [Teach AI](teach.md) | evidence → proposal → review → evaluation → release |
+| [Packs](packs.md) | governed bundled authoring lifecycle |
+| [Teach AI](teach.md) | evidence → proposal → review → evaluate → promote → release |
 | [Evaluation & approval](evaluation-and-approval.md) | behavior/artifact evaluation |
 | [Decision & response quality](decision-and-quality.md) | bounded candidate quality + select/abstain |
 | [Release](release.md) | explicit runtime eligibility |
@@ -61,18 +63,18 @@ Connect
 
 ## Integrate
 
-| Surface | Package / reference |
+| Surface | Current package / reference |
 | --- | --- |
-| JavaScript / TypeScript | `@tryvira/sdk` · [reference](reference/javascript-sdk.md) |
-| Python | `tryvira-sdk` · [reference](reference/python-sdk.md) |
-| MCP | `@tryvira/mcp` · [setup](reference/mcp.md) · [31-tool catalog](reference/mcp-tools.md) |
+| JavaScript / TypeScript | `@tryvira/sdk` `0.1.6` · [reference](reference/javascript-sdk.md) |
+| Python | `tryvira-sdk` `0.1.6` · [reference](reference/python-sdk.md) |
+| MCP | `@tryvira/mcp` `0.1.6` · [setup](reference/mcp.md) · [41-tool catalog](reference/mcp-tools.md) |
 | Direct HTTP | [canonical API reference](reference/api.md) |
 
-See [Capability map](capability-map.md) for which operations exist on each surface.
+Before hard-coding assumptions about a surface, use [Capability discovery](capability-discovery.md).
 
-## Advanced runtime surfaces
+## Runtime and serving surfaces
 
-The current SDK/API surface also includes Strategy execution, capability negotiation, model-serving resolution/traces, behavior capsule/projection, and deployment evidence. These are documented outside the basic quickstart because most integrations do not need them on day one.
+The current SDK/API surface also includes Strategy execution, runtime capability attestation/resolution, model-serving decisions/traces, behavior capsule/projection, and deployment evidence. These stay outside the smallest quickstart because most integrations do not need them on day one.
 
 ## Accelerator architecture
 
