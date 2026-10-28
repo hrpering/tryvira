@@ -1,6 +1,6 @@
 Vira public documentation and examples
-Copyright 2026 Vira contributors.
+Copyright (c) 2026 Vira / Esad Türkel.
 
-The Apache License 2.0 does not grant rights to use Vira names, logos,
-or other brand identifiers except as permitted by applicable law or
-separate permission.
+This repository is proprietary and governed by the accompanying LICENSE.
+
+Separately published client packages may use their own license terms. As of this documentation release, @tryvira/sdk, @tryvira/mcp, and tryvira-sdk declare the MIT license in their package metadata.

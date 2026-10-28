@@ -2,10 +2,7 @@
   "mcpServers": {
     "vira": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@vira/mcp"
-      ],
+      "args": ["-y", "@tryvira/mcp"],
       "env": {
         "VIRA_API_URL": "https://api.example.com",
         "VIRA_API_KEY": "<api-key>",

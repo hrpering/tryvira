@@ -1,10 +1,6 @@
-# HTTP API route map
+# HTTP API reference
 
-Base:
-
-```text
-<VIRA_API_URL>
-```
+This is the canonical public HTTP route map for the integration surfaces documented by this repository.
 
 Authentication:
 
@@ -12,114 +8,134 @@ Authentication:
 Authorization: Bearer <api-key>
 ```
 
-For retryable mutations, use a stable idempotency key when supported.
+Use idempotency keys for retryable mutations when supported. Keep returned request IDs for debugging.
 
-## AI systems
+## AI systems and connections
 
-```text
-GET  /v1/ai-systems
-POST /v1/ai-systems
-GET  /v1/ai-systems/{systemId}
-POST /v1/ai-systems/{systemId}/connections
-GET  /v1/ai-systems/{systemId}/inventory
-GET  /v1/connections/{connectionId}/health
-POST /v1/connections/{connectionId}/test
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/v1/ai-systems` | List AI systems. |
+| POST | `/v1/ai-systems` | Create/connect an AI system. |
+| GET | `/v1/ai-systems/{systemId}` | Read one AI system. |
+| POST | `/v1/ai-systems/{systemId}/connections` | Connect an adapter. |
+| GET | `/v1/ai-systems/{systemId}/inventory` | Read system inventory. |
+| GET | `/v1/connections/{connectionId}/health` | Read connection health. |
+| POST | `/v1/connections/{connectionId}/test` | Test a connection. |
+
+SDK convenience: `connectOnce` / `connect_once` composes the normal system + adapter flow.
 
 ## Observations
 
-```text
-POST /v1/observations
-POST /v1/observations/batch
-POST /v1/observations/sdk
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/v1/observations` | Submit one observation. |
+| POST | `/v1/observations/batch` | Submit a bounded batch. |
+| POST | `/v1/observations/sdk` | Submit SDK-form observation delivery. |
 
-## Discovery + Semantic
+## Discovery and semantic resolution
 
-```text
-GET  /v1/discovery/candidates
-POST /v1/discovery/candidates/{kind}/{key}/review
-POST /v1/discovery/candidates/{kind}/{key}/publish
-POST /v1/semantic/resolve
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/v1/discovery/candidates` | List discovery candidates. |
+| POST | `/v1/discovery/candidates/{kind}/{key}/review` | Review a candidate. |
+| POST | `/v1/discovery/candidates/{kind}/{key}/publish` | Publish an approved candidate where supported. |
+| POST | `/v1/semantic/resolve` | Resolve/abstain on a semantic task. |
 
 ## Signals
 
-Signal proposal/mapping routes are exposed through the SDK and MCP integration surfaces.
-
-Use the versioned SDK when possible so the client contract stays aligned with the server.
+Current SDKs use governed Signal proposal/mapping routes for discovery proposal creation/review/materialization and mapping creation/read/review.
 
 ## Behavior Programs
 
-```text
-GET  /v1/behavior-programs
-POST /v1/behavior-programs
-GET  /v1/behavior-programs/{programId}
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/v1/behavior-programs` | List Programs. |
+| POST | `/v1/behavior-programs` | Create a Program. |
+| GET | `/v1/behavior-programs/{programId}` | Read a Program. |
 
 ## Behavior Strategies
 
-```text
-GET  /v1/behavior-strategies
-POST /v1/behavior-strategies
-GET  /v1/behavior-strategies/{strategyId}
-POST /v1/behavior-strategies/{strategyId}/variants
-POST /v1/behavior-strategies/{strategyId}/validate
-POST /v1/behavior-strategies/{strategyId}/simulate
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/v1/behavior-strategies` | List Strategies. |
+| POST | `/v1/behavior-strategies` | Create a Strategy. |
+| GET | `/v1/behavior-strategies/{strategyId}` | Read a Strategy. |
+| POST | `/v1/behavior-strategies/{strategyId}/variants` | Create a variant. |
+| POST | `/v1/behavior-strategies/{strategyId}/validate` | Validate. |
+| POST | `/v1/behavior-strategies/{strategyId}/simulate` | Structural simulation. |
+
+## Strategy execution
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET/POST | `/v1/runtime/strategy-executions` | List/start Strategy executions as supported by current contract. |
+| GET | `/v1/runtime/strategy-executions/{executionId}` | Read execution. |
+| GET | `/v1/runtime/strategy-executions/{executionId}/trace` | Read trace. |
+| POST | `/v1/runtime/strategy-executions/{executionId}/continue` | Continue waiting execution. |
+| POST | `/v1/runtime/strategy-executions/{executionId}/cancel` | Cancel non-terminal execution. |
 
 ## Runtime
 
-```text
-POST /v1/runtime/resolve
-POST /v1/runtime/execute
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/v1/runtime/resolve` | Resolve released behavior from governed context. |
+| POST | `/v1/runtime/execute` | Execute through runtime boundary. |
+| POST | `/v1/runtime/behavior-capsule` | Compile bounded behavior capsule. |
+| POST | `/v1/runtime/behavior-projection` | Serve behavior projection. |
+| POST | `/v1/runtime/capabilities/attest` | Attest capabilities. |
+| POST | `/v1/runtime/capabilities/resolve` | Resolve capability eligibility/selection. |
+| POST | `/v1/runtime/capabilities/traces` | Record capability trace. |
 
-Use the SDK for normal runtime integrations.
+## Model serving
 
-## Teach
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/v1/model-serving/resolve` | Resolve model-serving selection. |
+| POST | `/v1/model-serving/traces` | Record model-serving trace. |
 
-```text
-POST /v1/teach/evidence
-```
+## Teach AI
 
-Teach proposal review, evaluation, and promotion are available through the versioned product workflow.
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/v1/teach/evidence` | Submit Teach evidence. |
 
-## Evaluation
+## Behavior Evaluation
 
-```text
-POST /v1/evaluations
-GET  /v1/evaluations/{evaluationId}
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/v1/evaluations` | Start Behavior Evaluation. |
+| GET | `/v1/evaluations/{evaluationId}` | Read evaluation. |
+
+## Response Quality & Decision
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/v1/quality/evaluate` | Evaluate bounded response candidates and return quality/selection evidence. |
+
+This is separate from Behavior Evaluation and does not grant release authority.
 
 ## Release
 
-```text
-POST /v1/releases
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/v1/releases` | Create governed release. |
 
 ## Packs
 
-```text
-GET  /v1/packs
-POST /v1/packs/import
-POST /v1/packs/{packId}/install
-POST /v1/packs/{packId}/evaluate
-POST /v1/packs/{packId}/approve
-POST /v1/packs/{packId}/release
-```
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | `/v1/packs` | List Packs. |
+| POST | `/v1/packs/import` | Import candidate. |
+| POST | `/v1/packs/{packId}/install` | Install/materialize draft. |
+| POST | `/v1/packs/{packId}/evaluate` | Evaluate. |
+| POST | `/v1/packs/{packId}/approve` | Approve. |
+| POST | `/v1/packs/{packId}/release` | Release. |
 
-The SDK also exposes Pack upgrade preview.
+## Deployment evidence
 
-## Prefer the SDK for application code
+| Method | Path | Purpose |
+| --- | --- | --- |
+| POST | `/v1/deployments/{deploymentId}/comparisons` | Record comparison evidence. |
+| POST | `/v1/deployments/{deploymentId}/authoritative-health` | Record authoritative health evidence. |
 
-Raw HTTP is useful for inspection and platform integrations.
-
-For normal application code, `@vira/sdk` or `vira-sdk` provides:
-
-- request construction;
-- bearer auth;
-- request IDs;
-- retry behavior;
-- idempotency handling;
-- fail-open vs fail-closed distinction.
+See [Capability map](../capability-map.md) for SDK/MCP differences.

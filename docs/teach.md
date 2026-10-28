@@ -1,90 +1,94 @@
-# Teach
+# Teach AI
 
-Teach turns evidence into a reviewable behavior proposal.
+Teach AI turns admitted runtime evidence into **reviewable behavior proposals**.
 
-It does not silently rewrite production behavior.
+Its purpose is to reduce repeated manual prompt/policy maintenance without allowing a model to silently rewrite production behavior.
 
-## Lifecycle
+## Full lifecycle
 
 ```text
-evidence
-→ proposal
+observations / feedback / outcomes / approved context
+→ evidence admission
+→ related Signal + context resolution
+→ proposal synthesis
 → review
-→ evaluation
-→ promotion
-→ governed release path
+→ Behavior Evaluation
+→ approval / promotion
+→ explicit release
+→ runtime result
+→ outcome attribution
+→ re-evaluation / new Teach cycle
 ```
 
-## Evidence
+## Evidence first
 
-Evidence may come from:
+Teach starts from evidence, not a blank “improve yourself” request. Evidence may come from model observations, user corrections, business outcomes, admitted conversations, or approved integration sources.
 
-- supported runtime observations;
-- user feedback;
-- business outcomes;
-- admitted conversations;
-- approved integration sources.
+Every proposal should remain traceable to the admitted evidence and scope used to produce it.
 
-## Submit evidence
+## Signal intelligence
 
-Public API:
+Teach may discover that useful evidence is not yet represented by a governed Signal. Missing Signals should enter the Signal discovery/review/mapping lifecycle instead of being silently promoted to production facts.
+
+## Proposal synthesis is not authority
+
+AI-assisted synthesis may propose a Behavior Point change, Program change, Strategy change, example/anti-pattern, Signal use, or evaluation case.
+
+```text
+AI proposal
+≠ released behavior
+```
+
+The normal path remains:
+
+```text
+proposal → review → evaluate → approve → release
+```
+
+## Submit Teach evidence
+
+JavaScript:
+
+```ts
+await vira.submitTeachEvidence({
+  id: "evidence-marketing-001",
+  source: "runtime",
+  content: "The user corrected the launch plan because retention and measurement were missing.",
+  privacy: "CONSENTED_TENANT",
+  consent: true,
+});
+```
+
+Python:
+
+```python
+client.submit_teach_evidence({
+    "id": "evidence-marketing-001",
+    "source": "runtime",
+    "content": "The user corrected the launch plan because retention and measurement were missing.",
+    "privacy": "CONSENTED_TENANT",
+    "consent": True,
+})
+```
+
+HTTP:
 
 ```text
 POST /v1/teach/evidence
 ```
 
-Example:
+## MCP status
 
-```json
-{
-  "id": "evidence-marketing-001",
-  "source": "runtime",
-  "content": "The user corrected the launch plan because retention and measurement were missing.",
-  "privacy": "CONSENTED_TENANT",
-  "consent": true
-}
+The current MCP package does not expose a dedicated Teach evidence tool. Teach is available through SDK/HTTP surfaces; MCP does expose observation, discovery, Signal review, evaluation, Pack, and runtime tools that participate in adjacent governed workflows.
+
+## Outcome-driven re-teaching
+
+Later outcomes may justify a new proposal or re-evaluation. They should not mutate active behavior automatically.
+
+```text
+released behavior
+→ runtime execution
+→ outcome
+→ new evidence
+→ new Teach cycle
 ```
-
-Consent and privacy are part of the evidence boundary.
-
-## Conversation evidence
-
-The Teach API also supports normalized conversation evidence.
-
-Do not send entire conversations by default.
-
-Send only data required for the approved learning workflow.
-
-## Create a proposal
-
-Conceptual proposal input:
-
-```json
-{
-  "evidenceId": "evidence-marketing-001",
-  "controlPointId": "<behavior-point-id>",
-  "summary": "Launch plans should cover the full funnel and measurement.",
-  "evidenceIds": [
-    "evidence-marketing-001"
-  ]
-}
-```
-
-## Review
-
-A proposal should be explicitly approved or rejected.
-
-## Evaluate
-
-Evaluation attaches a score and evaluation identity to the proposal.
-
-## Promote
-
-Promotion moves a sufficiently evaluated proposal forward.
-
-Promotion still does not skip evaluation, approval, or release checks.
-
-## Data handling
-
-Teach evidence should contain only the information required for the approved workflow.
-Use synthetic or publishable data in examples, demos, and public issue reports.

@@ -1,62 +1,66 @@
 # Evaluation and approval
 
-Behavior changes should be tested before release.
+Vira has two different evaluation concerns. Keeping them separate prevents a response score from accidentally becoming production authority.
 
-## Evaluation API
+## 1. Behavior Evaluation
+
+Behavior Evaluation tests a candidate behavior/artifact before approval and release.
+
+API:
 
 ```text
 POST /v1/evaluations
 GET  /v1/evaluations/{evaluationId}
 ```
 
-## Conceptual evaluation input
+SDK:
 
-```json
-{
-  "id": "eval-marketing-launch-v1",
-  "targetArtifact": {
-    "behaviorPoint": "marketing.launch_plan"
-  },
-  "dataset": [
-    {
-      "input": "Create a launch plan for a subscription product"
-    },
-    {
-      "input": "Plan the launch of a membership service"
-    }
-  ],
-  "assertions": [
-    true,
-    true,
-    true
-  ],
-  "threshold": 0.9,
-  "evaluatorVersion": "public-example-v1"
-}
+```text
+JavaScript: startEvaluation / getEvaluation
+Python:     start_evaluation / get_evaluation
+MCP:        start_evaluation
 ```
 
-Evaluation artifacts and strategy lineage are server-versioned.
+Conceptually:
 
-## Example checks
+```text
+candidate behavior
+→ dataset + assertions
+→ evaluation result
+→ approval decision
+→ release
+```
 
-For a public marketing example:
+A passing evaluation means the candidate passed configured checks. It does **not** automatically mean the candidate must become production behavior.
 
-- full funnel is covered;
-- measurement is included;
-- requested format is preserved;
-- no fake campaign performance is invented;
-- no prohibited action is taken.
+## 2. Response Quality Evaluation
 
-## Approval
+Response Quality evaluates a bounded set of response candidates during a response/repair decision path.
 
-Approval is a separate lifecycle decision from evaluation.
+```text
+candidate responses
+→ quality evidence
+→ ordering / eligibility
+→ select OR abstain
+```
 
-A passing evaluation means:
+Current surfaces:
 
-> The candidate passed the configured checks.
+```text
+JavaScript: evaluateQuality
+Python:     evaluate_quality
+HTTP:       POST /v1/quality/evaluate
+MCP:        no dedicated tool
+```
 
-It does not automatically mean:
+This layer does not grant behavior authority. See [Decision & response quality](decision-and-quality.md).
 
-> This candidate must become production behavior.
+## Approval remains separate
 
-Pack workflows include an explicit approval step before release.
+Approval is a governed lifecycle decision. Evaluation evidence can support approval, but evaluation is not approval.
+
+Pack lifecycle:
+
+```text
+import → install → evaluate → approve → release
+```

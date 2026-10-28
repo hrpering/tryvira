@@ -1,114 +1,75 @@
 # MCP tool catalog
 
-`@vira/mcp` exposes the current Vira tool catalog through MCP discovery.
+`@tryvira/mcp` exposes the current Vira MCP tool catalog. The current package surface contains **31 tools**.
 
 Every call is scoped to the configured organization, project, and environment.
 
-**Read** means the tool does not intentionally mutate Vira state.
+- **Read**: does not intentionally mutate Vira state.
+- **Effectful**: can mutate state, advance a lifecycle, or trigger governed runtime work and therefore requires authorization.
 
-**Effectful** means it can mutate state, trigger a governed runtime action, or advance a lifecycle and therefore requires authorization.
+## Core resolution and Signals
 
 | Tool | Mode | Purpose |
 | --- | --- | --- |
-| `resolve_semantic` | Read | Resolve input through governed semantic runtime. |
-| `resolve_runtime` | Effectful | Resolve a persisted Behavior Point through governed runtime. |
+| `resolve_semantic` | Read | Resolve input through governed semantic routing. |
+| `resolve_runtime` | Effectful | Resolve governed runtime behavior from a Behavior Point and/or semantic context. |
 | `create_signal_discovery_proposal` | Effectful | Create an evidence-backed Signal proposal. |
-| `review_signal_discovery_proposal` | Effectful | Approve or reject a Signal discovery proposal. |
-| `materialize_signal_discovery` | Effectful | Materialize approved Signal definition + producer mapping. |
+| `review_signal_discovery_proposal` | Effectful | Approve/reject a Signal discovery proposal. |
+| `materialize_signal_discovery` | Effectful | Materialize an approved Signal definition + mapping. |
 | `create_signal_mapping` | Effectful | Create a Signal producer mapping proposal. |
 | `get_signal_mapping` | Read | Read one scoped Signal mapping. |
-| `review_signal_mapping` | Effectful | Approve or reject a Signal mapping. |
+| `review_signal_mapping` | Effectful | Approve/reject a Signal mapping. |
+
+## Programs and Strategies
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
 | `list_behavior_programs` | Read | List scoped Behavior Programs. |
-| `list_behavior_strategies` | Read | List Behavior Strategies. |
-| `get_behavior_strategy` | Read | Read one Behavior Strategy. |
+| `list_behavior_strategies` | Read | List persisted Strategy revisions. |
+| `get_behavior_strategy` | Read | Read one Strategy definition/artifact binding. |
 | `simulate_behavior_strategy` | Read | Run structural dry-run simulation. |
+
+## Advanced Strategy execution
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
+| `start_strategy_execution` | Effectful | Start a persisted Strategy execution. |
+| `get_strategy_execution` | Read | Read one scoped Strategy execution. |
+| `get_strategy_execution_trace` | Read | Read persisted Strategy step trace/receipts. |
+| `continue_strategy_execution` | Effectful | Continue a waiting execution with pinned state/references. |
+| `cancel_strategy_execution` | Effectful | Cancel a non-terminal execution. |
+
+## Connected systems, discovery, observations, evaluation
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
 | `list_ai_systems` | Read | List connected AI systems. |
 | `list_discovery_candidates` | Read | List evidence-backed discovery candidates. |
-| `review_discovery_candidate` | Effectful | Record a human discovery review decision. |
+| `review_discovery_candidate` | Effectful | Record a review decision for a discovery candidate. |
 | `create_observation` | Effectful | Submit one scoped observation; does not publish behavior. |
-| `start_evaluation` | Effectful | Start an evaluation for an existing artifact. |
+| `start_evaluation` | Effectful | Start Behavior Evaluation for an existing artifact. |
+
+## Behavior runtime representation
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
+| `compile_behavior_capsule` | Effectful | Compile a scoped behavior capsule/receipt. |
+| `serve_behavior_projection` | Effectful | Serve the active behavior projection through the governed runtime boundary. |
+
+## Packs
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
 | `list_packs` | Read | List scoped Packs. |
 | `import_pack` | Effectful | Import and validate a Pack candidate. |
 | `install_pack` | Effectful | Install/materialize Pack draft. |
 | `evaluate_pack` | Effectful | Evaluate a Pack. |
 | `approve_pack` | Effectful | Explicitly approve a Pack. |
 | `release_pack` | Effectful | Release an approved Pack. |
-| `preview_pack_upgrade` | Effectful | Preview incoming Pack upgrade. |
+| `preview_pack_upgrade` | Effectful | Preview an incoming Pack upgrade. |
 
-## Common scope fields
+## Not currently MCP tools
 
-Tool schemas use:
+The current package does **not** expose dedicated tools for `connectOnce`, Teach evidence submission, Response Quality & Decision, capability attestation/model-serving selection, or deployment comparison/health recording.
 
-```json
-{
-  "organizationId": "<organization>",
-  "projectId": "<project>",
-  "environmentId": "<environment>"
-}
-```
-
-These values must match the MCP server's configured scope.
-
-## Example: semantic resolution
-
-```json
-{
-  "organizationId": "<organization>",
-  "projectId": "<project>",
-  "environmentId": "<environment>",
-  "input": "Create a launch plan for a subscription product",
-  "profile": {
-    "domain": "marketing"
-  }
-}
-```
-
-## Example: runtime resolution
-
-```json
-{
-  "organizationId": "<organization>",
-  "projectId": "<project>",
-  "environmentId": "<environment>",
-  "behaviorPoint": "marketing.launch_plan",
-  "executionBoundary": {
-    "channel": "chat"
-  }
-}
-```
-
-`resolve_runtime` is effectful and can be denied even when the MCP connection is authenticated.
-
-## Example: Signal discovery proposal
-
-```json
-{
-  "organizationId": "<organization>",
-  "projectId": "<project>",
-  "environmentId": "<environment>",
-  "signalStableKey": "quality.missing_measurement",
-  "evidenceEventIds": ["evt-001"],
-  "suggestedProducerType": "observation_attribute",
-  "suggestedProducerKey": "quality.missing_measurement",
-  "confidence": 0.91
-}
-```
-
-Then review and materialize through:
-
-```text
-review_signal_discovery_proposal
-→ materialize_signal_discovery
-```
-
-## Example: Pack lifecycle
-
-```text
-import_pack
-→ install_pack
-→ evaluate_pack
-→ approve_pack
-→ release_pack
-```
-
-Import is not activation.
+Use the JavaScript SDK, Python SDK, or HTTP surface for those capabilities.

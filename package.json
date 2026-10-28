@@ -1,15 +1,10 @@
 {
-  "name": "vira-public-repository",
-  "version": "0.8.0",
+  "name": "tryvira-public-documentation",
+  "version": "0.9.0",
   "private": true,
-  "description": "Public product documentation, SDK and MCP references, behavior authoring guides, accelerator architecture vision, examples, troubleshooting, and AI-assisted workflows for Vira.",
+  "description": "Public Vira documentation, published client references, capability maps, examples, troubleshooting, and architecture vision.",
   "type": "module",
-  "engines": {
-    "node": ">=20"
-  },
-  "scripts": {
-    "verify": "node scripts/verify-repo.mjs",
-    "test": "npm run verify"
-  },
-  "license": "Apache-2.0"
+  "engines": { "node": ">=20" },
+  "scripts": {"verify":"node scripts/verify-repo.mjs","test":"npm run verify"},
+  "license": "UNLICENSED"
 }

@@ -1,475 +1,211 @@
 # JavaScript / TypeScript SDK reference
 
-Package:
-
-```text
-@vira/sdk
-```
-
-Runtime requirement:
-
-```text
-Node.js >= 20
-```
-
-## Install
+Published package: `@tryvira/sdk` (`0.1.5`). Runtime: Node.js 20+.
 
 ```bash
-npm install @vira/sdk
+npm install @tryvira/sdk
 ```
 
-## Client
+```ts
+import { ViraClient, ViraApiError } from "@tryvira/sdk";
+```
+
+The package is MIT-licensed. The Vira service/backend are governed separately.
+
+## Client options
 
 ```ts
-import { ViraClient, ViraApiError } from "@vira/sdk";
-
 const vira = new ViraClient({
   baseUrl: process.env.VIRA_API_URL!,
   apiKey: process.env.VIRA_API_KEY,
   timeoutMs: 15_000,
   retries: 2,
   failureMode: "throw",
-  defaultHeaders: {
-    "x-app-name": "my-agent",
-  },
 });
 ```
 
-### `ViraClient` options
-
-| Option | Type | Notes |
-| --- | --- | --- |
-| `baseUrl` | `string` | required Vira API origin |
-| `apiKey` | `string?` | bearer credential |
-| `fetcher` | `typeof fetch?` | custom transport/testing |
-| `timeoutMs` | `number?` | bounded to 1s–120s |
-| `retries` | `number?` | bounded to 0–5 |
-| `failureMode` | `"throw" \| "open"` | enforcing requests remain fail-closed |
-| `defaultHeaders` | `Record<string,string>?` | extra request headers |
-
-## Response shape
-
-```ts
-interface ViraResponse<T = unknown> {
-  status: number;
-  body: T;
-  requestId: string;
-}
-```
-
-Keep `requestId` when reporting an integration problem.
-
-## Errors
-
-Non-2xx responses raise `ViraApiError` in the default failure mode.
-
-```ts
-try {
-  await vira.resolveRuntime({...});
-} catch (error) {
-  if (error instanceof ViraApiError) {
-    console.error(error.status, error.requestId, error.body);
-  }
-}
-```
-
-## Retry and idempotency behavior
-
-GET requests are retryable.
-
-Mutation requests are retryable only when an idempotency key is available. This avoids duplicating persisted changes after an ambiguous network failure.
-
-The client uses bounded exponential retry behavior for retryable 5xx/429 responses.
-
----
-
-## Connection methods
-
-### `connectSystem(input)`
-
-Creates/connects an AI system.
-
-Required fields:
-
-```ts
-{
-  name: string;
-  systemType: string;
-  organizationId: string;
-  projectId: string;
-  environmentId: string;
-  idempotencyKey?: string;
-}
-```
-
-### `connectAdapter(systemId, input)`
-
-Connects an adapter to an existing AI system.
-
-```ts
-await vira.connectAdapter(systemId, {
-  adapterType: "custom-node",
-  adapterVersion: "1",
-  capabilities: ["chat"],
-  idempotencyKey: "adapter:my-agent:v1",
-});
-```
-
-### `connectOnce(input)`
-
-Convenience flow:
+## Connection
 
 ```text
 connectSystem
-→ connectAdapter
-→ return system + connection + handshake
-```
-
-### `connectionHealth(connectionId)`
-
-Reads connection health.
-
-### `testConnection(connectionId)`
-
-Runs the supported connection test.
-
-### `inventory(systemId)`
-
-Reads the connected system inventory.
-
----
-
-## Observation methods
-
-### `observe(event, options?)`
-
-Required identity:
-
-```ts
-{
-  eventId: string;
-  eventType: string;
-  aiSystemId: string;
-  connectionId: string;
-}
-```
-
-### `trace(event, options?)`
-
-Convenience wrapper that emits `model.response`.
-
-### `feedback(event, options?)`
-
-Convenience wrapper that emits `feedback.user`.
-
-### `outcome(event, options?)`
-
-Convenience wrapper that emits `business.outcome`.
-
-### `observeBatch(events, options?)`
-
-Submits 1–100 observations in a bounded batch.
-
-### `observeSdk(delivery, options?)`
-
-Submits an SDK-form observation delivery.
-
-### `discover(reviewState?)`
-
-Lists evidence-backed discovery candidates.
-
----
-
-## Signal methods
-
-The SDK exposes the governed Signal lifecycle.
-
-### `createSignalDiscoveryProposal(input, options?)`
-
-Example:
-
-```ts
-const proposal = await vira.createSignalDiscoveryProposal({
-  signalStableKey: "quality.missing_measurement",
-  evidenceEventIds: ["evt-001", "evt-002"],
-  suggestedProducerType: "observation_attribute",
-  suggestedProducerKey: "quality.missing_measurement",
-  confidence: 0.91,
-});
-```
-
-### `reviewSignalDiscoveryProposal(proposalId, decision, options?)`
-
-```ts
-await vira.reviewSignalDiscoveryProposal(
-  proposalId,
-  "APPROVE",
-);
-```
-
-### `materializeSignalDiscovery(proposalId, input?, options?)`
-
-```ts
-await vira.materializeSignalDiscovery(proposalId, {
-  valueType: "boolean",
-  description: "The response omitted a required measurement approach",
-});
-```
-
-### `createSignalMapping(input, options?)`
-
-```ts
-const mapping = await vira.createSignalMapping({
-  signalStableKey: "quality.missing_measurement",
-  signalVersion: 1,
-  producerType: "observation_attribute",
-  producerKey: "quality.missing_measurement",
-  sourceEventType: "model.response",
-  evidenceEventIds: ["evt-001"],
-});
-```
-
-### `getSignalMapping(mappingId)`
-
-Reads one mapping.
-
-### `reviewSignalMapping(mappingId, input?, options?)`
-
-Approves or rejects a mapping proposal.
-
-Signal authoring is review-based. A model suggestion is not immediately active.
-
----
-
-## Semantic resolution
-
-### `resolveSemantic(input)`
-
-```ts
-const semantic = await vira.resolveSemantic({
-  input: "Create a launch plan for a membership service",
-  profile: { domain: "marketing" },
-  sessionId: "session-123",
-  candidates: ["marketing.launch_plan"],
-  timeoutMs: 3000,
-});
-```
-
-Supported inputs include:
-
-```ts
-{
-  input: string;
-  profile?: Record<string, unknown>;
-  sessionId?: string;
-  selection?: Record<string, unknown>;
-  candidates?: readonly string[];
-  timeoutMs?: number;
-  requestId?: string;
-  idempotencyKey?: string;
-}
-```
-
-The resolver can select or abstain. Treat the result as semantic evidence, not permission.
-
-### `resolveSemanticRuntime(input)`
-
-Convenience helper:
-
-```text
-resolveSemantic
-→ if selected, determine Behavior Point
-→ resolveRuntime
-```
-
-Use it when you want the two-stage flow without reimplementing the plumbing.
-
----
-
-## Runtime methods
-
-### `resolveRuntime(input)`
-
-```ts
-await vira.resolveRuntime({
-  behaviorPoint: "marketing.launch_plan",
-  executionBoundary: {
-    organizationId,
-    projectId,
-    environmentId,
-  },
-  idempotencyKey: crypto.randomUUID(),
-});
-```
-
-Runtime resolution applies the configured release and policy checks.
-
-### `executeRuntime(input)`
-
-Executes a versioned runtime request.
-
-Runtime execution uses revision and execution values returned by Vira. Reuse those values rather than constructing them in application code.
-
-For most application integrations, start with `resolveRuntime`.
-Use `executeRuntime` only when your workflow already receives the required execution values from Vira.
-
----
-
-## Behavior Program methods
-
-### `listBehaviorPrograms()`
-
-Lists scoped programs.
-
-### `getBehaviorProgram(programId)`
-
-Reads one program.
-
-### `createBehaviorProgram(program, options?)`
-
-Creates a program using the server-versioned schema.
-
-For most new public authoring flows, Packs are easier because task, Behavior Point, program, strategy, policy, evaluation, approval, and release stay together.
-
----
-
-## Behavior Strategy methods
-
-### `listBehaviorStrategies()`
-
-Lists Strategy definitions/revisions in scope.
-
-### `getBehaviorStrategy(strategyId)`
-
-Reads one Strategy.
-
-### `createBehaviorStrategy(definition, id?)`
-
-Creates a Strategy definition.
-
-### `createBehaviorStrategyVariant(strategyId, variant, options?)`
-
-Creates a variant when supported by the server version.
-
-### `validateBehaviorStrategy(strategyId)`
-
-Performs structural validation.
-
-### `simulateBehaviorStrategy(strategyId, initialState?)`
-
-Performs the explicit structural dry run.
-
-Simulation does not mean real model/tool providers executed.
-
----
-
-## Strategy execution
-
-For normal integrations, create and validate Strategies, release them through the standard lifecycle, and resolve them through runtime.
-
----
-
-## Pack methods
-
-### `listPacks()`
-
-Lists scoped Packs.
-
-### `importPack(input)`
-
-Supports:
-
-- manifest + object payload;
-- archive upload as base64 + filename.
-
-Import creates a candidate. It does not activate behavior.
-
-### `installPack(packId, variables?)`
-
-Materializes the Pack draft.
-
-### `evaluatePack(packId, input)`
-
-```ts
-await vira.evaluatePack(packId, {
-  passed: true,
-  score: 0.97,
-  runId: "eval-001",
-});
-```
-
-### `approvePack(packId)`
-
-Explicit approval gate.
-
-### `releasePack(packId)`
-
-Releases an approved Pack.
-
-### `previewPackUpgrade(packId, incoming)`
-
-Previews an upgrade before applying it.
-
-Normal lifecycle:
-
-```text
-import → install → evaluate → approve → release
-```
-
----
-
-## Teach and evaluation methods
-
-### `submitTeachEvidence(evidence, options?)`
-
-Submits Teach evidence.
-
-### `startEvaluation(input, options?)`
-
-Starts evaluation.
-
-### `getEvaluation(evaluationId)`
-
-Reads evaluation state/result.
-
-### `createRelease(input, options?)`
-
-Creates a governed release using the server-versioned release contract.
-
-Use revision and evaluation values returned by Vira when creating a release.
-
----
-
-## Recommended integration levels
-
-### Level 1: Observe
-
-Use:
-
-```text
+connectAdapter
 connectOnce
-observe / feedback / outcome
+connectionHealth
+testConnection
+inventory
 ```
 
-### Level 2: Resolve
+`connectOnce` is the recommended convenience flow for normal application integration:
 
-Add:
+```text
+connectSystem → connectAdapter → system + connection + handshake
+```
+
+## Observations and evidence
+
+```text
+observe
+trace
+feedback
+outcome
+observeBatch
+observeSdk
+discover
+```
+
+Observations are evidence; they do not publish behavior.
+
+## Signals
+
+```text
+createSignalDiscoveryProposal
+reviewSignalDiscoveryProposal
+materializeSignalDiscovery
+createSignalMapping
+getSignalMapping
+reviewSignalMapping
+```
+
+## Semantic + runtime
 
 ```text
 resolveSemantic
 resolveRuntime
+resolveBoundary
+resolveSemanticRuntime
+executeRuntime
 ```
 
-### Level 3: Author behavior
+Semantic results are not authorization. `resolveBoundary` is the boundary-first runtime helper for integrations that already have governed execution context.
 
-Add:
+## Behavior Programs
 
 ```text
-Signals
-Packs
-Programs
-Strategies
-Teach
-Evaluation
-Release
+listBehaviorPrograms
+getBehaviorProgram
+createBehaviorProgram
+```
+
+## Behavior Strategies
+
+Definitions:
+
+```text
+listBehaviorStrategies
+getBehaviorStrategy
+createBehaviorStrategy
+createBehaviorStrategyVariant
+validateBehaviorStrategy
+simulateBehaviorStrategy
+```
+
+Execution:
+
+```text
+startStrategyExecution
+getStrategyExecution
+getStrategyExecutionTrace
+continueStrategyExecution
+cancelStrategyExecution
+```
+
+## Packs
+
+```text
+listPacks
+importPack
+installPack
+evaluatePack
+approvePack
+releasePack
+previewPackUpgrade
+```
+
+Lifecycle: `import → install → evaluate → approve → release`.
+
+## Teach AI
+
+```text
+submitTeachEvidence
+```
+
+Evidence enters a proposal/review/evaluation/release cycle. Evidence submission is not an authority change.
+
+## Behavior Evaluation
+
+```text
+startEvaluation
+getEvaluation
+```
+
+## Response Quality & Decision
+
+```text
+evaluateQuality
+```
+
+```ts
+const result = await vira.evaluateQuality({
+  request: "Evaluate risks and next steps",
+  candidates: [
+    { id: "initial", output: "Generic response" },
+    { id: "repair", output: "Risks and next steps with explicit assumptions" },
+  ],
+  allowedIds: ["initial", "repair"],
+  requiredTerms: ["risks", "next steps"],
+  threshold: 0.7,
+});
+```
+
+This evaluates bounded response candidates; it does not grant release authority.
+
+## Release
+
+```text
+createRelease
+```
+
+## Capability negotiation
+
+```text
+attestCapabilities
+resolveCapabilities
+recordCapabilityTrace
+```
+
+## Model serving
+
+```text
+resolveModelServing
+recordModelServingTrace
+```
+
+## Behavior capsule / projection
+
+```text
+compileBehaviorCapsule
+serveBehaviorProjection
+```
+
+## Deployment evidence
+
+```text
+recordDeploymentComparison
+recordDeploymentHealth
+```
+
+## Errors and retries
+
+Responses expose `status`, `body`, and `requestId`. Non-2xx responses raise `ViraApiError` in default failure mode. GETs are retryable; mutations should only be retried with an idempotency key.
+
+## Recommended adoption path
+
+```text
+1. connectOnce + testConnection
+2. observe / feedback / outcome
+3. resolveSemantic + resolveRuntime
+4. Signals / Points / Programs / Strategies
+5. Teach AI + Behavior Evaluation + Release
+6. optional Response Quality & Decision
+7. advanced Strategy execution / serving / projection / deployment evidence
 ```
