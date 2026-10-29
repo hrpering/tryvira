@@ -1,5 +1,5 @@
-<p align="center"><strong>Vira</strong></p>
-<h1 align="center">Behavior control for AI systems</h1>
+<h1 <p align="center"><strong>Vira</strong></p>
+<h2 align="center">Behavior control for AI systems</h2
 <p align="center">Connect AI systems once, author governed behavior, learn from evidence, evaluate changes and response quality, release explicit behavior, resolve it at runtime, and trace what happened.</p>
 
 <p align="center">
