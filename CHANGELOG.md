@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+- Synced public JavaScript, Python and MCP documentation to the published `0.1.14` client line.
+- Added a public-safe end-to-end developer guide covering connection, capability discovery, observations, Semantic Task creation, Behavior Point creation, Programs/Strategies, semantic resolution, evaluation/release, runtime resolution, Strategy continuation, and Pack verification/release.
+- Added a runnable JavaScript lifecycle example and updated JavaScript/Python/tutorial dependencies to the `0.1.14` package line.
+- Updated MCP guidance to use live `server/discover` → `initialize` → `tools/list` discovery instead of making a hard-coded tool count the integration contract.
+- Expanded Pack documentation with manifest variables, parsing formats, conflict/configuration inspection, canonical materialization, evaluation, approval, release, and upgrade preview.
+- Clarified that Pack import/install, semantic selection, Teach promotion, quality scoring, and Strategy activation do not independently grant runtime release authority.
+- Updated release/runtime documentation to preserve exact governed identity, authority digests, receipts/traces, and semantic Program context through runtime projection/Strategy selection.
+- Added `POST /v1/packs/{packId}/upgrade-preview` to the public HTTP reference.
+- Updated the repository verification gate to enforce current `0.1.14` docs and end-to-end lifecycle markers rather than the previous `0.1.6`/fixed-tool-count assumptions.
+- Rebuilt the root README and docs index as developer entry points while keeping secrets, tenant data, private infrastructure and operator-only deployment configuration out of the public repository.
+
 ## 0.10.0
 
 - Synced the public repository with the latest canonical authoring and capability-discovery surfaces.
