@@ -20,16 +20,17 @@ Legend:
 | **Connect once** | **`connectOnce`** | **`connect_once`** | underlying routes | No tool |
 | Connection health/test | `connectionHealth`, `testConnection` | `connection_health`, `test_connection` | Yes | No tool |
 | Inventory | `inventory` | `inventory` | Yes | No tool |
+| Confirmed deletion of eligible AI system / Task / Point / Strategy | `deleteAISystem`, `deleteSemanticTask`, `deleteBehaviorPoint`, `deleteBehaviorStrategy` | snake_case equivalents | DELETE routes | four `delete_*` tools |
 | Observe / trace / feedback / outcome | Yes | Yes | Yes | `create_observation` |
 | Observation batch / SDK delivery | Yes | Yes | Yes | No tool |
-| **Semantic Task authoring** | list/create | list/create | list/create/read | list/create |
-| **Behavior Point authoring** | list/create | list/create | list/create/read | list/create |
+| **Semantic Task authoring** | list/create/delete | list/create/delete | list/create/read/delete | list/create/delete |
+| **Behavior Point authoring** | list/create/delete | list/create/delete | list/create/read/delete | list/create/delete |
 | Semantic resolve | `resolveSemantic` | `resolve_semantic` | Yes | `resolve_semantic` |
 | Semantic → runtime convenience | `resolveSemanticRuntime` | supported client flow | underlying routes | separate tools |
 | Boundary-first runtime resolve | `resolveBoundary` / `resolveRuntime` | current client equivalents | Yes | `resolve_runtime` |
 | Signal discovery/mapping | Yes | Yes | governed routes | Yes |
 | Behavior Programs | list/get/create | list/get/create | Yes | list |
-| Strategy definitions | list/get/create/variant/validate/simulate/**activate** | Yes | Yes | list/get/simulate/**activate** |
+| Strategy definitions | list/get/create/variant/validate/simulate/**activate**/delete | Yes | Yes | list/get/simulate/**activate**/delete |
 | **Strategy execution** | start/get/trace/continue/cancel | Yes | Yes | Yes |
 | Packs | import/install/evaluate/approve/release/**upgrade preview** | same | Yes | same documented lifecycle |
 | **Teach evidence** | `submitTeachEvidence` | `submit_teach_evidence` | Yes | `submit_teach_evidence` |
@@ -43,6 +44,8 @@ Legend:
 | Behavior capsule | `compileBehaviorCapsule` | current client equivalent | Yes | `compile_behavior_capsule` |
 | Behavior projection | `serveBehaviorProjection` | current client equivalent | Yes | `serve_behavior_projection` |
 | Deployment comparison/health | Yes | Yes | Yes | No dedicated tool |
+
+Confirmed deletion is a distinct effectful lifecycle. It requires explicit confirmation and can be denied for active, referenced, in-use, or otherwise ineligible resources. It is not rollback and it does not erase release/audit semantics by client fiat.
 
 ## Capability discovery versus runtime capability negotiation
 
