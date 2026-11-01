@@ -20,6 +20,17 @@ Every call is scoped to the configured organization, project, and environment.
 | `create_behavior_point` | Effectful | Create a Behavior Point bound to one or more Semantic Tasks. |
 | `activate_behavior_strategy` | Effectful | Explicitly activate a validated Strategy revision. |
 
+## Explicit deletion
+
+Deletion tools are effectful, require explicit confirmation, and remain subject to scope/authority checks. They are intended for resources that are eligible for deletion, not as a way to bypass release/history rules.
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
+| `delete_ai_system` | Effectful | Delete an eligible unused AI system after `confirm: true`. |
+| `delete_semantic_task` | Effectful | Delete an eligible unused Semantic Task after `confirm: true`. |
+| `delete_behavior_point` | Effectful | Delete an eligible unused Behavior Point after `confirm: true`. |
+| `delete_behavior_strategy` | Effectful | Delete an eligible non-active unused Strategy after `confirm: true`. |
+
 ## Teach and release lifecycle
 
 | Tool | Mode | Purpose |
@@ -98,7 +109,7 @@ A waiting execution should be continued. Do not start a replacement execution me
 
 ## 0.1.14 documented tool snapshot
 
-The `0.1.14` documentation set describes the following tool names. Treat this as documentation, not as a client-side allowlist. Use `tools/list` at runtime.
+The current `0.1.14` source contract contains **45 MCP tools**. Treat this as a documentation snapshot, not as a client-side allowlist. Use `tools/list` at runtime because a deployed/scoped server remains authoritative.
 
 ```text
 list_capabilities
@@ -129,6 +140,10 @@ get_strategy_execution_trace
 continue_strategy_execution
 cancel_strategy_execution
 list_ai_systems
+delete_ai_system
+delete_semantic_task
+delete_behavior_point
+delete_behavior_strategy
 list_discovery_candidates
 review_discovery_candidate
 create_observation
