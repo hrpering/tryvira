@@ -8,7 +8,7 @@ Authentication:
 Authorization: Bearer <api-key>
 ```
 
-Use idempotency keys for retryable mutations when supported. Keep returned request IDs for debugging.
+Use idempotency keys for retryable mutations when supported. Keep returned request IDs, authority digests and receipts for debugging/audit. Authentication success is not authorization success: scope, role, policy, release state and artifact identity still apply.
 
 ## Scoped product capability discovery
 
@@ -41,6 +41,8 @@ SDK convenience: `connectOnce` / `connect_once` composes the normal system + ada
 | POST | `/v1/observations/batch` | Submit a bounded batch. |
 | POST | `/v1/observations/sdk` | Submit SDK-form observation delivery. |
 
+Observations are evidence; they do not publish behavior.
+
 ## Canonical Semantic Tasks and Behavior Points
 
 | Method | Path | Purpose |
@@ -61,11 +63,13 @@ See [Canonical authoring](../canonical-authoring.md).
 | GET | `/v1/discovery/candidates` | List discovery candidates. |
 | POST | `/v1/discovery/candidates/{kind}/{key}/review` | Review a candidate. |
 | POST | `/v1/discovery/candidates/{kind}/{key}/publish` | Publish an approved candidate where supported. |
-| POST | `/v1/semantic/resolve` | Resolve/abstain on a semantic task. |
+| POST | `/v1/semantic/resolve` | Resolve/select/abstain on a semantic task candidate. |
+
+A semantic result is evidence/candidate selection. It is not runtime authorization.
 
 ## Signals
 
-Current SDKs use governed Signal proposal/mapping routes for discovery proposal creation/review/materialization and mapping creation/read/review.
+Current SDKs use governed Signal proposal/mapping routes for discovery proposal creation/review/materialization and mapping creation/read/review. Use the SDK/MCP capability surface for the exact current contract instead of inventing stable Signal routes in an integration.
 
 ## Behavior Programs
 
@@ -96,20 +100,24 @@ Activation is a server-side lifecycle transition. It does not bypass evaluation/
 | GET/POST | `/v1/runtime/strategy-executions` | List/start Strategy executions as supported by current contract. |
 | GET | `/v1/runtime/strategy-executions/{executionId}` | Read execution. |
 | GET | `/v1/runtime/strategy-executions/{executionId}/trace` | Read trace. |
-| POST | `/v1/runtime/strategy-executions/{executionId}/continue` | Continue waiting execution. |
+| POST | `/v1/runtime/strategy-executions/{executionId}/continue` | Continue a waiting execution using its pinned authority digest/state/references. |
 | POST | `/v1/runtime/strategy-executions/{executionId}/cancel` | Cancel non-terminal execution. |
+
+Do not create a replacement execution to bypass a waiting execution state.
 
 ## Runtime
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| POST | `/v1/runtime/resolve` | Resolve released behavior from governed context. |
-| POST | `/v1/runtime/execute` | Execute through runtime boundary. |
+| POST | `/v1/runtime/resolve` | Resolve eligible released behavior from governed context. |
+| POST | `/v1/runtime/execute` | Execute through the enforcing runtime boundary. |
 | POST | `/v1/runtime/behavior-capsule` | Compile bounded behavior capsule. |
-| POST | `/v1/runtime/behavior-projection` | Serve behavior projection. |
+| POST | `/v1/runtime/behavior-projection` | Serve a behavior projection bound to the governed runtime identity. |
 | POST | `/v1/runtime/capabilities/attest` | Attest runtime capabilities. |
 | POST | `/v1/runtime/capabilities/resolve` | Resolve runtime capability eligibility/selection. |
 | POST | `/v1/runtime/capabilities/traces` | Record runtime capability trace. |
+
+Runtime is an authority boundary. Preserve returned receipts/digests and do not reconstruct authority state client-side.
 
 ## Model serving
 
@@ -149,18 +157,23 @@ This is separate from Behavior Evaluation and does not grant release authority.
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| POST | `/v1/releases` | Create governed release. |
+| POST | `/v1/releases` | Release the exact eligible approved/evaluated governed identity. |
+
+Release should remain bound to canonical identity/digest and the applicable approval/evaluation evidence. Runtime consumes the released identity rather than a client-invented status.
 
 ## Packs
 
 | Method | Path | Purpose |
 | --- | --- | --- |
 | GET | `/v1/packs` | List Packs. |
-| POST | `/v1/packs/import` | Import candidate. |
-| POST | `/v1/packs/{packId}/install` | Install/materialize draft. |
-| POST | `/v1/packs/{packId}/evaluate` | Evaluate. |
-| POST | `/v1/packs/{packId}/approve` | Approve. |
-| POST | `/v1/packs/{packId}/release` | Release. |
+| POST | `/v1/packs/import` | Import/parse a candidate; never activates behavior. |
+| POST | `/v1/packs/{packId}/install` | Configure and install/materialize canonical draft objects. |
+| POST | `/v1/packs/{packId}/evaluate` | Evaluate materialized Pack candidate. |
+| POST | `/v1/packs/{packId}/approve` | Explicitly approve an eligible Pack. |
+| POST | `/v1/packs/{packId}/release` | Release the exact approved Pack identity. |
+| POST | `/v1/packs/{packId}/upgrade-preview` | Preview an incoming upgrade, preserved overrides and conflicts before applying it. |
+
+There is no client-side verification shortcut that can replace validation, conflict inspection, evaluation, approval and release. See [Packs](../packs.md).
 
 ## Deployment evidence
 
@@ -169,4 +182,4 @@ This is separate from Behavior Evaluation and does not grant release authority.
 | POST | `/v1/deployments/{deploymentId}/comparisons` | Record comparison evidence. |
 | POST | `/v1/deployments/{deploymentId}/authoritative-health` | Record authoritative health evidence. |
 
-See [Capability map](../capability-map.md) for SDK/MCP differences.
+See [Capability map](../capability-map.md) for SDK/MCP differences and [Developer guide](../developer-guide.md) for an end-to-end flow.
