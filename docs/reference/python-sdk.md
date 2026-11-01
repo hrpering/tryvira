@@ -56,6 +56,7 @@ connect_once
 connection_health
 test_connection
 inventory
+delete_ai_system
 ```
 
 ```python
@@ -102,6 +103,7 @@ Semantic Tasks:
 ```text
 list_semantic_tasks
 create_semantic_task
+delete_semantic_task
 ```
 
 Behavior Points:
@@ -109,6 +111,7 @@ Behavior Points:
 ```text
 list_behavior_points
 create_behavior_point
+delete_behavior_point
 ```
 
 ```python
@@ -130,6 +133,29 @@ point = client.create_behavior_point({
     ],
 })
 ```
+
+## Explicit deletion
+
+The current Python client exposes confirmed deletion helpers:
+
+```text
+delete_ai_system
+delete_semantic_task
+delete_behavior_point
+delete_behavior_strategy
+```
+
+Deletion must be explicitly confirmed, is idempotency-aware, and remains server-authorized. Active/in-use/ineligible resources can be rejected.
+
+```python
+client.delete_semantic_task(
+    task_id,
+    confirm=True,
+    idempotency_key=f"delete:semantic-task:{task_id}",
+)
+```
+
+Do not use deletion to imitate rollback, release history, or deactivation.
 
 ## Signals
 
@@ -166,6 +192,7 @@ create_behavior_strategy_variant
 validate_behavior_strategy
 simulate_behavior_strategy
 activate_behavior_strategy
+delete_behavior_strategy
 ```
 
 Execution:
