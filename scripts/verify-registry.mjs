@@ -84,9 +84,25 @@ try {
   `;
   run(process.execPath, ["--input-type=module", "-e", jsProbe], { cwd: consumer });
 
-  const mcpPackage = JSON.parse(await readFile(join(consumer, "node_modules", "@tryvira", "mcp", "package.json"), "utf8"));
+  const mcpRoot = join(consumer, "node_modules", "@tryvira", "mcp");
+  const mcpPackage = JSON.parse(await readFile(join(mcpRoot, "package.json"), "utf8"));
   if (mcpPackage.version !== expected) throw new Error(`MCP_INSTALLED_VERSION_MISMATCH:${mcpPackage.version}`);
   if (!mcpPackage.bin?.["vira-mcp"]) throw new Error("MCP_PUBLISHED_BIN_MISSING");
+
+  const mcpCli = await readFile(join(mcpRoot, mcpPackage.bin["vira-mcp"]), "utf8");
+  const mcpTools = [
+    "list_capabilities", "list_semantic_tasks", "create_semantic_task", "list_behavior_points", "create_behavior_point", "activate_behavior_strategy",
+    "submit_teach_evidence", "create_teach_proposal", "transition_teach_proposal", "create_release", "resolve_semantic", "resolve_runtime",
+    "create_signal_discovery_proposal", "review_signal_discovery_proposal", "materialize_signal_discovery", "create_signal_mapping", "get_signal_mapping", "review_signal_mapping",
+    "list_behavior_programs", "list_behavior_strategies", "get_behavior_strategy", "simulate_behavior_strategy",
+    "start_strategy_execution", "get_strategy_execution", "get_strategy_execution_trace", "continue_strategy_execution", "cancel_strategy_execution",
+    "list_ai_systems", "delete_ai_system", "delete_semantic_task", "delete_behavior_point", "delete_behavior_strategy",
+    "list_discovery_candidates", "review_discovery_candidate", "create_observation", "start_evaluation",
+    "compile_behavior_capsule", "serve_behavior_projection", "list_packs", "import_pack", "install_pack", "evaluate_pack", "approve_pack", "release_pack", "preview_pack_upgrade"
+  ];
+  if (mcpTools.length !== 45) throw new Error(`MCP_EXPECTED_TOOL_SNAPSHOT_INVALID:${mcpTools.length}`);
+  const missingMcpTools = mcpTools.filter(name => !mcpCli.includes(name));
+  if (missingMcpTools.length) throw new Error(`MCP_PUBLISHED_TOOL_SNAPSHOT_MISSING:${missingMcpTools.join(",")}`);
 
   const pythonTarget = join(consumer, "python");
   run("python3", [
@@ -118,7 +134,7 @@ try {
   });
 
   console.log("REGISTRY_VERIFY_PASS");
-  console.log(`Installed and verified @tryvira/sdk@${expected}, @tryvira/mcp@${expected}, and tryvira-sdk==${expected} from their public registries.`);
+  console.log(`Installed and verified @tryvira/sdk@${expected}, @tryvira/mcp@${expected} (45-tool snapshot), and tryvira-sdk==${expected} from their public registries.`);
 } finally {
   await rm(consumer, { recursive: true, force: true });
 }
