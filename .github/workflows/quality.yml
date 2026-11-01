@@ -35,3 +35,6 @@ jobs:
 
       - name: Verify public repository
         run: npm run verify
+
+      - name: Verify documented public package releases
+        run: npm run verify:registry
