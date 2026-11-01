@@ -411,7 +411,39 @@ The canonical public routes include the versioned `/v1` surfaces for AI systems,
 
 See [HTTP API reference](reference/api.md) instead of duplicating route inventories in application code.
 
-## 21. Error handling and retries
+## 21. Delete eligible resources explicitly
+
+Deletion is a separate effectful lifecycle, not a cleanup side effect of authoring or release.
+
+The JavaScript SDK exposes:
+
+```text
+deleteAISystem
+deleteSemanticTask
+deleteBehaviorPoint
+deleteBehaviorStrategy
+```
+
+Python and MCP expose the corresponding snake_case operations. Direct HTTP uses confirmed `DELETE` routes for those resources.
+
+A JavaScript example:
+
+```ts
+await vira.deleteSemanticTask(taskId, {
+  confirm: true,
+  idempotencyKey: `delete:semantic-task:${taskId}`,
+});
+```
+
+Rules:
+
+- require explicit `confirm: true`;
+- use a stable idempotency key for retries;
+- expect the server to reject active, referenced, in-use, or otherwise ineligible resources;
+- do not use deletion to imitate rollback, release history, deactivation, or tenant-scope bypass;
+- preserve request IDs and any returned audit/receipt identifiers.
+
+## 22. Error handling and retries
 
 Default SDK behavior is fail-closed for failed requests.
 
@@ -427,7 +459,7 @@ Rules:
 
 Typical failures can represent wrong scope, missing role, unreleased behavior, invalid digest, policy denial, missing Strategy selection or unavailable verification capability.
 
-## 22. Public-repository security checklist
+## 23. Public-repository security checklist
 
 Before committing an example:
 
@@ -440,7 +472,7 @@ Before committing an example:
 - do not imply a local development bypass is valid in production;
 - do not turn semantic confidence into authority in sample code.
 
-## 23. Copyable examples
+## 24. Copyable examples
 
 - JavaScript full lifecycle: [`examples/javascript/end-to-end-lifecycle.mjs`](../examples/javascript/end-to-end-lifecycle.mjs)
 - Canonical authoring: [`examples/javascript/canonical-authoring.mjs`](../examples/javascript/canonical-authoring.mjs)
