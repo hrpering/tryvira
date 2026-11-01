@@ -55,6 +55,7 @@ connectOnce
 connectionHealth
 testConnection
 inventory
+deleteAISystem
 ```
 
 `connectOnce` composes the normal system + adapter connection flow and returns system, connection and handshake state.
@@ -111,6 +112,7 @@ Semantic Tasks:
 ```text
 listSemanticTasks
 createSemanticTask
+deleteSemanticTask
 ```
 
 Behavior Points:
@@ -118,6 +120,7 @@ Behavior Points:
 ```text
 listBehaviorPoints
 createBehaviorPoint
+deleteBehaviorPoint
 ```
 
 ```ts
@@ -141,6 +144,28 @@ const point = await vira.createBehaviorPoint({
 ```
 
 See [Canonical authoring](../canonical-authoring.md) and [Authoring quality](../authoring-quality.md).
+
+## Explicit deletion
+
+Deletion is opt-in and confirmed. The current SDK exposes:
+
+```text
+deleteAISystem
+deleteSemanticTask
+deleteBehaviorPoint
+deleteBehaviorStrategy
+```
+
+Each method requires the resource ID and sends `confirm: true` only when the caller explicitly opts in. Use stable idempotency keys for retries. Deletion remains server-authorized and can be rejected for active/in-use/ineligible resources.
+
+```ts
+await vira.deleteSemanticTask(taskId, {
+  confirm: true,
+  idempotencyKey: `delete:semantic-task:${taskId}`,
+});
+```
+
+Do not use deletion as a substitute for rollback, release history, or deactivation semantics.
 
 ## Signals
 
@@ -204,6 +229,7 @@ createBehaviorStrategyVariant
 validateBehaviorStrategy
 simulateBehaviorStrategy
 activateBehaviorStrategy
+deleteBehaviorStrategy
 ```
 
 Execution:
