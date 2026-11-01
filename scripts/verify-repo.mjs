@@ -1,5 +1,5 @@
-import { readFile, readdir } from "node:fs/promises";
-import { extname, join, relative } from "node:path";
+import { readFile, readdir, stat } from "node:fs/promises";
+import { dirname, extname, join, relative, resolve, sep } from "node:path";
 import { spawnSync } from "node:child_process";
 
 const root = process.cwd();
@@ -42,6 +42,43 @@ const stalePackagePatterns = [
   [new RegExp("@" + "vira/mcp", "g"), "stale legacy MCP package"],
   [new RegExp("pip install " + "vira-sdk", "g"), "stale legacy Python package"]
 ];
+const secretPatterns = [
+  [/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/g, "private key material"],
+  [/\bgh[pousr]_[A-Za-z0-9]{20,}\b/g, "GitHub token-like value"],
+  [/\bgithub_pat_[A-Za-z0-9_]{20,}\b/g, "GitHub fine-grained token-like value"],
+  [/\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b/g, "OpenAI key-like value"],
+  [/\bpypi-[A-Za-z0-9_-]{20,}\b/g, "PyPI token-like value"],
+  [/\bnpm_[A-Za-z0-9]{20,}\b/g, "npm token-like value"]
+];
+
+function localTarget(raw) {
+  let target = raw.trim();
+  if (!target || target.startsWith("#")) return null;
+  if (/^(?:https?:|mailto:|tel:|data:|javascript:|\/\/)/i.test(target)) return null;
+  if (target.startsWith("<") && target.endsWith(">")) target = target.slice(1, -1);
+  const titleIndex = target.search(/\s+["']/);
+  if (titleIndex >= 0) target = target.slice(0, titleIndex);
+  target = target.split("#", 1)[0].split("?", 1)[0];
+  if (!target) return null;
+  try { return decodeURIComponent(target); }
+  catch { return target; }
+}
+
+async function checkLocalLink(sourceFile, rawTarget) {
+  const target = localTarget(rawTarget);
+  if (!target) return;
+  const sourceDir = dirname(sourceFile);
+  const absolute = target.startsWith("/")
+    ? resolve(root, `.${target}`)
+    : resolve(sourceDir, target);
+  const rootPrefix = root.endsWith(sep) ? root : `${root}${sep}`;
+  if (absolute !== root && !absolute.startsWith(rootPrefix)) {
+    failures.push(`Local link escapes repository in ${relative(root, sourceFile)}: ${rawTarget}`);
+    return;
+  }
+  try { await stat(absolute); }
+  catch { failures.push(`Broken local link in ${relative(root, sourceFile)}: ${rawTarget}`); }
+}
 
 for (const file of files) {
   const rel = relative(root, file);
@@ -68,11 +105,21 @@ for (const file of files) {
     pattern.lastIndex = 0;
     if (pattern.test(text)) failures.push(`${label} in ${rel}`);
   }
+  for (const [pattern, label] of secretPatterns) {
+    pattern.lastIndex = 0;
+    if (pattern.test(text)) failures.push(`${label} in ${rel}`);
+  }
+
+  if (rel.endsWith(".md")) {
+    for (const match of text.matchAll(/!?\[[^\]]*\]\(([^)]+)\)/g)) await checkLocalLink(file, match[1]);
+    for (const match of text.matchAll(/<(?:a|img)\b[^>]*(?:href|src)=["']([^"']+)["'][^>]*>/gi)) await checkLocalLink(file, match[1]);
+  }
 }
 
 const packageJson = JSON.parse(await readFile(join(root, "package.json"), "utf8"));
 if (packageJson.version !== "0.10.0") failures.push("package.json version must be 0.10.0");
 if (packageJson.license !== "UNLICENSED") failures.push("documentation package license must be UNLICENSED");
+if (packageJson.scripts?.["verify:registry"] !== "node scripts/verify-registry.mjs") failures.push("package.json must expose verify:registry");
 
 const lockJson = JSON.parse(await readFile(join(root, "package-lock.json"), "utf8"));
 if (lockJson.version !== "0.10.0" || lockJson.packages?.[""]?.version !== "0.10.0") failures.push("package-lock.json version must be 0.10.0");
@@ -80,7 +127,8 @@ if (lockJson.version !== "0.10.0" || lockJson.packages?.[""]?.version !== "0.10.
 const readme = await readFile(join(root, "README.md"), "utf8");
 for (const marker of [
   "@tryvira/sdk","@tryvira/mcp","tryvira-sdk","0.1.14","connectOnce","Teach AI","Response Quality",
-  "Capability discovery","Canonical authoring","createSemanticTask","activateBehaviorStrategy","Developer guide"
+  "Capability discovery","Canonical authoring","createSemanticTask","activateBehaviorStrategy","Developer guide",
+  'os.environ["VIRA_API_URL"]'
 ]) {
   if (!readme.includes(marker)) failures.push(`README missing marker: ${marker}`);
 }
@@ -123,6 +171,15 @@ for (const marker of ["createSemanticTask","createBehaviorPoint","resolveSemanti
   if (!developerGuide.includes(marker)) failures.push(`Developer guide missing lifecycle marker: ${marker}`);
 }
 
+const jsExamplePackage = JSON.parse(await readFile(join(root, "examples/javascript/package.json"), "utf8"));
+if (jsExamplePackage.dependencies?.["@tryvira/sdk"] !== "^0.1.14") failures.push("JavaScript examples must pin @tryvira/sdk ^0.1.14");
+const semanticExamplePackage = JSON.parse(await readFile(join(root, "examples/semantic-runtime/package.json"), "utf8"));
+if (semanticExamplePackage.dependencies?.["@tryvira/sdk"] !== "^0.1.14") failures.push("Semantic runtime example must pin @tryvira/sdk ^0.1.14");
+const tutorialPackage = JSON.parse(await readFile(join(root, "tutorials/marketing-agent/package.json"), "utf8"));
+if (tutorialPackage.dependencies?.["@tryvira/sdk"] !== "^0.1.14") failures.push("Marketing tutorial must pin @tryvira/sdk ^0.1.14");
+const pythonRequirements = await readFile(join(root, "examples/python/requirements.txt"), "utf8");
+if (!/^tryvira-sdk>=0\.1\.14\s*$/m.test(pythonRequirements)) failures.push("Python examples must require tryvira-sdk>=0.1.14");
+
 if (failures.length) {
   console.error("REPOSITORY_VERIFY_FAIL");
   failures.forEach((failure) => console.error(`- ${failure}`));
@@ -130,4 +187,4 @@ if (failures.length) {
 }
 
 console.log("REPOSITORY_VERIFY_PASS");
-console.log(`Checked ${files.length} files.`);
+console.log(`Checked ${files.length} files, local links, secret patterns, and package-version contracts.`);
