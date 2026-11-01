@@ -26,6 +26,7 @@ This is separate from runtime capability attestation/resolution.
 | GET | `/v1/ai-systems` | List AI systems. |
 | POST | `/v1/ai-systems` | Create/connect an AI system. |
 | GET | `/v1/ai-systems/{systemId}` | Read one AI system. |
+| DELETE | `/v1/ai-systems/{systemId}` | Delete an eligible unused AI system after explicit confirmation. |
 | POST | `/v1/ai-systems/{systemId}/connections` | Connect an adapter. |
 | GET | `/v1/ai-systems/{systemId}/inventory` | Read system inventory. |
 | GET | `/v1/connections/{connectionId}/health` | Read connection health. |
@@ -50,9 +51,13 @@ Observations are evidence; they do not publish behavior.
 | GET | `/v1/semantic-tasks` | List scoped Semantic Tasks. |
 | POST | `/v1/semantic-tasks` | Create a Semantic Task. |
 | GET | `/v1/semantic-tasks/{taskId}` | Read one Semantic Task. |
+| DELETE | `/v1/semantic-tasks/{taskId}` | Delete an eligible unused Task after explicit confirmation. |
 | GET | `/v1/behavior-points` | List scoped Behavior Points. |
 | POST | `/v1/behavior-points` | Create a Behavior Point bound to one or more Tasks. |
 | GET | `/v1/behavior-points/{behaviorPointId}` | Read one Behavior Point. |
+| DELETE | `/v1/behavior-points/{behaviorPointId}` | Delete an eligible unused Behavior Point after explicit confirmation. |
+
+Confirmed deletes are effectful, idempotency-aware operations. `confirm: true` is required by the client/tool contract, and the server can still reject active/in-use/ineligible resources. Deletion is not rollback.
 
 See [Canonical authoring](../canonical-authoring.md).
 
@@ -86,12 +91,13 @@ Current SDKs use governed Signal proposal/mapping routes for discovery proposal 
 | GET | `/v1/behavior-strategies` | List Strategies. |
 | POST | `/v1/behavior-strategies` | Create a Strategy. |
 | GET | `/v1/behavior-strategies/{strategyId}` | Read a Strategy. |
+| DELETE | `/v1/behavior-strategies/{strategyId}` | Delete an eligible non-active unused Strategy after explicit confirmation. |
 | POST | `/v1/behavior-strategies/{strategyId}/variants` | Compile/persist an immutable Strategy variant. |
 | POST | `/v1/behavior-strategies/{strategyId}/validate` | Validate. |
 | POST | `/v1/behavior-strategies/{strategyId}/simulate` | Structural simulation. |
 | POST | `/v1/behavior-strategies/{strategyId}/activate` | Explicitly activate a validated scoped Strategy revision. |
 
-Activation is a server-side lifecycle transition. It does not bypass evaluation/release/runtime rules that apply to the target flow.
+Activation is a server-side lifecycle transition. It does not bypass evaluation/release/runtime rules that apply to the target flow. Deletion is separately confirmed and does not replace deactivation/rollback semantics.
 
 ## Strategy execution
 
