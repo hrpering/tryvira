@@ -101,9 +101,13 @@ python -m pip install tryvira-sdk
 ```
 
 ```python
+import os
 from vira import ViraClient
 
-with ViraClient(VIRA_API_URL, api_key=VIRA_API_KEY) as client:
+with ViraClient(
+    os.environ["VIRA_API_URL"],
+    api_key=os.environ.get("VIRA_API_KEY"),
+) as client:
     capabilities = client.list_capabilities(surface="python")
 ```
 
