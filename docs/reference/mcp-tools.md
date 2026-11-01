@@ -1,11 +1,13 @@
 # MCP tool catalog
 
-`@tryvira/mcp` `0.1.6` exposes the current Vira MCP tool catalog. The current package surface contains **41 tools**.
+`@tryvira/mcp` `0.1.14` exposes Vira's MCP-facing public tool surface.
 
 Every call is scoped to the configured organization, project, and environment.
 
 - **Read**: does not intentionally mutate Vira state.
 - **Effectful**: can mutate state, advance a lifecycle, or trigger governed runtime work and therefore requires authorization.
+
+> The installed MCP package/server is the source of truth. Always run `server/discover`, `initialize`, and `tools/list` instead of hard-coding this catalog into an integration.
 
 ## Capability discovery and canonical authoring
 
@@ -17,6 +19,17 @@ Every call is scoped to the configured organization, project, and environment.
 | `list_behavior_points` | Read | List scoped canonical Behavior Points. |
 | `create_behavior_point` | Effectful | Create a Behavior Point bound to one or more Semantic Tasks. |
 | `activate_behavior_strategy` | Effectful | Explicitly activate a validated Strategy revision. |
+
+## Explicit deletion
+
+Deletion tools are effectful, require explicit confirmation, and remain subject to scope/authority checks. They are intended for resources that are eligible for deletion, not as a way to bypass release/history rules.
+
+| Tool | Mode | Purpose |
+| --- | --- | --- |
+| `delete_ai_system` | Effectful | Delete an eligible unused AI system after `confirm: true`. |
+| `delete_semantic_task` | Effectful | Delete an eligible unused Semantic Task after `confirm: true`. |
+| `delete_behavior_point` | Effectful | Delete an eligible unused Behavior Point after `confirm: true`. |
+| `delete_behavior_strategy` | Effectful | Delete an eligible non-active unused Strategy after `confirm: true`. |
 
 ## Teach and release lifecycle
 
@@ -42,6 +55,8 @@ Promotion is not a hidden release shortcut. Release authority remains explicit.
 | `get_signal_mapping` | Read | Read one scoped Signal mapping. |
 | `review_signal_mapping` | Effectful | Approve/reject a Signal mapping. |
 
+`resolve_semantic` returns candidate/evidence information. It does not grant runtime authority. `resolve_runtime` remains subject to scope, role, policy, release state, digest and authority checks.
+
 ## Programs and Strategies
 
 | Tool | Mode | Purpose |
@@ -55,11 +70,13 @@ Promotion is not a hidden release shortcut. Release authority remains explicit.
 
 | Tool | Mode | Purpose |
 | --- | --- | --- |
-| `start_strategy_execution` | Effectful | Start a persisted Strategy execution. |
+| `start_strategy_execution` | Effectful | Start a persisted eligible Strategy execution. |
 | `get_strategy_execution` | Read | Read one scoped Strategy execution. |
 | `get_strategy_execution_trace` | Read | Read persisted Strategy step trace/receipts. |
-| `continue_strategy_execution` | Effectful | Continue a waiting execution with pinned state/references. |
+| `continue_strategy_execution` | Effectful | Continue a waiting execution with its pinned authority digest, state and references. |
 | `cancel_strategy_execution` | Effectful | Cancel a non-terminal execution. |
+
+A waiting execution should be continued. Do not start a replacement execution merely to work around `WAITING_USER` or `WAITING_HOST`.
 
 ## Connected systems, discovery, observations, evaluation
 
@@ -83,14 +100,16 @@ Promotion is not a hidden release shortcut. Release authority remains explicit.
 | Tool | Mode | Purpose |
 | --- | --- | --- |
 | `list_packs` | Read | List scoped Packs. |
-| `import_pack` | Effectful | Import and validate a Pack candidate. |
-| `install_pack` | Effectful | Install/materialize Pack draft. |
-| `evaluate_pack` | Effectful | Evaluate a Pack. |
-| `approve_pack` | Effectful | Explicitly approve a Pack. |
-| `release_pack` | Effectful | Release an approved Pack. |
-| `preview_pack_upgrade` | Effectful | Preview an incoming Pack upgrade. |
+| `import_pack` | Effectful | Import/parse a Pack candidate. Import does not activate behavior. |
+| `install_pack` | Effectful | Install/materialize Pack draft objects into canonical repositories. |
+| `evaluate_pack` | Effectful | Evaluate a materialized Pack candidate. |
+| `approve_pack` | Effectful | Explicitly approve an eligible Pack. |
+| `release_pack` | Effectful | Release an approved Pack through the authority boundary. |
+| `preview_pack_upgrade` | Effectful | Preview an incoming Pack upgrade and conflicts before applying it. |
 
-## Current 41-tool list
+## 0.1.14 documented tool snapshot
+
+The current `0.1.14` source contract contains **45 MCP tools**. Treat this as a documentation snapshot, not as a client-side allowlist. Use `tools/list` at runtime because a deployed/scoped server remains authoritative.
 
 ```text
 list_capabilities
@@ -121,6 +140,10 @@ get_strategy_execution_trace
 continue_strategy_execution
 cancel_strategy_execution
 list_ai_systems
+delete_ai_system
+delete_semantic_task
+delete_behavior_point
+delete_behavior_strategy
 list_discovery_candidates
 review_discovery_candidate
 create_observation
@@ -136,14 +159,12 @@ release_pack
 preview_pack_upgrade
 ```
 
-## Not currently MCP tools
+## Surface differences
 
-The current package does **not** expose dedicated MCP tools for:
+MCP intentionally does not have to mirror every SDK convenience method.
 
-- `connectOnce` / adapter connection helpers;
-- Response Quality & Decision (`evaluateQuality` / `evaluate_quality`);
-- runtime capability attestation/resolution;
-- model-serving selection/traces;
-- deployment comparison/health recording.
+Operations that remain better represented on JavaScript, Python, or HTTP surfaces include client-side connect-once/adapter helpers, Response Quality & Decision, runtime capability attestation/resolution, model-serving traces, and deployment evidence unless the current MCP server advertises an equivalent tool.
 
-Use JavaScript, Python, or HTTP for those capabilities. Use `list_capabilities` to discover the current scoped product surface rather than assuming every integration exposes identical operations.
+Use `list_capabilities` and `tools/list` to discover the current scoped surface instead of relying on a version-old assumption.
+
+See [MCP integration](mcp.md), [Capability discovery](../capability-discovery.md), and [Developer guide](../developer-guide.md).

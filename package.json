@@ -5,6 +5,10 @@
   "description": "Public Vira documentation, published client references, canonical authoring, capability discovery, examples, troubleshooting, and architecture vision.",
   "type": "module",
   "engines": { "node": ">=20" },
-  "scripts": {"verify":"node scripts/verify-repo.mjs","test":"npm run verify"},
+  "scripts": {
+    "verify": "node scripts/verify-repo.mjs",
+    "verify:registry": "node scripts/verify-registry.mjs",
+    "test": "npm run verify"
+  },
   "license": "UNLICENSED"
 }

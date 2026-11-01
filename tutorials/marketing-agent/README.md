@@ -1,6 +1,6 @@
 # Marketing Agent: end-to-end Vira tutorial
 
-This tutorial uses the published `@tryvira/sdk` package.
+This tutorial uses the published `@tryvira/sdk` `0.1.14` package.
 
 ## Flow
 
@@ -11,26 +11,39 @@ This tutorial uses the published `@tryvira/sdk` package.
 4. submit feedback / Teach evidence
 5. resolve Semantic Task
 6. author governed Behavior Point / Pack
-7. Behavior Evaluation
-8. approve + release
-9. runtime resolution
-10. candidate response(s)
-11. optional Response Quality & Decision
-12. observe result/outcome
-13. new Teach cycle when evidence justifies it
+7. validate/materialize candidate behavior
+8. Behavior Evaluation
+9. explicit approval + release when appropriate
+10. runtime resolution
+11. candidate response(s)
+12. optional Response Quality & Decision
+13. observe result/outcome
+14. new Teach cycle when evidence justifies it
 ```
 
 `01-connect.mjs` uses `connectOnce` and `testConnection`.
 
-Observations/feedback are evidence; they do not activate behavior.
+Observations/feedback are evidence; they do not activate behavior. Semantic resolution is also candidate/evidence selection, not authorization.
 
-Teach AI conceptually turns admitted evidence into a proposal, then review → Behavior Evaluation → approval/release.
+Teach AI conceptually turns admitted evidence into a proposal, then review → Behavior Evaluation → promotion → explicit release as required by the governed flow.
 
-`05-pack-lifecycle.mjs` demonstrates the Pack lifecycle. Treat sample evaluation values as tutorial inputs only; never fabricate a production pass.
+`05-pack-lifecycle.mjs` demonstrates the current Pack lifecycle:
 
-`06-runtime-resolve.mjs` resolves released behavior.
+```text
+import
+→ inspect validation / inventory / conflicts
+→ configure
+→ install / materialize draft
+→ evaluate
+→ approve
+→ release
+```
 
-`07-quality-decision.mjs` demonstrates the separate response-quality layer:
+The tutorial deliberately gates the final approval/release calls behind `VIRA_TUTORIAL_APPROVE_RELEASE=true`. Sample evaluation values are tutorial inputs only; never fabricate a production pass.
+
+`06-runtime-resolve.mjs` resolves eligible released behavior through the runtime authority boundary.
+
+`07-quality-decision.mjs` demonstrates the separate Response Quality & Decision layer:
 
 ```text
 bounded response candidates
@@ -39,3 +52,5 @@ bounded response candidates
 ```
 
 Response Quality does not release behavior or bypass policy.
+
+For the full public contract and Point-to-Pack walkthrough, see the [Developer guide](../../docs/developer-guide.md).

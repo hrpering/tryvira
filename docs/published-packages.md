@@ -2,11 +2,11 @@
 
 Vira's public client packages use the `tryvira` package identity and point back to this public repository.
 
-| Ecosystem | Package | Current package version | License | Install |
-| --- | --- | ---: | --- | --- |
-| npm | `@tryvira/sdk` | `0.1.6` | MIT | `npm install @tryvira/sdk` |
-| npm | `@tryvira/mcp` | `0.1.6` | MIT | `npx -y @tryvira/mcp` |
-| PyPI | `tryvira-sdk` | `0.1.6` | MIT | `python -m pip install tryvira-sdk` |
+| Ecosystem | Package | Current package version | Runtime | License | Install |
+| --- | --- | ---: | --- | --- | --- |
+| npm | `@tryvira/sdk` | `0.1.14` | Node.js 20+ | MIT | `npm install @tryvira/sdk` |
+| npm | `@tryvira/mcp` | `0.1.14` | Node.js 20+ | MIT | `npx -y @tryvira/mcp` |
+| PyPI | `tryvira-sdk` | `0.1.14` | Python 3.10+ | MIT | `python -m pip install tryvira-sdk` |
 
 Package pages:
 
@@ -18,11 +18,35 @@ Repository / documentation:
 
 - https://github.com/hrpering/tryvira
 
-## 0.1.6 public surface highlights
+## 0.1.14 public surface
 
-The `0.1.6` client line includes the newer public authoring/lifecycle work documented in this repository, including canonical Task/Point authoring, Strategy activation, Teach proposal lifecycle parity, and scoped capability discovery where supported by each client surface.
+The `0.1.14` client line is built around the same scoped Vira authority boundary across JavaScript/TypeScript, Python and MCP.
 
-Use [Capability discovery](capability-discovery.md) instead of assuming a package exposes every operation in every deployment/scope.
+The public surface includes, where supported by the selected integration:
+
+- connect-once system + adapter registration;
+- observations, traces, feedback and outcomes;
+- scoped capability discovery;
+- Semantic Task and Behavior Point authoring;
+- Behavior Programs and Strategies;
+- semantic resolution and governed runtime resolution/execution;
+- Teach proposal lifecycle;
+- Behavior Evaluation and explicit release;
+- Pack import/materialization/evaluation/approval/release and upgrade preview;
+- Strategy execution and continuation;
+- behavior capsule/projection and other advanced runtime surfaces.
+
+Use [Capability discovery](capability-discovery.md) instead of assuming a credential, deployment or integration exposes every operation.
+
+## Authority boundary
+
+The SDKs are thin clients. They do not create a second behavior authority, execute tools locally on behalf of Vira, release behavior locally, or maintain a parallel telemetry store.
+
+Semantic resolution returns evidence/candidates. It is not authorization. Runtime and effectful mutations remain governed by server-side scope, role, policy, release state, idempotency and receipt contracts.
+
+## Package verification
+
+The npm packages are prepared with package dry-run and public-surface smoke checks before publication. That package-publishing check is distinct from a Vira Pack lifecycle. A Vira Pack still follows its own governed import, validation/materialization, evaluation, approval and release flow.
 
 ## Licensing boundary
 

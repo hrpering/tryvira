@@ -1,6 +1,6 @@
 # Python SDK reference
 
-Published package: `tryvira-sdk` (`0.1.6`). Runtime: Python 3.10+.
+Published package: `tryvira-sdk` (`0.1.14`). Runtime: Python 3.10+.
 
 ```bash
 python -m pip install tryvira-sdk
@@ -11,6 +11,39 @@ from vira import ViraClient, ViraApiError
 ```
 
 The package is MIT-licensed. The Vira service/backend are governed separately.
+
+The Python SDK is a thin client of the same scoped authority boundary as the JavaScript SDK. It must not create a second local behavior authority, release behavior locally, or treat semantic classification as authorization.
+
+## Client configuration
+
+```python
+import os
+from vira import ViraClient
+
+client = ViraClient(
+    os.environ["VIRA_API_URL"],
+    api_key=os.environ.get("VIRA_API_KEY"),
+    timeout=15.0,
+    retries=2,
+    failure_mode="throw",
+)
+```
+
+Use placeholders in checked-in examples. Never commit real credentials, tenant identifiers, production traces, or private endpoints.
+
+## Recommended lifecycle
+
+```text
+connect_once
+→ observe / trace / feedback / outcome
+→ list_capabilities
+→ resolve_semantic
+→ author or select governed behavior
+→ evaluate / approve / release where required
+→ resolve_runtime / execute_runtime
+→ receipt / trace / outcome
+→ Teach / re-evaluate
+```
 
 ## Connected systems
 
@@ -23,21 +56,33 @@ connect_once
 connection_health
 test_connection
 inventory
+delete_ai_system
 ```
 
-`connect_once` is the recommended convenience flow and returns system + connection + handshake state.
+```python
+scope = {
+    "organizationId": os.environ["VIRA_ORGANIZATION_ID"],
+    "projectId": os.environ["VIRA_PROJECT_ID"],
+    "environmentId": os.environ["VIRA_ENVIRONMENT_ID"],
+}
+
+connected = client.connect_once(
+    "my-agent",
+    "custom-agent",
+    scope,
+    "custom-python",
+    "1",
+    idempotency_key="connect:my-agent:v1",
+)
+```
 
 ## Scoped capability discovery
-
-```text
-list_capabilities
-```
 
 ```python
 capabilities = client.list_capabilities(surface="python")
 ```
 
-This discovers product capabilities for the current scope/surface. Runtime capability attestation/resolution is a separate concern.
+Do not assume every credential/deployment exposes every operation. Product capability discovery is separate from runtime capability attestation/resolution.
 
 ## Observations
 
@@ -49,7 +94,7 @@ feedback
 outcome
 ```
 
-The current client also exposes agent-native observation helpers for workflow/action/checkpoint/handoff style events.
+Observations are evidence and do not activate behavior.
 
 ## Canonical authoring
 
@@ -58,6 +103,7 @@ Semantic Tasks:
 ```text
 list_semantic_tasks
 create_semantic_task
+delete_semantic_task
 ```
 
 Behavior Points:
@@ -65,9 +111,8 @@ Behavior Points:
 ```text
 list_behavior_points
 create_behavior_point
+delete_behavior_point
 ```
-
-Example:
 
 ```python
 task = client.create_semantic_task({
@@ -79,14 +124,38 @@ task = client.create_semantic_task({
 
 task_id = task.body["task"]["id"]
 
-client.create_behavior_point({
+point = client.create_behavior_point({
     "key": "marketing.launch_plan",
     "taskId": task_id,
-    "constraints": ["cover required funnel stages", "include measurement"],
+    "constraints": [
+        "cover the required funnel stages",
+        "include a measurement approach",
+    ],
 })
 ```
 
-See [Canonical authoring](../canonical-authoring.md).
+## Explicit deletion
+
+The current Python client exposes confirmed deletion helpers:
+
+```text
+delete_ai_system
+delete_semantic_task
+delete_behavior_point
+delete_behavior_strategy
+```
+
+Deletion must be explicitly confirmed, is idempotency-aware, and remains server-authorized. Active/in-use/ineligible resources can be rejected.
+
+```python
+client.delete_semantic_task(
+    task_id,
+    confirm=True,
+    idempotency_key=f"delete:semantic-task:{task_id}",
+)
+```
+
+Do not use deletion to imitate rollback, release history, or deactivation.
 
 ## Signals
 
@@ -99,9 +168,9 @@ get_signal_mapping
 review_signal_mapping
 ```
 
-## Semantic + Runtime
+## Semantic and runtime
 
-Common operations include `resolve_semantic`, `resolve_runtime`, and `execute_runtime`. Use semantic results as evidence, not authorization.
+Use `resolve_semantic` for candidate/evidence selection. Use `resolve_runtime` / `execute_runtime` for the authority-gated runtime boundary. A semantic result is not authorization.
 
 ## Behavior Programs
 
@@ -113,7 +182,7 @@ create_behavior_program
 
 ## Behavior Strategies
 
-Definitions and lifecycle:
+Definition/lifecycle:
 
 ```text
 list_behavior_strategies
@@ -123,9 +192,8 @@ create_behavior_strategy_variant
 validate_behavior_strategy
 simulate_behavior_strategy
 activate_behavior_strategy
+delete_behavior_strategy
 ```
-
-Activation is explicit and server-side. It does not replace evaluation/release/runtime eligibility checks that apply to the target flow.
 
 Execution:
 
@@ -136,6 +204,8 @@ get_strategy_execution_trace
 continue_strategy_execution
 cancel_strategy_execution
 ```
+
+Continue a waiting execution with the existing authority digest plus state/references instead of starting a replacement execution to bypass the wait state.
 
 ## Packs
 
@@ -149,6 +219,20 @@ release_pack
 preview_pack_upgrade
 ```
 
+Lifecycle:
+
+```text
+import
+→ parse / validate / inventory conflicts
+→ configure
+→ install/materialize draft
+→ evaluate
+→ approve
+→ release
+```
+
+Import never activates behavior. See [Packs](../packs.md).
+
 ## Teach AI
 
 ```text
@@ -157,15 +241,7 @@ create_teach_proposal
 transition_teach_proposal
 ```
 
-Allowed proposal transitions are:
-
-```text
-review
-evaluate
-promote
-```
-
-Promotion still does not silently grant release authority.
+Proposal transitions include `review`, `evaluate`, and `promote`. Promotion does not silently grant runtime release authority.
 
 ## Behavior Evaluation
 
@@ -180,18 +256,7 @@ get_evaluation
 evaluate_quality
 ```
 
-```python
-result = client.evaluate_quality({
-    "request": "Evaluate risks and next steps",
-    "candidates": [
-        {"id": "initial", "output": "Generic response"},
-        {"id": "repair", "output": "Risks and next steps with explicit assumptions"},
-    ],
-    "allowedIds": ["initial", "repair"],
-    "requiredTerms": ["risks", "next steps"],
-    "threshold": 0.7,
-})
-```
+This evaluates bounded response candidates. It is separate from Behavior Evaluation and does not grant release authority.
 
 ## Release
 
@@ -199,8 +264,16 @@ result = client.evaluate_quality({
 create_release
 ```
 
+Preserve returned request, receipt and trace identifiers for support/audit.
+
 ## Advanced runtime surfaces
 
-The current Python client mirrors advanced runtime capabilities available to the JavaScript client, including runtime capability attestation/resolution, model-serving selection/traces, behavior capsule/projection, and deployment evidence.
+The Python SDK mirrors the supported JavaScript client surface for runtime capability attestation/resolution, model-serving selection/traces, behavior capsule/projection, deployment evidence, and other versioned public operations.
 
-See [Capability map](../capability-map.md).
+## Errors, retries and failure modes
+
+The default client failure mode raises `ViraApiError`. GETs are safely retryable. Mutations should only be retried with an idempotency key. Observation-only telemetry may intentionally use `failure_mode="open"`; enforcing runtime/effectful calls should remain fail-closed.
+
+## End-to-end guide
+
+See [Developer guide](../developer-guide.md).
