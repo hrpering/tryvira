@@ -19,7 +19,7 @@
   <a href="docs/README.md">Docs</a>
 </p>
 
-<p align="center"><img src="assets/vira-overview.svg" alt="Vira behavior control lifecycle" width="100%"></p>
+<p align="center"><img src="assets/vira-behavior-loop.webp" alt="Vira Behavior Loop: connect once, define, teach, evaluate, release, run, and improve AI behavior" width="100%"></p>
 
 ---
 
@@ -339,9 +339,9 @@ See [JavaScript SDK reference](docs/reference/javascript-sdk.md), [Python SDK re
 
 > **Experimental architecture. Not general production availability.**
 
-![Vira GPU acceleration vision](assets/vira-gpu-vision.svg)
+<p align="center"><img src="assets/vira-gpu-vision.webp" alt="Vira GPU vision: behavior-native AI accelerator with co-located behavior execution and LLM inference" width="100%"></p>
 
-Vira is exploring a same-device path where released behavior execution can move closer to model inference while preserving parity, traceability, and explicit fallback. CPU/conventional runtime remains first-class.
+Vira is exploring a behavior-native accelerator path where released behavior execution and LLM inference can run on the same hardware, with shared model/KV and behavior state where the backend safely supports it. The goal is lower-latency governed execution while preserving parity, traceability, explicit authority, and safe fallback. CPU/conventional runtime remains first-class.
 
 Read [GPU acceleration vision](docs/gpu-acceleration-vision.md).
 
