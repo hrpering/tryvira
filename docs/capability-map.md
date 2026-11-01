@@ -7,7 +7,9 @@ Legend:
 - **Yes**: directly exposed on that surface.
 - **Underlying routes**: available through HTTP primitives rather than the same convenience helper.
 - **Partial**: related operations exist, but not the complete lifecycle.
-- **No tool**: no dedicated MCP tool today.
+- **No tool**: no dedicated MCP tool in the documented surface.
+
+> Capability discovery and MCP `tools/list` are the runtime source of truth for a scoped deployment. Do not turn this documentation table into a client-side allowlist.
 
 | Capability | JavaScript `@tryvira/sdk` | Python `tryvira-sdk` | HTTP | MCP `@tryvira/mcp` |
 | --- | --- | --- | --- | --- |
@@ -29,18 +31,18 @@ Legend:
 | Behavior Programs | list/get/create | list/get/create | Yes | list |
 | Strategy definitions | list/get/create/variant/validate/simulate/**activate** | Yes | Yes | list/get/simulate/**activate** |
 | **Strategy execution** | start/get/trace/continue/cancel | Yes | Yes | Yes |
-| Packs | full lifecycle | full lifecycle | Yes | full lifecycle |
+| Packs | import/install/evaluate/approve/release/**upgrade preview** | same | Yes | same documented lifecycle |
 | **Teach evidence** | `submitTeachEvidence` | `submit_teach_evidence` | Yes | `submit_teach_evidence` |
 | **Teach proposals** | create + review/evaluate/promote transition | Yes | Yes | create + transition |
 | **Behavior Evaluation** | `startEvaluation`, `getEvaluation` | `start_evaluation`, `get_evaluation` | Yes | `start_evaluation` |
-| **Response Quality & Decision** | `evaluateQuality` | `evaluate_quality` | `POST /v1/quality/evaluate` | No tool |
+| **Response Quality & Decision** | `evaluateQuality` | `evaluate_quality` | `POST /v1/quality/evaluate` | No dedicated tool |
 | Release | `createRelease` | `create_release` | Yes | `create_release` + Pack release |
 | Runtime execute/resolve | Yes | Yes | Yes | `resolve_runtime` |
 | Runtime capability attestation/resolution | Yes | Yes | Yes | No dedicated tool |
-| Model-serving resolve/trace | Yes | Yes | Yes | No tool |
+| Model-serving resolve/trace | Yes | Yes | Yes | No dedicated tool |
 | Behavior capsule | `compileBehaviorCapsule` | current client equivalent | Yes | `compile_behavior_capsule` |
 | Behavior projection | `serveBehaviorProjection` | current client equivalent | Yes | `serve_behavior_projection` |
-| Deployment comparison/health | Yes | Yes | Yes | No tool |
+| Deployment comparison/health | Yes | Yes | Yes | No dedicated tool |
 
 ## Capability discovery versus runtime capability negotiation
 
@@ -68,16 +70,20 @@ SDK / Python / HTTP / MCP
 
 ```text
 Pack candidate
-→ import
-→ install
+→ import / parse / validate
+→ inventory / conflicts / configuration
+→ install / materialize canonical draft
 → evaluate
 → approve
 → release
+→ runtime
 ```
+
+Import or installation does not silently activate behavior. Before changing an installed Pack, use upgrade preview to inspect incoming changes, preserved overrides, and conflicts.
 
 Direct authoring is useful for incremental tools and Studio-style workflows. Packs remain useful when multiple related objects should move as one portable, reviewable bundle.
 
-See [Canonical authoring](canonical-authoring.md).
+See [Canonical authoring](canonical-authoring.md) and [Packs](packs.md).
 
 ## Product lifecycle
 
@@ -91,10 +97,12 @@ Connect
 → Behavior Evaluation
 → activate / approve / release as required
 → Runtime resolve / execute
+→ Receipt / Trace / Outcome
 → optional Response Quality & Decision
-→ Trace / Outcome
 → re-evaluate / Teach again
 ```
+
+Semantic selection is not authority. Runtime consumes governed eligible identity through the authority boundary.
 
 ## Two evaluation layers
 
