@@ -6,11 +6,14 @@
 - Added a public-safe end-to-end developer guide covering connection, capability discovery, observations, Semantic Task creation, Behavior Point creation, Programs/Strategies, semantic resolution, evaluation/release, runtime resolution, Strategy continuation, and Pack verification/release.
 - Added a runnable JavaScript lifecycle example and updated JavaScript/Python/tutorial dependencies to the `0.1.14` package line.
 - Updated MCP guidance to use live `server/discover` → `initialize` → `tools/list` discovery instead of making a hard-coded tool count the integration contract.
+- Synced the current 45-tool MCP source snapshot, including explicit-confirmation deletion tools for AI systems, Semantic Tasks, Behavior Points, and eligible non-active Strategies.
+- Added confirmed deletion parity to JavaScript, Python, HTTP, capability-map, and developer-guide references while keeping deletion separate from rollback/deactivation semantics.
 - Expanded Pack documentation with manifest variables, parsing formats, conflict/configuration inspection, canonical materialization, evaluation, approval, release, and upgrade preview.
 - Clarified that Pack import/install, semantic selection, Teach promotion, quality scoring, and Strategy activation do not independently grant runtime release authority.
 - Updated release/runtime documentation to preserve exact governed identity, authority digests, receipts/traces, and semantic Program context through runtime projection/Strategy selection.
 - Added `POST /v1/packs/{packId}/upgrade-preview` to the public HTTP reference.
-- Updated the repository verification gate to enforce current `0.1.14` docs and end-to-end lifecycle markers rather than the previous `0.1.6`/fixed-tool-count assumptions.
+- Hardened repository verification with local-link checks, secret-pattern scanning, deletion/MCP snapshot checks, package-version contracts, and copy-pasteable quickstart markers.
+- Added a live registry gate that installs `@tryvira/sdk@0.1.14`, `@tryvira/mcp@0.1.14`, and `tryvira-sdk==0.1.14`, then verifies the documented SDK/Python methods and the published MCP 45-tool snapshot.
 - Rebuilt the root README and docs index as developer entry points while keeping secrets, tenant data, private infrastructure and operator-only deployment configuration out of the public repository.
 
 ## 0.10.0
