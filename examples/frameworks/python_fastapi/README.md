@@ -1,0 +1,5 @@
+# FastAPI governed projection boundary
+
+Create a Python 3.12 environment with `uv venv --python 3.12 .venv`, install the pinned set with `uv pip sync requirements.lock`, run `.venv/bin/python -m unittest discover -s . -v`, then start with `uvicorn asgi:app`. Configure the Vira URL, API key, and scope IDs server-side.
+
+The app calls the Python SDK's `serve_behavior_projection` operation (`input`, `provider`, optional `programId`/`model`/`protocol`, and idempotency key). That endpoint returns a `projection` object and receipt; the example passes non-empty `projection.rendered` to the optional model hook and retains `projectionDigest`. It does not assume the JavaScript `RuntimeResolution` fields on a Python response. A projection guides behavior; it does not authorize external side effects. `/healthz` is liveness; `/readyz` checks local initialization and configured scope. Add caller authentication at a trusted ingress before exposing the route. See [deployment guidance](../DEPLOYMENT.md).

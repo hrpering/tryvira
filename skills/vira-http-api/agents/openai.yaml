@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Http API"
+  short_description: "Vira Http Api tasks and workflow guidance"
+  default_prompt: "Use $vira-http-api to complete this documented Vira http api workflow."

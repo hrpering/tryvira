@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Studio"
+  short_description: "Vira Studio tasks and workflow guidance"
+  default_prompt: "Use $vira-studio to complete this documented Vira studio workflow."

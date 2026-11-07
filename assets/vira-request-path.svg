@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+<title id="title">Vira request to runtime path</title><desc id="desc">A request is resolved to a semantic task, Behavior Point, behavior program or strategy, runtime and simple trace.</desc>
+<defs><filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.08"/></filter><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#A78BFA"/></marker></defs>
+<rect width="1200" height="500" rx="28" fill="#FCFCFF"/>
+<text x="70" y="74" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#4F46E5">REQUEST PATH</text>
+<text x="70" y="118" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="34" font-weight="750" fill="#0F172A">Behavior attaches after intent is understood</text>
+<text x="70" y="151" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" fill="#64748B">Semantic selection and runtime behavior are separate decisions.</text>
+<g filter="url(#s)">
+<rect x="70" y="225" width="170" height="120" rx="22" fill="#FFFFFF" stroke="#E2E8F0"/>
+<rect x="275" y="225" width="180" height="120" rx="22" fill="#FFFFFF" stroke="#E2E8F0"/>
+<rect x="490" y="225" width="180" height="120" rx="22" fill="#FFFFFF" stroke="#DDD6FE"/>
+<rect x="705" y="195" width="200" height="85" rx="22" fill="#FFFFFF" stroke="#C4B5FD"/>
+<rect x="705" y="300" width="200" height="85" rx="22" fill="#FFFFFF" stroke="#C4B5FD"/>
+<rect x="940" y="225" width="170" height="120" rx="22" fill="#FFFFFF" stroke="#E2E8F0"/>
+</g>
+<g font-family="Inter,Segoe UI,Arial,sans-serif" fill="#0F172A">
+<text x="105" y="275" font-size="20" font-weight="700">Request</text><text x="105" y="304" font-size="14" fill="#64748B">user or app input</text>
+<text x="310" y="275" font-size="20" font-weight="700">Semantic Task</text><text x="310" y="304" font-size="14" fill="#64748B">what kind of work?</text>
+<text x="525" y="275" font-size="20" font-weight="700">Behavior Point</text><text x="525" y="304" font-size="14" fill="#64748B">where can behavior attach?</text>
+<text x="745" y="235" font-size="18" font-weight="700">Behavior Program</text><text x="745" y="260" font-size="13" fill="#64748B">guard · judge · verify</text>
+<text x="745" y="340" font-size="18" font-weight="700">Strategy</text><text x="745" y="365" font-size="13" fill="#64748B">bounded multi-step flow</text>
+<text x="975" y="275" font-size="20" font-weight="700">Runtime</text><text x="975" y="304" font-size="14" fill="#64748B">resolve released behavior</text>
+</g>
+<g fill="none" stroke="#A78BFA" stroke-width="3" marker-end="url(#a)"><path d="M240 285H268"/><path d="M455 285H483"/><path d="M670 285H695"/><path d="M905 237C930 237 930 260 935 270"/><path d="M905 342C930 342 930 315 935 300"/></g>
+<rect x="940" y="375" width="170" height="58" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/><text x="1025" y="410" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" fill="#475569">Simple trace</text>
+<path d="M1025 345V368" stroke="#94A3B8" stroke-width="2.5" marker-end="url(#a)"/>
+</svg>

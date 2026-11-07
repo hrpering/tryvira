@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Lifecycle"
+  short_description: "Vira Lifecycle tasks and workflow guidance"
+  default_prompt: "Use $vira-lifecycle to complete this documented Vira lifecycle workflow."

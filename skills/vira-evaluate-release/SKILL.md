@@ -1,0 +1,33 @@
+---
+name: vira-evaluate-release
+license: "Proprietary; see LICENSE"
+description: "Evaluate Vira behavior and perform separate approval/release steps using documented contracts."
+---
+
+# Evaluate Release
+
+Use the Behavior Evaluation contract and bind evaluation to the exact candidate/artifact. Review dataset, criteria, threshold, status, scope, and artifact digest before proceeding. Quality & Decision is a different response-time operation and does not grant release authority. Approval and release are distinct explicit authorized transitions; do not infer a pass or deploy after evaluation automatically.
+
+## Activate this skill when
+A user asks to interpret a Vira evaluation and determine what must happen before a candidate can be approved/released. Do not use it as permission to perform the release.
+
+## Inputs and preconditions
+Require candidate ID/digest, evaluation ID/status, scope, criteria/threshold, regression results, release eligibility, and an authorized reviewer/operator decision.
+
+## Workflow
+1. Read persisted evaluation state from the exact supported surface and verify candidate ID/digest binding.
+2. Compare results with declared criteria; check failed cases, regressions, dataset provenance, and scope.
+3. Distinguish Behavior Evaluation from Response Quality & Decision and runtime receipts.
+4. Prepare a concise approval packet with evidence, risks, and exact next transition; request explicit authorization before an effectful approval/release call.
+5. After separately authorized transitions, verify server-returned approval/release identity and runtime eligibility.
+
+## Deliverable and failure handling
+Return PASS/FAIL/INCOMPLETE with cited evidence, exact identity, and next authorized action. Stop on missing/failed/stale evaluation, digest mismatch, failed threshold, or absent approval. Never create a client-side pass or automatic release.
+
+## References
+
+- [evaluation-and-approval](https://github.com/hrpering/tryvira/blob/main/docs/evaluation-and-approval.md)
+- [decision-and-quality](https://github.com/hrpering/tryvira/blob/main/docs/decision-and-quality.md)
+- [release](https://github.com/hrpering/tryvira/blob/main/docs/release.md)
+- [api](https://github.com/hrpering/tryvira/blob/main/docs/reference/api.md)
+- [capability-map](https://github.com/hrpering/tryvira/blob/main/docs/capability-map.md)

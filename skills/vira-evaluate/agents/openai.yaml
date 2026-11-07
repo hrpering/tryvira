@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Evaluate"
+  short_description: "Vira Evaluate tasks and workflow guidance"
+  default_prompt: "Use $vira-evaluate to complete this documented Vira evaluate workflow."

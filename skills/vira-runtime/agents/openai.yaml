@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Runtime"
+  short_description: "Vira Runtime tasks and workflow guidance"
+  default_prompt: "Use $vira-runtime to complete this documented Vira runtime workflow."

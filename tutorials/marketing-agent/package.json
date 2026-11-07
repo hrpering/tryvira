@@ -1,0 +1,8 @@
+{
+  "name": "tryvira-marketing-agent-tutorial",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "scripts": {"start": "node 01-connect.mjs", "test": "node --test"},
+  "dependencies": {"@tryvira/sdk": "^0.1.43"}
+}

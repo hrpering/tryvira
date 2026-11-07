@@ -1,0 +1,25 @@
+# Skill creator workflow and evidence
+
+This library uses the format and local metadata conventions from the [OpenAI Codex Skill Creator](https://github.com/openai/skills/tree/main/skills/.system/skill-creator) and [Anthropic Skill Creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator). It adapts the baseline-fail/skill-pass/refactor loop from [Superpowers Writing Skills](https://github.com/obra/superpowers/tree/main/skills/writing-skills). The creators differ in implementation: OpenAI supplies initialization/metadata/structural validation; Anthropic supplies authoring, model-eval and packaging tools; Superpowers emphasizes pressure scenarios before and after the skill. These systems help author and package skills; none guarantees Vira contract correctness.
+
+## Applied workflow
+
+1. Inventory public Vira surfaces and map each user job to the relevant skill. Verify gaps against the public capability matrix; do not invent missing features.
+2. For new skills, use the official initializer, then replace scaffold text with focused workflows, explicit preconditions, authority boundaries, and linked public references.
+3. Generate the OpenAI `agents/openai.yaml` metadata with the official OpenAI metadata generator. Keep the main `SKILL.md` portable and move detailed references/examples into separate files where appropriate.
+4. Apply test-driven authoring: add an offline regression/trigger case that captures the failure mode, confirm it fails, then update the skill and re-run. For model-facing instructions, run an isolated pressure scenario and record the first failure and the fixed result. These fixtures do not substitute for broader model evaluations.
+5. Run the OpenAI and Anthropic official structural validators, repository validator, offline tests, package the skills, and inspect archive contents. Keep the local repository verifier, Agent Skills structure/eval suite, and project integration suites connected to CI.
+6. If available and authorized, run model-trigger evaluations and real integration checks in a disposable non-production environment. Record model/version, harness, prompts, selection/execution outcomes, and errors separately from unit tests.
+7. Review the final diff for unsupported claims, credentials, private data/implementation detail, license errors, and accidental authority shortcuts.
+
+## Evidence and current limits
+
+OpenAI's initializer was run for the two new skills, the official OpenAI metadata generator was run across all skills, and OpenAI plus Anthropic official validators passed on all 22 skills. Anthropic's official packager generated 22 validated archives under `/private/tmp`. The upstream Superpowers Writing Skills instructions were inspected; a same-task agent-without-skill baseline was not run.
+
+An isolated Codex CLI multi-skill execution explicitly loaded four Vira skills. The first generated Next.js route failed two tests and TypeScript; the agent corrected the implementation and the final run passed six deterministic tests and the production build. This is a red-to-green execution example with named skills, not a baseline-without-skill comparison or a skill-trigger accuracy result. The run and repository-level reproduction are recorded in [`skills/evals/model-runs.jsonl`](../../skills/evals/model-runs.jsonl). The public Next.js example now has nine passing tests and a production build against the published JS SDK package contract. MCP discovery, FastAPI, and LangGraph fixtures also passed in the pinned environments.
+
+The marketing tutorial now runs all ten scripts through the installed JavaScript SDK against a loopback-only fake Vira service. Its lifecycle tests caught a missing idempotency key in the Response Quality step; after adding a run-bound key, the suite verified materialization polling, digest-bound evaluation, and separate install/release/Teach approval transitions. The server returns synthetic fixture statuses, so this is transport/control-flow evidence only, not live Vira lifecycle evidence.
+
+Anthropic's packaging tool is available separately from structural validation. A successful `.skill` archive only proves packaging shape. Offline mocks do not prove Vira service behavior, Studio access, model triggering, dependency registry availability, or deployment readiness. No live Vira call, publish, or deployment is claimed here.
+
+The 66-row trigger corpus has not been run through Anthropic's `run_eval.py` or another full model evaluator; no selection accuracy or task-success percentage is published. Live Vira tenant, Studio UI, provider behavior, package/skills marketplace publishing, and an isolated full-lifecycle evaluation remain unverified.

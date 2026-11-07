@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Packs"
+  short_description: "Vira Packs tasks and workflow guidance"
+  default_prompt: "Use $vira-packs to complete this documented Vira packs workflow."
