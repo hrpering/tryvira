@@ -1,0 +1,66 @@
+{"skill": "vira-js-sdk", "kind": "positive", "prompt": "Use @tryvira/sdk to connect an agent once and observe a response.", "should_trigger": true}
+{"skill": "vira-js-sdk", "kind": "negative", "prompt": "Write a generic Python SDK integration unrelated to Vira.", "should_trigger": false}
+{"skill": "vira-js-sdk", "kind": "ambiguous", "prompt": "Can I connect this Vira agent?", "should_trigger": null}
+{"skill": "vira-python-sdk", "kind": "positive", "prompt": "Use tryvira-sdk to resolve runtime behavior in my Python app.", "should_trigger": true}
+{"skill": "vira-python-sdk", "kind": "negative", "prompt": "Show how to configure a JavaScript-only package.", "should_trigger": false}
+{"skill": "vira-python-sdk", "kind": "ambiguous", "prompt": "How do I call Vira from a script?", "should_trigger": null}
+{"skill": "vira-mcp", "kind": "positive", "prompt": "Configure @tryvira/mcp and inspect its available tools.", "should_trigger": true}
+{"skill": "vira-mcp", "kind": "negative", "prompt": "Use an SDK method in a REST-only app.", "should_trigger": false}
+{"skill": "vira-mcp", "kind": "ambiguous", "prompt": "Can MCP install my Pack?", "should_trigger": null}
+{"skill": "vira-http-api", "kind": "positive", "prompt": "Call the Vira HTTP API with scoped bearer auth and idempotency.", "should_trigger": true}
+{"skill": "vira-http-api", "kind": "negative", "prompt": "Explain HTTP status codes generally.", "should_trigger": false}
+{"skill": "vira-http-api", "kind": "ambiguous", "prompt": "What endpoint should I use?", "should_trigger": null}
+{"skill": "vira-packs", "kind": "positive", "prompt": "Fix this Vira Pack install and evaluation flow.", "should_trigger": true}
+{"skill": "vira-packs", "kind": "negative", "prompt": "Discuss npm package publishing unrelated to Vira Packs.", "should_trigger": false}
+{"skill": "vira-packs", "kind": "ambiguous", "prompt": "Can I install and publish this Pack in one step?", "should_trigger": null}
+{"skill": "vira-evaluate-release", "kind": "positive", "prompt": "Review the candidate evaluation and explicit release steps.", "should_trigger": true}
+{"skill": "vira-evaluate-release", "kind": "negative", "prompt": "Evaluate a Python package license.", "should_trigger": false}
+{"skill": "vira-evaluate-release", "kind": "ambiguous", "prompt": "Evaluation passed; can I go live?", "should_trigger": null}
+{"skill": "vira-observe-teach", "kind": "positive", "prompt": "Create a Teach proposal from consented observations.", "should_trigger": true}
+{"skill": "vira-observe-teach", "kind": "negative", "prompt": "Write a lesson plan for a classroom.", "should_trigger": false}
+{"skill": "vira-observe-teach", "kind": "ambiguous", "prompt": "Can Vira learn from these user chats?", "should_trigger": null}
+{"skill": "vira-runtime", "kind": "positive", "prompt": "Debug why Vira runtime abstained for this request.", "should_trigger": true}
+{"skill": "vira-runtime", "kind": "negative", "prompt": "Explain Node.js runtime options.", "should_trigger": false}
+{"skill": "vira-runtime", "kind": "ambiguous", "prompt": "Can semantic match execute behavior?", "should_trigger": null}
+{"skill": "vira-author-behavior", "kind": "positive", "prompt": "Create a Semantic Task and Behavior Point for support behavior.", "should_trigger": true}
+{"skill": "vira-author-behavior", "kind": "negative", "prompt": "Author a generic chatbot prompt without Vira.", "should_trigger": false}
+{"skill": "vira-author-behavior", "kind": "ambiguous", "prompt": "How should I structure this behavior?", "should_trigger": null}
+{"skill": "vira-integrate-app", "kind": "positive", "prompt": "Choose a Vira integration surface for an application.", "should_trigger": true}
+{"skill": "vira-integrate-app", "kind": "negative", "prompt": "Select a cloud provider for a database.", "should_trigger": false}
+{"skill": "vira-integrate-app", "kind": "ambiguous", "prompt": "Can you add Vira to my agent?", "should_trigger": null}
+{"skill": "vira-framework-integration", "kind": "positive", "prompt": "Integrate Vira into a LangGraph app without assuming an adapter.", "should_trigger": true}
+{"skill": "vira-framework-integration", "kind": "negative", "prompt": "Build a Vercel app with no Vira use.", "should_trigger": false}
+{"skill": "vira-framework-integration", "kind": "ambiguous", "prompt": "Does Vira have a framework plugin?", "should_trigger": null}
+{"skill": "vira-lifecycle", "kind": "positive", "prompt": "Plan connect, evidence, author, evaluate, release, and runtime for Vira.", "should_trigger": true}
+{"skill": "vira-lifecycle", "kind": "negative", "prompt": "Plan a CI lifecycle for an unrelated mobile app.", "should_trigger": false}
+{"skill": "vira-lifecycle", "kind": "ambiguous", "prompt": "What is the full Vira flow?", "should_trigger": null}
+{"skill": "vira-debug", "kind": "positive", "prompt": "Diagnose SDK_EVALUATION_ID_REQUIRED safely.", "should_trigger": true}
+{"skill": "vira-debug", "kind": "negative", "prompt": "Debug a CSS layout issue.", "should_trigger": false}
+{"skill": "vira-debug", "kind": "ambiguous", "prompt": "Vira returns an error; help?", "should_trigger": null}
+{"skill": "vira-studio", "kind": "positive", "prompt": "Help me navigate the Vira Studio release workflow.", "should_trigger": true}
+{"skill": "vira-studio", "kind": "negative", "prompt": "Describe a generic design tool dashboard.", "should_trigger": false}
+{"skill": "vira-studio", "kind": "ambiguous", "prompt": "Is Studio available for me?", "should_trigger": null}
+{"skill": "vira-get-started", "kind": "positive", "prompt": "Get started integrating Vira in this existing FastAPI project.", "should_trigger": true}
+{"skill": "vira-get-started", "kind": "negative", "prompt": "Explain what Vira is without changing a project.", "should_trigger": false}
+{"skill": "vira-get-started", "kind": "ambiguous", "prompt": "How do I get started?", "should_trigger": null}
+{"skill": "vira-npm-cli", "kind": "positive", "prompt": "Install and configure @tryvira/mcp and inspect its tools.", "should_trigger": true}
+{"skill": "vira-npm-cli", "kind": "negative", "prompt": "Use pip to install an unrelated Python library.", "should_trigger": false}
+{"skill": "vira-npm-cli", "kind": "ambiguous", "prompt": "Which Vira package should I install?", "should_trigger": null}
+{"skill": "vira-build-pack", "kind": "positive", "prompt": "Create and validate a Pack candidate from these behavior definitions.", "should_trigger": true}
+{"skill": "vira-build-pack", "kind": "negative", "prompt": "Create an Agent Skill for a different product.", "should_trigger": false}
+{"skill": "vira-build-pack", "kind": "ambiguous", "prompt": "Can you package this behavior?", "should_trigger": null}
+{"skill": "vira-evaluate", "kind": "positive", "prompt": "Create regression cases and evaluate this Vira behavior revision.", "should_trigger": true}
+{"skill": "vira-evaluate", "kind": "negative", "prompt": "Benchmark two unrelated LLM providers.", "should_trigger": false}
+{"skill": "vira-evaluate", "kind": "ambiguous", "prompt": "The behavior looks good; how do we check?", "should_trigger": null}
+{"skill": "vira-release", "kind": "positive", "prompt": "Prepare the approved Vira revision for release and verify its runtime identity.", "should_trigger": true}
+{"skill": "vira-release", "kind": "negative", "prompt": "Release a new npm package version.", "should_trigger": false}
+{"skill": "vira-release", "kind": "ambiguous", "prompt": "Can I ship this candidate?", "should_trigger": null}
+{"skill": "vira-full-lifecycle", "kind": "positive", "prompt": "Connect this agent, author governed behavior, evaluate it, stop for my approval, then prepare runtime verification.", "should_trigger": true}
+{"skill": "vira-full-lifecycle", "kind": "negative", "prompt": "Connect a React app to an analytics database.", "should_trigger": false}
+{"skill": "vira-full-lifecycle", "kind": "ambiguous", "prompt": "Help me set up Vira end to end.", "should_trigger": null}
+{"skill": "vira-signals", "kind": "positive", "prompt": "Turn consented feedback into a reviewed Vira Signal and map it to the real producer event.", "should_trigger": true}
+{"skill": "vira-signals", "kind": "negative", "prompt": "Add generic OpenTelemetry metrics to my web service.", "should_trigger": false}
+{"skill": "vira-signals", "kind": "ambiguous", "prompt": "What does a signal mean in this Vira dashboard?", "should_trigger": null}
+{"skill": "vira-strategies", "kind": "positive", "prompt": "Validate and structurally simulate this Vira Behavior Strategy, then inspect its execution trace.", "should_trigger": true}
+{"skill": "vira-strategies", "kind": "negative", "prompt": "Build a LangGraph state machine for my unrelated data pipeline.", "should_trigger": false}
+{"skill": "vira-strategies", "kind": "ambiguous", "prompt": "Should this behavior use a Vira Strategy?", "should_trigger": null}

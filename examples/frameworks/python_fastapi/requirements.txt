@@ -1,0 +1,4 @@
+fastapi==0.156.6
+httpx==0.28.1
+uvicorn==0.54.0
+tryvira-sdk==0.1.43

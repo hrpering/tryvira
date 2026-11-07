@@ -1,0 +1,60 @@
+name: Repository quality, including Agent Skills
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Use Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install repository dependencies
+        run: npm ci
+
+      - name: Verify public repository
+        run: npm run verify
+
+      - name: Verify framework examples (JavaScript)
+        run: |
+          npm ci --prefix examples/frameworks/node-next
+          npm test --prefix examples/frameworks/node-next
+          npm run build --prefix examples/frameworks/node-next
+          npm ci --prefix examples/frameworks/mcp-client
+          npm test --prefix examples/frameworks/mcp-client
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10
+
+      - name: Verify framework examples (Python)
+        run: |
+          uv venv --python 3.12 examples/frameworks/python_fastapi/.venv
+          uv pip sync --python examples/frameworks/python_fastapi/.venv/bin/python examples/frameworks/python_fastapi/requirements.lock
+          examples/frameworks/python_fastapi/.venv/bin/python -m unittest discover -s examples/frameworks/python_fastapi -v
+          uv venv --python 3.12 examples/frameworks/langgraph/.venv
+          uv pip sync --python examples/frameworks/langgraph/.venv/bin/python examples/frameworks/langgraph/requirements.lock
+          examples/frameworks/langgraph/.venv/bin/pytest -q examples/frameworks/langgraph
+
+      - name: Verify documented public package releases
+        run: npm run verify:registry
