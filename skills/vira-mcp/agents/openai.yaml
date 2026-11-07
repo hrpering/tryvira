@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira MCP"
+  short_description: "Vira Mcp tasks and workflow guidance"
+  default_prompt: "Use $vira-mcp to complete this documented Vira mcp workflow."

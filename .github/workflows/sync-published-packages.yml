@@ -1,0 +1,67 @@
+name: Sync published package references
+
+on:
+  schedule:
+    - cron: "17 0 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-published-package-references
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Use Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.2
+
+      - name: Sync versions and MCP catalog from registries
+        run: npm run sync:registry
+
+      - name: Refresh example dependency locks
+        run: |
+          npm install --package-lock-only --ignore-scripts --save-exact ai@latest @ai-sdk/openai@latest --prefix examples/frameworks/node-next
+          npm install --package-lock-only --ignore-scripts --prefix examples/frameworks/node-next
+          npm install --package-lock-only --ignore-scripts --prefix examples/frameworks/mcp-client
+          npm install --package-lock-only --ignore-scripts --prefix tutorials/marketing-agent
+          uv pip compile --python-version 3.12 --generate-hashes examples/frameworks/python_fastapi/requirements.txt -o examples/frameworks/python_fastapi/requirements.lock
+          uv pip compile --python-version 3.12 --generate-hashes examples/frameworks/langgraph/requirements.txt -o examples/frameworks/langgraph/requirements.lock
+
+      - name: Validate repository contracts
+        run: npm run verify
+
+      - name: Validate published artifacts and examples
+        run: npm run verify:registry
+
+      - name: Commit registry changes on main
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "Published package references are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-versions.json README.md CHANGELOG.md docs examples tutorials
+          git commit -m "docs: sync published package versions"
+          git push origin HEAD:main

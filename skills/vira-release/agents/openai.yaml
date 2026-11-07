@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Release"
+  short_description: "Vira Release tasks and workflow guidance"
+  default_prompt: "Use $vira-release to complete this documented Vira release workflow."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Observe Teach"
+  short_description: "Vira Observe Teach tasks and workflow guidance"
+  default_prompt: "Use $vira-observe-teach to complete this documented Vira observe teach workflow."

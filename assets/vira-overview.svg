@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+<title id="title">Vira behavior control lifecycle</title><desc id="desc">AI system behavior moves through observe, teach, evaluate, approve, release, runtime and trace.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8FAFC"/><stop offset="1" stop-color="#EEF2FF"/></linearGradient>
+  <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-opacity="0.10"/></filter>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#94A3B8"/></marker>
+</defs>
+<rect width="1200" height="620" rx="32" fill="url(#bg)"/>
+<text x="70" y="80" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#4F46E5">VIRA</text>
+<text x="70" y="126" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="38" font-weight="750" fill="#0F172A">From repeated correction to released behavior</text>
+<text x="70" y="160" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" fill="#475569">A governed loop for improving how AI systems behave in production.</text>
+<g filter="url(#shadow)">
+  <rect x="70" y="220" width="210" height="140" rx="24" fill="#FFFFFF"/>
+  <rect x="305" y="220" width="210" height="140" rx="24" fill="#FFFFFF"/>
+  <rect x="540" y="220" width="210" height="140" rx="24" fill="#FFFFFF"/>
+  <rect x="775" y="220" width="210" height="140" rx="24" fill="#FFFFFF"/>
+  <rect x="895" y="420" width="210" height="120" rx="24" fill="#FFFFFF"/>
+  <rect x="610" y="420" width="240" height="120" rx="24" fill="#FFFFFF"/>
+  <rect x="325" y="420" width="240" height="120" rx="24" fill="#FFFFFF"/>
+  <rect x="70" y="420" width="210" height="120" rx="24" fill="#FFFFFF"/>
+</g>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+  <circle cx="110" cy="260" r="18" fill="#EEF2FF"/><text x="110" y="266" text-anchor="middle" font-size="16" font-weight="800" fill="#4F46E5">1</text>
+  <text x="105" y="305" font-size="22" font-weight="750" fill="#0F172A">Observe</text><text x="105" y="334" font-size="15" fill="#64748B">feedback · outcome · trace</text>
+  <circle cx="345" cy="260" r="18" fill="#F5F3FF"/><text x="345" y="266" text-anchor="middle" font-size="16" font-weight="800" fill="#7C3AED">2</text>
+  <text x="340" y="305" font-size="22" font-weight="750" fill="#0F172A">Teach</text><text x="340" y="334" font-size="15" fill="#64748B">proposal from evidence</text>
+  <circle cx="580" cy="260" r="18" fill="#ECFEFF"/><text x="580" y="266" text-anchor="middle" font-size="16" font-weight="800" fill="#0891B2">3</text>
+  <text x="575" y="305" font-size="22" font-weight="750" fill="#0F172A">Evaluate</text><text x="575" y="334" font-size="15" fill="#64748B">test candidate behavior</text>
+  <circle cx="815" cy="260" r="18" fill="#ECFDF5"/><text x="815" y="266" text-anchor="middle" font-size="16" font-weight="800" fill="#059669">4</text>
+  <text x="810" y="305" font-size="22" font-weight="750" fill="#0F172A">Approve</text><text x="810" y="334" font-size="15" fill="#64748B">explicit gate</text>
+  <text x="930" y="466" font-size="22" font-weight="750" fill="#0F172A">Release</text><text x="930" y="495" font-size="15" fill="#64748B">eligible behavior</text>
+  <text x="655" y="466" font-size="22" font-weight="750" fill="#0F172A">Runtime</text><text x="655" y="495" font-size="15" fill="#64748B">resolve what applies now</text>
+  <text x="370" y="466" font-size="22" font-weight="750" fill="#0F172A">Simple trace</text><text x="370" y="495" font-size="15" fill="#64748B">what was selected + applied</text>
+  <text x="105" y="466" font-size="22" font-weight="750" fill="#0F172A">New evidence</text><text x="105" y="495" font-size="15" fill="#64748B">loop improves again</text>
+</g>
+<g fill="none" stroke="#94A3B8" stroke-width="3" marker-end="url(#arrow)">
+  <path d="M280 290H300"/><path d="M515 290H535"/><path d="M750 290H770"/>
+  <path d="M985 290C1080 300 1090 395 1025 415"/>
+  <path d="M895 480H855"/><path d="M610 480H570"/><path d="M325 480H285"/>
+  <path d="M175 420C120 390 120 380 170 365"/>
+</g>
+<rect x="1010" y="70" width="120" height="42" rx="21" fill="url(#accent)"/><text x="1070" y="97" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">governed loop</text>
+</svg>

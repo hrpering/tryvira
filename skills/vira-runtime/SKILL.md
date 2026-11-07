@@ -1,0 +1,35 @@
+---
+name: vira-runtime
+license: "Proprietary; see LICENSE"
+description: "Resolve or execute governed Vira behavior and interpret runtime receipts safely."
+---
+
+# Runtime
+
+Use the documented runtime operation and scoped boundary. Preserve authority digests, receipts, abstain/deny results, traces and idempotency. Semantic candidate selection is not authorization. Do not reconstruct runtime authority client-side or bypass released/eligible revision checks.
+
+## Activate this skill when
+Resolving/applying governed behavior at runtime or tracing a decision/receipt. Do not use semantic matching alone as permission to act.
+
+## Inputs and preconditions
+Identify the application request boundary, task/context, permitted scope, selected released behavior identity, operation type, and request/trace correlation approach. Ensure credentials remain server-side.
+
+## Workflow
+1. Discover capabilities and check whether the app should use semantic selection, governed resolve, or runtime execution for this use case.
+2. Call the documented runtime operation with explicit context and preserve the returned decision, authority digest, receipt, and request ID.
+3. For runtime capability negotiation, model serving, behavior capsules, or projections, use that operation's own request/response contract; product capability discovery is not runtime capability attestation.
+4. Interpret only fields and projection semantics defined by the installed public SDK/API contract for this operation. Do not assume one generic ALLOW/DENY response field; do not rebuild policy locally or skip post-model verification where required.
+5. Emit minimized outcome/feedback linked to the real request/receipt when permitted.
+6. Reproduce behavior with a fixture covering allow, deny, abstain, timeout, and stale release; inspect trace correlation.
+
+## Deliverable and failure handling
+Show the code boundary, result mapping, fixture evidence, and trace fields to inspect. On abstain/deny/error, follow the host's explicit safe failure policy; never convert it into allow or bypass Vira.
+
+## References
+
+- [runtime](https://github.com/hrpering/tryvira/blob/main/docs/runtime.md)
+- [traces](https://github.com/hrpering/tryvira/blob/main/docs/traces.md)
+- [security-model](https://github.com/hrpering/tryvira/blob/main/docs/security-model.md)
+- [javascript-sdk](https://github.com/hrpering/tryvira/blob/main/docs/reference/javascript-sdk.md)
+- [api](https://github.com/hrpering/tryvira/blob/main/docs/reference/api.md)
+- [published SDK method inventory](https://github.com/hrpering/tryvira/blob/main/docs/reference/sdk-method-inventory.md)

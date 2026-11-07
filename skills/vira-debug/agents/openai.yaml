@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Debug"
+  short_description: "Vira Debug tasks and workflow guidance"
+  default_prompt: "Use $vira-debug to complete this documented Vira debug workflow."
