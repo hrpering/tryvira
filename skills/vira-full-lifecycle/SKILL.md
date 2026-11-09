@@ -30,7 +30,7 @@ Inspect the application and gather the goal, stack, selected surface, `VIRA_API_
 
 ### 3. Evaluate the exact candidate
 9. Build positive, negative, boundary, ambiguous, and adversarial cases from the approved policy. Use an evaluation plan when criteria must be reviewed/sealed before execution. Keep tenant data out of fixtures unless specifically authorized.
-10. Create a persisted evaluation using its required `evaluationId`/plan and exact candidate/revision/artifact digest fields from the current public contract. Do not substitute caller-asserted `passed`, score, or run IDs for server evaluation evidence.
+10. Start a persisted evaluation with a unique `id`, the exact supported `targetArtifact` identity/digest, input-only `dataset` cases, and `threshold` (or the operation-specific schema). If criteria must be sealed, create and seal an evaluation plan separately before execution. Read back the server-returned `evaluation.id`; pass that value as `evaluationId` only to a subsequent Pack evaluation. Never use a guessed `evaluationId` to start a run or substitute caller-asserted `passed`, score, or run IDs for server evaluation evidence.
 11. Run only a supported evaluation surface. Inspect persisted results, regressions, failure cases, and exact digest. Separate Behavior Evaluation from Response Quality & Decision and from Strategy structural simulation.
 12. If evaluation fails or the candidate changes, correct or create a new immutable candidate and re-evaluate it. Where the published surface provides improvement proposals/Behavior Revision Candidates, keep proposal review, candidate evaluation and acceptance separate; never carry a pass result across changed content/digests.
 
@@ -65,6 +65,7 @@ Return the staged checklist with surface, IDs/digests, status, persisted evidenc
 - [Runtime](https://github.com/hrpering/tryvira/blob/main/docs/runtime.md)
 - [Packs](https://github.com/hrpering/tryvira/blob/main/docs/packs.md)
 - [Evaluation](https://github.com/hrpering/tryvira/blob/main/docs/evaluation-and-approval.md)
+- [HTTP API evaluation contract](https://github.com/hrpering/tryvira/blob/main/docs/reference/api.md)
 - [Release](https://github.com/hrpering/tryvira/blob/main/docs/release.md)
 - [Teach](https://github.com/hrpering/tryvira/blob/main/docs/teach.md)
 - [Runnable evaluation and Teach skill resources](https://github.com/hrpering/tryvira/blob/main/skills/README.md#execution-resources)
