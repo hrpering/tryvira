@@ -25,6 +25,8 @@ Confirm API deployment URL, credential scope, evidence source, consent/retention
 6. Read current proposal status before review; perform the explicit accepted/rejected/corrected transition with an authorized reviewer identity when supported.
 7. If promotion creates a candidate revision, evaluate and release it through the separate documented workflow.
 
+The SDK inventory includes an `outcome` helper, but the public reference does not define its event-specific fields. Do not invent an outcome payload or claim outcome attribution is wired until the selected published client/API contract documents it. The marketing tutorial uses a separate synthetic correction event as Teach input; it is not a business-outcome capture example.
+
 ## Deliverable and failure handling
 Return evidence/proposal IDs, redacted summaries, state transitions, and the next required human step. Stop for absent consent, nonexistent evidence IDs, unsupported MCP transition, or unclear target; never invent evidence or claim a runtime release.
 

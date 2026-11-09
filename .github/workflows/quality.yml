@@ -61,6 +61,9 @@ jobs:
           npm run build --prefix examples/frameworks/node-next
           npm ci --prefix examples/frameworks/mcp-client
           node --check examples/frameworks/mcp-client/client.mjs
+          npm ci --prefix tutorials/marketing-agent
+          node --check tutorials/marketing-agent/06-runtime-resolve.mjs
+          node --check tutorials/marketing-agent/07-quality-decision.mjs
 
       - name: Install uv
         uses: astral-sh/setup-uv@v10.3.2

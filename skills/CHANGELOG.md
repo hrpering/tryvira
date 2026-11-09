@@ -1,5 +1,12 @@
 # Vira Agent Skills changelog
 
+## 0.3.4 — 2026-11-09
+
+- Added an explicit specialist-to-specialist handoff map for the full lifecycle skill.
+- Clarified that unsupported outcome event schemas must not be invented.
+- Fixed the lifecycle skill-resource link and corrected tutorial ordering around Pack authoring, release, semantic resolution, and runtime.
+
+
 ## 0.3.3 — 2026-11-09
 
 - Removed loopback/fake-service integration tests and stub-only customer examples; documented the honest limits of static checks.

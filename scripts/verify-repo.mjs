@@ -157,7 +157,7 @@ for (const file of files) {
 }
 
 const packageJson = JSON.parse(await readFile(join(root, "package.json"), "utf8"));
-if (packageJson.version !== "0.10.1") failures.push("package.json version must be 0.10.1");
+if (packageJson.version !== "0.10.2") failures.push("package.json version must be 0.10.2");
 if (packageJson.license !== "UNLICENSED") failures.push("documentation package license must be UNLICENSED");
 if (packageJson.scripts?.["verify:registry"] !== "node scripts/verify-registry.mjs") failures.push("package.json must expose verify:registry");
 if (packageJson.scripts?.["sync:registry"] !== "node scripts/sync-published-packages.mjs") failures.push("package.json must expose sync:registry");
@@ -187,7 +187,7 @@ for (const file of files) {
 }
 
 const lockJson = JSON.parse(await readFile(join(root, "package-lock.json"), "utf8"));
-if (lockJson.version !== "0.10.1" || lockJson.packages?.[""]?.version !== "0.10.1") failures.push("package-lock.json version must be 0.10.1");
+if (lockJson.version !== "0.10.2" || lockJson.packages?.[""]?.version !== "0.10.2") failures.push("package-lock.json version must be 0.10.2");
 
 const readme = await readFile(join(root, "README.md"), "utf8");
 for (const marker of [

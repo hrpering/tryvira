@@ -22,8 +22,11 @@ only when the task reaches that boundary.
 - Use stable idempotency keys for retryable mutations. Do not retry an unknown
   outcome with a new logical key.
 - Do not run production mutations, publish packages, or release behavior while
-  creating/evaluating these skills. Use fictional fixtures and authorized local
-  test doubles only.
+  creating/evaluating these skills. Use synthetic inputs for local policy tests.
+  A local fake or stub may test an application's own wrapper, but it never
+  verifies Vira and must not appear as a customer integration or service result.
+  Verify integration behavior only against the configured supported surface in
+  an authorized isolated non-production scope.
 
 Read [authentication and scope](../docs/auth-and-scope.md), [security
 model](../docs/security-model.md), [evaluation and approval](../docs/evaluation-and-approval.md),

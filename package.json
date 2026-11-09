@@ -1,6 +1,6 @@
 {
   "name": "tryvira-public-documentation",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "private": true,
   "description": "Public Vira documentation, published client references, canonical authoring, capability discovery, examples, troubleshooting, and architecture vision.",
   "type": "module",

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.10.2 — 2026-11-09
+
+- Added provider-backed runtime and quality decisions to the Marketing Agent walkthrough; corrected semantic-resolution ordering and copyable approval commands.
+- Added specialist skill handoff routing and documented the public outcome-payload and Behavior Point readback gaps instead of guessing schemas.
+
+
 ## 0.10.1 — 2026-11-09
 
 - Removed fake loopback service tests and stub-only framework examples from customer-facing materials and CI.

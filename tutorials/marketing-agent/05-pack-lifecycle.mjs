@@ -38,11 +38,11 @@ const objects = {
     }
   ],
   signals: [
-    { key: "quality.missing_measurement" },
-    { key: "feedback.user_correction" }
+    { key: `quality.missing_measurement.${runId}` },
+    { key: `feedback.user_correction.${runId}` }
   ],
   evaluations: [
-    { id: "marketing.launch.public-example" }
+    { id: `marketing.launch.${runId}` }
   ]
 };
 

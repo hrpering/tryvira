@@ -98,15 +98,43 @@ class PublicContractChecks(unittest.TestCase):
         quality = self.read(".github/workflows/quality.yml")
         client = self.read("tutorials/marketing-agent/_client.mjs")
         tutorial = self.read("tutorials/marketing-agent/README.md")
+        runtime_step = self.read("tutorials/marketing-agent/06-runtime-resolve.mjs")
+        quality_step = self.read("tutorials/marketing-agent/07-quality-decision.mjs")
+        pack_step = self.read("tutorials/marketing-agent/05-pack-lifecycle.mjs")
         self.assertNotIn("lifecycle-mock.test.mjs", quality)
         self.assertNotIn("VIRA_ALLOW_INSECURE_LOCALHOST", client)
         self.assertIn("new ViraClient", client)
         self.assertIn("published `@tryvira/sdk`", tutorial)
         self.assertIn("product access is still under active development", tutorial)
+        self.assertEqual(package["dependencies"]["openai"], "7.53.0")
         self.assertEqual(package["scripts"]["check:safety"], "node --test safety.test.mjs")
         self.assertFalse((ROOT / "tutorials/marketing-agent/lifecycle-mock.test.mjs").exists())
         self.assertFalse((ROOT / "examples/frameworks/node").exists())
         self.assertFalse((ROOT / "examples/frameworks/python").exists())
+        self.assertIn('projectionMode !== "active"', runtime_step)
+        self.assertIn("openai.responses.create", runtime_step)
+        self.assertIn("writeFile", runtime_step)
+        self.assertIn("runtimeState.candidate", quality_step)
+        self.assertIn("openai.responses.create", quality_step)
+        self.assertNotIn('output:"Focus on acquisition with paid media."', quality_step)
+        self.assertIn("quality.missing_measurement.${runId}", pack_step)
+        self.assertIn("marketing.launch.${runId}", pack_step)
+        self.assertLess(tutorial.index("node 09-release-pack.mjs"), tutorial.index("node 04-semantic-resolve.mjs"))
+        self.assertLess(tutorial.index("node 04-semantic-resolve.mjs"), tutorial.index("node 06-runtime-resolve.mjs"))
+        self.assertIn("does not currently specify the event-specific payload", tutorial)
+
+    def test_full_lifecycle_skill_has_explicit_specialist_handoffs(self):
+        full = self.read("skills/vira-full-lifecycle/SKILL.md")
+        self.assertIn("Specialist routing and handoff", full)
+        for name in (
+            "vira-get-started", "vira-npm-cli", "vira-integrate-app", "vira-js-sdk",
+            "vira-python-sdk", "vira-http-api", "vira-mcp", "vira-framework-integration",
+            "vira-author-behavior", "vira-signals", "vira-strategies", "vira-build-pack",
+            "vira-packs", "vira-evaluate", "vira-evaluate-release", "vira-release",
+            "vira-runtime", "vira-observe-teach", "vira-studio", "vira-debug", "vira-lifecycle",
+        ):
+            self.assertIn(f"`{name}`", full)
+        self.assertIn("does not define its event-specific payload", full)
 
     def test_complete_published_sdk_method_sets_are_mapped_to_skills(self):
         inventory = self.read("docs/reference/sdk-method-inventory.md")
