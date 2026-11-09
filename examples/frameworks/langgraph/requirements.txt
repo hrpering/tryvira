@@ -2,4 +2,4 @@ langgraph==1.2.0
 langchain-openai==1.7.4
 langchain-core==1.7.6
 tryvira-sdk==0.1.43
-pytest==9.0.2
+pytest==9.2.0
