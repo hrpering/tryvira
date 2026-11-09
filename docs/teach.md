@@ -26,6 +26,55 @@ Teach starts from evidence, not a blank “improve yourself” request. Evidence
 
 Every proposal should remain traceable to the admitted evidence and scope used to produce it.
 
+## Run a Teach analysis
+
+The JavaScript and Python SDKs expose a persisted Teach analysis operation. Configure `VIRA_API_URL` with the API deployment root supplied by the Vira account/operator; do not use the Studio URL or append `/v1`. Keep `VIRA_API_KEY` in a server-side secret store. If the API URL is missing, ask for it rather than guessing.
+
+JavaScript:
+
+```ts
+const queued = await vira.createTeachAnalysis(
+  [evidenceId],
+  {
+    analysisId: "teach-analysis-demo-001",
+    controlPointId: behaviorPointId,
+    summary: "Review the selected evidence for this behavior point.",
+    idempotencyKey: "teach-analysis-demo-001",
+  },
+);
+
+if (queued?.status !== 202) throw new Error("TEACH_ANALYSIS_NOT_QUEUED");
+const analysisId = String(queued.body.analysisId ?? "");
+if (!analysisId) throw new Error("TEACH_ANALYSIS_ID_MISSING");
+
+const current = await vira.getTeachAnalysis(analysisId);
+if (current?.status !== 200 || current.body.analysisId !== analysisId) {
+  throw new Error("TEACH_ANALYSIS_READBACK_NOT_CONFIRMED");
+}
+console.log({ analysisId, status: current.body.status, teachRunId: current.body.teachRunId });
+```
+
+Python:
+
+```python
+queued = client.create_teach_analysis(
+    [evidence_id],
+    analysis_id="teach-analysis-demo-001",
+    control_point_id=behavior_point_id,
+    summary="Review the selected evidence for this behavior point.",
+    idempotency_key="teach-analysis-demo-001",
+)
+if queued is None or queued.status != 202:
+    raise RuntimeError("TEACH_ANALYSIS_NOT_QUEUED")
+analysis_id = str(queued.body.get("analysisId", ""))
+current = client.get_teach_analysis(analysis_id)
+if current is None or current.status != 200 or current.body.get("analysisId") != analysis_id:
+    raise RuntimeError("TEACH_ANALYSIS_READBACK_NOT_CONFIRMED")
+print({"analysisId": analysis_id, "status": current.body.get("status"), "teachRunId": current.body.get("teachRunId")})
+```
+
+Creation is asynchronous. If the readback state is queued or running, check the same `analysisId` later. Do not report synthesis as complete merely because the create call returned. The [runnable skill resource](../skills/vira-observe-teach/examples/README.md) includes a gated SDK runner.
+
 ## Signal intelligence
 
 Teach may discover that useful evidence is not yet represented by a governed Signal. Missing Signals should enter the Signal discovery/review/mapping lifecycle instead of being silently promoted to production facts.
@@ -66,23 +115,58 @@ await vira.submitTeachEvidence({
 });
 ```
 
-Create and transition a proposal:
+Create a proposal and prepare a persisted evaluation. Evidence submission and proposal creation do not approve or promote behavior:
 
 ```ts
-const proposal = await vira.createTeachProposal({
-  evidenceId: "evidence-marketing-001",
+const created = await vira.createTeachProposal({
+  // Use the ID returned for evidence that was actually admitted in this scope.
+  evidenceId,
   controlPointId: "<behavior-point-id>",
   summary: "Launch plans should preserve full-funnel coverage and measurement.",
 });
+const proposalId = String(created?.body?.proposal?.id ?? "");
+if (!proposalId) throw new Error("TEACH_PROPOSAL_NOT_CREATED");
 
-await vira.transitionTeachProposal(proposalId, "review", {
-  decision: "APPROVE",
-});
+// Create and read an evaluation bound to this proposal. This does not approve it.
+const started = await vira.startEvaluation({
+  id: `teach-proposal-evaluation-${proposalId}`,
+  targetArtifact: {
+    proposalId,
+    criteria: ["Address the evidence-backed change without expanding scope."],
+  },
+  dataset: [{
+    id: "<case-id>",
+    input: "<representative input from your application>",
+    criteria: ["<observable requirement from the reviewed Behavior Point>"],
+  }],
+  threshold: 0.8,
+}, { idempotencyKey: `teach-proposal-evaluation:${proposalId}` });
+const evaluationId = String(started?.body?.evaluation?.id ?? "");
+if (started?.status !== 201 || !evaluationId) throw new Error("TEACH_EVALUATION_NOT_PERSISTED");
+const evaluation = await vira.getEvaluation(evaluationId);
+if (evaluation?.body?.evaluation?.targetArtifact?.proposalId !== proposalId) {
+  throw new Error("TEACH_EVALUATION_PROPOSAL_BINDING_MISMATCH");
+}
+```
 
+Only after an authorized human reviewer has inspected the proposal and evaluation, perform the separately requested transition. Do not execute this block automatically as part of proposal creation or evaluation:
+
+```ts
+// Run only with explicit authorization from the designated reviewer.
+await vira.transitionTeachProposal(proposalId, "review", { decision: "APPROVE" });
+```
+
+After the server records the proposal as reviewed, pass its persisted evaluation ID in the separate evaluate transition:
+
+```ts
 await vira.transitionTeachProposal(proposalId, "evaluate", {
   evaluationId,
 });
+```
 
+Only after a separate explicit promotion decision, run:
+
+```ts
 await vira.transitionTeachProposal(proposalId, "promote", {});
 ```
 

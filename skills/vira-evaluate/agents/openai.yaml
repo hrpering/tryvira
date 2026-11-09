@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Evaluate"
-  short_description: "Vira Evaluate tasks and workflow guidance"
-  default_prompt: "Use $vira-evaluate to complete this documented Vira evaluate workflow."
+  short_description: "Run and review Vira behavior evaluations"
+  default_prompt: "Use $vira-evaluate to prepare or run a documented Vira Behavior Evaluation, then inspect its persisted result without implying approval or release."

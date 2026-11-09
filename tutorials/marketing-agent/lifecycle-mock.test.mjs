@@ -108,7 +108,7 @@ const server = createServer(async (request, response) => {
   return reply(response, 404, { error: "MOCK_ROUTE_NOT_FOUND", path, method: request.method });
 });
 
-function runScript(file, overrides = {}) {
+function runScript(file, overrides = {}, args = []) {
   const env = {
     PATH: process.env.PATH,
     VIRA_API_URL: `http://127.0.0.1:${server.address().port}`,
@@ -134,7 +134,7 @@ function runScript(file, overrides = {}) {
   };
   for (const [key, value] of Object.entries(env)) if (value === undefined) delete env[key];
   return new Promise((resolve) => {
-    const child = spawn(process.execPath, [file], { cwd: tutorialDir, env, stdio: ["ignore", "pipe", "pipe"] });
+    const child = spawn(process.execPath, [file, ...args], { cwd: tutorialDir, env, stdio: ["ignore", "pipe", "pipe"] });
     const stdout = [];
     const stderr = [];
     child.stdout.on("data", (chunk) => stdout.push(chunk));
@@ -151,8 +151,8 @@ function runScript(file, overrides = {}) {
   });
 }
 
-async function assertScriptSuccess(file, overrides) {
-  const result = await runScript(file, overrides);
+async function assertScriptSuccess(file, overrides, args = []) {
+  const result = await runScript(file, overrides, args);
   assert.equal(result.error, undefined, result.error?.message);
   assert.equal(result.status, 0, `${file}\n${result.stdout}\n${result.stderr}`);
   return result.stdout;
@@ -227,10 +227,20 @@ test("marketing tutorial runs its governed lifecycle against a local mock only",
     assert.match(missingTeachApproval.stderr, /VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL/);
     assert.equal(requests.length, beforeBlockedRelease, "Teach review happened before explicit approval");
 
-    await assertScriptSuccess("10-review-teach-proposal.mjs", { VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL: "true" });
-    assert.equal(teachProposalStatus, "PROMOTED");
+    await assertScriptSuccess("10-review-teach-proposal.mjs", { VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL: "true" }, ["review-evaluate"]);
+    assert.equal(teachProposalStatus, "EVALUATED");
     assert.equal(requests.some((entry) => entry.path === `/v1/teach/proposals/${proposalId}/review`), true);
     assert.equal(requests.some((entry) => entry.path === `/v1/teach/proposals/${proposalId}/evaluate`), true);
+    assert.equal(requests.some((entry) => entry.path === `/v1/teach/proposals/${proposalId}/promote`), false, "evaluation must stop before separately authorized promotion");
+
+    beforeBlockedRelease = requests.length;
+    const missingPromotionApproval = await runScript("10-review-teach-proposal.mjs", {}, ["promote"]);
+    assert.notEqual(missingPromotionApproval.status, 0);
+    assert.match(missingPromotionApproval.stderr, /VIRA_TUTORIAL_PROMOTE_TEACH_PROPOSAL/);
+    assert.equal(requests.length, beforeBlockedRelease, "Teach promotion happened before separate authorization");
+
+    await assertScriptSuccess("10-review-teach-proposal.mjs", { VIRA_TUTORIAL_PROMOTE_TEACH_PROPOSAL: "true" }, ["promote"]);
+    assert.equal(teachProposalStatus, "PROMOTED");
     assert.equal(requests.some((entry) => entry.path === `/v1/teach/proposals/${proposalId}/promote`), true);
 
     const writes = requests.filter((entry) => ["POST", "DELETE"].includes(entry.method) && !entry.path.endsWith("/test"));

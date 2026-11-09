@@ -249,11 +249,12 @@ Python signatures are `install_pack(pack_id, variables)` and `evaluate_pack(pack
 
 ```text
 submit_teach_evidence
+create_teach_analysis / get_teach_analysis
 create_teach_proposal
 transition_teach_proposal
 ```
 
-Proposal transitions include `review`, `evaluate`, and `promote`. Promotion does not silently grant runtime release authority.
+`create_teach_analysis(evidence_ids, analysis_id=..., control_point_id=..., summary=..., idempotency_key=...)` starts an asynchronous analysis. Check for HTTP 202, retain the returned `analysisId`, and call `get_teach_analysis(analysis_id)` to read its persisted state. Proposal transitions include `review`, `evaluate`, and `promote`. Promotion does not silently grant runtime release authority.
 
 ## Behavior Evaluation
 

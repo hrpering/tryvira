@@ -178,6 +178,8 @@ Promotion does not silently grant release authority.
 
 Treat imported conversations as user data: minimize fields, honor retention/consent, and use revocation where required. A recommendation or proposal promotion does not itself release behavior.
 
+Teach analysis creation is asynchronous and returns HTTP 202 with an `analysisId`. Read the same ID with `GET /v1/teach/analyses/{analysisId}`; report the returned state and do not treat queue acceptance as completed synthesis. The SDK method signatures and a runnable example are documented in [Teach AI](../teach.md).
+
 ## Behavior Evaluation
 
 | Method | Path | Purpose |

@@ -1,5 +1,24 @@
 # Vira Agent Skills changelog
 
+## 0.3.2 — 2026-11-09
+
+- Split marketing tutorial Teach review/evaluation from promotion and require a separate promotion opt-in.
+- Added regression assertions that review/evaluation stop before promotion and promotion requires separate explicit authorization.
+
+## 0.3.1 — 2026-11-09
+
+- Corrected the Teach analysis JavaScript example to pass idempotency in the published SDK options argument.
+- Split proposal evaluation from review and promotion so example code preserves explicit human authority boundaries.
+- Added regression checks for the SDK call shape and separate transition instructions.
+
+## 0.3.0 — 2026-11-09
+
+- Added executable, opt-in gated Pack-bound Behavior Evaluation and asynchronous Teach analysis/readback SDK examples; the examples call the configured Vira API and are not simulated API sessions.
+- Clarified API deployment-root configuration, server-side credential handling, persisted operation IDs, and async completion checks in skills and public references.
+- Added request-shape and mutation-gate checks to standard skill verification; CI packages both skills and asserts runnable SDK examples are included in `.skill` archives.
+- Revalidated all 22 skills with official OpenAI and Anthropic structural validators and packaged all 22 with Anthropic's official packager. No Vira API, model provider, or production service was called.
+- Anthropic model evaluation remains unrun because the `claude` executable is unavailable; local FastAPI dependency installation was blocked by PyPI DNS.
+
 ## 0.2.0 — 2026-11-07
 
 - Added specialist Signals and Strategies skills and trigger cases.

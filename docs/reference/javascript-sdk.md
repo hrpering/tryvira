@@ -278,11 +278,12 @@ Import never activates behavior. Installation materializes canonical objects; ev
 
 ```text
 submitTeachEvidence
+createTeachAnalysis / getTeachAnalysis
 createTeachProposal
 transitionTeachProposal
 ```
 
-Proposal transitions include `review`, `evaluate`, and `promote`. Promotion still does not silently grant runtime release authority.
+`createTeachAnalysis(evidenceIds, { analysisId, controlPointId, summary })` starts an asynchronous analysis. Check for HTTP 202, retain the returned `analysisId`, and use `getTeachAnalysis(analysisId)` to read its persisted state. Proposal transitions include `review`, `evaluate`, and `promote`. Promotion still does not silently grant runtime release authority.
 
 ## Behavior Evaluation
 

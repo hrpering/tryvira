@@ -2,6 +2,8 @@
 
 Vira is a **behavior-control layer for AI systems**.
 
+For a concise, public-facing explanation of the problem Vira addresses and the guarantees its current integration boundaries do and do not provide, see [Vira's product overview](product-positioning.md).
+
 It is designed for a common production problem: an AI system works, but teams keep correcting the same kinds of behavior again and again. Those corrections often end up scattered across prompts, application code, tool rules, evaluation scripts, and tribal knowledge.
 
 Vira turns that repeated correction into a governed lifecycle.

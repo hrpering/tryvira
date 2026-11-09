@@ -2,6 +2,9 @@
 
 ## Unreleased documentation and security alignment
 
+- Added a public-facing Vira product overview describing behavior lifecycle value with explicit integration, evaluation, and availability limits; avoided competitor comparisons and unsupported outcome claims.
+- Advanced the Agent Skills library to 0.3.0 with runnable, gated Pack evaluation and async Teach analysis/readback examples; connected their offline tests and package-content checks to CI.
+- Split Teach proposal review/evaluation from promotion in the lifecycle tutorial, requiring a distinct authorization gate and regression assertion for each phase.
 - Expanded the Agent Skills library from 20 to 22 skills, adding focused Signals and Strategies workflows, coverage/gap analysis, installation guidance, trigger and workflow evaluation datasets, local validation, standalone `.skill` packaging, and CI regression checks.
 - Added runnable Next.js/OpenAI Agents and Vercel AI SDK routes, FastAPI, LangGraph/LangChain, and MCP client examples with pinned dependencies, Python hash locks, deployment/license notes, and CI checks. A read-only contract comparison corrected Python examples to use `serve_behavior_projection`; offline tests/builds passed. Live Vira, provider/model, Studio, package publishing, and remote repository updates remain unclaimed.
 - Synced public package references to registry latest (JS SDK 0.1.43, MCP 0.1.44, Python SDK 0.1.43).

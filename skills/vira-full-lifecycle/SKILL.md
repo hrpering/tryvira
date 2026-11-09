@@ -12,7 +12,7 @@ Coordinate a user's complete governed behavior task across supported Vira surfac
 The user asks for an end-to-end Vira outcome, such as connecting an app, authoring governed behavior, evaluating it, and preparing or performing a release. Route isolated SDK errors or one artifact operation to a specialist skill. Never use this skill to bypass approval or production controls.
 
 ## Inputs and preconditions
-Inspect the application and gather the goal, stack, selected surface, organization/project/environment scope, caller identity/capabilities, behavior and policy requirements, admitted evidence source, candidate/revision identity, evaluation constraints, reviewer, runtime integration point, and rollback target. Use synthetic data and a non-production scope by default. Treat production mutations as requiring explicit authorization and the product's own permissions/approval gates.
+Inspect the application and gather the goal, stack, selected surface, `VIRA_API_URL` API deployment root, organization/project/environment scope, caller identity/capabilities, behavior and policy requirements, admitted evidence source, candidate/revision identity, evaluation constraints, reviewer, runtime integration point, and rollback target. The API root is not the Studio URL and must not include `/v1`; ask for it if missing. Keep `VIRA_API_KEY` in server-side secret storage. Use synthetic data and a non-production scope by default. Treat production mutations as requiring explicit authorization and the product's own permissions/approval gates.
 
 ## Workflow
 
@@ -43,7 +43,7 @@ Inspect the application and gather the goal, stack, selected surface, organizati
 16. Apply the released behavior through the documented runtime resolve/execute/projection path. Preserve semantic context, scope, digests, idempotency keys, receipts, request IDs, and traces.
 17. Do not interpret a semantic candidate or a generic HTTP success as authorization. Inspect the actual public response contract and fail closed on deny, abstain, missing release, verifier, scope, projection, digest, or policy errors.
 18. Verify the application uses the returned governed context. When supported, compare Vira OFF/current/candidate through server-run comparative evaluation and review its persisted comparison/finding records; never submit client-authored arm outputs. Otherwise run a clearly scoped authorized OFF/prior/new comparison. Record outcomes, latency, and token use only when measured.
-19. Collect permitted observations/outcomes and create Teach evidence/proposals. Review, accept, reject, or correct proposals as separate actions. A proposal is not active behavior.
+19. Collect permitted observations/outcomes and create Teach evidence/proposals. When running Teach analysis, retain `analysisId` and read back its state until completion; queue acceptance alone is not a completed run. Review, accept, reject, or correct proposals as separate actions. A proposal is not active behavior.
 20. For an accepted revision, create/evaluate/accept a new immutable candidate, then create a Pack Revision only when that packaging path is required. Inspect its diff, validate and request/record approval/release as distinct transitions, materialize the approved exact revision, and verify the release. Preserve the previous eligible identity for rollback.
 21. Verify rollback readiness and, when explicitly requested and authorized, restore the previously eligible canonical identity through the documented release contract. The published SDK has no generic `rollback()` method. Inspect runtime readback and trace after restoring it.
 
@@ -67,5 +67,6 @@ Return the staged checklist with surface, IDs/digests, status, persisted evidenc
 - [Evaluation](https://github.com/hrpering/tryvira/blob/main/docs/evaluation-and-approval.md)
 - [Release](https://github.com/hrpering/tryvira/blob/main/docs/release.md)
 - [Teach](https://github.com/hrpering/tryvira/blob/main/docs/teach.md)
+- [Runnable evaluation and Teach skill resources](https://github.com/hrpering/tryvira/blob/main/skills/README.md#execution-resources)
 - [Published SDK method inventory](https://github.com/hrpering/tryvira/blob/main/docs/reference/sdk-method-inventory.md)
 - [Executable approved Teach-to-Pack Revision example](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/REVISION-WORKFLOW.md)

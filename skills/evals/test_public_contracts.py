@@ -47,6 +47,15 @@ class PublicContractChecks(unittest.TestCase):
         self.assertIn("Studio UI flows are unverified", matrix)
         self.assertIn("not proof a page is currently accessible or operational", skill)
 
+    def test_public_product_positioning_keeps_claims_within_documented_boundaries(self):
+        overview = self.read("docs/product-positioning.md")
+        readme = self.read("README.md")
+        self.assertIn("cannot intercept it", overview)
+        self.assertIn("Results are limited to the tested artifact", overview)
+        self.assertIn("product access is not open yet", overview)
+        self.assertIn("does not guarantee that every model response is correct", readme)
+        self.assertIn("docs/product-positioning.md", readme)
+
 
 
     def test_workflow_scenarios_cover_authority_async_security_and_surface_gaps(self):
@@ -156,6 +165,34 @@ class PublicContractChecks(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_pack_evaluation_skill_runner_is_real_api_and_explicitly_gated(self):
+        runner = self.read("skills/vira-evaluate/examples/run-pack-evaluation.mjs")
+        skill = self.read("skills/vira-evaluate/SKILL.md")
+        self.assertIn("VIRA_TUTORIAL_NON_PRODUCTION", runner)
+        self.assertIn("VIRA_TUTORIAL_ALLOW_MUTATIONS", runner)
+        self.assertIn("new ViraClient", runner)
+        self.assertIn("baseUrl", runner)
+        self.assertIn("VIRA_API_URL", skill)
+        self.assertNotRegex(runner, r"vira_live_[A-Za-z0-9_-]{20,}")
+
+    def test_teach_analysis_skill_runner_is_real_api_and_explicitly_gated(self):
+        runner = self.read("skills/vira-observe-teach/examples/run-teach-analysis.mjs")
+        skill = self.read("skills/vira-observe-teach/SKILL.md")
+        self.assertIn("VIRA_TUTORIAL_NON_PRODUCTION", runner)
+        self.assertIn("VIRA_TUTORIAL_ALLOW_MUTATIONS", runner)
+        self.assertIn("new ViraClient", runner)
+        self.assertIn("baseUrl", runner)
+        self.assertIn("VIRA_API_URL", skill)
+        self.assertNotRegex(runner, r"vira_live_[A-Za-z0-9_-]{20,}")
+
+    def test_teach_analysis_docs_match_javascript_sdk_signature_and_authority_gates(self):
+        docs = self.read("docs/teach.md")
+        analysis_call = docs.split("vira.createTeachAnalysis(", 1)[1].split("\n);", 1)[0]
+        self.assertIn('idempotencyKey: "teach-analysis-demo-001"', analysis_call)
+        self.assertNotIn("{ idempotencyKey: \"teach-analysis-demo-001\" }", analysis_call)
+        self.assertIn("Do not execute this block automatically", docs)
+        self.assertIn("separate explicit promotion decision", docs)
+
     def test_python_framework_boundary_matches_documented_sdk_request_shape(self):
         reference = self.read("docs/reference/python-sdk.md")
         helper = self.read("examples/frameworks/python/vira_boundary.py")
@@ -223,6 +260,9 @@ class PublicContractChecks(unittest.TestCase):
         teach_review = self.read("tutorials/marketing-agent/10-review-teach-proposal.mjs")
         self.assertNotIn('"APPROVE"', teach_proposal)
         self.assertIn("VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL", teach_review)
+        self.assertIn("VIRA_TUTORIAL_PROMOTE_TEACH_PROPOSAL", teach_review)
+        self.assertIn('mode === "promote"', teach_review)
+        self.assertIn('"EVALUATED"', teach_review)
         self.assertIn("VIRA_TUTORIAL_TEACH_PROPOSAL_ID", teach_review)
 
 if __name__ == "__main__":

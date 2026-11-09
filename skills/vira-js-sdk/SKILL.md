@@ -8,11 +8,13 @@ description: "Implement or debug a Vira integration using the published JavaScri
 
 Use the currently published `@tryvira/sdk`; discover the registry version rather than copying a stale pin. Verify method names and signatures against the public SDK reference and installed package types. Use `ViraClient`, scoped env configuration, stable idempotency keys for retried mutations, and explicit error handling. Semantic resolve is not authorization. Never invent an SDK method from another surface.
 
+The SDK needs `VIRA_API_URL`, the Vira API deployment root supplied by the operator, as `baseUrl` (do not append `/v1` and do not use the Studio URL). Keep `VIRA_API_KEY` server-side. If the URL is missing, ask for it; do not guess a host.
+
 ## Activate this skill when
 Implementing or debugging Vira calls in JavaScript/TypeScript with `@tryvira/sdk`. Do not use it for MCP server setup or pure HTTP integrations.
 
 ## Inputs and preconditions
-Inspect Node version, installed SDK version/types, module system, current Vira client construction, config source, and exact operation. Resolve method names and signatures from the installed package and public reference, not memory.
+Inspect Node version, installed SDK version/types, module system, `VIRA_API_URL`, `VIRA_API_KEY` availability (never print the value), current Vira client construction, config source, and exact operation. Resolve method names and signatures from the installed package and public reference, not memory.
 
 ## Workflow
 1. Confirm registry latest when version freshness matters; inspect the installed declaration for the actual project's contract.

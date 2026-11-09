@@ -39,6 +39,25 @@ jobs:
       - name: Verify public repository
         run: npm run verify
 
+      - name: Package and inspect representative Agent Skills
+        run: |
+          npm run package:skills -- --out /tmp/tryvira-skill-packages vira-evaluate vira-observe-teach
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          root = Path('/tmp/tryvira-skill-packages')
+          for name in ('vira-evaluate', 'vira-observe-teach'):
+              archive = root / f'{name}.skill'
+              with ZipFile(archive) as package:
+                  files = set(package.namelist())
+              required = {f'{name}/SKILL.md', f'{name}/agents/openai.yaml', f'{name}/examples/README.md'}
+              if not required <= files:
+                  raise SystemExit(f'{name}: missing package files: {sorted(required - files)}')
+              if not any(f.startswith(f'{name}/examples/run-') and f.endswith('.mjs') for f in files):
+                  raise SystemExit(f'{name}: executable SDK example not included in package')
+              print(f'{name}: packaged {len(files)} files including runnable SDK example')
+          PY
+
       - name: Verify framework examples (JavaScript)
         run: |
           npm ci --prefix examples/frameworks/node-next

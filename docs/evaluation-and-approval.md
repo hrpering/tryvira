@@ -33,6 +33,8 @@ candidate behavior
 
 A passing evaluation means the candidate passed configured checks. It does **not** automatically mean the candidate must become production behavior.
 
+Configure the SDK with `VIRA_API_URL` set to the Vira API deployment root supplied by the account/operator (no `/v1` suffix and not the Studio URL). Keep `VIRA_API_KEY` server-side. The [runnable Pack-bound evaluation resource](../skills/vira-evaluate/examples/README.md) demonstrates checking materialization and digest, creating a persisted evaluation, reading it back, and stopping before approval/release.
+
 ## 2. Response Quality Evaluation
 
 Response Quality evaluates a bounded set of response candidates during a response/repair decision path.

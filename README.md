@@ -19,6 +19,7 @@
 <p align="center">
   <a href="#quickstart">Quickstart</a> ·
   <a href="docs/developer-guide.md">Developer guide</a> ·
+  <a href="docs/product-positioning.md">Product overview</a> ·
   <a href="docs/capability-map.md">Capabilities</a> ·
   <a href="docs/canonical-authoring.md">Canonical authoring</a> ·
   <a href="docs/packs.md">Packs</a> ·
@@ -54,6 +55,12 @@ The important boundary is simple:
 > **AI can propose. Semantic routing can select. Quality can score. Released behavior remains explicit.**
 
 A semantic match is not authorization. A Teach promotion is not a hidden release. Pack import/install is not activation. Strategy activation does not bypass scope, policy, evaluation, release, or runtime checks.
+
+### Why teams use a behavior lifecycle
+
+Vira is being built to help teams make AI behavior changes reviewable and operable: describe the behavior they expect, evaluate proposed revisions, apply eligible behavior through a supported runtime integration, and inspect the records that integration returns. That gives teams a clearer path from a repeated correction to a governed change than editing an isolated prompt and hoping the same rule is followed everywhere.
+
+The product does not guarantee that every model response is correct or identical across models. Runtime controls only affect application paths that are deliberately wired through the supported Vira integration; an action that bypasses that boundary remains outside Vira's control. Evaluation results apply to the configured cases and are not automatic approval. See the [public product overview](docs/product-positioning.md) for scope and examples.
 
 ---
 

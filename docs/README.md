@@ -6,6 +6,7 @@ Use this page as the map for the current public product, authoring, runtime, and
 
 | Goal | Start here |
 | --- | --- |
+| Understand Vira's intended value and product boundaries | [Product overview](product-positioning.md) |
 | Install a client and follow the full lifecycle | [Developer guide](developer-guide.md) |
 | Understand the full public surface | [Capability map](capability-map.md) |
 | Discover what a scoped credential can use | [Capability discovery](capability-discovery.md) |

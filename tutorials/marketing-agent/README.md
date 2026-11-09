@@ -45,7 +45,7 @@ or hyphens) for Pack retries. Do not use production credentials or customer data
 
 Observations/feedback are evidence; they do not activate behavior. Semantic resolution is also candidate/evidence selection, not authorization.
 
-`08-teach-proposal.mjs` submits admitted synthetic evidence and creates a proposal. It requires `VIRA_CONTROL_POINT_ID` for the persisted Behavior Point (read it from the authorized `listBehaviorPoints()` result for this run) and stops before review. Inspect the proposal, then set `VIRA_TUTORIAL_TEACH_PROPOSAL_ID` and `VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL=true` before running `10-review-teach-proposal.mjs`; that separate command performs explicit review, provider-backed evaluation, and promotion. Promotion is not Strategy activation, Pack approval, production release, or runtime authority.
+`08-teach-proposal.mjs` submits admitted synthetic evidence and creates a proposal. It requires `VIRA_CONTROL_POINT_ID` for the persisted Behavior Point (read it from the authorized `listBehaviorPoints()` result for this run) and stops before review. Inspect the proposal, then set `VIRA_TUTORIAL_TEACH_PROPOSAL_ID` and `VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL=true` before running `10-review-teach-proposal.mjs review-evaluate`. This step reviews and evaluates the proposal, then stops in `EVALUATED` state. Only after reviewing that result and making a separate promotion decision, set `VIRA_TUTORIAL_PROMOTE_TEACH_PROPOSAL=true` and run `10-review-teach-proposal.mjs promote`. Promotion is not Strategy activation, Pack approval, production release, or runtime authority.
 
 The separately recorded feedback in `03-feedback.mjs` is an observation event. It is not by itself admitted Teach evidence or a Teach proposal.
 
