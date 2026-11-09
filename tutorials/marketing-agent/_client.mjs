@@ -14,5 +14,4 @@ export const scope = {
 export const vira = new ViraClient({
   baseUrl: required("VIRA_API_URL"),
   apiKey: required("VIRA_API_KEY"),
-  allowInsecureLocalhost: process.env.VIRA_ALLOW_INSECURE_LOCALHOST === "true",
 });

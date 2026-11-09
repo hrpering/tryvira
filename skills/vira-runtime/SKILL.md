@@ -20,10 +20,10 @@ Identify the application request boundary, task/context, permitted scope, select
 3. For runtime capability negotiation, model serving, behavior capsules, or projections, use that operation's own request/response contract; product capability discovery is not runtime capability attestation.
 4. Interpret only fields and projection semantics defined by the installed public SDK/API contract for this operation. Do not assume one generic ALLOW/DENY response field; do not rebuild policy locally or skip post-model verification where required.
 5. Emit minimized outcome/feedback linked to the real request/receipt when permitted.
-6. Reproduce behavior with a fixture covering allow, deny, abstain, timeout, and stale release; inspect trace correlation.
+6. Verify actual allow/deny/abstain/error outcomes only when returned by the authorized non-production service; inspect the real trace correlation and never synthesize receipts.
 
 ## Deliverable and failure handling
-Show the code boundary, result mapping, fixture evidence, and trace fields to inspect. On abstain/deny/error, follow the host's explicit safe failure policy; never convert it into allow or bypass Vira.
+Show the code boundary, result mapping, actual verification evidence or the explicit live-test blocker, and trace fields to inspect. On abstain/deny/error, follow the host's explicit safe failure policy; never convert it into allow or bypass Vira.
 
 ## References
 

@@ -6,7 +6,7 @@ These examples are integration starting points, not managed Vira deployments. Us
 
 - Commit npm lockfiles (`npm ci`) and Python `requirements.lock` hash files generated from `requirements.txt` (`uv pip compile --python-version 3.12 --generate-hashes requirements.txt -o requirements.lock`). Docker builds install the lock with `pip --require-hashes`; local Python checks can use `uv pip sync requirements.lock`. Rebuild and review lock changes deliberately; update SDK pins only after checking the registry artifact and documented contract.
 - Build from a reviewed commit. Scan dependencies and container images in your normal CI, generate a CycloneDX SBOM (for npm, `npm sbom --sbom-format cyclonedx`; for Python use your chosen SBOM generator), and retain the image digest and SBOM with the release record.
-- Run unit and integration checks, then verify `/healthz` and `/readyz` where provided. Health only reports process/config readiness; it does not prove Vira API reachability, authorization, or a successful runtime decision.
+- Build and package-check in CI, then run the customer workflow against an isolated non-production Vira deployment. Verify `/healthz` and `/readyz` where provided; those routes report process/config readiness and do not prove Vira authorization or a successful runtime decision.
 - Use non-root container users, a read-only filesystem where practical, resource limits, TLS at the trusted ingress, and explicit network egress policy. Keep secrets out of build args and Docker build context.
 - Roll out gradually, monitor sanitized request IDs and errors, and keep a rollback to the previous immutable image digest. Do not automatically retry non-idempotent actions; reuse an idempotency key only for a retry of the same logical request.
 

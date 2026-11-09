@@ -9,6 +9,13 @@ const required = (name) => {
   return value;
 };
 
+if (process.env.VIRA_TUTORIAL_NON_PRODUCTION !== 'true') {
+  throw new Error('Set VIRA_TUTORIAL_NON_PRODUCTION=true only after verifying the API URL and scope are isolated non-production.');
+}
+if (process.env.VIRA_TUTORIAL_ALLOW_MUTATIONS !== 'true') {
+  throw new Error('Set VIRA_TUTORIAL_ALLOW_MUTATIONS=true only when you authorize creating/evaluating this candidate and Pack Revision.');
+}
+
 const scope = {
   organizationId: required('VIRA_ORGANIZATION_ID'),
   projectId: required('VIRA_PROJECT_ID'),
@@ -16,9 +23,8 @@ const scope = {
 };
 
 const client = new ViraClient({
-  baseUrl: required('VIRA_BASE_URL'),
+  baseUrl: required('VIRA_API_URL'),
   apiKey: required('VIRA_API_KEY'),
-  allowInsecureLocalhost: true,
   failureMode: 'throw',
 });
 

@@ -21,7 +21,7 @@ Inspect Python version, active virtual environment, dependency manager/lockfile,
 2. Add the dependency using the existing environment manager and preserve its lockfile.
 3. Read credentials and scope from environment/secret storage; use the package's documented client/context lifecycle.
 4. Implement the minimum supported call with explicit exception handling, idempotency for writes, and no cross-surface API assumptions.
-5. Add fixture-based tests and run focused lint/type/test commands; make no live request unless asked and authorized.
+5. Build and run the example against an authorized isolated non-production scope when requested. Report actual API status/IDs; do not replace a Vira call with a fabricated client response.
 
 ## Deliverable and failure handling
 Return runnable code for the project's Python version, dependency changes, verification output, and any unresolved API boundary. Stop if scope is unknown or the installed contract contradicts a remembered signature.

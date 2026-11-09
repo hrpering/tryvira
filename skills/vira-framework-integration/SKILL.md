@@ -16,13 +16,13 @@ Inspect framework version, model/tool lifecycle, server/client boundary, streami
 
 ## Workflow
 1. Select a real boundary where the application resolves or applies behavior (before model/tool action, or at documented post-model verification).
-2. If no official adapter exists, implement a small framework-native wrapper around the documented JS/Python SDK or HTTP client. Use the runnable examples in `examples/frameworks/node-next`, `python_fastapi`, `langgraph`, and `mcp-client` as the checked patterns; use `examples/frameworks/node` for a minimal stub-only boundary fixture.
+2. If no official adapter exists, implement a small framework-native wrapper around the documented JS/Python SDK or HTTP client. Use the runnable examples in `examples/frameworks/node-next`, `python_fastapi`, `langgraph`, and `mcp-client` as the checked patterns; use only the runnable applications that call a configured Vira API or MCP server.
 3. Read the installed operation's response type and use its documented fields and states verbatim. For integrations that consume the published JS `RuntimeResolution` projection, model work may proceed only when the documented projection is active and non-empty; projection content guides the model and is not authorization for tools or external side effects. For other operations, do not transfer this mapping without a matching contract.
 4. Preserve the framework's message/tool/result types; do not convert missing, malformed, or unrecognized required contract data into permission to act. Keep credentials server-side, preserve trace/request identifiers, and avoid logging raw prompts or responses.
-5. Add deterministic tests for active, missing, malformed, and failure responses at the boundary. Distinguish fixture evidence from live Vira/provider validation.
+5. Build and start the application, then verify the boundary against an authorized isolated non-production Vira deployment and configured provider. Record real response IDs/statuses; never report build output as live integration evidence.
 
 ## Deliverable and failure handling
-State whether an official adapter exists, show the boundary and operation-specific response mapping, and include fixture evidence. Stop if the wrapper would bypass Vira runtime checks or framework semantics cannot be safely preserved.
+State whether an official adapter exists, show the boundary and operation-specific response mapping, and include evidence from the actual configured integration or clearly mark live verification as not run. Stop if the wrapper would bypass Vira runtime checks or framework semantics cannot be safely preserved.
 
 ## References
 

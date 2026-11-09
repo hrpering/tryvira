@@ -38,6 +38,6 @@ The full method-by-method mapping for the latest published JavaScript and Python
 
 - **Structurally validated:** frontmatter, folder name, metadata, relative links, and required OpenAI metadata pass repository checks.
 - **Contract reviewed:** instructions were compared with public docs and published package metadata; this is not an API call.
-- **Fixture tested:** only the offline scenario checks listed in `skills/evals/test_skill_library.py` have run.
+- **Static/contract checked:** repository and published-package checks passed; these do not call Vira or prove a live workflow.
 - **Local Vira / interface / publication:** not tested unless a future report records concrete evidence. No such test is claimed here.
 - **Studio:** public material only describes scoped capability discovery. Product UI workflows are not enumerated as verified because there is no authenticated Studio test session and product access is not open yet.

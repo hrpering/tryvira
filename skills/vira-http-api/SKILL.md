@@ -19,7 +19,7 @@ Confirm API base URL from the user's environment, auth mechanism, organization/p
 2. Validate scope and construct a server-side client with bearer credentials loaded from secret storage.
 3. Set stable idempotency keys on retryable mutations; use bounded timeouts and redact sensitive request/response fields.
 4. Handle asynchronous 202 jobs by polling/reading persisted status before dependent work.
-5. Test request construction against a local mock and report request ID/status evidence for any authorized live call.
+5. Validate a request against the actual documented API using an authorized isolated non-production scope; preserve the real request ID and returned status. If no scope is available, stop at code/schema review and label the live step unverified.
 
 ## Deliverable and failure handling
 Provide exact HTTP example, required headers/body shape, expected states, and a safe verification. Stop if a route/schema is not documented or scope is denied; never probe other tenants or fake a receipt.

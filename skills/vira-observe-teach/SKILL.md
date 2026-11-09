@@ -14,7 +14,7 @@ For JavaScript, configure `VIRA_API_URL` as the API deployment root supplied by 
 Capturing allowed observations/feedback/outcomes or creating, reviewing, accepting, rejecting, or correcting Teach proposals. Do not equate proposal promotion with release.
 
 ## Inputs and preconditions
-Confirm API deployment URL, credential scope, evidence source, consent/retention rules, minimization/redaction, target system/scope, real event identifiers, and requested proposal decision. Use synthetic fixtures for tests.
+Confirm API deployment URL, credential scope, evidence source, consent/retention rules, minimization/redaction, target system/scope, real event identifiers, and requested proposal decision. Use synthetic, non-customer evidence in an authorized non-production tenant for a real run.
 
 ## Workflow
 1. Check whether the selected surface supports evidence ingestion, Teach analysis/readback, and the requested proposal transition. MCP support is narrower than SDK/API; discover `tools/list` and use the documented catalog.

@@ -78,11 +78,18 @@ def create_app(vira_client: Any | None, scope: Mapping[str, str] | None, *, life
 def create_app_from_environment() -> FastAPI:
     import os
     from vira import ViraClient
-    names = ("VIRA_API_URL", "VIRA_API_KEY", "VIRA_ORGANIZATION_ID", "VIRA_PROJECT_ID", "VIRA_ENVIRONMENT_ID")
+    names = ("VIRA_API_URL", "VIRA_API_KEY", "VIRA_ORGANIZATION_ID", "VIRA_PROJECT_ID", "VIRA_ENVIRONMENT_ID", "OPENAI_API_KEY")
     missing = [name for name in names if not os.environ.get(name)]
     if missing:
         raise RuntimeError("Missing server configuration: " + ", ".join(missing))
     scope = {"organizationId": os.environ["VIRA_ORGANIZATION_ID"], "projectId": os.environ["VIRA_PROJECT_ID"], "environmentId": os.environ["VIRA_ENVIRONMENT_ID"]}
+    from langchain_core.messages import HumanMessage, SystemMessage
+    from langchain_openai import ChatOpenAI
+    model = ChatOpenAI(model=os.environ.get("OPENAI_MODEL", "gpt-4.1-mini"), api_key=os.environ["OPENAI_API_KEY"])
+
+    def agent_runner(message: str, projection: str) -> str:
+        response = model.invoke([SystemMessage(content=projection), HumanMessage(content=message)])
+        return response.content if isinstance(response.content, str) else str(response.content)
 
     @asynccontextmanager
     async def lifespan(app):
@@ -90,4 +97,4 @@ def create_app_from_environment() -> FastAPI:
             app.state.vira = client
             yield
 
-    return create_app(None, scope, lifespan=lifespan)
+    return create_app(None, scope, lifespan=lifespan, agent_runner=agent_runner)

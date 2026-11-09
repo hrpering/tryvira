@@ -18,8 +18,7 @@ const requiredFiles = [
   "scripts/verify-repo.mjs","scripts/verify-registry.mjs","scripts/sync-published-packages.mjs","package-versions.json",".github/workflows/sync-published-packages.yml",
   "AGENTS.md","skills/README.md","skills/VERSION","skills/CHANGELOG.md","skills/evals/trigger-scenarios.jsonl","skills/evals/workflow-scenarios.jsonl","skills/evals/test_skill_library.py","skills/evals/test_public_contracts.py",
   "scripts/validate_agent_skills.py","scripts/package_agent_skills.py","scripts/export_skill_trigger_eval.py","references/capability-matrix.md","references/authority-and-safety.md","references/creator-systems.md","docs/agent-skills/capability-coverage.md","docs/agent-skills/gap-analysis.md","docs/agent-skills/creator-workflow.md","docs/agent-skills/installation.md","docs/agent-skills/maintenance.md","docs/agent-skills/validation-status.md",
-  "examples/frameworks/README.md","examples/frameworks/node/vira-boundary.mjs","examples/frameworks/node/vira-boundary.test.mjs","examples/frameworks/node/package.json",
-  "examples/frameworks/python/vira_boundary.py","examples/frameworks/python/test_vira_boundary.py",
+  "examples/frameworks/README.md","examples/frameworks/node-next/package.json","examples/frameworks/python_fastapi/vira_app.py","examples/frameworks/langgraph/graph.py","examples/frameworks/mcp-client/client.mjs",
   "docs/github-repository-metadata.md","assets/vira-overview.svg","assets/vira-request-path.svg","assets/vira-integrations.svg","assets/vira-use-cases.svg","assets/social-preview.png"
 ];
 
@@ -158,7 +157,7 @@ for (const file of files) {
 }
 
 const packageJson = JSON.parse(await readFile(join(root, "package.json"), "utf8"));
-if (packageJson.version !== "0.10.0") failures.push("package.json version must be 0.10.0");
+if (packageJson.version !== "0.10.1") failures.push("package.json version must be 0.10.1");
 if (packageJson.license !== "UNLICENSED") failures.push("documentation package license must be UNLICENSED");
 if (packageJson.scripts?.["verify:registry"] !== "node scripts/verify-registry.mjs") failures.push("package.json must expose verify:registry");
 if (packageJson.scripts?.["sync:registry"] !== "node scripts/sync-published-packages.mjs") failures.push("package.json must expose sync:registry");
@@ -188,7 +187,7 @@ for (const file of files) {
 }
 
 const lockJson = JSON.parse(await readFile(join(root, "package-lock.json"), "utf8"));
-if (lockJson.version !== "0.10.0" || lockJson.packages?.[""]?.version !== "0.10.0") failures.push("package-lock.json version must be 0.10.0");
+if (lockJson.version !== "0.10.1" || lockJson.packages?.[""]?.version !== "0.10.1") failures.push("package-lock.json version must be 0.10.1");
 
 const readme = await readFile(join(root, "README.md"), "utf8");
 for (const marker of [
@@ -258,8 +257,8 @@ for (const marker of [
   if (!developerGuide.includes(marker)) failures.push(`Developer guide missing lifecycle marker: ${marker}`);
 }
 
-const frameworkExamplePackage = JSON.parse(await readFile(join(root, "examples/frameworks/node/package.json"), "utf8"));
-if (frameworkExamplePackage.dependencies?.["@tryvira/sdk"] !== `^${packageVersions.npm["@tryvira/sdk"]}`) failures.push("Framework example must pin @tryvira/sdk to the current published line");
+const frameworkExamplePackage = JSON.parse(await readFile(join(root, "examples/frameworks/node-next/package.json"), "utf8"));
+if (!new RegExp(`^\\^?${packageVersions.npm["@tryvira/sdk"].replaceAll(".", "\\.")}$`).test(frameworkExamplePackage.dependencies?.["@tryvira/sdk"] || "")) failures.push("Framework example must pin @tryvira/sdk to the current published line");
 
 const jsExamplePackage = JSON.parse(await readFile(join(root, "examples/javascript/package.json"), "utf8"));
 if (jsExamplePackage.dependencies?.["@tryvira/sdk"] !== `^${packageVersions.npm["@tryvira/sdk"]}`) failures.push("JavaScript examples must pin @tryvira/sdk to the current published line");
@@ -267,8 +266,8 @@ const semanticExamplePackage = JSON.parse(await readFile(join(root, "examples/se
 if (semanticExamplePackage.dependencies?.["@tryvira/sdk"] !== `^${packageVersions.npm["@tryvira/sdk"]}`) failures.push("Semantic runtime example must pin @tryvira/sdk to the current published line");
 const tutorialPackage = JSON.parse(await readFile(join(root, "tutorials/marketing-agent/package.json"), "utf8"));
 if (tutorialPackage.dependencies?.["@tryvira/sdk"] !== `^${packageVersions.npm["@tryvira/sdk"]}`) failures.push("Marketing tutorial must pin @tryvira/sdk to the current published line");
-const pythonRequirements = await readFile(join(root, "examples/python/requirements.txt"), "utf8");
-if (!new RegExp(`^tryvira-sdk>=${packageVersions.pypi["tryvira-sdk"].replaceAll(".", "\\.")}\\s*$`, "m").test(pythonRequirements)) failures.push("Python examples must require the current published tryvira-sdk line");
+const pythonRequirements = await readFile(join(root, "examples/frameworks/python_fastapi/requirements.txt"), "utf8");
+if (!new RegExp(`^tryvira-sdk(?:==|>=)${packageVersions.pypi["tryvira-sdk"].replaceAll(".", "\\.")}\\s*$`, "m").test(pythonRequirements)) failures.push("Python examples must require the current published tryvira-sdk line");
 
 const skillValidator = spawnSync("python3", ["scripts/validate_agent_skills.py"], { encoding: "utf8" });
 if (skillValidator.status !== 0) failures.push(`Agent Skills structural validation failed: ${skillValidator.stderr || skillValidator.stdout}`);

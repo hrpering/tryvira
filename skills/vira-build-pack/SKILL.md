@@ -6,7 +6,7 @@ description: "Create and validate a Vira Behavior Pack candidate before installa
 
 # Build Pack
 
-Use the public Pack format guide and existing fixture. Keep Pack identity/version stable and inputs synthetic. Validate manifest and collection structure; import through SDK/API using `{manifest, objects}` or supported archive. Inspect import inventory and every conflict. Pass the variables map directly to install. If install returns 202, wait for persisted materialization before evaluation. A Pack is not an Agent Skill and import/install are not release.
+Use the public Pack format guide and the runnable Marketing Agent Pack as a customer-facing example. Keep Pack identity/version stable and inputs synthetic. Validate manifest and collection structure; import through SDK/API using `{manifest, objects}` or supported archive. Inspect import inventory and every conflict. Pass the variables map directly to install. If install returns 202, wait for persisted materialization before evaluation. A Pack is not an Agent Skill and import/install are not release.
 
 ## Activate this skill when
 Creating a portable Vira Behavior Pack candidate and checking it before import. Use `vira-packs` for the server-side import/install/evaluate lifecycle.

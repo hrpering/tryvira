@@ -15,7 +15,7 @@ A Vira integration or operation fails, returns an unexpected state, or appears n
 Collect sanitized error code/message, request ID, operation, surface/package version, scope labels (not secret values), expected/actual status, and minimal request shape. Never ask for tokens or full production traces.
 
 ## Workflow
-1. Reproduce with a synthetic/local fixture or inspect the exact failed response without retrying a mutation.
+1. Inspect the exact sanitized failure from the real configured surface. Reproduce only in an authorized isolated non-production scope; do not invent or simulate a Vira response.
 2. Walk the earliest relevant boundary: config/auth → scope/capability → validation → async/materialized state → approval/release → runtime → trace/outcome.
 3. Compare request shape and installed version with the selected surface's current contract.
 4. Propose the smallest fix and a single verification at the failed boundary; preserve idempotency for a safe retry.

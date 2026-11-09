@@ -182,7 +182,7 @@ runtime = client.resolve_runtime({
 })
 ```
 
-Reuse the idempotency key when retrying the same logical request. Inspect the returned status, denial/abstention, receipt, and request ID; do not infer permission from semantic selection alone. The isolated [framework-boundary helper](../../examples/frameworks/python/vira_boundary.py) demonstrates input validation and result preservation without making a live service call.
+Reuse the idempotency key when retrying the same logical request. Inspect the returned status, denial/abstention, receipt, and request ID; do not infer permission from semantic selection alone. The isolated [framework-boundary helper](../../examples/frameworks/python_fastapi/vira_boundary.py) demonstrates input validation and result preservation without making a live service call.
 
 ## Behavior Programs
 

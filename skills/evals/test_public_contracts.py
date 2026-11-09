@@ -93,19 +93,20 @@ class PublicContractChecks(unittest.TestCase):
             self.assertEqual(row["revised_model_iteration"]["unit_tests_failed"], 0)
             self.assertEqual(row["repository_example_integration"]["unit_tests_failed"], 0)
 
-    def test_marketing_tutorial_mock_lifecycle_is_installed_and_runs_in_ci(self):
+    def test_customer_lifecycle_is_real_api_only_and_mutation_gated(self):
         package = json.loads(self.read("tutorials/marketing-agent/package.json"))
-        lock = json.loads(self.read("tutorials/marketing-agent/package-lock.json"))
-        versions = json.loads(self.read("package-versions.json"))
         quality = self.read(".github/workflows/quality.yml")
-        sync = self.read(".github/workflows/sync-published-packages.yml")
-        tutorial = self.read("tutorials/marketing-agent/lifecycle-mock.test.mjs")
-        self.assertEqual(package["scripts"]["test"], "node --test")
-        self.assertEqual(lock["packages"]["node_modules/@tryvira/sdk"]["version"], versions["npm"]["@tryvira/sdk"])
-        self.assertIn("npm ci --prefix tutorials/marketing-agent", quality)
-        self.assertIn("npm install --package-lock-only --ignore-scripts --prefix tutorials/marketing-agent", sync)
-        for contract in ("/install", "202", "evaluationId", "PACK_EVALUATION_NOT_BOUND_TO_APPROVED_DIGEST", "VIRA_TUTORIAL_APPROVE_RELEASE", "idempotencyKey"):
-            self.assertIn(contract.lower(), tutorial.lower())
+        client = self.read("tutorials/marketing-agent/_client.mjs")
+        tutorial = self.read("tutorials/marketing-agent/README.md")
+        self.assertNotIn("lifecycle-mock.test.mjs", quality)
+        self.assertNotIn("VIRA_ALLOW_INSECURE_LOCALHOST", client)
+        self.assertIn("new ViraClient", client)
+        self.assertIn("published `@tryvira/sdk`", tutorial)
+        self.assertIn("product access is still under active development", tutorial)
+        self.assertEqual(package["scripts"]["check:safety"], "node --test safety.test.mjs")
+        self.assertFalse((ROOT / "tutorials/marketing-agent/lifecycle-mock.test.mjs").exists())
+        self.assertFalse((ROOT / "examples/frameworks/node").exists())
+        self.assertFalse((ROOT / "examples/frameworks/python").exists())
 
     def test_complete_published_sdk_method_sets_are_mapped_to_skills(self):
         inventory = self.read("docs/reference/sdk-method-inventory.md")
@@ -149,22 +150,6 @@ class PublicContractChecks(unittest.TestCase):
             text = path.read_text()
             self.assertIn(f"${path.parent.parent.name}", text)
 
-    def test_node_framework_fixture_runs_without_network(self):
-        import subprocess
-        result = subprocess.run(
-            ["node", "--test", "examples/frameworks/node/vira-boundary.test.mjs"],
-            cwd=ROOT, capture_output=True, text=True,
-        )
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-
-    def test_python_framework_fixture_runs_without_network(self):
-        import subprocess
-        result = subprocess.run(
-            ["python3", "-m", "unittest", "discover", "-s", "examples/frameworks/python", "-v"],
-            cwd=ROOT, capture_output=True, text=True,
-        )
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-
     def test_pack_evaluation_skill_runner_is_real_api_and_explicitly_gated(self):
         runner = self.read("skills/vira-evaluate/examples/run-pack-evaluation.mjs")
         skill = self.read("skills/vira-evaluate/SKILL.md")
@@ -193,15 +178,6 @@ class PublicContractChecks(unittest.TestCase):
         self.assertIn("Do not execute this block automatically", docs)
         self.assertIn("separate explicit promotion decision", docs)
 
-    def test_python_framework_boundary_matches_documented_sdk_request_shape(self):
-        reference = self.read("docs/reference/python-sdk.md")
-        helper = self.read("examples/frameworks/python/vira_boundary.py")
-        self.assertIn("client.resolve_runtime({", reference)
-        for field in ("behaviorPoint", "executionBoundary", "idempotencyKey"):
-            self.assertIn(f'"{field}"', helper)
-            self.assertIn(f'"{field}"', reference)
-        self.assertIn("return vira.resolve_runtime(", helper)
-
     def test_python_framework_projection_uses_operation_specific_contract(self):
         app = self.read("examples/frameworks/python_fastapi/vira_app.py")
         helper = self.read("examples/frameworks/python_fastapi/vira_boundary.py")
@@ -216,6 +192,9 @@ class PublicContractChecks(unittest.TestCase):
         self.assertIn('client.serve_behavior_projection({', docs)
         self.assertIn("vira_client.serve_behavior_projection(request)", graph)
         self.assertNotIn("projectionMode", app + graph)
+        self.assertIn("ChatOpenAI", app)
+        self.assertIn("model.invoke", app)
+        self.assertIn("OPENAI_API_KEY", app)
 
     def test_marketing_tutorial_respects_published_scope_and_write_gates(self):
         lifecycle = self.read("examples/javascript/end-to-end-lifecycle.mjs")

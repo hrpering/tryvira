@@ -26,6 +26,8 @@ Return a stage checklist with surface, required authority, evidence, status, and
 
 ## References
 
+- [Live Marketing Agent lifecycle tutorial](https://github.com/hrpering/tryvira/blob/main/tutorials/marketing-agent/README.md)
+
 - [developer-guide](https://github.com/hrpering/tryvira/blob/main/docs/developer-guide.md)
 - [capability-map](https://github.com/hrpering/tryvira/blob/main/docs/capability-map.md)
 - [javascript-sdk](https://github.com/hrpering/tryvira/blob/main/docs/reference/javascript-sdk.md)

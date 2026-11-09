@@ -33,9 +33,6 @@ jobs:
       - name: Install repository dependencies
         run: npm ci
 
-      - name: Install marketing-agent tutorial dependencies
-        run: npm ci --prefix tutorials/marketing-agent
-
       - name: Verify public repository
         run: npm run verify
 
@@ -61,10 +58,9 @@ jobs:
       - name: Verify framework examples (JavaScript)
         run: |
           npm ci --prefix examples/frameworks/node-next
-          npm test --prefix examples/frameworks/node-next
           npm run build --prefix examples/frameworks/node-next
           npm ci --prefix examples/frameworks/mcp-client
-          npm test --prefix examples/frameworks/mcp-client
+          node --check examples/frameworks/mcp-client/client.mjs
 
       - name: Install uv
         uses: astral-sh/setup-uv@v10.3.2
@@ -73,10 +69,10 @@ jobs:
         run: |
           uv venv --python 3.12 examples/frameworks/python_fastapi/.venv
           uv pip sync --python examples/frameworks/python_fastapi/.venv/bin/python examples/frameworks/python_fastapi/requirements.lock
-          examples/frameworks/python_fastapi/.venv/bin/python -m unittest discover -s examples/frameworks/python_fastapi -v
+          examples/frameworks/python_fastapi/.venv/bin/python -m compileall -q examples/frameworks/python_fastapi
           uv venv --python 3.12 examples/frameworks/langgraph/.venv
           uv pip sync --python examples/frameworks/langgraph/.venv/bin/python examples/frameworks/langgraph/requirements.lock
-          examples/frameworks/langgraph/.venv/bin/pytest -q examples/frameworks/langgraph
+          examples/frameworks/langgraph/.venv/bin/python -m compileall -q examples/frameworks/langgraph
 
       - name: Verify documented public package releases
         run: npm run verify:registry

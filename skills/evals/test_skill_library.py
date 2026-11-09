@@ -36,7 +36,7 @@ class SkillScenarios(unittest.TestCase):
 
     def test_framework_catalog_names_only_executable_examples(self):
         text = (ROOT / "examples/frameworks/README.md").read_text().lower()
-        for phrase in ("next.js", "openai agents", "vercel ai sdk", "fastapi", "langgraph", "mcp client", "projection", "external side effects"):
+        for phrase in ("next.js", "openai agents", "vercel ai sdk", "fastapi", "langgraph", "mcp client", "real configured", "non-production", "external side effects"):
             self.assertIn(phrase, text)
         for rel in ("node-next/package.json", "node-next/src/vercel-ai-handler.mjs", "node-next/app/api/ai-sdk-support/route.ts", "python_fastapi/vira_app.py", "langgraph/graph.py", "mcp-client/client.mjs"):
             self.assertTrue((ROOT / "examples/frameworks" / rel).is_file(), rel)

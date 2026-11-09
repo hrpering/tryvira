@@ -30,7 +30,7 @@ and observe. Read VIRA_API_URL, VIRA_API_KEY, VIRA_ORGANIZATION_ID,
 VIRA_PROJECT_ID, and VIRA_ENVIRONMENT_ID from the environment.
 
 Use stable idempotency keys, sanitize payloads, preserve the existing error handling,
-and add a test for missing credentials and a successful mocked response. Do not invent
+and verify it with an authorized non-production API call. Do not invent
 methods, log secrets, create a fake evaluation receipt, or release behavior. Run the
 test and report files, commands, receipts, and unresolved API-contract questions.
 ```

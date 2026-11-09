@@ -1,5 +1,12 @@
 # Vira Agent Skills changelog
 
+## 0.3.3 — 2026-11-09
+
+- Removed loopback/fake-service integration tests and stub-only customer examples; documented the honest limits of static checks.
+- Added real API-backed framework examples and aligned Python FastAPI with an actual model invocation after a Vira projection.
+- Reworked the marketing lifecycle guide and skills to use actual configured services with non-production mutation gates.
+
+
 ## 0.3.2 — 2026-11-09
 
 - Split marketing tutorial Teach review/evaluation from promotion and require a separate promotion opt-in.

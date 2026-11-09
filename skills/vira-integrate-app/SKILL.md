@@ -19,7 +19,7 @@ Identify framework, server-side AI invocation point, streaming/tool-call structu
 2. Choose the documented surface that supports the needed operation; use server-side SDK/HTTP for credentials and runtime authority.
 3. Place Vira resolve/execute at the actual decision boundary. Preserve deny/abstain/error states and keep the original model path explicit.
 4. Add secret-safe configuration, stable idempotency for retryable writes, and request/receipt correlation without logging user content.
-5. Add a local fixture test for enabled/disabled/error behavior, then run the host project's focused checks.
+5. Build and run the integration against an authorized isolated non-production scope. Exercise the actual available/denied/error response states only when Vira returns them; do not fabricate service responses.
 
 ## Deliverable and failure handling
 Show the integration boundary, files changed, configuration keys (names only), test evidence, and unsupported operations. Stop before implementation if required scope or authority is missing; do not describe a custom wrapper as an official adapter.

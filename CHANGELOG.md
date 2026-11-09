@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.1 — 2026-11-09
+
+- Removed fake loopback service tests and stub-only framework examples from customer-facing materials and CI.
+- Replaced framework samples with runnable integrations that call the configured published Vira interfaces and provider, while clearly marking live tenant behavior unverified.
+- Added explicit mutation guards, real end-to-end lifecycle instructions, updated dependency locks, and corrected example/skill validation references.
+
+
 ## Unreleased documentation and security alignment
 
 - Added a public-facing Vira product overview describing behavior lifecycle value with explicit integration, evaluation, and availability limits; avoided competitor comparisons and unsupported outcome claims.

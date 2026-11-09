@@ -86,32 +86,52 @@ import
 
 The Pack step waits for the materialization receipt when installation returns HTTP 202, then creates a provider-backed evaluation bound to the Pack digest. The evaluator generates an answer from the supplied input and criteria; this is not proof that the installed behavior executed at runtime. Inspect runtime/candidate execution receipts separately. The script fails closed if materialization is not visible, the evaluation is unavailable, or the result does not pass. Never fabricate a production pass.
 
-## Local lifecycle regression
+## Run the real customer workflow
 
-Install the pinned SDK and run the deterministic mock service suite:
+This tutorial sends requests to the configured Vira API and, for evaluation/model steps, the configured provider. It does not start a fake Vira server. Vira product access is still under active development and is not open yet; run this only when the account/operator has supplied an isolated non-production API deployment and scoped credentials. We have not run this flow against a live tenant.
+
+Install the published SDK and configure the real non-production endpoint and scope as shown above. The `VIRA_TUTORIAL_*` variables are explicit operator authorizations; they do not detect whether a URL is production. Never use production credentials or real customer data.
+
+Run the numbered steps in order. Each response contains the IDs to carry into later steps; copy those returned IDs into the named environment variables rather than guessing them. The read-only semantic lookup needs no mutation flags.
 
 ```bash
-npm ci --prefix tutorials/marketing-agent
-npm test --prefix tutorials/marketing-agent
+node 01-connect.mjs
+# Copy returned systemId and connectionId into VIRA_AI_SYSTEM_ID and VIRA_CONNECTION_ID.
+node 02-observe-baseline.mjs
+node 03-feedback.mjs
+node 04-semantic-resolve.mjs
+
+# First run imports a Pack and prints its persisted inventory/conflicts. Review it.
+export VIRA_TUTORIAL_RUN_ID=marketing-demo-20261109
+node 05-pack-lifecycle.mjs
+# After reviewing the exact candidate and resolving conflicts, explicitly authorize installation.
+export VIRA_TUTORIAL_CONFIRM_PACK_INSTALL=true
+node 05-pack-lifecycle.mjs
+# Copy the returned packId, packDigest, and evaluationId for the separate release step.
+
+node 09-release-pack.mjs
+# Only after reviewing the exact persisted digest/evaluation and authorizing release:
+# set VIRA_TUTORIAL_APPROVE_RELEASE=true and the returned Pack/evaluation IDs and digest.
+node 06-runtime-resolve.mjs
+node 07-quality-decision.mjs
+
+# Use the persisted Behavior Point ID in VIRA_CONTROL_POINT_ID. This admits only the
+# synthetic public example evidence and creates a proposal; it does not review it.
+node 08-teach-proposal.mjs
+# Set the exact returned proposal ID. Review/evaluation and promotion are separate.
+node 10-review-teach-proposal.mjs review-evaluate
+node 10-review-teach-proposal.mjs promote
 ```
 
-The suite runs the tutorial steps against a loopback-only fake Vira HTTP service. It checks the SDK wire requests, 202 materialization polling, Pack/evaluation digest binding, explicit install/release/Teach gates, and idempotency headers. It returns synthetic fixture statuses; it does not exercise a Vira tenant or prove real evaluation, approval, release, or promotion.
+The Pack release command must be run with `VIRA_TUTORIAL_APPROVE_RELEASE=true` only after the reviewer checks the exact Pack digest and evaluation status. The Teach review command requires `VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL=true`; promotion separately requires `VIRA_TUTORIAL_PROMOTE_TEACH_PROPOSAL=true`. Promotion is not release.
 
-`VIRA_ALLOW_INSECURE_LOCALHOST=true` is used only by this local fixture. The SDK restricts that option to `localhost`/`127.0.0.1`; leave it false for all remote endpoints and production use.
+To continue from a promoted Teach proposal into a new immutable behavior revision, run the separate [approved Teach-to-Pack Revision workflow](../../examples/frameworks/node-next/REVISION-WORKFLOW.md). That workflow creates and evaluates a new candidate, inspects the Pack Revision diff, and prompts independently before candidate acceptance, Pack approval, and release. Supply the real IDs/digests returned by your Vira environment.
 
-`06-runtime-resolve.mjs` resolves eligible released behavior through the runtime authority boundary.
+The checks run in CI validate repository structure, public SDK package versions, JavaScript builds, and Python syntax. They do not simulate Vira API responses and do not claim a live integration passed. The tutorial safety check only verifies that mutation flags are required. Actual API/provider verification requires running the numbered steps against a real isolated non-production deployment.
 
-`07-quality-decision.mjs` demonstrates the separate Response Quality & Decision layer:
+`06-runtime-resolve.mjs` checks runtime eligibility after release. A semantic match is not authorization, and an evaluation result is not proof that runtime executed the behavior. The quality example is a separate response-time decision; it does not release behavior.
 
-```text
-bounded response candidates
-→ quality checks
-→ selected candidate OR abstention
-```
-
-Response Quality does not release behavior or bypass policy.
-
-For the full public contract and Point-to-Pack walkthrough, see the [Developer guide](../../docs/developer-guide.md).
+For the complete public contract and Point-to-Pack walkthrough, see the [Developer guide](../../docs/developer-guide.md).
 
 ## Prompt for a coding agent
 

@@ -1,6 +1,6 @@
 {
   "name": "tryvira-public-documentation",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "private": true,
   "description": "Public Vira documentation, published client references, canonical authoring, capability discovery, examples, troubleshooting, and architecture vision.",
   "type": "module",
@@ -8,7 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "verify": "node scripts/verify-repo.mjs && npm run verify:skills && npm run test:mcp-catalog && npm run test:marketing-tutorial",
+    "verify": "node scripts/verify-repo.mjs && npm run verify:skills && npm run test:mcp-catalog && npm run check:tutorial-safety",
     "verify:registry": "node scripts/verify-registry.mjs",
     "sync:registry": "node scripts/sync-published-packages.mjs",
     "test": "npm run verify",
@@ -16,7 +16,7 @@
     "package:skills": "python3 scripts/package_agent_skills.py",
     "eval:skill-trigger": "python3 scripts/export_skill_trigger_eval.py",
     "test:mcp-catalog": "node scripts/mcp-catalog.test.mjs",
-    "test:marketing-tutorial": "npm test --prefix tutorials/marketing-agent"
+    "check:tutorial-safety": "npm run check:safety --prefix tutorials/marketing-agent"
   },
   "license": "UNLICENSED"
 }

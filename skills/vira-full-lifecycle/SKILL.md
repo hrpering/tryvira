@@ -29,7 +29,7 @@ Inspect the application and gather the goal, stack, selected surface, `VIRA_API_
 8. If using a Behavior Pack, inspect its manifest, objects, conflicts, inventory, and required variables. Import the documented manifest/archive shape; install with the direct variables mapping; if accepted asynchronously, wait for canonical materialization and read back the resulting identities.
 
 ### 3. Evaluate the exact candidate
-9. Build positive, negative, boundary, ambiguous, and adversarial cases from the approved policy. Use an evaluation plan when criteria must be reviewed/sealed before execution. Keep tenant data out of fixtures unless specifically authorized.
+9. Build positive, negative, boundary, ambiguous, and adversarial cases from the approved policy. Use an evaluation plan when criteria must be reviewed/sealed before execution. Use synthetic test cases in an isolated non-production tenant; do not substitute fixture results for service evidence.
 10. Start a persisted evaluation with a unique `id`, the exact supported `targetArtifact` identity/digest, input-only `dataset` cases, and `threshold` (or the operation-specific schema). If criteria must be sealed, create and seal an evaluation plan separately before execution. Read back the server-returned `evaluation.id`; pass that value as `evaluationId` only to a subsequent Pack evaluation. Never use a guessed `evaluationId` to start a run or substitute caller-asserted `passed`, score, or run IDs for server evaluation evidence.
 11. Run only a supported evaluation surface. Inspect persisted results, regressions, failure cases, and exact digest. Separate Behavior Evaluation from Response Quality & Decision and from Strategy structural simulation.
 12. If evaluation fails or the candidate changes, correct or create a new immutable candidate and re-evaluate it. Where the published surface provides improvement proposals/Behavior Revision Candidates, keep proposal review, candidate evaluation and acceptance separate; never carry a pass result across changed content/digests.
@@ -53,11 +53,12 @@ Inspect the application and gather the goal, stack, selected surface, `VIRA_API_
 - Stop at missing scope/capability, consent, unresolved materialization, unsupported operation, failed evaluation, missing reviewer approval, stale digest, or uncertain runtime response semantics. Report the remaining stages and their blockers without claiming end-to-end completion.
 
 ## Deliverable and failure handling
-Return the staged checklist with surface, IDs/digests, status, persisted evidence, authorization point, verification performed, and next safe action for every stage. Identify the earliest failed boundary; preserve sanitized request IDs/errors; propose and verify the smallest correction. Mark planned, fixture-tested, live-tested, approved, released, and rolled-back states separately. Never fabricate metrics, receipts, approvals, provider results, or lifecycle completion.
+Return the staged checklist with surface, IDs/digests, status, persisted evidence, authorization point, verification performed, and next safe action for every stage. Identify the earliest failed boundary; preserve sanitized request IDs/errors; propose and verify the smallest correction. Mark planned, build-checked, live-verified, approved, released, and rolled-back states separately. Never fabricate metrics, receipts, approvals, provider results, or lifecycle completion.
 
 ## References
 
 - [Developer guide](https://github.com/hrpering/tryvira/blob/main/docs/developer-guide.md)
+- [Live Marketing Agent lifecycle tutorial](https://github.com/hrpering/tryvira/blob/main/tutorials/marketing-agent/README.md)
 - [Capability matrix](https://github.com/hrpering/tryvira/blob/main/references/capability-matrix.md)
 - [Authority and safety](https://github.com/hrpering/tryvira/blob/main/references/authority-and-safety.md)
 - [Capability discovery](https://github.com/hrpering/tryvira/blob/main/docs/capability-discovery.md)
