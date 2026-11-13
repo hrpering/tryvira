@@ -35,6 +35,18 @@ npm run dev
 
 Open the local URL printed by Next.js. Send the same synthetic question in OFF and ON modes. For Vira ON, the operator must first make sure the configured Behavior Point has an eligible released behavior in the selected scope.
 
+## Try progressively harder prompts
+
+This app is currently wired to a single configured **Behavior Point**. Use identical synthetic inputs in OFF and ON modes, but do **not** expect a cooking or marketing requirement to apply in ON unless the corresponding behavior is actually released and configured for the application.
+
+| Complexity | Suggested input | Behavior to evaluate when configured |
+| --- | --- | --- |
+| Simple | “My delivery is late. What do I do?” | Uncertain tracking status, useful next steps, escalation |
+| Intermediate | “We have different attribution windows in our two campaign dashboards. Can I compare ROAS?” | Metric comparability before recommending action |
+| Advanced | “Investigate the support incident and prepare a response requiring human approval.” | Do not claim an unexecuted strategy or approval happened |
+
+For more scenarios, use the [12-case catalog](../../../docs/use-cases.md). For actual **SINGLE**, **STRATEGY**, **COMPOUND**, **HYBRID** and **AUTO** TaskRun selection, use the [execution modes guide](../../../docs/execution-modes.md) and the separate [TaskRun SDK runner](../../javascript/taskrun-modes.mjs). The current chatbot toggle itself does **not** expose a TaskRun mode switch.
+
 ## Boundaries
 
 This example calls real configured Vira and OpenAI services; there is no mock Vira server or fake tool. It has not been run against a live Vira tenant because product access is not open yet. Use an isolated development scope and synthetic content. The route has no end-user authentication, rate limiting, or tenant mapping; keep it local or behind your application's authenticated service boundary before deployment. Never expose `.env.local`, credentials, or customer prompts.

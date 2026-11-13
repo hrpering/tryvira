@@ -9,6 +9,12 @@
 | Python user | [Python examples](../examples/python/README.md) |
 | MCP user | [MCP setup and discovery](reference/mcp.md) |
 
+## Pick a relatable scenario
+
+[Cooking, customer support, writing, research, marketing, inventory, software maintenance and advanced operations](use-cases.md) are covered as progressive examples. The [brand-neutral comparison](approach-comparison.md) explains how Skills, agents and adjacent AI platform categories relate to Vira.
+
+For single- and multi-task routing, [SINGLE / STRATEGY / COMPOUND / HYBRID / AUTO](execution-modes.md) are covered separately from the basic chatbot ON/OFF toggle.
+
 ## First run without Vira access
 
 Use Node.js 22.6+:

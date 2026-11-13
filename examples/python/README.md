@@ -19,6 +19,22 @@ not connect an AI system, record observations, or create release evidence. Run
 `connect_observe.py` separately to exercise the connection and sanitized observation
 example.
 
+## Try TaskRun mode routing
+
+The published Python client exposes `resolve_task_run` and `start_task_run`. A route proposal is separate from an authorized execution. The new [mode tester](taskrun_modes.py) is **route-only by default**:
+
+```bash
+python taskrun_modes.py AUTO
+python taskrun_modes.py SINGLE
+python taskrun_modes.py STRATEGY
+python taskrun_modes.py COMPOUND
+python taskrun_modes.py HYBRID
+```
+
+Configure `VIRA_API_URL` and `VIRA_API_KEY` for your own authorized tenant. An eligible registered Task and host capability are required; denied or unsupported routes are valid results. Starting a real task requires separate explicit environment assertions for authorization and non-production scope. This example never claims a fabricated completed run.
+
+See [execution modes](../../docs/execution-modes.md) and the [published Python SDK method check](../../scripts/check-published-python-sdk.py).
+
 ## Prompt for a coding agent
 
 ```text
