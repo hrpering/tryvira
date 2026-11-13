@@ -165,7 +165,7 @@ class PublicContractChecks(unittest.TestCase):
             "vira-runtime", "vira-task-runs", "vira-observe-teach", "vira-studio", "vira-debug", "vira-lifecycle",
         ):
             self.assertIn(f"`{name}`", full)
-        self.assertIn("actual provider output", full)
+        self.assertIn("real provider output", full)
         for specialist in ("vira-observe", "vira-runtime-verification", "vira-traces"):
             self.assertIn(f"`{specialist}`", full)
 
