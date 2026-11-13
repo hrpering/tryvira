@@ -15,6 +15,20 @@ Vira integrates with an **existing** AI system. Your model, agent framework and 
 
 Start with [the exact setup steps](start-here.md). For installation, use the [published package reference](published-packages.md); versioned contracts may differ across clients.
 
+## Choose a mode for the task, not for every message
+
+The TaskRun API supports **SINGLE**, **STRATEGY**, **COMPOUND** and **HYBRID**, with **AUTO** available as a routing request. These are not interchangeable. AUTO can request clarification or abstain rather than invent an eligible workflow.
+
+| Requirement | Typical path |
+| --- | --- |
+| One task with a released behavior | SINGLE |
+| One task with required ordered steps | STRATEGY |
+| Several independently governed tasks | COMPOUND |
+| Several tasks including a multi-step child | HYBRID |
+| An application that should request mode selection | AUTO |
+
+Do not assume these choices appear as a universal Studio setting or are supported by MCP. Use the [full mode guide](execution-modes.md), the [JavaScript TaskRun script](../examples/javascript/taskrun-modes.mjs) and the [pinned public SDK transport tests](../examples/frameworks/node-next/test/taskrun-sdk.test.mjs).
+
 ## A minimal safe integration
 
 ### 1. Configure scope and secrets
@@ -56,8 +70,24 @@ Observe-first integrations are possible without claiming that a suggestion was a
 - **Direct HTTP:** use the customer's [documented API contract](reference/api.md), not method names guessed from SDKs.
 - **Studio:** interactive workflows depend on account access; do not infer that every SDK operation exists in Studio.
 
+## Comprehensive developer resources
+
+| Area | Resource | Caution |
+| --- | --- | --- |
+| Installation and environment | [Start here](start-here.md) · [Published packages](published-packages.md) | No shared customer API URL or credentials |
+| Semantic Task and Point | [Canonical authoring](canonical-authoring.md) | Candidate selection is not release |
+| Programs and Strategies | [Programs](behavior-programs.md) · [Strategies](strategies.md) | Strategy eligibility is distinct from activation |
+| TaskRun modes | [Execution modes](execution-modes.md) | AUTO is not unconditional compound execution |
+| Pack lifecycle | [Packs](packs.md) · [Evaluation](evaluation-and-approval.md) · [Release](release.md) | No client-fabricated pass evidence |
+| Observations and Teach | [Teach](teach.md) · [Signals](signals.md) | Evidence permissions and approvals required |
+| Live decision and trace | [Runtime](runtime.md) · [Traces](traces.md) | Effectful calls require host enforcement |
+| JavaScript and Python | [JS](reference/javascript-sdk.md) · [Python](reference/python-sdk.md) | SDK method sets can differ |
+| MCP and HTTP | [MCP](reference/mcp.md) · [HTTP](reference/api.md) | Do not infer one surface from another |
+| Integrations | [Runnable frameworks](../examples/frameworks/README.md) | CI build is not a live customer test |
+| Failure handling | [Troubleshooting](troubleshooting/README.md) · [Checklist](developer-checklist.md) | Test denied, partial, missing and stale paths |
+
 ## Before shipping
 
 Check supported operations and role/scope, verify evaluation and exact release identity, enforce tool authorization in the host, test negative paths, redact evidence and logs, and retain returned IDs for debugging. Package install success or a local demo build is not a live Vira release test.
 
-[Capability map](capability-map.md) · [Troubleshooting](troubleshooting/README.md) · [Integration patterns](integration-patterns.md) · [Security model](security-model.md)
+[Use cases](use-cases.md) · [Category comparison](approach-comparison.md) · [Capability map](capability-map.md) · [Troubleshooting](troubleshooting/README.md) · [Integration patterns](integration-patterns.md) · [Security model](security-model.md)

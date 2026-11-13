@@ -6,6 +6,12 @@ Vira is being built for teams that operate AI applications and need to answer th
 
 The product introduces governed behavior definitions and lifecycle boundaries around existing models and agents. It is not a replacement for your foundation model, orchestration framework, data platform, or application's authorization checks.
 
+## See the use cases before choosing a tool
+
+The [12-level example catalog](use-cases.md) starts with everyday food and writing preferences and progresses to business reporting, incident investigation and multi-task operations. A strong baseline may already succeed; the evaluation should measure the *governed lifecycle*, not manufacture a weak opponent.
+
+For a comparison against Skills, agents and adjacent platform categories without competing brand names, use the [approach comparison](approach-comparison.md). To understand when SINGLE, STRATEGY, COMPOUND, HYBRID or AUTO applies, use the [execution-mode guide](execution-modes.md).
+
 ## Where it may help
 
 | Team | Repeated problem | Behavior worth evaluating |

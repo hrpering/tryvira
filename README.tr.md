@@ -20,6 +20,24 @@ Vira davranışı bir prompt parçası olmaktan çıkarıp gözden geçirilebile
 
 **Örnek:** Bir retail-media asistanı iki kampanyanın ROAS değerini karşılaştırırken farklı attribution window veya satış kapsamlarını aynı kabul etmemeli. Vira'da bu kontrol, göreve ait açık bir davranış olarak tanımlanıp değerlendirilebilir. Bu bir ürün senaryosudur; kanıtlanmış bir performans artışı iddiası değildir.
 
+## Tek örnek değil, farklı seviyelerde kullanım
+
+| Seviye | Örnek | Davranış gereksinimi |
+| --- | --- | --- |
+| Günlük | Dört kişilik yemek tarifi | Vejetaryen ve soğansız tercihleri korumak |
+| Temel iş | Müşteri desteği | Bilinmeyen kargo durumunu uydurmamak |
+| Analitik | Reklam kampanyası karşılaştırması | Farklı attribution pencerelerini eşdeğer saymamak |
+| İleri | Olay analizi | Aşamaları ve doğrulamayı ayrı yönetmek |
+| Çoklu görev | Operasyon raporu | Birden fazla yetkili görevi doğru birleştirmek |
+
+[Tam örnek kataloğu (EN)](docs/use-cases.md) · [Skills, agent ve diğer platformlarla tarafsız kıyaslama (EN)](docs/approach-comparison.md)
+
+### Çalıştırma modları
+
+**SINGLE:** tek görev. **STRATEGY:** tek görevde birden fazla aşama. **COMPOUND:** birden çok farklı görev. **HYBRID:** SINGLE ve STRATEGY alt görevleri. **AUTO:** uygun modun önerilmesini ister, ayrı bir çalıştırma modu değildir. Görev ve sürüm uygun değilse otomatik bir başarı sonucu üretilmez.
+
+[Beş seçeneğin teknik açıklaması (EN)](docs/execution-modes.md)
+
 ## Başlayın
 
 | Amacınız | Bağlantı |

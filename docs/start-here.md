@@ -2,6 +2,12 @@
 
 There are **two honest starting points**. Choose based on whether you have a provisioned Vira account. Public npm/PyPI packages do not themselves grant access to the hosted Vira service.
 
+## Choose a task you understand
+
+Start with [ordinary recipes, support and writing cases](use-cases.md) before trying analytics or multi-stage agent workflows. Each example includes a prompt and a specific failure to watch for. A public SDK build is not proof of live governed execution.
+
+[What differs from a Skill or an agent?](approach-comparison.md) · [Five mode choices](execution-modes.md)
+
 ## Path A: Explore today without Vira access
 
 The [Next.js + OpenAI Agents example](../examples/frameworks/node-next/README.md) has a functioning **Vira OFF** mode that uses your own OpenAI API key. You can inspect how the ON path is integrated, but you cannot verify a governed ON response without a provisioned Vira endpoint and released behavior.
@@ -52,6 +58,10 @@ Then follow the stages individually:
 5. **Resolve runtime behavior** and inspect request identity/receipt or trace: [Runtime](runtime.md), [Traces](traces.md).
 
 After an eligible release exists, follow the [chatbot's ON setup](../examples/frameworks/node-next/README.md). The ON path is designed to stop before model invocation when Vira does not return an active eligible projection. It is not an automatic fallback to ungoverned behavior.
+
+## Want to try different execution modes?
+
+Use [the mode reference](execution-modes.md) before selecting SINGLE, STRATEGY, COMPOUND, HYBRID or AUTO. With provisioned access, the [JavaScript tester](../examples/javascript/taskrun-modes.mjs) checks routing **without admitting a run by default**. Start an execution only in an authorized non-production environment with eligible released resources. An unsuccessful route can be the correct result.
 
 ## Choose an integration
 

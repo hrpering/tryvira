@@ -17,7 +17,27 @@ Your agent does a task. You correct an answer. The same mistake returns in anoth
 
 Vira provides a separate, governed place to define and operate those behaviors. It works **with** your existing AI application, model, and agent framework rather than replacing them.
 
-## A concrete example
+## Examples for different kinds of AI work
+
+Vira is not limited to one industry or to complex agents. Start simple, then move to multi-task execution:
+
+| Complexity | Example | What you would govern |
+| --- | --- | --- |
+| Everyday | **A four-person dinner** | Keep a configured vegetarian, onion-free preference while producing a useful recipe |
+| Team support | **A delayed package** | Ask for missing order context; never invent tracking status or promise a refund |
+| Business | **A marketing performance report** | Avoid comparing incompatible attribution windows as if they matched |
+| Technical | **A safe SDK upgrade** | Follow a bounded verification and rollback strategy |
+| Advanced | **An operations decision brief** | Coordinate multiple independently governed tasks and approvals |
+
+[12 scenarios with sample prompts and failure cases](docs/use-cases.md) · [Skills vs agents vs other platform categories, without brand names](docs/approach-comparison.md)
+
+### Execution choices at a glance
+
+**SINGLE** handles one task. **STRATEGY** handles a multi-step process within one task. **COMPOUND** coordinates multiple governed tasks. **HYBRID** combines SINGLE and STRATEGY children. **AUTO** requests eligible mode selection; it is not an execution mode or permission bypass.
+
+[Understand all modes and their limits](docs/execution-modes.md) · [Test TaskRun routing using the published SDK](examples/javascript/taskrun-modes.mjs)
+
+## A business example
 
 Imagine a retail-media assistant answering:
 
@@ -83,8 +103,8 @@ Package availability is not service access. Operations vary by release and crede
 ## Find your path
 
 - **New to Vira?** [Start here](docs/start-here.md) and [understand the concepts](docs/what-is-vira.md).
-- **Building an integration?** [Developer guide](docs/developer-guide.md), [examples](examples/README.md), and [troubleshooting](docs/troubleshooting/README.md).
-- **Evaluating it for a team?** [Team evaluation guide](docs/for-teams.md), [product overview](docs/product-positioning.md), and [FAQ](docs/faq.md).
+- **Building an integration?** [Developer checklist](docs/developer-checklist.md), [mode guide](docs/execution-modes.md), [Developer guide](docs/developer-guide.md), [examples](examples/README.md), and [troubleshooting](docs/troubleshooting/README.md).
+- **Evaluating it for a team?** [Use cases](docs/use-cases.md), [approach comparison](docs/approach-comparison.md), [Team evaluation guide](docs/for-teams.md), [product overview](docs/product-positioning.md), and [FAQ](docs/faq.md).
 - **Working with behavior changes?** [Packs](docs/packs.md), [Teach AI](docs/teach.md), [evaluation](docs/evaluation-and-approval.md), and [runtime](docs/runtime.md).
 - **Contributing?** [Contribution guide](CONTRIBUTING.md), [support](SUPPORT.md), and [security reporting](SECURITY.md).
 

@@ -8,8 +8,11 @@
 
 | Goal | Start with | Then go to |
 | --- | --- | --- |
+| Explore everyday-to-enterprise examples | [12 scenario prompts](use-cases.md) | [Modes](execution-modes.md) · [Category comparison](approach-comparison.md) |
+| Compare Skills, agents and platform types | [Brand-neutral comparison](approach-comparison.md) | [Team evaluation](for-teams.md) |
 | Understand why Vira exists | [What is Vira?](what-is-vira.md) | [Product overview](product-positioning.md) · [FAQ](faq.md) |
 | Try the product concept without Vira access | [Start here](start-here.md) | [Local OFF/ON chatbot](../examples/frameworks/node-next/README.md) |
+| Choose SINGLE, AUTO, STRATEGY or COMPOUND | [Execution modes](execution-modes.md) | [TaskRun SDK example](../examples/javascript/taskrun-modes.mjs) |
 | Connect an existing agent | [Developer guide](developer-guide.md) | [Connection guide](guides/connect-an-ai-system.md) · [JavaScript example](../examples/javascript/README.md) |
 | Use Python or a framework | [Framework examples](../examples/frameworks/README.md) | [Python SDK](reference/python-sdk.md) |
 | Use MCP | [MCP setup](reference/mcp.md) | [Live tool discovery](reference/mcp-tools.md) |
@@ -23,6 +26,8 @@
 
 Vira's product concepts are designed to separate *what a task is*, *where behavior applies*, *which revision is eligible*, and *what happened*.
 
+- [Execution modes](execution-modes.md) for SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO.
+- [Examples by level](use-cases.md) and [brand-neutral approach comparison](approach-comparison.md).
 - [Core concepts](core-concepts.md) for Semantic Tasks, Behavior Points, Programs, Strategies, release and traces.
 - [Architecture overview](architecture.md) and [How Vira works](how-vira-works.md) for conceptual paths.
 - [Behavior Programs](behavior-programs.md), [Strategies](strategies.md), and [Semantic routing](semantic-routing.md) for advanced authoring.
@@ -30,6 +35,7 @@ Vira's product concepts are designed to separate *what a task is*, *where behavi
 
 ## Developer references
 
+- [Developer release and contract checklist](developer-checklist.md)
 - [JavaScript / TypeScript](reference/javascript-sdk.md)
 - [Python](reference/python-sdk.md)
 - [MCP](reference/mcp.md)

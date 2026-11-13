@@ -26,6 +26,12 @@ Vira's goal is to make those expectations **explicit operational assets**, with 
 
 [Full glossary](core-concepts.md) · [Behavior Points](behavior-points.md) · [Programs](behavior-programs.md)
 
+## Not one complexity level
+
+A simple preference (for example vegetarian, onion-free cooking) can be governed for a single task. A support assistant can keep escalation rules. A business analyst may need consistent metric definitions. A technical agent may require a multi-step strategy or independently authorized sub-tasks.
+
+[Explore 12 examples](use-cases.md) · [Understand execution modes](execution-modes.md) · [Compare with Skills, agents and other platform types](approach-comparison.md)
+
 ## Two connected workflows
 
 **Serving requests:** classify work, resolve the relevant Behavior Point, determine eligible released behavior, apply it through a supported model/agent integration, and inspect the returned evidence.
