@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added 12 machine-readable scenarios with 24 short/detailed prompts, intended behavior checks, failure cases and a prompt-selection CLI.
+- Added automated fixture quality tests, expanded pinned published SDK method-availability tests and a per-example CI versus live acceptance matrix.
+
 - Added a beginner-to-advanced 12-case example catalog and a brand-neutral comparison of Vira, Skills, agents and adjacent AI platform categories.
 - Explained SINGLE, STRATEGY, COMPOUND and HYBRID execution alongside AUTO routing; linked these from the README, developer guides and capability references.
 - Added guarded real SDK mode-routing examples for JavaScript and Python plus offline pinned-package transport/surface checks; expanded repo syntax verification across examples.

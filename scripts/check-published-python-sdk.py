@@ -18,6 +18,22 @@ if actual != expected:
     raise RuntimeError(f"Published Python SDK version mismatch: {actual} vs {expected}")
 
 for name in (
+    "connect_once",
+    "test_connection",
+    "observe",
+    "evaluate_quality",
+    "list_capabilities",
+    "create_semantic_task",
+    "create_behavior_point",
+    "resolve_semantic",
+    "resolve_runtime",
+    "serve_behavior_projection",
+    "import_pack",
+    "install_pack",
+    "evaluate_pack",
+    "approve_pack",
+    "release_pack",
+    "submit_teach_evidence",
     "resolve_task_run",
     "start_task_run",
     "start_task_run_from_prompt",
@@ -30,4 +46,4 @@ for name in (
     if not callable(getattr(ViraClient, name, None)):
         raise RuntimeError(f"Published Python SDK missing method: {name}")
 
-print(f"PUBLISHED_PYTHON_SDK_METHODS_PASS version={actual} methods=8 (offline only)")
+print(f"PUBLISHED_PYTHON_SDK_METHODS_PASS version={actual} methods=24 (offline only)")

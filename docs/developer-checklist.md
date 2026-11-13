@@ -45,7 +45,7 @@ npm test --prefix examples/frameworks/node-next
 npm run build --prefix examples/frameworks/node-next
 ```
 
-[Repository CI](../.github/workflows/quality.yml) additionally validates the Python framework examples, package registry versions and Agent Skills. The [TaskRun SDK tests](../examples/frameworks/node-next/test/taskrun-sdk.test.mjs) use the real published JavaScript client with an **offline test transport** to verify method availability and request shapes, not a fabricated live service run.
+[Per-example verification matrix](example-verification.md) separates local checks from live acceptance. [Repository CI](../.github/workflows/quality.yml) additionally validates the Python framework examples, package registry versions and Agent Skills. The [TaskRun SDK tests](../examples/frameworks/node-next/test/taskrun-sdk.test.mjs) use the real published JavaScript client with an **offline test transport** to verify method availability and request shapes, not a fabricated live service run.
 
 **Not proven by CI:** external model response quality, hosted tenant operation, a fully released Pack, or end-to-end authorization against a provisioned customer environment. Those require separate live acceptance evidence.
 

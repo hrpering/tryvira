@@ -4,6 +4,7 @@
 | --- | --- |
 | [TaskRun modes: JS](javascript/taskrun-modes.mjs) | route-only by default for SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO; optional gated live admission, never fake success |
 | [TaskRun modes: Python](python/taskrun_modes.py) | same five choices with Python's published client; route-only by default |
+| [Structured dual-prompt scenario fixtures](scenarios/README.md) | 12 synthetic tasks, 24 copyable prompts, behavior checks and negative cases; schema tested offline |
 | [Use-case prompts by complexity](../docs/use-cases.md) | 12 beginner-to-advanced scenarios and negative cases; these are not runnable integrations |
 | [JavaScript lifecycle walkthrough](javascript/end-to-end-lifecycle.mjs) | connect, capability discovery, evidence, Task/Point authoring, and semantic/runtime separation; the optional Pack section is a partial lifecycle skeleton |
 | [JavaScript](javascript/) | `@tryvira/sdk` (latest `0.1.44`) connect/observe, capability discovery, canonical authoring, runtime and response quality |
