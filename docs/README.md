@@ -8,7 +8,7 @@
 
 | Goal | Start with | Then go to |
 | --- | --- | --- |
-| Explore everyday-to-enterprise examples | [12 scenario prompts](use-cases.md) | [Modes](execution-modes.md) · [Category comparison](approach-comparison.md) |
+| Explore everyday-to-enterprise examples | [12 scenario prompts](use-cases.md) · [24 copyable variants](../examples/scenarios/README.md) | [Modes](execution-modes.md) · [Category comparison](approach-comparison.md) |
 | Compare Skills, agents and platform types | [Brand-neutral comparison](approach-comparison.md) | [Team evaluation](for-teams.md) |
 | Understand why Vira exists | [What is Vira?](what-is-vira.md) | [Product overview](product-positioning.md) · [FAQ](faq.md) |
 | Try the product concept without Vira access | [Start here](start-here.md) | [Local OFF/ON chatbot](../examples/frameworks/node-next/README.md) |
@@ -36,6 +36,7 @@ Vira's product concepts are designed to separate *what a task is*, *where behavi
 ## Developer references
 
 - [Developer release and contract checklist](developer-checklist.md)
+- [Per-example verification status: automated tests versus live acceptance](example-verification.md)
 - [JavaScript / TypeScript](reference/javascript-sdk.md)
 - [Python](reference/python-sdk.md)
 - [MCP](reference/mcp.md)

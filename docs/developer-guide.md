@@ -83,8 +83,12 @@ Observe-first integrations are possible without claiming that a suggestion was a
 | Live decision and trace | [Runtime](runtime.md) · [Traces](traces.md) | Effectful calls require host enforcement |
 | JavaScript and Python | [JS](reference/javascript-sdk.md) · [Python](reference/python-sdk.md) | SDK method sets can differ |
 | MCP and HTTP | [MCP](reference/mcp.md) · [HTTP](reference/api.md) | Do not infer one surface from another |
-| Integrations | [Runnable frameworks](../examples/frameworks/README.md) | CI build is not a live customer test |
+| Integrations | [Runnable frameworks](../examples/frameworks/README.md) · [Verification matrix](example-verification.md) | CI build is not a live customer test |
 | Failure handling | [Troubleshooting](troubleshooting/README.md) · [Checklist](developer-checklist.md) | Test denied, partial, missing and stale paths |
+
+## What has actually been tested?
+
+Review the [per-example verification matrix](example-verification.md) before demonstrating or deploying an integration. It distinguishes syntax/build checks, the published SDK's offline method tests, and live account acceptance that cannot be established without provisioned credentials. Test prompts are available as [short and detailed synthetic fixtures](../examples/scenarios/README.md).
 
 ## Before shipping
 
