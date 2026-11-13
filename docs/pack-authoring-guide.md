@@ -18,6 +18,8 @@ my-pack/
 └── tests/cases.json                  # authoring fixture; NOT imported or automatically evaluated
 ```
 
+**The three new examples intentionally omit `variables` because the public source examples do not demonstrate a reliable variable-to-Program binding.** A declarative toggle that does nothing is worse than leaving a setting out.
+
 The supported Pack ZIP importer groups collection files using these collection-folder names. **These files are JSON on purpose:** JSON collection inputs and YAML manifests are both supported. Do not assume an arbitrary root-level `behaviors:` YAML field will be materialized. If your product release exposes a newer single-file authoring format, validate it against that release's own schema instead of translating by guesswork.
 
 ## Field-by-field decisions
@@ -26,7 +28,7 @@ The supported Pack ZIP importer groups collection files using these collection-f
 | --- | --- | --- | --- |
 | `pack.yaml.id` | Lowercase stable dotted identifier | Unique, durable across versions | Renaming it for every edit |
 | `version` | Semantic version of the Pack content | New version when executable behavior changes | Rewriting a released artifact in place |
-| `variables` | Typed, required or default install inputs | Only values customers genuinely configure | Assuming a declared variable automatically changes an executable rule |
+| `variables` (optional) | Typed install inputs with a proven binding | Include only when the actual runtime maps values into executable behavior | A cosmetic checkbox that does not change rules |
 | `semanticTasks.taskKey` | Canonical stable task key | Distinct work, not "general AI assistant" | Broad labels that match unrelated requests |
 | `description` / `aliases` | Clear task intent and user wording | Synonyms backed by real task examples | Marketing phrases instead of matchable user language |
 | `examples` / `negativeExamples` | Positive and explicitly *out-of-scope* prompts | Distinguish neighboring tasks | Only positive examples, causing indiscriminate routing |

@@ -6,7 +6,7 @@ The core problem: comparing metrics built from *different measurement rules* and
 
 ## How to adapt
 
-1. Set your business unit in `pack.yaml` at install; these variables are metadata/configuration unless connected to executable requirements.
+1. This example deliberately omits installer variables. Add business-unit or market configuration only after your actual materializer and runtime show that those fields bind to the Program, not merely to Pack metadata.
 2. Keep `semantic-tasks/items.json` focused on comparisons and advice rather than generic “marketing”.
 3. Keep the Point as a **task outcome contract** and Program modules as the **actual checks**.
 4. Extend `tests/cases.json` with deliberately comparable data, incompatible attribution, different sales scope and an unauthorized action attempt.

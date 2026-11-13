@@ -3,8 +3,3 @@ name: Governed Operations Review
 version: 1.0.0
 requires:
   vira: ">=1.0"
-variables:
-  - key: team_name
-    label: Team name
-    type: text
-    required: true

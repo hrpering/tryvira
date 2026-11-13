@@ -16,7 +16,7 @@ An understandable first Pack: **keep a task-specific dietary requirement consist
 
 ## How to adapt
 
-Set `serving_count` at install (as text, e.g. `"4"`), review `vegetarian` and `onion_free`, then update the Point and Program together if your requirement differs. **Installer variables are configuration inputs; a Pack must be checked for whether and how they are referenced by executable rules. Do not assume declaring a variable automatically changes a Program.**
+This sample deliberately has **no installer variables**: the baseline dietary requirements are explicitly declared in the Point and Program, while servings come from the user's task input. To change the default diet, review the Point, Program and fixtures together and create a new version. **Do not add a `vegetarian: false` variable unless the materialization and runtime actually bind it to the executable requirement.**
 
 Keep Task and Point keys stable across revisions; change the semantic version when the behavior contract changes. Do not add an invented model response or score to this Pack.
 
