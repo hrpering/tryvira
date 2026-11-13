@@ -1,0 +1,38 @@
+name: Vira Skills live customer acceptance (manual, read-only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: vira-non-production
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Check required isolated-tenant configuration
+        env:
+          VIRA_API_URL: ${{ secrets.VIRA_ACCEPTANCE_API_URL }}
+          VIRA_API_KEY: ${{ secrets.VIRA_ACCEPTANCE_API_KEY }}
+          VIRA_MANIFEST_B64: ${{ secrets.VIRA_ACCEPTANCE_MANIFEST_B64 }}
+        run: |
+          test -n "$VIRA_API_URL" || { echo 'Missing non-production VIRA_ACCEPTANCE_API_URL'; exit 2; }
+          test -n "$VIRA_API_KEY" || { echo 'Missing non-production VIRA_ACCEPTANCE_API_KEY'; exit 2; }
+          test -n "$VIRA_MANIFEST_B64" || { echo 'Missing real VIRA_ACCEPTANCE_MANIFEST_B64'; exit 2; }
+          printf '%s' "$VIRA_MANIFEST_B64" | base64 --decode > "$RUNNER_TEMP/vira-skill-manifest.json"
+          node -e "JSON.parse(require('node:fs').readFileSync(process.env.RUNNER_TEMP+'/vira-skill-manifest.json','utf8')); console.log('Manifest parsed (identifiers redacted)')"
+      - name: Install versioned published SDK (no project mutation)
+        run: npm install --prefix examples/javascript --ignore-scripts --no-audit --no-fund
+      - name: Read real lifecycle state and require canonical verified-output proof
+        env:
+          VIRA_API_URL: ${{ secrets.VIRA_ACCEPTANCE_API_URL }}
+          VIRA_API_KEY: ${{ secrets.VIRA_ACCEPTANCE_API_KEY }}
+        run: |
+          cd examples/javascript
+          node skill-e2e-acceptance.mjs --manifest "$RUNNER_TEMP/vira-skill-manifest.json"
