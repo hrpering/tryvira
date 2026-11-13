@@ -32,14 +32,30 @@
         "stableKey": "home.recipe_request.ingredients",
         "stage": "post_model",
         "requirement": "Check that the final ingredient list contains no meat, poultry, fish, onion or shallot.",
-        "onFailure": "repair"
+        "onFailure": "repair",
+        "checks": [
+          {
+            "stableKey": "home.recipe_request.ingredients.content",
+            "requirement": "judge: Validate the ingredient list against the active vegetarian and onion-free rule; ignore harmless sentences that merely mention forbidden foods as exclusions, and reject direct equivalents."
+          }
+        ]
       },
       {
         "kind": "verification",
         "stableKey": "home.recipe_request.usability",
         "stage": "post_model",
         "requirement": "Verify that quantities, servings and cooking sequence are coherent.",
-        "onFailure": "repair"
+        "onFailure": "repair",
+        "checks": [
+          {
+            "stableKey": "home.recipe_request.usability.non_empty",
+            "requirement": "verifier:output.non_empty"
+          },
+          {
+            "stableKey": "home.recipe_request.usability.domain",
+            "requirement": "judge: Verify that the recipe has workable steps, coherent quantities, and requested serving count without inventing ingredients."
+          }
+        ]
       }
     ]
   }

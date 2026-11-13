@@ -20,6 +20,20 @@ Vira davranışı bir prompt parçası olmaktan çıkarıp gözden geçirilebile
 
 **Örnek:** Bir retail-media asistanı iki kampanyanın ROAS değerini karşılaştırırken farklı attribution window veya satış kapsamlarını aynı kabul etmemeli. Vira'da bu kontrol, göreve ait açık bir davranış olarak tanımlanıp değerlendirilebilir. Bu bir ürün senaryosudur; kanıtlanmış bir performans artışı iddiası değildir.
 
+## Gözlemle, tanımla, uygula, doğrula, iyileştir
+
+Vira yalnızca Pack yükleme veya prompt yönetimi değildir. Mevcut AI sisteminden **Observe** ile izinli kullanım kanıtı toplar; **Signal** ile bu kanıtlara tanımlı ve onaylı anlam kazandırmayı hedefler; **Teach** ile iyileştirme önerisi üretir. **Evaluation** ve ayrı **approval/release** kararından sonra uygun davranış **AUTO TaskRun** akışında çalışır. **Runtime verification** sonuçta hangi kontrollerin gerçekten geçip kalmadığını belirler; **receipt/trace** bunları araştırılabilir hâle getirir.
+
+| İhtiyaç | Rehber |
+| --- | --- |
+| Agent'ın olaylarını, araç çağrılarını, hatalarını ve sonuçlarını izlemek | [Observe](docs/observe.md) |
+| Versiyonlu Signal, kaynak eşlemesi, onay ve runtime attestation | [Signals](docs/signals.md) |
+| Düzeltme/geri bildirimden denetimli davranış iyileştirmeye gitmek | [Teach](docs/teach.md) |
+| Gerçek yanıtı post-model kontrol ve gerektiğinde repair/block ile doğrulamak | [Runtime verification](docs/runtime-verification.md) |
+| Bütün özellik aileleri, veri/güvenlik, Studio/Admin, optimizasyon ve sınırlamalar | [Tam ürün haritası](docs/product-feature-map.md) · [Durum tablosu](docs/product-status.md) |
+
+**Observe olayının kabul edilmesi doğrulama başarısı değildir; Signal otomatik olarak güvenilir kural hâline gelmez; TaskRun'ın tamamlanması da doğrulanmış son chatbot yanıtını tek başına kanıtlamaz.**
+
 ## Tek canonical çalışma yolu
 
 **AUTO TaskRun → semantic resolve → mod seçimi → gerçek child executor → runtime enforcement → provider/chatbot → post-model verification/receipt.** Kullanıcı her istekte SINGLE/STRATEGY/COMPOUND/HYBRID seçmez. `behavior-projection` yalnızca ileri seviye SDK/diagnostic kullanımda kalır. Public API henüz doğrulanmış son chatbot yanıtının tamamını kanıtlamadığından ON örneği sahte yanıt üretmez.

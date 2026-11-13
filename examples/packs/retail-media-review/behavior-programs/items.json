@@ -32,14 +32,30 @@
         "stableKey": "retail.compare_campaign_evidence.metric_claims",
         "stage": "post_model",
         "requirement": "Check every recommendation against metric definitions, reporting window and available evidence.",
-        "onFailure": "repair"
+        "onFailure": "repair",
+        "checks": [
+          {
+            "stableKey": "retail.compare_campaign_evidence.metric_claims.non_empty",
+            "requirement": "verifier:output.non_empty"
+          },
+          {
+            "stableKey": "retail.compare_campaign_evidence.metric_claims.domain",
+            "requirement": "judge: Verify that the attribution window, sales scope and KPI definitions in each claim agree with the supplied evidence; reject unsupported cross-channel rankings."
+          }
+        ]
       },
       {
         "kind": "verification",
         "stableKey": "retail.compare_campaign_evidence.action_claims",
         "stage": "post_model",
         "requirement": "Do not assert that budgets were changed or incremental profit proved without external evidence and authorization.",
-        "onFailure": "block"
+        "onFailure": "block",
+        "checks": [
+          {
+            "stableKey": "retail.compare_campaign_evidence.action_claims.domain",
+            "requirement": "judge: Block claims that budget was actually moved, or incremental profit proved, unless tool receipts and credible measurement evidence support them."
+          }
+        ]
       }
     ]
   }

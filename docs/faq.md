@@ -4,6 +4,30 @@
 
 How an AI system responds, makes decisions and takes actions in a particular context. A behavior can define requirements, checks, escalation rules or an eligible strategy for a task. [Concepts](core-concepts.md)
 
+### What does Observe actually collect?
+
+Where an authorized adapter is connected, it can submit permitted conversation, model, retrieval, tool, action, feedback, error, cost, latency and outcome events. The server accepts them as evidence, not as an automatic approval, Teach proposal or post-model PASS. [Observe](observe.md)
+
+### Is a Signal the same thing as a logged event?
+
+No. A Signal has an explicit typed meaning and version, and its source mapping must be reviewed and activated. A Pack listing a Signal name does not itself create a trusted value. [Signals](signals.md)
+
+### Does Runtime Verification check the actual answer?
+
+It can check the actual output at a supported runtime boundary, using configured deterministic or extended verifiers, with explicit failure handling and receipts. **A successful TaskRun status alone is not proof that the final provider answer passed those checks.** The public verified-answer readback is still a separate integration requirement. [Runtime verification](runtime-verification.md) · [Missing verified-answer contract](verified-answer-handoff.md)
+
+### What happens when a verification check fails?
+
+Depending on the released Program and host support, a bounded repair/rerank, escalation, or block may be requested. Missing verifiers cannot be reported as passing. [Runtime verification](runtime-verification.md)
+
+### Can I use Observe first without changing my agent's behavior?
+
+Yes, if you have a provisioned connection and proper data permissions. Evidence can inform later discovery, Signal review and Teach without automatically changing the model's response. [Observe-first integration](observe.md)
+
+### Does Vira include memory, billing, GPUs and Studio/Admin?
+
+The backend contains related modules and operational surfaces, but **implementation is not proof of general public access or an advertised commercial feature**. [Full feature map](product-feature-map.md) · [Status matrix](product-status.md)
+
 ### Is Vira a new model or an agent framework?
 
 No. Vira is designed to work alongside existing models, applications and agent frameworks. The host still runs the model and tools.

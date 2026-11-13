@@ -39,6 +39,7 @@ The supported Pack ZIP importer groups collection files using these collection-f
 | `rubric` / `antiPatterns` | Real decision rules and known failures | Domain-specific, adversarial, actionable | Generic slogans with no negative tests |
 | `modules[].kind` | guard / judgment / transform / verification / escalation / rubric / example / anti_pattern | Choose an appropriate operation | Put executable effects on a rubric-only module |
 | `modules[].stableKey` | Lowercase canonical unique identifier | Stable identity and diffability | Uppercase or duplicates |
+| `modules[].checks` / `checks[].requirement` | Supported deterministic check syntax, or an explicitly configured policy/rubric/judge extension | Actual output test and visible failure | Treating a natural-language requirement as automatically executable |
 | `modules[].stage` | pre_model / pre_tool / post_model / pre_action | Match the decision moment | Post-model check passed off as pre-tool authorization |
 | `verification.onFailure` | repair / rerank / escalate / block | Bounded reaction to failed check | Infinite implicit repair loops |
 | `behaviorStrategies` | Explicit graph of steps/edges/state/policies/budget | Only for a genuinely multi-stage task | Renaming a long list into a Strategy |
@@ -47,7 +48,7 @@ The supported Pack ZIP importer groups collection files using these collection-f
 
 ## Minimum viable strong Program
 
-The **Point** answers *what must be true*. The **Program** answers *how to check and respond*:
+The **Point** answers *what must be true*. The **Program** answers *how to check and respond*. A Pack's `signals/items.json` lists **required Signal references**, not automatically approved producer mappings or live values. [Signal lifecycle](signals.md) · [Observe evidence](observe.md). The Program example includes concrete check syntax:
 
 ```json
 {
@@ -64,14 +65,24 @@ The **Point** answers *what must be true*. The **Program** answers *how to check
       "kind": "verification",
       "stableKey": "retail.compare_campaign_evidence.metric_claims",
       "stage": "post_model",
-      "requirement": "Every budget recommendation identifies measurement compatibility and its evidence.",
-      "onFailure": "repair"
+      "requirement": "Check whether the metrics are comparable before a budget recommendation.",
+      "checks": [
+        {"stableKey": "retail.compare_campaign_evidence.non_empty", "requirement": "verifier:output.non_empty"},
+        {"stableKey": "retail.compare_campaign_evidence.domain", "requirement": "judge: Confirm each recommendation is supported by the supplied metric definitions and attribution windows."}
+      ],
+      "onFailure": "block"
     }
   ]
 }
 ```
 
-This is an **illustration extracted from the intermediate example**, not a claim that writing the check alone proves it passed. Select a verifier able to observe the actual claim; a missing or unavailable verifier must not result in fake success.
+This is an **illustration drawn from the intermediate example**, not a live PASS receipt. `verifier:output.non_empty` is a supported narrow deterministic check. `judge: ...` needs an explicitly configured model-judge extension; **without it, the check must fail closed**. Unstructured prose like “check the numbers” is *not* automatically verified by the default verifier. Even a supported verification module must run at a real host/provider boundary. [Runtime verification](runtime-verification.md).
+
+## Evidence to include with a serious Pack
+
+Document how the connected AI System emits permitted **Observe** events; which **Signal** definitions and approved producer mappings (if any) the behavior needs; which **verification modules** can really execute at the host's post-model boundary; the exact repair/block behavior; and how to retrieve the matching receipt. A passing source-level structure check is not proof of these things.
+
+The beginner, retail and operations Packs intentionally require a **configured domain judge extension** for the semantic checks. These are **authoring references and install candidates**, not plug-and-play guarantees of quality or live verifier support. See [Observe → Signal → Runtime walkthrough](../examples/observe-signal-verify/README.md).
 
 ## What belongs in a Strategy
 

@@ -23,6 +23,12 @@ For a comparison against Skills, agents and adjacent platform categories without
 
 These are candidate use cases, not proof of a measured outcome.
 
+## What buyers should expect from the complete lifecycle
+
+A governance checkbox is not the product. **Observe** supplies real behavior evidence; **Signals** create reviewed typed context; **Teach** turns feedback/outcomes into proposals; **evaluation/release** controls changes; **AUTO TaskRun** selects eligible work; **runtime verification** checks the actual output when supported and **receipts** make the decision auditable.
+
+This combination is a product direction with separate maturity levels. Ask to see the exact integrated provider-to-post-model verification receipt, not a screenshot or a completed routing status. See the [full feature map](product-feature-map.md), [Observe](observe.md), [Signals](signals.md) and [runtime verification](runtime-verification.md).
+
 ## What a practical evaluation should include
 
 1. **Baseline:** run the current application on representative tasks without Vira behavior applied. Keep prompts, model configuration, and inputs recorded.

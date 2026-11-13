@@ -29,6 +29,20 @@ A stronger model may already perform well. **The problem isn't simply that model
 
 **Portability does not mean identical behavior on every model.** Re-evaluate every new model, framework, tool boundary and provider before making equivalence claims.
 
+## The system that makes the position meaningful
+
+**Observe it:** collect approved evidence about AI requests, tool calls, decisions, failures and outcomes.
+
+**Understand it:** distinguish raw events from typed, reviewed Signals and the exact Semantic Task.
+
+**Shape it:** write a reusable Program/Strategy/Pack with tests; Teach can propose revisions, not self-release them.
+
+**Run it:** allow the server to select eligible tasks and modes through AUTO TaskRun. Apply released behavior at a supported host boundary.
+
+**Check it:** verify actual outputs with available post-model verifiers, bounded repair and a matched receipt. Then repeat the cycle with new evidence.
+
+This is how Vira differs in focus from *only* prompt storage, *only* agent execution, or *only* monitoring. It does **not** mean all other tools lack those functions, or that Vira's complete verified-answer chain is publicly demonstrated. [Capability map](product-feature-map.md) · [Truthful status](product-status.md).
+
 ## Category positioning: complement rather than caricature
 
 - **Agent and workflow frameworks** are strong at doing work with models and tools; Vira addresses governance of task behavior and runtime eligibility around that work.

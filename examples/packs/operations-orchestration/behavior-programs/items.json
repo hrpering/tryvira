@@ -17,7 +17,13 @@
         "stableKey": "operations.summarize_support.facts",
         "stage": "post_model",
         "requirement": "Do not invent support counts or quotes.",
-        "onFailure": "repair"
+        "onFailure": "repair",
+        "checks": [
+          {
+            "stableKey": "operations.summarize_support.facts.domain",
+            "requirement": "judge: Verify that support counts and quotes are supported by supplied ticket evidence."
+          }
+        ]
       }
     ]
   },
@@ -39,7 +45,13 @@
         "stableKey": "operations.review_inventory.supply_facts",
         "stage": "post_model",
         "requirement": "Reported stock values must be supported by supplied data.",
-        "onFailure": "repair"
+        "onFailure": "repair",
+        "checks": [
+          {
+            "stableKey": "operations.review_inventory.supply_facts.domain",
+            "requirement": "judge: Verify every stock number and inventory claim is supported by supplied data or a real authorized warehouse-tool receipt."
+          }
+        ]
       }
     ]
   },
@@ -67,7 +79,13 @@
         "stableKey": "operations.investigate_incident.conclusions",
         "stage": "post_model",
         "requirement": "Every root-cause conclusion must be supported by observed evidence.",
-        "onFailure": "block"
+        "onFailure": "block",
+        "checks": [
+          {
+            "stableKey": "operations.investigate_incident.conclusions.domain",
+            "requirement": "judge: Verify that incident conclusions are grounded in observed evidence and unconfirmed causes remain hypotheses."
+          }
+        ]
       }
     ]
   }

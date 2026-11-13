@@ -2,6 +2,8 @@
 
 **Status: proposed integration requirement, not a published API schema.** These are the minimum evidence requirements for the provider, backend and public SDK before a customer chatbot may display an ON answer as *verified by Vira*. No new endpoint or payload fields are claimed to exist.
 
+For the actual verifier stages, supported check formats, extension requirements and failure policies, see [Runtime verification](runtime-verification.md). For evidence intake, see [Observe](observe.md) and [Signals](signals.md).
+
 ## Admission is not a verified answer
 
 The public SDK can admit and inspect an AUTO TaskRun. The server can persist task/mode and child receipts. A `COMPLETED` TaskRun on its own does **not** demonstrate a real provider-generated final answer or a post-model verification of that exact answer against the released behavior.

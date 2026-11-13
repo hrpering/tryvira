@@ -14,6 +14,8 @@
 | [Marketing Pack](packs/marketing-starter/) | current manifest variables plus governed Pack materialization/evaluation/release concepts |
 | [Strategy integration](strategy/) | references to the published SDK/API contracts |
 
+See also the [Observe → Signal → Teach → runtime verification walkthrough](observe-signal-verify/README.md). This is a documented learning scenario, not a fake live execution result.
+
 ## JavaScript starting points
 
 ```text

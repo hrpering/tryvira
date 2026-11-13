@@ -12,6 +12,26 @@ The adapter-level connection between an AI System and Vira.
 
 The organization, project, and environment boundary in which data and behavior apply.
 
+## Observe
+
+A structured, scoped record of what a connected AI system actually did: conversations, model requests/responses, tool calls, actions, errors, cost and later outcomes. Observation acceptance is not verification. [Observe guide](observe.md)
+
+## Runtime verification
+
+An applicable released behavior is checked at the actual runtime stage (`pre_model`, `pre_tool`, `post_model` or `pre_action`), subject to the host's real capability. It needs an actual verifier and a receipt. [Runtime verification](runtime-verification.md)
+
+## Feedback and outcome attribution
+
+User/operator feedback and actual business outcomes are different evidence inputs. Neither may silently authorize a behavior release. [Teach](teach.md)
+
+## Response Quality & Decision
+
+A bounded evaluation/selection of response candidates. It is not the same as offline Behavior Evaluation or runtime verification. [Quality](decision-and-quality.md)
+
+## Host capability attestation
+
+Server-governed evidence that a particular connected host can enforce a requested runtime boundary. Client-declared capabilities do not grant permission. [Canonical TaskRun](canonical-taskrun.md)
+
 ## Semantic Task
 
 A governed task definition used by semantic resolution.

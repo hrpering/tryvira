@@ -33,6 +33,17 @@ Do not assume these choices appear as a universal Studio setting or are supporte
 
 **AUTO TaskRun → semantic resolve → mode dispatch → real child executor → runtime behavior enforcement → provider/chatbot → post-model verification and receipt.** Normal apps start with `startTaskRun` / `start_task_run` and read persisted state. Direct `behavior-projection` and `resolveRuntime` are diagnostic/advanced SDK APIs, not the normal chat path. [Canonical integration and current final-answer contract gap](canonical-taskrun.md) · [Verified output evidence requirements](verified-answer-handoff.md).
 
+## Observe, Signal, enforce, verify
+
+1. **Observe:** instrument actual connected model/tool/action boundaries with permitted, idempotent events and collect real IDs. [Observe guide](observe.md).
+2. **Define Signals:** decide if any observation needs a typed, reviewed producer mapping. Never use an untrusted plain JSON attribute as a hard authority input. [Signals](signals.md).
+3. **Review behavior:** author a specific Pack, choose a verifier with real support, evaluate and release separately. [Pack Academy](pack-authoring-guide.md).
+4. **Execute:** send the normal request through AUTO TaskRun, confirm server-resolved task/mode and child executor receipts. [Canonical flow](canonical-taskrun.md).
+5. **Verify:** confirm the actual provider output and post-model verification result agree on the same artifact and output digest. If absent, return pending/unsupported rather than fabricating a verified answer. [Verification](runtime-verification.md).
+6. **Improve:** correlate permitted feedback/outcomes with the run and propose a Teach change with separate authorization. [Teach](teach.md).
+
+The rest of the platform also includes privacy/scope, release/rollout, telemetry, billing, Studio/Admin and experimental runtime/accelerator work. **Do not confuse a backend module with an advertised generally available SDK feature.** [All capability families](product-feature-map.md) · [Evidence status](product-status.md).
+
 ## A minimal safe integration
 
 ### 1. Configure scope and secrets

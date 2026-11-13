@@ -15,6 +15,14 @@
 
 For single- and multi-task routing, [SINGLE / STRATEGY / COMPOUND / HYBRID / AUTO](execution-modes.md) are covered separately from the basic chatbot ON/OFF toggle.
 
+## Not just a chatbot: two ways to start
+
+**Observe-first:** Connect an existing agent and submit sanitized events to build evidence before changing behavior. [Observe](observe.md) · [Signals](signals.md) · [Teach](teach.md).
+
+**Governed execution:** Author, evaluate and release eligible behavior, then submit the normal request through [AUTO TaskRun](canonical-taskrun.md) and inspect real [runtime verification](runtime-verification.md) receipts when the connected provider/verifier contract supports them.
+
+[All product feature families](product-feature-map.md) · [Feature maturity](product-status.md).
+
 ## First run without Vira access
 
 Use Node.js 22.6+:

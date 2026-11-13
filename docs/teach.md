@@ -2,6 +2,8 @@
 
 Teach AI carries permitted evidence about AI behavior through analysis, review, and a possible governed improvement. It closes the loop after runtime use by relating later outcomes to the next improvement cycle. Teach suggests changes; it does not silently rewrite or release active behavior.
 
+**Observe** supplies admitted evidence, **Signals** attach governed typed meanings to approved sources, **Teach** proposes changes, and **runtime verification/receipts** show what a later released behavior actually did. None of these stages automatically authorizes the next. [Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md).
+
 ## End-to-end Teach loop
 
 ```text

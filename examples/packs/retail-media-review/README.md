@@ -4,6 +4,10 @@ A business Pack designed to survive a strong baseline model. Its value is a **de
 
 The core problem: comparing metrics built from *different measurement rules* and presenting a confident spend recommendation.
 
+## Required verifier and evidence
+
+This Pack uses `verifier:output.non_empty` for basic deterministic completeness and `judge: ...` extension requirements for evidence-backed KPI comparison. The model judge **must be configured and tested against a real source/evaluation dataset** before a runtime PASS can be claimed. An unconfigured judge, missing metric definitions or unsupported repair must not be reported as successful verification. The Signal keys are references, not approved live producer mappings. [Runtime verification](../../../docs/runtime-verification.md) · [Observe/Signal example](../../observe-signal-verify/README.md).
+
 ## How to adapt
 
 1. This example deliberately omits installer variables. Add business-unit or market configuration only after your actual materializer and runtime show that those fields bind to the Program, not merely to Pack metadata.

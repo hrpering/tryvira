@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Added a full product-capability family map and status evidence levels, covering Observe, Signals, runtime verification, Teach, TaskRun, security/privacy, evaluation/release, optimization, telemetry, integrations, billing, Studio/Admin and experimental infrastructure.
+- Explained supported verifier-check syntax and the external `judge` extension requirement; updated all three Pack Programs with explicit `checks` instead of implicit natural-language-only verification.
+- Added a synthetic Observe → Signal → Teach → verified execution walkthrough and rewrote the legacy projection-centric architecture and integration descriptions.
+- Preserved Skills content unchanged for a separate audit.
+
+
 - Added import-candidate ZIP packaging for the three graded Packs, excluding design-time fixtures, with an in-memory archive smoke test in CI.
 
 - Documented the missing provider-to-post-model verified chatbot response handoff as explicit evidence and acceptance requirements; no undocumented endpoint was invented.

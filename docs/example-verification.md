@@ -4,6 +4,8 @@ The public repository contains runnable integration code **and** conceptual exam
 
 **Current reference package line:** `@tryvira/sdk@0.1.44`, `@tryvira/mcp@0.1.44`, `tryvira-sdk==0.1.44`, as synchronized in [published packages](published-packages.md). Version checks use registries; live tenant verification is a separate task.
 
+**Feature coverage:** [Product map](product-feature-map.md) and [status/evidence levels](product-status.md) include Observe, Signals, verified output, Teach, security, billing, integrations and experimental infrastructure. CI can check that documentation exists; it cannot claim those backend capabilities passed customer E2E. A complete verifier proof requires [runtime verification acceptance](runtime-verification.md).
+
 ## What CI actually checks
 
 | Entry point | SDK/API surface | Automated verification | Not verified by this CI |

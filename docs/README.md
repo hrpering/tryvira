@@ -8,6 +8,10 @@
 
 | Goal | Start with | Then go to |
 | --- | --- | --- |
+| Observe an existing agent and collect permitted evidence | [Observe](observe.md) | [Signals and source mapping](signals.md) · [Teach](teach.md) |
+| Author a runtime Signal | [Signals](signals.md) | [Observe](observe.md) · [Runtime verification](runtime-verification.md) |
+| Verify actual responses, not just evaluations | [Runtime verification](runtime-verification.md) | [Verified answer handoff](verified-answer-handoff.md) · [Receipts](traces.md) |
+| Explore every product area and availability boundary | [Full product map](product-feature-map.md) | [Evidence status](product-status.md) · [Capability map](capability-map.md) |
 | Author a high-quality Pack | [Pack Academy](pack-authoring-guide.md) | [Three complete examples](../examples/packs/README.md) |
 | Integrate the canonical AUTO TaskRun path | [Canonical runtime](canonical-taskrun.md) | [Next.js admission demo](../examples/frameworks/node-next/README.md) |
 | Explore everyday-to-enterprise examples | [12 scenario prompts](use-cases.md) · [24 copyable variants](../examples/scenarios/README.md) | [Modes](execution-modes.md) · [Category comparison](approach-comparison.md) |
@@ -29,6 +33,7 @@
 Vira's product concepts are designed to separate *what a task is*, *where behavior applies*, *which revision is eligible*, and *what happened*.
 
 - [Canonical AUTO TaskRun](canonical-taskrun.md), [verified-answer interface requirements](verified-answer-handoff.md), [brand story](brand-positioning.md), and [Pack authoring guide](pack-authoring-guide.md).
+- [Observe](observe.md), [Signal lifecycle](signals.md), [runtime verification](runtime-verification.md) and [product feature map](product-feature-map.md).
 - [Execution modes](execution-modes.md) for SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO.
 - [Examples by level](use-cases.md) and [brand-neutral approach comparison](approach-comparison.md).
 - [Core concepts](core-concepts.md) for Semantic Tasks, Behavior Points, Programs, Strategies, release and traces.

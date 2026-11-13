@@ -23,6 +23,23 @@ Vira provides a separate, governed place to define and operate those behaviors. 
 
 `behavior-projection` and direct `resolveRuntime` remain **advanced SDK/diagnostic surfaces**, not the customer quickstart or a second chatbot path. A `COMPLETED` TaskRun alone does not prove that a provider-generated answer passed post-model verification.
 
+## See the full Vira loop
+
+Vira is more than a Pack editor or a runtime rules switch. It connects **real AI activity → governed behavioral changes → execution-time evidence**:
+
+| Capability | The practical question | Start here |
+| --- | --- | --- |
+| **Connect / Observe** | What do our AI agents actually say, decide, call and fail at? | [Observe](docs/observe.md) |
+| **Discover / Signals** | Which tasks and typed context signals can we identify from permitted evidence? | [Semantic routing](docs/semantic-routing.md) · [Signals](docs/signals.md) |
+| **Define / Packs / Strategies** | What behavior should apply, and how should it execute? | [Pack Academy](docs/pack-authoring-guide.md) · [Strategies](docs/strategies.md) |
+| **Teach / Feedback / Outcomes** | How does a correction become a reviewed improvement, rather than another prompt patch? | [Teach](docs/teach.md) · [Observe](docs/observe.md) |
+| **Evaluate / Release** | Has this exact revision been tested and explicitly approved? | [Evaluation](docs/evaluation-and-approval.md) · [Release](docs/release.md) |
+| **AUTO TaskRun / Runtime enforcement** | Which eligible behavior and child executor actually ran? | [Canonical TaskRun](docs/canonical-taskrun.md) |
+| **Runtime verification / Response Quality** | Did the actual output satisfy the configured checks, and what happens on failure? | [Runtime verification](docs/runtime-verification.md) · [Quality](docs/decision-and-quality.md) |
+| **Traces / Receipts / Operations** | What was applied, skipped, denied or measured, and can the team inspect it? | [Receipts](docs/traces.md) · [Product feature map](docs/product-feature-map.md) |
+
+**Every feature family is mapped:** [complete capability guide](docs/product-feature-map.md) and [status/limitations](docs/product-status.md) also cover scopes and privacy, memory/knowledge, integrations, Studio/Admin, optimization, billing and experimental model/GPU infrastructure. Availability and proof differ by surface; none of those links implies general service access.
+
 ## Examples for different kinds of AI work
 
 Vira is not limited to one industry or to complex agents. Start simple, then move to multi-task execution:

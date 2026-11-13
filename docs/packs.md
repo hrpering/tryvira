@@ -8,6 +8,12 @@ A high-quality Pack has **task boundaries, an explicit Point, executable Program
 
 For normal application requests the canonical path is [AUTO TaskRun](canonical-taskrun.md), **not** a direct behavior-projection call.
 
+## Evidence, Signal mappings and runtime checks
+
+A Pack may declare expected Signal keys, but that **does not** create a reviewed and attested Signal producer. A Program may declare post-model checks, but a natural-language requirement is **not automatically an executable verifier**. The three quality-graded examples now declare explicit checks, including domain-judge extensions that must be configured and verified by the real runtime before an ON result is claimed.
+
+A customer journey can start with [Observe](observe.md), then [Signal review and mapping](signals.md), then candidate authoring, evaluation, explicit release, [AUTO TaskRun](canonical-taskrun.md) and actual [runtime verification](runtime-verification.md). Separate the observed event, Signal identity, child execution receipt, verifier result and final provider output.
+
 ## Product-level workflow
 
 ```text
