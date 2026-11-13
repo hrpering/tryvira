@@ -1,4 +1,4 @@
 interface:
-  display_name: "Vira Python Sdk"
-  short_description: "Vira Python Sdk tasks and workflow guidance"
-  default_prompt: "Use $vira-python-sdk to complete this documented Vira python sdk workflow."
+  display_name: "Vira Python SDK"
+  short_description: "Implement Python SDK TaskRun and Observe flows"
+  default_prompt: "Use $vira-python-sdk to implement verified tryvira-sdk Python calls, explicit AUTO TaskRun admission and observation events with full scope and safe state handling."

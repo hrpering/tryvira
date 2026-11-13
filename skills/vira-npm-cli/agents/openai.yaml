@@ -1,4 +1,4 @@
 interface:
-  display_name: "Vira Npm CLI"
-  short_description: "Vira Npm Cli tasks and workflow guidance"
-  default_prompt: "Use $vira-npm-cli to complete this documented Vira npm cli workflow."
+  display_name: "Vira npm CLI"
+  short_description: "Install npm SDK or MCP with verified contract"
+  default_prompt: "Use $vira-npm-cli to verify package versions, Node compatibility and package exports, install the correct npm SDK or MCP server, and test without publishing anything."

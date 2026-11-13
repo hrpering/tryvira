@@ -1,4 +1,4 @@
 interface:
-  display_name: "Vira Chatbot"
-  short_description: "Try Vira behavior in an OFF/ON chatbot"
-  default_prompt: "Use $vira-chatbot to set up and compare the chatbot in Vira OFF and ON modes."
+  display_name: "Vira OFF ON Chatbot"
+  short_description: "Run the truthful OFF baseline and ON TaskRun demo"
+  default_prompt: "Use $vira-chatbot to run the existing Next.js demo: OFF invokes the model and ON submits AUTO TaskRun pending/status, without inventing a verified ON chatbot response."

@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Build Pack"
-  short_description: "Vira Build Pack tasks and workflow guidance"
-  default_prompt: "Use $vira-build-pack to complete this documented Vira build pack workflow."
+  short_description: "Create high-quality import-ready Behavior Packs"
+  default_prompt: "Use $vira-build-pack to author one of the quality-graded Pack formats, define explicit verifier checks and test fixtures, validate and produce a ZIP candidate."

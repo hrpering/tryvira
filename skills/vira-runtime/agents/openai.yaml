@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Runtime"
-  short_description: "Vira Runtime tasks and workflow guidance"
-  default_prompt: "Use $vira-runtime to complete this documented Vira runtime workflow."
+  short_description: "Inspect canonical runtime authority and receipt"
+  default_prompt: "Use $vira-runtime to integrate or diagnose canonical AUTO TaskRun execution and runtime behavior enforcement. Keep projection APIs diagnostic-only and verify receipt boundaries."

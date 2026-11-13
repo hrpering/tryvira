@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Framework Integration"
-  short_description: "Vira Framework Integration tasks and workflow guidance"
-  default_prompt: "Use $vira-framework-integration to complete this documented Vira framework integration workflow."
+  short_description: "Add AUTO TaskRun to agent and web frameworks"
+  default_prompt: "Use $vira-framework-integration to place canonical AUTO TaskRun in the real Next.js, FastAPI, LangGraph or agent host boundary without projection-to-provider bypass."

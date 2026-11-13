@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Debug"
-  short_description: "Vira Debug tasks and workflow guidance"
-  default_prompt: "Use $vira-debug to complete this documented Vira debug workflow."
+  short_description: "Debug TaskRun, verifier and scope failures"
+  default_prompt: "Use $vira-debug to find the earliest failing Vira boundary: scope, TaskRun routing, child execution, host attestation, Signal mapping or post-model verification."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Vira Task Runs"
-  short_description: "Route and operate governed TaskRuns with the Vira JavaScript SDK"
-  default_prompt: "Use $vira-task-runs to route, start, inspect, or safely continue a Vira TaskRun."
+  display_name: "Vira TaskRuns"
+  short_description: "Run AUTO TaskRun across four eligible modes"
+  default_prompt: "Use $vira-task-runs to route or start a scoped AUTO TaskRun with the published JS or Python SDK, inspect SINGLE/STRATEGY/COMPOUND/HYBRID selection and real child states."

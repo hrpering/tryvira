@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Get Started"
-  short_description: "Vira Get Started tasks and workflow guidance"
-  default_prompt: "Use $vira-get-started to complete this documented Vira get started workflow."
+  short_description: "Choose Vira integration and first safe check"
+  default_prompt: "Use $vira-get-started to inspect this application's stack and decide between Observe-only instrumentation and governed AUTO TaskRun. Show the first safe check and access blockers."

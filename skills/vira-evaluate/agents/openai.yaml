@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Evaluate"
-  short_description: "Run and review Vira behavior evaluations"
-  default_prompt: "Use $vira-evaluate to prepare or run a documented Vira Behavior Evaluation, then inspect its persisted result without implying approval or release."
+  short_description: "Evaluate behavior candidates and real regressions"
+  default_prompt: "Use $vira-evaluate to design and execute evidence-based Behavior Evaluation or bounded response-quality checks; do not confuse them with runtime verification."

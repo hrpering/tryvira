@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Studio"
-  short_description: "Vira Studio tasks and workflow guidance"
-  default_prompt: "Use $vira-studio to complete this documented Vira studio workflow."
+  short_description: "Inspect real scoped Studio state and workflows"
+  default_prompt: "Use $vira-studio to guide an authorized person through actual visible Studio state, roles, approval and release, with no assumed page or completion."

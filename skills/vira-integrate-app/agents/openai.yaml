@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Integrate App"
-  short_description: "Vira Integrate App tasks and workflow guidance"
-  default_prompt: "Use $vira-integrate-app to complete this documented Vira integrate app workflow."
+  short_description: "Connect an existing application to AUTO TaskRun"
+  default_prompt: "Use $vira-integrate-app to inspect this application's provider, tool and response boundaries, integrate canonical AUTO TaskRun server-side and preserve fail-closed behavior."

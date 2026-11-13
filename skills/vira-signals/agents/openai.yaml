@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Signals"
-  short_description: "Vira Signals tasks and workflow guidance"
-  default_prompt: "Use $vira-signals to complete this documented Vira signals workflow."
+  short_description: "Govern typed Signals and approved producers"
+  default_prompt: "Use $vira-signals to review a typed Signal definition, approved producer mapping and runtime attestation from real admitted evidence, including missing/stale tests."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Vira Observe Teach"
-  short_description: "Run Teach analyses and manage evidence or proposals"
-  default_prompt: "Use $vira-observe-teach for permitted evidence, Teach analysis and readback, recommendation decisions, or proposal review; keep recommendation decisions, proposals, evaluation, and release distinct."
+  display_name: "Vira Teach AI"
+  short_description: "Turn consented evidence into governed Teach changes"
+  default_prompt: "Use $vira-observe-teach to select admitted evidence, run/read back Teach analysis, review Signals/proposals and keep evaluation, approval and release separate."
