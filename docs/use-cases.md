@@ -125,6 +125,10 @@ Vira is not only for enterprise dashboards. A **behavior** describes how an AI s
 | Advanced | Customer resolution | HYBRID | Distinct SINGLE and STRATEGY child states |
 | Adaptive | Executive briefing | AUTO | Correct routing or clarification |
 
+## Copyable prompts for all twelve scenarios
+
+Each scenario also has short and detailed prompt variants, explicit behavior requirements and negative checks in the [synthetic scenario fixtures](../examples/scenarios/README.md). The source is structured [JSON](../examples/scenarios/cases.json); the prompt helper prints one test input without contacting a model or Vira service.
+
 ## How to conduct a fair OFF/ON comparison
 
 1. Decide the expected behavior and verification criteria **before** observing outputs.

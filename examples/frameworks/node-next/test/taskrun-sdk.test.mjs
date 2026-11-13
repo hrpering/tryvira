@@ -103,3 +103,16 @@ test("readback, events and continuation use persisted IDs and versions", async (
   assert.deepEqual(calls.at(-1).body, { expectedVersion: 4, cursor: "cursor-from-server" });
   assert.throws(() => client.continueTaskRun("synthetic-id", -1), /SDK_TASKRUN_STATE_VERSION_REQUIRED/);
 });
+
+test("published JS client also exposes methods used by the other runnable examples", () => {
+  const { client } = fixture();
+  for (const method of [
+    "connectOnce", "testConnection", "observe", "listCapabilities",
+    "createSemanticTask", "createBehaviorPoint", "resolveSemantic",
+    "resolveRuntime", "evaluateQuality", "serveBehaviorProjection",
+    "importPack", "installPack", "evaluatePack", "approvePack",
+    "releasePack", "submitTeachEvidence", "createTeachProposal",
+  ]) {
+    assert.equal(typeof client[method], "function", method);
+  }
+});

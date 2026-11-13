@@ -5,6 +5,7 @@
  */
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
 
 const data = JSON.parse(await readFile("examples/scenarios/cases.json", "utf8"));
 assert.equal(data.schemaVersion, 1);
@@ -42,6 +43,17 @@ for (const row of data.cases) {
 
 for (const mode of allowedModes) assert.ok(modeCount.has(mode), "missing " + mode);
 for (const level of allowedLevels) assert.ok(levelCount.get(level) >= 3, "few " + level + " cases");
+
+const preview = spawnSync(process.execPath, [
+  "examples/scenarios/print-prompt.mjs", "B-001", "short",
+], { encoding: "utf8" });
+assert.equal(preview.status, 0);
+assert.equal(preview.stdout.trim(), data.cases[0].shortPrompt);
+const listing = spawnSync(process.execPath, [
+  "examples/scenarios/print-prompt.mjs", "--list",
+], { encoding: "utf8" });
+assert.equal(listing.status, 0);
+assert.equal(listing.stdout.trim().split("\n").length, data.cases.length);
 
 console.log("PUBLIC_SCENARIOS_PASS", {
   count: ids.size,
