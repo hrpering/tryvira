@@ -81,6 +81,7 @@ jobs:
           uv venv --python 3.12 examples/frameworks/python_fastapi/.venv
           uv pip sync --python examples/frameworks/python_fastapi/.venv/bin/python examples/frameworks/python_fastapi/requirements.lock
           examples/frameworks/python_fastapi/.venv/bin/python -m compileall -q examples/frameworks/python_fastapi
+          examples/frameworks/python_fastapi/.venv/bin/python scripts/check-published-python-sdk.py
           uv venv --python 3.12 examples/frameworks/langgraph/.venv
           uv pip sync --python examples/frameworks/langgraph/.venv/bin/python examples/frameworks/langgraph/requirements.lock
           examples/frameworks/langgraph/.venv/bin/python -m compileall -q examples/frameworks/langgraph

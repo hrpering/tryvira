@@ -40,4 +40,6 @@ Do not invent a `stateVersion` for continuation. A routed task is not proof of a
 - [MCP catalog](mcp-tools.md)
 - [HTTP integration guidance](api.md)
 - [Customer-runnable Python framework examples](../../examples/frameworks/README.md)
+- [Mode routing example](../../examples/python/taskrun_modes.py)
+- [Offline published Python interface verification](../../scripts/check-published-python-sdk.py)
 - [Agent Skills](../../skills/README.md)

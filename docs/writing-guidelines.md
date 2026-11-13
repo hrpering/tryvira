@@ -30,6 +30,14 @@ A task guide should contain: **purpose → prerequisites → commands → expect
 
 Prefer headings such as “Connect your agent”, “Evaluate a change”, or “Inspect runtime evidence” over ambiguous terms such as “Revolutionary intelligence orchestration”.
 
+## Examples, comparisons and modes
+
+- Show several levels of examples: everyday, team workflow and multi-task operations. Include a real prompt, intended behavior and a negative test. Label illustrative scenarios rather than fabricating model responses.
+- A category comparison may discuss Skills, agents, prompt libraries, memory, observability, orchestration and other platform types **without naming competing brands**. Avoid claiming that an entire category lacks a feature.
+- Name SINGLE, STRATEGY, COMPOUND and HYBRID as TaskRun execution modes, with AUTO as the routing request. They must not be described as the same operation.
+- Use installed, published client contracts; do not equate package installation with tenant access or a simulated transport test with live execution. Every actual admission needs an explicit operator action.
+- Link new developer examples from both the examples index and the appropriate SDK reference, and add offline smoke tests where possible.
+
 ## Visuals and trust
 
 Brand wordmark: **vira** as text, without added V glyphs, lines or invented symbols. Core visual palette: midnight black, electric blue and cantaloupe orange, plus neutral backgrounds. Avoid generic indigo/purple AI gradients. Use actual product screenshots only when they depict a verified current build; diagrams should say that they are illustrations.
