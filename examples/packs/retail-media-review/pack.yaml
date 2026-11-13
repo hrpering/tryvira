@@ -1,0 +1,14 @@
+id: vira.examples.retail_media_review
+name: Retail Media Evidence Review
+version: 1.0.0
+requires:
+  vira: ">=1.0"
+variables:
+  - key: business_unit
+    label: Business unit
+    type: text
+    required: true
+  - key: require_attribution_alignment
+    label: Require comparable attribution definitions
+    type: boolean
+    default: true

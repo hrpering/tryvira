@@ -1,0 +1,20 @@
+[
+  {
+    "taskKey": "retail.compare_campaign_evidence",
+    "version": 1,
+    "description": "Analyze campaign performance without incorrectly comparing differently defined ROAS and sales metrics.",
+    "aliases": [
+      "compare retail media performance",
+      "retail media report",
+      "reallocate campaign budget"
+    ],
+    "examples": [
+      "Channel A uses 7-day click; B uses 30-day click plus view. Which performed better?",
+      "Analyze sales scope and attribution before recommending media changes."
+    ],
+    "negativeExamples": [
+      "Write an ad headline.",
+      "Summarize an unrelated customer service ticket."
+    ]
+  }
+]

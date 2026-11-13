@@ -1,0 +1,57 @@
+[
+  {
+    "taskKey": "operations.summarize_support",
+    "version": 1,
+    "description": "Summarize confirmed support incident themes and uncertainty.",
+    "aliases": [
+      "support trends",
+      "summarize complaints"
+    ],
+    "examples": [
+      "Summarize these support complaints."
+    ],
+    "negativeExamples": [
+      "Give me a pancake recipe."
+    ],
+    "compoundEligible": true,
+    "effectful": false,
+    "inputSchemaRef": "schema:text",
+    "outputSchemaRef": "schema:text"
+  },
+  {
+    "taskKey": "operations.review_inventory",
+    "version": 1,
+    "description": "Analyze provided inventory status and shortages without inventing live stock.",
+    "aliases": [
+      "inventory risk",
+      "check inventory"
+    ],
+    "examples": [
+      "Assess inventory risk for delayed orders."
+    ],
+    "negativeExamples": [
+      "Write a press release."
+    ],
+    "compoundEligible": true,
+    "effectful": false,
+    "inputSchemaRef": "schema:text",
+    "outputSchemaRef": "schema:text"
+  },
+  {
+    "taskKey": "operations.investigate_incident",
+    "version": 1,
+    "description": "Investigate a customer-impacting operational incident using bounded verification stages.",
+    "aliases": [
+      "investigate delivery incident",
+      "incident investigation"
+    ],
+    "examples": [
+      "Investigate late shipments and draft a verified incident note."
+    ],
+    "negativeExamples": [
+      "Generate a random slogan."
+    ],
+    "requiresMultipleSteps": true,
+    "effectful": false
+  }
+]

@@ -1,0 +1,18 @@
+id: vira.examples.recipe_preference
+name: Everyday Recipe Preferences
+version: 1.0.0
+requires:
+  vira: ">=1.0"
+variables:
+  - key: serving_count
+    label: Default number of servings
+    type: text
+    required: true
+  - key: vegetarian
+    label: Require vegetarian recipes
+    type: boolean
+    default: true
+  - key: onion_free
+    label: Exclude onion ingredients
+    type: boolean
+    default: true

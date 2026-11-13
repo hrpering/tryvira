@@ -1,0 +1,46 @@
+[
+  {
+    "key": "home.recipe_request",
+    "guard": "Inspect dietary restrictions and available inputs before proposing ingredients.",
+    "judgment": "Treat prohibited ingredients as hard constraints unless an authorized higher-priority instruction changes the configuration.",
+    "transform": "Supply substitutions that maintain the dish's intended role and cookability.",
+    "verification": "Check final ingredient list for excluded ingredients and the serving count.",
+    "escalation": "ask-user-on-conflict",
+    "rubric": [
+      "Provide ingredient quantities for the intended number of servings.",
+      "Never include any excluded ingredient or direct equivalent.",
+      "Retain practical preparation temperatures, ordering and timing.",
+      "If a needed ingredient or constraint is unclear, ask rather than invent."
+    ],
+    "examples": [
+      "Four-portion eggplant meal with an ingredient list and feasible steps, without onion or meat."
+    ],
+    "antiPatterns": [
+      "Onion included in the ingredient list despite the configured exclusion.",
+      "Meat included in a vegetarian recipe.",
+      "Substitution removes the defining cooking functionality."
+    ],
+    "modules": [
+      {
+        "kind": "guard",
+        "stableKey": "home.recipe_request.constraints",
+        "stage": "pre_model",
+        "requirement": "Resolve dietary restrictions and requested servings; ask for clarification if requirements conflict."
+      },
+      {
+        "kind": "verification",
+        "stableKey": "home.recipe_request.ingredients",
+        "stage": "post_model",
+        "requirement": "Check that the final ingredient list contains no meat, poultry, fish, onion or shallot.",
+        "onFailure": "repair"
+      },
+      {
+        "kind": "verification",
+        "stableKey": "home.recipe_request.usability",
+        "stage": "post_model",
+        "requirement": "Verify that quantities, servings and cooking sequence are coherent.",
+        "onFailure": "repair"
+      }
+    ]
+  }
+]

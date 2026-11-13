@@ -1,0 +1,20 @@
+[
+  {
+    "taskKey": "home.recipe_request",
+    "version": 1,
+    "description": "Produce a practical home recipe that honors configured food constraints and serving count.",
+    "aliases": [
+      "cook dinner",
+      "meal recipe",
+      "give me a recipe"
+    ],
+    "examples": [
+      "Give me an eggplant dinner for four.",
+      "How can I make vegetarian stuffed peppers?"
+    ],
+    "negativeExamples": [
+      "Show me a restaurant reservation.",
+      "Calculate the exchange rate."
+    ]
+  }
+]
