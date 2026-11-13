@@ -36,8 +36,8 @@ EXTRA_RESOURCES = {
         "examples/packs/recipe-preferences", "examples/packs/retail-media-review",
         "examples/packs/operations-orchestration"
     ],
-    "vira-chatbot": ["examples/frameworks/node-next"],
-    "vira-framework-integration": ["examples/frameworks/node-next"],
+    "vira-chatbot": ["examples/frameworks/node-next", "skills/vira-observe/examples/event-contract.mjs"],
+    "vira-framework-integration": ["examples/frameworks/node-next", "skills/vira-observe/examples/event-contract.mjs"],
     "vira-task-runs": [
         "examples/javascript/taskrun-modes.mjs",
         "examples/python/taskrun_modes.py"
