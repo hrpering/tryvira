@@ -1,11 +1,33 @@
-Vira Public Documentation and Examples
-
+VIRA AGENT SKILL INSTALLATION & APPLICATION USE LICENSE
+Version 1.0 — 13 November 2026
 Copyright (c) 2026 Vira / Esad Türkel. All rights reserved.
 
-This license applies only to the documentation, examples, and visual assets
-distributed in this repository. They are proprietary. No license is granted to
-copy, modify, redistribute, or use these materials commercially except under
-a separate written agreement with Vira.
+1. Permission. Vira grants you a worldwide, non-exclusive, royalty-free
+license to download, install, run, copy, modify, test, and distribute the
+Agent Skill instructions, included example code, and official portable
+.skill archive resources for the purpose of building, testing, operating,
+or integrating applications with Vira. This includes commercial, client
+and internal projects, and distributing Skills inside an application
+repository or to collaborators.
 
-Separately published SDK packages are not covered by this repository license;
-their own package metadata and included license files govern those packages.
+2. Attribution. Every redistribution must retain this notice and the
+copyright attribution. Do not misrepresent a modified Skill as official.
+
+3. Limits. This is not a license to the Vira hosted service, private
+backend, proprietary server-side code, Vira logos or trademarks.
+Standalone resale of the Skill library or republication of its bundled
+documentation as an unrelated product is not permitted. Third-party
+code and materials retain their own licenses.
+
+4. Responsibility. Credentials, customer consent, tool actions, deployment
+security, and regulatory compliance remain the user's responsibility.
+Service access requires separate authorization.
+
+5. Disclaimer. MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+To the extent permitted by law, the licensors are not liable for any
+damages arising from use.
+
+This notice covers skills/vira-*/ materials and repository-resource
+snapshots reproduced within official Vira .skill archives only as part
+of the Skill package. Files outside those packages retain their
+independent license terms.
