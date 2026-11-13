@@ -21,6 +21,14 @@ Inspect the repository language, runtime, package manager, server/client boundar
 4. Implement only after the user asks for code changes; keep secrets server-side and preserve the host app's conventions.
 5. Run local checks and report changed files, package version source, scope assumptions, and any unverified live step.
 
+## Production-aligned implementation playbook
+
+1. Identify the real server-side AI call site, user goal, framework and scope. Choose **Observe-only** (no model-behavior change) or **AUTO TaskRun** (governed execution).
+2. Check installed JS/Python SDK, real connection and server-attested host capability. Do not assume MCP mirrors SDK. Route the ordinary request through AUTO and stop if admission fails.
+3. Start with a non-mutating capability check; require explicit authorization for connection, Pack install, TaskRun admission or effectful calls.
+4. Test: support assistant with approved refund policy. Capture unknown order IDs as missing data; a generic instruction, fabricated organization ID or absent TaskRun support must stop.
+[Start here](https://github.com/hrpering/tryvira/blob/main/docs/start-here.md) · [Product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md).
+
 ## Deliverable and failure handling
 Return a surface recommendation with tradeoffs, prerequisites, first verification, and unresolved inputs. Stop if scope is unknown, the selected operation is undocumented, or access is closed; do not invent identifiers or claim connectivity.
 

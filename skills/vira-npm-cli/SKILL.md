@@ -21,6 +21,14 @@ Inspect `package.json`, lockfile, Node version, package manager, and intended MC
 4. For MCP, configure the host using environment-variable placeholders, start the server, initialize it, and call `tools/list` before suggesting a tool.
 5. Run package-manager integrity checks and a minimal import/CLI check without contacting Vira unless explicitly requested.
 
+## Production-aligned implementation playbook
+
+1. Check current npm registry version, engines, installed lockfile and package exports. `@tryvira/sdk` is the server-side SDK; `@tryvira/mcp` is the MCP server, not a substitute.
+2. Inspect the installed .d.ts for `startTaskRun`, `getTaskRun`, `observe`; check MCP `initialize` + `tools/list` separately. Do not claim that package installation grants Vira service access.
+3. Preserve the package manager lockfile and existing Node runtime. Run focused import/build checks.
+4. Test: upgrading Next.js must not switch AUTO TaskRun back to projection-to-model just to preserve an old callback.
+[Published packages](https://github.com/hrpering/tryvira/blob/main/docs/published-packages.md).
+
 ## Deliverable and failure handling
 Report installed version, files changed, and command output. If registry access fails, use an explicit cached/offline status and do not assert latest. Never publish or put tokens in shell history, committed config, or logs.
 
