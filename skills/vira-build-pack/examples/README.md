@@ -1,16 +1,19 @@
-# Customer example: Prepare a Pack candidate for a marketing assistant
+# Author and package three quality-graded Packs
 
-## Scenario
+## Short test prompt
 
-Start from the inspectable synthetic Pack, validate its contents and conflicts, then prepare a customer-specific candidate without installing or releasing it.
+> Build a beginner recipe Pack, intermediate retail-media Pack and advanced operations Pack.
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [README.md](https://github.com/hrpering/tryvira/blob/main/examples/packs/marketing-starter/README.md)
-- Customer artifact or runnable code: [pack.yaml](https://github.com/hrpering/tryvira/blob/main/examples/packs/marketing-starter/pack.yaml)
+> Fill pack.yaml, semantic tasks/negative examples, Points, Programs with explicit checks, optional Strategies and Signal refs. Keep tests/cases.json out of imports.
 
-## Run and verify
+## Action and evidence
 
-Review the full Pack guide and run the customer’s documented validator. The source example is a Pack artifact, not a live Vira response.
+Run npm run verify:packs and python3 scripts/package-example-packs.py --out /tmp/vira-pack-candidates; report ZIP candidates only.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Use the customer's own authorized non-production tenant when live execution is necessary, and the installed public SDK/Studio contract. Do not claim server execution from a local file or structure test. See [Skill contract](https://github.com/hrpering/tryvira/blob/main/skills/vira-build-pack/SKILL.md) and [product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md).
+
+## Negative test
+
+An unconfigured judge:, source fixture or a 202 install cannot become a verified behavior or release.

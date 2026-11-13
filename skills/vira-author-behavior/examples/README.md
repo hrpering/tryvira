@@ -1,16 +1,19 @@
-# Customer example: Define a support-answer behavior from approved policy
+# Author an executable support Program
 
-## Scenario
+## Short test prompt
 
-Translate the customer’s approved policy into a Semantic Task and Behavior Point, then inspect the candidate and representative positive/negative cases.
+> Define a behavior that prevents claiming an unconfirmed refund.
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [canonical-authoring.md](https://github.com/hrpering/tryvira/blob/main/docs/canonical-authoring.md)
-- Customer artifact or runnable code: [canonical-authoring.mjs](https://github.com/hrpering/tryvira/blob/main/examples/javascript/canonical-authoring.mjs)
+> Write a Semantic Task with discriminative positive/negative examples; attach Point; write Program guard and explicit post_model checks. Use a supported verifier syntax, or declare and configure judge extension separately.
 
-## Run and verify
+## Action and evidence
 
-Run the authoring example only in an isolated customer scope; authoring does not approve or release behavior.
+Return stable task/point/program keys, check stage, failure policy, negative case and evaluation plan.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Use the customer's own authorized non-production tenant when live execution is necessary, and the installed public SDK/Studio contract. Do not claim server execution from a local file or structure test. See [Skill contract](https://github.com/hrpering/tryvira/blob/main/skills/vira-author-behavior/SKILL.md) and [product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md).
+
+## Negative test
+
+A natural-language requirement is not automatically a verifier. Missing tool receipt is no proof of refund.

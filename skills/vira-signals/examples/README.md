@@ -1,16 +1,19 @@
-# Customer example: Review a proposed Signal from permitted evidence
+# Review a typed retail-media Signal
 
-## Scenario
+## Short test prompt
 
-Use permitted synthetic or consented evidence to identify a candidate Signal, route it through review, and verify its state before using it as governed input.
+> Can we use attribution-window mismatch as a runtime Signal?
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [signals.md](https://github.com/hrpering/tryvira/blob/main/docs/signals.md)
-- Customer artifact or runnable code: [teach.md](https://github.com/hrpering/tryvira/blob/main/docs/teach.md)
+> Inspect actual admitted event IDs and source fields. Review the typed Signal definition and version, producer type/key, approved mapping, scope and attestation. Use real consented evidence.
 
-## Run and verify
+## Action and evidence
 
-The public repository has no standalone live Signal mutation runner. Use the installed client’s public contract and keep discovery, review, materialization, and mapping distinct.
+Record definition, version, mapping status and missing/stale/absent producer tests.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Use the customer's own authorized non-production tenant when live execution is necessary, and the installed public SDK/Studio contract. Do not claim server execution from a local file or structure test. See [Skill contract](https://github.com/hrpering/tryvira/blob/main/skills/vira-signals/SKILL.md) and [product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md).
+
+## Negative test
+
+A caller's attributionMismatch boolean or a Pack Signal key is not trusted runtime authority.
