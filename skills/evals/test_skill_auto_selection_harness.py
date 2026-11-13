@@ -20,7 +20,7 @@ class SkillAutoSelectionHarness(unittest.TestCase):
         case={"caseId":"vira-observe::positive::1","skill":"vira-observe","kind":"positive"}
         for row in [
             {"caseId":case["caseId"],"model":"test-model","agent":"agent","traceId":"t","selectedSkills":["vira-observe"],"source":"synthetic","simulated":True},
-            {"caseId":case["caseId"],"model":"test-model","agent":"agent","traceId":"","selectedSkills":["vira-observe"],"source":"live_agent_trace","simulated":False},
+            {"caseId":case["caseId"],"model":"test-model","agent":"agent","traceId":"","selectedSkills":["vira-observe"],"source":"live_agent_trace","simulated":False,"skillLoadEvents":[{"eventType":"skill_loaded","skill":"vira-observe","sourcePath":"/workspace/skills/vira-observe/SKILL.md","traceId":"t"}]},
         ]:
             self.assertTrue(module.check_trace(row,case))
         self.assertRaises(ValueError,module.score,[case],[])
