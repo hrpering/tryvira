@@ -21,7 +21,7 @@ for(const word of ["Observe","Signal","runtime verification","AUTO TaskRun"]){
   assert.ok(main.toLowerCase().includes(word.toLowerCase()),"Root README missing "+word);
   assert.ok(tr.toLowerCase().includes(word.toLowerCase()),"Turkish README missing "+word);
 }
-for(const word of ["implemented","live","verification","provider","Signal","TaskRun"]){
+for(const word of ["Implementation","Deployed acceptance","verification","provider","Signal","TaskRun"]){
   assert.ok(status.toLowerCase().includes(word.toLowerCase()),"Missing maturity caveat "+word);
 }
 const patterns=await read("docs/integration-patterns.md");
