@@ -18,13 +18,13 @@
 
 ## Gate 3: 27/27 portable installation
 
-**Done in CI:** every \`.skill\` archive bundles the exact repository-owned Markdown, code examples and local dependency closure referenced by that Skill into \`references/repo\`. Owned links inside its Skill instruction/README are remapped to local paths. A separate validator opens **all 27 ZIPs** and checks manifest, license, archive safety and local dependency closure without reading the checkout.
+**Done in CI:** every \`.skill\` archive bundles the exact repository-owned Markdown, code examples and local dependency closure referenced by that Skill into \`references/repo\`. Owned links inside its Skill instruction/README are remapped to local paths. A separate validator opens **all 27 ZIPs** and checks manifest, license, archive safety and local dependency closure without reading the checkout. A follow-up smoke installer extracts all archives into three clean Codex/Claude/Cursor-style layouts; this does not prove real agent recognition.
 
 **Acceptance boundary:** this verifies standalone instructional/resource archives. It does not install npm/PyPI SDK binaries, run live Vira calls or automatically prove Codex/Claude/Cursor recognized the Skill. \`npx skills add\` installs the source Skill and uses network links; the independently packaged \`.skill\` includes local copies.
 
 ## Gate 4: actual Skill auto-selection quality
 
-**Done in tooling:** \`python3 scripts/eval_skill_selection.py --validate-only\` validates **84** positive/negative/ambiguous cases across all 27 Skills. \`--command\` runs an external **real agent adapter**, requiring a model ID, agent ID, trace ID and observed Skill loads for every case. \`--results\` scores independently captured real agent traces. Scoring separates positive recall, negative specificity and ungraded ambiguous cases. There is no model-choice simulation fallback.
+**Done in tooling:** \`python3 scripts/eval_skill_selection.py --validate-only\` validates **84** positive/negative/ambiguous cases across all 27 Skills. \`--command\` runs an external **real agent adapter**, requiring a model ID, agent ID, trace ID and **per-Skill file-load events with the matching trace ID** for every case. \`--results\` scores independently captured real agent traces. Scoring separates positive recall, negative specificity and ungraded ambiguous cases. There is no model-choice simulation fallback.
 
 **BLOCKED as a measured score:** no real Codex/Claude/Cursor agent trace source/model runtime is connected to this environment. Real benchmark scores cannot be reported until the user runs a real configured agent and preserves its selection traces. Historical explicit-Skill prompts are **not** an automatic-selection benchmark.
 

@@ -73,4 +73,4 @@ python3 scripts/eval_skill_selection.py --command '/path/to/real-agent-trace-ada
 ~~~
 
 The adapter reads one JSON request on stdin and responds on stdout with:
-\`caseId\`, actual \`agent\`, actual \`model\`, \`traceId\`, \`selectedSkills\`, \`source:"live_agent_trace"\`, \`simulated:false\`. The adapter must collect selected Skill loads from **agent telemetry**, not ask the LLM to guess which Skill it used. The scorer refuses incomplete/missing traces and never claims automatic-selection accuracy based on the synthetic prompt corpus alone.
+\`caseId\`, actual \`agent\`, actual \`model\`, \`traceId\`, \`selectedSkills\`, \`source:"live_agent_trace"\`, \`simulated:false\`. The adapter must collect `skillLoadEvents` from **agent telemetry** (not an LLM self-description). `selectedSkills` must exactly match the Skill names in those events. An adapter without file-load evidence cannot produce a passing model-selection score. The scorer refuses incomplete/missing traces and never claims automatic-selection accuracy based on the synthetic prompt corpus alone.
