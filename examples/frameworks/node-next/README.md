@@ -1,5 +1,9 @@
 # Next.js + OpenAI Agents: canonical AUTO TaskRun integration
 
+![Illustration of the real public OFF provider response versus ON pending TaskRun status](../../../assets/vira-on-off.svg)
+
+*Conceptual UI illustration. It does not claim a verified ON provider response or a benchmark result.*
+
 This application demonstrates two **different, honest** boundaries. **OFF** runs the configured OpenAI Agent as an ungoverned baseline. **ON** submits the exact user request through the published JavaScript SDK's **AUTO TaskRun** admission. It does **not** directly call `resolveRuntime` or `behavior-projection`, nor does it invoke the provider with a prompt assembled from a projection.
 
 > **Current limitation:** the public TaskRun SDK exposes admission, status, state and events, but not a complete, separately verified final chatbot output handoff. This example displays the actual TaskRun admission/status and does **not** claim an ON chatbot answer until a real provider-output and post-model verification receipt is available. It does not fake completion or quietly fall back to OFF.

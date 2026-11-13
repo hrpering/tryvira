@@ -30,6 +30,8 @@
 
 ## Learn the architecture
 
+![Vira architecture and lifecycle — conceptual illustration](../assets/vira-lifecycle.svg)
+
 Vira's product concepts are designed to separate *what a task is*, *where behavior applies*, *which revision is eligible*, and *what happened*.
 
 - [Canonical AUTO TaskRun](canonical-taskrun.md), [verified-answer interface requirements](verified-answer-handoff.md), [brand story](brand-positioning.md), and [Pack authoring guide](pack-authoring-guide.md).

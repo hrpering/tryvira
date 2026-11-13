@@ -1,5 +1,7 @@
 # Pack examples · Beginner to advanced
 
+![Vira Pack Academy: beginner, intermediate and advanced examples](../../assets/vira-build.svg)
+
 These are **complete inspectable source examples**, not pre-released customer behavior or successful model benchmarks.
 
 | Level | Pack | Learn |

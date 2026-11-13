@@ -1,6 +1,8 @@
 # Vira Agent Skills
 
-Portable, proprietary Agent Skills for integrating with and operating Vira through documented public surfaces. The 27-Skill library is in active development and is not yet published to skills.sh.
+Portable, licensed Agent Skills for integrating with and operating Vira through documented public surfaces. The 27-Skill library is in active development and is not yet published to skills.sh.
+
+![Build with Vira: 27 Agent Skills, graded Packs and developer workflows](../assets/vira-build.svg)
 
 ## Installation and usage rights
 

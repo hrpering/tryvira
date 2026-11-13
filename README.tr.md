@@ -1,4 +1,4 @@
-# vira
+![vira — yalnızca yazıdan oluşan marka ve ürünün kavramsal geliştirici görseli](assets/vira-hero.svg)
 
 **Yapay zekânın nasıl yanıt verdiğini, karar verdiğini ve araç kullandığını tanımlayın, test edin ve yönetin.**
 
@@ -22,6 +22,10 @@ Vira davranışı bir prompt parçası olmaktan çıkarıp gözden geçirilebile
 
 ## Gözlemle, tanımla, uygula, doğrula, iyileştir
 
+![Vira davranış yaşam döngüsü: Observe, Signals, Packs, Evaluate, Release, AUTO TaskRun ve doğrulama](assets/vira-lifecycle.svg)
+
+*Bu görsel mimariyi anlatır; canlı son model yanıtının doğrulandığına dair kanıt değildir.*
+
 Vira yalnızca Pack yükleme veya prompt yönetimi değildir. Mevcut AI sisteminden **Observe** ile izinli kullanım kanıtı toplar; **Signal** ile bu kanıtlara tanımlı ve onaylı anlam kazandırmayı hedefler; **Teach** ile iyileştirme önerisi üretir. **Evaluation** ve ayrı **approval/release** kararından sonra uygun davranış **AUTO TaskRun** akışında çalışır. **Runtime verification** sonuçta hangi kontrollerin gerçekten geçip kalmadığını belirler; **receipt/trace** bunları araştırılabilir hâle getirir.
 
 | İhtiyaç | Rehber |
@@ -35,6 +39,8 @@ Vira yalnızca Pack yükleme veya prompt yönetimi değildir. Mevcut AI sistemin
 **Observe olayının kabul edilmesi doğrulama başarısı değildir; Signal otomatik olarak güvenilir kural hâline gelmez; TaskRun'ın tamamlanması da doğrulanmış son chatbot yanıtını tek başına kanıtlamaz.**
 
 ## Tek canonical çalışma yolu
+
+![Mevcut public demo: OFF model yanıtı verir, ON ise doğrulanmış yanıt henüz hazır olmadığından TaskRun durumunu gösterir](assets/vira-on-off.svg)
 
 **AUTO TaskRun → semantic resolve → mod seçimi → gerçek child executor → runtime enforcement → provider/chatbot → post-model verification/receipt.** Kullanıcı her istekte SINGLE/STRATEGY/COMPOUND/HYBRID seçmez. `behavior-projection` yalnızca ileri seviye SDK/diagnostic kullanımda kalır. Public API henüz doğrulanmış son chatbot yanıtının tamamını kanıtlamadığından ON örneği sahte yanıt üretmez.
 
@@ -59,6 +65,8 @@ Vira yalnızca Pack yükleme veya prompt yönetimi değildir. Mevcut AI sistemin
 [Beş seçeneğin teknik açıklaması (EN)](docs/execution-modes.md)
 
 ## Başlayın
+
+![Vira ile geliştirme: 27 Skill, Pack örnekleri ve entegrasyon yolları](assets/vira-build.svg)
 
 | Amacınız | Bağlantı |
 | --- | --- |

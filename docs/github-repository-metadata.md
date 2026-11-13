@@ -32,7 +32,9 @@ developer-tools
 
 ## Social preview
 
-Use `assets/social-preview.png` only after checking that it matches the current text-only wordmark and the midnight-black / electric-blue / cantaloupe-orange palette. The preview is configured separately in GitHub repository settings.
+The new [brand-safe social-preview composition](../assets/vira-social-preview.svg) uses the **plain lowercase `vira` wordmark only**, with no added logo symbol. GitHub repository Settings → General → Social preview requires a raster upload; export this SVG to a 1280×640 PNG before uploading manually. A README or repo commit cannot automatically set the repository social preview.
+
+![Social preview composition: vira, plain text only](../assets/vira-social-preview.svg)
 
 ## Package names
 
