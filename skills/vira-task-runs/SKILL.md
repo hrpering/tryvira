@@ -45,6 +45,8 @@ Use an isolated development scope when available. Production use remains subject
 
 The public JS/Python mode runners demonstrate routing, optional admission and one readback, **not child completion polling, provider invocation, or final output-bound verification**. For such claims use a separately connected acceptance runner with real evidence.
 
+Standalone `.skill` archives include `references/repo/examples/javascript/taskrun-modes.mjs` and `references/repo/examples/python/taskrun_modes.py`. Install the actual published SDK in the execution environment; these runners do not bundle package binaries or credentials.
+
 ## Deliverable and failure handling
 
 Stop for unsupported surface, missing scope, ambiguous request, denial, missing authorization, stale state, or unclear recovery conditions. Ask the customer to consult the current SDK documentation or an authorized operator rather than guessing operation names, payloads, or status transitions. TaskRun completion does not publish a Strategy, create a behavior resource, approve a Pack, or release a behavior revision.

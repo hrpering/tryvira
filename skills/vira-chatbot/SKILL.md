@@ -37,6 +37,8 @@ This demo has no tools or external side effects, and the route has no end-user a
 5. Keep local-only app unauthenticated route off the public internet. Do not invent receipts or use customer prompts.
 [Current app](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/README.md) · [Verified answer gap](https://github.com/hrpering/tryvira/blob/main/docs/verified-answer-handoff.md).
 
+In an extracted standalone `.skill` archive, the Next.js sample is under `references/repo/examples/frameworks/node-next/`; install its pinned npm dependencies from that directory. Runtime Vira and provider credentials remain external.
+
 ## Deliverable and failure handling
 Give the user the local URL, the modes actually tried, and the observed response status. If dependencies, model credentials, Vira access, scope, or an eligible released behavior are missing, state the exact first blocked step and continue only with an independently usable mode. Never present an OFF-only build as an ON test or a UI runtime check as proof of model compliance.
 

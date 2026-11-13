@@ -10,7 +10,7 @@
 
 ## Action and evidence
 
-Run npm run verify:packs and python3 scripts/package-example-packs.py --out /tmp/vira-pack-candidates; report ZIP candidates only.
+In the full tryvira repository, run `npm run verify:packs`. For an extracted standalone Skill, use `cd references/repo && python3 scripts/package-example-packs.py --check`, followed by `--out /tmp/vira-pack-candidates`. The portable package includes all three Pack folders and the builder. ZIP candidates are not release receipts.
 
 Use the customer's own authorized non-production tenant when live execution is necessary, and the installed public SDK/Studio contract. Do not claim server execution from a local file or structure test. See [Skill contract](https://github.com/hrpering/tryvira/blob/main/skills/vira-build-pack/SKILL.md) and [product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md).
 

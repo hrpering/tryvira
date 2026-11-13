@@ -13,8 +13,8 @@ For an offline-contained instructional archive, run
 `python3 scripts/package_agent_skills.py --out /tmp/tryvira-skills`
 from the public repository and verify all 27 archives using
 `python3 scripts/verify_portable_skills.py /tmp/tryvira-skills --expected 27`.
-Archives mirror linked public source resources under `references/repo/`;
-npm/PyPI SDK dependencies and real Vira service access remain external.
+Archives mirror linked public source resources and selected runnable example folders under `references/repo/`;
+Pack, Framework, Chatbot and TaskRun Skills include needed standalone source examples and builder scripts. Run them from the local `references/repo/` path. npm/PyPI SDK dependencies and real Vira service access remain external.
 
 [Six-part completion gate](../docs/agent-skills/e2e-readiness.md) ·
 [Real agent/model Skill auto-selection benchmark](../docs/agent-skills/live-acceptance.md).

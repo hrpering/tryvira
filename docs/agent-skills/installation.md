@@ -19,7 +19,7 @@ python3 scripts/package_agent_skills.py --out /tmp/tryvira-skills
 python3 scripts/verify_portable_skills.py /tmp/tryvira-skills --expected 27
 ~~~
 
-Each archive bundles the needed repository-owned references and source
+Each archive bundles the needed repository-owned references, selected runnable example folders (including three graded Packs and the Next.js chatbot) and source
 examples in `references/repo/` and rewrites owned links locally. This does
 **not** bundle external npm/PyPI SDKs or grant Vira hosted access.
 
