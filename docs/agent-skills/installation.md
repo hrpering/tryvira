@@ -2,6 +2,27 @@
 
 The library is designed around the open Agent Skills `SKILL.md` format. Install one skill or a small set; users do not need the full library.
 
+## Licenses and bundled resources
+
+The 27 Skills have their own [installation and commercial-use license](../../skills/vira-observe/LICENSE),
+permitting copying into client apps, modifying the instructions, and distributing
+them in project repositories with attribution. The public documentation outside
+an official Skill archive and Vira's private backend retain different rights.
+For marketplace redistribution, obtain legal review of this custom (non-OSI) license.
+
+`npx skills add` installs source Skill files. Its remote documentation links
+require network access. To install an **offline instructional/resource archive**,
+build and verify the portable `.skill` ZIPs:
+
+~~~bash
+python3 scripts/package_agent_skills.py --out /tmp/tryvira-skills
+python3 scripts/verify_portable_skills.py /tmp/tryvira-skills --expected 27
+~~~
+
+Each archive bundles the needed repository-owned references and source
+examples in `references/repo/` and rewrites owned links locally. This does
+**not** bundle external npm/PyPI SDKs or grant Vira hosted access.
+
 ## skills.sh / Codex / Claude Code / Cursor
 
 From the target application repository, install a skill from this public repository's `main` branch:

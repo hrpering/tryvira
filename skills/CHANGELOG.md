@@ -1,5 +1,17 @@
 # Vira Agent Skills changelog
 
+## 0.7.0 — 2026-11-13
+
+- Added scope-complete JavaScript/Python Observe event examples and negative tests.
+- Fixed the Python TaskRun example command; clarified that route/admission tools are not verified provider output.
+- Packaged all 27 Skills as individually validated portable archives with mirrored, local repository resources and manifests.
+- Added a real-agent-trace Skill selection benchmark harness and strict dataset validation (84 prompts; no synthetic model scores).
+- Added a read-only live lifecycle evidence checker across approved Signal mapping, released Pack, evaluation, Teach and four TaskRun modes, intentionally blocking unverified final provider responses.
+- Made installation and commercial client usage rights explicit via the Vira Agent Skill Installation & Application Use License v1.0.
+- Published six separate acceptance gates; genuine model/tenant/provider E2E proof remains blocked without service and a versioned final verified-answer readback.
+
+
+
 ## 0.6.0 — 2026-11-13
 
 - Audited all 24 existing Skills against production JS/Python TaskRun, Pack, Signal, observation, verifier and child executor source contracts; recorded severity, evidence and repairs per Skill.

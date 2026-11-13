@@ -18,6 +18,16 @@ All 24 original Skill guides were reviewed against the latest accessible product
 
 Examples that call Vira require an operator-provided customer endpoint, credentials, provider configuration where needed, and explicit authorization for effectful transitions.
 
+## Updated 0.7.0 audit and evidence gates
+
+[Six-gate E2E plan](e2e-readiness.md) and [read-only live acceptance instructions](live-acceptance.md)
+separate the offline 27/27 portable archive checks and source-level snippet tests
+from actual agent selection and verified provider-output acceptance. A real
+agent-trace scorer now handles all 84 trigger examples, but has **not** run against
+a connected model in this review. The canonical final provider-to-verifier
+readback is still a product/SDK integration blocker. No customer tenant,
+provider or effectful release has been exercised.
+
 ## Live verification
 
 | Area | Current status | What remains |
