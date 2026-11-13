@@ -21,3 +21,38 @@ test("TaskRun COMPLETED is distinct from verified chatbot answer",()=>{
   assert.throws(()=>requireExactStatus("WAITING_HOST","COMPLETED","TaskRun"));
   assert.throws(()=>requireExactStatus("PARTIAL","COMPLETED","TaskRun"));
 });
+
+import {createHash} from "node:crypto";
+
+test("proposed future verifiedResponse readback passes only complete structurally correlated proof", () => {
+  // Structural contract fixture ONLY: not authenticated server data, signed receipt or provider invocation.
+  const output="synthetic output fixture";
+  const outputDigest=createHash("sha256").update(output,"utf8").digest("hex");
+  const future={
+    taskRun:run,
+    verifiedResponse:{
+      ...scope,taskRunId:run.taskRunId,
+      providerRequestId:"fixture-provider-id",output,outputDigest,
+      verification:{
+        boundary:"post_model",verificationStatus:"passed",
+        executedModuleStableKeys:["fixture.check"],failedChecks:[],
+        outputDigest,receiptDigest:"e".repeat(64)
+      },
+      receipt:{
+        taskRunId:run.taskRunId,planDigest:run.planDigest,
+        authorityDigest:run.authorityDigest,
+        outputDigest,verificationReceiptDigest:"e".repeat(64),
+        artifactDigest:"f".repeat(64),receiptDigest:"d".repeat(64)
+      }
+    }
+  };
+  assert.deepEqual(identifyMissingVerifiedOutput(future,{...row,expectedArtifactDigest:"f".repeat(64)}),[]);
+  const tampered={...future,verifiedResponse:{...future.verifiedResponse,output:"tampered fixture"}};
+  assert.ok(identifyMissingVerifiedOutput(tampered,row).includes("provider_output_digest"));
+  const changedScope={...future,verifiedResponse:{...future.verifiedResponse,projectId:"another-project"}};
+  assert.ok(identifyMissingVerifiedOutput(changedScope,row).includes("verified_scope_projectId"));
+  const failedCheck={...future,verifiedResponse:{...future.verifiedResponse,verification:{...future.verifiedResponse.verification,verificationStatus:"failed",failedChecks:["fixture.check"]}}};
+  assert.ok(identifyMissingVerifiedOutput(failedCheck,row).includes("post_model_verifier_result"));
+  const changedReceipt={...future,verifiedResponse:{...future.verifiedResponse,receipt:{...future.verifiedResponse.receipt,verificationReceiptDigest:"0".repeat(64)}}};
+  assert.ok(identifyMissingVerifiedOutput(changedReceipt,row).includes("output_digest_bound_receipt"));
+});
