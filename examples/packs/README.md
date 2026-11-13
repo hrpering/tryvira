@@ -9,6 +9,8 @@ These are **complete inspectable source examples**, not pre-released customer be
 | Advanced | [Operations orchestration](operations-orchestration/README.md) | Three distinct tasks, a structured Strategy, and AUTO/COMPOUND/HYBRID eligibility conditions |
 | Earlier minimal example | [Marketing starter](marketing-starter/README.md) | Minimal manifest and collection layout; **not** the recommended quality bar |
 
+The new examples include **explicit post-model `checks`**. Domain-specific `judge: ...` checks require a configured verifier extension and cannot be claimed as passed from the source files alone. See [runtime verification](../../docs/runtime-verification.md) and the [Observe → Signal → Teach walkthrough](../observe-signal-verify/README.md).
+
 Every new pack uses a **YAML manifest** and JSON collection files. This is a supported mixed ZIP structure: the import parser reads `pack.yaml` plus `semantic-tasks/items.json`, `behavior-points/items.json`, etc. The JSON is machine-readable and avoids claiming that a one-line example is a complete behavior.
 
 ### Where do you fill things in?

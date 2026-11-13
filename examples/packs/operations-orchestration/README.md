@@ -2,6 +2,10 @@
 
 Three separate semantic tasks: two **read-only COMPOUND candidates** and one **bounded STRATEGY-eligible incident task**. This Pack is built to explain eligible AUTO routing, not to assert that every mixed prompt will be automatically matched.
 
+## Runtime verification dependencies
+
+The Program uses `judge: ...` extensions to check evidence support for claims, inventory and root cause. These are explicitly declared external-verifier dependencies, **not** built-in automatic natural-language checks. Missing verifier/host support must fail closed. The Strategy's step-level verifier IDs also require a real registered executor and should be tested with an authorized tenant; a source graph is not an execution receipt. [Verification guide](../../../docs/runtime-verification.md).
+
 ## Why this Pack is harder
 
 - `semantic-tasks/items.json` defines discrete task identities, positive/negative matching examples, and `compoundEligible` on the read-only tasks.

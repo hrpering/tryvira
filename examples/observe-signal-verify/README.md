@@ -14,7 +14,7 @@ A strong baseline model may already notice the metric mismatch. Vira's additiona
 | --- | --- | --- |
 | 1. Connect & Observe | The connected application sends a permitted `model.response` event and later a correction if applicable | Real AI System/Connection IDs, consent, event ID, source trace |
 | 2. Discover the issue | Repeated corrections suggest an attribution comparability problem | Source evidence references, not fabricated count or confidence |
-| 3. Define a Signal | Candidate `retail.attribution_mismatch` (boolean) is reviewed and mapped to a trusted metric-definition producer | Producer is genuinely available; mapping, version and scope are approved |
+| 3. Define a Signal | Candidate `retail.metric_definition_mismatch` (boolean) is reviewed and mapped to a trusted metric-definition producer | Producer is genuinely available; mapping, version and scope are approved |
 | 4. Author and evaluate | Pack defines semantic task, Point, Program and post-model verification checks | Real grader, cases for mismatched windows and comparable windows |
 | 5. Release | A human reviews evidence and separately approves/releases the immutable candidate | Artifact identity matches the approved evaluation and target scope |
 | 6. Execute | Normal user request enters AUTO TaskRun; server selects task/mode and executes eligible child | No client-selected fake host capability, real child receipt, released Program |
