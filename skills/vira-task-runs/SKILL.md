@@ -34,8 +34,10 @@ Use an isolated development scope when available. Production use remains subject
 
 ## Production-aligned implementation playbook
 
+**The normal entry is AUTO TaskRun.** Do not place direct projection-to-model in an application response path.
+
 1. **AUTO is a routing request**, not a fifth execution mode. The four eligible execution modes: SINGLE (one task), STRATEGY (one task's released graph), COMPOUND (multiple registered tasks), HYBRID (eligible mixed children). Only the server selects actual mode and eligibility.
-2. For routing use JS `resolveTaskRun` or Python `resolve_task_run`. ROUTED is **proposal-only** and can still deny, abstain, clarify or report unsupported host. Do not invent client `hostCapabilities` as a permission source.
+2. For routing use JS `resolveTaskRun({input,requestedMode:"AUTO",connectionId})` or Python `resolve_task_run({"input":text,"requestedMode":"AUTO","connectionId":connection_id})`. ROUTED is **proposal-only** and can still deny, abstain, clarify or report unsupported host. Do not invent client `hostCapabilities` as a permission source.
 3. For authorized admission use JS `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},opts)` or Python `start_task_run({...},idempotency_key=key)`; read `getTaskRun`/`get_task_run` and actual event/child receipts.
 4. WAITING_USER/HOST/APPROVAL, PARTIAL, BLOCKED, FAILED and CANCELLED are distinct; continue/retry/cancel with actual stateVersion and idempotency. A child completion is not final provider post-model PASS.
 5. Execute the published [JS](https://github.com/hrpering/tryvira/blob/main/examples/javascript/taskrun-modes.mjs) or [Python](https://github.com/hrpering/tryvira/blob/main/examples/python/taskrun_modes.py) route-only runner; real admission requires non-production authorization. Negative: missing Strategy materialization or second Compound task must fail closed.
