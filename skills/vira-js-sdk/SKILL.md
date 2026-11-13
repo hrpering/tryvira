@@ -29,7 +29,7 @@ Inspect Node version, installed SDK version/types, module system, `VIRA_API_URL`
 
 1. JS route-only: `resolveTaskRun({input,requestedMode:"AUTO",connectionId})`. Admit only with authorization: `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`. Read actual `getTaskRun` and `listTaskRunEvents`.
 2. Continue/retry/cancel using the **current server stateVersion** and idempotency key; never issue a new task to get around WAITING or a timeout. `startTaskRunFromPrompt` does not forward `requestedMode`; prefer explicit `startTaskRun` when needed.
-3. Observe with actual `aiSystemId`, `connectionId`, eventId, consent, minimized fields. Pack: `importPack({manifest,objects})`, `installPack(packId,variablesMap)`, `evaluatePack(packId,{evaluationId:realId})`. Keep separate approval/release.
+3. Observe with actual **organizationId, projectId, environmentId**, `aiSystemId`, `connectionId`, `eventId`, consent and minimized fields. Missing any of the three scope fields fails under the published JS SDK. Use the scoped runnable example in `skills/vira-observe/examples/observe-once.mjs`. Pack: `importPack({manifest,objects})`, `installPack(packId,variablesMap)`, `evaluatePack(packId,{evaluationId:realId})`. Keep separate approval/release.
 4. Direct `resolveRuntime` and `serveBehaviorProjection` are **diagnostics only**, not normal chatbot entry points. A TaskRun `COMPLETED` status is not a provider-verified answer.
 [Runnable SDK runner](https://github.com/hrpering/tryvira/blob/main/examples/javascript/taskrun-modes.mjs) · [Verification](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md).
 

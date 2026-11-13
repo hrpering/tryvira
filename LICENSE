@@ -9,3 +9,10 @@ a separate written agreement with Vira.
 
 Separately published SDK packages are not covered by this repository license;
 their own package metadata and included license files govern those packages.
+
+Exception for Agent Skills: the contents of `skills/vira-*/` and the
+repository-resource snapshots included in official portable `.skill`
+archives may be installed, modified, run and redistributed for Vira
+integrations under the separate license bundled in each Skill folder.
+That permission does not apply to unrelated files, hosted services or
+private backend code.

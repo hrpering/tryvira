@@ -2,10 +2,12 @@
 
 This page shows the customer task covered by each of the 27 public Skills and the shared example that helps a user try it. Repository checks verify structure and selected behaviors; they do not prove every Skill completed a live customer workflow.
 
+For six acceptance gates and live instructions, use [E2E readiness](e2e-readiness.md) and [live acceptance](live-acceptance.md). The installed Skill files are not a substitute for a real customer deployment and the verified provider-answer handoff.
+
 ## Shared evidence and limits
 
-- The repository validator checks the structure and packaging of all 27 Skills. Trigger data contains positive, negative, and ambiguous prompts for every Skill.
-- The 34 workflow scenarios are synthetic evaluation inputs. They are not model runs or proof of successful task completion.
+- The repository validator checks the structure and **27/27 portable resource-archive packaging** of all 27 Skills. Trigger data contains positive, negative, and ambiguous prompts for every Skill.
+- The 34 workflow scenarios and 84 Skill selection prompts are synthetic evaluation inputs. They are not model runs or proof of successful task completion.
 - CI validates repository files, packages representative Skills, and builds or checks the customer examples. A successful build is not a live Vira result.
 - Vira, provider, MCP, and Studio live use has not been performed in this review. Product access is not open yet.
 - The official OpenAI and Anthropic structural validators were run for an earlier library version. The newly added TaskRun and Chatbot Skills pass this repository's validator and packager; the bundled OpenAI validator could not run here because its PyYAML dependency is unavailable. No model trigger benchmark is claimed.

@@ -8,7 +8,7 @@
 
 ## How to carry out the task
 
-Use `python examples/python/taskrun_modes.py --help` for usage (verify CLI arguments locally), or [the runnable Python guide](https://github.com/hrpering/tryvira/blob/main/examples/python/README.md). For Observe, include organizationId/projectId/environmentId plus eventId/eventType/aiSystemId/connectionId.
+Use `python examples/python/taskrun_modes.py AUTO` for the default route-only proposal after setting the real Vira API URL/key. The script **does not** implement `--help`; for usage read its module docstring, or [the runnable Python guide](https://github.com/hrpering/tryvira/blob/main/examples/python/README.md). For Observe, include organizationId/projectId/environmentId plus eventId/eventType/aiSystemId/connectionId.
 
 This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 

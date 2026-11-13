@@ -2,6 +2,23 @@
 
 Portable, proprietary Agent Skills for integrating with and operating Vira through documented public surfaces. The 27-Skill library is in active development and is not yet published to skills.sh.
 
+## Installation and usage rights
+
+The [Vira Agent Skill Installation & Application Use License](vira-observe/LICENSE)
+expressly permits installation, modification, distribution inside application
+repositories and **commercial/client integration work**, with attribution.
+It does not license the private backend, Vira hosted service or trademarks.
+
+For an offline-contained instructional archive, run
+`python3 scripts/package_agent_skills.py --out /tmp/tryvira-skills`
+from the public repository and verify all 27 archives using
+`python3 scripts/verify_portable_skills.py /tmp/tryvira-skills --expected 27`.
+Archives mirror linked public source resources and selected runnable example folders under `references/repo/`;
+Pack, Framework, Chatbot and TaskRun Skills include needed standalone source examples and builder scripts. Run them from the local `references/repo/` path. npm/PyPI SDK dependencies and real Vira service access remain external.
+
+[Six-part completion gate](../docs/agent-skills/e2e-readiness.md) ·
+[Real agent/model Skill auto-selection benchmark](../docs/agent-skills/live-acceptance.md).
+
 ## Install
 
 From the target application repository, install one skill from this public repository’s `main` branch:

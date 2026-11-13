@@ -1,7 +1,7 @@
 {"skill": "vira-js-sdk", "kind": "positive", "prompt": "Use @tryvira/sdk to connect an agent once and observe a response.", "should_trigger": true}
 {"skill": "vira-js-sdk", "kind": "negative", "prompt": "Write a generic Python SDK integration unrelated to Vira.", "should_trigger": false}
 {"skill": "vira-js-sdk", "kind": "ambiguous", "prompt": "Can I connect this Vira agent?", "should_trigger": null}
-{"skill": "vira-python-sdk", "kind": "positive", "prompt": "Use tryvira-sdk to resolve runtime behavior in my Python app.", "should_trigger": true}
+{"skill": "vira-python-sdk", "kind": "positive", "prompt": "Use tryvira-sdk to submit an AUTO TaskRun and read persisted child state in my Python app.", "should_trigger": true}
 {"skill": "vira-python-sdk", "kind": "negative", "prompt": "Show how to configure a JavaScript-only package.", "should_trigger": false}
 {"skill": "vira-python-sdk", "kind": "ambiguous", "prompt": "How do I call Vira from a script?", "should_trigger": null}
 {"skill": "vira-mcp", "kind": "positive", "prompt": "Configure @tryvira/mcp and inspect its available tools.", "should_trigger": true}

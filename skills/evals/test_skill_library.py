@@ -127,7 +127,9 @@ class SkillScenarios(unittest.TestCase):
                 self.assertIn("vira-js-sdk/LICENSE", names)
                 text = package.read("vira-js-sdk/SKILL.md").decode()
                 self.assertNotIn("../../docs/", text)
-                self.assertIn("https://github.com/hrpering/tryvira/blob/main/docs/", text)
+                self.assertIn("references/repo/docs/", text)
+                self.assertIn("vira-js-sdk/references/manifest.json", names)
+                self.assertTrue(any(name.startswith("vira-js-sdk/references/repo/docs/") for name in names))
 
 if __name__ == "__main__":
     unittest.main()

@@ -36,27 +36,19 @@ jobs:
       - name: Verify public repository
         run: npm run verify
 
-      - name: Package and inspect representative Agent Skills
+      - name: Package and independently verify all 27 Agent Skills
         run: |
-          npm run package:skills -- --out /tmp/tryvira-skill-packages vira-evaluate vira-observe-teach vira-task-runs
-          python3 - <<'PY'
-          from pathlib import Path
-          from zipfile import ZipFile
-          root = Path('/tmp/tryvira-skill-packages')
-          for name in ('vira-evaluate', 'vira-observe-teach', 'vira-task-runs'):
-              archive = root / f'{name}.skill'
-              with ZipFile(archive) as package:
-                  files = set(package.namelist())
-              required = {f'{name}/SKILL.md', f'{name}/agents/openai.yaml', f'{name}/examples/README.md'}
-              if not required <= files:
-                  raise SystemExit(f'{name}: missing package files: {sorted(required - files)}')
-              has_runner = any(f.startswith(f'{name}/examples/run-') and f.endswith('.mjs') for f in files)
-              if name in ('vira-evaluate', 'vira-observe-teach') and not has_runner:
-                  raise SystemExit(f'{name}: expected customer API runner is not included in package')
-              if name == 'vira-task-runs' and has_runner:
-                  raise SystemExit('vira-task-runs must use the published SDK contract instead of duplicating operation schemas')
-              print(f'{name}: packaged {len(files)} files; runnable example={has_runner}')
-          PY
+          npm run package:skills -- --out /tmp/tryvira-skill-packages
+          python3 scripts/verify_portable_skills.py /tmp/tryvira-skill-packages --expected 27
+          python3 scripts/smoke_install_skills.py /tmp/tryvira-skill-packages --expected 27
+
+      - name: Publish verified 27-Skill archive bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: vira-agent-skills-27
+          path: /tmp/tryvira-skill-packages/*.skill
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Verify framework examples (JavaScript)
         run: |
