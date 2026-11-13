@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Signals"
+  short_description: "Vira Signals tasks and workflow guidance"
+  default_prompt: "Use $vira-signals to complete this documented Vira signals workflow."

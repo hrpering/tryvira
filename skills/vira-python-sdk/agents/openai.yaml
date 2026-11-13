@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Python Sdk"
+  short_description: "Vira Python Sdk tasks and workflow guidance"
+  default_prompt: "Use $vira-python-sdk to complete this documented Vira python sdk workflow."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Build Pack"
+  short_description: "Vira Build Pack tasks and workflow guidance"
+  default_prompt: "Use $vira-build-pack to complete this documented Vira build pack workflow."

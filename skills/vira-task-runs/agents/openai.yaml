@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Task Runs"
+  short_description: "Route and operate governed TaskRuns with the Vira JavaScript SDK"
+  default_prompt: "Use $vira-task-runs to route, start, inspect, or safely continue a Vira TaskRun."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Chatbot"
+  short_description: "Try Vira behavior in an OFF/ON chatbot"
+  default_prompt: "Use $vira-chatbot to set up and compare the chatbot in Vira OFF and ON modes."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Get Started"
+  short_description: "Vira Get Started tasks and workflow guidance"
+  default_prompt: "Use $vira-get-started to complete this documented Vira get started workflow."

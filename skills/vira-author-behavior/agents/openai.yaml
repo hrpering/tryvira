@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Author Behavior"
+  short_description: "Vira Author Behavior tasks and workflow guidance"
+  default_prompt: "Use $vira-author-behavior to complete this documented Vira author behavior workflow."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Strategies"
+  short_description: "Vira Strategies tasks and workflow guidance"
+  default_prompt: "Use $vira-strategies to complete this documented Vira strategies workflow."

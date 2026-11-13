@@ -1,0 +1,28 @@
+{
+  "name": "vira-next-openai-agents-example",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "vira:connect": "node scripts/connect-system.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@openai/agents": "0.21.0",
+    "@tryvira/sdk": "0.1.44",
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "typescript": "7.0.2"
+  }
+}

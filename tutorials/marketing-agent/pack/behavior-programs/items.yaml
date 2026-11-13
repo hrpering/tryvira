@@ -1,0 +1,9 @@
+- key: marketing.launch_plan
+  rubric:
+    - Cover awareness, consideration, conversion, and retention
+    - Include a measurement approach for every stage
+  examples:
+    - A launch plan with objectives and metrics by funnel stage
+  antiPatterns:
+    - Acquisition-only launch plan
+    - Invented campaign results

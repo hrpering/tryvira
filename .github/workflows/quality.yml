@@ -1,0 +1,89 @@
+name: Repository quality, including Agent Skills
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Use Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install repository dependencies
+        run: npm ci
+
+      - name: Verify public repository
+        run: npm run verify
+
+      - name: Package and inspect representative Agent Skills
+        run: |
+          npm run package:skills -- --out /tmp/tryvira-skill-packages vira-evaluate vira-observe-teach vira-task-runs
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          root = Path('/tmp/tryvira-skill-packages')
+          for name in ('vira-evaluate', 'vira-observe-teach', 'vira-task-runs'):
+              archive = root / f'{name}.skill'
+              with ZipFile(archive) as package:
+                  files = set(package.namelist())
+              required = {f'{name}/SKILL.md', f'{name}/agents/openai.yaml', f'{name}/examples/README.md'}
+              if not required <= files:
+                  raise SystemExit(f'{name}: missing package files: {sorted(required - files)}')
+              has_runner = any(f.startswith(f'{name}/examples/run-') and f.endswith('.mjs') for f in files)
+              if name in ('vira-evaluate', 'vira-observe-teach') and not has_runner:
+                  raise SystemExit(f'{name}: expected customer API runner is not included in package')
+              if name == 'vira-task-runs' and has_runner:
+                  raise SystemExit('vira-task-runs must use the published SDK contract instead of duplicating operation schemas')
+              print(f'{name}: packaged {len(files)} files; runnable example={has_runner}')
+          PY
+
+      - name: Verify framework examples (JavaScript)
+        run: |
+          npm ci --prefix examples/frameworks/node-next
+          npm test --prefix examples/frameworks/node-next
+          npm run build --prefix examples/frameworks/node-next
+          node --check skills/vira-evaluate/examples/run-pack-evaluation.mjs
+          node --check skills/vira-evaluate/examples/pack-evaluation.mjs
+          node --check skills/vira-observe-teach/examples/run-teach-analysis.mjs
+          node --check skills/vira-observe-teach/examples/teach-analysis.mjs
+          npm ci --prefix examples/frameworks/mcp-client
+          node --check examples/frameworks/mcp-client/client.mjs
+          npm ci --prefix tutorials/marketing-agent
+          node --check tutorials/marketing-agent/06-runtime-resolve.mjs
+          node --check tutorials/marketing-agent/07-quality-decision.mjs
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.2
+
+      - name: Verify framework examples (Python)
+        run: |
+          uv venv --python 3.12 examples/frameworks/python_fastapi/.venv
+          uv pip sync --python examples/frameworks/python_fastapi/.venv/bin/python examples/frameworks/python_fastapi/requirements.lock
+          examples/frameworks/python_fastapi/.venv/bin/python -m compileall -q examples/frameworks/python_fastapi
+          uv venv --python 3.12 examples/frameworks/langgraph/.venv
+          uv pip sync --python examples/frameworks/langgraph/.venv/bin/python examples/frameworks/langgraph/requirements.lock
+          examples/frameworks/langgraph/.venv/bin/python -m compileall -q examples/frameworks/langgraph
+
+      - name: Verify documented public package releases
+        run: npm run verify:registry
