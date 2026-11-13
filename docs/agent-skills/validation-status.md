@@ -2,7 +2,7 @@
 
 The public library contains 27 task-specific Skills. Each has activation conditions, preconditions, a workflow, a deliverable, failure handling, and references. See [capability coverage](capability-coverage.md) for product-goal routing and the [public package guide](../reference/sdk-method-inventory.md) for current interface boundaries.
 
-The per-Skill evidence table is in [skill status](skill-status.md). It distinguishes structural checks, offline regressions, runnable examples, model evaluation, and live verification; no Skill is represented as live-tested.
+Historical November 7 model-run evidence used a now-superseded projection-to-provider integration. Keep that record only as historical evidence and do not copy it as current production guidance. The per-Skill evidence table is in [skill status](skill-status.md). It distinguishes structural checks, offline regressions, runnable examples, model evaluation, and live verification; no Skill is represented as live-tested.
 
 ## Production contract audit
 

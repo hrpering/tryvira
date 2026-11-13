@@ -53,7 +53,7 @@ Vira's product concepts are designed to separate *what a task is*, *where behavi
 - [Published package versions](published-packages.md)
 - [Capability discovery](capability-discovery.md)
 - [Full example index](../examples/README.md) and [Marketing Agent tutorial](../tutorials/marketing-agent/README.md)
-- [Agent Skills](../skills/README.md) and [AI coding prompts](ai-prompts/README.md)
+- [27 Agent Skills](../skills/README.md), [production contract audit](agent-skills/production-contract-audit.md), [client method baseline](agent-skills/production-contract-baseline.md) and [AI coding prompts](ai-prompts/README.md)
 
 **Use the installed package as the source of truth for method shapes.** The SDKs, MCP server, HTTP API and Studio do not necessarily support the same operations. Semantic resolution is not authorization; evidence, review, evaluation and release are separate transitions.
 

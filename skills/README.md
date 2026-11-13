@@ -66,7 +66,7 @@ For the complete customer journey, use `vira-full-lifecycle` with `vira-observe`
 
 `vira-task-runs` covers both published JavaScript and Python SDKs. `vira-runtime-verification` covers actual checks and the known missing final-answer readback contract. `vira-observe` collects real events separately; `vira-signals` gives typed versioned evidence a governed mapping; `vira-traces` inspects real receipts. Do not use `resolveRuntime` or `behavior-projection` as an alternative ordinary chatbot path.
 
-[All 27 per-Skill audit findings](../docs/agent-skills/production-contract-audit.md) · [Current production contracts](../docs/agent-skills/production-contract-baseline.md) · [Three graded Pack examples](../examples/packs/README.md).
+[Audit of all 24 original Skills and the 3 added specialists](../docs/agent-skills/production-contract-audit.md) · [Current production contracts](../docs/agent-skills/production-contract-baseline.md) · [Three graded Pack examples](../examples/packs/README.md).
 
 ## Runnable operation examples
 
@@ -74,7 +74,7 @@ For the complete customer journey, use `vira-full-lifecycle` with `vira-observe`
 - `vira-observe-teach/examples/` includes asynchronous Teach analysis creation/readback. Live writes require explicit non-production and mutation flags.
 - `vira-chatbot/examples/` explains how to run the real local chatbot in OFF mode and, with the user's own access, ON mode.
 
-Both examples require an operator-provided `VIRA_API_URL` and server-side credential, and call the configured Vira API through the published SDK. Never put credentials in prompts, source control, or logs. A run reports only the server state it reads; queued work is not a completed result.
+The two runnable mutation runner examples require an operator-provided `VIRA_API_URL` and server-side credential, and call the configured Vira API through the published SDK. Never put credentials in prompts, source control, or logs. A run reports only the server state it reads; queued work is not a completed result.
 
 The TaskRun Skill has [actual JS](../examples/javascript/taskrun-modes.mjs) and [actual Python](../examples/python/taskrun_modes.py) route-first examples; both require an authorized non-production account for admission. The public Next.js ON demo shows TaskRun status and **does not** claim a verified final provider output.
 
