@@ -1,6 +1,6 @@
 # Agent Skills audit against Vira production contracts
 
-**Audit baseline:** public `hrpering/tryvira` main at `419ac742e77c`; source of truth `hrpering/Vira_Behavior_Prod` main at `48d0020e5049c78341d929ab6bbd986ef42aa1c7`, accessed 13 November 2026. Reviewed **all 24 pre-existing SKILL.md**, their **24 examples/README.md**, **24 agents/openai.yaml** metadata files, and existing skill tests/corpora; checked against the actual JS/Python TaskRun, Pack, Signal, Observe and runtime source contracts. This is a focused client/integration audit, *not* a comprehensive certification of the private production backend.
+**Audit baseline:** public tryvira documentation and owner-authorized production client/runtime contracts, reviewed 13 November 2026. Reviewed **all 24 pre-existing SKILL.md**, their **24 examples/README.md**, **24 agents/openai.yaml** metadata files, and existing skill tests/corpora; checked against the actual JS/Python TaskRun, Pack, Signal, Observe and runtime source contracts. This is a focused client/integration audit, *not* a comprehensive certification of the private production backend.
 
 ## Critical architectural findings
 
@@ -41,15 +41,14 @@
 | `vira-lifecycle` | P1 | Planning old output contract and projection path | Typed evidence → Pack/eval/release → AUTO → actual verification → outcomes |
 | `vira-full-lifecycle` | P0 | Explicit “resolve/execute/projection path” on step 16; old partial-output assumptions | Replace with canonical AUTO, verified receipt gate, specialist handoffs and rollback |
 
-## Existing code source anchors
+## Public verification anchors
 
-- [JavaScript SDK](https://github.com/hrpering/Vira_Behavior_Prod/blob/main/sdks/js-client.ts): `startTaskRun`, `resolveTaskRun`, `getTaskRun`, `continueTaskRun`, `observe`, Pack/Signal/Teach methods; `startTaskRunFromPrompt` convenience does *not* forward `requestedMode`.
-- [Python SDK](https://github.com/hrpering/Vira_Behavior_Prod/blob/main/sdks/python/vira_client.py): corresponding `start_task_run`, `resolve_task_run`, `get_task_run` and state transitions; Python `observe` requires explicit organization/project/environment in event.
-- [TaskRun contract](https://github.com/hrpering/Vira_Behavior_Prod/blob/main/packages/taskrun/src/task-run-contract.ts): server route decisions, four execution modes, waiting/terminal states, identity/digest.
-- [Pack importer](https://github.com/hrpering/Vira_Behavior_Prod/blob/main/packages/packs/src/pack-import.ts): YAML/JSON manifest, canonical collection files, archive.
-- [Observation ingestion](https://github.com/hrpering/Vira_Behavior_Prod/blob/main/packages/observation/src/ingest.ts) and [Signal mapping](https://github.com/hrpering/Vira_Behavior_Prod/blob/main/packages/observation/src/signal-mapping.ts).
-- [Behavior verifier](https://github.com/hrpering/Vira_Behavior_Prod/blob/main/packages/domain/src/behavior-verifier.ts) and [module runtime](https://github.com/hrpering/Vira_Behavior_Prod/blob/main/packages/runtime/src/behavior-module-runtime.ts).
-- [Public ON handler](../../examples/frameworks/node-next/src/support-handler.mjs) and [canonical TaskRun guide](../canonical-taskrun.md).
+This audit used owner-authorized production source review and the currently published SDK contracts. **Internal repository identifiers, production commit hashes and non-public implementation locations are intentionally excluded from this public document.** The customer-facing contract anchors are:
+
+- [Published JS SDK reference](../reference/javascript-sdk.md) and [Python SDK reference](../reference/python-sdk.md).
+- [TaskRun modes](../execution-modes.md) and [canonical AUTO TaskRun](../canonical-taskrun.md).
+- [Pack importer/authoring guide](../pack-authoring-guide.md), [Observe](../observe.md), [Signal lifecycle](../signals.md) and [Runtime Verification](../runtime-verification.md).
+- [Real public ON handler](../../examples/frameworks/node-next/src/support-handler.mjs) and [verified-answer acceptance requirements](../verified-answer-handoff.md).
 
 ## Acceptance for this library upgrade
 
@@ -61,4 +60,4 @@
 6. **No tool/publish/rollback/release side effects** without explicit authority; package versions and scope are verified from installed sources.
 7. Preserve all existing Skills' identities, avoid silently moving user workflows, and ensure standalone `.skill` archive packaging remains valid.
 
-This document is an audit against exact source snapshots; it does not guarantee that every backend feature is already available to third-party customer tenants.
+This document records the public-facing gaps found against the reviewed client/runtime contracts; it does not guarantee that every backend feature is already available to third-party customer tenants.
