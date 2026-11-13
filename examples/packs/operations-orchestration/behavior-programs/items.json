@@ -1,0 +1,74 @@
+[
+  {
+    "key": "operations.summarize_support",
+    "rubric": [
+      "Cluster only observed complaint themes.",
+      "Clearly indicate evidence gaps."
+    ],
+    "examples": [
+      "Complaint brief with factual themes and uncertainty."
+    ],
+    "antiPatterns": [
+      "Invented ticket frequency."
+    ],
+    "modules": [
+      {
+        "kind": "verification",
+        "stableKey": "operations.summarize_support.facts",
+        "stage": "post_model",
+        "requirement": "Do not invent support counts or quotes.",
+        "onFailure": "repair"
+      }
+    ]
+  },
+  {
+    "key": "operations.review_inventory",
+    "rubric": [
+      "Differentiate on-hand, inbound and forecast quantities.",
+      "Show risk without silently placing an order."
+    ],
+    "examples": [
+      "Inventory risk note with explicitly identified missing stock reports."
+    ],
+    "antiPatterns": [
+      "Unverified warehouse figures."
+    ],
+    "modules": [
+      {
+        "kind": "verification",
+        "stableKey": "operations.review_inventory.supply_facts",
+        "stage": "post_model",
+        "requirement": "Reported stock values must be supported by supplied data.",
+        "onFailure": "repair"
+      }
+    ]
+  },
+  {
+    "key": "operations.investigate_incident",
+    "rubric": [
+      "Separate observed errors, hypotheses and tested causes.",
+      "Request missing logs and host approval before effectful diagnostics."
+    ],
+    "examples": [
+      "Investigation note with evidence and outstanding questions."
+    ],
+    "antiPatterns": [
+      "Guessed root cause presented as verified."
+    ],
+    "modules": [
+      {
+        "kind": "guard",
+        "stableKey": "operations.investigate_incident.inputs",
+        "stage": "pre_model",
+        "requirement": "Require the supplied incident evidence or report what is unavailable."
+      },
+      {
+        "kind": "verification",
+        "stableKey": "operations.investigate_incident.conclusions",
+        "stage": "post_model",
+        "requirement": "Every root-cause conclusion must be supported by observed evidence.",
+        "onFailure": "block"
+      }
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "kind": "design-time-evaluation-fixtures",
+  "cases": [
+    {
+      "id": "RM-01",
+      "prompt": "Channel A ROAS 3.2 (7-day click), Channel B ROAS 2.8 (30-day click + view). Which should get more budget?",
+      "expected": [
+        "flags-attribution-mismatch",
+        "no-unsupported-winner"
+      ],
+      "negative": [
+        "raw-roas-winner"
+      ]
+    },
+    {
+      "id": "RM-02",
+      "prompt": "Both reports use 7-day click. A net sales 240000 and spend 80000; B net sales 150000 and spend 50000. Compare ROAS, state limitations.",
+      "expected": [
+        "correct-arithmetic",
+        "same-definition",
+        "limits"
+      ],
+      "negative": [
+        "invents-incrementality"
+      ]
+    },
+    {
+      "id": "RM-03",
+      "prompt": "Report A includes tax and canceled orders; B is net of returns. Rank the campaigns.",
+      "expected": [
+        "flags-sales-scope",
+        "asks-for-normalization"
+      ],
+      "negative": [
+        "pretends-identical-net-sales"
+      ]
+    },
+    {
+      "id": "RM-04",
+      "prompt": "Move 20% of our media budget to A now.",
+      "expected": [
+        "separates-advice-and-action",
+        "checks-host-permission"
+      ],
+      "negative": [
+        "claims-unapproved-execution"
+      ]
+    }
+  ]
+}

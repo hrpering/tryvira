@@ -1,73 +1,31 @@
-# Runtime
+# Runtime: the canonical AUTO TaskRun path
 
-Runtime resolution applies eligible released governed behavior through the enforcing authority boundary.
-
-## Resolve a Behavior Point
-
-```ts
-const runtime = await vira.resolveRuntime({
-  behaviorPoint: "marketing.launch_plan",
-  executionBoundary: {
-    organizationId,
-    projectId,
-    environmentId
-  },
-  idempotencyKey: crypto.randomUUID()
-});
-```
-
-## Raw API
+The supported **application-level integration** is [AUTO TaskRun](canonical-taskrun.md):
 
 ```text
-POST /v1/runtime/resolve
-POST /v1/runtime/execute
-POST /v1/runtime/behavior-capsule
-POST /v1/runtime/behavior-projection
+AUTO TaskRun → semantic resolve → eligible mode dispatch
+→ real child executor → runtime behavior enforcement
+→ provider/chatbot → post-model verification → persisted receipt
 ```
 
-## Recommended application flow
+The server owns semantic registry decisions, eligible modes, scope and execution authority. The host retains control of model/tool execution and cannot treat a TaskRun route as authority for arbitrary actions.
 
-```text
-user request
-→ semantic resolution
-→ selected Semantic Task / Behavior Point + governed semantic context
-→ runtime resolution
-→ eligible released Program / Strategy / projection
-→ build model / agent request
-→ execute
-→ receipt / trace
-→ observe response
-→ feedback / outcome
-```
+## Application integration
 
-Semantic resolution is evidence/candidate selection. Runtime resolution is the authority boundary.
+Start with `@tryvira/sdk` `startTaskRun({requestedMode:"AUTO", ...})`, or `tryvira-sdk` `start_task_run` with an equivalent request mapping. Read the persisted state with `getTaskRun` / `get_task_run` and events with `listTaskRunEvents` / `list_task_run_events`.
 
-## Semantic context remains binding context
+An `ADMITTED` or `RUNNING` result is not a finished answer. A `COMPLETED` status and child receipts prove only the recorded TaskRun/child operations; the application must also confirm **real provider output and a post-model verification receipt** before displaying a verified answer. The public TaskRun readback does not automatically expose that full final-answer contract today.
 
-When semantic resolution identifies a governed Program/context, runtime Strategy/projection selection must remain compatible with that semantic Program identity. Runtime should not silently switch to an unrelated Strategy merely because it shares a Behavior Point key.
+[Concrete SDK usage](canonical-taskrun.md) · [TaskRun modes](execution-modes.md) · [Application sample](../examples/frameworks/node-next/README.md)
 
-Applications should therefore pass the server-returned semantic context forward rather than rebuilding or weakening it client-side. If a capsule/projection carries Program identity, preserve that identity through the runtime request/continuation path.
+## Diagnostic and low-level SDK APIs only
 
-## Do not confuse resolve and execute
+`resolveRuntime`, `executeRuntime`, `serveBehaviorProjection` and `POST /v1/runtime/behavior-projection` are advanced integration/diagnostic surfaces. They can explain a particular artifact's projection, decision or receipt, but should **not** be the normal chatbot, Pack demo or customer quickstart path.
 
-**Resolve** determines the governed eligible runtime context and can deny/abstain when no valid released identity exists.
+Do not use a projection string as an alternate authority route and do not pass it directly to a provider while claiming the TaskRun's child execution and post-model checks ran.
 
-**Execute** runs through the enforcing runtime boundary where supported.
+## Failure and evidence
 
-A successful semantic classification, Strategy activation, Pack installation, Teach promotion, or quality score is not equivalent to runtime authorization.
+Never auto-resolve a missing task to an invented Behavior Point. Preserve the server-selected immutable identity, correct scope, child receipts and status; do not fabricate output or verification. `WAITING_USER`, `WAITING_HOST`, `WAITING_APPROVAL`, `PARTIAL`, `BLOCKED` and `FAILED` are meaningful states. Effectful actions require host authorization.
 
-## Strategy continuation
-
-If a Strategy execution reaches `WAITING_USER` or `WAITING_HOST`, continue the same execution with its persisted authority digest plus the new state/references. Do not start a replacement execution merely to bypass the wait state.
-
-## Projection and receipts
-
-Behavior capsule/projection responses should remain bound to the governed released identity and semantic context selected for the request. Preserve returned authority digests, request IDs, receipts and trace identifiers rather than recomputing them in the client. The published JavaScript SDK `RuntimeResolution` type can expose `projectionMode` (`active`, `unavailable`, or `not-applicable`) and an optional `behaviorProjection.rendered` string with a `projectionDigest`. The Python SDK instead exposes `serve_behavior_projection`, whose response body contains a `projection` object; do not assume the JS resolution fields on a Python response. Framework integrations may pass a non-empty rendered projection as model guidance and retain its digest, after checking the exact operation's response contract. This does not authorize the host application to call tools, send messages, or perform external side effects; apply a separate application permission check for those actions.
-
-## Failure behavior
-
-Do not convert a runtime, verifier, scope, digest, release, or authorization failure into accidental permission for an effectful action.
-
-Enforcing paths should remain fail-closed where required. Observation-only telemetry may use a different failure policy when explicitly configured.
-
-See [Semantic routing](semantic-routing.md), [Release](release.md), [Strategies](strategies.md), and the [Developer guide](developer-guide.md).
+[Security](security-model.md) · [Verification status](example-verification.md) · [Troubleshooting](troubleshooting/README.md)

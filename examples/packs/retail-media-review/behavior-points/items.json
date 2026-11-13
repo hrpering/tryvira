@@ -1,0 +1,8 @@
+[
+  {
+    "key": "retail.compare_campaign_evidence",
+    "taskKey": "retail.compare_campaign_evidence",
+    "requirement": "Check attribution windows, view-through rules, reporting periods, returns, tax/currency and sales scope before ranking ROAS.",
+    "verification": "Do not present incomparable channel results as a defensible winner; report what data or harmonization is required before changing spend."
+  }
+]

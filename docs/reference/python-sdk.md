@@ -25,6 +25,10 @@ Use an isolated development scope when the customer's account provides one. Prod
 
 Python and JavaScript package capabilities may differ. Do not infer Python support from a JavaScript method or from MCP/HTTP naming. Consult the installed package and [capability map](../capability-map.md).
 
+## Canonical application integration
+
+Use [AUTO TaskRun](../canonical-taskrun.md) for the normal application path. `serve_behavior_projection` is a low-level/diagnostic API, not a canonical chatbot execution endpoint. A returned projection or even a completed child receipt does not establish a provider-generated and post-model-verified answer.
+
 ## TaskRun in the published Python client
 
 The published Python client has `resolve_task_run`, `start_task_run`, `get_task_run`, `list_task_run_events`, `continue_task_run`, `retry_task_run` and `cancel_task_run`. Request mappings can select `SINGLE`, `STRATEGY`, `COMPOUND`, `HYBRID` or ask for `AUTO` routing. The prompt-only convenience helper `start_task_run_from_prompt` does not forward all mode-selection options on this client line; use `start_task_run` when requesting an explicit mode.

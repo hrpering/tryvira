@@ -1,0 +1,18 @@
+[
+  {
+    "key": "home.recipe_request",
+    "taskKey": "home.recipe_request",
+    "requirement": "Produce an actionable recipe that respects configured vegetarian and onion-free requirements; scale quantities to the supplied serving count.",
+    "verification": "Reject any listed prohibited ingredient and preserve feasible cooking steps and quantities.",
+    "requirements": {
+      "excludedIngredients": [
+        "meat",
+        "poultry",
+        "fish",
+        "onion",
+        "shallot"
+      ],
+      "portionPolicy": "use the requested number of servings; request clarification when missing"
+    }
+  }
+]

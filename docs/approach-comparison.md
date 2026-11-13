@@ -38,11 +38,13 @@ An agent can look up the order, use a delivery-status tool, draft a response and
 
 ### Vira + an existing application or agent
 
-A team can declare an escalation behavior for the support task, test positive and negative examples, authorize an exact release and resolve eligible behavior at the configured integration boundary. It may inspect the returned identity and runtime evidence. **Vira does not itself look up orders or guarantee a real refund.**
+A team can declare an escalation behavior for the support task, test positive and negative examples, authorize an exact release and submit the request through **AUTO TaskRun**, which resolves registered work and dispatches eligible execution. The provider/verifier response must be bound to the resulting run before a verified final answer is claimed. It may inspect the returned identity and runtime evidence. **Vira does not itself look up orders or guarantee a real refund.**
 
 ### Other platform services
 
 A prompt manager can version response text; tracing or evaluation systems can measure how the agent behaved; a memory system can recall prior context; policy controls can gate specific actions. Some of these systems also have release workflows. The decision criterion is whether the team's required behavior review, authority and traceability are actually covered.
+
+The user does **not** choose SINGLE versus STRATEGY versus COMPOUND on each prompt. [Canonical request path](canonical-taskrun.md) · [Three real Pack source examples](../examples/packs/README.md).
 
 ## Which should you use?
 

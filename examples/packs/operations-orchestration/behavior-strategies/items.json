@@ -1,0 +1,128 @@
+[
+  {
+    "key": "operations.investigate_incident",
+    "schemaVersion": 1,
+    "strategyKey": "operations.investigate_incident",
+    "behaviorPointKey": "operations.investigate_incident",
+    "executionMode": "STAGED",
+    "goal": {
+      "type": "analyze",
+      "successCriteria": [
+        "Provide a verified incident summary with outstanding questions."
+      ]
+    },
+    "entryStepKey": "collect",
+    "steps": [
+      {
+        "stableKey": "collect",
+        "type": "model",
+        "purpose": "Organize supplied incident evidence and separate observations from guesses.",
+        "requires": [
+          "context:request"
+        ],
+        "produces": [
+          "state:evidence"
+        ],
+        "outputSchemaRef": "schema:text"
+      },
+      {
+        "stableKey": "verify",
+        "type": "verify",
+        "purpose": "Check whether each proposed cause follows from the available evidence.",
+        "requires": [
+          "state:evidence"
+        ],
+        "produces": [
+          "state:findings"
+        ],
+        "verifierKeys": [
+          "default.response"
+        ]
+      },
+      {
+        "stableKey": "compose",
+        "type": "compose",
+        "purpose": "Return the checked findings and explicitly unresolved issues.",
+        "requires": [
+          "state:findings"
+        ],
+        "produces": [
+          "state:final"
+        ],
+        "verifierKeys": [
+          "default.response"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "stableKey": "collect-verify",
+        "from": "collect",
+        "to": "verify"
+      },
+      {
+        "stableKey": "verify-compose",
+        "from": "verify",
+        "to": "compose"
+      }
+    ],
+    "stateSlots": [
+      {
+        "key": "state:evidence",
+        "schemaRef": "schema:text",
+        "privacy": "tenant",
+        "source": "model",
+        "maxBytes": 20000
+      },
+      {
+        "key": "state:findings",
+        "schemaRef": "schema:text",
+        "privacy": "tenant",
+        "source": "derived",
+        "maxBytes": 20000
+      },
+      {
+        "key": "state:final",
+        "schemaRef": "schema:text",
+        "privacy": "tenant",
+        "source": "derived",
+        "maxBytes": 20000
+      }
+    ],
+    "contextPolicy": {
+      "allowedRefs": [
+        "context:request"
+      ],
+      "maxBytes": 30000
+    },
+    "evidencePolicy": {
+      "requiredRefs": [],
+      "allowMissing": true
+    },
+    "toolPolicy": {
+      "allowedToolKeys": [],
+      "effectfulToolKeys": []
+    },
+    "generationPolicy": {
+      "structuredOnly": true
+    },
+    "verificationPolicy": {
+      "requiredVerifierKeys": [
+        "default.response"
+      ],
+      "requireFinalComposeVerification": true
+    },
+    "recoveryPolicy": {
+      "maxTotalRecoveries": 1,
+      "defaultAction": "block"
+    },
+    "budgets": {
+      "maxStepExecutions": 8,
+      "maxModelCalls": 1,
+      "maxToolCalls": 0,
+      "maxDecisionCalls": 0,
+      "maxRepairAttempts": 1,
+      "maxSerializedStateBytes": 100000
+    }
+  }
+]

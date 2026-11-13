@@ -1,0 +1,5 @@
+id: vira.examples.recipe_preference
+name: Everyday Recipe Preferences
+version: 1.0.0
+requires:
+  vira: ">=1.0"

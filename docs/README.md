@@ -8,6 +8,8 @@
 
 | Goal | Start with | Then go to |
 | --- | --- | --- |
+| Author a high-quality Pack | [Pack Academy](pack-authoring-guide.md) | [Three complete examples](../examples/packs/README.md) |
+| Integrate the canonical AUTO TaskRun path | [Canonical runtime](canonical-taskrun.md) | [Next.js admission demo](../examples/frameworks/node-next/README.md) |
 | Explore everyday-to-enterprise examples | [12 scenario prompts](use-cases.md) · [24 copyable variants](../examples/scenarios/README.md) | [Modes](execution-modes.md) · [Category comparison](approach-comparison.md) |
 | Compare Skills, agents and platform types | [Brand-neutral comparison](approach-comparison.md) | [Team evaluation](for-teams.md) |
 | Understand why Vira exists | [What is Vira?](what-is-vira.md) | [Product overview](product-positioning.md) · [FAQ](faq.md) |
@@ -26,6 +28,7 @@
 
 Vira's product concepts are designed to separate *what a task is*, *where behavior applies*, *which revision is eligible*, and *what happened*.
 
+- [Canonical AUTO TaskRun](canonical-taskrun.md), [verified-answer interface requirements](verified-answer-handoff.md), [brand story](brand-positioning.md), and [Pack authoring guide](pack-authoring-guide.md).
 - [Execution modes](execution-modes.md) for SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO.
 - [Examples by level](use-cases.md) and [brand-neutral approach comparison](approach-comparison.md).
 - [Core concepts](core-concepts.md) for Semantic Tasks, Behavior Points, Programs, Strategies, release and traces.
@@ -35,6 +38,7 @@ Vira's product concepts are designed to separate *what a task is*, *where behavi
 
 ## Developer references
 
+- [Pack academy](../examples/packs/README.md) · [Canonical AUTO TaskRun](canonical-taskrun.md)
 - [Developer release and contract checklist](developer-checklist.md)
 - [Per-example verification status: automated tests versus live acceptance](example-verification.md)
 - [JavaScript / TypeScript](reference/javascript-sdk.md)

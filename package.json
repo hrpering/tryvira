@@ -8,10 +8,12 @@
     "node": ">=20"
   },
   "scripts": {
-    "verify": "node scripts/verify-repo.mjs && npm run check:examples && npm run verify:scenarios && npm run verify:skills && npm run test:mcp-catalog && npm run check:tutorial-safety",
+    "verify": "node scripts/verify-repo.mjs && npm run verify:packs && npm run verify:canonical && npm run check:examples && npm run verify:scenarios && npm run verify:skills && npm run test:mcp-catalog && npm run check:tutorial-safety",
     "verify:registry": "node scripts/verify-registry.mjs",
     "check:examples": "node scripts/check-examples.mjs",
     "verify:scenarios": "node scripts/verify-scenarios.mjs",
+    "verify:packs": "node scripts/verify-pack-examples.mjs && python3 scripts/package-example-packs.py --check",
+    "verify:canonical": "node scripts/verify-canonical-taskrun.mjs",
     "sync:registry": "node scripts/sync-published-packages.mjs",
     "test": "npm run verify",
     "verify:skills": "python3 scripts/validate_agent_skills.py && python3 -m unittest discover -s skills/evals -v",

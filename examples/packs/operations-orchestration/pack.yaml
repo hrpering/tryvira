@@ -1,0 +1,5 @@
+id: vira.examples.operations_orchestration
+name: Governed Operations Review
+version: 1.0.0
+requires:
+  vira: ">=1.0"

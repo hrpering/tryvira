@@ -10,7 +10,7 @@ Start with [ordinary recipes, support and writing cases](use-cases.md) before tr
 
 ## Path A: Explore today without Vira access
 
-The [Next.js + OpenAI Agents example](../examples/frameworks/node-next/README.md) has a functioning **Vira OFF** mode that uses your own OpenAI API key. You can inspect how the ON path is integrated, but you cannot verify a governed ON response without a provisioned Vira endpoint and released behavior.
+The [Next.js + OpenAI Agents example](../examples/frameworks/node-next/README.md) has a functioning **Vira OFF** mode that uses your own OpenAI API key. Its ON path submits a scoped AUTO TaskRun and displays real admission/state; it cannot claim a final verified chatbot response until the provider/post-model verification retrieval contract exists. [Canonical path](canonical-taskrun.md).
 
 **Requirements:** Git, Node.js 22.6+, a model-provider key, and a local development machine.
 
@@ -55,9 +55,14 @@ Then follow the stages individually:
 2. **Define** a Semantic Task and Behavior Point: [Canonical authoring](canonical-authoring.md), [Packs](packs.md).
 3. **Evaluate and review** a candidate; an imported Pack or Teach suggestion does not grant release: [Evaluation](evaluation-and-approval.md).
 4. **Approve and release** only the intended identity with the customer's authority: [Release](release.md).
-5. **Resolve runtime behavior** and inspect request identity/receipt or trace: [Runtime](runtime.md), [Traces](traces.md).
+5. **Submit a request through AUTO TaskRun** (not direct behavior-projection) and inspect persisted state and child receipts: [Canonical TaskRun](canonical-taskrun.md), [Traces](traces.md).
+6. **Require verified provider output** before showing a governed final answer. The current public TaskRun SDK does not by itself expose the complete last-mile verification handoff.
 
-After an eligible release exists, follow the [chatbot's ON setup](../examples/frameworks/node-next/README.md). The ON path is designed to stop before model invocation when Vira does not return an active eligible projection. It is not an automatic fallback to ungoverned behavior.
+After an eligible release exists, follow the [chatbot's ON setup](../examples/frameworks/node-next/README.md). This sample submits AUTO TaskRun and **does not** call the provider separately with a low-level projection. It reports admission/status, not a verified finished answer.
+
+## Learn to make a Pack
+
+[Pack authoring guide](pack-authoring-guide.md) explains what belongs in every file. [Three source Packs](../examples/packs/README.md) progress from a cooking preference to retail-media and real structured Strategy execution. A valid archive is not an approved release.
 
 ## Want to try different execution modes?
 

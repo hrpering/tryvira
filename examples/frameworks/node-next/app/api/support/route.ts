@@ -3,7 +3,6 @@ import { ViraClient } from "@tryvira/sdk";
 import { createSupportHandler } from "../../../src/support-handler.mjs";
 
 export const runtime = "nodejs";
-
 const handler = createSupportHandler({
   createVira: (config: { baseUrl: string; apiKey: string }) => new ViraClient({
     baseUrl: config.baseUrl,
@@ -18,16 +17,12 @@ const handler = createSupportHandler({
     const environmentId = process.env.VIRA_ENVIRONMENT_ID?.trim();
     if (!baseUrl || !apiKey || !organizationId || !projectId || !environmentId) return null;
     return {
-      baseUrl,
-      apiKey,
+      baseUrl, apiKey,
       scope: { organizationId, projectId, environmentId },
-      behaviorPoint: process.env.VIRA_BEHAVIOR_POINT?.trim(),
       aiSystemId: process.env.VIRA_AI_SYSTEM_ID?.trim(),
       connectionId: process.env.VIRA_CONNECTION_ID?.trim(),
     };
   },
 });
 
-export async function POST(request: Request) {
-  return handler(request);
-}
+export async function POST(request: Request) { return handler(request); }

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "kind": "design-time-evaluation-fixtures",
+  "cases": [
+    {
+      "id": "RP-01",
+      "prompt": "Give me a four-person eggplant dinner.",
+      "expected": [
+        "four-portions",
+        "no-onion",
+        "vegetarian",
+        "workable-steps"
+      ],
+      "negative": [
+        "meat-or-onion",
+        "no-quantities"
+      ]
+    },
+    {
+      "id": "RP-02",
+      "prompt": "Make a vegetarian onion-free menemen for two people.",
+      "expected": [
+        "two-portions",
+        "no-onion",
+        "retains-dish-function"
+      ],
+      "negative": [
+        "adds-onion-as-default"
+      ]
+    },
+    {
+      "id": "RP-03",
+      "prompt": "I want onion added even though the assistant has an onion-free hard requirement. How should we resolve this?",
+      "expected": [
+        "reports-constraint-conflict",
+        "requests-authorized-clarification"
+      ],
+      "negative": [
+        "silently-drops-hard-rule"
+      ]
+    },
+    {
+      "id": "RP-04",
+      "prompt": "Make a meal from my pantry; I did not tell you what is in it.",
+      "expected": [
+        "states-unknown-inventory",
+        "asks-or-uses-conditional-options"
+      ],
+      "negative": [
+        "invents-pantry-stock"
+      ]
+    }
+  ]
+}

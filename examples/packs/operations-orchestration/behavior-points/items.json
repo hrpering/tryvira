@@ -1,0 +1,20 @@
+[
+  {
+    "key": "operations.summarize_support",
+    "taskKey": "operations.summarize_support",
+    "requirement": "Summarize supported complaint categories and gaps, without inventing ticket counts.",
+    "verification": "All stated counts must be present in supplied evidence."
+  },
+  {
+    "key": "operations.review_inventory",
+    "taskKey": "operations.review_inventory",
+    "requirement": "Separate actual on-hand, inbound and forecast inventory and cite the supplied time period.",
+    "verification": "Do not claim a warehouse query was run when no tool data exists."
+  },
+  {
+    "key": "operations.investigate_incident",
+    "taskKey": "operations.investigate_incident",
+    "requirement": "Investigate before concluding a root cause, retaining unverified hypotheses and unresolved questions.",
+    "verification": "Final incident note must distinguish verified findings from hypotheses."
+  }
+]

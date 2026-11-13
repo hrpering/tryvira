@@ -1,6 +1,6 @@
 <h1 align="center">vira</h1>
-<p align="center"><strong>Define, test, and release how your AI behaves.</strong></p>
-<p align="center">A behavior-control layer for AI applications and agents. Make task-specific requirements reviewable, changes testable, and runtime behavior traceable, without retraining the model for every correction.</p>
+<p align="center"><strong>Define it. Test it. Release it. Know what ran.</strong></p>
+<p align="center">Own how your AI behaves. Define what it should say, decide and do; evaluate and release those expectations; run eligible behavior through governed tasks with inspectable evidence.</p>
 <p align="center">
   <a href="docs/start-here.md">Get started</a> ·
   <a href="docs/README.md">Documentation</a> ·
@@ -16,6 +16,12 @@
 Your agent does a task. You correct an answer. The same mistake returns in another session, workflow, or model. A rule gets added to a prompt, another to application code, and a third to a test. Soon nobody can answer: **What is this AI expected to do, which version is live, and was the change evaluated?**
 
 Vira provides a separate, governed place to define and operate those behaviors. It works **with** your existing AI application, model, and agent framework rather than replacing them.
+
+## One canonical application path
+
+**AUTO TaskRun → semantic resolve → eligible mode dispatch → real child executor → runtime behavior enforcement → provider/chatbot → post-model verification and receipt.** This is the end-to-end target, and its final provider/verification handoff needs real integration evidence. Ordinary users do not choose SINGLE, STRATEGY, COMPOUND or HYBRID manually. [Canonical TaskRun guide](docs/canonical-taskrun.md) · [Brand positioning](docs/brand-positioning.md)
+
+`behavior-projection` and direct `resolveRuntime` remain **advanced SDK/diagnostic surfaces**, not the customer quickstart or a second chatbot path. A `COMPLETED` TaskRun alone does not prove that a provider-generated answer passed post-model verification.
 
 ## Examples for different kinds of AI work
 
@@ -36,6 +42,10 @@ Vira is not limited to one industry or to complex agents. Start simple, then mov
 **SINGLE** handles one task. **STRATEGY** handles a multi-step process within one task. **COMPOUND** coordinates multiple governed tasks. **HYBRID** combines SINGLE and STRATEGY children. **AUTO** requests eligible mode selection; it is not an execution mode or permission bypass.
 
 [Understand all modes and their limits](docs/execution-modes.md) · [Test TaskRun routing using the published SDK](examples/javascript/taskrun-modes.mjs)
+
+## Learn to author high-quality Behavior Packs
+
+Start with [three complete graded Packs](examples/packs/README.md): **recipe preferences** (beginner), **retail-media evidence review** (intermediate) and **operations orchestration** (advanced, including a structured Strategy). Each has Semantic Tasks, Points, Programs, positive/negative test inputs and a field-by-field guide. [Where each Pack field belongs](docs/pack-authoring-guide.md).
 
 ## A business example
 
@@ -71,7 +81,7 @@ These are product workflow capabilities, **not** claims of universal enforcement
 
 ## See it in action
 
-**Try the real Next.js + OpenAI Agents example.** It has an OFF path that runs without Vira and an ON path that requests a released Vira behavior before calling the model.
+**Try the real Next.js + OpenAI Agents integration.** OFF invokes your configured model as a baseline. ON submits an **AUTO TaskRun** and shows the server's real admission/state. It does **not** manufacture a model answer: the public TaskRun response does not yet establish the canonical provider-output + post-model verification handoff.
 
 ```bash
 git clone https://github.com/hrpering/tryvira.git
@@ -82,7 +92,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open the local URL Next.js prints and try **Vira OFF**. For **Vira ON**, configure the customer-provided Vira API endpoint, scoped credentials, and an eligible released Behavior Point as explained in the [example README](examples/frameworks/node-next/README.md). A missing or denied behavior must not silently fall back to an ungoverned ON request.
+Open the local URL printed by Next.js and try **Vira OFF**. **Vira ON** requires your provisioned API endpoint, scoped credentials, an actual connection and eligible released tasks. The example returns a TaskRun pending/status response, **not** a verified chatbot reply, until the integrated provider/verifier response contract exists. [Exact sample limitations](examples/frameworks/node-next/README.md).
 
 The example calls real configured services, contains **no fake Vira backend**, and has not been validated against a live Vira tenant in this public repository. Never expose its unauthenticated demo route to the public internet.
 

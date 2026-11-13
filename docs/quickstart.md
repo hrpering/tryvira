@@ -28,7 +28,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open the local URL, select **Vira OFF**, and use synthetic input. The ON workflow requires separately issued Vira credentials and an eligible released Behavior Point. The example does **not** simulate an ON success when Vira is unavailable.
+Open the local URL, select **Vira OFF**, and use synthetic input. ON submits a server-owned AUTO TaskRun with separately issued credentials and eligible released tasks. It reports real admission/state **without** inventing a provider-generated verified answer. [Canonical path](canonical-taskrun.md) · [Pack academy](../examples/packs/README.md).
 
 ## First SDK connection (provisioned customers)
 

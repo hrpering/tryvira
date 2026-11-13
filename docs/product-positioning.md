@@ -1,10 +1,14 @@
-# Vira: operational control for AI behavior
+# Vira: own how your AI behaves
 
 ## The one-sentence description
 
-**Vira helps teams define, evaluate, release and inspect how existing AI applications and agents behave.**
+**Vira gives teams control over what their AI says, decides, and does across models and applications.**
+
+*Define it. Test it. Release it. Know what ran.*
 
 The product focuses on **behavior as a managed, reusable asset**, not on producing another prompt, running another agent, or storing conversations for their own sake.
+
+Read the [brand story and differentiation principles](brand-positioning.md) and the [canonical AUTO TaskRun path](canonical-taskrun.md).
 
 ## The job Vira is built for
 

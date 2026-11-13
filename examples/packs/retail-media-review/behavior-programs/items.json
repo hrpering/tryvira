@@ -1,0 +1,46 @@
+[
+  {
+    "key": "retail.compare_campaign_evidence",
+    "guard": "Inspect KPI comparability and identify missing definitions before calculating or ranking.",
+    "judgment": "Use comparable net sales and attribution definitions where possible; abstain from a definitive ROAS rank when methods differ.",
+    "transform": "Provide a conditional decision memo with evidence, caveats and next data request.",
+    "verification": "Ensure reported metrics have their correct definitions and no unsupported budget-shift claim is made.",
+    "escalation": "human-budget-review",
+    "rubric": [
+      "Identify incompatible attribution windows before any channel ranking.",
+      "Distinguish attributed revenue, incremental revenue and profit, never presenting them as synonyms.",
+      "Document net sales scope, refunds, taxes, currency and time windows.",
+      "Recommend a change only when comparable evidence supports it; otherwise specify missing inputs."
+    ],
+    "examples": [
+      "A conditional ROAS comparison explaining that 7-day click is not directly comparable to 30-day click plus view-through."
+    ],
+    "antiPatterns": [
+      "Treating ROAS 3.2 as conclusively better than 2.8 with mismatched attribution.",
+      "Inventing incrementality from attributed sales.",
+      "Claiming a media-budget change was executed."
+    ],
+    "modules": [
+      {
+        "kind": "judgment",
+        "stableKey": "retail.compare_campaign_evidence.comparability",
+        "stage": "pre_model",
+        "requirement": "Treat non-identical attribution windows as a material comparability limitation."
+      },
+      {
+        "kind": "verification",
+        "stableKey": "retail.compare_campaign_evidence.metric_claims",
+        "stage": "post_model",
+        "requirement": "Check every recommendation against metric definitions, reporting window and available evidence.",
+        "onFailure": "repair"
+      },
+      {
+        "kind": "verification",
+        "stableKey": "retail.compare_campaign_evidence.action_claims",
+        "stage": "post_model",
+        "requirement": "Do not assert that budgets were changed or incremental profit proved without external evidence and authorization.",
+        "onFailure": "block"
+      }
+    ]
+  }
+]

@@ -1,52 +1,59 @@
-# Next.js + OpenAI Agents chatbot
+# Next.js + OpenAI Agents: canonical AUTO TaskRun integration
 
-This customer-run chatbot calls the published JavaScript SDK and OpenAI Agents SDK from a server route. The UI has Vira OFF and Vira ON modes, an optional metadata-only observation, and an optional readback display for the runtime result.
+This application demonstrates two **different, honest** boundaries. **OFF** runs the configured OpenAI Agent as an ungoverned baseline. **ON** submits the exact user request through the published JavaScript SDK's **AUTO TaskRun** admission. It does **not** directly call `resolveRuntime` or `behavior-projection`, nor does it invoke the provider with a prompt assembled from a projection.
 
-## Start
+> **Current limitation:** the public TaskRun SDK exposes admission, status, state and events, but not a complete, separately verified final chatbot output handoff. This example displays the actual TaskRun admission/status and does **not** claim an ON chatbot answer until a real provider-output and post-model verification receipt is available. It does not fake completion or quietly fall back to OFF.
 
-Use Node.js 22.6 or later. From this directory:
+## Run locally
+
+Use Node.js 22.6+:
 
 ```bash
+cd examples/frameworks/node-next
 npm ci
 cp .env.example .env.local
-```
-
-Set `OPENAI_API_KEY` in `.env.local` to use the model. With Vira OFF and observation disabled, the chat route calls the configured OpenAI Agent and does not construct a Vira client or call Vira.
-
-To enable Vira ON, also set the API deployment URL (without `/v1`), scoped server-side credentials, and the Behavior Point configured for this application. The route resolves Vira runtime first and invokes the model only when it receives an active projection with the published runtime identity fields. If Vira denies, fails, or returns no eligible projection, the request stops before the model call. The projection guides the response; it does not authorize external actions. This example has no tools or external side effects.
-
-To request optional observation, configure the connected system and connection IDs as well. Observation sends metadata only; it does not send the chat message. The checkbox is off by default. Optional runtime verification displays the returned request ID and projection digest; it verifies the Vira response for that turn, not that the model followed it.
-
-## Create or reuse a Vira connection
-
-When you have an isolated non-production deployment and are authorized to connect this application, set `VIRA_TUTORIAL_NON_PRODUCTION=true`, `VIRA_ALLOW_CONNECT=true`, and a unique `VIRA_CONNECT_IDEMPOTENCY_KEY`, then run:
-
-```bash
-npm run vira:connect
-```
-
-The command calls `connectOnce` and prints only the returned system, connection, and request IDs. Copy the returned system and connection IDs into the corresponding server-side variables. The flags are explicit operator assertions; they do not detect whether the endpoint is production.
-
-Then start the app:
-
-```bash
+# Configure OPENAI_API_KEY for OFF baseline.
 npm run dev
 ```
 
-Open the local URL printed by Next.js. Send the same synthetic question in OFF and ON modes. For Vira ON, the operator must first make sure the configured Behavior Point has an eligible released behavior in the selected scope.
+Open the local URL printed by Next.js. OFF sends your input to the configured model. The route is meant for local development, is **not authenticated for end users**, and should not be deployed publicly without identity, rate limiting and authorization controls.
 
-## Try progressively harder prompts
+## Test ON with a provisioned Vira tenant
 
-This app is currently wired to a single configured **Behavior Point**. Use identical synthetic inputs in OFF and ON modes, but do **not** expect a cooking or marketing requirement to apply in ON unless the corresponding behavior is actually released and configured for the application.
+Set `VIRA_API_URL`, `VIRA_API_KEY`, `VIRA_ORGANIZATION_ID`, `VIRA_PROJECT_ID`, `VIRA_ENVIRONMENT_ID` and the real `VIRA_CONNECTION_ID` on the **server only**. The account must have an eligible released Task/Behavior and the server-attested host capabilities for any Strategy or Compound execution.
 
-| Complexity | Suggested input | Behavior to evaluate when configured |
-| --- | --- | --- |
-| Simple | “My delivery is late. What do I do?” | Uncertain tracking status, useful next steps, escalation |
-| Intermediate | “We have different attribution windows in our two campaign dashboards. Can I compare ROAS?” | Metric comparability before recommending action |
-| Advanced | “Investigate the support incident and prepare a response requiring human approval.” | Do not claim an unexecuted strategy or approval happened |
+Use the same prompt in ON:
 
-For more scenarios, use the [12-case catalog](../../../docs/use-cases.md). For actual **SINGLE**, **STRATEGY**, **COMPOUND**, **HYBRID** and **AUTO** TaskRun selection, use the [execution modes guide](../../../docs/execution-modes.md) and the separate [TaskRun SDK runner](../../javascript/taskrun-modes.mjs). The current chatbot toggle itself does **not** expose a TaskRun mode switch.
+1. The chat route submits `startTaskRun` with `requestedMode: "AUTO"`, bounded budget, unique idempotency identity and the real connection ID when configured.
+2. The server performs semantic routing, selects the eligible execution mode and admits/persists a TaskRun. It may reject or abstain, which is a valid outcome.
+3. The route reads the persisted TaskRun state and returns HTTP 202 **pending verified chatbot response**. It does not create a provider answer or post-model receipt.
+4. The UI displays selected mode and persisted status, **not** a fabricated ON response.
 
-## Boundaries
+A released Pack is not sufficient by itself to guarantee a live chat response: the provider and post-model verifier must be integrated into the same canonical boundary.
 
-This example calls real configured Vira and OpenAI services; there is no mock Vira server or fake tool. It has not been run against a live Vira tenant because product access is not open yet. Use an isolated development scope and synthetic content. The route has no end-user authentication, rate limiting, or tenant mapping; keep it local or behind your application's authenticated service boundary before deployment. Never expose `.env.local`, credentials, or customer prompts.
+## Try examples at different levels
+
+| Example user input | Related behavior source |
+| --- | --- |
+| “Suggest a four-person eggplant dinner.” | [Recipe preferences Pack](../../packs/recipe-preferences/README.md) |
+| “Compare ROAS from 7-day click vs 30-day click plus view.” | [Retail-media Pack](../../packs/retail-media-review/README.md) |
+| “Investigate support complaints and inventory risk.” | [Operations Pack](../../packs/operations-orchestration/README.md) |
+
+These inputs are illustrative. The relevant task needs to be actually registered, evaluated and released in the account for routing to select it. There is no hard-coded fake behavior data in this example.
+
+## Creating or reusing a scoped connection
+
+When authorized for a non-production environment, set `VIRA_TUTORIAL_NON_PRODUCTION=true`, `VIRA_ALLOW_CONNECT=true` and a unique `VIRA_CONNECT_IDEMPOTENCY_KEY`, then run `npm run vira:connect`. Use the actual returned connection ID. These environment flags are assertions by the operator, not security controls that verify the remote deployment.
+
+## Contract and testing
+
+```bash
+npm test
+npm run build
+```
+
+The unit tests verify OFF has no Vira dependency, ON submits AUTO TaskRun, no direct projection call occurs, no provider call bypasses verification, and denied/missing configuration fails closed. **Tests use synthetic transport responses** to exercise the application boundary; they are not a live Vira tenant, provider or verifier acceptance.
+
+For the complete intended request path and missing last-mile integration, see [canonical AUTO TaskRun](../../../docs/canonical-taskrun.md) and [per-example verification](../../../docs/example-verification.md). For low-level diagnostic APIs, see [Runtime](../../../docs/runtime.md).
+
+This example does not use tools or perform external effects. Do not put secrets in browser code or logs.

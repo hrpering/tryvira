@@ -29,6 +29,10 @@ The TaskRun API supports **SINGLE**, **STRATEGY**, **COMPOUND** and **HYBRID**, 
 
 Do not assume these choices appear as a universal Studio setting or are supported by MCP. Use the [full mode guide](execution-modes.md), the [JavaScript TaskRun script](../examples/javascript/taskrun-modes.mjs) and the [pinned public SDK transport tests](../examples/frameworks/node-next/test/taskrun-sdk.test.mjs).
 
+## Canonical application path
+
+**AUTO TaskRun → semantic resolve → mode dispatch → real child executor → runtime behavior enforcement → provider/chatbot → post-model verification and receipt.** Normal apps start with `startTaskRun` / `start_task_run` and read persisted state. Direct `behavior-projection` and `resolveRuntime` are diagnostic/advanced SDK APIs, not the normal chat path. [Canonical integration and current final-answer contract gap](canonical-taskrun.md) · [Verified output evidence requirements](verified-answer-handoff.md).
+
 ## A minimal safe integration
 
 ### 1. Configure scope and secrets
@@ -41,14 +45,7 @@ Use a published client method documented for your installed version. The [JavaSc
 
 ### 3. Separate candidate selection from authorization
 
-The conceptual request path is:
-
-```text
-AI request → semantic task selection → Behavior Point
-           → eligible released Program / Strategy
-           → runtime projection or decision → host model / authorized tool
-           → returned identity / receipt / trace
-```
+The normal request is submitted to AUTO TaskRun and the **server** resolves the semantic task, selects eligible child mode, enforces released behavior and dispatches actual work. The host/provider final-output and post-model verifier identity must be bound to the same run before a verified answer can be delivered.
 
 A semantic match is a candidate, not permission. For an ON mode that requires governance, a deny, missing release, scope mismatch, or unavailable verifier should stop that path. The host is responsible for routing actions through the configured boundary; Vira cannot intercept bypassing tool calls.
 
@@ -78,6 +75,7 @@ Observe-first integrations are possible without claiming that a suggestion was a
 | Semantic Task and Point | [Canonical authoring](canonical-authoring.md) | Candidate selection is not release |
 | Programs and Strategies | [Programs](behavior-programs.md) · [Strategies](strategies.md) | Strategy eligibility is distinct from activation |
 | TaskRun modes | [Execution modes](execution-modes.md) | AUTO is not unconditional compound execution |
+| High-quality Pack authoring | [Field guide](pack-authoring-guide.md) · [Three graded Packs](../examples/packs/README.md) | Source examples are not released behavior |
 | Pack lifecycle | [Packs](packs.md) · [Evaluation](evaluation-and-approval.md) · [Release](release.md) | No client-fabricated pass evidence |
 | Observations and Teach | [Teach](teach.md) · [Signals](signals.md) | Evidence permissions and approvals required |
 | Live decision and trace | [Runtime](runtime.md) · [Traces](traces.md) | Effectful calls require host enforcement |

@@ -12,16 +12,16 @@ The public repository contains runnable integration code **and** conceptual exam
 | [JavaScript TaskRun modes](../examples/javascript/taskrun-modes.mjs) | Published JS SDK | Syntax; routing/admission/mode/state request shapes tested against installed 0.1.44 npm client via offline transport | Actual semantic eligibility, permission, execution, released strategies |
 | [Python connection and quality](../examples/python/README.md) | Published Python SDK | Python syntax and exported TaskRun method availability from installed 0.1.44 client | Actual customer outcome and model quality |
 | [Python TaskRun modes](../examples/python/taskrun_modes.py) | Published Python SDK | Source syntax; method-surface import check in Python venv | Actual routing, admission, continuation or effects |
-| [Next.js OFF/ON chatbot](../examples/frameworks/node-next/README.md) | JS SDK + model agent SDK | npm install, unit tests for OFF and governed ON paths, Next.js build | Live provider response and provisioned Vira tenant with a released behavior |
+| [Next.js OFF/AUTO admission sample](../examples/frameworks/node-next/README.md) | Published JS SDK + provider baseline | npm install, ON TaskRun admission/readback tests, OFF provider path tests, Next.js build | Canonical verified ON chatbot answer until provider/verifier retrieval exists |
 | [FastAPI example](../examples/frameworks/python_fastapi/README.md) | Python SDK | Locked dependency install, Python compilation | Live endpoint start, Vira response and model invocation |
 | [LangGraph example](../examples/frameworks/langgraph/README.md) | Python SDK | Locked dependency install, Python compilation | Live graph execution and provider/tenant acceptance |
 | [MCP example](../examples/frameworks/mcp-client/README.md) | Published MCP process | npm install and JavaScript syntax check | Live MCP tool discovery against a tenant, effectful tool authorization |
-| [Marketing Agent tutorial](../tutorials/marketing-agent/README.md) | Published JS SDK | Tutorial safety tests and script syntax | Full Pack/Teach lifecycle in a live eligible tenant |
-| [Pack examples](../examples/packs/) | Pack authoring concepts | Repository link/syntax safety checks | Complete candidate evaluation, approval and release in a live account |
+| [Marketing Agent tutorial](../tutorials/marketing-agent/README.md) | Published JS SDK | Tutorial safety tests and script syntax; `11-auto-taskrun.mjs` uses AUTO admission | Full live Pack/Teach release and verified provider response; `06`/`07` are low-level diagnostics only |
+| [Pack Academy](../examples/packs/README.md) | YAML manifest + JSON collections | Structural semantic/Point/Program/Strategy/test-fixture lint and candidate ZIP packaging smoke test with `npm run verify:packs` | Actual Pack parser/materializer, server-side evaluation, approval, release and live execution |
 | [Agent Skills](../skills/README.md) | Guidance files | Skill schema/trigger tests and representative packaging | Every human-agent interaction or every live service operation |
 | [12 scenario fixtures](../examples/scenarios/README.md) | Synthetic prompts, no API | Data schema, coverage, negative cases, prompt CLI output | Model scores, actual Vira behavior or tenant acceptance |
 
-A test transport that returns **synthetic response bodies** is used only to verify client method request serialization. It is not presented as a fake Vira API service or a claim that the control plane made a real decision.
+The [missing verified-answer handoff contract](verified-answer-handoff.md) specifies what the backend/SDK and provider adapter must expose before claiming the final ON chatbot response is verified. A test transport that returns **synthetic response bodies** is used only to verify client method request serialization. It is not presented as a fake Vira API service or a claim that the control plane made a real decision.
 
 ## Reliability gates before a customer demo
 
@@ -31,9 +31,9 @@ Use an isolated customer-authorized environment and run a complete workflow for 
 2. Connect or discover the existing system, retain the returned identities and check scope.
 3. Author or select a **real** Semantic Task, Behavior Point, Behavior Program/Strategy or Pack.
 4. Evaluate a candidate using persisted evidence and obtain explicit approval and release.
-5. Resolve runtime against that exact eligible identity. Test the expected response **and** wrong-scope, unreleased and unavailable paths.
+5. Submit a **normal AUTO TaskRun**, not direct projection; inspect the released identity, state, correct child execution and wrong-scope, unreleased, unavailable and ambiguous routes.
 6. For TaskRun, inspect actual routing proposal, admission, status/state version, children and receipts. Test SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO only when the prerequisites are satisfied.
-7. Invoke the configured model and permitted tools through the host's actual integration boundary. Track whether the behavior was followed, not just whether a projection exists.
+7. Require the real provider/host execution and separately bound post-model verification receipt before showing a **verified** chatbot answer; a completed child receipt alone is insufficient.
 8. Report reproducible outputs and negative-path results; do not substitute a local syntax check or an undocumented internal API route for evidence.
 
 ## Known limitations that need explicit wording
