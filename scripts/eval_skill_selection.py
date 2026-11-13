@@ -66,6 +66,23 @@ def check_trace(row: dict, case: dict) -> list[str]:
     selected = row.get("selectedSkills")
     if not isinstance(selected, list) or any(not isinstance(s, str) for s in selected):
         errors.append("selectedSkills must be the agent's observed Skill loads")
+    events = row.get("skillLoadEvents")
+    if not isinstance(events, list):
+        errors.append("skillLoadEvents must contain observed Skill-load events (empty is valid)")
+    elif isinstance(selected, list):
+        actual = []
+        for event in events:
+            if not isinstance(event, dict) or event.get("eventType") != "skill_loaded":
+                errors.append("invalid Skill-load event type")
+                continue
+            key, uri = event.get("skill"), event.get("sourcePath")
+            if not isinstance(key, str) or not isinstance(uri, str) or not uri.endswith("/skills/"+key+"/SKILL.md"):
+                errors.append("Skill-load event does not identify a real Skill path")
+            if event.get("traceId") != row.get("traceId"):
+                errors.append("Skill-load event trace ID mismatch")
+            actual.append(key)
+        if set(actual) != set(selected):
+            errors.append("selectedSkills is not derived from observed Skill-load events")
     if row.get("source") != "live_agent_trace":
         errors.append("source must be a real live_agent_trace, not a proposed response")
     if row.get("simulated") is not False:
@@ -85,7 +102,7 @@ def run_agents(cases: list[dict], command: str, timeout_seconds: int) -> list[di
             "prompt": case["prompt"],
             "skillsRoot": str(SKILLS.resolve()),
             "availableSkills": available,
-            "requiredEvidence": ["traceId", "agent", "model", "selectedSkills", "source", "simulated"],
+            "requiredEvidence": ["traceId", "agent", "model", "selectedSkills", "skillLoadEvents", "source", "simulated"],
         }
         # The adapter itself must run the real agent with this Skill library installed
         # and return Skill-load observations, never an LLM-written guess.
