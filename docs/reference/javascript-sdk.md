@@ -35,6 +35,10 @@ Use an isolated development scope when the customer's account provides one. Prod
 
 The JavaScript package currently documents capabilities beyond those documented by every other integration surface. Do not infer Python, HTTP, or MCP support from an SDK method. For TaskRun operations, follow the npm documentation and the [`vira-task-runs` Skill](../../skills/vira-task-runs/SKILL.md); this reference does not publish an HTTP route or payload contract.
 
+## Canonical application integration
+
+Use [AUTO TaskRun](../canonical-taskrun.md) for user-facing chatbot/agent requests. In this SDK, `resolveRuntime` and `serveBehaviorProjection` are advanced/diagnostic surfaces. Do not assemble a customer ON response from a projection and bypass real child execution or verification.
+
 ## TaskRun modes and version-matched examples
 
 The published `@tryvira/sdk` line exposes `resolveTaskRun` and `startTaskRun` for task routing/admission. The requested mode can be `SINGLE`, `STRATEGY`, `COMPOUND`, `HYBRID` or `AUTO`; AUTO asks for a mode recommendation instead of being an execution mode.

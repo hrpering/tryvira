@@ -4,7 +4,7 @@
 
 **Vira gives teams control over what their AI says, decides, and does, across models and applications.**
 
-A model generates. An agent executes tasks. A Skill can teach a way of working. Vira is the **behavior lifecycle that decides what is eligible to run, executes through governed boundaries, and makes the result reviewable**.
+A model generates. An agent executes tasks. A Skill can teach a way of working. Vira is the **behavior lifecycle that decides what is eligible to run, executes through governed boundaries, and makes the result reviewable**. It complements these systems rather than claiming to replace them.
 
 **Primary product line:** *Define it. Test it. Release it. Know what ran.*
 

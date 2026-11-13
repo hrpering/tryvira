@@ -32,6 +32,12 @@ A simple preference (for example vegetarian, onion-free cooking) can be governed
 
 [Explore 12 examples](use-cases.md) · [Understand execution modes](execution-modes.md) · [Compare with Skills, agents and other platform types](approach-comparison.md)
 
+## The canonical request path
+
+The application sends a normal prompt to **AUTO TaskRun**. Vira resolves the registered task and eligible execution mode, dispatches real child work through the governed runtime, and binds the provider/chatbot response to post-model verification when the full integration is available. [Technical stages and verification limits](canonical-taskrun.md) · [Three quality-graded Packs](../examples/packs/README.md).
+
+Direct projection is for diagnostic SDK work, not a competing chatbot entry point.
+
 ## Two connected workflows
 
 **Serving requests:** classify work, resolve the relevant Behavior Point, determine eligible released behavior, apply it through a supported model/agent integration, and inspect the returned evidence.

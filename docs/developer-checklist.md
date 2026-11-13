@@ -14,6 +14,8 @@ Vira works with an existing model, application or agent. Public SDKs are clients
 | TaskRun | [Execution modes](execution-modes.md) | Published SDK methods; no current MCP TaskRun tools |
 | Pack evaluation and release | [Pack guide](packs.md) | Published package surface, explicit approval gates |
 
+**Canonical user flow:** [AUTO TaskRun](canonical-taskrun.md). Keep direct behavior-projection under diagnostics; never treat a returned projection string as the final proof of model verification. [High-quality Pack field guide](pack-authoring-guide.md).
+
 ## Verify prerequisites
 
 1. **Access:** a provisioned Vira endpoint and customer-owned credentials are required for live Vira operations. The public npm/PyPI package alone does not grant access. The API URL is not the Studio URL.

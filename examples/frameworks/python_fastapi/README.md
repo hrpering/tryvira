@@ -1,4 +1,6 @@
-# FastAPI + Python SDK + OpenAI
+# FastAPI + Python SDK + OpenAI (advanced projection diagnostic)
+
+**Diagnostic only.** This sample tests the lower-level `serve_behavior_projection` contract and a model boundary. It is **not** the canonical customer-facing Vira ON flow; normal applications must submit an [AUTO TaskRun](../../../docs/canonical-taskrun.md), execute eligible children, enforce behavior, and obtain provider/post-model verification receipts. Do not put this route forward as a full governed chatbot.
 
 Create a Python 3.12 environment and install the pinned dependencies:
 
@@ -22,4 +24,4 @@ curl -X POST http://127.0.0.1:8000/behavior/project \
   -d '{"message":"Where is my order?","provider":"openai"}'
 ```
 
-The application calls the published Python SDK's `serve_behavior_projection`, reads the operation's `projection.rendered`, and invokes the configured OpenAI model only when a non-empty projection is returned. The response includes the projection digest and Vira request ID. `/healthz` is liveness; `/readyz` confirms local initialization, not Vira authorization. Add your application's authentication at a trusted ingress before exposing this route.
+For low-level integration analysis only, the application calls the published Python SDK's `serve_behavior_projection`, reads the operation's `projection.rendered`, and invokes the configured OpenAI model only when a non-empty projection is returned. The response includes the projection digest and Vira request ID. `/healthz` is liveness; `/readyz` confirms local initialization, not Vira authorization. Add your application's authentication at a trusted ingress before exposing this route.

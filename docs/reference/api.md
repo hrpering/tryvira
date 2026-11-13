@@ -8,6 +8,10 @@ Set `VIRA_API_URL` to the API deployment URL supplied for the customer's Vira ac
 
 Use a development scope isolated by the customer's organization when one is available. A production scope requires the customer's own authorization and controls. The endpoint and key always belong to the customer; this repository contains no shared Vira credential or service URL.
 
+## Canonical versus diagnostic runtime
+
+**Canonical app path:** [AUTO TaskRun](../canonical-taskrun.md), with server-selected task/mode, real child execution, runtime enforcement, provider handoff and post-model verification/receipt. Low-level `behavior-projection` / `resolveRuntime` are SDK/diagnostic tools, not a replacement canonical route. The full verified-answer retrieval contract is not established by the published TaskRun SDK alone.
+
 ## Choose the supported surface
 
 - Use the JavaScript SDK or Python SDK for operations documented by the installed package version.
