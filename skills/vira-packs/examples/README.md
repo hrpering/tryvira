@@ -1,16 +1,19 @@
-# Customer example: Import, inspect, install, and evaluate a Pack
+# Materialize and evaluate a real Pack
 
-## Scenario
+## Short test prompt
 
-Follow the real marketing tutorial’s Pack step: inspect the candidate, authorize installation separately, wait for persisted state, evaluate the candidate, and keep release as a separate decision.
+> Import this retail-media Pack into an isolated tenant, inspect conflicts, then evaluate before human approval.
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [packs.md](https://github.com/hrpering/tryvira/blob/main/docs/packs.md)
-- Customer artifact or runnable code: [05-pack-lifecycle.mjs](https://github.com/hrpering/tryvira/blob/main/tutorials/marketing-agent/05-pack-lifecycle.mjs)
+> Use current graded JSON-collection ZIP or manifest+objects; wait for persisted install. Pass install variables directly and only use an evaluationId returned for the exact materialized digest.
 
-## Run and verify
+## Expected result
 
-Run from tutorials/marketing-agent with synthetic data, an isolated customer deployment, and the explicit mutation opt-ins described in its README.
+Report real Pack, materialization, evaluation, approval and release states separately; normal use later enters AUTO TaskRun.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Follow the [production-aligned Skill](https://github.com/hrpering/tryvira/blob/main/skills/vira-packs/SKILL.md) and [canonical TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md). Live execution requires customer-authorized non-production scope, real server IDs and supported installed client operations. Never fabricate an acceptance receipt.
+
+## Negative test
+
+No 202 as completed, fake evaluation score, release-on-import or Signal-key-to-trusted-producer shortcut.
