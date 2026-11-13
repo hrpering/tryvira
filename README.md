@@ -1,4 +1,4 @@
-<h1 align="center">vira</h1>
+![vira — Own how your AI behaves. Plain-text wordmark and a conceptual developer-product illustration.](assets/vira-hero.svg)
 <p align="center"><strong>Define it. Test it. Release it. Know what ran.</strong></p>
 <p align="center">Own how your AI behaves. Define what it should say, decide and do; evaluate and release those expectations; run eligible behavior through governed tasks with inspectable evidence.</p>
 <p align="center">
@@ -26,6 +26,10 @@ Vira provides a separate, governed place to define and operate those behaviors. 
 ## See the full Vira loop
 
 Vira is more than a Pack editor or a runtime rules switch. It connects **real AI activity → governed behavioral changes → execution-time evidence**:
+
+![How Vira works: a conceptual lifecycle from Observe through AUTO TaskRun to runtime verification and receipts](assets/vira-lifecycle.svg)
+
+*Architecture illustration, not a screenshot or proof that the final provider-to-verifier handoff has been deployed.*
 
 | Capability | The practical question | Start here |
 | --- | --- | --- |
@@ -94,9 +98,11 @@ That definition can be packaged, evaluated with positive and negative cases, rev
 
 These are product workflow capabilities, **not** claims of universal enforcement, identical SDK feature coverage, or independently demonstrated accuracy gains. [Capabilities and limitations](docs/capability-map.md) · [Product explanation](docs/what-is-vira.md)
 
-![Illustration of Vira's governed behavior lifecycle](assets/vira-overview.svg)
-
 ## See it in action
+
+![Public demonstration: OFF returns a provider response, while ON presents AUTO TaskRun admission/status pending verified provider output](assets/vira-on-off.svg)
+
+*Current sample behavior, not a benchmark or evidence of an ON model response.*
 
 **Try the real Next.js + OpenAI Agents integration.** OFF invokes your configured model as a baseline. ON submits an **AUTO TaskRun** and shows the server's real admission/state. It does **not** manufacture a model answer: the public TaskRun response does not yet establish the canonical provider-output + post-model verification handoff.
 
@@ -116,6 +122,8 @@ The example calls real configured services, contains **no fake Vira backend**, a
 [Chatbot setup](examples/frameworks/node-next/README.md) · [Framework examples](examples/frameworks/README.md) · [Marketing Agent walkthrough](tutorials/marketing-agent/README.md)
 
 ## Build with the stack you already use
+
+![Build with Vira: 27 Agent Skills, graded Behavior Packs and developer integration paths](assets/vira-build.svg)
 
 | Integration | Install or entry point | Guide |
 | --- | --- | --- |

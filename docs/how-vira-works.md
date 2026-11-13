@@ -15,7 +15,7 @@ User request
 
 The child/runtime stages can be implemented by the server for a provisioned eligible tenant. Final provider-output and verifier receipts require the actual integrated provider/verification contract; never claim them based on an SDK method's existence alone.
 
-![Conceptual behavior lifecycle](../assets/vira-overview.svg)
+![How Vira works — conceptual governed lifecycle, not a live verification receipt](../assets/vira-lifecycle.svg)
 
 The difference from simply editing a prompt is the **lifecycle**: declare → test → review → release → resolve/execute → inspect evidence → propose a new revision. Teach can propose but cannot silently release.
 
