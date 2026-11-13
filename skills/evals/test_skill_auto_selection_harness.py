@@ -13,11 +13,11 @@ spec.loader.exec_module(module)
 class SkillAutoSelectionHarness(unittest.TestCase):
     def test_84_labeled_cases(self):
         cases=module.validate_dataset(module.read_jsonl(ROOT/"skills/evals/trigger-scenarios.jsonl"))
-        self.assertEqual(len(cases),81)  # 27 x 3; historical '84' was incorrect
-        self.assertEqual(len({c["caseId"] for c in cases}),81)
+        self.assertEqual(len(cases),84)  # 27 Skills; Teach has four positive prompts
+        self.assertEqual(len({c["caseId"] for c in cases}),84)
 
     def test_refuses_guessed_or_synthetic_agent_choices(self):
-        case={"caseId":"vira-observe::positive","skill":"vira-observe","kind":"positive"}
+        case={"caseId":"vira-observe::positive::1","skill":"vira-observe","kind":"positive"}
         for row in [
             {"caseId":case["caseId"],"model":"test-model","agent":"agent","traceId":"t","selectedSkills":["vira-observe"],"source":"synthetic","simulated":True},
             {"caseId":case["caseId"],"model":"test-model","agent":"agent","traceId":"","selectedSkills":["vira-observe"],"source":"live_agent_trace","simulated":False},
