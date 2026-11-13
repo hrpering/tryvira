@@ -1,17 +1,26 @@
-# Vira overview
+# How Vira works
 
-Vira is under active development. Its public vision is to help teams make AI
-behavior easier to define, review, and improve.
+Vira helps teams govern **what an AI system says, decides and does**, rather than embedding every organizational requirement in a growing prompt. The normal request enters through an **AUTO TaskRun** that selects and executes only eligible released behavior.
 
-![Vira request path](../assets/vira-request-path.svg)
+```text
+User request
+  → AUTO TaskRun
+  → Semantic Task selection / ambiguity check
+  → SINGLE | STRATEGY | COMPOUND | HYBRID dispatch
+  → real child execution
+  → released behavior enforcement
+  → provider / chatbot
+  → post-model verification and receipts
+```
 
-The product connects to an AI system, supports teams as they describe intended
-behavior, and provides ways to review changes before using them. Integrations and
-available operations depend on the published SDK/API version and account access.
+The child/runtime stages can be implemented by the server for a provisioned eligible tenant. Final provider-output and verifier receipts require the actual integrated provider/verification contract; never claim them based on an SDK method's existence alone.
 
-![Vira behavior lifecycle](../assets/vira-overview.svg)
+![Conceptual behavior lifecycle](../assets/vira-overview.svg)
 
-The diagram is a product-level overview. It does not describe private service
-architecture or implementation details. For developer setup, use the
-[SDK references](reference/javascript-sdk.md), [Python reference](reference/python-sdk.md),
-[HTTP API reference](reference/api.md), and current [MCP tool catalog](reference/mcp-tools.md).
+The difference from simply editing a prompt is the **lifecycle**: declare → test → review → release → resolve/execute → inspect evidence → propose a new revision. Teach can propose but cannot silently release.
+
+**Start with real examples:** [Pack academy](../examples/packs/README.md) · [Customer scenarios](use-cases.md) · [Canonical runtime](canonical-taskrun.md) · [Brand story](brand-positioning.md).
+
+**Diagnostic only:** direct `behavior-projection` and `resolveRuntime` methods remain available as low-level public-client surfaces. They are not the normal chat flow.
+
+[Developer guide](developer-guide.md) · [Capabilities](capability-map.md)
