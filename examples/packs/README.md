@@ -19,4 +19,13 @@ Read the [field-by-field Pack authoring guide](../../docs/pack-authoring-guide.m
 
 `tests/cases.json` is *design-time evaluation input*. It is deliberately ignored by the Pack importer and **does not** count as a PASSED server evaluation. Even a valid ZIP is only a candidate until install, evaluated evidence, human approval and explicit release. Model/provider integration and receipts are separate live-runtime concerns.
 
-Run the public structural checks with `npm run verify:packs`. They check keys, references, modules, Strategy graphs and test coverage, not actual behavior execution.
+## Build ZIPs that follow the actual Pack import parser
+
+From repository root:
+
+```bash
+npm run verify:packs
+python3 scripts/package-example-packs.py --out /tmp/tryvira-example-packs
+```
+
+This creates one ZIP per sample with `pack.yaml` and supported collection files such as `behavior-programs/items.json`, **excluding** README and `tests/cases.json` fixtures. The ZIPs are import candidates, **not released behavior**. Import only through an authorized customer environment, then inspect materialization, evaluate, approve and release separately. `npm run verify:packs` performs structural and ZIP smoke checks, not actual server-side materialization or live execution.

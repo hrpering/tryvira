@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added import-candidate ZIP packaging for the three graded Packs, excluding design-time fixtures, with an in-memory archive smoke test in CI.
+
 - Documented the missing provider-to-post-model verified chatbot response handoff as explicit evidence and acceptance requirements; no undocumented endpoint was invented.
 
 - Added three complete quality-graded Pack source examples, a field-by-field authoring guide and a structural Pack lint gate.
