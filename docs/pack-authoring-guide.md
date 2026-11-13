@@ -111,6 +111,7 @@ The final end-to-end response/verification handoff must be supported by the **ac
 
 - `npm run verify:packs`: public **structural lint** for the example collections and tests, not a server materialization proof.
 - `npm run verify`: repository-level links, examples, Skills and safety checks.
+- After release, the [guarded AUTO TaskRun tutorial runner](../tutorials/marketing-agent/11-auto-taskrun.mjs) can submit a live admission. It does **not** assert a provider/verifier result.
 - In an authorized dev account: import, inspect conflicts, install, read back persistent materialization, attach a real PASSED evaluation for the immutable Pack digest, approve, release, exercise AUTO TaskRun and inspect receipts. Do not supply a client-built `score` or `passed` flag.
 
 [Pack API lifecycle](packs.md) · [Developer checklist](developer-checklist.md) · [Execution modes](execution-modes.md)

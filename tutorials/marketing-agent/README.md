@@ -1,6 +1,6 @@
-# Marketing Agent: end-to-end Vira tutorial
+# Marketing Agent: Pack lifecycle + canonical AUTO TaskRun (advanced diagnostic exercises separate)
 
-This tutorial uses the published `@tryvira/sdk` `0.1.44` package. Vira is under active development; product access is not open yet.
+This tutorial uses the published `@tryvira/sdk` `0.1.44` package. The **normal application path is AUTO TaskRun**. Pack import, materialization, evaluation and approval come first; after release use `11-auto-taskrun.mjs` for actual server-owned admission/readback. The older `06-runtime-resolve.mjs` and `07-quality-decision.mjs` are **optional low-level SDK/projection diagnostics**, not the canonical ON chatbot flow. Public access remains restricted. [Canonical path](../../docs/canonical-taskrun.md).
 
 ## Safe setup
 
@@ -36,9 +36,9 @@ or hyphens) for Pack retries. Do not use production credentials or customer data
 6. evaluate the persisted candidate
 7. review evidence, then explicitly approve and release in a separate step
 8. resolve the now-registered Semantic Task
-9. resolve eligible behavior through runtime
-10. generate candidate responses with the configured provider
-11. optionally run Response Quality & Decision on those actual responses
+9. submit AUTO TaskRun and read back persisted mode / child status with `11-auto-taskrun.mjs`
+10. separately verify the provider/chatbot output when the connected runtime exposes that handoff
+11. optionally test low-level projection and Response Quality **as an advanced diagnostic**, not a second production path
 12. admit new synthetic evidence and create a Teach proposal
 13. inspect the exact proposal, then explicitly review, evaluate, and promote it
 14. re-evaluate and release revised behavior as separate authorized steps
@@ -97,7 +97,7 @@ The Pack step waits for the materialization receipt when installation returns HT
 
 This tutorial sends requests to the configured Vira API and, for evaluation/model steps, the configured provider. It does not start a fake Vira server. Vira product access is still under active development and is not open yet; run this only when the account/operator has supplied an isolated non-production API deployment and scoped credentials. We have not run this flow against a live tenant.
 
-From the repository root, install the tutorial's pinned packages with `npm ci --prefix tutorials/marketing-agent`, then run its numbered scripts from `tutorials/marketing-agent/`. Configure the real non-production endpoint and scope as shown above, and set `OPENAI_API_KEY` for the provider-backed runtime and quality steps. `06-runtime-resolve.mjs` invokes OpenAI only if Vira returns an active, non-empty projection; it stores the synthetic response in a mode-0600 temporary file. `07-quality-decision.mjs` compares that real response with a second real Responses API result whose prompt deliberately requests an incomplete candidate. Provider usage may incur charges. The `VIRA_TUTORIAL_*` variables are explicit operator authorizations; they do not detect whether a URL is production. Never use production credentials or real customer data.
+From the repository root, install with `npm ci --prefix tutorials/marketing-agent`. Configure a real non-production endpoint and scope. **Canonical:** after releasing a Pack, set an authorized `VIRA_CONNECTION_ID` and explicitly allow `11-auto-taskrun.mjs`. That script calls the published `startTaskRun` with AUTO and reads persisted state; it does not fabricate the missing provider/verification handoff. **Optional diagnostic only:** `06-runtime-resolve.mjs` invokes the model via a low-level projection, and `07-quality-decision.mjs` compares outputs. These diagnostic scripts do **not** constitute canonical ON execution and may incur provider costs. The `VIRA_TUTORIAL_*` variables are explicit operator authorizations; they do not detect whether a URL is production. Never use production credentials or real customer data.
 
 Run the numbered steps in order. Each response contains the IDs to carry into later steps; copy those returned IDs into the named environment variables rather than guessing them. The read-only semantic lookup needs no mutation flags.
 
@@ -124,9 +124,10 @@ node 09-release-pack.mjs
 
 # Resolve only after the Pack has registered the task and its release is eligible.
 node 04-semantic-resolve.mjs
-node 06-runtime-resolve.mjs
-# Continue only if step 06 reports modelInvoked=true and writes its temporary result.
-node 07-quality-decision.mjs
+# Confirm VIRA_CONNECTION_ID is a real eligible, authorized host connection.
+export VIRA_TUTORIAL_CONFIRM_AUTO_TASKRUN=true
+node 11-auto-taskrun.mjs
+# This reports TaskRun status, not a verified provider-generated chatbot reply.
 
 # Use the persisted Behavior Point ID in VIRA_CONTROL_POINT_ID. This admits only the
 # synthetic public example evidence and creates a proposal; it does not review it.
@@ -140,6 +141,10 @@ export VIRA_TUTORIAL_PROMOTE_TEACH_PROPOSAL=true
 node 10-review-teach-proposal.mjs promote
 ```
 
+### Optional low-level SDK diagnostics (not the canonical ON flow)
+
+The separate `06-runtime-resolve.mjs` and `07-quality-decision.mjs` scripts exist solely to inspect legacy low-level projection/response-quality APIs. They can be run **only** in an authorized isolated test environment, and their output must not be called an AUTO TaskRun success. They do not replace a post-model verifier receipt.
+
 The Pack release command must be run with `VIRA_TUTORIAL_APPROVE_RELEASE=true` only after the reviewer checks the exact Pack digest and evaluation status. The Teach review command requires `VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL=true`; promotion separately requires `VIRA_TUTORIAL_PROMOTE_TEACH_PROPOSAL=true`. Promotion is not release.
 
 This public contract does not currently specify the event-specific payload for the SDK `outcome` helper, so the tutorial does not invent an outcome-attribution call. The Teach example uses an explicitly synthetic correction as admitted evidence. Treat real business-outcome capture as an integration gap until the selected published contract documents its fields.
@@ -148,7 +153,7 @@ To continue from a promoted Teach proposal into a new immutable behavior revisio
 
 The checks run in CI validate repository structure, public SDK package versions, JavaScript builds, and Python syntax. They do not simulate Vira API responses and do not claim a live integration passed. The tutorial safety check only verifies that mutation flags are required. Actual API/provider verification requires running the numbered steps against a real isolated non-production deployment.
 
-`06-runtime-resolve.mjs` checks runtime eligibility after release. A semantic match is not authorization, and an evaluation result is not proof that runtime executed the behavior. The quality example is a separate response-time decision; it does not release behavior.
+The diagnostic `06-runtime-resolve.mjs` checks a lower-level runtime eligibility boundary only; it does not enter AUTO TaskRun. The quality example is a separate decision. Neither is evidence that a complete canonical provider + verification run happened.
 
 For the complete public contract and Point-to-Pack walkthrough, see the [Developer guide](../../docs/developer-guide.md).
 

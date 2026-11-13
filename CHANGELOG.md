@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Added three complete quality-graded Pack source examples, a field-by-field authoring guide and a structural Pack lint gate.
+- Set AUTO TaskRun as the canonical app entry. Moved behavior-projection and direct runtime projection into advanced diagnostic/SDK documentation only.
+- Updated the Next.js ON sample to submit real AUTO TaskRun admission without inventing a provider answer or skipping post-model verification; retained OFF as a real provider baseline.
+- Added a differentiated positioning story and an AUTO TaskRun marketing tutorial step, with explicit provider/verified-response integration limitations.
+
 - Added 12 machine-readable scenarios with 24 short/detailed prompts, intended behavior checks, failure cases and a prompt-selection CLI.
 - Added automated fixture quality tests, expanded pinned published SDK method-availability tests and a per-example CI versus live acceptance matrix.
 

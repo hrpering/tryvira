@@ -1,3 +1,7 @@
+// ADVANCED SDK DIAGNOSTIC ONLY: directly resolves a behavior projection, then calls
+// the provider. This is NOT the canonical AUTO TaskRun -> child executor ->
+// enforcement -> provider -> post-model verification/receipt application path.
+// Never present this output as a governed AUTO TaskRun completion.
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { writeFile } from "node:fs/promises";
