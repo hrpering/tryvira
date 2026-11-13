@@ -11,7 +11,7 @@ for(const path of docs){
   assert.ok(index.includes(path.replace("docs/","")),path+": absent from documentation navigation");
 }
 for(const word of ["Observe","Signal","Teach","Runtime verification","AUTO TaskRun",
-"Evaluation","Release","Traces","billing","Studio/Admin"]){
+"Evaluation","Release","Traces","billing","Studio","Admin"]){
   assert.ok(features.toLowerCase().includes(word.toLowerCase()),"Missing product-family topic "+word);
 }
 for(let i=1;i<=16;i++){
