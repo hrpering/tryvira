@@ -50,11 +50,11 @@ Direct projection is for diagnostic SDK work, not a competing chatbot entry poin
 
 **Serving requests:** classify work, resolve the relevant Behavior Point, determine eligible released behavior, apply it through a supported model/agent integration, and inspect the returned evidence.
 
-![Vira request path illustration](../assets/vira-request-path.svg)
+![Vira public OFF model versus ON AUTO TaskRun admission — conceptual comparison](../assets/vira-on-off.svg)
 
 **Improving behavior:** Observe events, approve typed Signal source mappings where needed, collect permitted feedback and outcomes, propose a revision, evaluate it, obtain the required review and release decisions, and inspect future runtime outcomes.
 
-![Vira behavior lifecycle illustration](../assets/vira-overview.svg)
+![Vira behavior lifecycle — conceptual architecture](../assets/vira-lifecycle.svg)
 
 The workflows do not automatically authorize each other. A proposed improvement is not a release. A semantic candidate is not runtime permission.
 
