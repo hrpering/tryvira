@@ -1,5 +1,7 @@
 # Run the actual OFF answer versus ON TaskRun-status example
 
+Use the **same synthetic support question** for both OFF and ON. The app runs with **no mock Vira server**. OFF returns a provider answer when configured; ON currently returns actual AUTO TaskRun pending/state and does not claim verified model output.
+
 ## User prompts to test the Skill
 
 **Short:** > Show our Vira Next.js demo using the same support question in OFF and ON.

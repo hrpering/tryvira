@@ -73,3 +73,12 @@
 {"skill":"vira-chatbot","kind":"positive","prompt":"Use the Vira chatbot Skill to run the Next.js demo and compare the same support question with Vira OFF and ON, with observation optional.","should_trigger":true}
 {"skill":"vira-chatbot","kind":"negative","prompt":"Build an unrelated production customer support chatbot from scratch.","should_trigger":false}
 {"skill":"vira-chatbot","kind":"ambiguous","prompt":"Can I try Vira behavior on a sample conversation?","should_trigger":null}
+{"skill":"vira-observe","kind":"positive","prompt":"Instrument our Vira-connected support agent with real model.response and tool.called observation events.","should_trigger":true}
+{"skill":"vira-observe","kind":"negative","prompt":"Set up generic browser analytics unrelated to Vira.","should_trigger":false}
+{"skill":"vira-observe","kind":"ambiguous","prompt":"Should I log this model interaction as a Vira observation?","should_trigger":null}
+{"skill":"vira-runtime-verification","kind":"positive","prompt":"Check this released Vira Program's actual post-model verifier and final answer receipt.","should_trigger":true}
+{"skill":"vira-runtime-verification","kind":"negative","prompt":"Run a generic HTTP endpoint uptime check unrelated to Vira.","should_trigger":false}
+{"skill":"vira-runtime-verification","kind":"ambiguous","prompt":"Did our Vira AI output meet its requirements?","should_trigger":null}
+{"skill":"vira-traces","kind":"positive","prompt":"Inspect the Vira AUTO TaskRun's child receipt and explain which verification stage is missing.","should_trigger":true}
+{"skill":"vira-traces","kind":"negative","prompt":"Explain a regular browser performance trace unrelated to Vira.","should_trigger":false}
+{"skill":"vira-traces","kind":"ambiguous","prompt":"Can you inspect the trace of this agent run?","should_trigger":null}
