@@ -1,20 +1,39 @@
 # Quickstart
 
+**Pick a path that can actually work in your environment.** Vira's public clients are available, but the hosted product is not generally open. No endpoint, account key or pre-released behavior is bundled in this repository.
+
+| Have Vira credentials? | Recommended first run |
+| --- | --- |
+| No | [Next.js chatbot, Vira OFF](../examples/frameworks/node-next/README.md): real model call with your own provider key |
+| Yes | [JavaScript connect + observe](../examples/javascript/README.md): scoped SDK call with your own API deployment |
+| Python user | [Python examples](../examples/python/README.md) |
+| MCP user | [MCP setup and discovery](reference/mcp.md) |
+
+## First run without Vira access
+
+Use Node.js 22.6+:
+
 ```bash
-npm install @tryvira/sdk
+git clone https://github.com/hrpering/tryvira.git
+cd tryvira/examples/frameworks/node-next
+npm ci
+cp .env.example .env.local
+# Fill OPENAI_API_KEY in .env.local
+npm run dev
 ```
 
-```ts
-import { randomUUID } from "node:crypto";
-import { ViraClient } from "@tryvira/sdk";
+Open the local URL, select **Vira OFF**, and use synthetic input. The ON workflow requires separately issued Vira credentials and an eligible released Behavior Point. The example does **not** simulate an ON success when Vira is unavailable.
 
-const vira = new ViraClient({baseUrl: process.env.VIRA_API_URL!, apiKey: process.env.VIRA_API_KEY});
-const scope = {organizationId: process.env.VIRA_ORGANIZATION_ID!, projectId: process.env.VIRA_PROJECT_ID!, environmentId: process.env.VIRA_ENVIRONMENT_ID!};
-const connected = await vira.connectOnce({...scope,name:"marketing-agent",systemType:"custom-agent",adapterType:"custom-node",adapterVersion:"1",idempotencyKey:"connect:marketing-agent:v1"});
-if (!connected) throw new Error("Vira connection failed");
-const systemId=String(connected.body.system.id); const connectionId=String(connected.body.connection.id);
-await vira.testConnection(connectionId);
-await vira.observe({eventId:randomUUID(),eventType:"model.response",aiSystemId:systemId,connectionId,payload:{task:"Create a launch plan",status:"completed"}});
+## First SDK connection (provisioned customers)
+
+```bash
+cd examples/javascript
+npm install
+# Export VIRA_API_URL, VIRA_API_KEY and your
+# VIRA_ORGANIZATION_ID / VIRA_PROJECT_ID / VIRA_ENVIRONMENT_ID
+node connect-observe.mjs
 ```
 
-Next: [Capabilities](capability-map.md) · [Teach AI](teach.md) · [Decision & Quality](decision-and-quality.md) · [Tutorial](../tutorials/marketing-agent/README.md)
+This issues a real connection and sanitized observation to the customer's configured deployment. Do not run it against production without authorization. [Read the code](../examples/javascript/connect-observe.mjs) and [environment requirements](../examples/javascript/README.md).
+
+**Next:** [Start here](start-here.md) · [Developer guide](developer-guide.md) · [Capabilities](capability-map.md) · [Teach AI](teach.md)

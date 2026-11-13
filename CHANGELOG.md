@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Rebuilt the public entry experience around customer and developer journeys, a grounded scenario, and honest access prerequisites; added a Turkish orientation and publishing standards.
+- Improved navigation, start-here setup, contribution/support guidance and public diagram palette without changing the Skills library or client contracts.
+
 - Refreshed public documentation and customer-facing examples for current published packages.
 - Expanded the Agent Skills guidance for customer workflows, including Teach AI and TaskRuns.
 - Clarified that product access is not open yet and that suggestions, review, evaluation, and release are separate customer decisions.

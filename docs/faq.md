@@ -1,29 +1,45 @@
-# FAQ
+# Frequently asked questions
 
-## Is Vira a prompt manager?
+### What does “AI behavior” mean?
 
-No. Prompts can be one input, but Vira focuses on the lifecycle around behavior: observation, semantic routing, evaluation, release, runtime resolution, and traceability.
+How an AI system responds, makes decisions and takes actions in a particular context. A behavior can define requirements, checks, escalation rules or an eligible strategy for a task. [Concepts](core-concepts.md)
 
-## Is Vira an observability tool?
+### Is Vira a new model or an agent framework?
 
-Not only. Observation is one input into the behavior lifecycle.
+No. Vira is designed to work alongside existing models, applications and agent frameworks. The host still runs the model and tools.
 
-## Does Vira automatically learn from every conversation?
+### Is Vira just prompt management?
 
-No. Evidence can support a proposal, but proposals still go through review, evaluation, approval, and release.
+No. It covers definitions, candidate evaluation, approval, release, runtime resolution and related evidence. A prompt may be one part of a behavior, but not the entire lifecycle.
 
-## Can semantic routing be uncertain?
+### Does Vira “learn” and rewrite production behavior automatically?
 
-Yes. Uncertainty and no-match are valid outcomes.
+No. Teach can help turn permitted evidence into a reviewable proposal. Promotion, evaluation, approval and release remain separate authorized decisions. [Teach](teach.md)
 
-## Do Strategies override policy?
+### Does an ON response always improve quality?
 
-No. Strategies describe bounded execution. Policy and release checks remain separate.
+No guarantee. Evaluate identical relevant cases with the same model and controlled settings. Record negative paths and regressions as well as improvements. [Team evaluation guide](for-teams.md)
 
-## What does a trace show?
+### Can Vira block every external tool call?
 
-The examples in this repository use a compact trace with the resolved task, Behavior Point, applied behavior, and result.
+No. The application must route the action through the supported control boundary and enforce the outcome. A bypassing code path is outside that boundary. [Security model](security-model.md)
 
-## What is this repository for?
+### Are JavaScript, Python, HTTP and MCP interchangeable?
 
-It contains Vira documentation, integration guidance, examples, and tutorials.
+No. They have different public operations, versions and authorization scopes. Confirm the installed package's contract or the MCP server's live `tools/list`. [Capability map](capability-map.md)
+
+### Can I try Vira today?
+
+The client packages are published. The [Next.js chatbot](../examples/frameworks/node-next/README.md) runs in OFF mode with your provider key. Live Vira ON requires provisioned access and an eligible released behavior; general service access is not open. [Start here](start-here.md)
+
+### Is this repo open source?
+
+It is publicly viewable, but its [documentation/examples license](../LICENSE) is proprietary. Separately published Vira SDK/MCP packages use MIT licenses under their own distribution terms. [Packages](published-packages.md)
+
+### Does Vira replace application security, privacy controls or human review?
+
+No. Use customer-owned secrets and scopes, minimize evidence, enforce permissions in the host, and keep approval/release decisions explicit. [Security](security-model.md)
+
+### Where can I get help or report a bug?
+
+[Support](../SUPPORT.md) explains reproducible public issues. Report security vulnerabilities privately using [SECURITY.md](../SECURITY.md).

@@ -1,97 +1,53 @@
 # What is Vira?
 
-Vira is a **behavior-control layer for AI systems**.
+**Vira is a behavior-control layer for AI applications and agents.** It helps teams define, review, evaluate, release, and inspect how an existing AI system responds, makes decisions, and uses tools.
 
-For a concise, public-facing explanation of the problem Vira addresses and the guarantees its current integration boundaries do and do not provide, see [Vira's product overview](product-positioning.md).
+An **AI behavior** is what the AI says, decides, and does in a given situation. For example, a finance assistant should not treat a forecast as an actual result; a support agent may need a human handoff before a refund; a research assistant should not invent a citation.
 
-It is designed for a common production problem: an AI system works, but teams keep correcting the same kinds of behavior again and again. Those corrections often end up scattered across prompts, application code, tool rules, evaluation scripts, and tribal knowledge.
+## Why a separate layer?
 
-Vira turns that repeated correction into a governed lifecycle.
+Without a shared behavior lifecycle, requirements end up scattered among prompts, model wrappers, tool code, tests, and team knowledge. A local fix may not reach another workflow, and a model upgrade may revive an old mistake.
 
-![Vira behavior control lifecycle](../assets/vira-overview.svg)
+Vira's goal is to make those expectations **explicit operational assets**, with their own identity, tests and release history rather than an accumulation of invisible prompt edits.
 
-## The problem Vira addresses
+## The concepts in one minute
 
-Prompting is useful, but prompts alone do not give a team a clean way to answer questions such as:
-
-- What kind of task did the system think this was?
-- Where is the behavior for that task attached?
-- Which evidence caused a behavior change to be proposed?
-- Was the candidate evaluated before release?
-- Which approved behavior was eligible at runtime?
-- What was actually selected and applied for this request?
-
-Without a control layer, teams tend to answer those questions by digging through prompt files, model wrappers, orchestration code, and logs.
-
-Vira gives them named concepts and explicit stages instead.
-
-## The product model
-
-```text
-request
-→ Semantic Task
-→ Behavior Point
-→ Behavior Program / Strategy
-→ Runtime
-→ Simple trace
-```
-
-Alongside that request path, Vira supports an improvement path:
-
-```text
-observation / feedback / outcome
-→ evidence
-→ Teach or discovery proposal
-→ evaluation
-→ approval
-→ release
-→ runtime eligibility
-```
-
-These paths meet at runtime, but they are not the same thing.
-
-A semantic selection does not silently activate behavior. Evidence does not silently change production behavior. A proposal is not a release.
-
-> **AI can propose. Released behavior remains explicit.**
-
-## What Vira is not
-
-Vira is not just a prompt library, an evaluation dashboard, or an observability wrapper.
-
-Those are useful pieces, but Vira connects the full operational path between:
-
-- evidence from real usage;
-- governed behavior definitions;
-- evaluation and approval;
-- explicit release;
-- runtime resolution;
-- developer-facing traceability.
-
-## Who Vira is for
-
-Vira is useful when a team owns an AI system that must become more consistent over time without turning every correction into another hidden patch.
-
-Typical teams include:
-
-| Team | Example need |
+| Concept | Plain-English question it answers |
 | --- | --- |
-| Product / AI product | make repeated corrections operational instead of ad hoc |
-| Agent builders | control task-specific behavior across different agent flows |
-| Platform teams | provide one behavior layer across multiple AI systems |
-| Reliability / evaluation teams | connect evaluation results to explicit release decisions |
+| **Semantic Task** | What kind of work is this request? |
+| **Behavior Point** | Where in the application can governed behavior apply? |
+| **Behavior Program** | Which rules, judgments, transforms, checks or escalation behavior are intended? |
+| **Strategy** | How should bounded steps be coordinated for this task? |
+| **Evaluation** | How did this exact candidate perform on selected cases? |
+| **Release** | Which approved identity is eligible within this scope? |
+| **Runtime resolution** | What eligible behavior can this request use now? |
+| **Trace / receipt** | What did this supported operation actually return or select? |
+| **Teach** | What reviewable improvement might permitted usage evidence support? |
 
-## Example domains
+[Full glossary](core-concepts.md) · [Behavior Points](behavior-points.md) · [Programs](behavior-programs.md)
 
-![Vira use cases across marketing, support, research, and operations](../assets/vira-use-cases.svg)
+## Two connected workflows
 
-- **Marketing:** require a launch plan to cover the full funnel and measurement.
-- **Support:** make escalation behavior consistent and reviewable.
-- **Research:** distinguish sourced claims, inference, and required review checkpoints.
-- **Operations:** control task routing and behavior for tool-using internal assistants.
+**Serving requests:** classify work, resolve the relevant Behavior Point, determine eligible released behavior, apply it through a supported model/agent integration, and inspect the returned evidence.
 
-## Next
+![Vira request path illustration](../assets/vira-request-path.svg)
 
-- [How Vira works](how-vira-works.md)
-- [Core concepts](core-concepts.md)
-- [Connect an AI system](guides/connect-an-ai-system.md)
-- [Troubleshooting center](troubleshooting/README.md)
+**Improving behavior:** collect permitted evidence, propose a revision, evaluate it, obtain the required review and release decisions, and inspect future runtime outcomes.
+
+![Vira behavior lifecycle illustration](../assets/vira-overview.svg)
+
+The workflows do not automatically authorize each other. A proposed improvement is not a release. A semantic candidate is not runtime permission.
+
+## One grounded scenario
+
+A retail-media copilot compares ROAS across two ad platforms. If the attribution windows or sales definitions differ, the behavior may require that those differences be stated before any budget recommendation. The team can evaluate that requirement on representative cases, explicitly release an approved revision, and record which one the application used.
+
+The **application** still fetches reports, calls the model, and decides whether and how to execute a budget change. Vira does not magically intercept calls that bypass its integration boundary.
+
+## What Vira is, and is not
+
+Vira **is** an operational workflow for governed, reusable behavior across AI applications. It complements prompts, model training, testing, observability, and agent orchestration.
+
+Vira **is not** a foundation model, generic memory store, prompt-writing assistant, universal guardrail, or a guarantee of answer correctness. Model quality, tool permissions, scope, data and integration design remain essential. Benefits must be demonstrated in comparable tests, not assumed.
+
+[Try the local OFF example](start-here.md) · [For developers](developer-guide.md) · [For teams](for-teams.md) · [Capabilities and limits](capability-map.md)
