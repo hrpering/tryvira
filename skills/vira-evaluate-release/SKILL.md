@@ -23,6 +23,15 @@ Require candidate ID/digest, evaluation ID/status, scope, criteria/threshold, re
 6. Prepare a concise approval packet with evidence, risks, exact digest and rollback target; request explicit authorization before an effectful approval/release call.
 7. After separately authorized transitions, verify server-returned approval/release identity and runtime eligibility.
 
+## Production-aligned implementation playbook
+
+1. Verify persisted evaluation and *exact* immutable candidate ID/digest plus negative/regression results; fail if changed since evaluation.
+2. Prepare human review with scope, effects, required Signal mappings, verifier capabilities, impact, rollback target and any missing permissions.
+3. Approval and release are separate authorized calls; Teach promotion, Strategy activation, Pack installation and a quality score are not production grants.
+4. Post-release, exercise an authorized synthetic user request via **AUTO TaskRun**; inspect selected task/mode, real child execution, Program checks, verified provider answer identity and final receipt. If the last handoff is missing, report **unverified**, not PASS.
+5. Negative: stale digest, unauthorized reviewer, wrong tenant, unavailable judge and missing host attestation block release or verified response.
+[Release guide](https://github.com/hrpering/tryvira/blob/main/docs/release.md) · [Verified output](https://github.com/hrpering/tryvira/blob/main/docs/verified-answer-handoff.md).
+
 ## Deliverable and failure handling
 Return PASS/FAIL/INCOMPLETE with cited evidence, exact identity, and next authorized action. Stop on missing/failed/stale evaluation, digest mismatch, failed threshold, or absent approval. Never create a client-side pass or automatic release.
 

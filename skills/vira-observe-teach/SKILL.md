@@ -49,6 +49,16 @@ For a focused customer-run analysis and readback, follow the [Teach analysis exa
 
 The tutorial uses configured customer services and contains no mock Vira server. It requires the user's own Vira access and an authorized development environment; product access is not open yet. Do not claim a live result when only the repository checks ran.
 
+## Production-aligned implementation playbook
+
+1. Gather **permitted observed event IDs** via an actual AI System/Connection. Keep user feedback, business outcome and runtime verifier results distinct. Use `vira-observe` for instrumenting a connected host.
+2. Create Teach analysis using JS `createTeachAnalysis(evidenceIds,{analysisId?,controlPointId?,summary?})` or Python `create_teach_analysis(evidence_ids,...)`; inputs are **already admitted, consented evidence IDs** from a verified conversation/episode, not arbitrary quoted text.
+3. The 202 creates an asynchronous job; read the **same** analysis ID via `getTeachAnalysis`/`get_teach_analysis` until persisted terminal status. `teachRunId` and the canonical BehaviorPoint ID are different references.
+4. Signal discovery/mapping requires its own human review; Teach synthesis/recommendation decision, proposal review, promotion, evaluation and release remain independently gated.
+5. New production use enters **AUTO TaskRun**. Link genuine verified output and run receipts to subsequent outcomes only when the deployment's event schema supports correlation.
+6. Negative: no consent, mixed-scope evidence, unbound proposal, missing release or queued analysis must not be promoted as active behavior.
+[Teach](https://github.com/hrpering/tryvira/blob/main/docs/teach.md) · [Observe](https://github.com/hrpering/tryvira/blob/main/docs/observe.md).
+
 ## Deliverable and failure handling
 Return the last confirmed customer-facing stage, the specialist Skills used, what the user can do next, and any access or documentation gap. If evidence is not permitted, review authority is unclear, or the required interface is unavailable, pause that stage and explain the next customer action. Never expose secrets or turn an analysis into an unreviewed production change.
 
