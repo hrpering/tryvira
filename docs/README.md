@@ -28,7 +28,7 @@
 
 Vira's product concepts are designed to separate *what a task is*, *where behavior applies*, *which revision is eligible*, and *what happened*.
 
-- [Canonical AUTO TaskRun](canonical-taskrun.md), [brand story](brand-positioning.md), and [Pack authoring guide](pack-authoring-guide.md).
+- [Canonical AUTO TaskRun](canonical-taskrun.md), [verified-answer interface requirements](verified-answer-handoff.md), [brand story](brand-positioning.md), and [Pack authoring guide](pack-authoring-guide.md).
 - [Execution modes](execution-modes.md) for SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO.
 - [Examples by level](use-cases.md) and [brand-neutral approach comparison](approach-comparison.md).
 - [Core concepts](core-concepts.md) for Semantic Tasks, Behavior Points, Programs, Strategies, release and traces.

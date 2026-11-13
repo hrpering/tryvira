@@ -98,10 +98,10 @@ For a guarded runnable route tester see [JavaScript](../examples/javascript/task
 7. Return a chatbot answer **only** with an explicit verified success (or display a clearly labeled unverified state when the product supports that mode). Negative paths must fail closed.
 8. Run SINGLE, STRATEGY, COMPOUND and HYBRID using separate eligible fixtures, and verify AUTO chooses appropriately or abstains.
 
-The public repository's automated tests check **SDK request serialization and application stop conditions**, not a live tenant/provider chain. The missing canonical final-answer/verification retrieval contract should be implemented and tested in the backend/SDK before claiming the last stages work everywhere.
+The public repository's automated tests check **SDK request serialization and application stop conditions**, not a live tenant/provider chain. The missing canonical final-answer/verification retrieval contract should be implemented and tested in the backend/SDK before claiming the last stages work everywhere. [Evidence and acceptance requirements](verified-answer-handoff.md).
 
 ## Lower-level diagnostic surfaces
 
 `resolveRuntime`, `executeRuntime` and `behavior-projection` can be useful to diagnose why a released behavior was unavailable or to test a specific SDK boundary. Keep them in an explicitly named **Diagnostic / Advanced API** section, not in the normal quickstart, Pack release guide or chatbot path. An end-user application must not use them to assemble its own unauthorized alternative to TaskRun.
 
-[Execution modes](execution-modes.md) · [Pack authoring](pack-authoring-guide.md) · [Developer checklist](developer-checklist.md) · [Verification matrix](example-verification.md)
+[Verified answer contract requirements](verified-answer-handoff.md) · [Execution modes](execution-modes.md) · [Pack authoring](pack-authoring-guide.md) · [Developer checklist](developer-checklist.md) · [Verification matrix](example-verification.md)

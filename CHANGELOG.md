@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Documented the missing provider-to-post-model verified chatbot response handoff as explicit evidence and acceptance requirements; no undocumented endpoint was invented.
+
 - Added three complete quality-graded Pack source examples, a field-by-field authoring guide and a structural Pack lint gate.
 - Set AUTO TaskRun as the canonical app entry. Moved behavior-projection and direct runtime projection into advanced diagnostic/SDK documentation only.
 - Updated the Next.js ON sample to submit real AUTO TaskRun admission without inventing a provider answer or skipping post-model verification; retained OFF as a real provider baseline.

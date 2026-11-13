@@ -31,7 +31,7 @@ Do not assume these choices appear as a universal Studio setting or are supporte
 
 ## Canonical application path
 
-**AUTO TaskRun → semantic resolve → mode dispatch → real child executor → runtime behavior enforcement → provider/chatbot → post-model verification and receipt.** Normal apps start with `startTaskRun` / `start_task_run` and read persisted state. Direct `behavior-projection` and `resolveRuntime` are diagnostic/advanced SDK APIs, not the normal chat path. [Canonical integration and current final-answer contract gap](canonical-taskrun.md).
+**AUTO TaskRun → semantic resolve → mode dispatch → real child executor → runtime behavior enforcement → provider/chatbot → post-model verification and receipt.** Normal apps start with `startTaskRun` / `start_task_run` and read persisted state. Direct `behavior-projection` and `resolveRuntime` are diagnostic/advanced SDK APIs, not the normal chat path. [Canonical integration and current final-answer contract gap](canonical-taskrun.md) · [Verified output evidence requirements](verified-answer-handoff.md).
 
 ## A minimal safe integration
 

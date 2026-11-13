@@ -21,7 +21,7 @@ The public repository contains runnable integration code **and** conceptual exam
 | [Agent Skills](../skills/README.md) | Guidance files | Skill schema/trigger tests and representative packaging | Every human-agent interaction or every live service operation |
 | [12 scenario fixtures](../examples/scenarios/README.md) | Synthetic prompts, no API | Data schema, coverage, negative cases, prompt CLI output | Model scores, actual Vira behavior or tenant acceptance |
 
-A test transport that returns **synthetic response bodies** is used only to verify client method request serialization. It is not presented as a fake Vira API service or a claim that the control plane made a real decision.
+The [missing verified-answer handoff contract](verified-answer-handoff.md) specifies what the backend/SDK and provider adapter must expose before claiming the final ON chatbot response is verified. A test transport that returns **synthetic response bodies** is used only to verify client method request serialization. It is not presented as a fake Vira API service or a claim that the control plane made a real decision.
 
 ## Reliability gates before a customer demo
 

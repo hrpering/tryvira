@@ -62,7 +62,7 @@ export default function Home() {
   return (
     <main className="shell">
       <header className="header">
-        <a className="brand" href="https://tryvira.xyz" aria-label="Vira home">vira</a>
+        <a className="brand" href="/" aria-label="Vira home">vira</a>
         <div><p className="eyebrow">CANONICAL TASKRUN INTEGRATION EXAMPLE</p><h1>Support assistant</h1></div>
         <span className="access">Under active development</span>
       </header>
