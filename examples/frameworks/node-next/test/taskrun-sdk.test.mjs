@@ -116,3 +116,35 @@ test("published JS client also exposes methods used by the other runnable exampl
     assert.equal(typeof client[method], "function", method);
   }
 });
+
+
+test("published SDK also exposes the Signal/Teach/Eval/Pack readbacks used by the 27 Skills", () => {
+  const {client} = fixture();
+  for(const method of [
+    "getSignalMapping","createSignalMapping","reviewSignalMapping",
+    "getConnection","listPacks","getEvaluation",
+    "createTeachAnalysis","getTeachAnalysis","getTeachRunRecommendation",
+    "getTaskRun","listTaskRunEvents"
+  ]) {
+    assert.equal(typeof client[method],"function",method);
+  }
+});
+
+test("startTaskRunFromPrompt does NOT forward requestedMode; explicit admission does",async()=>{
+  const {client,calls}=fixture();
+  await client.startTaskRunFromPrompt({
+    input:"Summarize and investigate a synthetic incident",
+    requestedMode:"HYBRID", // not part of published TaskRunPromptRequest
+    connectionId:"conn-synthetic"
+  });
+  const convenience=calls.at(-1);
+  assert.equal(convenience.url.pathname,"/v1/task-runs");
+  assert.equal(convenience.body.requestedMode,undefined);
+  assert.equal(convenience.body.connectionId,"conn-synthetic");
+  await client.startTaskRun({
+    taskRunId:"explicit-run",requestId:"explicit-request",
+    input:"Summarize and investigate a synthetic incident",
+    requestedMode:"AUTO",connectionId:"conn-synthetic"
+  });
+  assert.equal(calls.at(-1).body.requestedMode,"AUTO");
+});
