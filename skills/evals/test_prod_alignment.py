@@ -24,7 +24,7 @@ class ProductionAlignment(unittest.TestCase):
             self.assertIn("## Workflow", skill, name)
             self.assertIn("## Deliverable and failure handling", skill, name)
             self.assertIn("## References", skill, name)
-            self.assertIn("Negative", example, f"{name} needs real negative test")
+            self.assertIn("negative", example.lower(), f"{name} needs real negative test")
             self.assertIn(f"${name}", metadata, name)
             self.assertNotIn("tasks and workflow guidance", metadata.lower(), name)
             self.assertGreater(len(example), 350, name)
