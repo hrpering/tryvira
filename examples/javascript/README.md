@@ -13,6 +13,10 @@ own scoped credentials through environment variables and keep payloads synthetic
 | `end-to-end-lifecycle.mjs` | learning the connection → evidence → authoring → runtime path (Pack approval/release are not completed) | each authority boundary is visible; no implicit release |
 | `quality-decision.mjs` | comparing response candidates | a candidate is selected or the system abstains |
 
+## Beyond connecting: where Observe fits
+
+[Observe guide](../../docs/observe.md) documents what event families can be collected and when accepted events can become governed Signal or Teach evidence. [Signal lifecycle](../../docs/signals.md) and [runtime verification](../../docs/runtime-verification.md) explain why a logged model response does not itself prove correctness. The [retail-media evidence walkthrough](../observe-signal-verify/README.md) demonstrates these boundaries step by step.
+
 ## Run
 
 ```bash

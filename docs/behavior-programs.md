@@ -60,11 +60,18 @@ Behavior modules may apply at stages such as:
       "kind": "verification",
       "stableKey": "marketing.launch.measurement",
       "stage": "post_model",
-      "requirement": "Each stage has an objective and measurement approach"
+      "requirement": "Check for a measurable objective at each funnel stage.",
+      "checks": [
+        {"stableKey": "marketing.launch.measurement.non_empty", "requirement": "verifier:output.non_empty"},
+        {"stableKey": "marketing.launch.measurement.full_funnel", "requirement": "judge: Check that the plan includes a meaningful objective and measurement approach for each funnel stage; do not invent actual campaign results."}
+      ],
+      "onFailure": "block"
     }
   ]
 }
 ```
+
+**Verification is executable only with a real verifier.** The default deterministic verifier can check concrete formats such as `required: text`, `forbidden: text`, `verifier:output.non_empty`, and constrained `json: ...`. A free-text requirement is not automatically a passing check. The `judge: ...` example requires an actual configured model-judge extension; without it, fail closed. Merely assigning `stage: "post_model"` does not prove a provider response passed. [Runtime verification](runtime-verification.md).
 
 Scope fields are required by the API and should match the authenticated caller's scope.
 

@@ -57,6 +57,15 @@ MCP:        no dedicated tool
 
 This layer does not grant behavior authority. See [Decision & response quality](decision-and-quality.md).
 
+## Verification has a separate runtime lifecycle
+
+1. **Artifact integrity:** confirm version, scope, Program and immutable digest.
+2. **Behavior Evaluation:** test the candidate on selected positive/negative cases *before release*.
+3. **Response Quality & Decision:** rank or reject bounded response candidates if the runtime uses this feature.
+4. **Post-model Runtime Verification:** execute actual supported checks on the final provider output under the released artifact, with a real receipt and bounded repair/escalate/block policy.
+
+The last stage cannot be inferred from the first three. A natural-language check is not automatically executable without a registered verifier. [Verification guide](runtime-verification.md) · [Verified answer handoff](verified-answer-handoff.md).
+
 ## Approval remains separate
 
 Approval is a governed lifecycle decision. Evaluation evidence can support approval, but evaluation is not approval.

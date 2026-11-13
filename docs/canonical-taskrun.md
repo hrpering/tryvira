@@ -28,6 +28,12 @@ Persisted execution + verification receipts, trace, feedback
 
 This is the **targeted end-to-end contract**. The deployed TaskRun worker implements server-owned task selection, mode-specific child execution, semantic/runtime resolution and runtime execution with durable TaskRun status/child receipts on configured deployments. The **public SDK currently exposes submission and readback**, but the public TaskRun readback does not by itself establish a provider-generated **chat answer** or a **post-model verification receipt**. Do not label the last two steps complete unless the customer's connected runtime exposes and returns their actual evidence.
 
+## Observations and Signals are related but do not replace execution
+
+**Observe** may record permitted conversation, model/tool/action, error and cost events before or after the run. **Signals** are separate typed, source-reviewed inputs whose values must be properly mapped and attested before being trusted in hard runtime decisions. **Teach** can later use these inputs to propose changes, but cannot silently release them.
+
+The canonical request still requires actual child execution and **runtime verification**. A returned observation ID is not a verifier result; a completed child receipt is not automatically the final provider-output receipt. [Observe](observe.md) · [Signals](signals.md) · [Verification](runtime-verification.md).
+
 ## Responsibility boundaries
 
 | Stage | Owner | Required evidence |

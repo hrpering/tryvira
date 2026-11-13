@@ -12,6 +12,8 @@ model response
 → selected candidate OR abstention
 ```
 
+**Do not confuse three different decisions:** Behavior Evaluation decides whether a candidate meets a benchmark *before release*. Response Quality selects or rejects bounded candidate responses. **Runtime verification** checks the actual applied Program at the supported runtime boundary and must return real check outcomes. A quality score alone is not the final verified chatbot receipt. [Runtime verification](runtime-verification.md).
+
 ## What it is for
 
 Use this layer when an application has a bounded set of candidate responses and needs an explicit, inspectable choice instead of “ask another model and hope.”

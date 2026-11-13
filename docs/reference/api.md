@@ -21,6 +21,10 @@ Use a development scope isolated by the customer's organization when one is avai
 
 Surface coverage is not identical. Check the [capability matrix](../../references/capability-matrix.md), the [JavaScript method inventory](sdk-method-inventory.md), [Python reference](python-sdk.md), [MCP catalog](mcp-tools.md), and the installed packages before choosing an operation.
 
+## Observe, Signal and verification surface separation
+
+**Observe** event admission, **Signal discovery/mapping**, **runtime enforcement** and **post-model verification** are separate operations. Only use documented endpoints and methods from the selected release; do not invent a “verify final answer” HTTP path from a source type or generic SDK method. [Observe](../observe.md) · [Signals](../signals.md) · [Runtime verification](../runtime-verification.md).
+
 ## Governed workflow boundaries
 
 Connecting an AI system, submitting permitted evidence, resolving behavior, evaluating a candidate, approving or promoting it, releasing a revision, and applying behavior at runtime are separate actions. A result from one step is not permission to perform the next. Preserve server-returned identifiers and receipts, and read back state before continuing after asynchronous work.

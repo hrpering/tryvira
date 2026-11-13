@@ -10,6 +10,19 @@ A **trace** explains the path in a developer-readable way: what task/Behavior Po
 
 Do not recompute authority digests or synthesize release receipts in the client.
 
+## There are multiple receipt types
+
+| Evidence | What it establishes | What it does not establish |
+| --- | --- | --- |
+| Observation admission | The server accepted a scoped event ID/digest | Signal approval or model correctness |
+| Signal mapping/attestation | A defined Signal value is bound to its reviewed producer/version | A behavior was necessarily selected |
+| TaskRun/child execution receipt | A scoped eligible child executed or reached its recorded state | A final provider response passed post-model checks |
+| Artifact/release receipt | The approved immutable Program/Strategy identity | The actual model complied |
+| Runtime verification receipt | Specific checks ran and returned actual pass/fail/not-applicable/unsupported | General factual truth beyond the checks |
+| Outcome attribution | A later real result correlated with the governed run where supported | Causation or automatic Teach release |
+
+Preserve the relevant output digest and provider response evidence in addition to the runtime receipt before reporting a **verified chatbot answer**. [Runtime verification](runtime-verification.md) · [Verified answer handoff](verified-answer-handoff.md).
+
 ## Recommended developer view
 
 ```text
