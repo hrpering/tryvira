@@ -25,6 +25,28 @@ REPO_LINK = re.compile(
 )
 MARKDOWN_LINK = re.compile(r"\]\(([^)]+)\)")
 EXCLUDED = {".git", "node_modules", ".venv", "__pycache__", "dist", ".next", "evals"}
+EXTRA_RESOURCES = {
+    "vira-build-pack": [
+        "scripts/package-example-packs.py", "scripts/verify-pack-examples.mjs",
+        "examples/packs/recipe-preferences", "examples/packs/retail-media-review",
+        "examples/packs/operations-orchestration"
+    ],
+    "vira-packs": [
+        "scripts/package-example-packs.py",
+        "examples/packs/recipe-preferences", "examples/packs/retail-media-review",
+        "examples/packs/operations-orchestration"
+    ],
+    "vira-chatbot": ["examples/frameworks/node-next"],
+    "vira-framework-integration": ["examples/frameworks/node-next"],
+    "vira-task-runs": [
+        "examples/javascript/taskrun-modes.mjs",
+        "examples/python/taskrun_modes.py"
+    ],
+    "vira-full-lifecycle": [
+        "examples/javascript/skill-e2e-acceptance.mjs",
+        "examples/javascript/skill-e2e-assertions.mjs"
+    ],
+}
 MAX_RESOURCE_FILES = 450
 MAX_FILE_BYTES = 750_000
 
@@ -77,7 +99,7 @@ def dependencies(path: Path) -> set[Path]:
 
 
 def gather_resources(skill: Path) -> list[Path]:
-    initial = []
+    initial = [ROOT / path for path in EXTRA_RESOURCES.get(skill.name, ())]
     for input_path in [skill / "SKILL.md", skill / "examples" / "README.md"]:
         if input_path.is_file():
             initial.extend(sorted(source_paths(input_path.read_text(encoding="utf8"))))
