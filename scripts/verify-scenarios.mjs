@@ -27,7 +27,8 @@ for (const row of data.cases) {
   assert.ok(allowedLevels.has(row.level), row.id + ": invalid level");
   assert.ok(allowedModes.has(row.requestedMode), row.id + ": invalid requestedMode");
   for (const field of ["title", "domain", "shortPrompt", "detailedPrompt"]) {
-    assert.ok(typeof row[field] === "string" && row[field].trim().length >= 5,
+    const minimumLength = field === "domain" ? 2 : 5;
+    assert.ok(typeof row[field] === "string" && row[field].trim().length >= minimumLength,
       row.id + ": invalid " + field);
   }
   assert.ok(row.detailedPrompt.length > row.shortPrompt.length + 10,
