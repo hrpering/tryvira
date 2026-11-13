@@ -43,6 +43,8 @@ Use an isolated development scope when available. Production use remains subject
 5. Execute the published [JS](https://github.com/hrpering/tryvira/blob/main/examples/javascript/taskrun-modes.mjs) or [Python](https://github.com/hrpering/tryvira/blob/main/examples/python/taskrun_modes.py) route-only runner; real admission requires non-production authorization. Negative: missing Strategy materialization or second Compound task must fail closed.
 [Modes](https://github.com/hrpering/tryvira/blob/main/docs/execution-modes.md).
 
+The public JS/Python mode runners demonstrate routing, optional admission and one readback, **not child completion polling, provider invocation, or final output-bound verification**. For such claims use a separately connected acceptance runner with real evidence.
+
 ## Deliverable and failure handling
 
 Stop for unsupported surface, missing scope, ambiguous request, denial, missing authorization, stale state, or unclear recovery conditions. Ask the customer to consult the current SDK documentation or an authorized operator rather than guessing operation names, payloads, or status transitions. TaskRun completion does not publish a Strategy, create a behavior resource, approve a Pack, or release a behavior revision.
