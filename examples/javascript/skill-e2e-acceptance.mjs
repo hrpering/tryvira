@@ -54,8 +54,9 @@ label("connection", {id:manifest.connectionId});
 const mapping=expectHttp(await client.getSignalMapping(manifest.signalMappingId),"signal_mapping");
 const mappingValue=mapping.mapping??mapping.signalMapping??mapping;
 if(String(mappingValue.id??"")!==manifest.signalMappingId)throw new Error("SIGNAL_MAPPING_ID_MISMATCH");
-if(!["APPROVED","ACTIVE"].includes(String(mappingValue.status??mappingValue.reviewState??"")))
-  throw new Error("SIGNAL_MAPPING_NOT_APPROVED");
+if (mappingValue.status !== "ACTIVE" || mappingValue.reviewState !== "APPROVED" || !mappingValue.mappingDigest)
+  throw new Error("SIGNAL_MAPPING_NOT_ACTIVE_APPROVED");
+for(const key of ["organizationId","projectId","environmentId"]) if(mappingValue[key]!==manifest[key])throw new Error("SIGNAL_MAPPING_SCOPE_MISMATCH:"+key);
 label("signal_mapping",{id:manifest.signalMappingId,status:mappingValue.status??mappingValue.reviewState});
 const packs=expectHttp(await client.listPacks(),"packs");
 const pack=Array.isArray(packs.packs)?packs.packs.find(x=>String(x.id)===manifest.packId):null;
