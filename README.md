@@ -33,7 +33,7 @@ A Vira behavior for this task can explicitly require the assistant to:
 
 That definition can be packaged, evaluated with positive and negative cases, reviewed, and explicitly released. A supported runtime integration resolves eligible behavior for the request and returns evidence of what was selected.
 
-**This is an illustrative scenario, not a measured benchmark.** Vira does not guarantee that a model follows every instruction or that a recommendation is correct. The host application still owns model execution and external tool permissions.
+**This is an illustrative scenario, not a measured benchmark.** Vira does not guarantee that every model response is correct, that a model follows every instruction, or that a recommendation is valid. The host application still owns model execution and external tool permissions.
 
 ## What Vira adds
 
