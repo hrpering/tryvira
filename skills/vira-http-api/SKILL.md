@@ -21,6 +21,15 @@ Confirm API base URL from the user's environment, auth mechanism, organization/p
 4. Handle asynchronous 202 jobs by polling/reading persisted status before dependent work.
 5. Validate a request against the actual documented API using an authorized isolated non-production scope; preserve the real request ID and returned status. If no scope is available, stop at code/schema review and label the live step unverified.
 
+## Production-aligned implementation playbook
+
+1. Use the authenticated customer's exact published OpenAPI/HTTP contract and the operator-provided API deployment root without appended `/v1`. Never invent an endpoint from an SDK method.
+2. Where available, `GET /v1/capabilities` is a scoped product capability read. `POST /v1/observations` records permitted events and may return 202: ingestion is not Signal approval or runtime verification.
+3. For TaskRun prefer the public JS/Python SDK. If calling a documented HTTP route directly, preserve real requestId/taskRunId, idempotency, state version and denied/partial outcomes.
+4. A public **final verified provider-output** retrieval contract is not demonstrated. Do not invent `/verify-answer` or a receipt JSON schema to bridge the gap.
+5. Negative: 401/403 scope error, 409 replay/stale state, 429 quota and a queued 202 all require real error handling and readback.
+[HTTP guide](https://github.com/hrpering/tryvira/blob/main/docs/reference/api.md) · [Verification handoff](https://github.com/hrpering/tryvira/blob/main/docs/verified-answer-handoff.md).
+
 ## Deliverable and failure handling
 Provide exact HTTP example, required headers/body shape, expected states, and a safe verification. Stop if a route/schema is not documented or scope is denied; never probe other tenants or fake a receipt.
 

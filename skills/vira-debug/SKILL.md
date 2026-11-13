@@ -21,6 +21,15 @@ Collect sanitized error code/message, request ID, operation, surface/package ver
 4. Propose the smallest fix and a single verification at the failed boundary; preserve idempotency for a safe retry.
 5. Only then inspect downstream behavior; retain request/receipt correlation and redact sensitive data.
 
+## Production-aligned implementation playbook
+
+1. **Admission:** inspect actual TaskRun route, server-derived tenant scope, task registration, connection and immutable plan digest. `NEEDS_CLARIFICATION`, `ABSTAIN`, `DENIED` and `UNSUPPORTED_HOST` are distinct, not 500s.
+2. **Execution:** check chosen SINGLE/STRATEGY/COMPOUND/HYBRID, materialized Strategy eligibility, child task keys, server-attested host capabilities and real child receipts. `WAITING_USER`/`WAITING_HOST`/`WAITING_APPROVAL` require correct state-version continuation.
+3. **Verification:** compare exact released Program/artifact digest, supported verifier checks, output digest and actual provider response. `VERIFIER_REQUIRED`, unsupported judge extension, missing final-answer readback or tampering means no verified output.
+4. **Evidence:** trace observation/eventId through approved Signal mapping, Teach analysis/consent, evaluation and release. Do not conflate each stage's success.
+5. Negative: don't “fix” a failed ON execution by calling `behavior-projection` and prompting the model directly.
+[Fault taxonomy](https://github.com/hrpering/tryvira/blob/main/docs/troubleshooting/README.md) · [Runtime checks](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md).
+
 ## Deliverable and failure handling
 Return PASS/FAIL evidence by stage, earliest failure, minimal code/config change, and one verification. Stop when evidence is insufficient; never probe another tenant, dump secrets, or claim a fix without rerunning the check.
 
