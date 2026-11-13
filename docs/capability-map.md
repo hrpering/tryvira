@@ -10,9 +10,15 @@ Vira exposes related product workflows through the JavaScript SDK, Python SDK, H
 | Teach AI and review proposals | See current client guide | See current client guide | See deployment's public API reference | Check installed server tools | Availability varies |
 | Evaluate, approve, and release | See current client guide | See current client guide | See deployment's public API reference | Check installed server tools | Availability varies |
 | Apply and verify runtime behavior | See current client guide | See current client guide | See deployment's public API reference | Check installed server tools | Availability varies |
-| Orchestrate TaskRuns | Consult the installed JavaScript package documentation | Confirm from the installed Python release; do not infer parity | No direct HTTP guide in this repository | No TaskRun tool listed in the current catalog | Availability varies |
+| Orchestrate TaskRuns | Published SDK mode routing, admission and state methods; check installed release | Published Python mode routing, admission and state methods; check installed release | No raw TaskRun contract republished here | No TaskRun tool listed in current MCP catalog | Availability varies |
 
 Do not treat this table as an authorization rule. Check the installed package version and public reference, the connected MCP server's `tools/list`, and the capabilities available to the customer's scope before selecting an operation.
+
+## TaskRun mode selection
+
+The SDK's requested modes are **SINGLE**, **STRATEGY**, **COMPOUND**, **HYBRID**, plus **AUTO** for routing. AUTO is not another execution mode. COMPOUND requires multiple registered, eligible tasks; STRATEGY requires an eligible released Strategy and a capable host; HYBRID combines child modes. A route may clarify, abstain, deny or report an unsupported host.
+
+A package method being present does not prove that the current tenant is authorized for it. The published client interface and actual runtime outcome must both be checked. [Execution mode guide](execution-modes.md) · [Offline pinned npm transport tests](../examples/frameworks/node-next/test/taskrun-sdk.test.mjs) · [Public Python surface check](../scripts/check-published-python-sdk.py)
 
 ## Governed lifecycle
 
@@ -48,3 +54,5 @@ Behavior Evaluation assesses a behavior candidate before any separate approval o
 - [Canonical authoring](canonical-authoring.md)
 - [Packs](packs.md)
 - [Teach AI](teach.md)
+- [Use cases by level](use-cases.md)
+- [Brand-neutral approach comparison](approach-comparison.md)

@@ -7,6 +7,7 @@ own scoped credentials through environment variables and keep payloads synthetic
 
 | File | Use it when | Expected result |
 | --- | --- | --- |
+| `taskrun-modes.mjs` | route and optionally admit SINGLE/STRATEGY/COMPOUND/HYBRID/AUTO tasks | route proposal or real server rejection by default; never a fabricated COMPLETED result |
 | `connect-observe.mjs` | adding Vira to an existing agent | connection and one sanitized observation receipt |
 | `canonical-authoring.mjs` | defining a Task and Behavior Point | scoped canonical objects are created or returned |
 | `end-to-end-lifecycle.mjs` | learning the connection → evidence → authoring → runtime path (Pack approval/release are not completed) | each authority boundary is visible; no implicit release |
@@ -27,6 +28,19 @@ node connect-observe.mjs
 Use a new idempotency key for a new operation and reuse the same key only when
 retrying that operation. A denied or abstained runtime result is a valid outcome and
 must not be bypassed by calling the model or tool through another path.
+
+## Request a TaskRun routing decision
+
+Install the published version and provide your **own** authorized Vira API URL and server-side key. By default this does not start an execution:
+
+```bash
+node taskrun-modes.mjs --help
+VIRA_TASKRUN_INPUT="Summarize this incident" node taskrun-modes.mjs AUTO
+```
+
+Use `SINGLE` for one task, `STRATEGY` for a multi-step eligible task, `COMPOUND` for multiple registered tasks, `HYBRID` for a mixed child plan, or `AUTO` to request mode selection. Routing may return clarification, denial or unsupported host. A real task admission requires `VIRA_CONFIRM_TASKRUN_START=yes` and `VIRA_CONFIRM_NON_PRODUCTION=yes` after verifying an authorized development scope. For multi-task execution, the account must already have eligible registered tasks and host capabilities; this script does not create them.
+
+[Full mode guide](../../docs/execution-modes.md) · [Offline published-SDK tests](../frameworks/node-next/test/taskrun-sdk.test.mjs)
 
 ## Prompt for a coding agent
 
