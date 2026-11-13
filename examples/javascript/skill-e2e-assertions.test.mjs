@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {validateRunIdentity,identifyMissingVerifiedOutput,requireExactStatus} from "./skill-e2e-assertions.mjs";
 const scope={organizationId:"org",projectId:"proj",environmentId:"sandbox"};
-const row={taskRunId:"run-a",expectedMode:"SINGLE",expectedInputDigest:"input-digest"};
+const row={taskRunId:"run-a",expectedMode:"SINGLE",expectedInputDigest:"a".repeat(64)};
 const run={...scope,taskRunId:"run-a",mode:"SINGLE",status:"COMPLETED",
-  inputDigest:"input-digest",planDigest:"plan-digest",authorityDigest:"authority-digest",selectedTaskKeys:["support.summary"]};
+  inputDigest:"a".repeat(64),planDigest:"b".repeat(64),authorityDigest:"c".repeat(64),selectedTaskKeys:["support.summary"]};
 test("acceptance guard verifies returned scope, mode, input and authority",()=>{
   assert.equal(validateRunIdentity({run,caseInput:row,scope}),true);
 });

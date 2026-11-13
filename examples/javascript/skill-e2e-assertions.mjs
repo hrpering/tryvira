@@ -10,8 +10,8 @@ export function validateRunIdentity({run,caseInput,scope}) {
   if(run.taskRunId!==caseInput.taskRunId)throw new Error("TASKRUN_ID_MISMATCH");
   if(run.mode!==caseInput.expectedMode)throw new Error("TASKRUN_SELECTED_MODE_MISMATCH");
   if(run.inputDigest!==caseInput.expectedInputDigest)throw new Error("TASKRUN_INPUT_DIGEST_MISMATCH");
-  if(typeof run.planDigest!=="string" || !run.planDigest)throw new Error("TASKRUN_PLAN_DIGEST_MISSING");
-  if(typeof run.authorityDigest!=="string"||!run.authorityDigest)throw new Error("TASKRUN_RELEASE_AUTHORITY_MISSING");
+  if(typeof run.planDigest!=="string" || !/^[a-f0-9]{64}$/.test(run.planDigest))throw new Error("TASKRUN_PLAN_DIGEST_MISSING");
+  if(typeof run.authorityDigest!=="string"|| !/^[a-f0-9]{64}$/.test(run.authorityDigest))throw new Error("TASKRUN_RELEASE_AUTHORITY_MISSING");
   if(!Array.isArray(run.selectedTaskKeys)||!run.selectedTaskKeys.length)throw new Error("TASKRUN_CHILD_KEYS_MISSING");
   if(run.status!=="COMPLETED")throw new Error("TASKRUN_NOT_COMPLETED:"+String(run.status));
   return true;

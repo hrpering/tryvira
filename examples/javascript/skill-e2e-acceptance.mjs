@@ -75,6 +75,7 @@ if(String(teach.analysisId??teach.analysis?.analysisId??"")!==manifest.teachAnal
 if (typeof manifest.expectedTeachStatus!=="string" || (teach.status??teach.analysis?.status)!==manifest.expectedTeachStatus)
   throw new Error("TEACH_ANALYSIS_NOT_COMPLETE");
 label("teach_analysis",{id:manifest.teachAnalysisId,status:teach.status??teach.analysis?.status});
+const verificationFailures=[];
 for(const caseInput of manifest.taskRuns) {
   const response=expectHttp(await client.getTaskRun(caseInput.taskRunId),"TaskRun "+caseInput.expectedMode);
   const run=response.taskRun??response;
@@ -88,6 +89,10 @@ for(const caseInput of manifest.taskRuns) {
   // output + post_model verifier PASS + matching digest/receipt for this run.
   // Deliberate hard failure: cannot turn child COMPLETED into verified delivery.
   const missing=identifyMissingVerifiedOutput(response, caseInput);
-  if(missing.length)throw new Error("FINAL_VERIFIED_RESPONSE_NOT_PROVEN:"+caseInput.expectedMode+":"+missing.join(","));
+  if(missing.length){
+    label("verified_answer_gap",{mode:caseInput.expectedMode,missing});
+    verificationFailures.push(caseInput.expectedMode+":"+missing.join(","));
+  }
 }
+if(verificationFailures.length)throw new Error("FINAL_VERIFIED_RESPONSE_NOT_PROVEN:"+verificationFailures.join(";"));
 console.log("LIVE_CANONICAL_ACCEPTANCE_PASS (only when a real, documented verified-output handoff exists)");
