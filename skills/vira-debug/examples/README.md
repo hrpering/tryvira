@@ -1,16 +1,19 @@
-# Customer example: Diagnose a failed customer integration without exposing secrets
+# Diagnose a stalled TaskRun
 
-## Scenario
+## Short test prompt
 
-Collect the package version, safe status/error code, request ID, and sanitized failing operation; follow the relevant surface-specific troubleshooting branch.
+> AUTO resolved the support task but no verified answer appears. Find the first failing stage.
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [README.md](https://github.com/hrpering/tryvira/blob/main/docs/troubleshooting/README.md)
-- Customer artifact or runnable code: [authentication-and-scope.md](https://github.com/hrpering/tryvira/blob/main/docs/troubleshooting/authentication-and-scope.md)
+> Read actual scoped TaskRun state, selected mode, child receipts, authority digest, provider handoff and post-model checks. Keep host capability attestation separate from client assertions.
 
-## Run and verify
+## Action and evidence
 
-Do not paste keys, production traces, or customer prompts. Start with read-only diagnosis and change only the smallest failing integration point.
+TaskRun route → scope/release → real child → actual provider → verifier → receipt; report status and exact missing evidence.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Use the customer's own authorized non-production tenant when live execution is necessary, and the installed public SDK/Studio contract. Do not claim server execution from a local file or structure test. See [Skill contract](https://github.com/hrpering/tryvira/blob/main/skills/vira-debug/SKILL.md) and [product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md).
+
+## Negative test
+
+A raw projection or completed child is not a verified output; never bypass the verifier.

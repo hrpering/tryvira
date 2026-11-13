@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Lifecycle"
-  short_description: "Vira Lifecycle tasks and workflow guidance"
-  default_prompt: "Use $vira-lifecycle to complete this documented Vira lifecycle workflow."
+  short_description: "Plan Observe, Pack, AUTO Run and Teach loop"
+  default_prompt: "Use $vira-lifecycle to plan one complete governed behavior process with scope, Observe, Signal, evaluation/release, AUTO TaskRun, verifier evidence and rollback."

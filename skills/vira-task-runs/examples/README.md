@@ -1,16 +1,25 @@
-# Customer example: Route and inspect one user-authorized task
+# Test AUTO selection for all four execution modes
 
-## Scenario
+## User prompts to test the Skill
 
-Check that the installed SDK release documents the requested TaskRun operations. Follow only returned server state and user authorization when deciding whether to continue or recover.
+**Short:** > With one user prompt, let Vira AUTO select SINGLE, STRATEGY, COMPOUND or HYBRID and show real child receipts.
 
-## Reference
+**Detailed:** > Use real registered tasks, eligible released Programs/Strategies and a host connection with server-attested capabilities. Compare a one-task summary, a multi-step extraction, two independent tasks and a mixed multi-step+single request.
 
-- Workflow guide: [SKILL.md](https://github.com/hrpering/tryvira/blob/main/skills/vira-task-runs/SKILL.md)
-- Customer artifact or runnable code: [sdk](https://www.npmjs.com/package/@tryvira/sdk)
+## How to carry out the task
 
-## Run and verify
+Run [JavaScript](https://github.com/hrpering/tryvira/blob/main/examples/javascript/taskrun-modes.mjs) or [Python](https://github.com/hrpering/tryvira/blob/main/examples/python/taskrun_modes.py) in **route-only** mode first. Only start executions with the scripts' explicit non-production opt-ins.
 
-This repository has no executable TaskRun API runner. Use the installed package documentation and types for the exact operations; do not substitute a mock. Do not infer HTTP, Python, or MCP support from JavaScript package operations.
+This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+## Evidence to return
+
+Per case: route decision, server selected tasks/mode, TaskRun status/stateVersion and actual child receipts if available. Clarification/denial is a valid result.
+
+## Required negative test
+
+Missing second task, materialized Strategy or host attestation must deny/abstain rather than construct child receipts. COMPLETED does not equal post-model verified chatbot answer.
+
+## Handoff
+
+Consult [the Skill's specific production-aligned procedure](https://github.com/hrpering/tryvira/blob/main/skills/vira-task-runs/SKILL.md), [full product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md) and [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) before calling an unverified operation. Do not infer support across SDK, HTTP, MCP or Studio.

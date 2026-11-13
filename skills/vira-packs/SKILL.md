@@ -34,6 +34,16 @@ The current published MCP catalog has no Pack tools; verify live tools before se
 
 Stop if the installed surface lacks the required operation, the public schema is unclear, conflicts are unresolved, asynchronous work is incomplete, evaluation evidence is missing, or approval is absent. Ask for the current public contract or an authorized operator decision; do not guess or skip a gate.
 
+## Production-aligned implementation playbook
+
+1. Inspect actual Pack ZIP/manifest, Task/Point/Program/Strategy references, conflict inventory and installed collection status. An import creates a candidate; a queued 202 is not completed install.
+2. JS `importPack({manifest,objects})` or archive, Python `import_pack(manifest,objects)`; install with direct `installPack(packId,variablesMap)` or `install_pack(pack_id,variables)`. Do not doubly nest variables.
+3. Evaluate the exact materialized artifact using a server-persisted evaluation. Only call `evaluatePack(packId,{evaluationId: realId})` with a real matching evaluation; never client-authored score/PASS.
+4. Approval and release require distinct authorization and readback. Test a released Pack in an ordinary request via **AUTO TaskRun**, then require real child/run/provider verification and receipts to claim applied behavior.
+5. A Pack's Signal key does **not** materialize an approved producer; `judge:` is only a verifier-extension requirement until a real implementation is configured.
+6. Negative: unresolved collision, missing variable binding, stale digest, unconfigured judge, partial child or wrong scope blocks progression.
+[Current Pack Academy](https://github.com/hrpering/tryvira/blob/main/examples/packs/README.md) · [Verifier](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md).
+
 ## Deliverable and failure handling
 
 Summarize the completed stages, redacted server-issued identifiers, current persisted status, unresolved review items, and the next authorized action. Never include API keys, customer content, private URLs, or production traces.

@@ -165,7 +165,9 @@ class PublicContractChecks(unittest.TestCase):
             "vira-runtime", "vira-task-runs", "vira-observe-teach", "vira-studio", "vira-debug", "vira-lifecycle",
         ):
             self.assertIn(f"`{name}`", full)
-        self.assertIn("does not define its event-specific payload", full)
+        self.assertIn("real provider output", full)
+        for specialist in ("vira-observe", "vira-runtime-verification", "vira-traces"):
+            self.assertIn(f"`{specialist}`", full)
 
     def test_taskrun_skill_preserves_governance_and_surface_boundaries(self):
         skill = self.read("skills/vira-task-runs/SKILL.md")
@@ -173,10 +175,15 @@ class PublicContractChecks(unittest.TestCase):
         api = self.read("docs/reference/api.md")
         self.assertIn("explicit authorization", skill)
         self.assertIn("re-read persisted state", skill.lower())
-        self.assertIn("installed public JavaScript SDK documentation", skill)
-        self.assertIn("Do not infer HTTP, Python, or MCP support", example)
+        self.assertIn("JavaScript and Python SDK", skill)
+        self.assertIn("JavaScript", example)
+        self.assertIn("Python", example)
+        self.assertIn("AUTO", example)
         self.assertIn("does not publish a direct TaskRun route contract", api)
-        self.assertNotIn("resolveTaskRun(", skill)
+        self.assertIn("resolveTaskRun(", skill)
+        self.assertIn("startTaskRun", skill)
+        self.assertIn("COMPOUND", skill)
+        self.assertIn("post-model", skill)
 
     def test_published_sdk_task_coverage_routes_to_skills(self):
         inventory = self.read("docs/reference/sdk-method-inventory.md")

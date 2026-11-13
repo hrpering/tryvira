@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira runtime Verification"
+  short_description: "Verify real runtime outputs and bound receipts"
+  default_prompt: "Use $vira-runtime-verification to check actual Vira post-model verifier execution, failedChecks, repair/block handling, output digest and receipt linkage. Keep artifact validation and pre-release evaluation separate."

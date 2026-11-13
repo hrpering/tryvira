@@ -22,6 +22,15 @@ Require exact canonical resource/revision identity and digest, target scope/envi
 5. Record comparison and authoritative health evidence where supported; these records do not deploy or promote by themselves.
 6. Verify runtime eligibility and trace/receipt; for rollback, confirm the returned state resolves to the known prior revision.
 
+## Production-aligned implementation playbook
+
+1. Review evaluated immutable artifact, target tenant/environment, authority digests and prior eligible revision before any mutation. Present explicit approval and release scope for a separate operator decision.
+2. Apply only documented authorize/approve/release operations; preserve server-returned IDs and confirm the deployment postcondition. There is no generic SDK `rollback()` method; restoring previous identity must use a supported release contract and explicit authorization.
+3. After a real release, submit a non-production **AUTO TaskRun** and verify release eligibility and child executor. Post-model verification is a separate check; the task's COMPLETED state alone is not a verified chatbot answer.
+4. When available, inspect shadow/canary and rollback signals with actual operator readback. Missing host capabilities or Signal mappings may make the release ineligible at runtime.
+5. Negative: evaluation PASS without approval, missing verifier or stale authority must not become auto-activation.
+[Release](https://github.com/hrpering/tryvira/blob/main/docs/release.md).
+
 ## Deliverable and failure handling
 Report the before/after state, exact IDs/digest, evidence, and residual risk. Stop on missing approval, stale artifact, scope mismatch, unsupported operation, or uncertain prior revision; never delete active behavior as rollback.
 

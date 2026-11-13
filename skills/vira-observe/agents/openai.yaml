@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira observe"
+  short_description: "Instrument real AI observations with the Vira SDK"
+  default_prompt: "Use $vira-observe to connect this AI application and instrument permitted model, tool, action, feedback or outcome events. Preserve exact scope and event IDs; do not claim verification or release."

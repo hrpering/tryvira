@@ -1,8 +1,12 @@
 # Agent Skills validation and live-readiness status
 
-The public library contains 24 task-specific Skills. Each has activation conditions, preconditions, a workflow, a deliverable, failure handling, and references. See [capability coverage](capability-coverage.md) for product-goal routing and the [public package guide](../reference/sdk-method-inventory.md) for current interface boundaries.
+The public library contains 27 task-specific Skills. Each has activation conditions, preconditions, a workflow, a deliverable, failure handling, and references. See [capability coverage](capability-coverage.md) for product-goal routing and the [public package guide](../reference/sdk-method-inventory.md) for current interface boundaries.
 
-The per-Skill evidence table is in [skill status](skill-status.md). It distinguishes structural checks, offline regressions, runnable examples, model evaluation, and live verification; no Skill is represented as live-tested.
+Historical November 7 model-run evidence used a now-superseded projection-to-provider integration. Keep that record only as historical evidence and do not copy it as current production guidance. The per-Skill evidence table is in [skill status](skill-status.md). It distinguishes structural checks, offline regressions, runnable examples, model evaluation, and live verification; no Skill is represented as live-tested.
+
+## Production contract audit
+
+All 24 original Skill guides were reviewed against the latest accessible production SDK, TaskRun, Pack, Observe, Signal and verifier contracts, and three missing specialists were added: `vira-observe`, `vira-runtime-verification` and `vira-traces`. Review the [per-Skill production audit](production-contract-audit.md) and the [versioned baseline](production-contract-baseline.md). New test cases distinguish old projection-centric example assertions from canonical AUTO requirements.
 
 ## What repository verification establishes
 

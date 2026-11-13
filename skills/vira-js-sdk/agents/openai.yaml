@@ -1,4 +1,4 @@
 interface:
-  display_name: "Vira Js Sdk"
-  short_description: "Vira Js Sdk tasks and workflow guidance"
-  default_prompt: "Use $vira-js-sdk to complete this documented Vira js sdk workflow."
+  display_name: "Vira JavaScript SDK"
+  short_description: "Implement Vira JavaScript SDK calls correctly"
+  default_prompt: "Use $vira-js-sdk to write production-contract-compatible ViraClient code for AUTO TaskRun, Observe or Pack work with real scope, idempotency and tests."

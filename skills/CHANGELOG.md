@@ -1,5 +1,15 @@
 # Vira Agent Skills changelog
 
+## 0.6.0 — 2026-11-13
+
+- Audited all 24 existing Skills against production JS/Python TaskRun, Pack, Signal, observation, verifier and child executor source contracts; recorded severity, evidence and repairs per Skill.
+- Fixed canonical execution guidance: normal ON integrations use AUTO TaskRun only. Direct behavior projection remains a diagnostic SDK surface.
+- Corrected stale Next.js OFF/ON, TaskRun JS/Python parity, Pack quality and Program verification instructions.
+- Added `vira-observe`, `vira-runtime-verification` and `vira-traces` (27 Skills total) with distinct task triggers, real evidence requirements and negative tests.
+- Replaced generic agent metadata and example stubs with task-specific prompts and failure handling.
+- Expanded static contract regression and trigger/workflow scenarios. No live customer/provider or model-trigger benchmark is implied.
+
+
 ## 0.5.0 — 2026-11-13
 
 - Added `vira-chatbot` so users can set up and compare the local customer chatbot with Vira OFF or ON.

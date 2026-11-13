@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Release"
-  short_description: "Vira Release tasks and workflow guidance"
-  default_prompt: "Use $vira-release to complete this documented Vira release workflow."
+  short_description: "Perform authorized release and rollback checks"
+  default_prompt: "Use $vira-release to confirm evaluated immutable identity, obtain explicit release authorization, verify server state and test AUTO TaskRun runtime eligibility."

@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Strategies"
-  short_description: "Vira Strategies tasks and workflow guidance"
-  default_prompt: "Use $vira-strategies to complete this documented Vira strategies workflow."
+  short_description: "Build bounded Strategies for AUTO TaskRun"
+  default_prompt: "Use $vira-strategies to author and validate a typed Strategy graph, inspect release and host eligibility and distinguish structural simulation from child execution."

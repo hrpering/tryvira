@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Full Lifecycle"
-  short_description: "Help with Vira Full Lifecycle tasks"
-  default_prompt: "Use $vira-full-lifecycle to complete this documented Vira lifecycle workflow."
+  short_description: "Coordinate every Vira lifecycle specialist safely"
+  default_prompt: "Use $vira-full-lifecycle to execute an authorized cross-Skill workflow from connected AI observations through Pack approval, AUTO TaskRun, output verification, receipts and Teach."

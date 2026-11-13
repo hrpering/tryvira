@@ -1,47 +1,27 @@
-# Try the Vira OFF/ON chatbot
+# Run the actual OFF answer versus ON TaskRun-status example
 
-Use this customer-run example to compare the same synthetic support question with Vira behavior disabled and enabled. It uses the real Next.js chatbot and published SDK; there is no mock Vira server.
+Use the **same synthetic support question** for both OFF and ON. The app runs with **no mock Vira server**. OFF returns a provider answer when configured; ON currently returns actual AUTO TaskRun pending/state and does not claim verified model output.
 
-To have an agent guide the run, install the Skill from your application repository:
+## User prompts to test the Skill
 
-```bash
-npx skills add hrpering/tryvira --skill vira-chatbot
-```
+**Short:** > Show our Vira Next.js demo using the same support question in OFF and ON.
 
-## Start the app
+**Detailed:** > In OFF, the configured OpenAI Agent returns a baseline answer. In ON, the route calls `startTaskRun` with AUTO and displays selected mode/state without invoking the provider for ON.
 
-From the repository root:
+## How to carry out the task
 
-```bash
-cd examples/frameworks/node-next
-npm ci
-cp .env.example .env.local
-```
+`cd examples/frameworks/node-next && npm ci && cp .env.example .env.local && npm run dev`. Add OPENAI_API_KEY locally for OFF; ON needs the user's own Vira scope and connection.
 
-Set `OPENAI_API_KEY` in `.env.local` using a local editor or secret manager. Do not send the key to an agent or commit `.env.local`. Start the app:
+This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 
-```bash
-npm run dev
-```
+## Evidence to return
 
-Open the local URL printed by Next.js. Leave Vira OFF, keep observation unchecked, and send a synthetic question. This baseline does not construct a Vira client or call Vira.
+Record OFF model answer and ON server TaskRun admission/status separately. The optional Send baseline observation checkbox is for OFF metadata; Show TaskRun state is not a verifier receipt.
 
-## Try Vira ON
+## Required negative test
 
-Vira ON requires product access for the user's account. Set the customer's API deployment root, scoped server-side credential, and a verified Behavior Point in `.env.local`; the behavior must be eligible and released in that scope. Never use credentials from the production source repository. If there is no authorized Vira access or verified Behavior Point, stop at OFF mode and report why ON is unavailable.
+Do not pretend the two output answers can currently be compared as fully verified ON/OFF. Missing Vira access must remain a visible ON blocker; keep the unauthenticated sample local.
 
-Select **ON · governed** and send the same synthetic question. The server checks Vira before the model call. A failure or missing active projection stops the request; it must not silently continue as OFF.
+## Handoff
 
-Optional controls:
-
-- **Send observation** is off by default and submits metadata only, not the chat text. Configure a connected system/connection and enable it only with the user's authorization.
-- **Show runtime check** displays the request ID and projection digest returned for that turn. It does not prove that the model followed the behavior.
-- To create a connection, follow the README's non-production and idempotency-key gates. The gate values are operator assertions; do not set them for production.
-
-## Expected result and limits
-
-Compare the two answers while holding the prompt constant. Record the selected mode and the status shown by the app. If Vira has no eligible released behavior, expect the ON request to stop before the model. The sample has no tools or external actions and is not ready for public deployment without application authentication, rate limiting, and tenant mapping.
-
-This is a local customer-run demo, not a hosted playground. Vira is under active development and product access is not open yet; OFF can be tried by a user with an OpenAI key, while ON requires their own provisioned Vira access. The repository CI build is not a live Vira test.
-
-See the full [chatbot README](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/README.md) and invoke this guide with the [`vira-chatbot` Skill](https://github.com/hrpering/tryvira/blob/main/skills/vira-chatbot/SKILL.md).
+Consult [the Skill's specific production-aligned procedure](https://github.com/hrpering/tryvira/blob/main/skills/vira-chatbot/SKILL.md), [full product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md) and [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) before calling an unverified operation. Do not infer support across SDK, HTTP, MCP or Studio.

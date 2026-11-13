@@ -25,6 +25,15 @@ Gather the task, allowed outcomes, constraints, scope, intended canonical object
 
 JavaScript/Python references expose list/get/create/variant/validate/simulate/activate and execution methods. Read the installed method types for exact request schemas; do not make up field names. MCP offers only its published subset and does not imply activation/execution parity.
 
+## Production-aligned implementation playbook
+
+1. STRATEGY is a **single registered task with a released eligible graph**, not all multi-task coordination. COMPOUND coordinates multiple tasks; HYBRID combines SINGLE and STRATEGY children. The ordinary user-facing request is **AUTO TaskRun**.
+2. Author actual `schemaVersion`, `strategyKey`, `behaviorPointKey`, goal, ordered steps/edges, typed state slots, tool/verification/recovery policy and bounded budgets. Use the production-shaped [operations example](https://github.com/hrpering/tryvira/blob/main/examples/packs/operations-orchestration/behavior-strategies/items.json).
+3. Structural simulation is **not** a provider execution, release, runtime receipt or model-verified response. Inspect real materialization and Strategy eligibility in the server registry.
+4. Use AUTO to admit the request; verify host Strategy capability from **server attestation**, real child step receipts and status. Waiting runs must continue original state/authority, not create replacements.
+5. Negative: cyclic graph, stale artifact, missing step executor, invalid scope or failed required child stops instead of silently falling back to SINGLE.
+[Execution modes](https://github.com/hrpering/tryvira/blob/main/docs/execution-modes.md) · [Canonical runtime](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md).
+
 ## Deliverable and failure handling
 Return Strategy/variant/revision identifiers, scope, validation/simulation results, activation authority, execution state/digest/trace, and unresolved gates. Stop on schema uncertainty, validation failure, stale or mismatched digest, non-eligible state, missing authorization, or unsupported MCP operation. Do not infer a deployment or release from activation alone.
 

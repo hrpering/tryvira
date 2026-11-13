@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Evaluate Release"
-  short_description: "Vira Evaluate Release tasks and workflow guidance"
-  default_prompt: "Use $vira-evaluate-release to complete this documented Vira evaluate release workflow."
+  short_description: "Review evaluation evidence before release"
+  default_prompt: "Use $vira-evaluate-release to verify candidate digest, eval and regression evidence, prepare an explicit reviewer decision, then plan eligible runtime acceptance."

@@ -1,16 +1,19 @@
-# Customer example: Evaluate, review, then prepare a governed release
+# Separate evidence, approval and release
 
-## Scenario
+## Short test prompt
 
-Follow the customer tutorial’s separate evaluation and release commands. Inspect the exact persisted candidate and evidence before any authorized transition.
+> Our Pack evaluation passed. Can it be released right now?
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [evaluation-and-approval.md](https://github.com/hrpering/tryvira/blob/main/docs/evaluation-and-approval.md)
-- Customer artifact or runnable code: [REVISION-WORKFLOW.md](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/REVISION-WORKFLOW.md)
+> Inspect persisted evaluation, exact artifact digest, regressions, authorized reviewer, scope and rollback target. Obtain distinct explicit approvals before effectful transitions.
 
-## Run and verify
+## Expected result
 
-Use the revision workflow’s real configured services and interactive authorization gates. It has not been run against a live Vira tenant here.
+Report pre-release checks and planned post-release AUTO TaskRun + output-bound verification acceptance.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Follow the [production-aligned Skill](https://github.com/hrpering/tryvira/blob/main/skills/vira-evaluate-release/SKILL.md) and [canonical TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md). Live execution requires customer-authorized non-production scope, real server IDs and supported installed client operations. Never fabricate an acceptance receipt.
+
+## Negative test
+
+A quality score or syntax test never self-authorizes release.

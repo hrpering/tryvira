@@ -16,10 +16,19 @@ Inspect framework version, model/tool lifecycle, server/client boundary, streami
 
 ## Workflow
 1. Select a real boundary where the application resolves or applies behavior (before model/tool action, or at documented post-model verification).
-2. If no official adapter exists, implement a small framework-native wrapper around the documented JS/Python SDK or HTTP client. Use the runnable examples in `examples/frameworks/node-next`, `python_fastapi`, `langgraph`, and `mcp-client` as the checked patterns; use only the runnable applications that call a configured Vira API or MCP server.
-3. Read the installed operation's response type and use its documented fields and states verbatim. For integrations that consume the published JS `RuntimeResolution` projection, model work may proceed only when the documented projection is active and non-empty; projection content guides the model and is not authorization for tools or external side effects. For other operations, do not transfer this mapping without a matching contract.
+2. If no official adapter exists, implement a small framework-native wrapper around documented AUTO TaskRun through the JS/Python SDK (or separately documented HTTP contract). Use `examples/frameworks/node-next` for the canonical AUTO TaskRun application boundary. The historical `python_fastapi` and `langgraph` projection-based examples require migration before they can serve as normal ON patterns; do not copy their direct projection-to-provider path. The MCP client demonstrates tool discovery only.
+3. Read the installed operation's response type and use its documented fields and states verbatim. Normal ON model work must pass canonical AUTO TaskRun and the real provider-to-post-model verification boundary. Direct projection-to-model is diagnostic only. For other operations, do not transfer this mapping without a matching contract.
 4. Preserve the framework's message/tool/result types; do not convert missing, malformed, or unrecognized required contract data into permission to act. Keep credentials server-side, preserve trace/request identifiers, and avoid logging raw prompts or responses.
 5. Build and start the application, then verify the boundary against an authorized isolated non-production Vira deployment and configured provider. Record real response IDs/statuses; never report build output as live integration evidence.
+
+## Production-aligned implementation playbook
+
+1. Find the host's model/tool/action call sites, streaming behavior and how the final user-visible answer is sent. Keep secrets server-side and application tool permissions in the host.
+2. For Next.js, OpenAI Agents or Vercel AI SDK, **OFF** may call the provider as a baseline; **ON** must submit AUTO TaskRun, not `resolveRuntime → projection → streamText`. The public example deliberately responds with persisted TaskRun state rather than a fabricated verified ON answer.
+3. For FastAPI/LangGraph use Python `start_task_run` with `requestedMode:"AUTO"`, actual IDs and state readback. Preserve graph checkpoint semantics and stateVersion.
+4. Before streaming an ON answer, require the documented provider-output/post-model verification contract with matching output digest and receipt; until available, return pending/unsupported. Do not infer an official adapter from framework-native glue.
+5. Negative: no released Task, host capability, verifier or tool permission means no ON model/tool bypass.
+[Current Next.js code](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/src/support-handler.mjs) · [Integration patterns](https://github.com/hrpering/tryvira/blob/main/docs/integration-patterns.md).
 
 ## Deliverable and failure handling
 State whether an official adapter exists, show the boundary and operation-specific response mapping, and include evidence from the actual configured integration or clearly mark live verification as not run. Stop if the wrapper would bypass Vira runtime checks or framework semantics cannot be safely preserved.

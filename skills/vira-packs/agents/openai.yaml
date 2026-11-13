@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira Packs"
-  short_description: "Vira Packs tasks and workflow guidance"
-  default_prompt: "Use $vira-packs to complete this documented Vira packs workflow."
+  short_description: "Install, evaluate and release scoped Packs"
+  default_prompt: "Use $vira-packs to import and inspect a Pack, confirm materialization, bind a persisted evaluationId, and separate approval, release and AUTO runtime checks."

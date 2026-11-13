@@ -1,16 +1,25 @@
-# Customer example: Call a documented customer HTTP operation
+# Safely call a documented scoped HTTP operation
 
-## Scenario
+## User prompts to test the Skill
 
-Read the exact public route and authorization guidance for the selected operation, send a synthetic request using the customer’s server-side key, and preserve the returned request identity.
+**Short:** > Use the Vira API to check available capabilities and record a sanitized event in our test environment.
 
-## Reference
+**Detailed:** > Read the connected customer's OpenAPI/HTTP reference and configure VIRA_API_URL as the deployment root. `GET /v1/capabilities` can inspect scoped product availability; `POST /v1/observations` requires a real authorized event payload.
 
-- Workflow guide: [api.md](https://github.com/hrpering/tryvira/blob/main/docs/reference/api.md)
-- Customer artifact or runnable code: [auth-and-scope.md](https://github.com/hrpering/tryvira/blob/main/docs/auth-and-scope.md)
+## How to carry out the task
 
-## Run and verify
+Use the customer's own auth/secret manager, bounded timeout and idempotency. Do not copy a generic curl snippet with made-up IDs into a production terminal.
 
-Use only routes and payloads published in the customer-facing API reference. If the required route is not documented, stop and ask for its public contract.
+This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+## Evidence to return
+
+Actual HTTP status, scoped request ID, errors or accepted event digest. 202 is an admission state, not Teach/Signal/verified answer.
+
+## Required negative test
+
+No documented endpoint for final verified TaskRun response? Do not invent `/verify-answer` or use an undocumented route inferred from SDK internals.
+
+## Handoff
+
+Consult [the Skill's specific production-aligned procedure](https://github.com/hrpering/tryvira/blob/main/skills/vira-http-api/SKILL.md), [full product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md) and [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) before calling an unverified operation. Do not infer support across SDK, HTTP, MCP or Studio.

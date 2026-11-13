@@ -1,8 +1,14 @@
 # Agent Skills coverage and remaining gaps
 
-The 24 public Vira Skills were reviewed against customer-facing package and product references, examples, and workflow requirements. They specialize individual tasks; `vira-full-lifecycle` routes end-to-end work across them, while `vira-chatbot` helps a user run the public OFF/ON demo. The repository maps customer goals to Skills while leaving exact signatures and data shapes to the matching published package documentation.
+The 27 public Vira Skills were reviewed against customer-facing package and product references, examples, and workflow requirements. They specialize individual tasks; `vira-full-lifecycle` routes end-to-end work across them, while `vira-chatbot` helps a user run the public OFF/ON demo. The repository maps customer goals to Skills while leaving exact signatures and data shapes to the matching published package documentation.
 
 Customer-facing examples use published clients and operator-provided Vira endpoints: the [Marketing Agent lifecycle](../../tutorials/marketing-agent/README.md), [Next.js chatbot](../../examples/frameworks/node-next/README.md), [FastAPI/Python](../../examples/frameworks/python_fastapi/README.md), [LangGraph](../../examples/frameworks/langgraph/README.md), and [MCP client](../../examples/frameworks/mcp-client/README.md). Examples use synthetic content and do not contain credentials or customer data.
+
+## Repaired documentation and routing problems
+
+The production source audit found projection-centric normal-chat instructions in several old Skills, incorrect Python TaskRun availability claims, generic metadata and stale TaskRun demo descriptions. All 24 original Skills were updated, three targeted specialists added, and short/detailed user drills + failure cases incorporated. The new [per-Skill audit](production-contract-audit.md) lists the specific root causes and replacement contract anchors.
+
+The public Next.js ON example still cannot prove an actual provider-generated and post-model verified output. It only returns AUTO TaskRun status, correctly labeled. Private prod acceptance and source contracts are not equivalent to customer-ready hosted access.
 
 ## Remaining product and evidence gaps
 

@@ -37,3 +37,11 @@ The script reads the Pack, verifies its materialization and digest, creates one 
 ## Limitations
 
 This sample demonstrates the documented Pack evaluation shape. For a Strategy, revision candidate, or another artifact, use the exact identity and request schema for that artifact. Response Quality & Decision (`evaluateQuality`) is a different operation. A passed evaluation does not approve, release, or prove that the Pack was invoked at runtime.
+
+## Production-aligned acceptance and negative cases
+
+- **Positive:** use a genuinely materialized Pack and an evaluation ID returned by `startEvaluation`, tied to the exact revision/digest; read back `getEvaluation` until the server reports a real persisted result.
+- **Negative:** a queued 202, stale artifact digest, fabricated `evaluationId`, client-authored `passed: true` or `judge:` extension without an actual configured verifier does not qualify as a passed evaluation or verified chatbot output.
+- **Afterward:** obtain separate human approval/release and submit a real **AUTO TaskRun**. Inspect actual post-model checks and output-bound receipt; the current public Next.js ON sample only shows TaskRun state.
+
+[Runtime verification](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md) · [Verified output contract](https://github.com/hrpering/tryvira/blob/main/docs/verified-answer-handoff.md)

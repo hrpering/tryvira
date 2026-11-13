@@ -23,6 +23,14 @@ Inspect the user's MCP host, config format, process launch mechanism, secret sto
 4. For each requested action, match it to an advertised tool and inspect whether it is read-only or effectful before invocation.
 5. Route absent operations to a documented SDK, Python, or HTTP contract; test config parsing separately from any live tool call.
 
+## Production-aligned implementation playbook
+
+1. Read the installed MCP server's package version and real config, then run `initialize` and `tools/list`. Do not hard-code the number or signatures of tools.
+2. The published MCP catalog **does not provide TaskRun or Pack lifecycle tools** even though JS/Python SDKs do. For normal AUTO TaskRun or Pack operations, use a separately documented server-side SDK integration; do not create a fake `start_task_run` MCP tool.
+3. Keep all credentials in host-managed environment and check scope and effectful-tool permissions before a call. A registered tool name is not authorization for external actions.
+4. Negative: an MCP host with no configured API key or missing tool must stop with a surface limitation, not fabricate a success or substitute projection.
+[MCP catalog](https://github.com/hrpering/tryvira/blob/main/docs/reference/mcp-tools.md) · [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md).
+
 ## Deliverable and failure handling
 Report package/server version, advertised tool evidence, host config location, and operations unavailable through MCP. Stop on initialization/auth/scope failure; never invent tools from SDK methods or claim an uncalled mutation succeeded.
 

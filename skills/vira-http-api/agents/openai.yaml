@@ -1,4 +1,4 @@
 interface:
-  display_name: "Vira Http API"
-  short_description: "Vira Http Api tasks and workflow guidance"
-  default_prompt: "Use $vira-http-api to complete this documented Vira http api workflow."
+  display_name: "Vira HTTP API"
+  short_description: "Call documented scoped Vira HTTP operations"
+  default_prompt: "Use $vira-http-api to implement documented Vira HTTP requests with real deployment URL, scope, authentication, idempotency, async status and no invented endpoints."

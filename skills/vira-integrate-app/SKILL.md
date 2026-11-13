@@ -17,9 +17,17 @@ Identify framework, server-side AI invocation point, streaming/tool-call structu
 ## Workflow
 1. Read the capability matrix and trace one request from application entry to model call and response.
 2. Choose the documented surface that supports the needed operation; use server-side SDK/HTTP for credentials and runtime authority.
-3. Place Vira resolve/execute at the actual decision boundary. Preserve deny/abstain/error states and keep the original model path explicit.
+3. Place Vira AUTO TaskRun at the actual application boundary, not direct runtime projection. Preserve deny/abstain/error states and keep the original model path explicit.
 4. Add secret-safe configuration, stable idempotency for retryable writes, and request/receipt correlation without logging user content.
 5. Build and run the integration against an authorized isolated non-production scope. Exercise the actual available/denied/error response states only when Vira returns them; do not fabricate service responses.
+
+## Production-aligned implementation playbook
+
+1. Find actual host request → provider/tool → response boundary. Connect an AI System via the selected SDK and retain server-issued IDs, scope, trace and idempotency.
+2. For ON, use `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`, then `getTaskRun`. Mode selection and host capability must be **server-controlled**, not an invented client grant.
+3. Do not call the provider from the ON handler just because TaskRun is `COMPLETED`. Require the same released revision, actual provider output, post-model verification and receipt/output digest before labeling an answer verified.
+4. Negatives: unresolved task, wrong tenant, missing release, stale capability, incomplete child or unavailable verifier must not silently fallback.
+[Canonical TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) · [Current Next.js boundary](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/src/support-handler.mjs).
 
 ## Deliverable and failure handling
 Show the integration boundary, files changed, configuration keys (names only), test evidence, and unsupported operations. Stop before implementation if required scope or authority is missing; do not describe a custom wrapper as an official adapter.

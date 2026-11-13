@@ -25,6 +25,16 @@ Specify API deployment URL, credential scope, evaluation type, candidate identit
 6. Run through the authorized isolated provider/environment; collect actual outputs, errors, latency/token fields only if returned.
 7. Analyze failures and regressions against criteria; report observed numbers with sample size and provenance, or label unrun metrics unavailable.
 
+## Production-aligned implementation playbook
+
+1. Build representative positive, negative, boundary, adversarial and regression cases with explicit assertions and provenance; distinguish source data from model guesses.
+2. For pre-release Behavior Evaluation use JS `startEvaluation`/`getEvaluation` or Python `start_evaluation`/`get_evaluation`. Only a real server-persisted `evaluationId` matching exact artifact/digest may be passed to Pack evaluation.
+3. `evaluateQuality`/`evaluate_quality` selects/abstains over bounded response candidates; it is **not** approval, release or post-model runtime PASS.
+4. Actual runtime verification needs an applied Program module at `pre_model`, `pre_tool`, `post_model` or `pre_action`, a supported deterministic or explicitly configured `judge:` verifier, and a receipt bound to the *same* provider output digest.
+5. Use a fair OFF vs ON baseline with same inputs/model/config; report sample sizes and real outcomes/cost/latency, not claims fabricated from source fixtures.
+6. Negative: natural-language requirement-only modules, unsupported judge, incomplete worker or a different digest cannot become evaluated/verified success.
+[Eval](https://github.com/hrpering/tryvira/blob/main/docs/evaluation-and-approval.md) · [Runtime checks](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md).
+
 ## Deliverable and failure handling
 Provide dataset, criteria, candidate binding, raw status/receipt references, and evidence-based findings. Stop if evaluation is unsupported, provider did not execute, or results are incomplete; local assertions do not equal a passed Vira evaluation or approval.
 

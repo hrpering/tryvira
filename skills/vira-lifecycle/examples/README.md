@@ -1,16 +1,19 @@
-# Customer example: Trace one behavior from connection through runtime
+# Plan a complete governed lifecycle
 
-## Scenario
+## Short test prompt
 
-Follow the runnable JavaScript journey to connect, observe synthetic evidence, author, resolve, and inspect runtime behavior, keeping Pack release and Teach as separate later stages.
+> Plan how our support agent will observe errors, release a behavior and learn from corrections.
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [README.md](https://github.com/hrpering/tryvira/blob/main/examples/README.md)
-- Customer artifact or runnable code: [end-to-end-lifecycle.mjs](https://github.com/hrpering/tryvira/blob/main/examples/javascript/end-to-end-lifecycle.mjs)
+> Map Observe → Signals → Task/Point/Program/Pack → evaluation → human approval/release → AUTO TaskRun → real verifier receipts → consented outcome/Teach. Every transition needs owner and stop gate.
 
-## Run and verify
+## Expected result
 
-The script is a real configured SDK example, not a mock; its README states which approval/release steps it does not complete.
+Return a stage matrix with actual vs planned IDs, scope, evidence and blockers.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Follow the [production-aligned Skill](https://github.com/hrpering/tryvira/blob/main/skills/vira-lifecycle/SKILL.md) and [canonical TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md). Live execution requires customer-authorized non-production scope, real server IDs and supported installed client operations. Never fabricate an acceptance receipt.
+
+## Negative test
+
+Do not invent task IDs, Signal producers, evaluation pass or final provider answer.

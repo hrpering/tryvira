@@ -24,6 +24,15 @@ Identify the scoped project/environment, authorized evidence source and consent/
 
 The SDK reference lists `createSignalDiscoveryProposal`, `reviewSignalDiscoveryProposal`, `materializeSignalDiscovery`, `createSignalMapping`, `getSignalMapping`, and `reviewSignalMapping` (Python snake_case equivalents). It does not publish one universal request schema here: inspect the installed client contract before constructing payloads.
 
+## Production-aligned implementation playbook
+
+1. A Signal is a **typed, versioned, scope-bound interpretation** of evidence, not a raw `model.response` event or a guessed boolean.
+2. Discover from **real admitted evidence IDs** with consent; review discovery; materialize approved definition; separately propose/review/activate a producer mapping. Supported producer types are `observation_attribute`, `tool_result`, `application_state`, `runtime_state`.
+3. Verify real producerKey and sourceEventType, definition version, mapping status and runtime attestation. A Pack's `signals/items.json` key is only a reference; it does not create trusted runtime authority.
+4. Check positive/missing/stale/wrong-tenant/conflicting-source cases before a released guard relies on the value. Keep Signal changes separate from Teach proposal/release.
+5. Negative: `signal:attribution_mismatch == true` supplied by an untrusted client cannot authorize budget changes.
+[Signals](https://github.com/hrpering/tryvira/blob/main/docs/signals.md) · [Observe](https://github.com/hrpering/tryvira/blob/main/docs/observe.md).
+
 ## Deliverable and failure handling
 Return the proposal/review/materialization/mapping IDs, evidence references, source event/value mapping, verification results, and remaining gaps. Stop on missing consent, unresolved review, unknown payload shape, failed materialization, inactive mapping, or an unsupported surface. Do not turn semantic matches into Signal values or approval.
 

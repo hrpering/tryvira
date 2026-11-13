@@ -1,16 +1,19 @@
-# Customer example: Validate a behavior Strategy before activation
+# Build a bounded incident Strategy
 
-## Scenario
+## Short test prompt
 
-Review the customer’s candidate and its validation evidence, then confirm that the operator has authority for any separately supported activation step.
+> Investigate delivery complaints in ordered steps with an approval gate.
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [strategies.md](https://github.com/hrpering/tryvira/blob/main/docs/strategies.md)
-- Customer artifact or runnable code: [README.md](https://github.com/hrpering/tryvira/blob/main/examples/strategy/README.md)
+> Define one task's actual Strategy graph: stable step keys, typed state, edges, budgets, verification and recovery. Distinguish STRATEGY from COMPOUND/HYBRID selected by AUTO.
 
-## Run and verify
+## Action and evidence
 
-The public repository does not include a Strategy execution script. Verify exact operations in the installed public client and stop on missing schema or scope.
+Report schema validity, eligible release/host checks and real step receipts only if executed.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Use the customer's own authorized non-production tenant when live execution is necessary, and the installed public SDK/Studio contract. Do not claim server execution from a local file or structure test. See [Skill contract](https://github.com/hrpering/tryvira/blob/main/skills/vira-strategies/SKILL.md) and [product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md).
+
+## Negative test
+
+Simulation is not provider execution; do not replace WAITING execution or grant host capabilities client-side.

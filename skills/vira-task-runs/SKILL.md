@@ -1,12 +1,12 @@
 ---
 name: vira-task-runs
 license: "Proprietary; see LICENSE"
-description: "Guide a customer through the governed TaskRun journey using the current public JavaScript SDK documentation."
+description: "Guide a customer through the governed TaskRun journey using the current public JavaScript and Python SDK documentation."
 ---
 
 # Vira TaskRuns
 
-Use this Skill when a customer wants to route or run a governed task, inspect its progress, provide an authorized continuation, or recover a failed run. TaskRuns are a runtime execution workflow; they do not create or release behavior artifacts. The installed public JavaScript SDK documentation is the source for exact calls and data shapes. This Skill explains the end-to-end decision flow without copying the operation contract into this repository.
+Use this Skill when a customer wants to route or run a governed task, inspect its progress, provide an authorized continuation, or recover a failed run. TaskRuns are a runtime execution workflow; they do not create or release behavior artifacts. The installed public JavaScript and Python SDK documentation is the source for exact calls and data shapes. This Skill explains the end-to-end decision flow without copying the operation contract into this repository.
 
 ## Activate this skill when
 A task involves a Vira TaskRun or the user asks how to start, inspect, continue, cancel, or retry one. Use `vira-js-sdk` for application configuration, `vira-runtime` for runtime authority, and `vira-full-lifecycle` if the task belongs to a wider authoring/evaluation/release process.
@@ -23,7 +23,7 @@ Use an isolated development scope when available. Production use remains subject
 
 ## Workflow
 
-1. **Check support.** Confirm that the installed package and customer scope support TaskRuns. Do not infer Python, HTTP, or MCP parity from the JavaScript package.
+1. **Check support.** Confirm that the installed package and customer scope support TaskRuns. Python has corresponding TaskRun methods; do not infer HTTP or MCP parity from either client.
 2. **Review the request.** Resolve ambiguity and confirm the intended outcome, boundaries, and budget before admitting work.
 3. **Route before start.** If the supported interface provides a proposal-only routing step, inspect its result. Clarification, denial, abstention, or unsupported-host outcomes are stops, not invitations to bypass the boundary.
 4. **Authorize admission.** Start only after the user has approved the request and the customer scope is verified. Use the documented idempotency mechanism for retried mutations.
@@ -31,6 +31,17 @@ Use an isolated development scope when available. Production use remains subject
 6. **Continue with new input only when received.** Do not invent a user's missing answer, approval, or actor identity. Confirm the user authorized each effectful continuation.
 7. **Recover conservatively.** Follow the installed documentation's retryable states and preserve the server's plan. For timeouts or unknown mutation results, read the same run before issuing another operation.
 8. **Report the result.** Summarize the last persisted status, redacted identifiers, external effects if any, and any required human action. Never claim completion from a queued response alone.
+
+## Production-aligned implementation playbook
+
+**The normal entry is AUTO TaskRun.** Do not place direct projection-to-model in an application response path.
+
+1. **AUTO is a routing request**, not a fifth execution mode. The four eligible execution modes: SINGLE (one task), STRATEGY (one task's released graph), COMPOUND (multiple registered tasks), HYBRID (eligible mixed children). Only the server selects actual mode and eligibility.
+2. For routing use JS `resolveTaskRun({input,requestedMode:"AUTO",connectionId})` or Python `resolve_task_run({"input":text,"requestedMode":"AUTO","connectionId":connection_id})`. ROUTED is **proposal-only** and can still deny, abstain, clarify or report unsupported host. Do not invent client `hostCapabilities` as a permission source.
+3. For authorized admission use JS `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},opts)` or Python `start_task_run({...},idempotency_key=key)`; read `getTaskRun`/`get_task_run` and actual event/child receipts.
+4. WAITING_USER/HOST/APPROVAL, PARTIAL, BLOCKED, FAILED and CANCELLED are distinct; continue/retry/cancel with actual stateVersion and idempotency. A child completion is not final provider post-model PASS.
+5. Execute the published [JS](https://github.com/hrpering/tryvira/blob/main/examples/javascript/taskrun-modes.mjs) or [Python](https://github.com/hrpering/tryvira/blob/main/examples/python/taskrun_modes.py) route-only runner; real admission requires non-production authorization. Negative: missing Strategy materialization or second Compound task must fail closed.
+[Modes](https://github.com/hrpering/tryvira/blob/main/docs/execution-modes.md).
 
 ## Deliverable and failure handling
 

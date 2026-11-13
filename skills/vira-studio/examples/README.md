@@ -1,16 +1,19 @@
-# Customer example: Check an authorized Studio workflow
+# Inspect a real scoped Studio release
 
-## Scenario
+## Short test prompt
 
-Open Studio only when the customer account grants access, follow current visible product guidance, and verify the final state through an available customer-facing read surface.
+> Show if this evaluated Pack is actually ready for release.
 
-## Reference
+## Detailed test prompt
 
-- Workflow guide: [studio-status.md](https://github.com/hrpering/tryvira/blob/main/docs/capability-map.md)
-- Customer artifact or runnable code: [capability-map.md](https://github.com/hrpering/tryvira/blob/main/docs/capability-map.md)
+> Use the customer's authenticated Studio only. Inspect visible scope, roles, Pack materialization, evaluation and reviewer authority. Do not treat documented routes as proof of operational pages.
 
-## Run and verify
+## Action and evidence
 
-Studio access is not open or verified in this repository audit; no screen sequence or successful UI action is claimed.
+Show only visible server-confirmed state or state that Studio access is unverified.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+Use the customer's own authorized non-production tenant when live execution is necessary, and the installed public SDK/Studio contract. Do not claim server execution from a local file or structure test. See [Skill contract](https://github.com/hrpering/tryvira/blob/main/skills/vira-studio/SKILL.md) and [product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md).
+
+## Negative test
+
+A UI toast or screenshot is not a released identity or provider-verified answer.

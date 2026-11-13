@@ -1,6 +1,6 @@
 # Vira Agent Skills
 
-Portable, proprietary Agent Skills for integrating with and operating Vira through documented public surfaces. The 24-Skill library is in active development and is not yet published to skills.sh.
+Portable, proprietary Agent Skills for integrating with and operating Vira through documented public surfaces. The 27-Skill library is in active development and is not yet published to skills.sh.
 
 ## Install
 
@@ -28,6 +28,9 @@ npx skills add hrpering/tryvira --skill vira-task-runs
 
 | Skill | Use it for |
 | --- | --- |
+| `vira-observe` | Observe-only instrumentation: model/tool/action/feedback events and scoped ingestion |
+| `vira-runtime-verification` | Actual post-model verifier checks, failure handling and output-bound receipts |
+| `vira-traces` | TaskRun/child authority, verification receipt and outcome lineage diagnostics |
 | `vira-get-started` | Inspect a project and choose the supported integration path |
 | `vira-npm-cli` | Install/upgrade npm SDK and MCP package safely |
 | `vira-integrate-app` | Select the appropriate documented integration surface |
@@ -55,7 +58,15 @@ npx skills add hrpering/tryvira --skill vira-task-runs
 
 Shared sources: [capability matrix](../references/capability-matrix.md), [authority and safety](../references/authority-and-safety.md), [coverage and validation report](../docs/agent-skills/validation-status.md), [maintenance process](../docs/agent-skills/maintenance.md). These skills distinguish SDK, Python, HTTP, MCP, and Studio capability. MCP tools must be discovered at runtime; SDK operations are not automatically MCP tools.
 
-For the complete customer journey, use `vira-full-lifecycle` with `vira-observe-teach`. The [Teach guide](../docs/teach.md) and [Marketing Agent tutorial](../tutorials/marketing-agent/README.md) walk through a real configured service, from permitted evidence and behavior review through runtime use and the next learning cycle. Each Skill folder includes a task-specific example or guide; the [coverage report](../docs/agent-skills/skill-status.md) distinguishes runnable examples from workflow guidance and unavailable product access.
+For the complete customer journey, use `vira-full-lifecycle` with `vira-observe`, `vira-signals`, `vira-runtime-verification`, `vira-traces` and `vira-observe-teach` as needed. The [Teach guide](../docs/teach.md) and [Marketing Agent tutorial](../tutorials/marketing-agent/README.md) walk through a real configured service, from permitted evidence and behavior review through runtime use and the next learning cycle. Each Skill folder includes a task-specific example or guide; the [coverage report](../docs/agent-skills/skill-status.md) distinguishes runnable examples from workflow guidance and unavailable product access.
+
+## One canonical user-facing execution path
+
+**AUTO TaskRun → semantic resolve → eligible mode dispatch → real child executor → runtime enforcement → provider/chatbot → post-model verification → receipt.**
+
+`vira-task-runs` covers both published JavaScript and Python SDKs. `vira-runtime-verification` covers actual checks and the known missing final-answer readback contract. `vira-observe` collects real events separately; `vira-signals` gives typed versioned evidence a governed mapping; `vira-traces` inspects real receipts. Do not use `resolveRuntime` or `behavior-projection` as an alternative ordinary chatbot path.
+
+[Audit of all 24 original Skills and the 3 added specialists](../docs/agent-skills/production-contract-audit.md) · [Current production contracts](../docs/agent-skills/production-contract-baseline.md) · [Three graded Pack examples](../examples/packs/README.md).
 
 ## Runnable operation examples
 
@@ -63,8 +74,10 @@ For the complete customer journey, use `vira-full-lifecycle` with `vira-observe-
 - `vira-observe-teach/examples/` includes asynchronous Teach analysis creation/readback. Live writes require explicit non-production and mutation flags.
 - `vira-chatbot/examples/` explains how to run the real local chatbot in OFF mode and, with the user's own access, ON mode.
 
-Both examples require an operator-provided `VIRA_API_URL` and server-side credential, and call the configured Vira API through the published SDK. Never put credentials in prompts, source control, or logs. A run reports only the server state it reads; queued work is not a completed result.
+The two runnable mutation runner examples require an operator-provided `VIRA_API_URL` and server-side credential, and call the configured Vira API through the published SDK. Never put credentials in prompts, source control, or logs. A run reports only the server state it reads; queued work is not a completed result.
+
+The TaskRun Skill has [actual JS](../examples/javascript/taskrun-modes.mjs) and [actual Python](../examples/python/taskrun_modes.py) route-first examples; both require an authorized non-production account for admission. The public Next.js ON demo shows TaskRun status and **does not** claim a verified final provider output.
 
 ## Validation state
 
-Package selected skills as Anthropic-compatible `.skill` ZIP files with `python3 scripts/package_agent_skills.py vira-js-sdk` (archives are written to ignored `dist/skills/`). Export Anthropic `run_eval.py`-compatible binary trigger cases with `python3 scripts/export_skill_trigger_eval.py vira-js-sdk --out /tmp/vira-js-sdk-evals.json --ambiguous-out /tmp/vira-js-sdk-ambiguous.json`. Run the upstream evaluator only when Claude Code CLI is installed and configured. Run `python3 scripts/validate_agent_skills.py` and `python3 -m unittest discover -s skills/evals -v` from the repository root. The trigger dataset contains positive, negative, and ambiguous prompts for each Skill; `skills/evals/workflow-scenarios.jsonl` adds synthetic lifecycle execution cases with expected and forbidden behaviors. Offline checks do not prove model-trigger quality, live API behavior, package publication, or Studio access. Official OpenAI and Anthropic structural validators were run for an earlier version of the library, not this 24-Skill revision. No external model evaluation or live Vira service call is claimed. The Skills are not listed in the skills.sh directory, and no separate `.skill` archive release is claimed.
+Package selected skills as Anthropic-compatible `.skill` ZIP files with `python3 scripts/package_agent_skills.py vira-js-sdk` (archives are written to ignored `dist/skills/`). Export Anthropic `run_eval.py`-compatible binary trigger cases with `python3 scripts/export_skill_trigger_eval.py vira-js-sdk --out /tmp/vira-js-sdk-evals.json --ambiguous-out /tmp/vira-js-sdk-ambiguous.json`. Run the upstream evaluator only when Claude Code CLI is installed and configured. Run `python3 scripts/validate_agent_skills.py` and `python3 -m unittest discover -s skills/evals -v` from the repository root. The trigger dataset contains positive, negative, and ambiguous prompts for each Skill; `skills/evals/workflow-scenarios.jsonl` adds synthetic lifecycle execution cases with expected and forbidden behaviors. Offline checks do not prove model-trigger quality, live API behavior, package publication, or Studio access. Official OpenAI and Anthropic structural validators were run for an earlier version of the library, not this 27-Skill revision. No external model evaluation or live Vira service call is claimed. The Skills are not listed in the skills.sh directory, and no separate `.skill` archive release is claimed.

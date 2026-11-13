@@ -1,4 +1,4 @@
 interface:
   display_name: "Vira MCP"
-  short_description: "Vira Mcp tasks and workflow guidance"
-  default_prompt: "Use $vira-mcp to complete this documented Vira mcp workflow."
+  short_description: "Configure Vira MCP and discover real tools"
+  default_prompt: "Use $vira-mcp to configure the published MCP server, initialize and run tools/list, respect discovered tools and explain unsupported TaskRun/Pack operations."

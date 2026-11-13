@@ -17,9 +17,18 @@ Request the agent's real task, allowed outcomes, hard constraints, examples of c
 ## Workflow
 1. Define the Semantic Task as the intent/context boundary and write examples that distinguish neighboring intents.
 2. Define the Behavior Point as an independently testable control with positive behavior, prohibited behavior, and measurable checks; it is more than a prompt string.
-3. Add a Program only to compose compatible points; add a Strategy only when documented selection/variant/condition logic is needed.
+3. Add a Program with executable guard/judgment/transform/verification/escalation modules; add a Strategy only for a bounded step graph.
 4. Validate schema and identity relationships using public authoring docs; simulate only through a documented operation.
 5. Produce a reviewable candidate and tests; do not activate or release it as a side effect of authoring.
+
+## Production-aligned implementation playbook
+
+1. **Semantic Task:** specific intent, stable lowercase key, positive examples and negative neighboring requests. **Behavior Point:** where the task's requirements attach, useful result and safe failure.
+2. **Behavior Program:** executable guard, judgment, transform, verification and escalation modules plus rubrics/examples. It does not merely compose Behavior Points. Use unique lowercase stableKeys and stage `pre_model`, `pre_tool`, `post_model`, `pre_action` as appropriate.
+3. A verifier with only `requirement:"be accurate"` is *not executable* under the default deterministic verifier. Add `checks` using `verifier:output.non_empty`, `required:`, `forbidden:`, constrained `json:`, or an explicitly configured `judge:` extension.
+4. Add a typed Strategy graph only if ordered multi-step execution genuinely matters. Compounding multiple tasks belongs to AUTO TaskRun's COMPOUND mode, not to a long system prompt.
+5. Negatives: absent source measurements, wrong-scope Signal, unconfigured judge or unreleased Program must not result in a fake PASS.
+[Pack Academy](https://github.com/hrpering/tryvira/blob/main/docs/pack-authoring-guide.md) · [Verifier](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md).
 
 ## Deliverable and failure handling
 Return canonical object drafts, rationale, positive/negative cases, validation results, and open policy questions. Stop if requirements are vague or conflict; do not invent user policy or authority.
