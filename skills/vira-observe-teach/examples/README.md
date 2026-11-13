@@ -38,3 +38,13 @@ node skills/vira-observe-teach/examples/run-teach-analysis.mjs read
 ```
 
 No second analysis is created by `read`. Inspect the returned `teachRunId` before using the published behavior-set or recommendation read methods. Acceptance, rejection, edits, proposal promotion, and release remain separate decisions.
+
+## Observe, Signal and Teach must be different stages
+
+- **Observe first:** a connected application can admit consented model/tool/feedback/outcome events, with real eventId and scope. A 202 observation means accepted for ingestion, not a discovered Signal or completed Teach run.
+- **Signal when needed:** a versioned typed Signal needs approved source mapping and runtime attestation; an inferred Signal name alone cannot change behavior.
+- **Teach:** this runner starts analysis on **already admitted, consented evidence IDs** and reads its persisted asynchronous state. It does not accept recommendations, approve revisions or release.
+- **After review/release:** use **AUTO TaskRun** for the application request and require actual provider-output and post-model receipt evidence before claiming verified output.
+- **Negative:** wrong-tenant evidence, unbound behavior target, missing consent, incomplete analysis or an absent verifier must stop. Never auto-release a proposal.
+
+[Observe](https://github.com/hrpering/tryvira/blob/main/docs/observe.md) · [Signals](https://github.com/hrpering/tryvira/blob/main/docs/signals.md) · [Runtime verification](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md)
