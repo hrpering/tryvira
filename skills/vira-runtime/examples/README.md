@@ -1,16 +1,25 @@
-# Customer example: Compare a chatbot request with Vira OFF and ON
+# Explain a governed runtime request without bypasses
 
-## Scenario
+## User prompts to test the Skill
 
-Use the customer-run Next.js/OpenAI Agents example. OFF skips Vira when observation is disabled; ON resolves runtime first and stops before the model unless an active projection is returned.
+**Short:** > Why did this AUTO TaskRun finish its child but not return a verified AI response?
 
-## Reference
+**Detailed:** > Inspect selected canonical task, release/artifact digest, child execution, host capability and actual pre/post module check outcomes. Separate a real provider output from the child status.
 
-- Workflow guide: [README.md](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/README.md)
-- Customer artifact or runnable code: [route.ts](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/app/api/support/route.ts)
+## How to carry out the task
 
-## Run and verify
+Follow [runtime verification](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md) with [TaskRun state](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) and the current Next.js ON handler. Direct projection may be used only for a clearly labeled low-level diagnostic.
 
-Run locally with an OpenAI key. Vira ON additionally needs the customer’s configured endpoint, scope, Behavior Point, and eligible released behavior.
+This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+## Evidence to return
+
+Truth table: TaskRun status, child receipts, verifier availability and output digest/receipt. If final provider handoff absent, label 'not verified'.
+
+## Required negative test
+
+A projection with text is not permission to act; no fake PASS if a judge, tool gate, Signal attestation or provider output is missing.
+
+## Handoff
+
+Consult [the Skill's specific production-aligned procedure](https://github.com/hrpering/tryvira/blob/main/skills/vira-runtime/SKILL.md), [full product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md) and [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) before calling an unverified operation. Do not infer support across SDK, HTTP, MCP or Studio.

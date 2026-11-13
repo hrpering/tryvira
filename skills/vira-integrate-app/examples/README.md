@@ -1,16 +1,25 @@
-# Customer example: Connect an existing support application
+# Connect a Next.js app at the real provider boundary
 
-## Scenario
+## User prompts to test the Skill
 
-Choose a customer integration example that matches the existing framework, preserve its server-side secret handling, and verify the integration against the customer deployment.
+**Short:** > Add Vira ON/OFF to our existing web agent without duplicating the agent or inventing a new tool gateway.
 
-## Reference
+**Detailed:** > Inspect the server route and separate OFF provider call from ON `startTaskRun({requestedMode:'AUTO'})`. Use real connectionId and host attestation, then read back state with `getTaskRun`.
 
-- Workflow guide: [integration-patterns.md](https://github.com/hrpering/tryvira/blob/main/docs/integration-patterns.md)
-- Customer artifact or runnable code: [README.md](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/README.md)
+## How to carry out the task
 
-## Run and verify
+Follow [Next.js canonical integration](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/node-next/README.md). Its ON mode returns pending/state, not a final answer, until a verified output contract is supported.
 
-Use the Next.js chatbot, FastAPI service, LangGraph graph, or MCP client only when that surface is supported by the account.
+This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+## Evidence to return
+
+OFF baseline response (if model key configured); ON actual TaskRun selected mode/status and absent final provider output stated explicitly.
+
+## Required negative test
+
+Missing released behavior, wrong scope, unavailable verifier or denied external action: stop without OFF fallback or invented verified answer.
+
+## Handoff
+
+Consult [the Skill's specific production-aligned procedure](https://github.com/hrpering/tryvira/blob/main/skills/vira-integrate-app/SKILL.md), [full product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md) and [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) before calling an unverified operation. Do not infer support across SDK, HTTP, MCP or Studio.

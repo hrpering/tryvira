@@ -1,16 +1,25 @@
-# Customer example: Add Vira to a Node.js assistant
+# Route AUTO with the real published JavaScript client
 
-## Scenario
+## User prompts to test the Skill
 
-Connect the existing assistant, record a minimized synthetic observation, and verify a governed runtime result before handing control to the model.
+**Short:** > Route this support request and show the server-selected mode; do not run actions or claim a model answer.
 
-## Reference
+**Detailed:** > Use the published `ViraClient`; `resolveTaskRun({input,requestedMode:'AUTO',connectionId})` is proposal-only. For authorized admission pass explicit `taskRunId`, `requestId`, `input`, `requestedMode:'AUTO'`, connectionId and bounded budget to `startTaskRun`.
 
-- Workflow guide: [README.md](https://github.com/hrpering/tryvira/blob/main/examples/javascript/README.md)
-- Customer artifact or runnable code: [connect-observe.mjs](https://github.com/hrpering/tryvira/blob/main/examples/javascript/connect-observe.mjs)
+## How to carry out the task
 
-## Run and verify
+From a configured `examples/javascript` directory: `node taskrun-modes.mjs --help`, then `VIRA_TASKRUN_INPUT='Summarize this incident' node taskrun-modes.mjs AUTO`. Admission is separately gated and non-production.
 
-From examples/javascript, install dependencies and run the selected script with the customer’s isolated endpoint and server-side credentials.
+This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+## Evidence to return
+
+Actual route/status and IDs from server; no fabricated provider answer. For observations use [connect-observe.mjs](https://github.com/hrpering/tryvira/blob/main/examples/javascript/connect-observe.mjs).
+
+## Required negative test
+
+`startTaskRunFromPrompt` cannot forward requestedMode. A route proposal, COMPLETED run or direct projection is not proof of verified output.
+
+## Handoff
+
+Consult [the Skill's specific production-aligned procedure](https://github.com/hrpering/tryvira/blob/main/skills/vira-js-sdk/SKILL.md), [full product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md) and [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) before calling an unverified operation. Do not infer support across SDK, HTTP, MCP or Studio.

@@ -1,16 +1,25 @@
-# Customer example: Configure an MCP host and discover available tools
+# Discover which Vira MCP tools are actually available
 
-## Scenario
+## User prompts to test the Skill
 
-Start the published MCP client, initialize the connection, list the server’s live tools, then select only a tool that the account exposes.
+**Short:** > Set up @tryvira/mcp and check whether we can start AUTO TaskRuns and import Packs via MCP.
 
-## Reference
+**Detailed:** > Inspect installed MCP version/config and secret-backed host environment. Initialize the server and call `tools/list`; match only advertised names/schemas.
 
-- Workflow guide: [README.md](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/mcp-client/README.md)
-- Customer artifact or runnable code: [client.mjs](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/mcp-client/client.mjs)
+## How to carry out the task
 
-## Run and verify
+Use [the runnable MCP client example](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/mcp-client/README.md). For TaskRun or Pack lifecycle absent from the published MCP tools, choose a separate documented JS/Python SDK application path.
 
-Run the example from its folder with the customer server endpoint and credentials; tool availability is taken from tools/list.
+This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 
-This example uses the customer’s own configured Vira deployment when it is executable. It does not include a mock Vira server, shared credentials, customer records, or private production data. Where the public contract or account capability is not available, the example is a review procedure and explicitly says where execution must stop.
+## Evidence to return
+
+MCP initialize and tools/list result, installed version and explicitly unsupported requested tool operations.
+
+## Required negative test
+
+Never invent `start_task_run`, `import_pack` or `release_pack` as MCP tools, or let read-only tool discovery grant external-action permission.
+
+## Handoff
+
+Consult [the Skill's specific production-aligned procedure](https://github.com/hrpering/tryvira/blob/main/skills/vira-mcp/SKILL.md), [full product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md) and [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) before calling an unverified operation. Do not infer support across SDK, HTTP, MCP or Studio.
