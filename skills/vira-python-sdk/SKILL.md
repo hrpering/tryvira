@@ -26,7 +26,7 @@ Inspect Python version, active virtual environment, dependency manager/lockfile,
 ## Production-aligned implementation playbook
 
 1. Use the installed `tryvira-sdk` client with trusted server-side API root/secret. Python `resolve_task_run({"input": text,"requestedMode":"AUTO","connectionId":connection_id})` is proposal-only; `start_task_run({"taskRunId": run_id,"requestId": request_id,"input": text,"requestedMode":"AUTO","connectionId":connection_id}, idempotency_key=key)` is admission.
-2. Inspect `get_task_run`, `list_task_run_events` and stateVersion before continuing/retrying/cancelling. The `start_task_run_from_prompt` convenience helper does **not** forward `requestedMode`.
+2. Inspect `get_task_run`, `list_task_run_events` and stateVersion before continuing/retrying/cancelling. The `start_task_run_from_prompt` convenience helper does not forward `requestedMode`.
 3. Python `observe` requires `organizationId`, `projectId`, `environmentId`, `eventId`, `eventType`, `aiSystemId`, `connectionId` in the event payload.
 4. Pack lifecycle uses `import_pack(manifest,objects)`, `install_pack(pack_id,variables)`, `evaluate_pack(pack_id,{"evaluationId":real_id})`. No synthetic PASS scores.
 5. `serve_behavior_projection` stays **advanced diagnostic API**. Do not generate an ON provider answer from it or report verified output without a receipt.
