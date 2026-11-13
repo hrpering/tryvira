@@ -34,10 +34,11 @@ def read_jsonl(path: Path) -> list[dict]:
 
 def validate_dataset(data: list[dict]) -> list[dict]:
     names = {p.parent.name for p in SKILLS.glob("vira-*/SKILL.md")}
-    if len(data) != 3 * len(names):
-        raise ValueError(f"Expected 3 cases for each of {len(names)} skills, found {len(data)}")
+    if len(data) < 3 * len(names):
+        raise ValueError(f"Expected at least 3 cases for each of {len(names)} skills, found {len(data)}")
     buckets: dict[str, set[str]] = defaultdict(set)
     cases = []
+    counters = Counter()
     for row in data:
         if row.get("skill") not in names or row.get("kind") not in {"positive", "negative", "ambiguous"}:
             raise ValueError("Invalid corpus target/kind")
@@ -45,7 +46,8 @@ def validate_dataset(data: list[dict]) -> list[dict]:
         if row.get("should_trigger", object()) is not expected or not row.get("prompt", "").strip():
             raise ValueError("Invalid corpus prompt or label")
         buckets[row["skill"]].add(row["kind"])
-        cases.append({**row, "caseId": f"{row['skill']}::{row['kind']}"})
+        counters[(row["skill"], row["kind"])] += 1
+        cases.append({**row, "caseId": f"{row['skill']}::{row['kind']}::{counters[(row['skill'],row['kind'])]}"})
     if any(buckets[name] != {"positive", "negative", "ambiguous"} for name in names):
         raise ValueError("A Skill is missing one or more intent classes")
     return cases
