@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira traces"
+  short_description: "Inspect Vira execution traces and evidence links"
+  default_prompt: "Use $vira-traces to inspect scoped TaskRun child receipts, authority/release digests, post-model verification results and observation/outcome correlation. Identify the earliest missing evidence, without inventing a verified answer."
