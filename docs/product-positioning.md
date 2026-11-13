@@ -43,6 +43,6 @@ These are distinctions of product focus, not claims that other tools lack overla
 
 ## Constraints and current status
 
-Vira is in active development and service access is not generally open. Client and Studio capabilities may differ, and no integration can govern model/tool paths it is not placed on. Model adherence is not guaranteed. Evidence collection and release require permission in the customer's scope.
+Vira is under active development; product access is not open yet. Client and Studio capabilities may differ, and no integration can govern model/tool paths it is not placed on. If a code path invokes a tool without consulting the configured Vira boundary, Vira cannot intercept it. Model adherence is not guaranteed. Results are limited to the tested artifact, dataset, criteria, and environment. Evidence collection and release require permission in the customer's scope.
 
 [What is Vira?](what-is-vira.md) · [For teams](for-teams.md) · [Capabilities](capability-map.md) · [Developer guide](developer-guide.md)
