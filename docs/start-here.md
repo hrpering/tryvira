@@ -8,6 +8,12 @@ Start with [ordinary recipes, support and writing cases](use-cases.md) before tr
 
 [What differs from a Skill or an agent?](approach-comparison.md) · [Five mode choices](execution-modes.md)
 
+## How the feature families fit together
+
+For a real account, start by instrumenting an agent with [Observe](observe.md). Use [Signals](signals.md) to review and map the typed evidence you actually need; [Teach](teach.md) can propose corrections. Then move through [Pack authoring](pack-authoring-guide.md), [evaluation/release](evaluation-and-approval.md) and [AUTO TaskRun](canonical-taskrun.md). [Runtime verification](runtime-verification.md) explains which real output checks and receipts are needed before describing a response as verified.
+
+The [full feature map](product-feature-map.md) covers the rest of Vira, including Studio/Admin, billing, privacy, observability, optimization, tools and experimental infrastructure. [Product-status boundaries](product-status.md) prevent mistaking an internal design for a public feature.
+
 ## Path A: Explore today without Vira access
 
 The [Next.js + OpenAI Agents example](../examples/frameworks/node-next/README.md) has a functioning **Vira OFF** mode that uses your own OpenAI API key. Its ON path submits a scoped AUTO TaskRun and displays real admission/state; it cannot claim a final verified chatbot response until the provider/post-model verification retrieval contract exists. [Canonical path](canonical-taskrun.md).

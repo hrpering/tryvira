@@ -16,6 +16,12 @@ Teams routinely discover that an AI application responds inconsistently, compare
 
 Vira proposes a common lifecycle for those changes: declared requirements, task and application attachment, evaluation evidence, explicit authority/release, runtime resolution and traceability.
 
+## The whole promise, beyond prompting and release
+
+**Observation before policy:** See real model, tool and action events. **Signals before conclusions:** use typed, reviewed and source-bound context instead of invented facts. **Teach before change:** turn consented feedback and outcomes into reviewable revisions. **AUTO execution before claims:** select eligible tasks and actually execute children. **Verification before delivery:** check configured post-model conditions with matching receipts. A missing verifier is not a success.
+
+[Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md) · [All product areas](product-feature-map.md) · [Product maturity](product-status.md)
+
 ## Four practical ideas
 
 **1. A definition separate from the prompt.** Name the task and the point where a behavior belongs. Express requirements separately from the implementation path. The result can be reviewed and versioned instead of buried in a system-prompt paragraph.

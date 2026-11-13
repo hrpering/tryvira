@@ -14,6 +14,12 @@ Vira exposes related product workflows through the JavaScript SDK, Python SDK, H
 
 Do not treat this table as an authorization rule. Check the installed package version and public reference, the connected MCP server's `tools/list`, and the capabilities available to the customer's scope before selecting an operation.
 
+## Full capability coverage and truthful availability
+
+The compact interface table above is **not** the full product inventory. [Full product feature map](product-feature-map.md) covers 16 product families, including Observe, Signals, Teach, runtime verification, quality/optimization, memory/knowledge, scoped security, billing, telemetry, Studio/Admin and experimental model/GPU work. [Evidence level and availability](product-status.md) distinguishes backend code, tests, live customer-scope acceptance and incomplete provider-verifier handoffs.
+
+**Signals are not a synonym for observations; artifact verification, candidate evaluation and runtime post-model verification are separate gates.** [Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md).
+
 ## TaskRun mode selection
 
 The SDK's requested modes are **SINGLE**, **STRATEGY**, **COMPOUND**, **HYBRID**, plus **AUTO** for routing. AUTO is not another execution mode. COMPOUND requires multiple registered, eligible tasks; STRATEGY requires an eligible released Strategy and a capable host; HYBRID combines child modes. A route may clarify, abstain, deny or report an unsupported host.

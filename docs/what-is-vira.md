@@ -14,6 +14,12 @@ Vira's goal is to make those expectations **explicit operational assets**, with 
 
 | Concept | Plain-English question it answers |
 | --- | --- |
+| **Observe** | What actually happened at a connected model/tool/action boundary? |
+| **Signal** | Which typed, versioned context can be trusted after evidence and mapping review? |
+| **Runtime verification** | Which requirements were truly checked on the actual output and did they pass? |
+| **Response Quality & Decision** | Which bounded response candidate is acceptable, or should the system abstain? |
+| **Host capabilities** | Can this connected application enforce the relevant boundary? |
+| **Outcome** | What later business/application result can be credibly correlated to a run? |
 | **Semantic Task** | What kind of work is this request? |
 | **Behavior Point** | Where in the application can governed behavior apply? |
 | **Behavior Program** | Which rules, judgments, transforms, checks or escalation behavior are intended? |
@@ -23,6 +29,8 @@ Vira's goal is to make those expectations **explicit operational assets**, with 
 | **Runtime resolution** | What eligible behavior can this request use now? |
 | **Trace / receipt** | What did this supported operation actually return or select? |
 | **Teach** | What reviewable improvement might permitted usage evidence support? |
+
+[Full product feature map](product-feature-map.md) · [Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md)
 
 [Full glossary](core-concepts.md) · [Behavior Points](behavior-points.md) · [Programs](behavior-programs.md)
 
@@ -44,7 +52,7 @@ Direct projection is for diagnostic SDK work, not a competing chatbot entry poin
 
 ![Vira request path illustration](../assets/vira-request-path.svg)
 
-**Improving behavior:** collect permitted evidence, propose a revision, evaluate it, obtain the required review and release decisions, and inspect future runtime outcomes.
+**Improving behavior:** Observe events, approve typed Signal source mappings where needed, collect permitted feedback and outcomes, propose a revision, evaluate it, obtain the required review and release decisions, and inspect future runtime outcomes.
 
 ![Vira behavior lifecycle illustration](../assets/vira-overview.svg)
 
