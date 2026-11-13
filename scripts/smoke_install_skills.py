@@ -7,6 +7,8 @@ automatic Skill selection or live provider execution.
 import argparse
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import subprocess
+import sys
 from zipfile import ZipFile
 
 TARGETS = { "codex": ".codex/skills", "claude": ".claude/skills", "cursor": ".cursor/skills" }
@@ -36,7 +38,22 @@ def main():
                         raise SystemExit(f"INSTALL_MISSING:{target}:{archive.stem}:{rel}")
                 if not any((skill/"references/repo").rglob("*")):
                     raise SystemExit(f"INSTALL_REFERENCES_MISSING:{target}:{archive.stem}")
-            print(f"SKILL_INSTALL_LAYOUT_PASS {target} {len(archives)} archives")
+            builder = destination/"vira-build-pack"/"references"/"repo"/"scripts"/"package-example-packs.py"
+            if not builder.is_file():
+                raise SystemExit(f"STANDALONE_PACK_BUILDER_MISSING:{target}")
+            result = subprocess.run(
+                [sys.executable,str(builder),"--check"],
+                cwd=builder.parent.parent,capture_output=True,text=True
+            )
+            if result.returncode:
+                raise SystemExit(f"STANDALONE_PACK_BUILDER_FAILED:{target}: {result.stderr[-800:]}")
+            sample = destination/"vira-chatbot"/"references"/"repo"/"examples"/"frameworks"/"node-next"
+            if not (sample/"package-lock.json").is_file():
+                raise SystemExit(f"STANDALONE_NEXTJS_LOCK_MISSING:{target}")
+            observe_helper = destination/"vira-chatbot"/"references"/"repo"/"skills"/"vira-observe"/"examples"/"event-contract.mjs"
+            if not observe_helper.is_file():
+                raise SystemExit(f"STANDALONE_NEXTJS_OBSERVE_HELPER_MISSING:{target}")
+            print(f"SKILL_INSTALL_LAYOUT_PASS {target} {len(archives)} archives; Pack ZIP builder PASS")
     print(f"SKILL_INSTALL_LAYOUTS_PASS {len(archives)} x {len(TARGETS)} (NO AGENT INVOCATION)")
     return 0
 
