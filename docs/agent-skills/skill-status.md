@@ -1,10 +1,10 @@
 # Agent Skill coverage and validation status
 
-This page shows the customer task covered by each of the 24 public Skills and the shared example that helps a user try it. Repository checks verify structure and selected behaviors; they do not prove every Skill completed a live customer workflow.
+This page shows the customer task covered by each of the 27 public Skills and the shared example that helps a user try it. Repository checks verify structure and selected behaviors; they do not prove every Skill completed a live customer workflow.
 
 ## Shared evidence and limits
 
-- The repository validator checks the structure and packaging of all 24 Skills. Trigger data contains positive, negative, and ambiguous prompts for every Skill.
+- The repository validator checks the structure and packaging of all 27 Skills. Trigger data contains positive, negative, and ambiguous prompts for every Skill.
 - The 30 workflow scenarios are synthetic evaluation inputs. They are not model runs or proof of successful task completion.
 - CI validates repository files, packages representative Skills, and builds or checks the customer examples. A successful build is not a live Vira result.
 - Vira, provider, MCP, and Studio live use has not been performed in this review. Product access is not open yet.
@@ -16,11 +16,14 @@ This page shows the customer task covered by each of the 24 public Skills and th
 
 | Skill | Customer task | Shared example or guide | Repository evidence | Live |
 | --- | --- | --- | --- | --- |
+| `vira-observe` | Capture permitted model/tool/action/feedback events | JS/Python connect-observe examples | Dedicated Skill procedure and event negative tests | Not run |
+| `vira-runtime-verification` | Check real post-model modules and output-bound receipts | Runtime verification guide | Verifier and fail-closed negative tests | Not run |
+| `vira-traces` | Inspect TaskRun child and authority lineage | TaskRun readback guides | Receipt correlation and partial-run scenarios | Not run |
 | `vira-get-started` | Choose an integration path | Quickstart and framework guide | Structure and trigger checks | Not run |
 | `vira-npm-cli` | Install or update npm clients | Published package guide | Registry check | Not run |
 | `vira-integrate-app` | Connect an existing application | Framework examples | Structure and trigger checks | Not run |
 | `vira-js-sdk` | Integrate a JavaScript application | JavaScript and Next.js examples | SDK and example checks | Not run |
-| `vira-task-runs` | Use a supported TaskRun workflow | Installed public package documentation | Structure and trigger checks; no dedicated runner | Not run |
+| `vira-task-runs` | Use a supported TaskRun workflow | Installed public package documentation | Dedicated JS and Python route-first runners; no live tenant | Not run |
 | `vira-python-sdk` | Integrate a Python application | FastAPI and LangGraph examples | Package and syntax checks | Not run |
 | `vira-mcp` | Configure an MCP host and inspect available tools | MCP client example | Catalog and example checks | Not run |
 | `vira-http-api` | Use a documented HTTP surface | HTTP integration guidance | Shared repository checks; no route-specific runner | Not run |
