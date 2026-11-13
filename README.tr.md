@@ -20,6 +20,12 @@ Vira davranışı bir prompt parçası olmaktan çıkarıp gözden geçirilebile
 
 **Örnek:** Bir retail-media asistanı iki kampanyanın ROAS değerini karşılaştırırken farklı attribution window veya satış kapsamlarını aynı kabul etmemeli. Vira'da bu kontrol, göreve ait açık bir davranış olarak tanımlanıp değerlendirilebilir. Bu bir ürün senaryosudur; kanıtlanmış bir performans artışı iddiası değildir.
 
+## Tek canonical çalışma yolu
+
+**AUTO TaskRun → semantic resolve → mod seçimi → gerçek child executor → runtime enforcement → provider/chatbot → post-model verification/receipt.** Kullanıcı her istekte SINGLE/STRATEGY/COMPOUND/HYBRID seçmez. `behavior-projection` yalnızca ileri seviye SDK/diagnostic kullanımda kalır. Public API henüz doğrulanmış son chatbot yanıtının tamamını kanıtlamadığından ON örneği sahte yanıt üretmez.
+
+[Teknik akış (EN)](docs/canonical-taskrun.md) · [Marka konumlandırması (EN)](docs/brand-positioning.md) · [Üç ayrıntılı Pack (EN)](examples/packs/README.md) · [Pack alanları nasıl doldurulur? (EN)](docs/pack-authoring-guide.md)
+
 ## Tek örnek değil, farklı seviyelerde kullanım
 
 | Seviye | Örnek | Davranış gereksinimi |
