@@ -40,6 +40,7 @@ jobs:
         run: |
           npm run package:skills -- --out /tmp/tryvira-skill-packages
           python3 scripts/verify_portable_skills.py /tmp/tryvira-skill-packages --expected 27
+          python3 scripts/smoke_install_skills.py /tmp/tryvira-skill-packages --expected 27
 
       - name: Verify framework examples (JavaScript)
         run: |
