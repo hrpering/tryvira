@@ -1,6 +1,6 @@
 # Runnable framework integration examples
 
-The normal customer application path is **[AUTO TaskRun](../../docs/canonical-taskrun.md)**. The list below distinguishes canonical admission from **lower-level diagnostics**. A direct behavior projection is not a second supported production chatbot path. Each integration uses a published SDK or MCP server. Configure a real operator-provided API URL, scoped credentials, and any model-provider key in the host environment. Use an isolated non-production organization/project/environment. Do not commit secrets. Vira product access is still under active development and is not open yet; no live tenant was available to us for these checks.
+The normal customer application path is **[AUTO TaskRun](../../docs/canonical-taskrun.md)**. The list below distinguishes canonical admission from **lower-level diagnostics**. A direct behavior projection is not a second supported production chatbot path. Each integration uses a published SDK or MCP server. Examples use **real configured** services when authorized, never a fabricated production backend. Configure a real operator-provided API URL, scoped credentials, and any model-provider key in the host environment. Use an isolated non-production organization/project/environment. Do not commit secrets. Vira product access is still under active development and is not open yet; no live tenant was available to us for these checks.
 
 | Example | Customer-run behavior | Start it |
 | --- | --- | --- |

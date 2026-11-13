@@ -143,6 +143,8 @@ node 10-review-teach-proposal.mjs promote
 
 ### Optional low-level SDK diagnostics (not the canonical ON flow)
 
+After the independent semantic-read exercise, the **legacy diagnostic command** `node 06-runtime-resolve.mjs` may be used in an authorized sandbox. It is intentionally absent from the canonical user-facing command sequence above. Do not treat its output as TaskRun/provider verification.
+
 The separate `06-runtime-resolve.mjs` and `07-quality-decision.mjs` scripts exist solely to inspect legacy low-level projection/response-quality APIs. They can be run **only** in an authorized isolated test environment, and their output must not be called an AUTO TaskRun success. They do not replace a post-model verifier receipt.
 
 The Pack release command must be run with `VIRA_TUTORIAL_APPROVE_RELEASE=true` only after the reviewer checks the exact Pack digest and evaluation status. The Teach review command requires `VIRA_TUTORIAL_APPROVE_TEACH_PROPOSAL=true`; promotion separately requires `VIRA_TUTORIAL_PROMOTE_TEACH_PROPOSAL=true`. Promotion is not release.
