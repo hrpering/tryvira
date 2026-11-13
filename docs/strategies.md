@@ -1,20 +1,36 @@
-# Behavior Strategies
+# Behavior Strategies and TaskRun execution
 
-The JavaScript and Python SDKs expose methods for creating, validating, simulating,
-activating, and executing Behavior Strategies. Their exact request and response
-contracts are documented in the [JavaScript SDK reference](reference/javascript-sdk.md),
-[Python SDK reference](reference/python-sdk.md), and [HTTP API reference](reference/api.md).
+A **Behavior Strategy** describes bounded, structured execution for a governed Behavior Point. It is not simply a longer prompt, and it is not the same as a multi-task COMPOUND run.
 
-MCP support is narrower and may change by package version. Check the generated
-[MCP tool catalog](reference/mcp-tools.md) and discover the installed server's tools
-at runtime. Do not assume that an SDK method is available through MCP.
+## Three different cases
 
-A Strategy is an optional way to configure how an application handles a task. Choose
-it only when the use case requires more than the simpler authoring options. Keep the
-intended behavior clear, use synthetic examples in public materials, and test the
-integration against the published package before relying on it.
+| Need | Concept |
+| --- | --- |
+| Apply one released behavior to one task | **SINGLE** |
+| Run ordered, verified steps for one task | **STRATEGY** |
+| Coordinate different registered tasks with independent authority | **COMPOUND**, or **HYBRID** if some child tasks use STRATEGY |
 
-Activation, evaluation, release, and runtime access are separate operations. Follow
-the relevant public API contract and the permissions configured for your account.
+**AUTO** requests a mode proposal from eligible registered tasks. It does not create a Strategy or override release/permission checks. See the [mode guide](execution-modes.md).
 
-For basic Task and Behavior Point authoring, see [Canonical authoring](canonical-authoring.md).
+## Strategy lifecycle
+
+A Strategy is a versioned artifact. Where supported, it can be created, validated, structurally simulated, explicitly activated and used through a governed execution path. Activation is not equivalent to approval/release or universal runtime authorization.
+
+The JavaScript and Python clients document Strategy operations; installed versions may differ. Their exact request and response contracts must come from the [JavaScript client](reference/javascript-sdk.md), [Python client](reference/python-sdk.md) or a customer-provided, published HTTP reference. The published MCP tool catalog is narrower and does not imply Strategy execution.
+
+### Example concept: incident investigation
+
+```text
+input → collect permitted incident evidence
+      → check candidate causes against evidence
+      → human/host checkpoint if required
+      → report verified findings and unresolved questions
+```
+
+A waiting or denied step is a real state, not a success to skip. An external tool call still requires the host's own permissions. Do not start a Strategy against an unreleased identity or attempt continuation with invented authority digests.
+
+## Strategy vs TaskRun
+
+A Strategy is a governed **execution definition**. A TaskRun is a request to coordinate eligible task execution and retain its state/evidence. A TaskRun may use STRATEGY for one child and may mix STRATEGY with SINGLE children in HYBRID, if the actual server and host permit it.
+
+[TaskRun execution modes](execution-modes.md) · [Canonical authoring](canonical-authoring.md) · [Packs](packs.md) · [Runtime](runtime.md) · [Developer checklist](developer-checklist.md)

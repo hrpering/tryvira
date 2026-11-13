@@ -25,6 +25,14 @@ Use an isolated development scope when the customer's account provides one. Prod
 
 Python and JavaScript package capabilities may differ. Do not infer Python support from a JavaScript method or from MCP/HTTP naming. Consult the installed package and [capability map](../capability-map.md).
 
+## TaskRun in the published Python client
+
+The published Python client has `resolve_task_run`, `start_task_run`, `get_task_run`, `list_task_run_events`, `continue_task_run`, `retry_task_run` and `cancel_task_run`. Request mappings can select `SINGLE`, `STRATEGY`, `COMPOUND`, `HYBRID` or ask for `AUTO` routing. The prompt-only convenience helper `start_task_run_from_prompt` does not forward all mode-selection options on this client line; use `start_task_run` when requesting an explicit mode.
+
+For a real but route-only-by-default script, see [Python TaskRun modes](../../examples/python/taskrun_modes.py). The repository's [offline method-surface check](../../scripts/check-published-python-sdk.py) verifies the installed published Python package, not tenant eligibility or live runtime success.
+
+Do not invent a `stateVersion` for continuation. A routed task is not proof of an authorized or completed run. [Execution modes](../execution-modes.md) · [Developer checklist](../developer-checklist.md)
+
 ## Related resources
 
 - [Published package versions](../published-packages.md)
@@ -32,4 +40,6 @@ Python and JavaScript package capabilities may differ. Do not infer Python suppo
 - [MCP catalog](mcp-tools.md)
 - [HTTP integration guidance](api.md)
 - [Customer-runnable Python framework examples](../../examples/frameworks/README.md)
+- [Mode routing example](../../examples/python/taskrun_modes.py)
+- [Offline published Python interface verification](../../scripts/check-published-python-sdk.py)
 - [Agent Skills](../../skills/README.md)

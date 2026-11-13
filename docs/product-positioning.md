@@ -1,34 +1,48 @@
-# Vira: governed behavior for AI applications
+# Vira: operational control for AI behavior
 
-Vira is being built for teams that need to change how an AI application responds, decides, or uses tools without losing track of what changed and how that change was checked.
+## The one-sentence description
 
-Instead of treating every correction as a new prompt edit, Vira gives teams product concepts for describing behavior, evaluating revisions, making review and release decisions explicit, and connecting eligible behavior to supported runtime integrations. The goal is to make behavior changes easier to inspect and operate across an application's lifecycle.
+**Vira helps teams define, evaluate, release and inspect how existing AI applications and agents behave.**
 
-## What this helps a team do
+The product focuses on **behavior as a managed, reusable asset**, not on producing another prompt, running another agent, or storing conversations for their own sake.
 
-- **Describe expected behavior:** represent task-specific requirements as governed Vira resources rather than relying only on one long system prompt.
-- **Review changes before use:** test a candidate against declared cases, inspect its persisted evaluation, and keep approval and release as distinct decisions.
-- **Connect behavior to runtime:** use a supported SDK, HTTP, or other documented integration to resolve or execute behavior within the application's chosen boundary.
-- **Inspect what happened:** retain the identities, receipts, traces, or outcomes that the selected operation returns, then use permitted evidence to inform a later proposal.
+## The job Vira is built for
 
-These capabilities form related but separate steps. A semantic match does not grant authority. A Teach proposal does not approve itself. An evaluation is not a release, and a trace is evidence of a recorded operation rather than proof that the model was correct.
+Teams routinely discover that an AI application responds inconsistently, compares incompatible evidence, or takes an action without the expected review. Fixes get scattered among prompts, code, agent configuration and tests. A new model, teammate or workflow makes those fixes hard to track.
 
-## Example: a support action
+Vira proposes a common lifecycle for those changes: declared requirements, task and application attachment, evaluation evidence, explicit authority/release, runtime resolution and traceability.
 
-A support team may want high-impact refund requests to receive an additional review. It can express the expected behavior, evaluate a proposed change, and wire its refund action through an appropriate Vira-controlled decision boundary. The application must still implement the returned decision safely and enforce its own tool permissions. If a code path invokes the refund tool without consulting that boundary, Vira cannot intercept it.
+## Four practical ideas
 
-This is an integration pattern, not a claim that Vira independently controls every tool call or guarantees a particular business outcome.
+**1. A definition separate from the prompt.** Name the task and the point where a behavior belongs. Express requirements separately from the implementation path. The result can be reviewed and versioned instead of buried in a system-prompt paragraph.
 
-## What the product does not promise
+**2. Evaluate the exact proposed change.** Use representative positive and negative examples to examine a candidate before production. A passed evaluation is not a guarantee of future correctness.
 
-- No claim that Vira produces more accurate answers, lower costs, or fewer regressions without comparative evidence from a relevant environment.
-- No guarantee that behavior is identical across models or applications. The host application and model still affect results.
-- No universal enforcement of external actions. Enforcement depends on the application's integration and on routing the action through the configured control boundary.
-- No assumption that SDK, HTTP, MCP, and Studio expose identical operations. Check the [capability map](capability-map.md) and the selected surface's contract.
-- No inference that a passing evaluation proves all future behavior safe. Results are limited to the tested artifact, dataset, criteria, and environment.
+**3. A release is a decision.** Approvals and releases are explicit; a Teach proposal, semantic match or imported Pack cannot silently change runtime eligibility. Authority remains scoped.
 
-## Current availability
+**4. See what was selected.** Supported integrations return identities, receipts or traces that help an operator inspect which eligible behavior was resolved. A trace demonstrates the recorded operation, not that the model's final answer was right.
 
-Vira is under active development and product access is not open yet. The public repositories describe supported integration contracts and examples; live tenant behavior and Studio workflows should not be inferred from documentation alone. Visit [Vira Studio](https://studio.tryvira.xyz) for product updates.
+## Illustrative buyer scenario
 
-For implementation details, see [How Vira works](how-vira-works.md), the [capability map](capability-map.md), and [integration examples](../examples/README.md).
+A marketing analytics agent is asked to reallocate spend based on two dashboards. Their ROAS figures use different attribution rules. The team wants the agent to identify incompatibilities, avoid presenting estimates as actuals, and make a recommendation only with visible assumptions. Vira lets the team describe and evaluate that behavior within a governed release process.
+
+This is a **candidate use case**. Do not claim a quantified lift in response quality, cost reduction, latency or compliance unless a comparable evaluation establishes it.
+
+## Position relative to adjacent tools
+
+| Category | Main job | Where Vira fits |
+| --- | --- | --- |
+| Model or fine-tuning stack | Generate or adapt model outputs | Manage task-specific behavior around an existing model |
+| Agent framework | Orchestrate tools and steps | Define and resolve governed behavior at integration points |
+| Prompt management | Store and version prompt material | Govern a broader behavior lifecycle, including authority and runtime eligibility |
+| Observability / evaluation | Observe and assess behavior | Connect selected evidence and evaluation to explicit change/release decisions |
+| Memory | Recall previous context or preferences | Govern how an application should behave, not merely what it remembers |
+| Policy / guardrails | Restrict unsafe or disallowed outcomes | Integrate behavior selection and checks, without replacing host authorization |
+
+These are distinctions of product focus, not claims that other tools lack overlapping features.
+
+## Constraints and current status
+
+Vira is under active development; product access is not open yet. Client and Studio capabilities may differ, and no integration can govern model/tool paths it is not placed on. If a code path invokes a tool without consulting the configured Vira boundary, Vira cannot intercept it. Model adherence is not guaranteed. Results are limited to the tested artifact, dataset, criteria, and environment. Evidence collection and release require permission in the customer's scope.
+
+[What is Vira?](what-is-vira.md) · [For teams](for-teams.md) · [Capabilities](capability-map.md) · [Developer guide](developer-guide.md)

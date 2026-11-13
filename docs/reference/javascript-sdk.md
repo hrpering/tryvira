@@ -35,6 +35,16 @@ Use an isolated development scope when the customer's account provides one. Prod
 
 The JavaScript package currently documents capabilities beyond those documented by every other integration surface. Do not infer Python, HTTP, or MCP support from an SDK method. For TaskRun operations, follow the npm documentation and the [`vira-task-runs` Skill](../../skills/vira-task-runs/SKILL.md); this reference does not publish an HTTP route or payload contract.
 
+## TaskRun modes and version-matched examples
+
+The published `@tryvira/sdk` line exposes `resolveTaskRun` and `startTaskRun` for task routing/admission. The requested mode can be `SINGLE`, `STRATEGY`, `COMPOUND`, `HYBRID` or `AUTO`; AUTO asks for a mode recommendation instead of being an execution mode.
+
+The client also exposes `getTaskRun`, `listTaskRunEvents`, `continueTaskRun`, `retryTaskRun` and `cancelTaskRun`. For explicit mode selection use `startTaskRun` rather than assuming `startTaskRunFromPrompt` forwards a `requestedMode` option.
+
+Run the [route-only by default example](../../examples/javascript/taskrun-modes.mjs) after installing the pinned SDK and configuring a provisioned customer endpoint. The [Next.js test suite](../../examples/frameworks/node-next/test/taskrun-sdk.test.mjs) asserts exact method availability and request serialization against its pinned published npm dependency with an offline transport.
+
+**No test here claims live service execution.** Admission needs a real eligible released task, scope, policy and host support; persisted state is required for continuations. [Execution modes](../execution-modes.md) · [Developer checklist](../developer-checklist.md)
+
 ## Related resources
 
 - [Published package versions](../published-packages.md)

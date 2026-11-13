@@ -12,9 +12,11 @@ Package versions move independently. This guide maps product tasks to the Skill 
 | Evaluate a candidate | `vira-evaluate`, `vira-evaluate-release` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
 | Approve and release behavior | `vira-release` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
 | Apply and inspect runtime behavior | `vira-runtime`, `vira-debug` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
-| Orchestrate TaskRuns | `vira-task-runs` | Consult the installed npm package documentation | Verify support in the installed PyPI package; do not infer parity | No TaskRun tools listed in the current catalog |
+| Orchestrate TaskRuns | `vira-task-runs` | `resolveTaskRun` / `startTaskRun` / state reads; verify installed npm contract | `resolve_task_run` / `start_task_run` / state reads; verify installed PyPI contract | No TaskRun tools listed in the current catalog |
 | Integrate with an application framework | `vira-framework-integration` | See installed package documentation | See installed package documentation | See framework host requirements |
 
 The JavaScript SDK, Python package, MCP server, HTTP API, and Studio do not have identical coverage. Check the installed release and the selected customer's scope before using a capability. Do not infer HTTP or MCP support from an SDK or Python method name.
+
+[TaskRun execution modes](../execution-modes.md) include SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO routing; mode selection is not server authorization. [JS runner](../../examples/javascript/taskrun-modes.mjs) · [Python runner](../../examples/python/taskrun_modes.py).
 
 The exact method inventory is available in each published package's own documentation and declarations. This repository maps product tasks to Skills without republishing that low-level contract. The separate [MCP catalog](mcp-tools.md) describes public MCP tools and points integrations to live `tools/list` discovery.
