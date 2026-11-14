@@ -1,10 +1,10 @@
 # Python SDK
 
-**Current package:** [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) `0.1.44`
+**Current package:** [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) `0.1.46`
 
 **Runtime:** Python 3.10+
 
-**Install:** `python -m pip install tryvira-sdk==0.1.44`
+**Install:** `python -m pip install tryvira-sdk==0.1.46`
 
 The published PyPI package is the authoritative source for current method signatures and request/response types. This repository's public integration guidance intentionally avoids reproducing low-level operation schemas. Read the published package documentation for the version installed by your application.
 

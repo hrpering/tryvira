@@ -1,9 +1,9 @@
 {
   "npm": {
-    "@tryvira/sdk": "0.1.44",
-    "@tryvira/mcp": "0.1.44"
+    "@tryvira/sdk": "0.1.46",
+    "@tryvira/mcp": "0.1.46"
   },
   "pypi": {
-    "tryvira-sdk": "0.1.44"
+    "tryvira-sdk": "0.1.46"
   }
 }

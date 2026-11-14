@@ -4,9 +4,9 @@ Vira's public client packages use the `tryvira` package identity and point back 
 
 | Ecosystem | Package | Current package version | Runtime | License | Install |
 | --- | --- | ---: | --- | --- | --- |
-| npm | `@tryvira/sdk` | `0.1.44` | Node.js 20+ | MIT | `npm install @tryvira/sdk@0.1.44` |
-| npm | `@tryvira/mcp` | `0.1.44` | Node.js 20+ | MIT | `npx -y @tryvira/mcp@0.1.44` |
-| PyPI | `tryvira-sdk` | `0.1.44` | Python 3.10+ | MIT | `python -m pip install tryvira-sdk==0.1.44` |
+| npm | `@tryvira/sdk` | `0.1.46` | Node.js 20+ | MIT | `npm install @tryvira/sdk@0.1.46` |
+| npm | `@tryvira/mcp` | `0.1.46` | Node.js 20+ | MIT | `npx -y @tryvira/mcp@0.1.46` |
+| PyPI | `tryvira-sdk` | `0.1.46` | Python 3.10+ | MIT | `python -m pip install tryvira-sdk==0.1.46` |
 
 Package pages:
 
@@ -20,7 +20,7 @@ Repository / documentation:
 
 ## Current published client surfaces
 
-Package versions in the table are refreshed from npm/PyPI registry metadata by the repository sync workflow. Their available operations differ. Use each surface's reference and discover MCP tools at runtime.
+These versions reflect the current npm/PyPI registry releases. Framework sample projects intentionally use their own pinned and lockfile-tested client versions; check each sample's manifest before upgrading. Their available operations differ. Use each surface's reference and discover MCP tools at runtime.
 
 The JavaScript SDK, Python SDK, and MCP package have different operation sets. The [MCP tool catalog](reference/mcp-tools.md) is refreshed from the latest published MCP package. MCP exposes its own tool set. Use the running server's scoped tool discovery to check availability.
 
