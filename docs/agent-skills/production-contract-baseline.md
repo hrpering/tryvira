@@ -13,7 +13,7 @@ AUTO TaskRun → semantic resolve → server-eligible mode dispatch
 
 AUTO is the requested routing mode; the four named child execution modes are separate. Normal customer applications use the SDK TaskRun path. `resolveRuntime`, `executeRuntime` and `serveBehaviorProjection` are **advanced diagnostic SDK APIs**, never an ordinary alternative chatbot execution path.
 
-## JavaScript SDK, proven method names
+## JavaScript SDK methods
 
 - `resolveTaskRun({input,requestedMode:"AUTO",connectionId})`: route/proposal only.
 - `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`: explicit admission, subject to real customer scope/authority.
@@ -24,7 +24,7 @@ AUTO is the requested routing mode; the four named child execution modes are sep
 - `importPack({manifest,objects})` or documented archive, `installPack(packId,variablesMap)`, `evaluatePack(packId,{evaluationId:realId})`: separate import/materialization/evaluation. Approval/release follow their own authority.
 - `createTeachAnalysis(evidenceIds,options)`, `getTeachAnalysis(analysisId)`: submitted evidence must be admitted/consented, analysis is asynchronous.
 
-## Python SDK, proven corresponding methods
+## Python SDK methods
 
 - `resolve_task_run({"input": text, "requestedMode":"AUTO", "connectionId":connection_id})`.
 - `start_task_run({"taskRunId":run_id,"requestId":request_id,"input":text,"requestedMode":"AUTO","connectionId":connection_id},idempotency_key=key)`.

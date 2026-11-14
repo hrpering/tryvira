@@ -116,7 +116,7 @@ archive / manifest + objects
  → provider / chatbot → post-model verification / real receipt
 ```
 
-The final end-to-end response/verification handoff must be supported by the **actual connected runtime**. The public client can submit TaskRuns and read persisted state; do not infer that all response-output and verifier endpoints are available merely from those methods. See [canonical runtime guide](canonical-taskrun.md).
+The final end-to-end response/verification handoff must be supported by the **actual connected runtime**. The public client can submit TaskRuns and read persisted state; the final response-output and verifier readback requires a separately supported integration. See [canonical runtime guide](canonical-taskrun.md).
 
 ### How to validate
 

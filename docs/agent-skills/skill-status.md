@@ -4,15 +4,13 @@ This page shows the customer task covered by each of the 27 public Skills and th
 
 For the exact local and live test coverage, use [Skill testing](e2e-readiness.md) and [live acceptance](live-acceptance.md). Live workflows require a provisioned Vira environment.
 
-## Shared evidence and limits
+## Test coverage
 
-- The repository validator checks the structure and **27/27 portable resource-archive packaging** of all 27 Skills. Trigger data contains positive, negative, and ambiguous prompts for every Skill.
-- The 34 workflow scenarios and 84 Skill selection prompts are synthetic evaluation inputs. They are not model runs or proof of successful task completion.
-- CI validates repository files, packages all 27 Skills, and builds or checks the customer examples. A successful build is not a live Vira result.
-- Vira, provider, MCP, and Studio live use has not been performed in this review. Product access is not open yet.
-- The official OpenAI and Anthropic structural validators were run for an earlier library version. The newly added TaskRun and Chatbot Skills pass this repository's validator and packager; the bundled OpenAI validator could not run here because its PyYAML dependency is unavailable. No model trigger benchmark is claimed.
-- There is no per-skill model result for the new Skill. No creator model evaluation was run. Historical dated model-run records tested a pre-AUTO projection integration; that old workflow is not the canonical model-serving path today.
-- Skills and runnable examples require the user's own service access and credentials. Keep credentials server-side; do not add customer data or keys to examples.
+All 27 Skill folders are checked for metadata, links, example structure and package integrity. CI verifies all 27 portable archives and tests extraction into three agent-style directory layouts.
+
+The 84 model-selection inputs and 34 workflow scenarios are structured evaluation fixtures. Automatic Skill selection has not been measured against a live agent model in this release; the trace-based evaluator can be used for that test.
+
+Repository CI validates published client contracts through test transports and builds the accompanying examples. Live connection, release, provider and Studio workflows require a separately provisioned environment.
 
 ## Coverage by Skill
 

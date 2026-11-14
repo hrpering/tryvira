@@ -23,7 +23,7 @@ Use an isolated development scope when the customer's account provides one. Prod
 5. Preserve returned identities and read persisted state before continuing asynchronous work.
 6. Handle failures without logging credentials or private user content.
 
-Python and JavaScript package capabilities may differ. Do not infer Python support from a JavaScript method or from MCP/HTTP naming. Consult the installed package and [capability map](../capability-map.md).
+Python and JavaScript package capabilities may differ. The Python package has its own supported methods; JavaScript, MCP and HTTP coverage may differ. Consult the installed package and [capability map](../capability-map.md).
 
 ## Canonical application integration
 

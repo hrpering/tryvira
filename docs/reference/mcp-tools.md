@@ -14,6 +14,6 @@ A returned tool schema describes how to call that tool; it does not grant author
 
 The current package supports a selection of scoped reads, semantic/runtime behavior operations, and limited behavior authoring and Teach workflows. It does not provide complete parity with the JavaScript SDK or Python client. Pack lifecycle, full evaluation and release workflows, and TaskRun operations should be treated as unsupported unless they appear in the installed server's live `tools/list` and public package documentation.
 
-If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Do not guess a tool name, payload field, endpoint, or authorization decision.
+If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Use the names, schemas and authorization decisions returned by the configured server.
 
 See [MCP setup](mcp.md), [Capability discovery](../capability-discovery.md), [Published packages](../published-packages.md), [HTTP integration guidance](api.md), and [Packs](../packs.md).
