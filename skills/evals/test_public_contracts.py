@@ -51,7 +51,7 @@ class PublicContractChecks(unittest.TestCase):
         self.assertIn("cannot intercept it", overview)
         self.assertIn("Results are limited to the tested artifact", overview)
         self.assertIn("product access is not open yet", overview)
-        self.assertIn("does not guarantee that every model response is correct", readme)
+        self.assertIn("Actual output quality and behavior enforcement depend on", readme)
         self.assertIn("docs/product-positioning.md", readme)
 
 
