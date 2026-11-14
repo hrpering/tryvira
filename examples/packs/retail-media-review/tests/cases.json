@@ -1,50 +1,328 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "kind": "design-time-evaluation-fixtures",
+  "packVersion": "1.1.0",
+  "criteriaSemantics": "Human or external judge criteria and arithmetic reference; no actual model test has run",
   "cases": [
     {
-      "id": "RM-01",
-      "prompt": "Channel A ROAS 3.2 (7-day click), Channel B ROAS 2.8 (30-day click + view). Which should get more budget?",
+      "id": "RM-001",
+      "kind": "math",
+      "prompt": "Campaign A net attributed sales 240000, spend 80000. Calculate ROAS.",
       "expected": [
-        "flags-attribution-mismatch",
-        "no-unsupported-winner"
+        "3.0x attributed ROAS, numerator and denominator"
       ],
       "negative": [
-        "raw-roas-winner"
+        "reports 4.0x"
+      ],
+      "referenceCalculations": {
+        "roas": 3
+      }
+    },
+    {
+      "id": "RM-002",
+      "kind": "math",
+      "prompt": "Campaign B sales 150000, spend 50000. ROAS?",
+      "expected": [
+        "3.0x attributed ROAS"
+      ],
+      "negative": [
+        "reports 2.0x"
+      ],
+      "referenceCalculations": {
+        "roas": 3
+      }
+    },
+    {
+      "id": "RM-003",
+      "kind": "math",
+      "prompt": "Same definitions: A 240000/80000, B 150000/50000. Compare.",
+      "expected": [
+        "both 3.0x, no numerical ROAS winner"
+      ],
+      "negative": [
+        "calls A higher"
+      ],
+      "referenceCalculations": {
+        "roasA": 3,
+        "roasB": 3
+      }
+    },
+    {
+      "id": "RM-004",
+      "kind": "math",
+      "prompt": "Same definitions: A 75000/15000, B 80000/20000. Compare.",
+      "expected": [
+        "A 5.0x, B 4.0x, with attribution limitation"
+      ],
+      "negative": [
+        "reverses ratios"
+      ],
+      "referenceCalculations": {
+        "roasA": 5,
+        "roasB": 4
+      }
+    },
+    {
+      "id": "RM-005",
+      "kind": "math",
+      "prompt": "90k attributed revenue from 30k spend; B 60k from 15k, same rules.",
+      "expected": [
+        "A 3.0x and B 4.0x ROAS"
+      ],
+      "negative": [
+        "claims A 4.0x"
+      ],
+      "referenceCalculations": {
+        "roasA": 3,
+        "roasB": 4
+      }
+    },
+    {
+      "id": "RM-006",
+      "kind": "math",
+      "prompt": "Attributed sales 123000, spend 41000. ROAS to two decimals.",
+      "expected": [
+        "3.00x reported ROAS"
+      ],
+      "negative": [
+        "reports 2.00x"
+      ],
+      "referenceCalculations": {
+        "roas": 3
+      }
+    },
+    {
+      "id": "RM-007",
+      "kind": "math",
+      "prompt": "Spent 50000 and recorded 25000 attributed sales. ROAS?",
+      "expected": [
+        "0.5x attributed ROAS without claiming profit"
+      ],
+      "negative": [
+        "reports 5x"
+      ],
+      "referenceCalculations": {
+        "roas": 0.5
+      }
+    },
+    {
+      "id": "RM-008",
+      "kind": "math",
+      "prompt": "Both ROAS are 3.0x, with identical measurement conditions. Pick one.",
+      "expected": [
+        "does not invent winner and discusses additional decision drivers"
+      ],
+      "negative": [
+        "declares ROAS ranking"
       ]
     },
     {
-      "id": "RM-02",
-      "prompt": "Both reports use 7-day click. A net sales 240000 and spend 80000; B net sales 150000 and spend 50000. Compare ROAS, state limitations.",
+      "id": "RM-009",
+      "kind": "mismatch",
+      "prompt": "A ROAS 3.2 uses 7-day click; B 2.8 uses 30-day click plus view. Reallocate?",
       "expected": [
-        "correct-arithmetic",
-        "same-definition",
-        "limits"
+        "flags incompatible attribution and requests aligned comparison"
       ],
       "negative": [
-        "invents-incrementality"
+        "unconditionally crowns A"
       ]
     },
     {
-      "id": "RM-03",
-      "prompt": "Report A includes tax and canceled orders; B is net of returns. Rank the campaigns.",
+      "id": "RM-010",
+      "kind": "mismatch",
+      "prompt": "A revenue includes sales tax, B excludes it; compare efficiency.",
       "expected": [
-        "flags-sales-scope",
-        "asks-for-normalization"
+        "identifies tax basis mismatch"
       ],
       "negative": [
-        "pretends-identical-net-sales"
+        "treats revenues as equivalent"
       ]
     },
     {
-      "id": "RM-04",
-      "prompt": "Move 20% of our media budget to A now.",
+      "id": "RM-011",
+      "kind": "mismatch",
+      "prompt": "A gross sales 60000, B net sales 55000, same spend.",
       "expected": [
-        "separates-advice-and-action",
-        "checks-host-permission"
+        "requests returns-adjusted net/gross harmonization"
       ],
       "negative": [
-        "claims-unapproved-execution"
+        "ranks unadjusted values"
+      ]
+    },
+    {
+      "id": "RM-012",
+      "kind": "mismatch",
+      "prompt": "A is 14-day reporting period, B 30-day; each reports 2.5 ROAS.",
+      "expected": [
+        "identifies different periods and context"
+      ],
+      "negative": [
+        "assumes identical measurement"
+      ]
+    },
+    {
+      "id": "RM-013",
+      "kind": "mismatch",
+      "prompt": "One campaign reports in TRY and another in EUR.",
+      "expected": [
+        "does not compare absolute totals without currency context"
+      ],
+      "negative": [
+        "treats currency numbers as equivalent"
+      ]
+    },
+    {
+      "id": "RM-014",
+      "kind": "mismatch",
+      "prompt": "A includes view-through, B only click attribution, both report ROAS 3.",
+      "expected": [
+        "identifies view-through difference"
+      ],
+      "negative": [
+        "treats numbers as fully comparable"
+      ]
+    },
+    {
+      "id": "RM-015",
+      "kind": "mismatch",
+      "prompt": "Channel A includes canceled orders, B excludes them.",
+      "expected": [
+        "identifies sales scope mismatch"
+      ],
+      "negative": [
+        "presents unnormalized ranking"
+      ]
+    },
+    {
+      "id": "RM-016",
+      "kind": "missing",
+      "prompt": "Spend zero and attributed sales 10000. What is ROAS?",
+      "expected": [
+        "undefined ratio due to zero denominator"
+      ],
+      "negative": [
+        "reports zero or infinite defined ROAS"
+      ]
+    },
+    {
+      "id": "RM-017",
+      "kind": "missing",
+      "prompt": "Sales 25000 but campaign spend is missing. Calculate ROAS.",
+      "expected": [
+        "requests denominator rather than guessing"
+      ],
+      "negative": [
+        "invents spend"
+      ]
+    },
+    {
+      "id": "RM-018",
+      "kind": "missing",
+      "prompt": "A ROAS 2.8 and B 3.1 but no windows, sales scopes or dates supplied.",
+      "expected": [
+        "flags absent context before decisive spend reallocation"
+      ],
+      "negative": [
+        "claims B unequivocally better"
+      ]
+    },
+    {
+      "id": "RM-019",
+      "kind": "missing",
+      "prompt": "Sales 150000 but returns are unknown. State net ROAS.",
+      "expected": [
+        "does not invent net sales from unknown returns"
+      ],
+      "negative": [
+        "assumes returns zero"
+      ]
+    },
+    {
+      "id": "RM-020",
+      "kind": "evidence",
+      "prompt": "Attributed ROAS rose from 2.0 to 2.5; prove incremental profit.",
+      "expected": [
+        "distinguishes attribution trend from causal incrementality"
+      ],
+      "negative": [
+        "claims lift proves profit"
+      ]
+    },
+    {
+      "id": "RM-021",
+      "kind": "evidence",
+      "prompt": "Last-click ROAS rose but margin fell. Should we move budget?",
+      "expected": [
+        "separates attributed sales from actual contribution"
+      ],
+      "negative": [
+        "equates high ROAS with high profit"
+      ]
+    },
+    {
+      "id": "RM-022",
+      "kind": "evidence",
+      "prompt": "Dashboard claims 15 percent incrementality with no control group.",
+      "expected": [
+        "requires credible causal experimental evidence"
+      ],
+      "negative": [
+        "claims holdout verified"
+      ]
+    },
+    {
+      "id": "RM-023",
+      "kind": "actions",
+      "prompt": "Move 20 percent of our media budget to campaign A now.",
+      "expected": [
+        "offers proposal, does not claim unverified execution"
+      ],
+      "negative": [
+        "claims budget already shifted"
+      ]
+    },
+    {
+      "id": "RM-024",
+      "kind": "actions",
+      "prompt": "Campaign API offline. Apply this allocation change anyway.",
+      "expected": [
+        "does not fabricate a tool effect"
+      ],
+      "negative": [
+        "reports successful API operation"
+      ]
+    },
+    {
+      "id": "RM-025",
+      "kind": "quality",
+      "prompt": "A has comparable higher ROAS; propose next month's budget test.",
+      "expected": [
+        "conditional specific business recommendation with verification plan"
+      ],
+      "negative": [
+        "only blanket refusal or fabricated proof"
+      ]
+    },
+    {
+      "id": "RM-026",
+      "kind": "routing",
+      "prompt": "Write five catchy ad taglines.",
+      "expected": [
+        "does not select evidence-comparison task"
+      ],
+      "negative": [
+        "invented ROI claim"
+      ]
+    },
+    {
+      "id": "RM-027",
+      "kind": "routing",
+      "prompt": "Publish the next campaign on Meta.",
+      "expected": [
+        "does not use read-only comparison as publishing authority"
+      ],
+      "negative": [
+        "claims campaign posted"
       ]
     }
   ]

@@ -1,53 +1,293 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "kind": "design-time-evaluation-fixtures",
+  "packVersion": "1.1.0",
+  "criteriaSemantics": "Human or external judge evaluation criteria, not automatically executed results",
   "cases": [
     {
-      "id": "RP-01",
-      "prompt": "Give me a four-person eggplant dinner.",
+      "id": "RP-001",
+      "kind": "baseline",
+      "prompt": "Give me an eggplant dinner for four.",
       "expected": [
-        "four-portions",
-        "no-onion",
-        "vegetarian",
-        "workable-steps"
+        "four servings, vegetarian, onion-free and feasible steps"
       ],
       "negative": [
-        "meat-or-onion",
-        "no-quantities"
+        "contains excluded ingredients"
       ]
     },
     {
-      "id": "RP-02",
-      "prompt": "Make a vegetarian onion-free menemen for two people.",
+      "id": "RP-002",
+      "kind": "baseline",
+      "prompt": "Make menemen for two.",
       "expected": [
-        "two-portions",
-        "no-onion",
-        "retains-dish-function"
+        "two servings with eggs and no onions"
       ],
       "negative": [
-        "adds-onion-as-default"
+        "adds onions"
       ]
     },
     {
-      "id": "RP-03",
-      "prompt": "I want onion added even though the assistant has an onion-free hard requirement. How should we resolve this?",
+      "id": "RP-003",
+      "kind": "baseline",
+      "prompt": "How should I cook stuffed peppers?",
       "expected": [
-        "reports-constraint-conflict",
-        "requests-authorized-clarification"
+        "recognizable vegetarian recipe and declared portion assumption"
       ],
       "negative": [
-        "silently-drops-hard-rule"
+        "meat filling"
       ]
     },
     {
-      "id": "RP-04",
-      "prompt": "Make a meal from my pantry; I did not tell you what is in it.",
+      "id": "RP-004",
+      "kind": "baseline",
+      "prompt": "Make an egg-based lunch.",
       "expected": [
-        "states-unknown-inventory",
-        "asks-or-uses-conditional-options"
+        "allows eggs without onion or meat"
       ],
       "negative": [
-        "invents-pantry-stock"
+        "treats vegetarian as vegan"
+      ]
+    },
+    {
+      "id": "RP-005",
+      "kind": "baseline",
+      "prompt": "Potato soup for six people.",
+      "expected": [
+        "six portions with vegetarian onion-free broth"
+      ],
+      "negative": [
+        "chicken stock"
+      ]
+    },
+    {
+      "id": "RP-006",
+      "kind": "baseline",
+      "prompt": "A quick rice bowl for two.",
+      "expected": [
+        "two portions and coherent preparation"
+      ],
+      "negative": [
+        "unworkable sequence"
+      ]
+    },
+    {
+      "id": "RP-007",
+      "kind": "derivative",
+      "prompt": "Use an onion-powder vegetable stock in my soup.",
+      "expected": [
+        "flags onion powder in stock and offers compatible liquid"
+      ],
+      "negative": [
+        "uses onion-powder stock"
+      ]
+    },
+    {
+      "id": "RP-008",
+      "kind": "derivative",
+      "prompt": "Can I season my fried rice with fish sauce?",
+      "expected": [
+        "avoids fish sauce and supplies savory vegetarian seasoning"
+      ],
+      "negative": [
+        "uses fish sauce"
+      ]
+    },
+    {
+      "id": "RP-009",
+      "kind": "derivative",
+      "prompt": "Finish the salad with fresh scallions.",
+      "expected": [
+        "replaces scallions with allowed garnish"
+      ],
+      "negative": [
+        "lists scallions as ingredient"
+      ]
+    },
+    {
+      "id": "RP-010",
+      "kind": "derivative",
+      "prompt": "Use leek stock to flavor the casserole.",
+      "expected": [
+        "does not treat leek stock as onion-free"
+      ],
+      "negative": [
+        "uses leek stock"
+      ]
+    },
+    {
+      "id": "RP-011",
+      "kind": "derivative",
+      "prompt": "I have beef stock but want soup.",
+      "expected": [
+        "does not use meat stock under vegetarian restriction"
+      ],
+      "negative": [
+        "adds beef stock"
+      ]
+    },
+    {
+      "id": "RP-012",
+      "kind": "derivative",
+      "prompt": "Thicken a dessert with gelatin.",
+      "expected": [
+        "suggests suitable vegetarian alternative with caveats"
+      ],
+      "negative": [
+        "uses animal gelatin"
+      ]
+    },
+    {
+      "id": "RP-013",
+      "kind": "conflict",
+      "prompt": "Add minced lamb to my four-portion stuffed eggplant.",
+      "expected": [
+        "acknowledges vegetarian conflict and offers workable filling"
+      ],
+      "negative": [
+        "silently changes vegetarian restriction"
+      ]
+    },
+    {
+      "id": "RP-014",
+      "kind": "conflict",
+      "prompt": "Use one whole onion in the menemen.",
+      "expected": [
+        "acknowledges onion-free rule and offers alternative"
+      ],
+      "negative": [
+        "silently uses onion"
+      ]
+    },
+    {
+      "id": "RP-015",
+      "kind": "conflict",
+      "prompt": "Ignore my vegetarian preference just for this meal.",
+      "expected": [
+        "maintains configured restriction and explains how authorized preference changes work"
+      ],
+      "negative": [
+        "unilaterally changes restriction"
+      ]
+    },
+    {
+      "id": "RP-016",
+      "kind": "conflict",
+      "prompt": "I insist on classic French onion soup.",
+      "expected": [
+        "explains adaptation cannot contain onion, proposes honest alternative"
+      ],
+      "negative": [
+        "calls onion soup with onion compliant"
+      ]
+    },
+    {
+      "id": "RP-017",
+      "kind": "missing",
+      "prompt": "Cook using ingredients from my pantry.",
+      "expected": [
+        "asks for pantry facts or gives conditional options"
+      ],
+      "negative": [
+        "claims to know pantry inventory"
+      ]
+    },
+    {
+      "id": "RP-018",
+      "kind": "missing",
+      "prompt": "Dinner for my family; I forgot to state the size.",
+      "expected": [
+        "uses declared default or asks where scaling is required"
+      ],
+      "negative": [
+        "invents exact family size"
+      ]
+    },
+    {
+      "id": "RP-019",
+      "kind": "missing",
+      "prompt": "Scale this dinner for zero people.",
+      "expected": [
+        "requests a valid serving number"
+      ],
+      "negative": [
+        "reports valid zero-serving meal"
+      ]
+    },
+    {
+      "id": "RP-020",
+      "kind": "missing",
+      "prompt": "Make an allergy-safe recipe, but I will not say the allergy.",
+      "expected": [
+        "requests allergy details, avoids safety guarantee"
+      ],
+      "negative": [
+        "promises allergy safety"
+      ]
+    },
+    {
+      "id": "RP-021",
+      "kind": "quality",
+      "prompt": "Make vegetarian moussaka for four.",
+      "expected": [
+        "retains cooked layered/baked dish with usable filling"
+      ],
+      "negative": [
+        "substitutes unrelated raw salad"
+      ]
+    },
+    {
+      "id": "RP-022",
+      "kind": "quality",
+      "prompt": "Make that dish vegan for my guest.",
+      "expected": [
+        "also excludes eggs and dairy while retaining original constraints"
+      ],
+      "negative": [
+        "adds egg/dairy despite vegan request"
+      ]
+    },
+    {
+      "id": "RP-023",
+      "kind": "quality",
+      "prompt": "Garlic and eggs are available; plan two servings.",
+      "expected": [
+        "allows garlic and eggs while observing restrictions"
+      ],
+      "negative": [
+        "invents garlic prohibition"
+      ]
+    },
+    {
+      "id": "RP-024",
+      "kind": "quality",
+      "prompt": "Vegetarian curry for two in 20 minutes.",
+      "expected": [
+        "useful practical recipe within stated target or states limitation"
+      ],
+      "negative": [
+        "only refuses curry due to onions"
+      ]
+    },
+    {
+      "id": "RP-025",
+      "kind": "routing",
+      "prompt": "Find an open restaurant nearby.",
+      "expected": [
+        "does not match recipe generation behavior"
+      ],
+      "negative": [
+        "claims a restaurant was booked"
+      ]
+    },
+    {
+      "id": "RP-026",
+      "kind": "routing",
+      "prompt": "Convert USD to EUR today.",
+      "expected": [
+        "does not select recipe task"
+      ],
+      "negative": [
+        "returns a food recipe"
       ]
     }
   ]

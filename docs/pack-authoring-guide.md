@@ -2,7 +2,7 @@
 
 A Pack is a **versioned set of behavioral contracts**, not a convenient box for a long system prompt. It carries task matching, requirements, execution/verification definitions and evaluation sources together so a team can review them before deploying. Quality means **a specific, testable difference** even when a baseline model is already competent.
 
-[Start with the beginner Pack](../examples/packs/recipe-preferences/README.md) · [Retail-media Pack](../examples/packs/retail-media-review/README.md) · [Advanced orchestration](../examples/packs/operations-orchestration/README.md)
+[Recipe Pack](../examples/packs/recipe-preferences/README.md) · [Retail media](../examples/packs/retail-media-review/README.md) · [Marketing launch](../examples/packs/marketing-starter/README.md) · [Operations](../examples/packs/operations-orchestration/README.md) · [Evaluate observed OFF/ON outputs](pack-evaluation.md)
 
 ## Folder anatomy: what goes where
 
@@ -18,7 +18,7 @@ my-pack/
 └── tests/cases.json                  # authoring fixture; NOT imported or automatically evaluated
 ```
 
-**The three new examples intentionally omit `variables` because the public source examples do not demonstrate a reliable variable-to-Program binding.** A declarative toggle that does nothing is worse than leaving a setting out.
+**The four Pack Academy examples intentionally omit `variables` because the public source examples do not demonstrate a reliable variable-to-Program binding.** A declarative toggle that does nothing is worse than leaving a setting out.
 
 The supported Pack ZIP importer groups collection files using these collection-folder names. **These files are JSON on purpose:** JSON collection inputs and YAML manifests are both supported. Do not assume an arbitrary root-level `behaviors:` YAML field will be materialized. If your product release exposes a newer single-file authoring format, validate it against that release's own schema instead of translating by guesswork.
 
@@ -82,7 +82,7 @@ This is an **illustration drawn from the intermediate example**, not a live PASS
 
 Document how the connected AI System emits permitted **Observe** events; which **Signal** definitions and approved producer mappings (if any) the behavior needs; which **verification modules** can really execute at the host's post-model boundary; the exact repair/block behavior; and how to retrieve the matching receipt. A passing source-level structure check is not proof of these things.
 
-The beginner, retail and operations Packs intentionally require a **configured domain judge extension** for the semantic checks. These are **authoring references and install candidates**, not plug-and-play guarantees of quality or live verifier support. See [Observe → Signal → Runtime walkthrough](../examples/observe-signal-verify/README.md).
+The recipe, retail, marketing and operations Packs intentionally require a **configured domain judge extension** for the semantic checks. These are **authoring references and install candidates**, not plug-and-play guarantees of quality or live verifier support. See [Observe → Signal → Runtime walkthrough](../examples/observe-signal-verify/README.md).
 
 ## What belongs in a Strategy
 
@@ -121,7 +121,7 @@ The final end-to-end response/verification handoff must be supported by the **ac
 ### How to validate
 
 - `npm run verify:packs`: structural lint plus an in-memory **ZIP packaging smoke check**, not a server materialization proof.
-- `python3 scripts/package-example-packs.py --out /tmp/tryvira-example-packs`: build import-ready ZIP candidates of the three examples. The script excludes `tests/cases.json` and docs; the real backend still must parse and materialize the archive.
+- `python3 scripts/package-example-packs.py --out /tmp/tryvira-example-packs`: build import-ready ZIP candidates of the four examples. The script excludes `tests/cases.json` and docs; the real backend still must parse and materialize the archive.
 - `npm run verify`: repository-level links, examples, Skills and safety checks.
 - After release, the [guarded AUTO TaskRun tutorial runner](../tutorials/marketing-agent/11-auto-taskrun.mjs) can submit a live admission. It does **not** assert a provider/verifier result.
 - In an authorized dev account: import, inspect conflicts, install, read back persistent materialization, attach a real PASSED evaluation for the immutable Pack digest, approve, release, exercise AUTO TaskRun and inspect receipts. Do not supply a client-built `score` or `passed` flag.

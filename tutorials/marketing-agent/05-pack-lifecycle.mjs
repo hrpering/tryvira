@@ -5,59 +5,34 @@ requireSafeTutorialScope();
 const runId = required("VIRA_TUTORIAL_RUN_ID");
 if (!/^[a-z0-9-]{4,40}$/.test(runId)) throw new Error("VIRA_TUTORIAL_RUN_ID must be 4-40 lowercase letters, digits, or hyphens");
 
+// Load the same canonical source Pack that the Pack Academy documents.
+// This prevents the tutorial from silently drifting back to a generic rubric.
+import { readFile } from "node:fs/promises";
+const packRoot = new URL("../../examples/packs/marketing-starter/", import.meta.url);
+const collection = async kind => JSON.parse(await readFile(new URL(kind + "/items.json", packRoot), "utf8"));
+const suffix = "." + runId;
+const key = value => value + suffix;
+const rawTasks = await collection("semantic-tasks");
+const rawPoints = await collection("behavior-points");
+const rawPrograms = await collection("behavior-programs");
 const objects = {
-  semanticTasks: [
-    {
-      taskKey: `marketing.launch_plan.${runId}`,
-      description: "Build a launch plan for a product or service",
-      aliases: ["go to market plan", "launch strategy"],
-      examples: [
-        "Create a launch plan for a subscription product",
-        "Build a go-to-market plan for a membership service"
-      ],
-      negativeExamples: ["Rewrite this headline"]
-    }
-  ],
-  behaviorPoints: [
-    {
-      key: `marketing.launch_plan.${runId}`,
-      taskKey: `marketing.launch_plan.${runId}`,
-      requirement: "Cover the full funnel and include measurement",
-      verification: "Confirm each funnel stage has an objective and measurement approach"
-    }
-  ],
-  behaviorPrograms: [
-    {
-      key: `marketing.launch_plan.${runId}`,
-      rubric: [
-        "Cover awareness, consideration, conversion, and retention",
-        "Include a measurement approach for every stage"
-      ],
-      examples: ["A launch plan with objectives and metrics by funnel stage"],
-      antiPatterns: ["Acquisition-only plan", "Invented campaign results"]
-    }
-  ],
-  signals: [
-    { key: `quality.missing_measurement.${runId}` },
-    { key: `feedback.user_correction.${runId}` }
-  ],
-  evaluations: [
-    { id: `marketing.launch.${runId}` }
-  ]
+  semanticTasks: rawTasks.map(t => ({...t, taskKey: key(t.taskKey)})),
+  behaviorPoints: rawPoints.map(p => ({...p, key: key(p.key), taskKey: key(p.taskKey)})),
+  behaviorPrograms: rawPrograms.map(p => ({
+    ...p, key: key(p.key),
+    modules: (p.modules || []).map(m => ({...m, stableKey: key(m.stableKey),
+      checks: (m.checks || []).map(c => ({...c, stableKey: key(c.stableKey)}))
+    }))
+  })),
+  signals: (await collection("signals")).map(s => ({...s,key: key(s.key)})),
+  evaluations: (await collection("evaluations")).map(e => ({...e,id: key(e.id)}))
 };
-
 const manifest = {
-  id: `vira.marketing.starter.${runId}`,
-  name: "Marketing Starter",
-  version: "1.1.0",
-  requires: { vira: ">=1.0" },
-  variables: [
-    { key: "brand_name", label: "Brand name", required: true },
-    { key: "markets", label: "Markets", type: "multi_select" },
-    { key: "approval_required", label: "Require approval before media changes?", type: "boolean", default: true }
-  ]
+  id: "vira.examples.marketing_launch." + runId,
+  name: "Marketing Launch Decision",
+  version: "1.2.0",
+  requires: { vira: ">=1.0" }
 };
-
 // Import parses/adopts a candidate. It does not activate behavior.
 const imported = await vira.importPack({
   manifest,
@@ -79,11 +54,8 @@ if (process.env.VIRA_TUTORIAL_CONFIRM_PACK_INSTALL !== "true") {
 }
 
 // Installation materializes canonical draft objects. It is still not release.
-const installResponse = await vira.installPack(packId, {
-  brand_name: "Example Brand",
-  markets: ["TR"],
-  approval_required: true
-});
+// This version has no unbound installer variables; task inputs supply real constraints.
+const installResponse = await vira.installPack(packId, {});
 let installedPack = installResponse?.body.pack;
 let materialization = installResponse?.body.materialization ?? installedPack?.objects?.materialization;
 
@@ -103,27 +75,27 @@ if (installedPack?.id !== packId || !packDigest || !materialization) {
   throw new Error("PACK_MATERIALIZATION_NOT_CONFIRMED");
 }
 
-// Provider-backed evaluation creates a trusted, digest-bound evaluation from
-// supplied criteria. It does not prove that runtime executed the installed Pack.
+// Use multiple diverse, source-controlled cases rather than one easy launch request.
+// This evaluates a candidate using supplied criteria; it does not prove runtime use.
+const corpus = JSON.parse(await readFile(new URL("tests/cases.json", packRoot), "utf8"));
+const caseIds = new Set(["MK-001","MK-005","MK-006","MK-010","MK-011","MK-015","MK-018","MK-019","MK-021","MK-022"]);
+const dataset = corpus.cases.filter(c => caseIds.has(c.id)).map(c => ({
+  id: c.id + "." + runId,
+  input: c.prompt,
+  criteria: [...c.expected, ...c.negative.map(n => "Must avoid: " + n)]
+}));
+if (dataset.length !== caseIds.size) throw new Error("MARKETING_EVAL_CASES_MISSING");
 const started = await vira.startEvaluation({
   id: `tutorial:pack:evaluate:${runId}`,
   targetArtifact: {
-    packId,
-    packDigest,
+    packId, packDigest,
     criteria: [
-      "Cover awareness, consideration, conversion, and retention.",
-      "Include a measurement approach for every stage.",
-      "Do not invent campaign results.",
-    ],
+      "Respect real product, budget, team, market and evidence constraints.",
+      "Produce prioritized experiments with KPI definitions and decision gates.",
+      "Do not invent customer evidence, performance or approved actions."
+    ]
   },
-  dataset: [{
-    id: "launch-plan-case",
-    input: "Create a launch plan for a B2B membership product.",
-    criteria: [
-      "Cover awareness, consideration, conversion, and retention.",
-      "Include measurable next steps for each stage.",
-    ],
-  }],
+  dataset,
   threshold: 0.8,
 }, { idempotencyKey: `tutorial:pack:evaluate:${runId}` });
 const evaluationId = String(started?.body.evaluation?.id ?? "");

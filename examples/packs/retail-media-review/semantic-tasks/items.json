@@ -10,11 +10,16 @@
     ],
     "examples": [
       "Channel A uses 7-day click; B uses 30-day click plus view. Which performed better?",
-      "Analyze sales scope and attribution before recommending media changes."
+      "Analyze sales scope and attribution before recommending media changes.",
+      "What is ROAS for 240000 net sales on 80000 spend?",
+      "Compare two equal 3.0x ROAS figures.",
+      "Reconcile gross and net retail media revenue."
     ],
     "negativeExamples": [
       "Write an ad headline.",
-      "Summarize an unrelated customer service ticket."
+      "Summarize an unrelated customer service ticket.",
+      "Write five marketing slogans.",
+      "Publish campaign ads now."
     ]
   }
 ]

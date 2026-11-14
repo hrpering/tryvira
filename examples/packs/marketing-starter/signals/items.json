@@ -1,0 +1,11 @@
+[
+  {
+    "key": "marketing.missing_measurement_definition"
+  },
+  {
+    "key": "marketing.unverified_market_claim"
+  },
+  {
+    "key": "marketing.launch_action_requires_approval"
+  }
+]

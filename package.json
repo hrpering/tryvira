@@ -12,7 +12,7 @@
     "verify:registry": "node scripts/verify-registry.mjs",
     "check:examples": "node scripts/check-examples.mjs",
     "verify:scenarios": "node scripts/verify-scenarios.mjs",
-    "verify:packs": "node scripts/verify-pack-examples.mjs && python3 scripts/package-example-packs.py --check",
+    "verify:packs": "node scripts/verify-pack-examples.mjs && python3 scripts/package-example-packs.py --check && node --test scripts/score-pack-comparison.test.mjs",
     "verify:canonical": "node scripts/verify-canonical-taskrun.mjs",
     "verify:coverage": "node scripts/verify-product-coverage.mjs",
     "sync:registry": "node scripts/sync-published-packages.mjs",

@@ -10,11 +10,15 @@
     ],
     "examples": [
       "Give me an eggplant dinner for four.",
-      "How can I make vegetarian stuffed peppers?"
+      "How can I make vegetarian stuffed peppers?",
+      "Make vegetarian menemen for two.",
+      "Give me beef stuffed eggplant for four.",
+      "Suggest something using potatoes."
     ],
     "negativeExamples": [
       "Show me a restaurant reservation.",
-      "Calculate the exchange rate."
+      "Calculate the exchange rate.",
+      "Book a restaurant for tonight."
     ]
   }
 ]

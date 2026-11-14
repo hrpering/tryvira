@@ -31,7 +31,7 @@ Repository CI validates published client contracts through test transports and b
 | `vira-author-behavior` | Describe governed behavior | Canonical authoring example | Shared lifecycle checks |
 | `vira-signals` | Review customer-authorized Signals | Signals guide | Structure and workflow checks |
 | `vira-strategies` | Validate and use a Strategy | Strategy example | Structure and workflow checks |
-| `vira-build-pack` | Prepare a Pack candidate | Three graded Pack Academy examples and ZIP builder | Structure and workflow checks |
+| `vira-build-pack` | Prepare a Pack candidate | Four versioned Pack Academy examples and ZIP builder | Structure and workflow checks |
 | `vira-packs` | Work through a Pack lifecycle | Marketing Agent tutorial | Tutorial safety checks |
 | `vira-observe-teach` | Follow the Teach improvement journey | Teach guide and analysis example | Skill and example checks |
 | `vira-evaluate` | Review a behavior evaluation | Evaluation example | Runner and repository checks |

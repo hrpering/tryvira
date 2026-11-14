@@ -1,0 +1,8 @@
+[
+  {
+    "key": "marketing.launch_plan",
+    "taskKey": "marketing.launch_plan",
+    "requirement": "Produce a prioritized time-bounded launch plan with target audience, offer hypothesis, awareness/consideration/conversion/retention goals where relevant, concrete experiments, owners, budget limits, KPI definitions and decision gates.",
+    "verification": "Each major stage must have a testable action and a defined measurement source; unknown market evidence must remain unknown and campaign effects cannot be claimed without receipts."
+  }
+]

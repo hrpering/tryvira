@@ -8,10 +8,12 @@
       "summarize complaints"
     ],
     "examples": [
-      "Summarize these support complaints."
+      "Summarize these support complaints.",
+      "Summarize these tickets T-101 and T-102."
     ],
     "negativeExamples": [
-      "Give me a pancake recipe."
+      "Give me a pancake recipe.",
+      "Place a replenishment order."
     ],
     "compoundEligible": true,
     "effectful": false,
@@ -27,10 +29,12 @@
       "check inventory"
     ],
     "examples": [
-      "Assess inventory risk for delayed orders."
+      "Assess inventory risk for delayed orders.",
+      "Calculate available stock after reservations."
     ],
     "negativeExamples": [
-      "Write a press release."
+      "Write a press release.",
+      "Send a refund email."
     ],
     "compoundEligible": true,
     "effectful": false,
@@ -46,7 +50,8 @@
       "incident investigation"
     ],
     "examples": [
-      "Investigate late shipments and draft a verified incident note."
+      "Investigate late shipments and draft a verified incident note.",
+      "Separate logs from hypotheses in this checkout incident."
     ],
     "negativeExamples": [
       "Generate a random slogan."

@@ -2,14 +2,16 @@
   {
     "key": "operations.summarize_support",
     "rubric": [
-      "Cluster only observed complaint themes.",
-      "Clearly indicate evidence gaps."
+      "Summarize only supplied ticket categories with exact source IDs and timeframe.",
+      "Use only counted items in the supplied dataset; avoid extrapolating unseen support totals.",
+      "When no tickets are supplied, give an evidence request, not an invented ticket frequency."
     ],
     "examples": [
       "Complaint brief with factual themes and uncertainty."
     ],
     "antiPatterns": [
-      "Invented ticket frequency."
+      "Invented ticket frequency.",
+      "Invented weekly trends based on a single ticket excerpt."
     ],
     "modules": [
       {
@@ -21,7 +23,7 @@
         "checks": [
           {
             "stableKey": "operations.summarize_support.facts.domain",
-            "requirement": "judge: Verify that support counts and quotes are supported by supplied ticket evidence."
+            "requirement": "judge: Verify every reported count, complaint category, sample size, time range and quotation against supplied ticket IDs; distinguish excerpt frequency from an unseen population."
           }
         ]
       }
@@ -30,14 +32,17 @@
   {
     "key": "operations.review_inventory",
     "rubric": [
-      "Differentiate on-hand, inbound and forecast quantities.",
-      "Show risk without silently placing an order."
+      "Separate on-hand, reserved, immediately available, confirmed inbound and forecast stock and preserve units and timestamps.",
+      "State demand rate and lead-time assumptions before estimating shortage risk.",
+      "Keep future inbound and speculative forecasts out of immediately sellable quantities.",
+      "Never assert external stock access, purchase or shipment actions without actual authorized tool receipts."
     ],
     "examples": [
       "Inventory risk note with explicitly identified missing stock reports."
     ],
     "antiPatterns": [
-      "Unverified warehouse figures."
+      "Unverified warehouse figures.",
+      "Adds forecast inbound to immediately available stock and reports it as current inventory."
     ],
     "modules": [
       {
@@ -49,7 +54,7 @@
         "checks": [
           {
             "stableKey": "operations.review_inventory.supply_facts.domain",
-            "requirement": "judge: Verify every stock number and inventory claim is supported by supplied data or a real authorized warehouse-tool receipt."
+            "requirement": "judge: Verify each stock number and calculation against dated source records, units, reservation status and real warehouse-tool receipts; absent sources are unknown, never zero."
           }
         ]
       }
@@ -58,14 +63,18 @@
   {
     "key": "operations.investigate_incident",
     "rubric": [
-      "Separate observed errors, hypotheses and tested causes.",
-      "Request missing logs and host approval before effectful diagnostics."
+      "Separate observed timestamped symptoms, hypotheses, verified causes and unresolved issues.",
+      "Preserve log/ticket evidence IDs for claims and note what evidence was not available.",
+      "Carry partial, failed or blocked child tasks into the incident conclusion instead of declaring overall completion.",
+      "Ask approval before any effectful diagnostics or customer messaging; this example performs no external tools."
     ],
     "examples": [
       "Investigation note with evidence and outstanding questions."
     ],
     "antiPatterns": [
-      "Guessed root cause presented as verified."
+      "Guessed root cause presented as verified.",
+      "Reports a verified root cause using only a guess or a rollback that happened near recovery.",
+      "Treats failed required inventory or support child as a completed overall analysis."
     ],
     "modules": [
       {
@@ -83,7 +92,7 @@
         "checks": [
           {
             "stableKey": "operations.investigate_incident.conclusions.domain",
-            "requirement": "judge: Verify that incident conclusions are grounded in observed evidence and unconfirmed causes remain hypotheses."
+            "requirement": "judge: Verify incident conclusions against supplied logs, timestamps and sources, and ensure required child task states are represented correctly; unknown cause remains a hypothesis and incomplete children cannot imply complete success."
           }
         ]
       }

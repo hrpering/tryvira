@@ -1,31 +1,16 @@
-# Recipe Preferences Pack · Beginner
+# Recipe Preferences Pack · Beginner (v1.1.0)
 
-An understandable first Pack: **keep a task-specific dietary requirement consistent without reducing the answer to a generic refusal**.
+Keep **vegetarian and onion-free** defaults across short requests, follow-ups and conflicting user instructions, while still producing useful cooking instructions.
 
-**Start from:** [Pack guide](../../../docs/packs.md) · [Field-by-field walkthrough](../../../docs/pack-authoring-guide.md) · [Canonical AUTO TaskRun](../../../docs/canonical-taskrun.md).
+The Program checks not only obvious meat and onion but onion powder, stock, leek, scallion, fish sauce and gelatin. It must not mistake vegetarian for vegan, or ban garlic and eggs without a separate reason. A dish adaptation should preserve practical cooking function, quantities and servings; missing pantry information must not be invented.
 
-| File | Purpose |
-| --- | --- |
-| `pack.yaml` | Stable package identity, version and installer-configurable variables |
-| `semantic-tasks/items.json` | What requests should match, with positive and negative routing examples |
-| `behavior-points/items.json` | Where the task's hard requirements are attached |
-| `behavior-programs/items.json` | Concrete guards, checks, failure handling and useful output criteria |
-| `signals/items.json` | Names for permitted improvement signals |
-| `evaluations/items.json` | Evaluation inventory reference, **not** a passing test result |
-| `tests/cases.json` | Four design-time test inputs, including missing information and conflicts |
+## Try
 
-## How to adapt
+- "Make menemen for two." Should be cookable, onion-free and may use eggs.
+- "Use my vegetable stock with onion powder." Should identify the hidden ingredient and offer an alternative.
+- "Add lamb to the stuffed eggplant." Should acknowledge the standing constraint and offer a viable vegetarian filling.
+- "Use whatever is in my pantry." Should not invent pantry contents.
 
-This sample deliberately has **no installer variables**: the baseline dietary requirements are explicitly declared in the Point and Program, while servings come from the user's task input. To change the default diet, review the Point, Program and fixtures together and create a new version. **Do not add a `vegetarian: false` variable unless the materialization and runtime actually bind it to the executable requirement.**
+The 26 design-time cases cover baseline cooking, hidden derivatives, conflicts, missing inputs, quality and out-of-scope routing. A **real domain judge extension** is required for the semantic `post_model` checks; a deterministic non-empty check alone is insufficient. `onFailure: repair` is only meaningful when a bounded repair path actually exists.
 
-Keep Task and Point keys stable across revisions; change the semantic version when the behavior contract changes. Do not add an invented model response or score to this Pack.
-
-## What Runtime Verification actually requires
-
-The Program includes a deterministic non-empty check plus domain-level `judge: ...` checks to distinguish actual forbidden ingredients from harmless explanations mentioning them. These **require an explicitly configured verifier extension**; otherwise they cannot be considered passing. `onFailure: repair` also requires a bounded available candidate/repair implementation. [Runtime verification](../../../docs/runtime-verification.md) · [Signal lifecycle](../../../docs/signals.md).
-
-## What a meaningful test proves
-
-The positive test verifies useful cooking output **and** the prohibition. The negative tests target excluded ingredients, conflicts and hallucinated pantry facts. `tests/cases.json` is an authoring fixture, not an evaluation receipt. Only a real account with the reviewed candidate, persisted evaluation and explicit release can participate in the ON TaskRun path.
-
-**Execution note:** Normal users send a prompt through **AUTO TaskRun**. This Pack does not mandate a user-facing SINGLE switch.
+[Source tests](tests/cases.json) · [Comparison protocol](../../../docs/pack-evaluation.md) · [Pack authoring](../../../docs/pack-authoring-guide.md)

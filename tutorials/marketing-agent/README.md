@@ -1,6 +1,10 @@
 # Marketing Agent: Pack lifecycle + canonical AUTO TaskRun (advanced diagnostic exercises separate)
 
-This tutorial uses the published `@tryvira/sdk` `0.1.44` package. The **normal application path is AUTO TaskRun**. Pack import, materialization, evaluation and approval come first; after release use `11-auto-taskrun.mjs` for actual server-owned admission/readback. The older `06-runtime-resolve.mjs` and `07-quality-decision.mjs` are **optional low-level SDK/projection diagnostics**, not the canonical ON chatbot flow. Public access remains restricted. [Canonical path](../../docs/canonical-taskrun.md).
+This tutorial uses a lockfile-tested `@tryvira/sdk` example dependency (minimum 0.1.44); the [published package index](../../docs/published-packages.md) records the current registry release. The **normal application path is AUTO TaskRun**. Pack import, materialization, evaluation and approval come first; after release use `11-auto-taskrun.mjs` for actual server-owned admission/readback. The older `06-runtime-resolve.mjs` and `07-quality-decision.mjs` are **optional low-level SDK/projection diagnostics**, not the canonical ON chatbot flow. Public access remains restricted. [Canonical path](../../docs/canonical-taskrun.md).
+
+## Behavior source and evaluation
+
+The tutorial now imports the canonical [Marketing Launch Decision Pack](../../examples/packs/marketing-starter/README.md), not a separate generic one-paragraph rubric. `05-pack-lifecycle.mjs` generates run-specific Task/Point/Program keys from those exact source collections, does not declare cosmetic install variables, and evaluates **10 varied candidate cases** instead of one. Source-case criteria are not proof of executed behavior or verified ON responses. Review the [evaluation evidence protocol](../../docs/pack-evaluation.md).
 
 ## Safe setup
 
@@ -91,7 +95,7 @@ import
 → release
 ```
 
-The Pack step waits for the materialization receipt when installation returns HTTP 202, then creates a provider-backed evaluation bound to the Pack digest. The evaluator generates an answer from the supplied input and criteria; this is not proof that the installed behavior executed at runtime. Inspect runtime/candidate execution receipts separately. The script fails closed if materialization is not visible, the evaluation is unavailable, or the result does not pass. Never fabricate a production pass.
+The Pack step waits for the materialization receipt when installation returns HTTP 202, then creates a 10-case provider-backed evaluation bound to the Pack digest. The evaluator generates an answer from the supplied input and criteria; this is not proof that the installed behavior executed at runtime. Inspect runtime/candidate execution receipts separately. The script fails closed if materialization is not visible, the evaluation is unavailable, or the result does not pass. Never fabricate a production pass.
 
 ## Run the real customer workflow
 
