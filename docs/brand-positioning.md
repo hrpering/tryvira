@@ -1,16 +1,16 @@
 # The Vira story: own how your AI behaves
 
-## Position
+## Your AI can change. Keep the behavior you depend on.
 
 **Vira gives teams control over what their AI says, decides, and does, across models and applications.**
 
 A model generates. An agent executes tasks. A Skill can teach a way of working. Vira is the **behavior lifecycle that decides what is eligible to run, executes through governed boundaries, and makes the result reviewable**. It complements these systems rather than claiming to replace them.
 
-**Primary product line:** *Define it. Test it. Release it. Know what ran.*
+*Define it. Test it. Release it. Know what ran.*
 
-**Customer-facing explanation:** Your AI will change: new models, agents, tools, providers, people and requirements. The behavior your organization relies on should not disappear into a new prompt or an undocumented deployment. Vira makes that behavior an identifiable, versioned, tested and releasable asset.
+Your AI will change: new models, agents, tools, providers, people and requirements. The behavior your organization relies on should not disappear into a new prompt or undocumented deployment. Vira makes it an identifiable, versioned, testable and releasable asset.
 
-## The problem, shown rather than proclaimed
+## Why this matters
 
 A support assistant promises an unapproved refund. A retail-media report ranks incomparable metrics. A developer fixes one prompt and the same issue returns in another agent. A new model silently changes a workflow.
 
@@ -43,7 +43,7 @@ A stronger model may already perform well. **The problem isn't simply that model
 
 This is how Vira differs in focus from *only* prompt storage, *only* agent execution, or *only* monitoring. It does **not** mean all other tools lack those functions, or that Vira's complete verified-answer chain is publicly demonstrated. [Capability map](product-feature-map.md) · [Truthful status](product-status.md).
 
-## Category positioning: complement rather than caricature
+## Where Vira fits
 
 - **Agent and workflow frameworks** are strong at doing work with models and tools; Vira addresses governance of task behavior and runtime eligibility around that work.
 - **Skills and instruction libraries** carry reusable guidance; Vira adds a managed decision, evaluation, release and runtime-evidence lifecycle where supported.
@@ -54,19 +54,16 @@ This is how Vira differs in focus from *only* prompt storage, *only* agent execu
 
 These distinctions describe Vira's focus; other platforms may offer overlapping features. Direct comparisons depend on the specific product versions and evidence.
 
-## What the brand should not say
+## Adopt Vira alongside your existing stack
 
-- “Guaranteed accurate”, “works with every agent”, “universal tool interception”, “zero integration work”, “automatically learns and deploys”, or invented measured improvements.
-- “Open source” for this publicly visible but proprietary documentation repository. Separate MIT-licensed SDK/MCP packages retain their own licenses.
-- “AUTO runs any request” if semantic registry, released behavior, capabilities, provider or verifier evidence is missing.
-- “Complete AI response” merely because a TaskRun job finished or a raw projection was returned.
+Vira works with compatible applications, models and agent frameworks. Its behavior definitions can be reused, with a fresh evaluation whenever the model, tool access or integration changes.
 
-## Visual and editorial principles
+The public developer resources cover JavaScript, Python, MCP, sample applications and 27 Agent Skills. Live Vira operations currently require provisioned service access. [Get started](start-here.md) · [Integration compatibility](capability-map.md) · [Product availability](product-status.md)
 
-Use the text-only **vira** wordmark; midnight black, electric blue and cantaloupe orange rather than a generic violet AI gradient. Use real UI or technically accurate diagrams only. Write first for **people with problems**, then developers with a precise contract, then operators with evidence and limitations. Prefer real concise examples from cooking, support, marketing, software and operations.
+## From definition to execution
 
-## The product promise with a technical boundary
+**Your AI can change. Your rules shouldn't vanish.**
 
-**"Your AI can change. Your rules shouldn't vanish."** This is a positioning line, not a correctness guarantee.
+The integration path begins with an eligible AUTO TaskRun. Actual model-output verification also requires a connected provider and matching verification evidence, which is still being integrated in the public chatbot example.
 
-The product's canonical user flow begins at **AUTO TaskRun** and ends with actual verification and receipts when the complete integration is available. [Canonical TaskRun](canonical-taskrun.md) · [Pack academy](pack-authoring-guide.md) · [Brand-neutral comparison](approach-comparison.md) · [Use cases](use-cases.md)
+[How execution works](canonical-taskrun.md) · [Pack academy](pack-authoring-guide.md) · [Compare approaches](approach-comparison.md) · [Use cases](use-cases.md)

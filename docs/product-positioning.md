@@ -16,11 +16,17 @@ Teams routinely discover that an AI application responds inconsistently, compare
 
 Vira proposes a common lifecycle for those changes: declared requirements, task and application attachment, evaluation evidence, explicit authority/release, runtime resolution and traceability.
 
-## The whole promise, beyond prompting and release
+## A connected lifecycle
 
-**Observation before policy:** See real model, tool and action events. **Signals before conclusions:** use typed, reviewed and source-bound context instead of invented facts. **Teach before change:** turn consented feedback and outcomes into reviewable revisions. **AUTO execution before claims:** select eligible tasks and actually execute children. **Verification before delivery:** check configured post-model conditions with matching receipts. A missing verifier is not a success.
+A behavior can begin as a requirement, evolve through feedback and become a new approved revision. Vira brings the steps into a workflow that a team can inspect:
 
-[Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md) · [All product areas](product-feature-map.md) · [Product maturity](product-status.md)
+1. **Observe** permitted model, tool and application activity.
+2. **Define** task-specific expectations using reusable behavior definitions and, where needed, reviewed Signals.
+3. **Evaluate** candidate changes against relevant examples and failure cases.
+4. **Approve and release** the intended revision for its authorized scope.
+5. **Run and inspect** eligible behavior through a supported integration, with the execution and verification evidence that integration exposes.
+
+[Observe](observe.md) · [Signals](signals.md) · [Teach](teach.md) · [Runtime verification](runtime-verification.md) · [Current capabilities](product-feature-map.md)
 
 ## Four practical ideas
 
@@ -32,7 +38,7 @@ Vira proposes a common lifecycle for those changes: declared requirements, task 
 
 **4. See what was selected.** Supported integrations return identities, receipts or traces that help an operator inspect which eligible behavior was resolved. A trace demonstrates the recorded operation, not that the model's final answer was right.
 
-## Illustrative buyer scenario
+## Example: an advertising performance review
 
 A marketing analytics agent is asked to reallocate spend based on two dashboards. Their ROAS figures use different attribution rules. The team wants the agent to identify incompatibilities, avoid presenting estimates as actuals, and make a recommendation only with visible assumptions. Vira lets the team describe and evaluate that behavior within a governed release process.
 
@@ -51,8 +57,8 @@ This example illustrates the intended behavior. Quantified quality, cost, latenc
 
 These are distinctions of product focus, not claims that other tools lack overlapping features.
 
-## Constraints and current status
+## Availability and scope
 
-Vira is under active development; product access is not open yet. Client and Studio capabilities may differ, and no integration can govern model/tool paths it is not placed on. If a code path invokes a tool without consulting the configured Vira boundary, Vira cannot intercept it. Model adherence is not guaranteed. Results are limited to the tested artifact, dataset, criteria, and environment. Evidence collection and release require permission in the customer's scope.
+Vira is under active development. Published client libraries and examples are available; hosted product access requires a provisioned account. Behavior applies only at supported application boundaries and authorized scopes. Verification checks and model outcomes depend on the connected system and configured tests. See [availability and integration details](product-status.md).
 
 [What is Vira?](what-is-vira.md) · [For teams](for-teams.md) · [Capabilities](capability-map.md) · [Developer guide](developer-guide.md)

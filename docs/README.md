@@ -1,66 +1,42 @@
 # Vira documentation
 
-Explore Vira's behavior lifecycle, build an integration with a published SDK, or follow an example. The hosted service currently requires a provisioned account.
+Learn how Vira helps you define, test, release and inspect the behavior of an existing AI application or agent.
 
-[Start here](start-here.md) · [What Vira is](what-is-vira.md) · [Developer guide](developer-guide.md) · [For teams](for-teams.md)
+**New here?** Start with [What is Vira?](what-is-vira.md) or [try the public examples](../examples/README.md). The SDKs and Agent Skills are public; live Vira operations require access to a provisioned environment.
 
-## I want to…
+## Choose your path
 
-| Goal | Start with | Then go to |
+| Your goal | Start here |
+| --- | --- |
+| Understand the product and its use cases | [Overview](what-is-vira.md) · [Practical scenarios](use-cases.md) |
+| Try the chatbot or an integration example | [Quickstart](start-here.md) · [Next.js chatbot](../examples/frameworks/node-next/README.md) |
+| Add Vira to an existing JavaScript or Python application | [Developer guide](developer-guide.md) · [Integration patterns](integration-patterns.md) |
+| Work with an AI coding agent | [27 Agent Skills](../skills/README.md) |
+| Evaluate Vira for a team | [Team guide](for-teams.md) · [Product capabilities](product-feature-map.md) |
+| Diagnose an integration | [Troubleshooting](troubleshooting/README.md) |
+
+## Work with AI behavior
+
+Vira separates *what should happen* from *how an application runs*. You can explore each part independently:
+
+| Workflow | Learn | Try |
 | --- | --- | --- |
-| Observe an existing agent and collect permitted evidence | [Observe](observe.md) | [Signals and source mapping](signals.md) · [Teach](teach.md) |
-| Author a runtime Signal | [Signals](signals.md) | [Observe](observe.md) · [Runtime verification](runtime-verification.md) |
-| Verify actual responses, not just evaluations | [Runtime verification](runtime-verification.md) | [Verified answer handoff](verified-answer-handoff.md) · [Receipts](traces.md) |
-| Explore every product area and availability boundary | [Full product map](product-feature-map.md) | [Evidence status](product-status.md) · [Capability map](capability-map.md) |
-| Author a high-quality Pack | [Pack Academy](pack-authoring-guide.md) | [Three complete examples](../examples/packs/README.md) |
-| Integrate the canonical AUTO TaskRun path | [Canonical runtime](canonical-taskrun.md) | [Next.js admission demo](../examples/frameworks/node-next/README.md) |
-| Explore everyday-to-enterprise examples | [12 scenario prompts](use-cases.md) · [24 copyable variants](../examples/scenarios/README.md) | [Modes](execution-modes.md) · [Category comparison](approach-comparison.md) |
-| Compare Skills, agents and platform types | [Brand-neutral comparison](approach-comparison.md) | [Team evaluation](for-teams.md) |
-| Understand why Vira exists | [What is Vira?](what-is-vira.md) | [Product overview](product-positioning.md) · [FAQ](faq.md) |
-| Try the product concept without Vira access | [Start here](start-here.md) | [Local OFF/ON chatbot](../examples/frameworks/node-next/README.md) |
-| Choose SINGLE, AUTO, STRATEGY or COMPOUND | [Execution modes](execution-modes.md) | [TaskRun SDK example](../examples/javascript/taskrun-modes.mjs) |
-| Connect an existing agent | [Developer guide](developer-guide.md) | [Connection guide](guides/connect-an-ai-system.md) · [JavaScript example](../examples/javascript/README.md) |
-| Use Python or a framework | [Framework examples](../examples/frameworks/README.md) | [Python SDK](reference/python-sdk.md) |
-| Use MCP | [MCP setup](reference/mcp.md) | [Live tool discovery](reference/mcp-tools.md) |
-| Define repeatable behavior | [Core concepts](core-concepts.md) | [Authoring](canonical-authoring.md) · [Packs](packs.md) |
-| Review a behavior change | [Evaluations](evaluation-and-approval.md) | [Release](release.md) · [Runtime](runtime.md) |
-| Understand how suggestions improve behavior | [Teach AI](teach.md) | [Signals](signals.md) · [Traces](traces.md) |
-| Evaluate Vira for a team | [Team guide](for-teams.md) | [Capabilities](capability-map.md) · [Security model](security-model.md) |
-| Debug an integration | [Troubleshooting center](troubleshooting/README.md) | [SDK](reference/javascript-sdk.md) · [HTTP](reference/api.md) |
+| Connect and observe an AI application | [Observe](observe.md) · [Signals](signals.md) | [JavaScript and Python examples](../examples/README.md) |
+| Define a reusable behavior | [Behavior Points](behavior-points.md) · [Programs](behavior-programs.md) | [Pack Academy](../examples/packs/README.md) |
+| Evaluate and release a revision | [Evaluation](evaluation-and-approval.md) · [Release](release.md) | [Marketing Agent tutorial](../tutorials/marketing-agent/README.md) |
+| Execute eligible work | [AUTO TaskRun](canonical-taskrun.md) · [Execution modes](execution-modes.md) | [TaskRun routing example](../examples/javascript/taskrun-modes.mjs) |
+| Verify and improve | [Runtime verification](runtime-verification.md) · [Teach](teach.md) | [Traces and receipts](traces.md) |
 
-## Learn the architecture
+## Developer reference
 
-![Vira architecture and lifecycle — conceptual illustration](../assets/vira-lifecycle.svg)
+- [JavaScript SDK](reference/javascript-sdk.md) · [Python SDK](reference/python-sdk.md) · [MCP](reference/mcp.md) · [HTTP API](reference/api.md)
+- [Client capability compatibility](capability-map.md) · [Published packages](published-packages.md) · [Product availability](product-status.md)
+- [Core concepts](core-concepts.md) · [Architecture](architecture.md) · [Authoring guide](pack-authoring-guide.md)
+- [Behavior strategy guide](strategies.md) · [Semantic routing](semantic-routing.md) · [Security and scope](auth-and-scope.md)
+- [Example verification](example-verification.md) · [FAQ](faq.md)
 
-Vira's product concepts are designed to separate *what a task is*, *where behavior applies*, *which revision is eligible*, and *what happened*.
+**Integration note:** Available operations differ by SDK, MCP server, hosted environment and credentials. The public Next.js ON example currently shows AUTO TaskRun status, not a final provider answer verified by Vira. See [current availability](product-status.md).
 
-- [Canonical AUTO TaskRun](canonical-taskrun.md), [verified-answer interface requirements](verified-answer-handoff.md), [brand story](brand-positioning.md), and [Pack authoring guide](pack-authoring-guide.md).
-- [Observe](observe.md), [Signal lifecycle](signals.md), [runtime verification](runtime-verification.md) and [product feature map](product-feature-map.md).
-- [Execution modes](execution-modes.md) for SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO.
-- [Examples by level](use-cases.md) and [brand-neutral approach comparison](approach-comparison.md).
-- [Core concepts](core-concepts.md) for Semantic Tasks, Behavior Points, Programs, Strategies, release and traces.
-- [Architecture overview](architecture.md) and [How Vira works](how-vira-works.md) for conceptual paths.
-- [Behavior Programs](behavior-programs.md), [Strategies](strategies.md), and [Semantic routing](semantic-routing.md) for advanced authoring.
-- [Auth and scope](auth-and-scope.md) and [Runtime](runtime.md) for authority boundaries.
+## Help and contributing
 
-## Developer references
-
-- [Pack academy](../examples/packs/README.md) · [Canonical AUTO TaskRun](canonical-taskrun.md)
-- [Developer release and contract checklist](developer-checklist.md)
-- [Per-example verification status: automated tests versus live acceptance](example-verification.md)
-- [JavaScript / TypeScript](reference/javascript-sdk.md)
-- [Python](reference/python-sdk.md)
-- [MCP](reference/mcp.md)
-- [HTTP API](reference/api.md)
-- [Published package versions](published-packages.md)
-- [Capability discovery](capability-discovery.md)
-- [Full example index](../examples/README.md) and [Marketing Agent tutorial](../tutorials/marketing-agent/README.md)
-- [27 Agent Skills](../skills/README.md), [production contract audit](agent-skills/production-contract-audit.md), [client method baseline](agent-skills/production-contract-baseline.md) and [AI coding prompts](ai-prompts/README.md)
-
-**Use the installed package as the source of truth for method shapes.** The SDKs, MCP server, HTTP API and Studio do not necessarily support the same operations. Semantic resolution is not authorization; evidence, review, evaluation and release are separate transitions.
-
-## Contribute or get help
-
-[Contributing](../CONTRIBUTING.md) · [Support](../SUPPORT.md) · [Security](../SECURITY.md) · [Writing standards](writing-guidelines.md) · [Repository/license scope](repository-scope.md)
-
-For account requirements and supported operations, see [product availability](product-status.md) and [capability discovery](capability-discovery.md). Examples use your own credentials and environment.
+[Contributing](../CONTRIBUTING.md) · [Support](../SUPPORT.md) · [Security reporting](../SECURITY.md) · [Repository license](../LICENSE)

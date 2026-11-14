@@ -46,7 +46,7 @@ Model serving, caching, distributed execution and accelerator support are ongoin
 ## Choosing an integration
 
 - **JavaScript or Python:** start with the published SDK and the [developer guide](developer-guide.md).
-- **MCP:** discover tools supported by your installed server using \`tools/list\`; see the [MCP reference](reference/mcp-tools.md).
+- **MCP:** discover tools supported by your installed server using `tools/list`; see the [MCP reference](reference/mcp-tools.md).
 - **HTTP:** use endpoints documented for your deployed API and authorized scope; see [API integration](reference/api.md).
 - **Studio:** availability and permissions are determined by your provisioned environment.
 

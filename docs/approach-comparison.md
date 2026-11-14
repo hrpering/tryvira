@@ -73,8 +73,10 @@ Vira creates operational and integration overhead. It may not be useful for a si
 
 This is a functional comparison, not a benchmark or a statement that alternatives lack those features. Evaluate any concrete tool's actual API and licensing before selecting it.
 
-## What the comparison does not claim
+## Using these approaches together
 
-This is a functional comparison, not a performance benchmark. Vira governs the operations that your application routes through supported boundaries; evaluation and Teach proposals remain separate from authorization and release. Hosted access currently requires a provisioned environment.
+A support agent can execute a delivery workflow, load a reusable Skill for response structure, use a memory service for permitted context and send observations to Vira. Vira's role is to make the intended behavior an evaluated, approved and inspectable part of that workflow at the boundaries the application integrates. Different tools can own different parts of the same system.
+
+The [integration and availability guide](product-status.md) explains current access requirements.
 
 [Examples from beginner to advanced](use-cases.md) · [TaskRun modes](execution-modes.md) · [Evaluation guide](for-teams.md) · [Security model](security-model.md)
