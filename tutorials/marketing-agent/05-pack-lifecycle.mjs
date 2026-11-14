@@ -10,6 +10,8 @@ if (!/^[a-z0-9-]{4,40}$/.test(runId)) throw new Error("VIRA_TUTORIAL_RUN_ID must
 import { readFile } from "node:fs/promises";
 const packRoot = new URL("../../examples/packs/marketing-starter/", import.meta.url);
 const collection = async kind => JSON.parse(await readFile(new URL(kind + "/items.json", packRoot), "utf8"));
+// Backward compatibility note: legacy tutorial-only `quality.missing_measurement.${runId}` and
+// `marketing.launch.${runId}` identifiers were replaced by canonical source-pack keys.
 const suffix = "." + runId;
 const key = value => value + suffix;
 const rawTasks = await collection("semantic-tasks");
