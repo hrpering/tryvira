@@ -4,6 +4,8 @@ Learn how Vira helps you define, test, release and inspect the behavior of an ex
 
 **New here?** Start with [What is Vira?](what-is-vira.md) or [try the public examples](../examples/README.md). The SDKs and Agent Skills are public; live Vira operations require access to a provisioned environment.
 
+![Vira behavior lifecycle](../assets/vira-lifecycle.svg)
+
 ## Choose your path
 
 | Your goal | Start here |
