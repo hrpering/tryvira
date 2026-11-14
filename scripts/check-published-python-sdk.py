@@ -13,7 +13,7 @@ from vira import ViraClient
 
 requirements_path = Path(__file__).resolve().parents[1] / "examples/frameworks/python_fastapi/requirements.txt"
 requirements = requirements_path.read_text(encoding="utf8")
-match = re.search(r"^tryvira-sdk==(\\S+)$", requirements, re.M)
+match = re.search(r"^tryvira-sdk==(\S+)$", requirements, re.M)
 if not match:
     raise RuntimeError("FastAPI SDK version pin missing")
 expected = match.group(1)
