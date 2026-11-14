@@ -4,7 +4,7 @@ There are **two honest starting points**. Choose based on whether you have a pro
 
 ## Choose a task you understand
 
-Start with [ordinary recipes, support and writing cases](use-cases.md) before trying analytics or multi-stage agent workflows. Each example includes a prompt and a specific failure to watch for. A public SDK build is not proof of live governed execution.
+Start with [ordinary recipes, support and writing cases](use-cases.md) before trying analytics or multi-stage agent workflows. Each example includes a prompt and a specific failure to watch for. Live governed execution requires a provisioned Vira environment.
 
 [What differs from a Skill or an agent?](approach-comparison.md) · [Five mode choices](execution-modes.md)
 
@@ -12,11 +12,11 @@ Start with [ordinary recipes, support and writing cases](use-cases.md) before tr
 
 For a real account, start by instrumenting an agent with [Observe](observe.md). Use [Signals](signals.md) to review and map the typed evidence you actually need; [Teach](teach.md) can propose corrections. Then move through [Pack authoring](pack-authoring-guide.md), [evaluation/release](evaluation-and-approval.md) and [AUTO TaskRun](canonical-taskrun.md). [Runtime verification](runtime-verification.md) explains which real output checks and receipts are needed before describing a response as verified.
 
-The [full feature map](product-feature-map.md) covers the rest of Vira, including Studio/Admin, billing, privacy, observability, optimization, tools and experimental infrastructure. [Product-status boundaries](product-status.md) prevent mistaking an internal design for a public feature.
+The [full feature map](product-feature-map.md) covers the rest of Vira, including Studio/Admin, billing, privacy, observability, optimization, tools and experimental infrastructure. [Product availability](product-status.md) describes access requirements and integration status.
 
 ## Path A: Explore today without Vira access
 
-The [Next.js + OpenAI Agents example](../examples/frameworks/node-next/README.md) has a functioning **Vira OFF** mode that uses your own OpenAI API key. Its ON path submits a scoped AUTO TaskRun and displays real admission/state; it cannot claim a final verified chatbot response until the provider/post-model verification retrieval contract exists. [Canonical path](canonical-taskrun.md).
+The [Next.js + OpenAI Agents example](../examples/frameworks/node-next/README.md) has a functioning **Vira OFF** mode that uses your own OpenAI API key. Its ON path submits a scoped AUTO TaskRun and displays real admission/state; its final verified chatbot response integration is not yet available in this sample. [Canonical path](canonical-taskrun.md).
 
 **Requirements:** Git, Node.js 22.6+, a model-provider key, and a local development machine.
 
@@ -37,7 +37,7 @@ Open the local address printed by Next.js. Choose **Vira OFF** and submit a synt
 
 > Compare two campaigns with ROAS 3.2 and 2.8. One report uses a 7-day click window and the other uses 30-day click plus 1-day view. Which is better?
 
-**What you can observe:** the model's ordinary response, not a Vira-managed result. Do not interpret this OFF output as proof of how the ON version would behave.
+**What you can observe:** the model's ordinary response without Vira behavior applied. The governed ON response is a separate, provisioned integration.
 
 ## Path B: Integrate with a provisioned Vira account
 
@@ -64,7 +64,7 @@ Then follow the stages individually:
 5. **Submit a request through AUTO TaskRun** (not direct behavior-projection) and inspect persisted state and child receipts: [Canonical TaskRun](canonical-taskrun.md), [Traces](traces.md).
 6. **Require verified provider output** before showing a governed final answer. The current public TaskRun SDK does not by itself expose the complete last-mile verification handoff.
 
-After an eligible release exists, follow the [chatbot's ON setup](../examples/frameworks/node-next/README.md). This sample submits AUTO TaskRun and **does not** call the provider separately with a low-level projection. It reports admission/status, not a verified finished answer.
+After an eligible release exists, follow the [chatbot's ON setup](../examples/frameworks/node-next/README.md). This sample submits an AUTO TaskRun and reports admission/status. Final verified chatbot output is a separate integration requirement.
 
 ## Learn to make a Pack
 
@@ -86,6 +86,6 @@ Use [the mode reference](execution-modes.md) before selecting SINGLE, STRATEGY, 
 
 ## What counts as a successful test?
 
-A successful local build is **not** a live product test. Record the exact client version, configuration surface, request IDs (redacted where necessary), selected behavior identity, result, and any denial or missing capability. Compare identical synthetic prompts for OFF and ON. Do not invent scores or traces. Review security before allowing external effects.
+For a live acceptance test, record the client version, deployment, scope, redacted request IDs, selected behavior and actual result. Use the same model and input settings for OFF/ON comparisons, including failure cases and any unavailable capability. Review authorization before enabling external effects.
 
 [Developer guide](developer-guide.md) · [Capabilities](capability-map.md) · [Troubleshooting](troubleshooting/README.md)

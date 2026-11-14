@@ -29,7 +29,7 @@ Vira is more than a Pack editor or a runtime rules switch. It connects **real AI
 
 ![How Vira works: a conceptual lifecycle from Observe through AUTO TaskRun to runtime verification and receipts](assets/vira-lifecycle.svg)
 
-*Architecture illustration, not a screenshot or proof that the final provider-to-verifier handoff has been deployed.*
+*Conceptual architecture. The verified-answer handoff is still under development.*
 
 | Capability | The practical question | Start here |
 | --- | --- | --- |
@@ -42,7 +42,7 @@ Vira is more than a Pack editor or a runtime rules switch. It connects **real AI
 | **Runtime verification / Response Quality** | Did the actual output satisfy the configured checks, and what happens on failure? | [Runtime verification](docs/runtime-verification.md) · [Quality](docs/decision-and-quality.md) |
 | **Traces / Receipts / Operations** | What was applied, skipped, denied or measured, and can the team inspect it? | [Receipts](docs/traces.md) · [Product feature map](docs/product-feature-map.md) |
 
-**Every feature family is mapped:** [complete capability guide](docs/product-feature-map.md) and [status/limitations](docs/product-status.md) also cover scopes and privacy, memory/knowledge, integrations, Studio/Admin, optimization, billing and experimental model/GPU infrastructure. Availability and proof differ by surface; none of those links implies general service access.
+Explore [Vira capabilities](docs/product-feature-map.md), including Signals, runtime behavior, evaluation, Teach, integrations and operational tooling. [Product availability](docs/product-status.md) lists current access and integration requirements.
 
 ## Examples for different kinds of AI work
 
@@ -104,7 +104,7 @@ These are product workflow capabilities, **not** claims of universal enforcement
 
 *Current sample behavior, not a benchmark or evidence of an ON model response.*
 
-**Try the real Next.js + OpenAI Agents integration.** OFF invokes your configured model as a baseline. ON submits an **AUTO TaskRun** and shows the server's real admission/state. It does **not** manufacture a model answer: the public TaskRun response does not yet establish the canonical provider-output + post-model verification handoff.
+**Try the real Next.js + OpenAI Agents integration.** OFF invokes your configured model as a baseline. ON submits an **AUTO TaskRun** and shows the server's real admission/state. The ON example currently shows TaskRun admission and state; the verified provider-answer integration is still in development.
 
 ```bash
 git clone https://github.com/hrpering/tryvira.git
@@ -115,9 +115,9 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open the local URL printed by Next.js and try **Vira OFF**. **Vira ON** requires your provisioned API endpoint, scoped credentials, an actual connection and eligible released tasks. The example returns a TaskRun pending/status response, **not** a verified chatbot reply, until the integrated provider/verifier response contract exists. [Exact sample limitations](examples/frameworks/node-next/README.md).
+Open the local URL printed by Next.js and try **Vira OFF**. **Vira ON** requires your provisioned API endpoint, scoped credentials, an actual connection and eligible released tasks. The ON example reports TaskRun admission/status while the verified provider-answer integration is under development. [Exact sample limitations](examples/frameworks/node-next/README.md).
 
-The example calls real configured services, contains **no fake Vira backend**, and has not been validated against a live Vira tenant in this public repository. Never expose its unauthenticated demo route to the public internet.
+The example uses your configured provider and Vira services. Its integration tests use local test transports; a provisioned account is needed for live Vira acceptance. The sample route is for local development and requires authentication and rate limiting before public deployment.
 
 [Chatbot setup](examples/frameworks/node-next/README.md) · [Framework examples](examples/frameworks/README.md) · [Marketing Agent walkthrough](tutorials/marketing-agent/README.md)
 
