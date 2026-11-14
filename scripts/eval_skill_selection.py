@@ -177,7 +177,7 @@ def main() -> int:
     args = cli.parse_args()
     cases = validate_dataset(read_jsonl(CORPUS))
     if args.validate_only:
-        print(f"SKILL_TRIGGER_DATASET_PASS {len(cases)} cases / {len(cases)//3} Skills (NO MODEL INVOKED)")
+        print(f"SKILL_TRIGGER_DATASET_PASS {len(cases)} cases / {len({case['skill'] for case in cases})} Skills (NO MODEL INVOKED)")
         return 0
     if bool(args.command) == bool(args.results):
         cli.error("Exactly one of --command or --results is required for a real model score")

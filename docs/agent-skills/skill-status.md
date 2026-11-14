@@ -1,6 +1,6 @@
 # Agent Skill coverage and validation status
 
-This page shows the customer task covered by each of the 27 public Skills and the shared example that helps a user try it. Repository checks verify structure and selected behaviors; they do not prove every Skill completed a live customer workflow.
+Find the developer task covered by each of the 27 Skills, its example, and the current validation level. For live integration testing, use a provisioned Vira environment.
 
 For the exact local and live test coverage, use [Skill testing](e2e-readiness.md) and [live acceptance](live-acceptance.md). Live workflows require a provisioned Vira environment.
 

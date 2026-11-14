@@ -1,6 +1,6 @@
 # Vira Agent Skills
 
-Portable, licensed Agent Skills for integrating with and operating Vira through documented public surfaces. The 27-Skill library is in active development and is not yet published to skills.sh.
+Vira Agent Skills help coding assistants integrate Vira into existing apps using documented SDKs, Behavior Packs and TaskRun workflows. The 27 Skills can be installed directly from GitHub; they are not yet listed on skills.sh.
 
 ![Build with Vira: 27 Agent Skills, graded Packs and developer workflows](../assets/vira-build.svg)
 
