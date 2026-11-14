@@ -227,7 +227,8 @@ class PublicContractChecks(unittest.TestCase):
         expected = sorted(path.parent.name for path in (ROOT / "skills").glob("vira-*/SKILL.md"))
         self.assertEqual(sorted(reported), expected)
         self.assertEqual(len(reported), len(set(reported)))
-        self.assertTrue(all(line.endswith("| Not run |") for line in rows))
+        self.assertTrue(all(line.count("|") >= 5 for line in rows))
+        self.assertFalse(any(line.endswith("| Not run |") for line in rows))
         self.assertIn("Automatic Skill selection has not been measured", status)
         self.assertIn("separately provisioned environment", status)
 
