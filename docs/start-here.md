@@ -1,8 +1,8 @@
 # Start here: your first Vira experience
 
-There are **two honest starting points**. Choose based on whether you have a provisioned Vira account. Public npm/PyPI packages do not themselves grant access to the hosted Vira service.
+Choose how you want to explore Vira: run a public example locally, or connect an existing AI application through a provisioned Vira workspace. The SDKs and examples are public; live service access is separate.
 
-## Choose a task you understand
+## Start with a familiar task
 
 Start with [ordinary recipes, support and writing cases](use-cases.md) before trying analytics or multi-stage agent workflows. Each example includes a prompt and a specific failure to watch for. Live governed execution requires a provisioned Vira environment.
 
@@ -14,7 +14,7 @@ For a real account, start by instrumenting an agent with [Observe](observe.md). 
 
 The [full feature map](product-feature-map.md) covers the rest of Vira, including Studio/Admin, billing, privacy, observability, optimization, tools and experimental infrastructure. [Product availability](product-status.md) describes access requirements and integration status.
 
-## Path A: Explore today without Vira access
+## Option 1: Try the local example
 
 The [Next.js + OpenAI Agents example](../examples/frameworks/node-next/README.md) has a functioning **Vira OFF** mode that uses your own OpenAI API key. Its ON path submits a scoped AUTO TaskRun and displays real admission/state; its final verified chatbot response integration is not yet available in this sample. [Canonical path](canonical-taskrun.md).
 
@@ -39,7 +39,7 @@ Open the local address printed by Next.js. Choose **Vira OFF** and submit a synt
 
 **What you can observe:** the model's ordinary response without Vira behavior applied. The governed ON response is a separate, provisioned integration.
 
-## Path B: Integrate with a provisioned Vira account
+## Option 2: Connect a Vira workspace
 
 **Requirements:** the customer-provided Vira API URL (not the Studio URL), a server-side API key with permissions for an isolated non-production scope, and organization/project/environment identifiers.
 
@@ -84,7 +84,7 @@ Use [the mode reference](execution-modes.md) before selecting SINGLE, STRATEGY, 
 | A coding agent | [Vira Agent Skills](../skills/README.md) |
 | A longer evaluated workflow | [Marketing Agent tutorial](../tutorials/marketing-agent/README.md) |
 
-## What counts as a successful test?
+## Evaluate your integration
 
 For a live acceptance test, record the client version, deployment, scope, redacted request IDs, selected behavior and actual result. Use the same model and input settings for OFF/ON comparisons, including failure cases and any unavailable capability. Review authorization before enabling external effects.
 

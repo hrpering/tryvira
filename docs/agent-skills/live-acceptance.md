@@ -45,7 +45,7 @@ VIRA_API_URL=https://customer-api.example VIRA_API_KEY=... \
 node skill-e2e-acceptance.mjs --manifest /path/to/untracked-real-ids.json
 ~~~
 
-**Important:** The script reads persisted records only. Pack installation, release and TaskRun execution take place through separately authorized workflows. It reads actual persisted entities and intentionally fails at the missing final verified provider-output receipt, even if all four TaskRuns are COMPLETED. This is an **honest red gate** until the production server publishes that readback contract.
+**Important:** The script reads persisted records only. Pack installation, release and TaskRun execution take place through separately authorized workflows. It reads actual persisted entities and intentionally fails at the missing final verified provider-output receipt, even if all four TaskRuns are COMPLETED. The checker reports this verification step as incomplete until the provider-output readback contract is available.
 
 ## Failure matrix
 

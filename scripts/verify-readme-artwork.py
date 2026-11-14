@@ -19,7 +19,6 @@ USAGE = {
     "skills/README.md": {"vira-build.svg"},
     "examples/packs/README.md": {"vira-build.svg"},
     "examples/frameworks/node-next/README.md": {"vira-on-off.svg"},
-    "docs/github-repository-metadata.md": {"vira-social-preview.svg"},
 }
 OLD = (
     "vira-overview.svg",

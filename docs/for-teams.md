@@ -8,7 +8,7 @@ The product introduces governed behavior definitions and lifecycle boundaries ar
 
 ## See the use cases before choosing a tool
 
-The [12-level example catalog](use-cases.md) starts with everyday food and writing preferences and progresses to business reporting, incident investigation and multi-task operations. A strong baseline may already succeed; the evaluation should measure the *governed lifecycle*, not manufacture a weak opponent.
+The [12-level example catalog](use-cases.md) starts with everyday food and writing preferences and progresses to business reporting, incident investigation and multi-task operations. A baseline model may already handle some examples well. Compare the same prompts and configurations to assess the value of the behavior lifecycle.
 
 For a comparison against Skills, agents and adjacent platform categories without competing brand names, use the [approach comparison](approach-comparison.md). To understand when SINGLE, STRATEGY, COMPOUND, HYBRID or AUTO applies, use the [execution-mode guide](execution-modes.md).
 
@@ -21,13 +21,15 @@ For a comparison against Skills, agents and adjacent platform categories without
 | Research | Assertions appear without clear sources or confidence | Separate sourced facts, inference, and unresolved questions |
 | Operations | Tool-using assistants act on incomplete or ambiguous requests | Require confirmation and explicit action boundaries |
 
-These scenarios illustrate potential applications. Measured results depend on your evaluation setup.
+These scenarios are suitable starting points for a team-specific evaluation.
 
-## What buyers should expect from the complete lifecycle
+## What Vira adds to your workflow
 
-A governance checkbox is not the product. **Observe** supplies real behavior evidence; **Signals** create reviewed typed context; **Teach** turns feedback/outcomes into proposals; **evaluation/release** controls changes; **AUTO TaskRun** selects eligible work; **runtime verification** checks the actual output when supported and **receipts** make the decision auditable.
+Vira brings behavior definition, evaluation, approval and execution evidence together. A team can review a change before release, keep revisions tied to the right scope and investigate which behavior was selected for a supported run.
 
-This combination is a product direction with separate maturity levels. Ask to see the exact integrated provider-to-post-model verification receipt, not a screenshot or a completed routing status. See the [full feature map](product-feature-map.md), [Observe](observe.md), [Signals](signals.md) and [runtime verification](runtime-verification.md).
+Observe and Signals connect permitted usage evidence to that process. Teach can turn feedback into a proposal for review, while TaskRun and runtime verification help inspect how eligible released behavior was used at the connected application boundary.
+
+[Explore the product areas](product-feature-map.md) · [See runtime verification](runtime-verification.md) · [Review availability](product-status.md).
 
 ## What a practical evaluation should include
 

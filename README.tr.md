@@ -18,13 +18,13 @@ Vira davranışı bir prompt parçası olmaktan çıkarıp gözden geçirilebile
 - **Uygula ve izle:** Entegrasyonun desteklediği runtime kimliği, yanıt ve trace bilgilerini incele.
 - **İyileştir:** İzinli gerçek kullanım verilerinden Teach önerileri oluştur; değerlendirme olmadan otomatik canlıya geçirme.
 
-**Örnek:** Bir retail-media asistanı iki kampanyanın ROAS değerini karşılaştırırken farklı attribution window veya satış kapsamlarını aynı kabul etmemeli. Vira'da bu kontrol, göreve ait açık bir davranış olarak tanımlanıp değerlendirilebilir. Bu bir ürün senaryosudur; kanıtlanmış bir performans artışı iddiası değildir.
+**Örnek:** Bir retail-media asistanı iki kampanyanın ROAS değerini karşılaştırırken farklı attribution window veya satış kapsamlarını aynı kabul etmemeli. Vira'da bu kontrol, göreve ait açık bir davranış olarak tanımlanıp değerlendirilebilir. Bu örnek, yönetilebilir bir davranış tanımının nasıl kullanılabileceğini gösterir.
 
 ## Gözlemle, tanımla, uygula, doğrula, iyileştir
 
 ![Vira davranış yaşam döngüsü: Observe, Signals, Packs, Evaluate, Release, AUTO TaskRun ve doğrulama](assets/vira-lifecycle.svg)
 
-*Bu görsel mimariyi anlatır; canlı son model yanıtının doğrulandığına dair kanıt değildir.*
+*Vira'nın davranışları yönetme ve iyileştirme döngüsü.*
 
 Vira yalnızca Pack yükleme veya prompt yönetimi değildir. Mevcut AI sisteminden **Observe** ile izinli kullanım kanıtı toplar; **Signal** ile bu kanıtlara tanımlı ve onaylı anlam kazandırmayı hedefler; **Teach** ile iyileştirme önerisi üretir. **Evaluation** ve ayrı **approval/release** kararından sonra uygun davranış **AUTO TaskRun** akışında çalışır. **Runtime verification** sonuçta hangi kontrollerin gerçekten geçip kalmadığını belirler; **receipt/trace** bunları araştırılabilir hâle getirir.
 
@@ -36,15 +36,15 @@ Vira yalnızca Pack yükleme veya prompt yönetimi değildir. Mevcut AI sistemin
 | Gerçek yanıtı post-model kontrol ve gerektiğinde repair/block ile doğrulamak | [Runtime verification](docs/runtime-verification.md) |
 | Bütün özellik aileleri, veri/güvenlik, Studio/Admin, optimizasyon ve sınırlamalar | [Tam ürün haritası](docs/product-feature-map.md) · [Durum tablosu](docs/product-status.md) |
 
-**Observe olayının kabul edilmesi doğrulama başarısı değildir; Signal otomatik olarak güvenilir kural hâline gelmez; TaskRun'ın tamamlanması da doğrulanmış son chatbot yanıtını tek başına kanıtlamaz.**
+## Vira bir isteği nasıl yönetir?
 
-## Tek canonical çalışma yolu
+![Vira OFF ve ON örneğinin çalışma biçimi](assets/vira-on-off.svg)
 
-![Mevcut public demo: OFF model yanıtı verir, ON ise doğrulanmış yanıt henüz hazır olmadığından TaskRun durumunu gösterir](assets/vira-on-off.svg)
+Uygulama bir isteği **AUTO TaskRun** üzerinden ilettiğinde Vira, tanımlı görevler ve yetkili davranış sürümleri arasından uygun olanları belirler. Bağlı uygulama, desteklenen sınırlar içinde model ve araç çalıştırmasını yürütür; çalışma kayıtları daha sonra incelenebilir.
 
-**AUTO TaskRun → semantic resolve → mod seçimi → gerçek child executor → runtime enforcement → provider/chatbot → post-model verification/receipt.** Kullanıcı her istekte SINGLE/STRATEGY/COMPOUND/HYBRID seçmez. `behavior-projection` yalnızca ileri seviye SDK/diagnostic kullanımda kalır. Public API henüz doğrulanmış son chatbot yanıtının tamamını kanıtlamadığından ON örneği sahte yanıt üretmez.
+**Demo durumu:** Yerel örnekte Vira OFF, yapılandırılmış modelden yanıt alır. Vira ON ise mevcut genel entegrasyonda TaskRun kabulünü ve durumunu gösterir. Doğrulanmış son model yanıtının gösterilmesi ayrı bir entegrasyon aşamasıdır.
 
-[Teknik akış (EN)](docs/canonical-taskrun.md) · [Marka konumlandırması (EN)](docs/brand-positioning.md) · [Üç ayrıntılı Pack (EN)](examples/packs/README.md) · [Pack alanları nasıl doldurulur? (EN)](docs/pack-authoring-guide.md)
+[Teknik akış (EN)](docs/canonical-taskrun.md) · [Davranış paketleri (EN)](examples/packs/README.md) · [Çalıştırma modları (EN)](docs/execution-modes.md)
 
 ## Tek örnek değil, farklı seviyelerde kullanım
 

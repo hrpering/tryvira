@@ -11,7 +11,7 @@ This page helps you distinguish what can be explored locally from operations req
 | Documentation and Behavior Pack examples | Public guides, source files and ZIP-building tools | No account required for local inspection |
 | Agent Skills | 27 installable guides with packaging and offline CI checks | An actual agent runtime for automatic selection; live Vira credentials for API workflows |
 | JavaScript and Python SDKs | Published client packages and runnable examples | A provisioned API URL and scoped key for live operations |
-| MCP | Published server package and tool discovery | Install the server and inspect its actual \`tools/list\` |
+| MCP | Published server package and tool discovery | Install the server and inspect its actual `tools/list` |
 | Next.js chatbot | OFF runs a configured provider; ON submits an AUTO TaskRun | Your own provider key for OFF; provisioned Vira connection and released behavior for ON |
 | Studio and Admin | Product interfaces for supported accounts | Account access and deployment-specific permissions |
 

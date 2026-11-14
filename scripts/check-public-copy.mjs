@@ -26,6 +26,12 @@ const editorialLeak = [
   /\b(?:P0|P1|P2):\s/i,
   /\bmock Vira backend\b/i,
   /\bno fake Vira backend\b/i,
+  /\bwhat the brand should not say\b/i,
+  /\bcustomer-facing explanation\s*:/i,
+  /\bvisual and editorial principles\b/i,
+  /\bwhat to tell customers(?:\/developers)?\b/i,
+  /\binternal authoring (?:instruction|guidance)\b/i,
+  /\barchitecture rule\s*:/i,
 ];
 for (const file of marketingPages) {
   const contents = await readFile(file, 'utf8');
@@ -33,6 +39,17 @@ for (const file of marketingPages) {
   for (const pattern of editorialLeak) {
     assert.doesNotMatch(contents, pattern, file + ': internal authoring instruction leaked into customer copy');
   }
+}
+const publicIndex = await readFile('docs/README.md', 'utf8');
+for (const internalDoc of [
+  'production-contract-audit.md',
+  'production-contract-baseline.md',
+  'github-repository-metadata.md',
+  'writing-guidelines.md',
+  'gap-analysis.md',
+  'e2e-readiness.md',
+]) {
+  assert.ok(!publicIndex.includes(internalDoc), 'Reader index links maintainer-only document: ' + internalDoc);
 }
 const skills = [
   'vira-author-behavior','vira-build-pack','vira-chatbot','vira-debug',

@@ -17,11 +17,17 @@ Your agent does a task. You correct an answer. The same mistake returns in anoth
 
 Vira provides a separate, governed place to define and operate those behaviors. It works **with** your existing AI application, model, and agent framework rather than replacing them.
 
-## One canonical application path
+## Make AI behavior something you can manage
 
-**AUTO TaskRun → semantic resolve → eligible mode dispatch → child execution → released behavior → provider/chatbot → verification → receipt.** AUTO selects the eligible execution mode; the final verified-answer integration is in development. [Canonical TaskRun guide](docs/canonical-taskrun.md) · [Brand positioning](docs/brand-positioning.md)
+A prompt can tell an assistant what to do today. Vira helps teams keep those expectations consistent as applications, models, agents and requirements change.
 
-Direct `resolveRuntime` and `behavior-projection` APIs support advanced diagnostics. Application requests use AUTO TaskRun; a verified final answer additionally requires matching post-model evidence.
+- **Define** reusable, task-specific expectations outside a single prompt.
+- **Evaluate** proposed changes with examples and failure cases before release.
+- **Release** the approved revision to the intended scope.
+- **Inspect** available runtime evidence to understand which behavior was selected.
+- **Improve** behavior through reviewed feedback and Teach proposals.
+
+Vira complements the models and agents you already use. Start with [everyday and business scenarios](docs/use-cases.md), or explore the [technical execution path](docs/canonical-taskrun.md).
 
 ## See the full Vira loop
 
@@ -58,11 +64,11 @@ Vira is not limited to one industry or to complex agents. Start simple, then mov
 
 [12 scenarios with sample prompts and failure cases](docs/use-cases.md) · [copyable short/detailed fixture prompts](examples/scenarios/README.md) · [Compare Vira with Skills and agents](docs/approach-comparison.md)
 
-### Execution choices at a glance
+### From one task to multi-step workflows
 
-**SINGLE** handles one task. **STRATEGY** handles a multi-step process within one task. **COMPOUND** coordinates multiple governed tasks. **HYBRID** combines SINGLE and STRATEGY children. **AUTO** requests eligible mode selection; it is not an execution mode or permission bypass.
+Start with a single task, or govern a process with several steps or coordinated tasks. Vira's AUTO TaskRun can select among eligible SINGLE, STRATEGY, COMPOUND and HYBRID execution paths, depending on the connected application and released behavior.
 
-[Understand all modes and their limits](docs/execution-modes.md) · [Test TaskRun routing using the published SDK](examples/javascript/taskrun-modes.mjs)
+[Execution modes](docs/execution-modes.md) · [TaskRun example](examples/javascript/taskrun-modes.mjs)
 
 ## Learn to author high-quality Behavior Packs
 
@@ -96,7 +102,7 @@ That definition can be packaged, evaluated with positive and negative cases, rev
 | Repeated mistakes with no structured improvement process | Permitted evidence → **Teach** proposals → review → evaluation |
 | "It behaved differently" with little context | Returned identities, receipts, and traces for supported operations |
 
-[Available capabilities](docs/capability-map.md) · [Product explanation](docs/what-is-vira.md)
+[Explore the capabilities](docs/product-feature-map.md) · [Understand the concepts](docs/what-is-vira.md)
 
 ## See it in action
 
@@ -133,7 +139,7 @@ The sample is intended for local development. Add authentication, rate limits an
 | HTTP | Customer deployment's documented API | [HTTP integration boundaries](docs/reference/api.md) |
 | Agent Skills | Task-specific guidance for coding agents | [Skills library](skills/README.md) |
 
-Package availability is not service access. Operations vary by release and credential scope. Confirm your installed package's documented methods or MCP `tools/list` instead of assuming parity.
+Each integration has its own supported operations. Check the [compatibility guide](docs/capability-map.md) and [current availability](docs/product-status.md) before connecting to a provisioned service.
 
 ## Find your path
 
