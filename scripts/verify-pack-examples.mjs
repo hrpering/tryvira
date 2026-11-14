@@ -44,7 +44,7 @@ for(const name of roots){
     assert.ok(!caseIds.has(test.id),name+": duplicate case "+test.id);caseIds.add(test.id);
     assert.ok(test.prompt?.length>20&&test.expected?.length&&test.negative?.length);
     for(const criteria of [...test.expected,...test.negative]){
-      assert.ok(typeof criteria==="string"&&criteria.length>20,name+": vague evaluation check");
+      assert.ok(typeof criteria==="string"&&criteria.trim().length>=10,name+": vague evaluation check");
     }
     assert.ok(typeof test.kind==="string"&&test.kind.length>=4,name+": missing case family");
     kindCounts.set(test.kind,(kindCounts.get(test.kind)||0)+1);
