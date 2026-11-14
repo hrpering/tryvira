@@ -59,6 +59,6 @@ These are distinctions of product focus, not claims that other tools lack overla
 
 ## Availability and scope
 
-Vira is under active development. Published client libraries and examples are available; hosted product access requires a provisioned account. Behavior applies only at supported application boundaries and authorized scopes. Verification checks and model outcomes depend on the connected system and configured tests. See [availability and integration details](product-status.md).
+Vira is under active development, and general product access is not open yet. Published client libraries and examples are available; hosted operations require a provisioned account. Behavior applies only at supported application boundaries and authorized scopes. If an application calls a tool outside its configured Vira boundary, Vira cannot intercept it. Results are limited to the tested artifact, dataset, criteria and environment. See [availability and integration details](product-status.md).
 
 [What is Vira?](what-is-vira.md) · [For teams](for-teams.md) · [Capabilities](capability-map.md) · [Developer guide](developer-guide.md)
