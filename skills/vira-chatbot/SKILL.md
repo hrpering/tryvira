@@ -1,10 +1,10 @@
 ---
 name: vira-chatbot
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Set up and try the public Next.js chatbot with Vira behavior OFF or ON, including optional observation and runtime readback."
 ---
 
-# Vira OFF/ON Chatbot
+# Integrate a Vira OFF/ON chatbot
 
 Help a user run the repository's real Next.js + OpenAI Agents chatbot and compare the same synthetic request with Vira OFF and ON. Use the existing example; do not create a mock Vira service, fabricate a runtime response, or replace the user's app.
 
@@ -28,7 +28,7 @@ If Vira access or scope is unavailable, still help them run OFF if they have the
 ## Boundaries
 This demo has no tools or external side effects, and the route has no end-user authentication, rate limiting, or tenant mapping. Keep it local or behind the user's authenticated server boundary. Use synthetic content. Never expose keys, customer prompts, or `.env.local`; never turn an error, denial, or missing projection into Vira OFF silently.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. The checked-in Next.js demo's **OFF** path invokes the configured OpenAI Agent; optional **Send baseline observation** records metadata-only `model.response` with permission.
 2. **ON** sends `requestedMode:"AUTO"` via `startTaskRun`. It displays actual TaskRun admission/status/selected mode, but currently **does not call the provider for ON** and **does not return a verified ON chatbot answer**.

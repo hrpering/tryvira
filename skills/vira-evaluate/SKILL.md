@@ -1,10 +1,10 @@
 ---
 name: vira-evaluate
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Prepare and review Vira Behavior Evaluation or response quality checks without fabricating results."
 ---
 
-# Evaluate
+# Evaluate behavior
 
 First distinguish Behavior Evaluation (candidate/artifact test) from Response Quality & Decision (bounded response candidate selection). Build synthetic positive, negative, boundary and adversarial cases with explicit criteria and thresholds. Bind evaluations to exact artifact identity/digest and use persisted server-returned IDs. Inspect actual returned state and receipts; do not declare a pass based on local assertions or a supplied score. Evaluation does not approve or release.
 
@@ -25,7 +25,7 @@ Specify API deployment URL, credential scope, evaluation type, candidate identit
 6. Run through the authorized isolated provider/environment; collect actual outputs, errors, latency/token fields only if returned.
 7. Analyze failures and regressions against criteria; report observed numbers with sample size and provenance, or label unrun metrics unavailable.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Build representative positive, negative, boundary, adversarial and regression cases with explicit assertions and provenance; distinguish source data from model guesses.
 2. For pre-release Behavior Evaluation use JS `startEvaluation`/`getEvaluation` or Python `start_evaluation`/`get_evaluation`. Only a real server-persisted `evaluationId` matching exact artifact/digest may be passed to Pack evaluation.

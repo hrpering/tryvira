@@ -1,10 +1,10 @@
 ---
 name: vira-mcp
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Configure or use Vira through its published Model Context Protocol server."
 ---
 
-# Mcp
+# Vira MCP integration
 
 Install the currently published `@tryvira/mcp` package without relying on a stale version pin. Initialize the configured MCP client and call `tools/list`; runtime schemas and scoped availability are authoritative. Never infer MCP support from SDK/API methods. Treat effectful tools as mutations subject to configured authority; do not fabricate missing Pack, release, evaluation, or connection tools.
 
@@ -23,7 +23,7 @@ Inspect the user's MCP host, config format, process launch mechanism, secret sto
 4. For each requested action, match it to an advertised tool and inspect whether it is read-only or effectful before invocation.
 5. Route absent operations to a documented SDK, Python, or HTTP contract; test config parsing separately from any live tool call.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Read the installed MCP server's package version and real config, then run `initialize` and `tools/list`. Do not hard-code the number or signatures of tools.
 2. The published MCP catalog **does not provide TaskRun or Pack lifecycle tools** even though JS/Python SDKs do. For normal AUTO TaskRun or Pack operations, use a separately documented server-side SDK integration; do not create a fake `start_task_run` MCP tool.
