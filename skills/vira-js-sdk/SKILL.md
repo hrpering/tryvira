@@ -1,10 +1,10 @@
 ---
 name: vira-js-sdk
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Implement or debug a Vira integration using the published JavaScript or TypeScript SDK."
 ---
 
-# Js Sdk
+# JavaScript / TypeScript SDK
 
 Use the currently published `@tryvira/sdk`; discover the registry version rather than copying a stale pin. Verify method names and signatures against the public SDK reference and installed package types. Use `ViraClient`, scoped env configuration, stable idempotency keys for retried mutations, and explicit error handling. Semantic resolve is not authorization. Never invent an SDK method from another surface. For TaskRun routing and state transitions, hand off to `vira-task-runs`; Python has corresponding TaskRun methods; inspect HTTP and MCP independently.
 
@@ -23,7 +23,7 @@ Inspect Node version, installed SDK version/types, module system, `VIRA_API_URL`
 4. For Pack flows, use supported manifest/archive input, direct variables map, wait for 202 materialization, and pass a persisted evaluationId bound to the exact digest.
 5. Build the integration and, when the user provides an authorized isolated non-production scope, run it against the actual Vira API and report returned request IDs/statuses. Do not present static checks, source review, or build output as evidence of live Vira behavior.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 **Canonical customer path: AUTO TaskRun.** The SDK does not forward a requested mode through the convenience helper, so use the explicit admission method below.
 

@@ -27,7 +27,7 @@ The TaskRun API supports **SINGLE**, **STRATEGY**, **COMPOUND** and **HYBRID**, 
 | Several tasks including a multi-step child | HYBRID |
 | An application that should request mode selection | AUTO |
 
-Do not assume these choices appear as a universal Studio setting or are supported by MCP. Use the [full mode guide](execution-modes.md), the [JavaScript TaskRun script](../examples/javascript/taskrun-modes.mjs) and the [pinned public SDK transport tests](../examples/frameworks/node-next/test/taskrun-sdk.test.mjs).
+Execution-mode selection is provided through supported TaskRun clients; Studio and MCP capabilities differ. Use the [full mode guide](execution-modes.md), the [JavaScript TaskRun script](../examples/javascript/taskrun-modes.mjs) and the [pinned public SDK transport tests](../examples/frameworks/node-next/test/taskrun-sdk.test.mjs).
 
 ## Canonical application path
 
@@ -74,9 +74,9 @@ Observe-first integrations are possible without claiming that a suggestion was a
 
 - **JavaScript / TypeScript:** [SDK reference](reference/javascript-sdk.md) and [runnable examples](../examples/javascript/README.md).
 - **Python:** [Python reference](reference/python-sdk.md) and [framework examples](../examples/frameworks/README.md).
-- **MCP:** [setup](reference/mcp.md). Discover the installed server's real tools using `tools/list`; do not invent tools.
+- **MCP:** [setup](reference/mcp.md). Discover the installed server's real tools using `tools/list`; check actual tool names and schemas.
 - **Direct HTTP:** use the customer's [documented API contract](reference/api.md), not method names guessed from SDKs.
-- **Studio:** interactive workflows depend on account access; do not infer that every SDK operation exists in Studio.
+- **Studio:** interactive workflows depend on account access; Studio workflows depend on account access and supported UI features.
 
 ## Comprehensive developer resources
 
@@ -91,7 +91,7 @@ Observe-first integrations are possible without claiming that a suggestion was a
 | Observations and Teach | [Teach](teach.md) · [Signals](signals.md) | Evidence permissions and approvals required |
 | Live decision and trace | [Runtime](runtime.md) · [Traces](traces.md) | Effectful calls require host enforcement |
 | JavaScript and Python | [JS](reference/javascript-sdk.md) · [Python](reference/python-sdk.md) | SDK method sets can differ |
-| MCP and HTTP | [MCP](reference/mcp.md) · [HTTP](reference/api.md) | Do not infer one surface from another |
+| MCP and HTTP | [MCP](reference/mcp.md) · [HTTP](reference/api.md) | Check the selected client and deployment |
 | Integrations | [Runnable frameworks](../examples/frameworks/README.md) · [Verification matrix](example-verification.md) | CI build is not a live customer test |
 | Failure handling | [Troubleshooting](troubleshooting/README.md) · [Checklist](developer-checklist.md) | Test denied, partial, missing and stale paths |
 

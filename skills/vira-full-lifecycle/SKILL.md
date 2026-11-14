@@ -1,10 +1,10 @@
 ---
 name: vira-full-lifecycle
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Plan and execute an evidence-backed Vira behavior lifecycle from scoped connection through evaluation, approval, runtime verification, Teach revision, and rollback readiness."
 ---
 
-# Full Lifecycle
+# Complete the behavior lifecycle
 
 Coordinate a user's complete governed behavior task across supported Vira surfaces. Start by identifying which stages they requested and which are safe/authorized to execute. A lifecycle is a set of separate persisted transitions; semantic selection, proposal review, materialization, activation, evaluation, release, runtime use, and rollback are not interchangeable.
 
@@ -73,7 +73,7 @@ If the product access notice says access is closed, stop live execution at confi
 - The published MCP catalog is narrower than the SDK/API: do not assume it can connect systems, complete Pack lifecycle, run evaluation, execute Strategies, create releases, or promote Teach proposals unless runtime discovery explicitly shows that operation.
 - Stop at missing scope/capability, consent, unresolved materialization, unsupported operation, failed evaluation, missing reviewer approval, stale digest, or uncertain runtime response semantics. Report the remaining stages and their blockers without claiming end-to-end completion.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Coordinate **Connect** with `vira-get-started` + SDK Skill; **Observe** with `vira-observe`; **Signals** with `vira-signals`; **Author/Pack** with `vira-author-behavior` + `vira-build-pack`; **Eval/Release** with `vira-evaluate-release`; **AUTO Run** with `vira-task-runs`; **Verify** with `vira-runtime-verification`; **Trace** with `vira-traces`; later evidence with `vira-observe-teach`.
 2. Transfer only real scope/Connection IDs, task/point/revision/Pack identity, materialization/evaluation/release digests, run state, actual verifier result and consent. Never invent a step after a failed handoff.

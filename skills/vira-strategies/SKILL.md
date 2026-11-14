@@ -1,10 +1,10 @@
 ---
 name: vira-strategies
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Author, validate, simulate, activate, and operate Vira Behavior Strategies using the documented lifecycle and execution authority."
 ---
 
-# Vira Strategies
+# Author and run Strategies
 
 Use a Behavior Strategy only when a task needs the documented selection, variant, or execution logic beyond a Semantic Task, Behavior Point, or Program. A Strategy is an optional governed artifact, not a prompt wrapper or a shortcut around evaluation/release.
 
@@ -25,7 +25,7 @@ Gather the task, allowed outcomes, constraints, scope, intended canonical object
 
 JavaScript/Python references expose list/get/create/variant/validate/simulate/activate and execution methods. Read the installed method types for exact request schemas; do not make up field names. MCP offers only its published subset and does not imply activation/execution parity.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. STRATEGY is a **single registered task with a released eligible graph**, not all multi-task coordination. COMPOUND coordinates multiple tasks; HYBRID combines SINGLE and STRATEGY children. The ordinary user-facing request is **AUTO TaskRun**.
 2. Author actual `schemaVersion`, `strategyKey`, `behaviorPointKey`, goal, ordered steps/edges, typed state slots, tool/verification/recovery policy and bounded budgets. Use the production-shaped [operations example](https://github.com/hrpering/tryvira/blob/main/examples/packs/operations-orchestration/behavior-strategies/items.json).

@@ -1,10 +1,10 @@
 # JavaScript / TypeScript SDK
 
-**Current package:** [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk) `0.1.44`
+**Current package:** [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk) `0.1.46`
 
 **Runtime:** Node.js 20+
 
-**Install:** `npm install @tryvira/sdk@0.1.44`
+**Install:** `npm install @tryvira/sdk@0.1.46`
 
 The published npm package is the authoritative source for the current method signatures and request/response types. This repository's public integration guidance intentionally avoids reproducing low-level operation schemas. Read the package README and type declarations for the exact version installed in your application.
 
@@ -33,7 +33,7 @@ Use an isolated development scope when the customer's account provides one. Prod
 5. Preserve returned identities and read persisted state before continuing asynchronous work.
 6. Handle errors without logging credentials or private user content.
 
-The JavaScript package currently documents capabilities beyond those documented by every other integration surface. Do not infer Python, HTTP, or MCP support from an SDK method. For TaskRun operations, follow the npm documentation and the [`vira-task-runs` Skill](../../skills/vira-task-runs/SKILL.md); this reference does not publish an HTTP route or payload contract.
+The JavaScript package currently documents capabilities beyond those documented by every other integration surface. Python, HTTP and MCP provide their own method sets and compatibility requirements. For TaskRun operations, follow the npm documentation and the [`vira-task-runs` Skill](../../skills/vira-task-runs/SKILL.md); this reference does not publish an HTTP route or payload contract.
 
 ## Canonical application integration
 

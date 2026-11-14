@@ -1,6 +1,6 @@
-# Production-aligned public Skill contract baseline
+# Public client contract reference for Agent Skills
 
-This guide records **public, customer-safe interface facts** checked against the current JS/Python client and runtime contracts. It is an instruction baseline, not publication of private server source or a claim that every tenant can use every operation.
+This reference summarizes the JavaScript/Python client operations used by Vira Agent Skills. Availability is determined by the installed package and connected environment.
 
 ## Canonical request
 
@@ -13,7 +13,7 @@ AUTO TaskRun → semantic resolve → server-eligible mode dispatch
 
 AUTO is the requested routing mode; the four named child execution modes are separate. Normal customer applications use the SDK TaskRun path. `resolveRuntime`, `executeRuntime` and `serveBehaviorProjection` are **advanced diagnostic SDK APIs**, never an ordinary alternative chatbot execution path.
 
-## JavaScript SDK, proven method names
+## JavaScript SDK methods
 
 - `resolveTaskRun({input,requestedMode:"AUTO",connectionId})`: route/proposal only.
 - `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`: explicit admission, subject to real customer scope/authority.
@@ -24,7 +24,7 @@ AUTO is the requested routing mode; the four named child execution modes are sep
 - `importPack({manifest,objects})` or documented archive, `installPack(packId,variablesMap)`, `evaluatePack(packId,{evaluationId:realId})`: separate import/materialization/evaluation. Approval/release follow their own authority.
 - `createTeachAnalysis(evidenceIds,options)`, `getTeachAnalysis(analysisId)`: submitted evidence must be admitted/consented, analysis is asynchronous.
 
-## Python SDK, proven corresponding methods
+## Python SDK methods
 
 - `resolve_task_run({"input": text, "requestedMode":"AUTO", "connectionId":connection_id})`.
 - `start_task_run({"taskRunId":run_id,"requestId":request_id,"input":text,"requestedMode":"AUTO","connectionId":connection_id},idempotency_key=key)`.
@@ -34,7 +34,7 @@ AUTO is the requested routing mode; the four named child execution modes are sep
 - `import_pack(manifest,objects,...)`, `install_pack(pack_id,variables)`, `evaluate_pack(pack_id,{"evaluationId":real_id})`.
 - `create_teach_analysis(evidence_ids,...)` and `get_teach_analysis(analysis_id)`.
 
-These method names were checked in the owner-authorized production clients. **The installed published package and live tenant capabilities remain the final authority** for external users; they can evolve independently.
+These operations describe the documented client interfaces. Use the installed published package and your deployment's capability information for exact signatures and availability.
 
 ## Signal and verification specifics
 
@@ -56,4 +56,4 @@ A TaskRun COMPLETED status is **not** proof that the final provider response pas
 
 [JS TaskRun](https://github.com/hrpering/tryvira/blob/main/examples/javascript/taskrun-modes.mjs) · [Python TaskRun](../../examples/python/taskrun_modes.py) · [Pack Academy](../pack-authoring-guide.md) · [Signals](../signals.md) · [Observe](../observe.md) · [Runtime Verification](../runtime-verification.md) · [Verified answer limitations](../verified-answer-handoff.md).
 
-**Testing levels:** static Skill validation / SDK serialization, focused mock-transport unit checks, actual live tenant execution and final provider-verifier answer binding are separate proof levels. Never claim the last from the first.
+**Testing levels:** offline Skill and SDK tests, live tenant operations, and full provider-output verification are separate forms of evidence. The [validation guide](validation-status.md) explains each one.

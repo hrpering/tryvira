@@ -1,10 +1,10 @@
 ---
 name: vira-release
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Prepare a separately authorized Vira behavior approval, release, deployment check, or rollback."
 ---
 
-# Release
+# Approve and release behavior
 
 Verify the exact canonical identity and digest, current scope, evaluation result, approval evidence, and release eligibility. Present the planned transition and its likely effect for explicit user/operator authorization. Call only the documented surface operation after authorization; keep approval and release separate. Afterward verify server-returned release identity, runtime eligibility, traces/receipts, and deployment health. Rollback must use a documented prior eligible revision, never deletion or client-invented state.
 
@@ -22,7 +22,7 @@ Require exact canonical resource/revision identity and digest, target scope/envi
 5. Record comparison and authoritative health evidence where supported; these records do not deploy or promote by themselves.
 6. Verify runtime eligibility and trace/receipt; for rollback, confirm the returned state resolves to the known prior revision.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Review evaluated immutable artifact, target tenant/environment, authority digests and prior eligible revision before any mutation. Present explicit approval and release scope for a separate operator decision.
 2. Apply only documented authorize/approve/release operations; preserve server-returned IDs and confirm the deployment postcondition. There is no generic SDK `rollback()` method; restoring previous identity must use a supported release contract and explicit authorization.

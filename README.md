@@ -1,4 +1,4 @@
-![vira — Own how your AI behaves. Plain-text wordmark and a conceptual developer-product illustration.](assets/vira-hero.svg)
+![vira — Own how your AI behaves](assets/vira-hero.svg)
 <p align="center"><strong>Define it. Test it. Release it. Know what ran.</strong></p>
 <p align="center">Own how your AI behaves. Define what it should say, decide and do; evaluate and release those expectations; run eligible behavior through governed tasks with inspectable evidence.</p>
 <p align="center">
@@ -9,7 +9,7 @@
   <a href="README.tr.md">Türkçe</a>
 </p>
 
-> **Under development.** The client packages and examples are public, but access to the Vira service and Studio workflows is not generally open. You can run the example chatbot with Vira OFF using your own model-provider key. Vira ON requires a provisioned account, scoped credentials, and eligible released behavior. [See the access and demo guide](docs/start-here.md).
+> **Early access:** The SDKs, Agent Skills and examples are public. Vira service and Studio access currently require a provisioned account. [See what you can try today](docs/start-here.md).
 
 ## The problem
 
@@ -19,9 +19,9 @@ Vira provides a separate, governed place to define and operate those behaviors. 
 
 ## One canonical application path
 
-**AUTO TaskRun → semantic resolve → eligible mode dispatch → real child executor → runtime behavior enforcement → provider/chatbot → post-model verification and receipt.** This is the end-to-end target, and its final provider/verification handoff needs real integration evidence. Ordinary users do not choose SINGLE, STRATEGY, COMPOUND or HYBRID manually. [Canonical TaskRun guide](docs/canonical-taskrun.md) · [Brand positioning](docs/brand-positioning.md)
+**AUTO TaskRun → semantic resolve → eligible mode dispatch → child execution → released behavior → provider/chatbot → verification → receipt.** AUTO selects the eligible execution mode; the final verified-answer integration is in development. [Canonical TaskRun guide](docs/canonical-taskrun.md) · [Brand positioning](docs/brand-positioning.md)
 
-`behavior-projection` and direct `resolveRuntime` remain **advanced SDK/diagnostic surfaces**, not the customer quickstart or a second chatbot path. A `COMPLETED` TaskRun alone does not prove that a provider-generated answer passed post-model verification.
+Direct `resolveRuntime` and `behavior-projection` APIs support advanced diagnostics. Application requests use AUTO TaskRun; a verified final answer additionally requires matching post-model evidence.
 
 ## See the full Vira loop
 
@@ -29,7 +29,7 @@ Vira is more than a Pack editor or a runtime rules switch. It connects **real AI
 
 ![How Vira works: a conceptual lifecycle from Observe through AUTO TaskRun to runtime verification and receipts](assets/vira-lifecycle.svg)
 
-*Architecture illustration, not a screenshot or proof that the final provider-to-verifier handoff has been deployed.*
+*Vira behavior lifecycle, illustrated.*
 
 | Capability | The practical question | Start here |
 | --- | --- | --- |
@@ -42,7 +42,7 @@ Vira is more than a Pack editor or a runtime rules switch. It connects **real AI
 | **Runtime verification / Response Quality** | Did the actual output satisfy the configured checks, and what happens on failure? | [Runtime verification](docs/runtime-verification.md) · [Quality](docs/decision-and-quality.md) |
 | **Traces / Receipts / Operations** | What was applied, skipped, denied or measured, and can the team inspect it? | [Receipts](docs/traces.md) · [Product feature map](docs/product-feature-map.md) |
 
-**Every feature family is mapped:** [complete capability guide](docs/product-feature-map.md) and [status/limitations](docs/product-status.md) also cover scopes and privacy, memory/knowledge, integrations, Studio/Admin, optimization, billing and experimental model/GPU infrastructure. Availability and proof differ by surface; none of those links implies general service access.
+Explore [Vira capabilities](docs/product-feature-map.md), including Signals, runtime behavior, evaluation, Teach, integrations and operational tooling. [Product availability](docs/product-status.md) lists current access and integration requirements.
 
 ## Examples for different kinds of AI work
 
@@ -56,7 +56,7 @@ Vira is not limited to one industry or to complex agents. Start simple, then mov
 | Technical | **A safe SDK upgrade** | Follow a bounded verification and rollback strategy |
 | Advanced | **An operations decision brief** | Coordinate multiple independently governed tasks and approvals |
 
-[12 scenarios with sample prompts and failure cases](docs/use-cases.md) · [copyable short/detailed fixture prompts](examples/scenarios/README.md) · [Skills vs agents vs other platform categories, without brand names](docs/approach-comparison.md)
+[12 scenarios with sample prompts and failure cases](docs/use-cases.md) · [copyable short/detailed fixture prompts](examples/scenarios/README.md) · [Compare Vira with Skills and agents](docs/approach-comparison.md)
 
 ### Execution choices at a glance
 
@@ -84,7 +84,7 @@ A Vira behavior for this task can explicitly require the assistant to:
 
 That definition can be packaged, evaluated with positive and negative cases, reviewed, and explicitly released. A supported runtime integration resolves eligible behavior for the request and returns evidence of what was selected.
 
-**This is an illustrative scenario, not a measured benchmark.** Vira does not guarantee that every model response is correct, that a model follows every instruction, or that a recommendation is valid. The host application still owns model execution and external tool permissions.
+*Illustrative scenario. Actual output quality and behavior enforcement depend on the model, deployed controls and test results.*
 
 ## What Vira adds
 
@@ -96,15 +96,15 @@ That definition can be packaged, evaluated with positive and negative cases, rev
 | Repeated mistakes with no structured improvement process | Permitted evidence → **Teach** proposals → review → evaluation |
 | "It behaved differently" with little context | Returned identities, receipts, and traces for supported operations |
 
-These are product workflow capabilities, **not** claims of universal enforcement, identical SDK feature coverage, or independently demonstrated accuracy gains. [Capabilities and limitations](docs/capability-map.md) · [Product explanation](docs/what-is-vira.md)
+[Available capabilities](docs/capability-map.md) · [Product explanation](docs/what-is-vira.md)
 
 ## See it in action
 
 ![Public demonstration: OFF returns a provider response, while ON presents AUTO TaskRun admission/status pending verified provider output](assets/vira-on-off.svg)
 
-*Current sample behavior, not a benchmark or evidence of an ON model response.*
+*Current sample: real OFF provider response; ON shows TaskRun admission and status.*
 
-**Try the real Next.js + OpenAI Agents integration.** OFF invokes your configured model as a baseline. ON submits an **AUTO TaskRun** and shows the server's real admission/state. It does **not** manufacture a model answer: the public TaskRun response does not yet establish the canonical provider-output + post-model verification handoff.
+**Try the Next.js + OpenAI Agents example.** OFF calls your configured model; ON submits an AUTO TaskRun and displays the server's admission and state. Final verified ON answers are not yet available in this example.
 
 ```bash
 git clone https://github.com/hrpering/tryvira.git
@@ -115,9 +115,9 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open the local URL printed by Next.js and try **Vira OFF**. **Vira ON** requires your provisioned API endpoint, scoped credentials, an actual connection and eligible released tasks. The example returns a TaskRun pending/status response, **not** a verified chatbot reply, until the integrated provider/verifier response contract exists. [Exact sample limitations](examples/frameworks/node-next/README.md).
+Open the local app and try **Vira OFF**. To test **Vira ON** admission, configure your provisioned Vira environment and eligible released behavior. [Setup and prerequisites](examples/frameworks/node-next/README.md).
 
-The example calls real configured services, contains **no fake Vira backend**, and has not been validated against a live Vira tenant in this public repository. Never expose its unauthenticated demo route to the public internet.
+The sample is intended for local development. Add authentication, rate limits and tenant mapping before making its routes public.
 
 [Chatbot setup](examples/frameworks/node-next/README.md) · [Framework examples](examples/frameworks/README.md) · [Marketing Agent walkthrough](tutorials/marketing-agent/README.md)
 

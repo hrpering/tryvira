@@ -1,10 +1,10 @@
 ---
 name: vira-evaluate-release
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Evaluate Vira behavior and perform separate approval/release steps using documented contracts."
 ---
 
-# Evaluate Release
+# Evaluate and release behavior
 
 Use the Behavior Evaluation contract and bind evaluation to the exact candidate/artifact. Review dataset, criteria, threshold, status, scope, and artifact digest before proceeding. Quality & Decision is a different response-time operation and does not grant release authority. Approval and release are distinct explicit authorized transitions; do not infer a pass or deploy after evaluation automatically.
 
@@ -23,7 +23,7 @@ Require candidate ID/digest, evaluation ID/status, scope, criteria/threshold, re
 6. Prepare a concise approval packet with evidence, risks, exact digest and rollback target; request explicit authorization before an effectful approval/release call.
 7. After separately authorized transitions, verify server-returned approval/release identity and runtime eligibility.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Verify persisted evaluation and *exact* immutable candidate ID/digest plus negative/regression results; fail if changed since evaluation.
 2. Prepare human review with scope, effects, required Signal mappings, verifier capabilities, impact, rollback target and any missing permissions.

@@ -36,7 +36,7 @@ Vira proposes a common lifecycle for those changes: declared requirements, task 
 
 A marketing analytics agent is asked to reallocate spend based on two dashboards. Their ROAS figures use different attribution rules. The team wants the agent to identify incompatibilities, avoid presenting estimates as actuals, and make a recommendation only with visible assumptions. Vira lets the team describe and evaluate that behavior within a governed release process.
 
-This is a **candidate use case**. Do not claim a quantified lift in response quality, cost reduction, latency or compliance unless a comparable evaluation establishes it.
+This example illustrates the intended behavior. Quantified quality, cost, latency or compliance outcomes require comparable, published evaluation data.
 
 ## Position relative to adjacent tools
 

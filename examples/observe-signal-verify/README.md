@@ -53,7 +53,7 @@ A Program's `post_model` check needs a supported concrete verifier. The baseline
 
 **Important:** an unconfigured `judge: ...` extension must fail closed; writing the string in JSON does not make a model judge available. The example Pack explicitly declares these required checks so missing dependencies are visible.
 
-The final verified chatbot answer also requires the provider output and post-model check to be bound to the same immutable TaskRun/revision and receipt. That last-mile public readback contract is a separately documented integration requirement, **not** faked by the tutorial.
+The final verified chatbot answer also requires the provider output and post-model check to be bound to the same immutable TaskRun/revision and receipt. That last-mile public readback contract is a separately documented integration requirement, not implemented by this tutorial.
 
 ## Negative tests
 

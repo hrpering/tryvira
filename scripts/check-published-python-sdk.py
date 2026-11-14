@@ -5,17 +5,21 @@ external model, released behavior or tool authorization is simulated.
 """
 from __future__ import annotations
 
-import json
+import re
 from importlib.metadata import version
 from pathlib import Path
 
 from vira import ViraClient
 
-versions = json.loads((Path(__file__).resolve().parents[1] / "package-versions.json").read_text())
-expected = versions["pypi"]["tryvira-sdk"]
+requirements_path = Path(__file__).resolve().parents[1] / "examples/frameworks/python_fastapi/requirements.txt"
+requirements = requirements_path.read_text(encoding="utf8")
+match = re.search(r"^tryvira-sdk==(\S+)$", requirements, re.M)
+if not match:
+    raise RuntimeError("FastAPI SDK version pin missing")
+expected = match.group(1)
 actual = version("tryvira-sdk")
 if actual != expected:
-    raise RuntimeError(f"Published Python SDK version mismatch: {actual} vs {expected}")
+    raise RuntimeError(f"Installed Python SDK does not match the tested FastAPI example pin: {actual} vs {expected}")
 
 for name in (
     "connect_once",

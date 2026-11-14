@@ -1,6 +1,6 @@
 # Vira Agent Skills
 
-Portable, licensed Agent Skills for integrating with and operating Vira through documented public surfaces. The 27-Skill library is in active development and is not yet published to skills.sh.
+Vira Agent Skills help coding assistants integrate Vira into existing apps using documented SDKs, Behavior Packs and TaskRun workflows. The 27 Skills can be installed directly from GitHub; they are not yet listed on skills.sh.
 
 ![Build with Vira: 27 Agent Skills, graded Packs and developer workflows](../assets/vira-build.svg)
 
@@ -18,8 +18,8 @@ from the public repository and verify all 27 archives using
 Archives mirror linked public source resources and selected runnable example folders under `references/repo/`;
 Pack, Framework, Chatbot and TaskRun Skills include needed standalone source examples and builder scripts. Run them from the local `references/repo/` path. npm/PyPI SDK dependencies and real Vira service access remain external.
 
-[Six-part completion gate](../docs/agent-skills/e2e-readiness.md) ·
-[Real agent/model Skill auto-selection benchmark](../docs/agent-skills/live-acceptance.md).
+[Skill tests and compatibility](../docs/agent-skills/e2e-readiness.md) ·
+[Model-selection evaluation](../docs/agent-skills/live-acceptance.md).
 
 ## Install
 
@@ -48,7 +48,7 @@ npx skills add hrpering/tryvira --skill vira-task-runs
 | Skill | Use it for |
 | --- | --- |
 | `vira-observe` | Observe-only instrumentation: model/tool/action/feedback events and scoped ingestion |
-| `vira-runtime-verification` | Actual post-model verifier checks, failure handling and output-bound receipts |
+| `vira-runtime-verification` | Implement and inspect verification using documented check and receipt contracts |
 | `vira-traces` | TaskRun/child authority, verification receipt and outcome lineage diagnostics |
 | `vira-get-started` | Inspect a project and choose the supported integration path |
 | `vira-npm-cli` | Install/upgrade npm SDK and MCP package safely |
@@ -58,7 +58,7 @@ npx skills add hrpering/tryvira --skill vira-task-runs
 | `vira-python-sdk` | Python SDK implementation |
 | `vira-mcp` | Published MCP configuration and runtime tool discovery |
 | `vira-http-api` | HTTP operations, auth, and scope |
-| `vira-framework-integration` | Framework-neutral integration without claiming nonexistent adapters |
+| `vira-framework-integration` | Framework-native integration using supported SDK contracts |
 | `vira-author-behavior` | Semantic Tasks, Behavior Points, Programs, Strategies |
 | `vira-signals` | Consent-aware signal discovery, review, materialization, and producer mapping |
 | `vira-strategies` | Strategy validation, simulation, activation, and execution continuation |
@@ -69,7 +69,7 @@ npx skills add hrpering/tryvira --skill vira-task-runs
 | `vira-evaluate-release` | Evaluation, approval, and release boundaries |
 | `vira-release` | Prepare explicit approval/release/deployment verification |
 | `vira-runtime` | Governed runtime resolution, execution, receipts |
-| `vira-chatbot` | Try the real local Next.js chatbot with Vira OFF or ON |
+| `vira-chatbot` | Run the local Next.js OFF baseline and ON TaskRun admission demo |
 | `vira-studio` | Studio workflow guidance and access-state caveats |
 | `vira-debug` | Surface-specific troubleshooting |
 | `vira-lifecycle` | End-to-end behavior lifecycle planning |
@@ -83,9 +83,9 @@ For the complete customer journey, use `vira-full-lifecycle` with `vira-observe`
 
 **AUTO TaskRun → semantic resolve → eligible mode dispatch → real child executor → runtime enforcement → provider/chatbot → post-model verification → receipt.**
 
-`vira-task-runs` covers both published JavaScript and Python SDKs. `vira-runtime-verification` covers actual checks and the known missing final-answer readback contract. `vira-observe` collects real events separately; `vira-signals` gives typed versioned evidence a governed mapping; `vira-traces` inspects real receipts. Do not use `resolveRuntime` or `behavior-projection` as an alternative ordinary chatbot path.
+`vira-task-runs` covers both published JavaScript and Python SDKs. `vira-runtime-verification` covers actual checks and the known missing final-answer readback contract. `vira-observe` collects real events separately; `vira-signals` gives typed versioned evidence a governed mapping; `vira-traces` inspects real receipts. Normal chatbot requests use AUTO TaskRun; `resolveRuntime` and `behavior-projection` are advanced diagnostic interfaces.
 
-[Audit of all 24 original Skills and the 3 added specialists](../docs/agent-skills/production-contract-audit.md) · [Current production contracts](../docs/agent-skills/production-contract-baseline.md) · [Three graded Pack examples](../examples/packs/README.md).
+[Integration compatibility](../docs/agent-skills/production-contract-audit.md) · [Client method reference](../docs/agent-skills/production-contract-baseline.md) · [Three graded Pack examples](../examples/packs/README.md).
 
 ## Runnable operation examples
 

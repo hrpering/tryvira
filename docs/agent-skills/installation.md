@@ -8,7 +8,7 @@ The 27 Skills have their own [installation and commercial-use license](../../ski
 permitting copying into client apps, modifying the instructions, and distributing
 them in project repositories with attribution. The public documentation outside
 an official Skill archive and Vira's private backend retain different rights.
-For marketplace redistribution, obtain legal review of this custom (non-OSI) license.
+The Skill license is a custom application-use license rather than an OSI-approved open-source license; review its terms for your intended distribution.
 
 `npx skills add` installs source Skill files. Its remote documentation links
 require network access. To install an **offline instructional/resource archive**,

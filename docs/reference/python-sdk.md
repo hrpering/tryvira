@@ -1,10 +1,10 @@
 # Python SDK
 
-**Current package:** [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) `0.1.44`
+**Current package:** [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) `0.1.46`
 
 **Runtime:** Python 3.10+
 
-**Install:** `python -m pip install tryvira-sdk==0.1.44`
+**Install:** `python -m pip install tryvira-sdk==0.1.46`
 
 The published PyPI package is the authoritative source for current method signatures and request/response types. This repository's public integration guidance intentionally avoids reproducing low-level operation schemas. Read the published package documentation for the version installed by your application.
 
@@ -23,7 +23,7 @@ Use an isolated development scope when the customer's account provides one. Prod
 5. Preserve returned identities and read persisted state before continuing asynchronous work.
 6. Handle failures without logging credentials or private user content.
 
-Python and JavaScript package capabilities may differ. Do not infer Python support from a JavaScript method or from MCP/HTTP naming. Consult the installed package and [capability map](../capability-map.md).
+Python and JavaScript package capabilities may differ. The Python package has its own supported methods; JavaScript, MCP and HTTP coverage may differ. Consult the installed package and [capability map](../capability-map.md).
 
 ## Canonical application integration
 

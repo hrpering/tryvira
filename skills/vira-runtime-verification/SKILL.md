@@ -1,10 +1,10 @@
 ---
 name: vira-runtime-verification
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Diagnose and implement the Vira runtime verification boundary for released behavior Programs, including real post-model checks, bounded repair and output-bound receipts; never treat TaskRun completion as verified chatbot output."
 ---
 
-# Runtime Verification and Verified Answer Handoff
+# Verify runtime behavior and responses
 
 Use this Skill when **the real provider output** needs to be checked against the **released Program** at an actual supported enforcement boundary. It is not a source-level Pack linter, generic quality score or Vira release tool.
 
@@ -23,7 +23,7 @@ Need exact TaskRun/child IDs, scoped release and artifact digest, host attested 
 6. Ensure the receipt binds **same TaskRun, scoped released artifact, actual provider response, final output digest and verifier PASS** before labeling the final answer “Vira verified”.
 7. Test wrong tenant, stale artifact, omitted verifier, forced failed check, output tampering, exhausted repair and incomplete Compound child.
 
-## Production-aligned example and negative case
+## Example and edge cases
 A retail assistant saying “guaranteed profit” can fail deterministic `forbidden: guaranteed profit`. Checking whether its ROAS analysis is economically correct requires an *implemented* source-aware judge, not just the string `judge: check economics`. If that extension is missing, report **UNSUPPORTED/FAIL**, never PASS.
 
 The public Next.js ON demo returns **TaskRun pending/status**, not a verified answer. The final output readback contract remains an integration requirement.

@@ -1,10 +1,10 @@
 ---
 name: vira-integrate-app
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Integrate an application with Vira through its documented public interfaces."
 ---
 
-# Integrate App
+# Integrate Vira into an application
 
 Choose an available Vira surface for an application integration. Read capability discovery and the capability matrix first; select an SDK, HTTP, or MCP path from its verified contract. Keep credentials in environment configuration. Do not claim an adapter exists unless the published package documents it.
 
@@ -21,7 +21,7 @@ Identify framework, server-side AI invocation point, streaming/tool-call structu
 4. Add secret-safe configuration, stable idempotency for retryable writes, and request/receipt correlation without logging user content.
 5. Build and run the integration against an authorized isolated non-production scope. Exercise the actual available/denied/error response states only when Vira returns them; do not fabricate service responses.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Find actual host request → provider/tool → response boundary. Connect an AI System via the selected SDK and retain server-issued IDs, scope, trace and idempotency.
 2. For ON, use `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`, then `getTaskRun`. Mode selection and host capability must be **server-controlled**, not an invented client grant.

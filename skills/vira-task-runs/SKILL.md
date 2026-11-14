@@ -1,10 +1,10 @@
 ---
 name: vira-task-runs
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Guide a customer through the governed TaskRun journey using the current public JavaScript and Python SDK documentation."
 ---
 
-# Vira TaskRuns
+# Run Vira tasks
 
 Use this Skill when a customer wants to route or run a governed task, inspect its progress, provide an authorized continuation, or recover a failed run. TaskRuns are a runtime execution workflow; they do not create or release behavior artifacts. The installed public JavaScript and Python SDK documentation is the source for exact calls and data shapes. This Skill explains the end-to-end decision flow without copying the operation contract into this repository.
 
@@ -32,7 +32,7 @@ Use an isolated development scope when available. Production use remains subject
 7. **Recover conservatively.** Follow the installed documentation's retryable states and preserve the server's plan. For timeouts or unknown mutation results, read the same run before issuing another operation.
 8. **Report the result.** Summarize the last persisted status, redacted identifiers, external effects if any, and any required human action. Never claim completion from a queued response alone.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 **The normal entry is AUTO TaskRun.** Do not place direct projection-to-model in an application response path.
 

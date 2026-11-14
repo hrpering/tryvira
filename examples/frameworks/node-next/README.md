@@ -31,7 +31,7 @@ Use the same prompt in ON:
 1. The chat route submits `startTaskRun` with `requestedMode: "AUTO"`, bounded budget, unique idempotency identity and the real connection ID when configured.
 2. The server performs semantic routing, selects the eligible execution mode and admits/persists a TaskRun. It may reject or abstain, which is a valid outcome.
 3. The route reads the persisted TaskRun state and returns HTTP 202 **pending verified chatbot response**. It does not create a provider answer or post-model receipt.
-4. The UI displays selected mode and persisted status, **not** a fabricated ON response.
+4. The UI displays the server-selected mode and persisted TaskRun status. A verified ON model response is not available in this public example yet.
 
 A released Pack is not sufficient by itself to guarantee a live chat response: the provider and post-model verifier must be integrated into the same canonical boundary.
 
@@ -43,7 +43,7 @@ A released Pack is not sufficient by itself to guarantee a live chat response: t
 | “Compare ROAS from 7-day click vs 30-day click plus view.” | [Retail-media Pack](../../packs/retail-media-review/README.md) |
 | “Investigate support complaints and inventory risk.” | [Operations Pack](../../packs/operations-orchestration/README.md) |
 
-These inputs are illustrative. The relevant task needs to be actually registered, evaluated and released in the account for routing to select it. There is no hard-coded fake behavior data in this example.
+These inputs are illustrative. The relevant task needs to be actually registered, evaluated and released in the account for routing to select it. The demo uses the tasks and behavior actually registered in your Vira environment.
 
 ## Creating or reusing a scoped connection
 

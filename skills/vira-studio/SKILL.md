@@ -1,10 +1,10 @@
 ---
 name: vira-studio
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Navigate Vira Studio workflows using public documentation and verified capability availability."
 ---
 
-# Studio
+# Work with Vira Studio
 
 Treat Studio docs/routes as workflow guidance, not proof a page is currently accessible or operational. Product access may be closed. Do not claim to create, approve, release, or change anything unless the user has access and explicitly requests the action. Use displayed scope and confirm consequential transitions.
 
@@ -21,7 +21,7 @@ Confirm the customer's actual authenticated Studio endpoint, target organization
 4. Before approval, release, deletion, or configuration change, present the exact target and effect and get explicit authorization.
 5. Verify the resulting state in Studio or a documented read API and record evidence.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Confirm the customer's actual Studio endpoint and authenticated scope. Old product URLs and source routes are not evidence of live access.
 2. From the visible UI, check roles and capability availability before displaying actions. Keep Behavior authoring, Signal mapping, Pack install, evaluation, approval, release, TaskRun monitoring and Admin privilege boundaries separate.

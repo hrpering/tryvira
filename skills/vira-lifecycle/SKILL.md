@@ -1,10 +1,10 @@
 ---
 name: vira-lifecycle
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Plan a complete governed Vira behavior lifecycle across the surfaces that actually support each step."
 ---
 
-# Lifecycle
+# Plan the behavior lifecycle
 
 Map the requested use case to available surfaces from the capability matrix; do not promise parity. Keep connect, observe, author, propose, review, evaluate, approve, release, runtime and feedback as distinct steps. Confirm queued operations, exact artifact bindings, explicit authority and receipts. If a surface lacks an operation, switch to documented SDK/Python/HTTP or state the gap.
 
@@ -21,7 +21,7 @@ Capture goal, application, permitted scope, candidate identity, available interf
 4. For each stage define input, expected persisted state, evidence to inspect, and safe stop condition.
 5. Execute only requested authorized steps; update the plan from observed server state and route surface gaps to supported alternatives. The JS/Python `outcome` helper emits `eventType: "business.outcome"`; verify the actual deployment's payload and receipt linkage before claiming real outcome attribution.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Plan two distinct loops: **Serve** (AUTO TaskRun → semantic resolve → mode dispatch → child executor → runtime enforcement → real provider → post-model verification → receipt) and **Improve** (Observe → reviewed Signal → Teach/candidate → evaluation → human approval/release → permitted new evidence).
 2. For each transition record source of truth, surface, exact server-issued ID/digest, consent, authority, persisted state and stop condition. 202/queued is not completion.

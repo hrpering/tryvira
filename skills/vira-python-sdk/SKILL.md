@@ -1,10 +1,10 @@
 ---
 name: vira-python-sdk
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Implement or debug a Vira integration using the published Python SDK."
 ---
 
-# Python Sdk
+# Python SDK
 
 Use the currently published `tryvira-sdk`; discover current registry version rather than copying a stale pin. Verify method names/signatures against the Python reference and installed package. Read secrets from environment variables; use context management when appropriate; retain scope and idempotency behavior. Do not assume MCP or JS-only functionality has a Python equivalent without checking. For ordinary AI requests use AUTO TaskRun; `serve_behavior_projection` is an advanced diagnostic SDK surface only.
 
@@ -23,7 +23,7 @@ Inspect Python version, active virtual environment, dependency manager/lockfile,
 4. Implement the minimum supported call with explicit exception handling, idempotency for writes, and no cross-surface API assumptions.
 5. Build and run the example against an authorized isolated non-production scope when requested. Report actual API status/IDs; do not replace a Vira call with a fabricated client response.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Use the installed `tryvira-sdk` client with trusted server-side API root/secret. Python `resolve_task_run({"input": text,"requestedMode":"AUTO","connectionId":connection_id})` is proposal-only; `start_task_run({"taskRunId": run_id,"requestId": request_id,"input": text,"requestedMode":"AUTO","connectionId":connection_id}, idempotency_key=key)` is admission.
 2. Inspect `get_task_run`, `list_task_run_events` and stateVersion before continuing/retrying/cancelling. The `start_task_run_from_prompt` convenience helper does not forward `requestedMode`.

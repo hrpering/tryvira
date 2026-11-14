@@ -1,10 +1,10 @@
 ---
 name: vira-framework-integration
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Integrate Vira into an AI application framework without assuming an undocumented adapter."
 ---
 
-# Framework Integration
+# Integrate with an AI framework
 
 First verify whether the chosen published package has a dedicated adapter. If absent, use documented JS/Python SDK or HTTP primitives in the framework lifecycle. Keep Vira runtime authority on the service boundary; do not present a local hook as a Vira adapter, permission grant, or release mechanism. Runtime response fields are operation-specific: do not invent a universal ALLOW/DENY/ABSTAIN mapping.
 
@@ -21,7 +21,7 @@ Inspect framework version, model/tool lifecycle, server/client boundary, streami
 4. Preserve the framework's message/tool/result types; do not convert missing, malformed, or unrecognized required contract data into permission to act. Keep credentials server-side, preserve trace/request identifiers, and avoid logging raw prompts or responses.
 5. Build and start the application, then verify the boundary against an authorized isolated non-production Vira deployment and configured provider. Record real response IDs/statuses; never report build output as live integration evidence.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Find the host's model/tool/action call sites, streaming behavior and how the final user-visible answer is sent. Keep secrets server-side and application tool permissions in the host.
 2. For Next.js, OpenAI Agents or Vercel AI SDK, **OFF** may call the provider as a baseline; **ON** must submit AUTO TaskRun, not `resolveRuntime → projection → streamText`. The public example deliberately responds with persisted TaskRun state rather than a fabricated verified ON answer.

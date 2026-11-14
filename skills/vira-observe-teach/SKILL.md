@@ -1,10 +1,10 @@
 ---
 name: vira-observe-teach
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Guide a customer through the complete Teach learning journey, from permitted evidence to a reviewed behavior improvement and the next cycle."
 ---
 
-# Observe and Teach AI
+# Observe and improve AI behavior
 
 Use this Skill for the full customer-facing Teach journey. Teach helps a team learn from permitted evidence and consider a behavior improvement; it does not silently change a live application.
 
@@ -49,7 +49,7 @@ For a focused customer-run analysis and readback, follow the [Teach analysis exa
 
 The tutorial uses configured customer services and contains no mock Vira server. It requires the user's own Vira access and an authorized development environment; product access is not open yet. Do not claim a live result when only the repository checks ran.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Gather **permitted observed event IDs** via an actual AI System/Connection. Keep user feedback, business outcome and runtime verifier results distinct. Use `vira-observe` for instrumenting a connected host.
 2. Create Teach analysis using JS `createTeachAnalysis(evidenceIds,{analysisId?,controlPointId?,summary?})` or Python `create_teach_analysis(evidence_ids,...)`; inputs are **already admitted, consented evidence IDs** from a verified conversation/episode, not arbitrary quoted text.

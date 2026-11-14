@@ -1,60 +1,55 @@
-# Product status and proof boundaries
+# Product availability and validation
 
-This page distinguishes **repository evidence**, **public client availability**, **customer tenant access** and **end-to-end application behavior**. These are different claims. It should be read alongside the [feature map](product-feature-map.md), not replaced by a single “available” badge.
+Vira's public SDKs, developer documentation and examples are available in this repository. **The hosted Vira service and Studio are currently accessible through provisioned environments rather than open self-service registration.**
 
-## What is genuinely public?
+This page helps you distinguish what can be explored locally from operations requiring an authorized Vira workspace.
 
-- Public documentation, source examples, the Pack Academy and the agent Skills are in this repository.
-- The JavaScript `@tryvira/sdk`, MCP `@tryvira/mcp` and Python `tryvira-sdk` distributions are documented separately with their own release licenses; **installation does not provision a Vira service account**.
-- Ordinary application requests should enter via **AUTO TaskRun**. Direct behavior-projection remains a low-level diagnostic/SDK tool.
-- A customer-scoped, permitted Observe event can be admitted and have its source identity preserved. That does not automatically make a Signal, run Teach or pass verification.
+## What you can use today
 
-## Evidence levels to use when writing public claims
-
-| Evidence level | Meaning | Safe wording |
+| Area | Available to developers | Additional requirements |
 | --- | --- | --- |
-| `Concept / planned` | Product design, roadmap or code not proven at the intended boundary | “Designed to”, “under development”, not “available” |
-| `Implementation / unit test` | Source and focused tests support a particular operation | “The backend includes…”, identify the exact boundary |
-| `Structural SDK example` | Published-client calls, serialization, build and offline test verified | “Example compiles and checks client contract” |
-| `Local integrated acceptance` | Required local dependencies, real persistence and scoped postcondition verified | “Passed this local acceptance”, not hosted availability |
-| `Deployed acceptance` | Identified customer-scope request completed at a known deployment/commit | “Observed in this tested scenario and configuration” |
-| `Complete provider + verification chain` | Actual provider output and post-model verifier result bound to the same released TaskRun, response digest and receipt | “Verified ON chatbot answer” only after explicit end-to-end proof |
+| Documentation and Behavior Pack examples | Public guides, source files and ZIP-building tools | No account required for local inspection |
+| Agent Skills | 27 installable guides with packaging and offline CI checks | An actual agent runtime for automatic selection; live Vira credentials for API workflows |
+| JavaScript and Python SDKs | Published client packages and runnable examples | A provisioned API URL and scoped key for live operations |
+| MCP | Published server package and tool discovery | Install the server and inspect its actual \`tools/list\` |
+| Next.js chatbot | OFF runs a configured provider; ON submits an AUTO TaskRun | Your own provider key for OFF; provisioned Vira connection and released behavior for ON |
+| Studio and Admin | Product interfaces for supported accounts | Account access and deployment-specific permissions |
 
-## Targeted feature status
+[Quickstart](quickstart.md) · [Agent Skills](../skills/README.md) · [Developer examples](../examples/README.md)
 
-| Product area | Present evidence / support | Important limitation |
+## Integration status
+
+| Product area | What is documented or tested | Current boundary |
 | --- | --- | --- |
-| Connect / SDK / MCP / Python | Public packages/examples, connection and surface-discovery contracts | Versions and methods differ; no universally provisioned tenant |
-| Observe / feedback / outcomes | Server observation event schema, admission/idempotency and source integrity; published SDK sample | Real consent, privacy, connection and follow-on processing are separate |
-| Signals / mapping | Backend definition, discovery, review, producer mapping and evidence-attestation components | A declared Signal key does not mean mapping/attestation is active or supported by every public client |
-| Semantic Tasks / discovery | Backend semantic selection and customer-scoped acceptance evidence | May abstain, ask for clarification or fail; AI classification is not release authority |
-| Programs / Strategies / Packs | Pack import/materialization, Program modules, structured Strategy types and SDK lifecycle | Tests/approval/release and installed artifact identity are independent gates |
-| AUTO TaskRun, child execution | Backend includes admitted task plans, mode dispatch, child executor, PostgreSQL-backed state and receipts, with documented deployed acceptance for selected cases | Not every customer, connection, mixed intent or host capability works automatically |
-| Artifact verification | Program/release/immutable artifact digest checks | Checks integrity, **not** provider output correctness |
-| Runtime module checks | Pre-model/tool/action and post-model module runtime, deterministic verifier and extension points | Free-text requirements are not automatically verifiable; some advanced verifiers require configured implementations |
-| Provider-generated verified chatbot output | A previous isolated provider-backed probe and separately documented mode/provider comparisons exist | **No published public TaskRun contract here proves that the exact final provider output passed post-model verification and was returned with matching receipt** |
-| Evaluation, quality, release | Candidate evaluations, bounded response quality, approval/release and actual scoped evidence paths | A score does not authorize a release; no universal quality improvement claim |
-| Teach and optimization | Evidence/proposal/review/promote loops and separately tested optimization components | No automatic production self-rewrite; no guaranteed optimization/cost reduction |
-| Traces and receipts | Scoped TaskRun/child lineage, runtime traces and authority/artifact digests | Full trace/verification output availability differs by integration and retention policy |
-| Billing / enterprise / Studio / Admin | Code and operational route families are present in product repo | Do not assume open SaaS pricing, stable customer UI access, complete enterprise connectors or production SLAs |
-| GPU/model serving/accelerators | Active implementation and research/benchmark surfaces | Not a publicly proven generalized throughput/latency/cost claim; hardware/runtime support must be evidenced per deployment |
+| Connection and Observe | Scoped event contracts, client examples and ingestion tests | Requires a live authorized connection; observation does not trigger release |
+| Signals and Teach | Definition, review, mapping and proposal workflows | Actual data/consent, approved mappings and separate release decisions |
+| Tasks, Programs, Strategies and Packs | Authoring contracts, examples, evaluation and lifecycle interfaces | Runtime eligibility depends on registered and released artifacts |
+| AUTO TaskRun | Admission, persisted status, execution-mode routing and child state | Host capabilities and completed execution vary by environment |
+| Runtime verification | Module/check contracts, failure handling and receipt structures | The public provider-output-to-post-model verified answer handoff remains under development |
+| Evaluation and release | Separate evaluation, review, approval and release operations | Each transition requires the appropriate authority and evidence |
+| Traces and telemetry | Execution and receipt inspection guidance | Fields and retention depend on the connected environment |
+| Billing, enterprise features and GPU/model serving | Product and engineering work in progress | No general commercial availability or performance guarantee is published here |
 
-## Specific current caveat on published ON/OFF evidence
+## Understanding the test evidence
 
-A dated **13 November 2026** backend acceptance record reports deployed TaskRuns for AUTO/SINGLE/STRATEGY/COMPOUND/HYBRID and a separate OFF/ON provider comparison. **The ON provider test assembled a released projection into the provider prompt**; it did not prove the one canonical public TaskRun-to-provider-to-post-model-verification response contract demanded by the new integration design. These are useful pieces of evidence, but **combining them into a claim of a complete unified verified chatbot path would be inaccurate**.
+Repository CI checks source compatibility, SDK request/response contracts, Skill archive packaging, example builds, and selected offline scenarios. **CI success does not mean a customer tenant, model provider or post-model verification chain was run.**
 
-The public Next.js example therefore submits AUTO TaskRun and shows actual admitted/persisted status instead of silently bypassing the canonical provider/verifier handoff to display an answer.
+A deployed acceptance result requires a real scoped request and the corresponding server records. A **verified ON answer** additionally requires the exact provider output, released behavior identity, post-model result and matching persisted receipt.
 
-## What needs proof before calling a feature production-ready?
+| Evidence | What it establishes |
+| --- | --- |
+| Implementation / unit test | Local code and focused checks exist for a specific operation |
+| Source/build test | Example compiles, links resolve, basic contracts are exercised |
+| SDK serialization test | Published client sends the expected method and fields through a test transport |
+| Deployed acceptance | A specified operation worked in one authorized environment |
+| Full provider and verification chain | The real output passed the configured checks and matches its TaskRun/receipt |
 
-For each enabled customer and public surface: accepted request schema, server-derived scope/actor, runtime host capability attestation, data consent and retention, idempotency, actual module/verifier execution, required negative paths, real provider/host behavior, persisted receipts and output digest correlation, versioned rollout/rollback, and required operational monitoring.
+The public Next.js example currently shows **TaskRun admission and status for ON**, rather than a final verified ON chatbot answer. [Canonical TaskRun](canonical-taskrun.md) · [Verified-answer integration](verified-answer-handoff.md)
 
-**Special caution for billing and hardware:** source code, a local feature flag or a partial operator route is not a commercial pricing guarantee or a hardware benchmark. Use separately published service terms and deployment-specific performance evidence before making such claims.
+## Version and surface compatibility
 
-## How this map stays current
+JavaScript, Python, MCP, HTTP and Studio are separate integration surfaces. Their supported operations and release schedules can differ. Check the [published client versions](published-packages.md), [capability discovery](capability-discovery.md) and your environment's permissions before implementing a workflow.
 
-The backend has a larger capability inventory with **hundreds of items** across sixteen domains. Much of that plan contains partial/needs-audit results; copying those rows into the public product brochure as “available” would mislead customers. This guide explicitly inventories the **product families**, while the [capability discovery API](capability-discovery.md) and installed SDK documentation remain the authoritative surface for a specific authenticated tenant.
+For privacy, billing, enterprise support and deployment-specific terms, use the agreement and service configuration supplied for your workspace.
 
-For every new public claim, demand a documented operation and at least the matching proof level. Use the [runtime verification guide](runtime-verification.md) to establish what was actually checked.
-
-[Feature map](product-feature-map.md) · [Observe](observe.md) · [Signals](signals.md) · [Canonical TaskRun](canonical-taskrun.md) · [Verification handoff](verified-answer-handoff.md)
+[Product capabilities](product-feature-map.md) · [Security](security-model.md) · [SDK reference](reference/sdk-method-inventory.md)

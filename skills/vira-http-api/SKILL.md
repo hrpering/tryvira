@@ -1,10 +1,10 @@
 ---
 name: vira-http-api
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Call Vira public HTTP endpoints with correct authentication, scope, and request contracts."
 ---
 
-# Http Api
+# Vira HTTP API
 
 Use the public HTTP API reference for exact paths/methods and the API deployment base URL supplied by the user. Send the documented bearer credential and explicit scope. Use stable idempotency keys for retryable mutations. Preserve receipts/request IDs. Never infer routes from SDK method names or bypass server authorization.
 
@@ -21,7 +21,7 @@ Confirm API base URL from the user's environment, auth mechanism, organization/p
 4. Handle asynchronous 202 jobs by polling/reading persisted status before dependent work.
 5. Validate a request against the actual documented API using an authorized isolated non-production scope; preserve the real request ID and returned status. If no scope is available, stop at code/schema review and label the live step unverified.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Use the authenticated customer's exact published OpenAPI/HTTP contract and the operator-provided API deployment root without appended `/v1`. Never invent an endpoint from an SDK method.
 2. Where available, `GET /v1/capabilities` is a scoped product capability read. `POST /v1/observations` records permitted events and may return 202: ingestion is not Signal approval or runtime verification.

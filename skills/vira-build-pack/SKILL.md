@@ -1,10 +1,10 @@
 ---
 name: vira-build-pack
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Create and validate a Vira Behavior Pack candidate before installation or evaluation."
 ---
 
-# Build Pack
+# Build a Behavior Pack
 
 Use the quality-graded Pack Academy samples; legacy Marketing Starter is only a minimal historical reference. Keep Pack identity/version stable and inputs synthetic. Validate manifest and collection structure; import through SDK/API using `{manifest, objects}` or supported archive. Inspect import inventory and every conflict. Pass the variables map directly to install. If install returns 202, wait for persisted materialization before evaluation. A Pack is not an Agent Skill and import/install are not release.
 
@@ -21,7 +21,7 @@ Collect desired reusable behavior, supported Pack schema/version, target resourc
 4. Produce a dry-run inventory and enumerate potential conflicts/overwrites for human review.
 5. Package the manifest/objects or supported archive exactly as the selected SDK/API accepts.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Use the quality-graded [Recipe](https://github.com/hrpering/tryvira/tree/main/examples/packs/recipe-preferences), [Retail Media](https://github.com/hrpering/tryvira/tree/main/examples/packs/retail-media-review) or [Operations](https://github.com/hrpering/tryvira/tree/main/examples/packs/operations-orchestration) Pack, not the old minimal marketing-starter as the quality bar.
 2. Define `pack.yaml` identity/version; `semantic-tasks/items.json` positive/negative routing cases; `behavior-points/items.json` requirements; `behavior-programs/items.json` executable staged modules and **explicit checks**; optional `behavior-strategies/items.json` graph, and `signals/items.json` *references only*. `tests/cases.json` fixtures are not evaluation receipts.

@@ -25,4 +25,4 @@ Record user-visible changes in `skills/CHANGELOG.md` and the repository `CHANGEL
 - Package registry versions may advance independently; use `package-versions.json` only as a synchronized repository snapshot. The monthly main-branch workflow updates Vira package references, refreshes the Vercel AI SDK pins, and regenerates framework lockfiles before CI verification. Weekly Dependabot checks cover the framework packages and GitHub Actions. A failed registry check is not a pass; dependency updates must pass the full workflow before merge.
 - MCP tools must match the package artifact; SDK/API methods are not MCP parity.
 - Studio source route catalogs are not UI evidence. Record browser results only for an actual accessible, authorized test session.
-- Production source may be consulted read-only to diagnose a public contract gap, but do not promote internal details into public skills without public contract evidence and owner approval.
+- Publish integration details from supported public client contracts. Keep private implementation details and customer data out of example repositories.

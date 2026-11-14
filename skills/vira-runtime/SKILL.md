@@ -1,10 +1,10 @@
 ---
 name: vira-runtime
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Resolve or execute governed Vira behavior and interpret runtime receipts safely."
 ---
 
-# Runtime
+# Run governed behavior
 
 Use the documented runtime operation and scoped boundary. Preserve authority digests, receipts, abstain/deny results, traces and idempotency. Semantic candidate selection is not authorization. Do not reconstruct runtime authority client-side or bypass released/eligible revision checks.
 
@@ -22,7 +22,7 @@ Identify the application request boundary, task/context, permitted scope, select
 5. Emit minimized feedback linked to the real request/receipt only when its documented contract and consent rules permit it. The JS/Python `outcome` helper sets `eventType: "business.outcome"` and uses the common observation envelope, but the public contract does not define event-specific business-result fields. Do not call `outcome()` to attribute a business result until its event-specific payload schema is published; do not invent fields or claim attribution.
 6. Verify actual allow/deny/abstain/error outcomes only when returned by the authorized non-production service; inspect the real trace correlation and never synthesize receipts.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. The **only normal user-facing ON route** is `AUTO TaskRun → semantic resolve → mode dispatch → real child executor → runtime enforcement → provider/chatbot → post-model verification → receipt`.
 2. JS `startTaskRun` / Python `start_task_run` with `requestedMode:"AUTO"` starts it; `getTaskRun`/`get_task_run` reads persisted state. The server chooses SINGLE/STRATEGY/COMPOUND/HYBRID.

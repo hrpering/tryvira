@@ -1,10 +1,10 @@
 ---
 name: vira-debug
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Diagnose Vira SDK, API, MCP, authentication, scope, runtime, Pack, and lifecycle errors."
 ---
 
-# Debug
+# Troubleshoot a Vira integration
 
 Collect sanitized error code, request ID, selected surface, package version, and relevant non-secret request shape. Never ask for or print credentials. Consult the matching troubleshooting guide and surface contract. Distinguish auth, authorization/scope, capability absence, validation, idempotency, async job completion, and runtime abstention. Do not retry non-idempotent mutations blindly.
 
@@ -21,7 +21,7 @@ Collect sanitized error code/message, request ID, operation, surface/package ver
 4. Propose the smallest fix and a single verification at the failed boundary; preserve idempotency for a safe retry.
 5. Only then inspect downstream behavior; retain request/receipt correlation and redact sensitive data.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. **Admission:** inspect actual TaskRun route, server-derived tenant scope, task registration, connection and immutable plan digest. `NEEDS_CLARIFICATION`, `ABSTAIN`, `DENIED` and `UNSUPPORTED_HOST` are distinct, not 500s.
 2. **Execution:** check chosen SINGLE/STRATEGY/COMPOUND/HYBRID, materialized Strategy eligibility, child task keys, server-attested host capabilities and real child receipts. `WAITING_USER`/`WAITING_HOST`/`WAITING_APPROVAL` require correct state-version continuation.

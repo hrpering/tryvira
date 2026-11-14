@@ -36,7 +36,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open the local URL, select **Vira OFF**, and use synthetic input. ON submits a server-owned AUTO TaskRun with separately issued credentials and eligible released tasks. It reports real admission/state **without** inventing a provider-generated verified answer. [Canonical path](canonical-taskrun.md) · [Pack academy](../examples/packs/README.md).
+Open the local URL, select **Vira OFF**, and use synthetic input. ON submits a server-owned AUTO TaskRun with separately issued credentials and eligible released tasks. The current ON example displays admitted TaskRun state; verified provider-output delivery is still under development. [Canonical path](canonical-taskrun.md) · [Pack academy](../examples/packs/README.md).
 
 ## First SDK connection (provisioned customers)
 

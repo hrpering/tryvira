@@ -1,10 +1,10 @@
 ---
 name: vira-npm-cli
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Install, configure, upgrade, or troubleshoot the published Vira npm SDK and MCP CLI."
 ---
 
-# Npm Cli
+# Install Vira npm packages
 
 Check current npm registry versions before installing; do not trust a checked-in version pin as latest. Use `@tryvira/sdk` for application code and `@tryvira/mcp` only for MCP hosting/client integration. Verify Node runtime requirements and lockfile changes. For MCP initialize then call `tools/list`; do not assume SDK methods map to MCP tools. Keep tokens in the MCP host secret store/environment, never command history or config committed to Git.
 
@@ -21,7 +21,7 @@ Inspect `package.json`, lockfile, Node version, package manager, and intended MC
 4. For MCP, configure the host using environment-variable placeholders, start the server, initialize it, and call `tools/list` before suggesting a tool.
 5. Run package-manager integrity checks and a minimal import/CLI check without contacting Vira unless explicitly requested.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Check current npm registry version, engines, installed lockfile and package exports. `@tryvira/sdk` is the server-side SDK; `@tryvira/mcp` is the MCP server, not a substitute.
 2. Inspect the installed .d.ts for `startTaskRun`, `getTaskRun`, `observe`; check MCP `initialize` + `tools/list` separately. Do not claim that package installation grants Vira service access.

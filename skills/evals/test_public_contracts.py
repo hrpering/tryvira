@@ -51,7 +51,7 @@ class PublicContractChecks(unittest.TestCase):
         self.assertIn("cannot intercept it", overview)
         self.assertIn("Results are limited to the tested artifact", overview)
         self.assertIn("product access is not open yet", overview)
-        self.assertIn("does not guarantee that every model response is correct", readme)
+        self.assertIn("Actual output quality and behavior enforcement depend on", readme)
         self.assertIn("docs/product-positioning.md", readme)
 
 
@@ -227,9 +227,10 @@ class PublicContractChecks(unittest.TestCase):
         expected = sorted(path.parent.name for path in (ROOT / "skills").glob("vira-*/SKILL.md"))
         self.assertEqual(sorted(reported), expected)
         self.assertEqual(len(reported), len(set(reported)))
-        self.assertTrue(all(line.endswith("| Not run |") for line in rows))
-        self.assertIn("no per-skill model result", status)
-        self.assertIn("No creator model evaluation was run", status)
+        self.assertTrue(all(line.count("|") >= 5 for line in rows))
+        self.assertFalse(any(line.endswith("| Not run |") for line in rows))
+        self.assertIn("Automatic Skill selection has not been measured", status)
+        self.assertIn("separately provisioned environment", status)
 
     def test_pack_evaluation_skill_runner_is_real_api_and_explicitly_gated(self):
         runner = self.read("skills/vira-evaluate/examples/run-pack-evaluation.mjs")
@@ -270,7 +271,7 @@ class PublicContractChecks(unittest.TestCase):
         self.assertIn("Invent an outcome event payload", forbidden)
         self.assertIn("Behavior Point response JSON path", forbidden)
         review = self.read("docs/agent-skills/customer-journey-review.md")
-        for anchor in ("manual instruction-following trace", "No mock Vira service", "a model-trigger benchmark", "no `outcome` payload schema"):
+        for anchor in ("FastAPI", "AUTO TaskRun", "approved policy", "human approval", "outcome event schema"):
             self.assertIn(anchor, review)
 
     def test_python_framework_projection_uses_operation_specific_contract(self):

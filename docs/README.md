@@ -1,6 +1,6 @@
 # Vira documentation
 
-**Choose a task, not a directory.** This is the public documentation and examples repository for Vira. Client packages are published; hosted product access is still under development and is not generally open.
+Explore Vira's behavior lifecycle, build an integration with a published SDK, or follow an example. The hosted service currently requires a provisioned account.
 
 [Start here](start-here.md) · [What Vira is](what-is-vira.md) · [Developer guide](developer-guide.md) · [For teams](for-teams.md)
 
@@ -63,4 +63,4 @@ Vira's product concepts are designed to separate *what a task is*, *where behavi
 
 [Contributing](../CONTRIBUTING.md) · [Support](../SUPPORT.md) · [Security](../SECURITY.md) · [Writing standards](writing-guidelines.md) · [Repository/license scope](repository-scope.md)
 
-For product availability and actual tenant operations, do not infer live access from these documents. No shared credentials or mock production service are supplied.
+For account requirements and supported operations, see [product availability](product-status.md) and [capability discovery](capability-discovery.md). Examples use your own credentials and environment.

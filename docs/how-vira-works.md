@@ -13,7 +13,7 @@ User request
   → post-model verification and receipts
 ```
 
-The child/runtime stages can be implemented by the server for a provisioned eligible tenant. Final provider-output and verifier receipts require the actual integrated provider/verification contract; never claim them based on an SDK method's existence alone.
+Execution depends on released behavior and the capabilities of the connected host. A verified final answer also requires the provider output and post-model result to be linked to a persisted receipt; this handoff is still under development in the public client.
 
 ![How Vira works — conceptual governed lifecycle, not a live verification receipt](../assets/vira-lifecycle.svg)
 

@@ -1,10 +1,10 @@
 ---
 name: vira-get-started
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Get a Vira integration started in an existing project by checking its stack and supported surfaces."
 ---
 
-# Get Started
+# Get started with Vira
 
 Inspect the project language/runtime and the user goal. Compare JS, Python, HTTP, and MCP in the shared matrix. Confirm current package versions from registries/package-version metadata rather than stale pins. Set environment-variable placeholders, check scoped capabilities, and implement the smallest documented read-only path first. Do not access production credentials or claim Studio availability without verification.
 
@@ -21,7 +21,7 @@ Inspect the repository language, runtime, package manager, server/client boundar
 4. Implement only after the user asks for code changes; keep secrets server-side and preserve the host app's conventions.
 5. Run local checks and report changed files, package version source, scope assumptions, and any unverified live step.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Identify the real server-side AI call site, user goal, framework and scope. Choose **Observe-only** (no model-behavior change) or **AUTO TaskRun** (governed execution).
 2. Check installed JS/Python SDK, real connection and server-attested host capability. Do not assume MCP mirrors SDK. Route the ordinary request through AUTO and stop if admission fails.

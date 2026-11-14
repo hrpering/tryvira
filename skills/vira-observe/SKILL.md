@@ -1,10 +1,10 @@
 ---
 name: vira-observe
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Instrument a connected AI system with Vira Observe, including scoped events, batch ingestion, permitted feedback and evidence correlation. Does not approve Signals or change runtime behavior."
 ---
 
-# Observe and Instrument AI Behavior
+# Instrument AI behavior with Observe
 
 Use this Skill for **real event instrumentation** independently of the Teach improvement loop. It supports *collect evidence first, govern later*. An accepted Observe event is **not** a verified answer, an approved Signal or a release.
 
@@ -23,7 +23,7 @@ Inspect the existing host adapter, scope, actual AI System and Connection IDs, p
 6. Test a retry with the same event ID, a forbidden credential field, missing connection, wrong scope and consent denied. Redact before writing logs. Readback if the configured surface supports it.
 7. Route new typed context needs to `vira-signals`; recurring permitted corrections to `vira-observe-teach`; runtime PASS claims to `vira-runtime-verification`.
 
-## Production-aligned example and negative case
+## Example and edge cases
 Executable local files: `examples/observe-once.mjs`, `examples/observe_once.py`, with pure envelope builder `examples/event-contract.mjs` and negative tests `examples/observe-contract.test.mjs`. The source [JavaScript connect/observe example](https://github.com/hrpering/tryvira/blob/main/examples/javascript/connect-observe.mjs) uses actual SDK calls. Instrument a synthetic customer-support request with `model.response` metadata, then attach a separately approved user correction. **Never** mark a business outcome successful just because the model said it completed the task. `outcome()` is an observation helper and real attribution needs a supported evidence/linkage contract.
 
 ## Deliverable and failure handling
