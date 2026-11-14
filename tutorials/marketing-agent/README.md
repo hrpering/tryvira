@@ -1,6 +1,6 @@
 # Marketing Agent: Pack lifecycle + canonical AUTO TaskRun (advanced diagnostic exercises separate)
 
-This tutorial uses a lockfile-tested `@tryvira/sdk` example dependency (minimum 0.1.44); the [published package index](../../docs/published-packages.md) records the current registry release. The **normal application path is AUTO TaskRun**. Pack import, materialization, evaluation and approval come first; after release use `11-auto-taskrun.mjs` for actual server-owned admission/readback. The older `06-runtime-resolve.mjs` and `07-quality-decision.mjs` are **optional low-level SDK/projection diagnostics**, not the canonical ON chatbot flow. Public access remains restricted. [Canonical path](../../docs/canonical-taskrun.md).
+This tutorial uses the published `@tryvira/sdk` package with a lockfile-tested example dependency (minimum 0.1.44); the [published package index](../../docs/published-packages.md) records the current registry release. The **normal application path is AUTO TaskRun**. Pack import, materialization, evaluation and approval come first; after release use `11-auto-taskrun.mjs` for actual server-owned admission/readback. The older `06-runtime-resolve.mjs` and `07-quality-decision.mjs` are **optional low-level SDK/projection diagnostics**, not the canonical ON chatbot flow. Public access remains restricted. [Canonical path](../../docs/canonical-taskrun.md).
 
 ## Behavior source and evaluation
 
