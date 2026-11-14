@@ -1,23 +1,11 @@
-# Retail Media Evidence Review · Intermediate
+# Retail Media Evidence Review · Intermediate (v1.1.0)
 
-A business Pack designed to survive a strong baseline model. Its value is a **declared and evaluable measurement contract**, not the claim that every ordinary model will confuse ROAS.
+This Pack governs **comparability and numeric integrity**, not the idea that every baseline model is bad at ROAS.
 
-The core problem: comparing metrics built from *different measurement rules* and presenting a confident spend recommendation.
+Check click and view attribution windows, reporting dates, net versus gross sales, refunded orders, tax, currency and spend scope before ranking channels. If definitions match, calculate the actual ratio, for example 240000 / 80000 = **3.0x**, and offer a conditional recommendation. Attributed revenue is not incremental lift or profit. A requested budget transfer is not evidence that an API moved money.
 
-## Required verifier and evidence
+The 27 review cases include correct arithmetic, ties, mismatched reporting, zero denominators, missing inputs, evidence claims, unauthorized budget actions and out-of-scope creative requests. Known numerical reference values are supplied in some cases; actual answers must still be reviewed.
 
-This Pack uses `verifier:output.non_empty` for basic deterministic completeness and `judge: ...` extension requirements for evidence-backed KPI comparison. The model judge **must be configured and tested against a real source/evaluation dataset** before a runtime PASS can be claimed. An unconfigured judge, missing metric definitions or unsupported repair must not be reported as successful verification. The Signal keys are references, not approved live producer mappings. [Runtime verification](../../../docs/runtime-verification.md) · [Observe/Signal example](../../observe-signal-verify/README.md).
+Semantic `judge: ...` checks and repair/block policies need a configured verifier and real provider output. This Pack source does not establish a runtime PASS.
 
-## How to adapt
-
-1. This example deliberately omits installer variables. Add business-unit or market configuration only after your actual materializer and runtime show that those fields bind to the Program, not merely to Pack metadata.
-2. Keep `semantic-tasks/items.json` focused on comparisons and advice rather than generic “marketing”.
-3. Keep the Point as a **task outcome contract** and Program modules as the **actual checks**.
-4. Extend `tests/cases.json` with deliberately comparable data, incompatible attribution, different sales scope and an unauthorized action attempt.
-5. Add a strategy only if this truly needs multiple governed execution stages. Longer prose alone does not justify STRATEGY.
-
-Files: `pack.yaml`, `semantic-tasks/items.json`, `behavior-points/items.json`, `behavior-programs/items.json`, `signals/items.json`, `evaluations/items.json`, and `tests/cases.json`.
-
-**Release:** import → inspect conflicts → install → server-side evaluation → human approval → explicit release. The source evaluation IDs do not constitute a passed evaluation.
-
-[Authoring guide](../../../docs/pack-authoring-guide.md) · [AUTO TaskRun](../../../docs/canonical-taskrun.md).
+[Source tests](tests/cases.json) · [Evaluation protocol](../../../docs/pack-evaluation.md) · [Observe/Signals walkthrough](../../observe-signal-verify/README.md)

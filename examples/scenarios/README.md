@@ -1,6 +1,6 @@
 # Synthetic behavior evaluation scenarios
 
-This directory contains **12 structured, reproducible prompt sets** across everyday, business and multi-task tasks. They are not a replacement for the live Vira API or a fake backend.
+This directory contains **16 structured, reproducible prompt sets** across everyday, business and multi-task tasks. They are not a replacement for the live Vira API or a fake backend.
 
 Each scenario provides a **short prompt**, a **detailed prompt**, requirements to evaluate and negative cases to catch. The suggested `requestedMode` is the intended test route, **not** a prediction of Vira's actual routing result. A strong baseline may already satisfy the requirement.
 
@@ -40,6 +40,7 @@ For Python: [taskrun_modes.py](../python/taskrun_modes.py). See the [execution m
 - `id`: stable synthetic scenario identifier.
 - `level`: beginner, intermediate or advanced.
 - `requestedMode`: a proposed routing request for a supported test environment.
+- `packExample`: a related Pack Academy example, or `null` when the scenario is not represented by an installable example. This is **not** a claim that a Pack is installed or released in your account.
 - `shortPrompt` / `detailedPrompt`: two independently copyable test inputs.
 - `behaviorRequirements`: criteria that the evaluator may inspect **only if that behavior has been configured**.
 - `negativeCases`: concrete errors to flag, including missing authorization or fabricated state where relevant.

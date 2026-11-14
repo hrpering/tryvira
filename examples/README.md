@@ -11,7 +11,7 @@
 | [Python](python/) | `tryvira-sdk` `0.1.44` integration + response quality |
 | [Semantic + runtime](semantic-runtime/) | semantic selection followed by governed runtime resolution |
 | [MCP](mcp/) | `@tryvira/mcp` `0.1.44` host configuration, live tool discovery, semantic/runtime resolution, basic authoring, and Teach evidence/proposal creation |
-| [Marketing Pack](packs/marketing-starter/) | current manifest variables plus governed Pack materialization/evaluation/release concepts |
+| [Marketing Pack](packs/marketing-starter/) | 26 evaluated-design scenarios, budget-aware marketing launch behavior and governed materialization/evaluation/release |
 | [Strategy integration](strategy/) | references to the published SDK/API contracts |
 
 See also the [Observe → Signal → Teach → runtime verification walkthrough](observe-signal-verify/README.md). This walkthrough describes the supported lifecycle; no live service run is included.

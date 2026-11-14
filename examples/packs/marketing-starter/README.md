@@ -1,39 +1,7 @@
-# Marketing starter Pack
+# Marketing Launch Decision Pack · Intermediate
 
-This is a complete, inspectable Pack source example. It shows how related Semantic
-Tasks, Behavior Points, Programs, Strategies, signals, and evaluations are grouped
-before they are imported into a scoped Vira environment.
+This example turns a generic full-funnel launch prompt into a **testable plan tied to a real team's constraints**. It covers audience and offer hypotheses, owners, spending limits, measurement definitions, stop/continue gates and explicit separation between known facts and proposals.
 
-## Before importing
+The manifest has **no decorative installer variables**. Budget, team, target geography and market are supplied as task evidence, not unbound switches. Inspect the `tests/cases.json` scenarios for missing evidence, low budget, calculation and approval boundaries.
 
-1. Replace only synthetic variables such as brand and market values.
-2. Review stable keys, constraints, anti-patterns, and verifier requirements.
-3. Run the Pack validation checks in the public Pack guide.
-4. Import as a candidate and inspect inventory/conflicts.
-5. Install/materialize, run a real candidate evaluation, review the receipt, approve,
-   and release only after an explicit human decision.
-
-Importing or installing this Pack does not activate behavior.
-
-## Prompt for a coding agent
-
-```text
-Use examples/packs/marketing-starter as a reference to create a Pack for this use case:
-<describe the behavior>
-
-First inspect the existing manifest and every collection file. Preserve the repository's
-schema and naming conventions. Add only the minimum Semantic Task, Behavior Point,
-Program/Strategy, signals, and evaluation cases required by the use case.
-
-Include positive, negative, boundary, missing-evidence, and policy-violation cases.
-Make constraints and natural-language output verification explicit. Do not invent
-fields, evidence IDs, scores, approvers, or release identities. Do not copy customer
-secrets or production traces into the Pack.
-
-Return the proposed file tree, a diff, key-stability rationale, conflict checklist,
-candidate import/install commands, real evaluation requirements, and a release checklist.
-Stop before approval or release and wait for explicit authorization.
-```
-
-See [`docs/packs.md`](../../../docs/packs.md) for the complete lifecycle and SDK/MCP
-equivalents.
+The Program's `judge: ...` checks require a configured domain verifier; source declarations are not proof of live verification. The 26 fixture cases are not passed evaluations. Use the [Pack authoring guide](../../../docs/pack-authoring-guide.md), [evaluation protocol](../../../docs/pack-evaluation.md), and [AUTO TaskRun](../../../docs/canonical-taskrun.md) for an authorized integration. The Pack never launches campaigns by itself.

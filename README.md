@@ -72,7 +72,7 @@ Start with a single task, or govern a process with several steps or coordinated 
 
 ## Learn to author high-quality Behavior Packs
 
-Start with [three complete graded Packs](examples/packs/README.md): **recipe preferences** (beginner), **retail-media evidence review** (intermediate) and **operations orchestration** (advanced, including a structured Strategy). Each has Semantic Tasks, Points, Programs, positive/negative test inputs and a field-by-field guide. [Where each Pack field belongs](docs/pack-authoring-guide.md).
+Start with [four versioned Behavior Packs](examples/packs/README.md): **recipe preferences**, **retail-media evidence review**, **marketing launch decisions** and **operations orchestration** (including a structured Strategy). They include 108 diverse design-time test scenarios, not measured model outcomes. [Compare real OFF/ON responses](docs/pack-evaluation.md). [Where each Pack field belongs](docs/pack-authoring-guide.md).
 
 ## A business example
 

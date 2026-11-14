@@ -1,31 +1,34 @@
 [
   {
     "key": "home.recipe_request",
-    "guard": "Inspect dietary restrictions and available inputs before proposing ingredients.",
-    "judgment": "Treat prohibited ingredients as hard constraints unless an authorized higher-priority instruction changes the configuration.",
-    "transform": "Supply substitutions that maintain the dish's intended role and cookability.",
-    "verification": "Check final ingredient list for excluded ingredients and the serving count.",
+    "guard": "Read standing restrictions separately from current wording; include powders, broths, sauces and garnish; check if servings and available ingredients are actually known.",
+    "judgment": "Latest user request alone cannot override configured dietary exclusions; vegetarian does not imply vegan and onion-free does not automatically ban eggs, dairy or garlic.",
+    "transform": "Preserve the dish's intended culinary role with feasible substitutions, quantities, sequence, temperature and approximate time; when traditional form is impossible, label the adaptation accurately.",
+    "verification": "Review every listed ingredient and hidden derivatives, portion math, practical steps and whether a conflict or missing pantry detail was handled.",
     "escalation": "ask-user-on-conflict",
     "rubric": [
-      "Provide ingredient quantities for the intended number of servings.",
-      "Never include any excluded ingredient or direct equivalent.",
-      "Retain practical preparation temperatures, ordering and timing.",
-      "If a needed ingredient or constraint is unclear, ask rather than invent."
+      "Preserve standing vegetarian and onion-free exclusions even on short prompts and explicit conflicts.",
+      "Exclude meat, fish, stock and sauce derivatives, onion powder, leek, scallion and shallot; do not ban eggs, dairy or garlic without an additional rule.",
+      "Handle conflicts without silently modifying configuration and without refusing a workable compliant alternative.",
+      "Provide quantities, serving sizes and workable cooking order, time and temperature.",
+      "Do not invent the user's pantry or assert actions that did not take place."
     ],
     "examples": [
       "Four-portion eggplant meal with an ingredient list and feasible steps, without onion or meat."
     ],
     "antiPatterns": [
-      "Onion included in the ingredient list despite the configured exclusion.",
-      "Meat included in a vegetarian recipe.",
-      "Substitution removes the defining cooking functionality."
+      "Uses onion powder, scallion or fish sauce in a supposedly compliant meal.",
+      "Direct user request for meat silently disables configured vegetarian restriction.",
+      "Refuses eggs/garlic because vegetarian supposedly means vegan.",
+      "Replaces recognizable eggplant bake with an irrelevant salad.",
+      "Claims pantry ingredients were checked without any inventory."
     ],
     "modules": [
       {
         "kind": "guard",
         "stableKey": "home.recipe_request.constraints",
         "stage": "pre_model",
-        "requirement": "Resolve dietary restrictions and requested servings; ask for clarification if requirements conflict."
+        "requirement": "Respect configured restrictions independently of latest prompt; identify hidden derivatives and valid portions; treat user conflict as a request for clarification or a compliant option."
       },
       {
         "kind": "verification",
@@ -36,7 +39,7 @@
         "checks": [
           {
             "stableKey": "home.recipe_request.ingredients.content",
-            "requirement": "judge: Validate the ingredient list against the active vegetarian and onion-free rule; ignore harmless sentences that merely mention forbidden foods as exclusions, and reject direct equivalents."
+            "requirement": "judge: Inspect listed food ingredients, seasonings, sauce bases, broths and garnishes against the active vegetarian/onion-free restrictions; ignore negated exclusion warnings, and do not invent additional restrictions."
           }
         ]
       },
@@ -53,7 +56,7 @@
           },
           {
             "stableKey": "home.recipe_request.usability.domain",
-            "requirement": "judge: Verify that the recipe has workable steps, coherent quantities, and requested serving count without inventing ingredients."
+            "requirement": "judge: Check serving count, usable quantities, cooking process and acceptable functional substitutes; if conflict or pantry information is missing, require an appropriate helpful response rather than over-refusal or invented facts."
           }
         ]
       }

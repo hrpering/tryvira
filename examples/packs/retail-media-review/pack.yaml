@@ -1,5 +1,5 @@
 id: vira.examples.retail_media_review
 name: Retail Media Evidence Review
-version: 1.0.0
+version: 1.1.0
 requires:
   vira: ">=1.0"

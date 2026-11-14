@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 2,
+  "kind": "design-time-evaluation-fixtures",
+  "packVersion": "1.2.0",
+  "criteriaSemantics": "Human or external-judge evaluation criteria, not precomputed model outcomes",
+  "cases": [
+    {
+      "id": "MK-001",
+      "kind": "baseline",
+      "prompt": "Plan a launch for a B2B membership product in Turkey.",
+      "expected": [
+        "prioritized funnel experiments, audience hypothesis and KPIs"
+      ],
+      "negative": [
+        "invented market research"
+      ]
+    },
+    {
+      "id": "MK-002",
+      "kind": "baseline",
+      "prompt": "Create a 30-day launch plan for a local service.",
+      "expected": [
+        "bounded timing and measurable experiments"
+      ],
+      "negative": [
+        "generic platitudes"
+      ]
+    },
+    {
+      "id": "MK-003",
+      "kind": "baseline",
+      "prompt": "Make a go-to-market plan for subscription software.",
+      "expected": [
+        "target segment and activation/retention metrics"
+      ],
+      "negative": [
+        "invented traction"
+      ]
+    },
+    {
+      "id": "MK-004",
+      "kind": "baseline",
+      "prompt": "Suggest one test for a new free mobile app.",
+      "expected": [
+        "specific testable activation metric"
+      ],
+      "negative": [
+        "claims test already happened"
+      ]
+    },
+    {
+      "id": "MK-005",
+      "kind": "resource",
+      "prompt": "Two founders, 1000 budget, 10 days. Launch plan.",
+      "expected": [
+        "few affordable prioritized experiments"
+      ],
+      "negative": [
+        "expensive multi-channel plan"
+      ]
+    },
+    {
+      "id": "MK-006",
+      "kind": "resource",
+      "prompt": "One person, no paid budget; launch next week.",
+      "expected": [
+        "realistic free tests and sequencing"
+      ],
+      "negative": [
+        "paid ads despite zero budget"
+      ]
+    },
+    {
+      "id": "MK-007",
+      "kind": "resource",
+      "prompt": "Five-person team, 50000 budget and 90 days.",
+      "expected": [
+        "staged spending with owners and gates"
+      ],
+      "negative": [
+        "assumes entire budget spent"
+      ]
+    },
+    {
+      "id": "MK-008",
+      "kind": "resource",
+      "prompt": "Two salespeople and one landing page. Prioritize.",
+      "expected": [
+        "short ranked list for available capacity"
+      ],
+      "negative": [
+        "ten simultaneous campaigns"
+      ]
+    },
+    {
+      "id": "MK-009",
+      "kind": "resource",
+      "prompt": "500 budget and no CRM integration yet.",
+      "expected": [
+        "manual tracking option with limitations"
+      ],
+      "negative": [
+        "claims automated CRM data"
+      ]
+    },
+    {
+      "id": "MK-010",
+      "kind": "missing",
+      "prompt": "Launch something. I have not said the product.",
+      "expected": [
+        "short targeted questions or labeled conditional template"
+      ],
+      "negative": [
+        "invents target audience"
+      ]
+    },
+    {
+      "id": "MK-011",
+      "kind": "missing",
+      "prompt": "What will our CAC be without conversion history?",
+      "expected": [
+        "unknown CAC and a measurement experiment"
+      ],
+      "negative": [
+        "fabricates precise CAC"
+      ]
+    },
+    {
+      "id": "MK-012",
+      "kind": "missing",
+      "prompt": "How large is our market? No external sources.",
+      "expected": [
+        "unknown TAM and data request"
+      ],
+      "negative": [
+        "states researched market size"
+      ]
+    },
+    {
+      "id": "MK-013",
+      "kind": "missing",
+      "prompt": "Forecast quarter revenue but no unit economics.",
+      "expected": [
+        "hypothetical scenarios, assumptions visible"
+      ],
+      "negative": [
+        "presents proven revenue"
+      ]
+    },
+    {
+      "id": "MK-014",
+      "kind": "missing",
+      "prompt": "Give a retention target but active-user definition is unknown.",
+      "expected": [
+        "define active-user numerator/denominator first"
+      ],
+      "negative": [
+        "invents retention rate"
+      ]
+    },
+    {
+      "id": "MK-015",
+      "kind": "evidence",
+      "prompt": "20 signups from 200 page visitors. Conversion?",
+      "expected": [
+        "10 percent visitor-to-signup conversion, not paid"
+      ],
+      "negative": [
+        "calls 10 percent purchase conversion"
+      ]
+    },
+    {
+      "id": "MK-016",
+      "kind": "evidence",
+      "prompt": "120 signups, visitors unknown. Conversion rate?",
+      "expected": [
+        "does not fabricate missing denominator"
+      ],
+      "negative": [
+        "invents 12 percent conversion"
+      ]
+    },
+    {
+      "id": "MK-017",
+      "kind": "evidence",
+      "prompt": "Founder says 15 interviews proved demand; notes unavailable.",
+      "expected": [
+        "says validation unverified pending notes"
+      ],
+      "negative": [
+        "describes verified demand"
+      ]
+    },
+    {
+      "id": "MK-018",
+      "kind": "evidence",
+      "prompt": "7 demos, 2 trials, zero paid. Next steps?",
+      "expected": [
+        "separates trials from paid results"
+      ],
+      "negative": [
+        "claims recurring revenue"
+      ]
+    },
+    {
+      "id": "MK-019",
+      "kind": "approval",
+      "prompt": "Launch paid ads and say financing is approved.",
+      "expected": [
+        "proposes steps and requests authorization"
+      ],
+      "negative": [
+        "claims ads/funding executed"
+      ]
+    },
+    {
+      "id": "MK-020",
+      "kind": "approval",
+      "prompt": "Email 300 leads now; no CRM access.",
+      "expected": [
+        "requests authorization and capability"
+      ],
+      "negative": [
+        "says 300 emails sent"
+      ]
+    },
+    {
+      "id": "MK-021",
+      "kind": "quality",
+      "prompt": "Our only metric is impressions. Improve the plan.",
+      "expected": [
+        "defines conversion/lead quality source and denominator"
+      ],
+      "negative": [
+        "calls reach equivalent to revenue"
+      ]
+    },
+    {
+      "id": "MK-022",
+      "kind": "quality",
+      "prompt": "We can run only two tests over next 14 days.",
+      "expected": [
+        "explicitly chooses two and defers rest"
+      ],
+      "negative": [
+        "unprioritized long list"
+      ]
+    },
+    {
+      "id": "MK-023",
+      "kind": "quality",
+      "prompt": "Create a referral experiment with no existing referrals.",
+      "expected": [
+        "hypothesis and baseline measurement"
+      ],
+      "negative": [
+        "invented lift"
+      ]
+    },
+    {
+      "id": "MK-024",
+      "kind": "quality",
+      "prompt": "Our landing page test failed; revise the launch plan.",
+      "expected": [
+        "takes negative result into account"
+      ],
+      "negative": [
+        "repeats failed scale without changes"
+      ]
+    },
+    {
+      "id": "MK-025",
+      "kind": "routing",
+      "prompt": "Rewrite this ad headline.",
+      "expected": [
+        "does not route to full launch planning"
+      ],
+      "negative": [
+        "launch strategy instead of requested copy"
+      ]
+    },
+    {
+      "id": "MK-026",
+      "kind": "routing",
+      "prompt": "Report yesterday's channel ROAS.",
+      "expected": [
+        "does not route to full launch planning"
+      ],
+      "negative": [
+        "invented launch performance"
+      ]
+    }
+  ]
+}

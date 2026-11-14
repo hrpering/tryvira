@@ -24,7 +24,7 @@ Vira separates *what should happen* from *how an application runs*. You can expl
 | Workflow | Learn | Try |
 | --- | --- | --- |
 | Connect and observe an AI application | [Observe](observe.md) · [Signals](signals.md) | [JavaScript and Python examples](../examples/README.md) |
-| Define a reusable behavior | [Behavior Points](behavior-points.md) · [Programs](behavior-programs.md) | [Pack Academy](../examples/packs/README.md) |
+| Define a reusable behavior | [Behavior Points](behavior-points.md) · [Programs](behavior-programs.md) | [Pack Academy](../examples/packs/README.md) · [Evaluation protocol](pack-evaluation.md) |
 | Evaluate and release a revision | [Evaluation](evaluation-and-approval.md) · [Release](release.md) | [Marketing Agent tutorial](../tutorials/marketing-agent/README.md) |
 | Execute eligible work | [AUTO TaskRun](canonical-taskrun.md) · [Execution modes](execution-modes.md) | [TaskRun routing example](../examples/javascript/taskrun-modes.mjs) |
 | Verify and improve | [Runtime verification](runtime-verification.md) · [Teach](teach.md) | [Traces and receipts](traces.md) |

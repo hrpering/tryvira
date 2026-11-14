@@ -1,0 +1,65 @@
+[
+  {
+    "key": "marketing.launch_plan",
+    "guard": "Extract known audience, market, budget, team, distribution, timing and observed KPIs; label missing facts as unknown or conditional.",
+    "judgment": "Prioritize a few affordable experiments that test the highest-risk commercial assumptions; do not infer CAC, incrementality, TAM or revenue without measured data.",
+    "transform": "Create an actionable launch plan with owner, timing, metric formula and source, cost cap, stop/continue threshold and what to defer.",
+    "verification": "Check recommendations against supplied resources, factual evidence, metric definitions, stated assumptions and authorized action receipts.",
+    "escalation": "human-launch-approval",
+    "rubric": [
+      "Separate verified user facts from market hypotheses and open questions.",
+      "Make channel and audience bets testable with explicit owners and cost limits.",
+      "Define meaningful funnel KPI numerator, denominator, period and data source where possible.",
+      "Prioritize 2-3 affordable near-term experiments rather than a generic checklist.",
+      "Distinguish proposed campaign/outreach from approved, executed work.",
+      "Never invent market research, acquisition results or incremental lift."
+    ],
+    "examples": [
+      "For a two-person membership startup with 1000 budget, validate one segment through interviews and a landing-page test before paid scale."
+    ],
+    "antiPatterns": [
+      "Four funnel stages with generic unmeasured objectives only.",
+      "A plan ignores the actual team size and spend cap.",
+      "Invented CAC, TAM, market study or customer interviews.",
+      "Says ads were launched or funding approved without a real receipt."
+    ],
+    "modules": [
+      {
+        "kind": "guard",
+        "stableKey": "marketing.launch_plan.inputs",
+        "stage": "pre_model",
+        "requirement": "Use only supplied budget, timeframe, market, team and evidence; ask for decisive missing information or label assumptions."
+      },
+      {
+        "kind": "verification",
+        "stableKey": "marketing.launch_plan.quality",
+        "stage": "post_model",
+        "requirement": "Verify executable plan and measurement definitions.",
+        "onFailure": "repair",
+        "checks": [
+          {
+            "stableKey": "marketing.launch_plan.quality.non_empty",
+            "requirement": "verifier:output.non_empty"
+          },
+          {
+            "stableKey": "marketing.launch_plan.quality.domain",
+            "requirement": "judge: Verify launch recommendations have a specific audience and offer, named hypotheses, evidence/unknowns, owners, viable spending limits, stage KPI definitions, measurable experiments and stop/continue gates."
+          }
+        ]
+      },
+      {
+        "kind": "verification",
+        "stableKey": "marketing.launch_plan.effects",
+        "stage": "post_model",
+        "requirement": "Block unsupported claims of live campaign activity or proven metrics.",
+        "onFailure": "block",
+        "checks": [
+          {
+            "stableKey": "marketing.launch_plan.effects.domain",
+            "requirement": "judge: Reject claims that budgets, ads or outreach were actually executed, or that CAC, market size, payback and conversion outcomes were measured, unless actual evidence and relevant authorized receipts support them."
+          }
+        ]
+      }
+    ]
+  }
+]

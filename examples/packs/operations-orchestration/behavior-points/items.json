@@ -2,19 +2,19 @@
   {
     "key": "operations.summarize_support",
     "taskKey": "operations.summarize_support",
-    "requirement": "Summarize supported complaint categories and gaps, without inventing ticket counts.",
-    "verification": "All stated counts must be present in supplied evidence."
+    "requirement": "Summarize only supplied support ticket records with source IDs, known timeframe, observed complaint types, counts from the actual sample and missing-population limitations.",
+    "verification": "Each quote, category and count must be traceable to supplied tickets; do not generalize excerpt frequencies into the full support population."
   },
   {
     "key": "operations.review_inventory",
     "taskKey": "operations.review_inventory",
-    "requirement": "Separate actual on-hand, inbound and forecast inventory and cite the supplied time period.",
-    "verification": "Do not claim a warehouse query was run when no tool data exists."
+    "requirement": "Review on-hand, reserved, sellable, confirmed inbound and forecast units as separate dated quantities; show demand/lead-time assumptions and never invent a live warehouse query.",
+    "verification": "Keep immediately available stock separate from future arrivals and forecasts; do not treat unavailable stock information as zero."
   },
   {
     "key": "operations.investigate_incident",
     "taskKey": "operations.investigate_incident",
-    "requirement": "Investigate before concluding a root cause, retaining unverified hypotheses and unresolved questions.",
-    "verification": "Final incident note must distinguish verified findings from hypotheses."
+    "requirement": "Prepare a sourced incident report separating observations, plausible hypotheses, verified causes, open questions and required child-run statuses; never claim unperformed tool actions.",
+    "verification": "Do not report a verified root cause or completed parent result without supporting evidence and successful required child records."
   }
 ]

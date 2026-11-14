@@ -1,31 +1,36 @@
 [
   {
     "key": "retail.compare_campaign_evidence",
-    "guard": "Inspect KPI comparability and identify missing definitions before calculating or ranking.",
-    "judgment": "Use comparable net sales and attribution definitions where possible; abstain from a definitive ROAS rank when methods differ.",
-    "transform": "Provide a conditional decision memo with evidence, caveats and next data request.",
-    "verification": "Ensure reported metrics have their correct definitions and no unsupported budget-shift claim is made.",
+    "guard": "Extract numbers with units and dates; check attribution period, click/view rules, sales/refunds/tax, currency and spend scope; detect missing or zero denominators.",
+    "judgment": "Do not declare raw ROAS winner across incompatible attribution definitions; two equal ratios do not imply a winner; attributed sales do not establish incremental profit.",
+    "transform": "When comparable, show numerator/denominator and a useful conditional performance comparison. When incomparable, provide a brief evidence/mismatch table and the smallest harmonization or experiment needed.",
+    "verification": "Check computed ratios and every recommendation against source values, dimensions and authorized action receipts. Do not invent causal uplift or completed budget changes.",
     "escalation": "human-budget-review",
     "rubric": [
-      "Identify incompatible attribution windows before any channel ranking.",
-      "Distinguish attributed revenue, incremental revenue and profit, never presenting them as synonyms.",
-      "Document net sales scope, refunds, taxes, currency and time windows.",
-      "Recommend a change only when comparable evidence supports it; otherwise specify missing inputs."
+      "Show ROAS formula and correct calculation from attributed sales and nonzero spend when values exist.",
+      "Review click/view windows, date range, sales net/gross scope, tax, refunds, currency and spend before cross-channel ranking.",
+      "Differentiate attributed sales, incremental lift and margin/profit.",
+      "Recommend a conditional next step when evidence allows, without gratuitous refusal.",
+      "Explain precise missing definitions rather than assuming equal denominators or unknown currency conversions.",
+      "Never claim a budget shift, external query or experimental uplift was executed or proved without evidence."
     ],
     "examples": [
       "A conditional ROAS comparison explaining that 7-day click is not directly comparable to 30-day click plus view-through."
     ],
     "antiPatterns": [
-      "Treating ROAS 3.2 as conclusively better than 2.8 with mismatched attribution.",
-      "Inventing incrementality from attributed sales.",
-      "Claiming a media-budget change was executed."
+      "Calling 7-day click ROAS 3.2 a definitive winner over 30-day click-plus-view 2.8.",
+      "Calculating 240000/80000 as 4.0 or calling equal 3.0 ratios unequal.",
+      "Computing ROAS with zero spend as if defined.",
+      "Describing attributed sales as incremental profit.",
+      "Claiming budget changed despite unavailable host tooling.",
+      "Refusing a valid comparable arithmetic question because some unrelated metadata is missing."
     ],
     "modules": [
       {
         "kind": "judgment",
         "stableKey": "retail.compare_campaign_evidence.comparability",
         "stage": "pre_model",
-        "requirement": "Treat non-identical attribution windows as a material comparability limitation."
+        "requirement": "Check attributable inputs, reporting windows, currency, net/gross scope and spend denominator; do not mistake a zero denominator for ordinary ROAS."
       },
       {
         "kind": "verification",
@@ -40,7 +45,7 @@
           },
           {
             "stableKey": "retail.compare_campaign_evidence.metric_claims.domain",
-            "requirement": "judge: Verify that the attribution window, sales scope and KPI definitions in each claim agree with the supplied evidence; reject unsupported cross-channel rankings."
+            "requirement": "judge: Check attributed ROAS math, cited sales/spend and each comparison's attribution window, view-through rules, reporting period, sales basis and currency; accept supported numerical comparison but reject unsupported winners."
           }
         ]
       },
@@ -53,7 +58,7 @@
         "checks": [
           {
             "stableKey": "retail.compare_campaign_evidence.action_claims.domain",
-            "requirement": "judge: Block claims that budget was actually moved, or incremental profit proved, unless tool receipts and credible measurement evidence support them."
+            "requirement": "judge: Block statements that actual budget transfers or incrementality/profit lift occurred unless same-scope authorized tool receipts and credible causal measurement support them."
           }
         ]
       }

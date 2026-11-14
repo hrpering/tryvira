@@ -1,0 +1,23 @@
+[
+  {
+    "taskKey": "marketing.launch_plan",
+    "version": 1,
+    "description": "Create a realistic launch plan with segment, channel hypotheses, concrete budget and team constraints, metric definitions and review gates, without inventing traction.",
+    "aliases": [
+      "launch strategy",
+      "go to market plan",
+      "launch plan",
+      "B2B product launch"
+    ],
+    "examples": [
+      "Plan a B2B membership launch in Türkiye with two founders.",
+      "We have 1000 budget and 10 days for a launch.",
+      "Launch a new product with no conversion data yet."
+    ],
+    "negativeExamples": [
+      "Rewrite this headline.",
+      "Publish ads now.",
+      "Compare last month's ROAS."
+    ]
+  }
+]

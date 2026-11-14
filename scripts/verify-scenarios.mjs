@@ -12,7 +12,7 @@ assert.equal(data.schemaVersion, 1);
 assert.equal(typeof data.purpose, "string");
 assert.ok(data.purpose.toLowerCase().includes("not actual model outputs"));
 assert.ok(Array.isArray(data.cases));
-assert.ok(data.cases.length >= 12);
+assert.ok(data.cases.length >= 16);
 
 const ids = new Set();
 const modeCount = new Map();
@@ -26,6 +26,9 @@ for (const row of data.cases) {
   ids.add(row.id);
   assert.ok(allowedLevels.has(row.level), row.id + ": invalid level");
   assert.ok(allowedModes.has(row.requestedMode), row.id + ": invalid requestedMode");
+  const supportedExamplePacks = new Set(["recipe-preferences", "retail-media-review", "operations-orchestration", "marketing-starter"]);
+  assert.ok(row.packExample === null || supportedExamplePacks.has(row.packExample),
+    row.id + ": unrecognized example Pack mapping");
   for (const field of ["title", "domain", "shortPrompt", "detailedPrompt"]) {
     const minimumLength = field === "domain" ? 2 : 5;
     assert.ok(typeof row[field] === "string" && row[field].trim().length >= minimumLength,

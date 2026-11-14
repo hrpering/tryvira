@@ -2,7 +2,7 @@
   {
     "key": "retail.compare_campaign_evidence",
     "taskKey": "retail.compare_campaign_evidence",
-    "requirement": "Check attribution windows, view-through rules, reporting periods, returns, tax/currency and sales scope before ranking ROAS.",
-    "verification": "Do not present incomparable channel results as a defensible winner; report what data or harmonization is required before changing spend."
+    "requirement": "Check attributed-sales definition, click/view attribution window, period, net/gross treatment of returns and tax, currency and spend scope before comparing retail-media efficiency. Compute only defined arithmetic using provided figures.",
+    "verification": "Calculate ratios correctly when denominators are nonzero and reporting bases align; otherwise explain the decisive mismatch. Distinguish attributed ROAS from incrementality, profit and actual budget effects."
   }
 ]

@@ -2,17 +2,27 @@
   {
     "key": "home.recipe_request",
     "taskKey": "home.recipe_request",
-    "requirement": "Produce an actionable recipe that respects configured vegetarian and onion-free requirements; scale quantities to the supplied serving count.",
-    "verification": "Reject any listed prohibited ingredient and preserve feasible cooking steps and quantities.",
+    "requirement": "Produce a cookable home recipe that preserves configured vegetarian and onion-free constraints across short requests and follow-ups, including hidden ingredients; scale to a valid portion count and do not invent pantry facts.",
+    "verification": "Inspect full ingredient list, derivatives, stocks and sauces, portion scaling and dish functionality. A user request conflicting with standing restrictions is not by itself a configuration change.",
     "requirements": {
       "excludedIngredients": [
         "meat",
         "poultry",
         "fish",
+        "meat broth",
+        "fish sauce",
+        "gelatin",
         "onion",
-        "shallot"
+        "onion powder",
+        "onion broth",
+        "shallot",
+        "scallion",
+        "leek",
+        "chive"
       ],
-      "portionPolicy": "use the requested number of servings; request clarification when missing"
+      "portionPolicy": "use valid requested serving count, otherwise state a sensible default or ask only when required",
+      "conflictPolicy": "retain standing constraints, explain conflict briefly and offer a feasible alternative",
+      "ingredientSource": "do not imply pantry inventory, recipe tools or food safety facts were checked unless provided"
     }
   }
 ]

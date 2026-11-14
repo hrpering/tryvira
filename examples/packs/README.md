@@ -1,35 +1,36 @@
-# Pack examples · Beginner to advanced
+# Pack Academy · Four versioned behavior examples
 
-![Vira Pack Academy: beginner, intermediate and advanced examples](../../assets/vira-build.svg)
+![Vira Pack examples](../../assets/vira-build.svg)
 
-These are **complete inspectable source examples**, not pre-released customer behavior or successful model benchmarks.
+These are complete, inspectable source Packs, not successful model benchmarks or released customer configurations. They contain **108 design-time evaluation cases** spanning clear tasks, contradictions, missing evidence, calculation and authorization boundaries.
 
-| Level | Pack | Learn |
-| --- | --- | --- |
-| Beginner | [Recipe preferences](recipe-preferences/README.md) | Make a real requirement repeatable without destroying answer usefulness |
-| Intermediate | [Retail media evidence](retail-media-review/README.md) | Turn evidence comparability and uncertainty into operational behavior checks |
-| Advanced | [Operations orchestration](operations-orchestration/README.md) | Three distinct tasks, a structured Strategy, and AUTO/COMPOUND/HYBRID eligibility conditions |
-| Earlier minimal example | [Marketing starter](marketing-starter/README.md) | Minimal manifest and collection layout; **not** the recommended quality bar |
+| Level | Pack | Cases | What it evaluates |
+| --- | --- | ---: | --- |
+| Beginner | [Recipe preferences](recipe-preferences/README.md) | 26 | Standing constraints, hidden ingredients, practical substitutions |
+| Intermediate | [Retail-media review](retail-media-review/README.md) | 27 | Numerically correct and comparable KPI decisions |
+| Intermediate | [Marketing launch decision](marketing-starter/README.md) | 26 | Constraints, hypotheses, experiment priorities and approvals |
+| Advanced | [Operations orchestration](operations-orchestration/README.md) | 29 | Source facts, blocked children, and structured read-only Strategy |
 
-The new examples include **explicit post-model `checks`**. Domain-specific `judge: ...` checks require a configured verifier extension and cannot be claimed as passed from the source files alone. See [runtime verification](../../docs/runtime-verification.md) and the [Observe → Signal → Teach walkthrough](../observe-signal-verify/README.md).
+Each Pack has a YAML manifest and JSON collections for Tasks, Points, Programs, signals, evaluations and tests. The Operations Pack also has a Strategy graph. Imported ZIPs omit the design-time `tests/cases.json` records.
 
-Every new pack uses a **YAML manifest** and JSON collection files. This is a supported mixed ZIP structure: the import parser reads `pack.yaml` plus `semantic-tasks/items.json`, `behavior-points/items.json`, etc. The JSON is machine-readable and avoids claiming that a one-line example is a complete behavior.
+The Programs declare semantic `judge: ...` checks, which require an **actual configured verifier**. They do not become executable just by appearing in a JSON file. The static CI tests validate schemas, links and packaging, not observed model performance.
 
-### Where do you fill things in?
-
-Read the [field-by-field Pack authoring guide](../../docs/pack-authoring-guide.md) and [canonical TaskRun usage](../../docs/canonical-taskrun.md). Configuration variables live in the manifest, semantic matching in the Tasks, requirements in Points, executable intent/verification in Programs, ordered execution in Strategies, and tests in `tests/cases.json`.
-
-### Quality and scope
-
-`tests/cases.json` is *design-time evaluation input*. It is deliberately ignored by the Pack importer and **does not** count as a PASSED server evaluation. Even a valid ZIP is only a candidate until install, evaluated evidence, human approval and explicit release. Model/provider integration and receipts are separate live-runtime concerns.
-
-## Build ZIPs that follow the actual Pack import parser
-
-From repository root:
+## Package all four
 
 ```bash
 npm run verify:packs
-python3 scripts/package-example-packs.py --out /tmp/tryvira-example-packs
+python3 scripts/package-example-packs.py --out /tmp/vira-example-packs
 ```
 
-This creates one ZIP per sample with `pack.yaml` and supported collection files such as `behavior-programs/items.json`, **excluding** README and `tests/cases.json` fixtures. The ZIPs are import candidates, **not released behavior**. Import only through an authorized customer environment, then inspect materialization, evaluate, approve and release separately. `npm run verify:packs` performs structural and ZIP smoke checks, not actual server-side materialization or live execution.
+## Compare real model behavior
+
+Create a blank reviewer template and fill it with genuine OFF/ON model responses:
+
+```bash
+node scripts/score-pack-comparison.mjs --pack retail-media-review --template /tmp/retail-review.jsonl
+node scripts/score-pack-comparison.mjs --pack retail-media-review --responses /tmp/retail-review.jsonl --out /tmp/retail-report.json
+```
+
+The [evaluation guide](../../docs/pack-evaluation.md) explains evidence provenance, manual/independent review, and missing or unverifiable cases. A TaskRun admission is not a verified answer. Actual authorization, model and verifier access remain deployment-specific.
+
+[Pack authoring](../../docs/pack-authoring-guide.md) · [Runtime verification](../../docs/runtime-verification.md) · [TaskRun](../../docs/canonical-taskrun.md)
