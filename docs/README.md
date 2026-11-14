@@ -35,7 +35,7 @@ Vira separates *what should happen* from *how an application runs*. You can expl
 - [Client capability compatibility](capability-map.md) · [Published packages](published-packages.md) · [Product availability](product-status.md)
 - [Core concepts](core-concepts.md) · [Architecture](architecture.md) · [Authoring guide](pack-authoring-guide.md)
 - [Behavior strategy guide](strategies.md) · [Semantic routing](semantic-routing.md) · [Security and scope](auth-and-scope.md)
-- [Example verification](example-verification.md) · [FAQ](faq.md)
+- [Example verification](example-verification.md) · [Verified-answer integration requirements](verified-answer-handoff.md) · [FAQ](faq.md)
 
 **Integration note:** Available operations differ by SDK, MCP server, hosted environment and credentials. The public Next.js ON example currently shows AUTO TaskRun status, not a final provider answer verified by Vira. See [current availability](product-status.md).
 
