@@ -2,10 +2,16 @@
 
 ## Unreleased
 
+- Refreshed public README, capability documentation and client availability language for external developers; retained accurate service-access and verification limits.
+- Replaced internal audit/severity reports with customer-facing compatibility and workflow guidance.
+- Added a public-copy and Skill-license consistency check to CI.
+- Refreshed published npm/PyPI package references while retaining tested dependency pins in runnable example projects.
+
+
 - Added a full product-capability family map and status evidence levels, covering Observe, Signals, runtime verification, Teach, TaskRun, security/privacy, evaluation/release, optimization, telemetry, integrations, billing, Studio/Admin and experimental infrastructure.
 - Explained supported verifier-check syntax and the external `judge` extension requirement; updated all three Pack Programs with explicit `checks` instead of implicit natural-language-only verification.
 - Added a synthetic Observe → Signal → Teach → verified execution walkthrough and rewrote the legacy projection-centric architecture and integration descriptions.
-- Preserved Skills content unchanged for a separate audit.
+- Updated the 27 public Skills for consistent licensing, readable titles and task-focused integration guidance.
 
 
 - Added import-candidate ZIP packaging for the three graded Packs, excluding design-time fixtures, with an in-memory archive smoke test in CI.

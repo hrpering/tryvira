@@ -1,5 +1,13 @@
 # Vira Agent Skills changelog
 
+## 0.7.1 — 2026-11-14
+
+- Updated all 27 Skill titles and license metadata to match their bundled application-use license.
+- Replaced internal engineering-report headings with clearer task-oriented guidance while keeping runtime authorization and safety requirements.
+- Refreshed customer-facing compatibility, validation, installation and example documentation.
+- Corrected the model-selection dataset status to show 84 prompts across 27 Skills.
+
+
 ## 0.7.0 — 2026-11-13
 
 - Added scope-complete JavaScript/Python Observe event examples and negative tests.
