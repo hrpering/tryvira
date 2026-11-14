@@ -19,4 +19,4 @@ The support team wants its assistant to follow an approved policy and make revie
 
 The original [FastAPI example](../../examples/frameworks/python_fastapi/README.md) demonstrates a lower-level projection diagnostic. The [Next.js example](../../examples/frameworks/node-next/README.md) shows canonical AUTO admission and state reporting.
 
-Live operations need a provisioned workspace and appropriate credentials. For cross-Skill coordination, use the [full-lifecycle guide](../../skills/vira-full-lifecycle/SKILL.md); human approval remains separate from agent guidance.
+A generic outcome event alone does not define an outcome event schema for business-result attribution; follow the published client contract for any outcome payload. Live operations need a provisioned workspace and appropriate credentials. For cross-Skill coordination, use the [full-lifecycle guide](../../skills/vira-full-lifecycle/SKILL.md); human approval remains separate from agent guidance.
