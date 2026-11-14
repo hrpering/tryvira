@@ -1,4 +1,4 @@
-![vira — yalnızca yazıdan oluşan marka ve ürünün kavramsal geliştirici görseli](assets/vira-hero.svg)
+![vira — Yapay zekânın davranışı senin kontrolünde](assets/vira-hero.svg)
 
 **Yapay zekânın nasıl yanıt verdiğini, karar verdiğini ve araç kullandığını tanımlayın, test edin ve yönetin.**
 
