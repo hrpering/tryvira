@@ -1,10 +1,10 @@
 ---
 name: vira-signals
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Discover and govern typed Vira Signals from permitted evidence, including review, materialization, and producer mappings."
 ---
 
-# Vira Signals
+# Work with Vira Signals
 
 Use Signals when an integration needs a stable, typed evidence value that behavior can consume. Signal discovery, human review, definition materialization, and producer mapping are distinct transitions. A proposed Signal or model-inferred value is not active evidence.
 
@@ -24,7 +24,7 @@ Identify the scoped project/environment, authorized evidence source and consent/
 
 The SDK reference lists `createSignalDiscoveryProposal`, `reviewSignalDiscoveryProposal`, `materializeSignalDiscovery`, `createSignalMapping`, `getSignalMapping`, and `reviewSignalMapping` (Python snake_case equivalents). It does not publish one universal request schema here: inspect the installed client contract before constructing payloads.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. A Signal is a **typed, versioned, scope-bound interpretation** of evidence, not a raw `model.response` event or a guessed boolean.
 2. Discover from **real admitted evidence IDs** with consent; review discovery; materialize approved definition; separately propose/review/activate a producer mapping. Supported producer types are `observation_attribute`, `tool_result`, `application_state`, `runtime_state`.

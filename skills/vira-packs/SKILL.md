@@ -1,10 +1,10 @@
 ---
 name: vira-packs
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Prepare, review, and govern Vira Packs using the installed public client documentation without assuming cross-surface parity."
 ---
 
-# Vira Packs
+# Manage Behavior Packs
 
 Use this skill when a customer needs to prepare or operate a Pack through a supported public interface. Read the current Pack guide and installed JavaScript or Python SDK documentation before writing code. Those versioned materials define the available calls and data shapes. Do not infer HTTP or MCP support from SDK operations.
 
@@ -34,7 +34,7 @@ The current published MCP catalog has no Pack tools; verify live tools before se
 
 Stop if the installed surface lacks the required operation, the public schema is unclear, conflicts are unresolved, asynchronous work is incomplete, evaluation evidence is missing, or approval is absent. Ask for the current public contract or an authorized operator decision; do not guess or skip a gate.
 
-## Production-aligned implementation playbook
+## Implementation details
 
 1. Inspect actual Pack ZIP/manifest, Task/Point/Program/Strategy references, conflict inventory and installed collection status. An import creates a candidate; a queued 202 is not completed install.
 2. JS `importPack({manifest,objects})` or archive, Python `import_pack(manifest,objects)`; install with direct `installPack(packId,variablesMap)` or `install_pack(pack_id,variables)`. Do not doubly nest variables.

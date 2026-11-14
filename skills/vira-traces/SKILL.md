@@ -1,10 +1,10 @@
 ---
 name: vira-traces
-license: "Proprietary; see LICENSE"
+license: "Vira Agent Skill Installation & Application Use License v1.0; see LICENSE"
 description: "Analyze Vira receipts, traces and lineage across TaskRuns, releases, provider execution and Observe/Teach outcomes, keeping authority evidence distinct from final-answer verification."
 ---
 
-# Vira Traces and Receipts
+# Inspect traces and receipts
 
 Use this Skill to reconstruct **what ran**, not to hallucinate what should have run. A trace is a high-level path; a receipt is persisted evidence of a specific boundary's real recorded outcome.
 
@@ -23,7 +23,7 @@ Collect only server-issued taskRunId/requestId/traceId, scope and redacted error
 6. Optionally relate permitted Observe event IDs, reviewed Signals and Teach/outcome references using their actual schema and consent/scope. Do not infer economic or customer outcomes from an unrelated trace.
 7. Produce a timeline with every observed state, source type, evidence ID/digest and explicit unknowns; flag the **earliest broken evidence link**.
 
-## Production-aligned example and negative case
+## Example and edge cases
 A COMPOUND support request includes issue extraction and summary. One child is `COMPLETED`, the other `WAITING_HOST`. A correct inspection reports the second child incomplete, **not** overall verified success. A later provider reply needs its own post-model PASS and output-bound receipt.
 
 ## Deliverable and failure handling
