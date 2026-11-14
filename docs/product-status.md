@@ -38,6 +38,7 @@ A deployed acceptance result requires a real scoped request and the correspondin
 
 | Evidence | What it establishes |
 | --- | --- |
+| Implementation / unit test | Local code and focused checks exist for a specific operation |
 | Source/build test | Example compiles, links resolve, basic contracts are exercised |
 | SDK serialization test | Published client sends the expected method and fields through a test transport |
 | Deployed acceptance | A specified operation worked in one authorized environment |

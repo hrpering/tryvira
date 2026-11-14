@@ -21,7 +21,7 @@ For a comparison against Skills, agents and adjacent platform categories without
 | Research | Assertions appear without clear sources or confidence | Separate sourced facts, inference, and unresolved questions |
 | Operations | Tool-using assistants act on incomplete or ambiguous requests | Require confirmation and explicit action boundaries |
 
-These are candidate use cases, not proof of a measured outcome.
+These scenarios illustrate potential applications. Measured results depend on your evaluation setup.
 
 ## What buyers should expect from the complete lifecycle
 

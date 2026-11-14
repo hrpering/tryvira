@@ -15,7 +15,7 @@ Package versions move independently. This guide maps product tasks to the Skill 
 | Orchestrate TaskRuns | `vira-task-runs` | `resolveTaskRun` / `startTaskRun` / state reads; verify installed npm contract | `resolve_task_run` / `start_task_run` / state reads; verify installed PyPI contract | No TaskRun tools listed in the current catalog |
 | Integrate with an application framework | `vira-framework-integration` | See installed package documentation | See installed package documentation | See framework host requirements |
 
-The JavaScript SDK, Python package, MCP server, HTTP API, and Studio do not have identical coverage. Check the installed release and the selected customer's scope before using a capability. Do not infer HTTP or MCP support from an SDK or Python method name.
+The JavaScript SDK, Python package, MCP server, HTTP API, and Studio do not have identical coverage. Check the installed release and the selected customer's scope before using a capability. Consult the method inventory for the installed package or discover the connected MCP server's tools.
 
 [TaskRun execution modes](../execution-modes.md) include SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO routing; mode selection is not server authorization. [JS runner](../../examples/javascript/taskrun-modes.mjs) · [Python runner](../../examples/python/taskrun_modes.py).
 

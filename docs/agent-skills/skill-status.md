@@ -2,13 +2,13 @@
 
 This page shows the customer task covered by each of the 27 public Skills and the shared example that helps a user try it. Repository checks verify structure and selected behaviors; they do not prove every Skill completed a live customer workflow.
 
-For six acceptance gates and live instructions, use [E2E readiness](e2e-readiness.md) and [live acceptance](live-acceptance.md). The installed Skill files are not a substitute for a real customer deployment and the verified provider-answer handoff.
+For the exact local and live test coverage, use [Skill testing](e2e-readiness.md) and [live acceptance](live-acceptance.md). Live workflows require a provisioned Vira environment.
 
 ## Shared evidence and limits
 
 - The repository validator checks the structure and **27/27 portable resource-archive packaging** of all 27 Skills. Trigger data contains positive, negative, and ambiguous prompts for every Skill.
 - The 34 workflow scenarios and 84 Skill selection prompts are synthetic evaluation inputs. They are not model runs or proof of successful task completion.
-- CI validates repository files, packages representative Skills, and builds or checks the customer examples. A successful build is not a live Vira result.
+- CI validates repository files, packages all 27 Skills, and builds or checks the customer examples. A successful build is not a live Vira result.
 - Vira, provider, MCP, and Studio live use has not been performed in this review. Product access is not open yet.
 - The official OpenAI and Anthropic structural validators were run for an earlier library version. The newly added TaskRun and Chatbot Skills pass this repository's validator and packager; the bundled OpenAI validator could not run here because its PyYAML dependency is unavailable. No model trigger benchmark is claimed.
 - There is no per-skill model result for the new Skill. No creator model evaluation was run. Historical dated model-run records tested a pre-AUTO projection integration; that old workflow is not the canonical model-serving path today.
@@ -48,4 +48,4 @@ For six acceptance gates and live instructions, use [E2E readiness](e2e-readines
 
 ## Interpretation
 
-The Skills route customer tasks across the documented Vira surfaces, and the full-lifecycle Skill coordinates their handoffs. Some tasks rely on shared examples or installed package documentation; TaskRun has dedicated JavaScript and Python route-first runners, while direct HTTP still requires an authorized customer API contract, and Studio access is unavailable. Do not claim all Skills independently completed a live workflow. Use the examples with an authorized customer scope and stop when the selected surface's public documentation or account capability is missing.
+The Skills route customer tasks across the documented Vira surfaces, and the full-lifecycle Skill coordinates their handoffs. Some tasks rely on shared examples or installed package documentation; TaskRun has dedicated JavaScript and Python route-first runners, while direct HTTP still requires an authorized customer API contract, and Studio access is unavailable. The repository currently documents the workflows and validates local packaging; live execution depends on the supported client and the customer's authorized environment.

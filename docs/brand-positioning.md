@@ -52,7 +52,7 @@ This is how Vira differs in focus from *only* prompt storage, *only* agent execu
 - **Memory and personalization** store useful context; Vira manages the governed behavior contract, not simply the remembered data.
 - **Guardrails and policy engines** enforce boundaries; Vira integrates behavior selection, task-specific execution and revision governance without replacing host authorization.
 
-These are differences in focus, **not** claims that every competing platform lacks overlapping capabilities. A real competitive benchmark needs versioned proof.
+These distinctions describe Vira's focus; other platforms may offer overlapping features. Direct comparisons depend on the specific product versions and evidence.
 
 ## What the brand should not say
 

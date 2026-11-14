@@ -22,7 +22,7 @@ Repository / documentation:
 
 Package versions in the table are refreshed from npm/PyPI registry metadata by the repository sync workflow. Their available operations differ. Use each surface's reference and discover MCP tools at runtime.
 
-The JavaScript SDK, Python SDK, and MCP package have different operation sets. The [MCP tool catalog](reference/mcp-tools.md) is refreshed from the latest published MCP package. Do not assume that an SDK/API operation has an MCP equivalent; discover actual scoped MCP tools at runtime.
+The JavaScript SDK, Python SDK, and MCP package have different operation sets. The [MCP tool catalog](reference/mcp-tools.md) is refreshed from the latest published MCP package. MCP exposes its own tool set. Use the running server's scoped tool discovery to check availability.
 
 Use [Capability discovery](capability-discovery.md) instead of assuming a credential, deployment or integration exposes every operation.
 

@@ -43,7 +43,7 @@ Semantic matching, evidence collection, proposal review, installation, evaluatio
 
 ## Product-level authoring choices
 
-Direct authoring supports incremental work on individual behavior resources. Packs group related material into a reviewable candidate. Both paths require the supported public client documentation for their detailed inputs and state. Do not infer request shapes or surface parity from the product flow.
+Direct authoring supports incremental work on individual behavior resources. Packs group related material into a reviewable candidate. Both paths require the supported public client documentation for their detailed inputs and state. Request schemas and supported operations are defined by each published integration surface.
 
 ## Evaluations
 

@@ -2,7 +2,7 @@
 
 **Current package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.44`
 
-The MCP package is a separate customer-facing client with narrower coverage than the full product. Do not infer MCP support from a JavaScript/Python SDK capability, HTTP reference, or Skill name.
+The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
 ## Discover what the installed server supports
 

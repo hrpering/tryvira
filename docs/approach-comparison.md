@@ -75,6 +75,6 @@ This is a functional comparison, not a benchmark or a statement that alternative
 
 ## What the comparison does not claim
 
-No measured superiority, reliability increase, latency reduction or cost saving is asserted here. A Vira runtime path can only govern the actions the host actually routes through it. Semantic selection, Teach proposals and passing evaluations do not automatically authorize or release behavior. The hosted product is under development and access is not generally open.
+This is a functional comparison, not a performance benchmark. Vira governs the operations that your application routes through supported boundaries; evaluation and Teach proposals remain separate from authorization and release. Hosted access currently requires a provisioned environment.
 
 [Examples from beginner to advanced](use-cases.md) · [TaskRun modes](execution-modes.md) · [Evaluation guide](for-teams.md) · [Security model](security-model.md)
