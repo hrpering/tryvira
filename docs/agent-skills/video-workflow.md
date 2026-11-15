@@ -40,6 +40,14 @@ npm run verify:packs
 npm run verify:skills
 ~~~
 
+For a separate candidate, run the actual candidate validator:
+
+~~~bash
+node scripts/validate-pack-candidate.mjs /absolute/path/to/new-candidate
+~~~
+
+The resulting JSON reports structural failures and runtime-dependent verifier/Signal warnings. It never executes the provider or releases a behavior.
+
 For a separate candidate, additionally validate that candidate's own files and references. State explicitly if the provided checks covered only the checked-in examples.
 
 ### Scene 4: Route and read back a genuine TaskRun

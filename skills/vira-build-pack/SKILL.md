@@ -36,6 +36,8 @@ A structurally valid ZIP is not necessarily high-quality behavior. Review each S
 
 Preserve a **strong OFF baseline**. Vira should add concrete evidence-handling, decision rules and action constraints without discarding helpful explanations, uncertainty or next steps. Test positive, boundary, missing-data, conflicting-instruction, wrong-scope and tool-permission cases on equal user inputs. A natural-language judge string is not an executable verifier until a registered runtime extension supports it.
 
+For a newly authored Pack, invoke the read-only validator on its own path, not just on checked-in samples: node scripts/validate-pack-candidate.mjs /path/to/candidate. It checks Task/Point/Program links, examples, test cases and Strategy graph integrity, and explicitly warns about runtime-only verifier extensions. It is a demo-grade structure check, **not** a full server schema or live evaluation.
+
 A Pack can declare a policy but cannot grant a host action, create a trusted Signal producer, or authorize release. Distinguish structural ZIP checking, local fixtures, persisted server evaluation and observed ON provider quality as separate evidence levels. Do not assert a local checker ran on a newly created candidate if it only tested repository samples.
 
 ## Deliverable and failure handling

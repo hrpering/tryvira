@@ -10,6 +10,10 @@ Use the [recordable Skills demonstration](https://github.com/hrpering/tryvira/bl
 
 > Choose the needed Vira Skills, create a new portable candidate from the public Pack examples, add positive, negative and missing-data cases, and check the candidate's real files. Use AUTO TaskRun for authorized non-production runtime readback, not a fabricated model response. Separate live execution receipts from final provider-output verification. Describe how consented Observe evidence could enter a human-reviewed Teach revision, evaluation and release cycle.
 
+## Validate the generated candidate itself
+
+From the public repository root, run node scripts/validate-pack-candidate.mjs /path/to/candidate and retain its JSON report. The command checks the new candidate rather than only the repository examples; a PASS has evidenceLevel offline-structure-only. Fix all reported errors, then separately evaluate through a provisioned Vira service.
+
 ## Deliverables and boundaries
 
 1. Evidence the assistant actually loaded each selected Skill.
