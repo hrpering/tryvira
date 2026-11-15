@@ -146,11 +146,11 @@ async function cli(argv=process.argv.slice(2)) {
   const confirm=rest.includes("--confirm");
   // No SDK load or live network access until local authorization checks pass.
   requireExecutionAuthority({method:value,confirm,acknowledge,env:process.env});
-  const client=await loadClient();
-  const result=await invokeClient(client,value,args,{confirm,acknowledge,env:process.env});
   const includeContent=rest.includes("--show-content");
   if (includeContent && process.env.VIRA_ALLOW_CONTENT_OUTPUT !== "true")
     throw new Error("CONTENT_OUTPUT_REQUIRES_EXPLICIT_OPT_IN");
+  const client=await loadClient();
+  const result=await invokeClient(client,value,args,{confirm,acknowledge,env:process.env});
   console.log(JSON.stringify(safeSummary(result,0,includeContent),null,2));
 }
 if (process.argv[1] && import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {
