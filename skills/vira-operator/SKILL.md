@@ -33,11 +33,13 @@ Installed with this Skill at \`scripts/operate.mjs\`. Run from an application re
 
 ~~~bash
 npm install @tryvira/sdk
-node .agents/skills/vira-operator/scripts/operate.mjs catalog
+node .agents/skills/vira-operator/scripts/operate.mjs catalog --installed
 node .agents/skills/vira-operator/scripts/operate.mjs doctor
 node .agents/skills/vira-operator/scripts/operate.mjs plan listPacks --args ./read.json
 node .agents/skills/vira-operator/scripts/operate.mjs run listPacks --args ./read.json
 ~~~
+
+Use `catalog --installed` to list methods present in the installed SDK version, without needing a service credential. Unavailable operations are not executed or claimed. The static catalog is a maximum allowlist, not a guarantee of server access.
 
 The exact installed Skill path depends on the coding agent. Point to that installed folder, not an assumed \`.agents\` location. \`read.json\` is \`{"args":[]}\`. Every method accepts a positional \`args\` array **matching the installed SDK version**, not an invented JSON API. Methods not in the allowlist and methods unavailable in the installed package fail explicitly.
 

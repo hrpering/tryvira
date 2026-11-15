@@ -36,6 +36,7 @@ for (const [group, methods] of Object.entries(GROUPS)) {
 }
 export const OPERATIONS = Object.freeze(Object.fromEntries(ALL.entries()));
 export const operation = name => Object.prototype.hasOwnProperty.call(OPERATIONS, name) ? OPERATIONS[name] : null;
+export const supportedOperations = clientOrPrototype => Object.values(OPERATIONS).filter(op => typeof clientOrPrototype?.[op.method] === "function");
 
 export function requireExecutionAuthority({ method, confirm = false, acknowledge = "", env = {} }) {
   const op = operation(method);
@@ -81,20 +82,24 @@ export function safeSummary(value, depth = 0) {
   }
   return out;
 }
-async function loadClient() {
+async function loadSdk() {
   const projectRequire = createRequire(join(process.cwd(), "package.json"));
   let file;
   try { file = projectRequire.resolve("@tryvira/sdk"); }
   catch { throw new Error("SDK_NOT_INSTALLED_IN_WORKING_PROJECT: npm install @tryvira/sdk"); }
   const sdk = await import(pathToFileURL(file).href);
   if (typeof sdk.ViraClient !== "function") throw new Error("SDK_MISSING_VIRA_CLIENT_EXPORT");
+  return sdk;
+}
+async function loadClient() {
+  const sdk = await loadSdk();
   const baseUrl = validateUrl(process.env.VIRA_API_URL);
   if (!process.env.VIRA_API_KEY) throw new Error("VIRA_API_KEY_REQUIRED");
   return new sdk.ViraClient({ baseUrl, apiKey: process.env.VIRA_API_KEY, failureMode: "throw" });
 }
 const usage = () => [
   "Vira Operator (SDK-only; Studio is not required)",
-  "  node operate.mjs catalog [group]",
+  "  node operate.mjs catalog [group] [--installed]",
   "  node operate.mjs doctor",
   "  node operate.mjs plan <method> --args <json-file>",
   "  node operate.mjs run <method> --args <json-file> [--confirm] [--ack <method>]",
@@ -106,9 +111,13 @@ async function cli(argv=process.argv.slice(2)) {
   const [command, value, ...rest] = argv;
   if (!command || command === "help" || argv.includes("--help")) { console.log(usage()); return; }
   if (command === "catalog") {
-    const groups = value ? { [value]: GROUPS[value] } : GROUPS;
-    if (value && !GROUPS[value]) throw new Error("UNKNOWN_GROUP");
-    console.log(JSON.stringify(Object.fromEntries(Object.entries(groups).map(([group,methods])=>[group,methods.map(method=>({method,level:OPERATIONS[method].level}))])),null,2));
+    const selectedGroup = value?.startsWith("--") ? null : value;
+    const groups = selectedGroup ? { [selectedGroup]: GROUPS[selectedGroup] } : GROUPS;
+    if (selectedGroup && !GROUPS[selectedGroup]) throw new Error("UNKNOWN_GROUP");
+    const installedOnly = argv.includes("--installed");
+    const sdk = installedOnly ? await loadSdk() : null;
+    const methodsPresent = sdk ? new Set(supportedOperations(sdk.ViraClient.prototype).map(op=>op.method)) : null;
+    console.log(JSON.stringify(Object.fromEntries(Object.entries(groups).map(([group,methods])=>[group,methods.filter(method=>!installedOnly || methodsPresent.has(method)).map(method=>({method,level:OPERATIONS[method].level}))])),null,2));
     return;
   }
   if (command === "doctor") {

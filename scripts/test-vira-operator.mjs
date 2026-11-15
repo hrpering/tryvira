@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { GROUPS, OPERATIONS, operation, requireExecutionAuthority, validateUrl, parseArguments, invokeClient, safeSummary } from "../skills/vira-operator/scripts/operate.mjs";
+import { GROUPS, OPERATIONS, operation, requireExecutionAuthority, validateUrl, parseArguments, invokeClient, safeSummary, supportedOperations } from "../skills/vira-operator/scripts/operate.mjs";
 
 test("allowlist is unique and has diverse SDK coverage", () => {
   const all = Object.values(GROUPS).flat();
@@ -10,6 +10,10 @@ test("allowlist is unique and has diverse SDK coverage", () => {
   assert.equal(operation("constructor"), null);
   assert.equal(operation("__proto__"), null);
   assert.equal(operation("request"), null);
+});
+test("installed SDK capabilities filter unavailable operations", () => {
+  const methods=supportedOperations({listPacks:()=>{},startTaskRun:()=>{}});
+  assert.deepEqual(methods.map(m=>m.method).sort(),["listPacks","startTaskRun"].sort());
 });
 test("read-only status is callable without mutation approval", async () => {
   let called = false;

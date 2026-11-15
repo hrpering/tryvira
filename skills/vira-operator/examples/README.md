@@ -15,7 +15,7 @@ This is an **SDK-backed coding agent workflow**; the CLI never implements privat
 Create \`empty.json\` containing \`{"args":[]}\` and run:
 
 ~~~bash
-node <installed-skill-path>/scripts/operate.mjs catalog
+node <installed-skill-path>/scripts/operate.mjs catalog --installed
 node <installed-skill-path>/scripts/operate.mjs doctor
 node <installed-skill-path>/scripts/operate.mjs plan listPacks --args empty.json
 node <installed-skill-path>/scripts/operate.mjs run listPacks --args empty.json
