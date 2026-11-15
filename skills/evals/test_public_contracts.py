@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
+# SDK operator is a separate approved path; it cannot inherit Studio auth cookies.
 class PublicContractChecks(unittest.TestCase):
     def read(self, path):
         return (ROOT / path).read_text()

@@ -8,6 +8,10 @@ description: "Get a Vira integration started in an existing project by checking 
 
 Inspect the project language/runtime and the user goal. Compare JS, Python, HTTP, and MCP in the shared matrix. Confirm current package versions from registries/package-version metadata rather than stale pins. Set environment-variable placeholders, check scoped capabilities, and implement the smallest documented read-only path first. Do not access production credentials or claim Studio availability without verification.
 
+## Coding-agent default
+
+Start with `vira-operator` for a developer who wants to operate Vira from Codex, Claude Code or another coding agent. Use its SDK catalog and read-only doctor to determine support; do not require Studio where an authorized customer SDK operation exists. Identify missing public API support instead of calling Studio's internal routes.
+
 ## Activate this skill when
 A developer is new to Vira or asks which integration surface/package fits an existing project. Do not use it for a narrowly scoped error or a known lifecycle operation; route those to the matching specialist.
 

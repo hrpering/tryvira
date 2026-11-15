@@ -8,6 +8,10 @@ description: "Plan and execute an evidence-backed Vira behavior lifecycle from s
 
 Coordinate a user's complete governed behavior task across supported Vira surfaces. Start by identifying which stages they requested and which are safe/authorized to execute. A lifecycle is a set of separate persisted transitions; semantic selection, proposal review, materialization, activation, evaluation, release, runtime use, and rollback are not interchangeable.
 
+## Agent-first operation is the default
+
+When the user wants to control Vira from a coding agent, coordinate through `vira-operator`: inspect real SDK capabilities, prepare authorized operations, execute the published SDK and read persisted results. Use the specialist Skills for artifact quality, evaluation and runtime safety. No Studio click is required for an SDK-supported customer workflow. Unsupported billing/admin/optimization features need real public APIs, not a hidden Studio call.
+
 ## Activate this skill when
 The user asks for an end-to-end Vira outcome, such as connecting an app, authoring governed behavior, evaluating it, and preparing or performing a release. Route isolated SDK errors or one artifact operation to a specialist skill. Never use this skill to bypass approval or production controls.
 

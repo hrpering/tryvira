@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
+# Vira Operator is an SDK caller, not an extra backend or authority.
 class SkillScenarios(unittest.TestCase):
     def test_mcp_skill_preserves_surface_gap(self):
         text = (ROOT / "skills/vira-mcp/SKILL.md").read_text().lower()
