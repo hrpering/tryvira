@@ -1,12 +1,12 @@
 # Vira Agent Skills
 
-Vira Agent Skills help coding assistants integrate Vira into existing apps using documented SDKs, Behavior Packs and TaskRun workflows. The 27 Skills can be installed directly from GitHub; they are not yet listed on skills.sh.
+Vira Agent Skills help coding assistants integrate Vira into existing apps using documented SDKs, Behavior Packs and TaskRun workflows. The 28 Skills can be installed directly from GitHub; they are not yet listed on skills.sh.
 
-![Build with Vira: 27 Agent Skills, graded Packs and developer workflows](../assets/vira-build.svg)
+![Build with Vira: 28 Agent Skills, graded Packs and developer workflows](../assets/vira-build.svg)
 
 ## Demonstrate the Skills in one real workflow
 
-Do not start by listing 27 names. A Skill teaches a coding assistant how to author, integrate and evaluate Vira; the **Vira service** governs actual execution and records receipts. These are different jobs.
+Do not start by listing 28 names. A Skill teaches a coding assistant how to author, integrate and evaluate Vira; the **Vira service** governs actual execution and records receipts. These are different jobs.
 
 1. Install vira-full-lifecycle, vira-build-pack, vira-task-runs and vira-traces.
 2. Use the included public Pack examples to create a new, separately validated candidate with positive, negative and missing-data cases.
@@ -25,8 +25,8 @@ It does not license the private backend, Vira hosted service or trademarks.
 
 For an offline-contained instructional archive, run
 `python3 scripts/package_agent_skills.py --out /tmp/tryvira-skills`
-from the public repository and verify all 27 archives using
-`python3 scripts/verify_portable_skills.py /tmp/tryvira-skills --expected 27`.
+from the public repository and verify all 28 archives using
+`python3 scripts/verify_portable_skills.py /tmp/tryvira-skills --expected 28`.
 Archives mirror linked public source resources and selected runnable example folders under `references/repo/`;
 Pack, Framework, Chatbot and TaskRun Skills include needed standalone source examples and builder scripts. Run them from the local `references/repo/` path. npm/PyPI SDK dependencies and real Vira service access remain external.
 
@@ -55,10 +55,19 @@ For a published JavaScript or Python TaskRun workflow, install `vira-task-runs` 
 npx skills add hrpering/tryvira --skill vira-task-runs
 ```
 
+## Default: agent-first operations
+
+Install `vira-operator` to operate Vira directly from a coding agent rather than clicking through Studio. It calls allowlisted methods from the customer's installed `@tryvira/sdk`, requires explicit mutation approval and reads actual server evidence. Studio-only operations remain listed as gaps instead of being faked. See the [Studio-less parity ledger](../docs/agent-skills/studio-less-parity.md).
+
+~~~bash
+npx skills add hrpering/tryvira --skill vira-operator
+~~~
+
 ## Skills
 
 | Skill | Use it for |
 | --- | --- |
+| `vira-operator` | Agent-first control of supported Vira SDK operations without Studio; scoped approval and real readback |
 | `vira-observe` | Observe-only instrumentation: model/tool/action/feedback events and scoped ingestion |
 | `vira-runtime-verification` | Implement and inspect verification using documented check and receipt contracts |
 | `vira-traces` | TaskRun/child authority, verification receipt and outcome lineage diagnostics |
@@ -111,4 +120,4 @@ The TaskRun Skill has [actual JS](../examples/javascript/taskrun-modes.mjs) and 
 
 ## Validation state
 
-Package selected skills as Anthropic-compatible `.skill` ZIP files with `python3 scripts/package_agent_skills.py vira-js-sdk` (archives are written to ignored `dist/skills/`). Export Anthropic `run_eval.py`-compatible binary trigger cases with `python3 scripts/export_skill_trigger_eval.py vira-js-sdk --out /tmp/vira-js-sdk-evals.json --ambiguous-out /tmp/vira-js-sdk-ambiguous.json`. Run the upstream evaluator only when Claude Code CLI is installed and configured. Run `python3 scripts/validate_agent_skills.py` and `python3 -m unittest discover -s skills/evals -v` from the repository root. The trigger dataset contains positive, negative, and ambiguous prompts for each Skill; `skills/evals/workflow-scenarios.jsonl` adds synthetic lifecycle execution cases with expected and forbidden behaviors. Offline checks do not prove model-trigger quality, live API behavior, package publication, or Studio access. Official OpenAI and Anthropic structural validators were run for an earlier version of the library, not this 27-Skill revision. No external model evaluation or live Vira service call is claimed. The Skills are not listed in the skills.sh directory, and no separate `.skill` archive release is claimed.
+Package selected skills as Anthropic-compatible `.skill` ZIP files with `python3 scripts/package_agent_skills.py vira-js-sdk` (archives are written to ignored `dist/skills/`). Export Anthropic `run_eval.py`-compatible binary trigger cases with `python3 scripts/export_skill_trigger_eval.py vira-js-sdk --out /tmp/vira-js-sdk-evals.json --ambiguous-out /tmp/vira-js-sdk-ambiguous.json`. Run the upstream evaluator only when Claude Code CLI is installed and configured. Run `python3 scripts/validate_agent_skills.py` and `python3 -m unittest discover -s skills/evals -v` from the repository root. The trigger dataset contains positive, negative, and ambiguous prompts for each Skill; `skills/evals/workflow-scenarios.jsonl` adds synthetic lifecycle execution cases with expected and forbidden behaviors. Offline checks do not prove model-trigger quality, live API behavior, package publication, or Studio access. Official OpenAI and Anthropic structural validators were run for an earlier version of the library, not this 28-Skill revision. No external model evaluation or live Vira service call is claimed. The Skills are not listed in the skills.sh directory, and no separate `.skill` archive release is claimed.

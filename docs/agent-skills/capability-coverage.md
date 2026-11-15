@@ -4,6 +4,7 @@ This page maps customer goals to public Skills without reproducing low-level SDK
 
 | Customer goal | Primary Skill | Supporting Skills | Coverage note |
 | --- | --- | --- | --- |
+| Operate Vira without opening Studio | `vira-operator` | `vira-full-lifecycle`, specialist Skills | Use the installed SDK for available operations and report missing customer API parity |
 | Start an integration and choose a supported surface | `vira-get-started` | `vira-integrate-app`, `vira-debug` | Confirm customer scope and surface availability |
 | Integrate a JavaScript/TypeScript application | `vira-js-sdk` | `vira-integrate-app`, `vira-framework-integration` | Use the installed npm package documentation |
 | Integrate a Python application | `vira-python-sdk` | `vira-integrate-app`, `vira-framework-integration` | Use the installed PyPI package documentation |

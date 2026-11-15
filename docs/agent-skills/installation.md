@@ -4,7 +4,7 @@ The library is designed around the open Agent Skills `SKILL.md` format. Install 
 
 ## Licenses and bundled resources
 
-The 27 Skills have their own [installation and commercial-use license](../../skills/vira-observe/LICENSE),
+The 28 Skills have their own [installation and commercial-use license](../../skills/vira-observe/LICENSE),
 permitting copying into client apps, modifying the instructions, and distributing
 them in project repositories with attribution. The public documentation outside
 an official Skill archive and Vira's private backend retain different rights.
@@ -16,12 +16,20 @@ build and verify the portable `.skill` ZIPs:
 
 ~~~bash
 python3 scripts/package_agent_skills.py --out /tmp/tryvira-skills
-python3 scripts/verify_portable_skills.py /tmp/tryvira-skills --expected 27
+python3 scripts/verify_portable_skills.py /tmp/tryvira-skills --expected 28
 ~~~
 
 Each archive bundles the needed repository-owned references, selected runnable example folders (including three graded Packs and the Next.js chatbot) and source
 examples in `references/repo/` and rewrites owned links locally. This does
 **not** bundle external npm/PyPI SDKs or grant Vira hosted access.
+
+## Operate without Studio
+
+Install `vira-operator` to perform supported authoring, Pack, TaskRun, evaluation, Teach and release workflows from a coding agent. It uses the customer-installed `@tryvira/sdk`; no Studio login cookie or undocumented UI endpoint is used. See the [product parity matrix](studio-less-parity.md) for missing customer API operations.
+
+~~~bash
+npx skills add hrpering/tryvira --skill vira-operator
+~~~
 
 ## skills.sh / Codex / Claude Code / Cursor
 

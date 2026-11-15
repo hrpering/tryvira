@@ -2,6 +2,10 @@
 
 Use a checkout of the public tryvira repository and a coding assistant that genuinely supports Agent Skills. No hidden mock API, arbitrary task IDs or guaranteed ON answer are involved. The screen recording can be done in English; the prompts below are ready to paste.
 
+## Agent-first execution
+
+For a Studio-free workflow, use [Vira Operator](https://github.com/hrpering/tryvira/blob/main/skills/vira-operator/SKILL.md) as the agent's operation interface. Specialist Skills still define the authoring and safety requirements. Its CLI executes the installed public SDK only and reports unavailable backend/API features rather than assuming all Studio routes can be called. See [Studio-less parity](studio-less-parity.md).
+
 ## Setup
 
 Install the minimum four Skills with the supported installer:

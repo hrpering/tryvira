@@ -15,6 +15,8 @@ Reviewed 15 November 2026. This is a public capability and evidence map, not a c
 | Runtime checks and receipts | vira-runtime-verification, vira-traces | Persisted TaskRun/child receipt is not interchangeable with a provider-output-bound post-model PASS |
 | MCP and Studio | vira-mcp, vira-studio | Discover MCP tools at runtime; Studio availability requires actual account/UI verification |
 
+The [Studio-less parity ledger](studio-less-parity.md) identifies public SDK operations callable via Vira Operator and the administrative, monitoring and optimization features that still need product API work. Skills alone cannot turn a Studio route into an authorized public endpoint.
+
 ## Remaining gaps that documentation cannot resolve
 
 1. **Public chatbot output handoff:** the Next.js sample shows OFF model output and ON TaskRun state. It does not expose the authenticated, verified final ON provider response. This requires an implemented and tested backend/SDK/host handoff, not a new paragraph in a Skill.
