@@ -13,7 +13,7 @@ Learn how Vira helps you define, test, release and inspect the behavior of an ex
 | Understand the product and its use cases | [Overview](what-is-vira.md) · [Practical scenarios](use-cases.md) |
 | Try the chatbot or an integration example | [Quickstart](start-here.md) · [Next.js chatbot](../examples/frameworks/node-next/README.md) |
 | Add Vira to an existing JavaScript or Python application | [Developer guide](developer-guide.md) · [Integration patterns](integration-patterns.md) |
-| Work with an AI coding agent | [27 Agent Skills](../skills/README.md) |
+| Work with an AI coding agent | [28 Agent Skills](../skills/README.md) |
 | Evaluate Vira for a team | [Team guide](for-teams.md) · [Product capabilities](product-feature-map.md) |
 | Diagnose an integration | [Troubleshooting](troubleshooting/README.md) |
 
