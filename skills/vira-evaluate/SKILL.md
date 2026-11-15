@@ -35,6 +35,12 @@ Specify API deployment URL, credential scope, evaluation type, candidate identit
 6. Negative: natural-language requirement-only modules, unsupported judge, incomplete worker or a different digest cannot become evaluated/verified success.
 [Eval](https://github.com/hrpering/tryvira/blob/main/docs/evaluation-and-approval.md) · [Runtime checks](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md).
 
+## Quality-preserving optimization loop
+
+An optimization proposal is not permission to change production. Start with comparable inputs, the same model/configuration where possible and a strong OFF baseline. Evaluate the exact immutable candidate and read individual failed/regressed cases. Use server-executed comparative evaluation and persisted findings when supported; never let clients submit fabricated arm outputs or aggregate scores as evaluation evidence.
+
+When improvement is needed, produce a new explicit proposal or immutable revision candidate, re-evaluate changed content and request separate human approval and release. Neither a model-generated suggestion nor a Teach recommendation silently becomes an active policy. Report tokens, latency, cost and outcomes only if recorded by the relevant execution; otherwise mark them not measured.
+
 ## Deliverable and failure handling
 Provide dataset, criteria, candidate binding, raw status/receipt references, and evidence-based findings. Stop if evaluation is unsupported, provider did not execute, or results are incomplete; local assertions do not equal a passed Vira evaluation or approval.
 

@@ -44,6 +44,11 @@ Repository CI validates published client contracts through test transports and b
 | `vira-lifecycle` | Plan a behavior lifecycle | JavaScript lifecycle walkthrough | Shared lifecycle checks |
 | `vira-full-lifecycle` | Coordinate a customer journey across Skills | Marketing Agent tutorial and Teach guide | Handoff and workflow checks |
 
+## Short demonstration route
+
+Use vira-full-lifecycle with vira-build-pack, vira-task-runs and vira-traces. Add vira-observe-teach for a separately governed learning loop. A verified final provider-answer claim also needs real output-bound evidence; the public ON chatbot does not supply it. See the [video workflow](video-workflow.md) and [gap review](production-parity-demo.md).
+
+
 ## Interpretation
 
 The Skills route customer tasks across the documented Vira surfaces, and the full-lifecycle Skill coordinates their handoffs. Some tasks rely on shared examples or installed package documentation; TaskRun has dedicated JavaScript and Python route-first runners, while direct HTTP still requires an authorized customer API contract, and Studio access is unavailable. The repository currently documents the workflows and validates local packaging; live execution depends on the supported client and the customer's authorized environment.

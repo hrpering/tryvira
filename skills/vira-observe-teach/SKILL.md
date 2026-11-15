@@ -59,6 +59,14 @@ The tutorial uses configured customer services and contains no mock Vira server.
 6. Negative: no consent, mixed-scope evidence, unbound proposal, missing release or queued analysis must not be promoted as active behavior.
 [Teach](https://github.com/hrpering/tryvira/blob/main/docs/teach.md) · [Observe](https://github.com/hrpering/tryvira/blob/main/docs/observe.md).
 
+## Conversation-scoped Teach in the actual host
+
+The application owns a stable conversationId across one conversation and may assign an episodeId to related conversations. Neither ID is a BehaviorPoint. Automatic Teach examines admitted, consented evidence **within one conversation or episode** and a configured threshold; it must not simply count messages across tenants. Do not promise a fixed message count or invent controlPointId. Automatic synthesis can propose a reviewable unbound draft, but it cannot be released until a canonical scoped BehaviorPoint is safely associated.
+
+For an explicit analysis, supply existing admitted evidence IDs, preserve their grouping and poll the server-issued analysis ID until terminal status. Separate analysis, recommendation, reviewer decision, evaluation and release. A queued job is not an approved behavior.
+
+For outcome attribution, use the same real AI System, Connection, conversation or episode and applicable runtime trace/receipt. The allowed status is SUCCEEDED, FAILED or UNSPECIFIED. An outcomeRef is an application reference, not an evaluation score. The SDK outcome helper emits business.outcome observation; confirm installed package and server payload compatibility before claiming attribution. Unbound drafts, unavailable providers, missing consent and mixed-scope events cannot become active behavior.
+
 ## Deliverable and failure handling
 Return the last confirmed customer-facing stage, the specialist Skills used, what the user can do next, and any access or documentation gap. If evidence is not permitted, review authority is unclear, or the required interface is unavailable, pause that stage and explain the next customer action. Never expose secrets or turn an analysis into an unreviewed production change.
 

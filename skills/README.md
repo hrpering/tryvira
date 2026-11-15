@@ -4,6 +4,18 @@ Vira Agent Skills help coding assistants integrate Vira into existing apps using
 
 ![Build with Vira: 27 Agent Skills, graded Packs and developer workflows](../assets/vira-build.svg)
 
+## Demonstrate the Skills in one real workflow
+
+Do not start by listing 27 names. A Skill teaches a coding assistant how to author, integrate and evaluate Vira; the **Vira service** governs actual execution and records receipts. These are different jobs.
+
+1. Install vira-full-lifecycle, vira-build-pack, vira-task-runs and vira-traces.
+2. Use the included public Pack examples to create a new, separately validated candidate with positive, negative and missing-data cases.
+3. If authorized development access is available, request AUTO TaskRun and inspect actual selected mode, child state and receipts. Otherwise stop at the local evidence level.
+4. Explain Teach as a distinct evidence-to-reviewed-revision cycle, not an automatic release.
+
+[Step-by-step screen recording](../docs/agent-skills/video-workflow.md) · [Production-alignment gap matrix](../docs/agent-skills/production-parity-demo.md)
+
+
 ## Installation and usage rights
 
 The [Vira Agent Skill Installation & Application Use License](vira-observe/LICENSE)

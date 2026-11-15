@@ -47,6 +47,20 @@ The public JS/Python mode runners demonstrate routing, optional admission and on
 
 Standalone `.skill` archives include `references/repo/examples/javascript/taskrun-modes.mjs` and `references/repo/examples/python/taskrun_modes.py`. Install the actual published SDK in the execution environment; these runners do not bundle package binaries or credentials.
 
+## Acceptance-grade TaskRun evidence
+
+For any recording, show the **real** request, requestedMode, server-selected mode, selected scoped task(s), persisted status, stateVersion, child statuses and returned receipt references. AUTO is a routing request, not a fifth execution mode.
+
+- SINGLE runs one eligible task.
+- STRATEGY runs one task's eligible released step graph; distinguish provider, compose and verification steps from simulation.
+- COMPOUND coordinates multiple independently eligible tasks and never pools their permissions.
+- HYBRID coordinates separately eligible SINGLE and STRATEGY children.
+- AUTO selects an eligible mode; do not fabricate a second task to force a mode for a screenshot.
+
+Route proposal is not admission. After a real admission, use getTaskRun and listTaskRunEvents to inspect persisted state and check again after worker processing. A COMPLETED TaskRun is execution evidence, **not** a separately verified final provider answer. Matching final output digest and actual post-model PASS are required for a verified-answer claim. The public Next.js sample does not provide that handoff.
+
+For a recording, follow the public [Skills demonstration](https://github.com/hrpering/tryvira/blob/main/docs/agent-skills/video-workflow.md). Without authorized non-production Vira access, show only the offline and route-only evidence actually available.
+
 ## Deliverable and failure handling
 
 Stop for unsupported surface, missing scope, ambiguous request, denial, missing authorization, stale state, or unclear recovery conditions. Ask the customer to consult the current SDK documentation or an authorized operator rather than guessing operation names, payloads, or status transitions. TaskRun completion does not publish a Strategy, create a behavior resource, approve a Pack, or release a behavior revision.

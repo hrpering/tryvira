@@ -34,6 +34,14 @@ JavaScript/Python references expose list/get/create/variant/validate/simulate/ac
 5. Negative: cyclic graph, stale artifact, missing step executor, invalid scope or failed required child stops instead of silently falling back to SINGLE.
 [Execution modes](https://github.com/hrpering/tryvira/blob/main/docs/execution-modes.md) · [Canonical runtime](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md).
 
+## Staged execution evidence
+
+An actual Strategy may normalize information with a model step, reason with another bounded step, compose a final result deterministically and then verify it. Use typed state, explicit dependency edges and failure policies; this is a design pattern, not a guarantee every deployed step has a provider implementation.
+
+For acceptance inspect the persisted Strategy identity and digest, actual execution mode and status, executed steps, provider calls if present, composed result, verifier result and per-step receipts. A graph validation or structural simulation is not evidence of provider execution. A failed required step must not create a successful parent TaskRun. Continue waiting execution under the original authority rather than starting an alternative execution.
+
+In the demo distinguish **one task with a Strategy graph** from **multiple tasks with COMPOUND** and **mixed children with HYBRID**. Label latency and cost unmeasured when no real measurement exists.
+
 ## Deliverable and failure handling
 Return Strategy/variant/revision identifiers, scope, validation/simulation results, activation authority, execution state/digest/trace, and unresolved gates. Stop on schema uncertainty, validation failure, stale or mismatched digest, non-eligible state, missing authorization, or unsupported MCP operation. Do not infer a deployment or release from activation alone.
 
