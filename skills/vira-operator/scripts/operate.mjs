@@ -35,7 +35,7 @@ for (const [group, methods] of Object.entries(GROUPS)) {
   }
 }
 export const OPERATIONS = Object.freeze(Object.fromEntries(ALL.entries()));
-export const operation = name => OPERATIONS[name] ?? null;
+export const operation = name => Object.prototype.hasOwnProperty.call(OPERATIONS, name) ? OPERATIONS[name] : null;
 
 export function requireExecutionAuthority({ method, confirm = false, acknowledge = "", env = {} }) {
   const op = operation(method);

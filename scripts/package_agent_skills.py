@@ -26,6 +26,7 @@ REPO_LINK = re.compile(
 MARKDOWN_LINK = re.compile(r"\]\(([^)]+)\)")
 EXCLUDED = {".git", "node_modules", ".venv", "__pycache__", "dist", ".next", "evals"}
 EXTRA_RESOURCES = {
+    "vira-operator": ["docs/agent-skills/studio-less-parity.md", "docs/reference/javascript-sdk.md"],
     "vira-build-pack": [
         "scripts/package-example-packs.py", "scripts/verify-pack-examples.mjs",
         "examples/packs/recipe-preferences", "examples/packs/retail-media-review",
