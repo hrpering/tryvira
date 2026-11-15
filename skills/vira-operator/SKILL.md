@@ -50,7 +50,7 @@ For a **consequential** operation, the agent must first obtain user approval, pr
 VIRA_ALLOW_MUTATIONS=true node <installed-skill-path>/scripts/operate.mjs run releasePack --args ./release.json --confirm --ack releasePack
 ~~~
 
-A mutation can be denied by server authority even when CLI flags are present. Do not expose customer raw output, tokens, model secrets, billing data or actor identifiers in chat; default CLI summary redacts secrets and prompt content.
+A mutation can be denied by server authority even when CLI flags are present. Do not expose customer raw output, tokens, model secrets, billing data or actor identifiers in chat; default CLI summary redacts secrets and prompt content. To read content only when the authorized user needs it, set VIRA_ALLOW_CONTENT_OUTPUT=true and supply --show-content; credentials remain redacted. This displays potentially sensitive output in the terminal, so use a trusted environment and never copy it into logs or public demo recordings.
 
 ## Product boundary and unsupported operations
 

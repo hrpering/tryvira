@@ -70,15 +70,15 @@ export async function invokeClient(client, method, args, options) {
   const result = await client[method](...args);
   return { operation: method, group: op.group, level: op.level, response: result };
 }
-export function safeSummary(value, depth = 0) {
+export function safeSummary(value, depth = 0, includeContent = false) {
   if (depth > 8) return "[TRUNCATED_DEPTH]";
-  if (Array.isArray(value)) return value.slice(0, 60).map(x => safeSummary(x, depth + 1));
+  if (Array.isArray(value)) return value.slice(0, 60).map(x => safeSummary(x, depth + 1, includeContent));
   if (!value || typeof value !== "object") return value;
   const out = {};
   for (const [k,v] of Object.entries(value).slice(0, 150)) {
     if (/api.?key|secret|password|authorization|access.?token|refresh.?token|credential|private.?key/i.test(k)) out[k] = "[REDACTED]";
-    else if (/^prompt$|^input$|^output$|^message$|^content$|^text$|^payload$|^messages$|^rawResponse$/i.test(k)) out[k] = "[CONTENT_HIDDEN]";
-    else out[k] = safeSummary(v, depth + 1);
+    else if (!includeContent && /^prompt$|^input$|^output$|^message$|^content$|^text$|^payload$|^messages$|^rawResponse$/i.test(k)) out[k] = "[CONTENT_HIDDEN]";
+    else out[k] = safeSummary(v, depth + 1, includeContent);
   }
   return out;
 }
@@ -105,6 +105,7 @@ const usage = () => [
   "  node operate.mjs run <method> --args <json-file> [--confirm] [--ack <method>]",
   "  JSON format: {\"args\":[...]} matching the installed SDK signature.",
   "  Read/proposal operations execute directly. Mutations require VIRA_ALLOW_MUTATIONS=true and --confirm.",
+  "  For permitted source content, explicitly set VIRA_ALLOW_CONTENT_OUTPUT=true and --show-content.",
   "  High-impact operations additionally require --ack <exactMethod>. Never infer human authorization from flags.",
 ].join("\n");
 async function cli(argv=process.argv.slice(2)) {
@@ -147,7 +148,10 @@ async function cli(argv=process.argv.slice(2)) {
   requireExecutionAuthority({method:value,confirm,acknowledge,env:process.env});
   const client=await loadClient();
   const result=await invokeClient(client,value,args,{confirm,acknowledge,env:process.env});
-  console.log(JSON.stringify(safeSummary(result),null,2));
+  const includeContent=rest.includes("--show-content");
+  if (includeContent && process.env.VIRA_ALLOW_CONTENT_OUTPUT !== "true")
+    throw new Error("CONTENT_OUTPUT_REQUIRES_EXPLICIT_OPT_IN");
+  console.log(JSON.stringify(safeSummary(result,0,includeContent),null,2));
 }
 if (process.argv[1] && import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {
   cli().catch(e=>{console.error("VIRA_OPERATOR_ERROR:",String(e?.message??e));process.exitCode=1;});

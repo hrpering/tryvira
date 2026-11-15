@@ -52,6 +52,13 @@ test("url forbids insecure remote service or path with /v1", () => {
   assert.throws(()=>validateUrl("http://example.org"),/HTTPS_REQUIRED/);
   assert.throws(()=>validateUrl("https://example.org/v1"),/CLEAN_DEPLOYMENT_ROOT/);
 });
+test("content is only visible with explicit permitted output mode", () => {
+  const raw={apiKey:"never",body:{content:"authorized response",receiptId:"real"}};
+  const output=safeSummary(raw,0,true);
+  assert.equal(output.apiKey,"[REDACTED]");
+  assert.equal(output.body.content,"authorized response");
+  assert.equal(output.body.receiptId,"real");
+});
 test("status output redacts credentials and customer prompt contents", () => {
   const record=safeSummary({status:200,body:{apiKey:"abc",payload:{secret:"abc"},taskRunId:"id",text:"customer detail"}});
   assert.equal(record.body.apiKey,"[REDACTED]");
