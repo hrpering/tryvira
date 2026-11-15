@@ -4,6 +4,16 @@
 
 Vira; mevcut AI uygulamalarının ve agent'ların davranışlarını modelden ve tek bir uzun prompt'tan bağımsız, yönetilebilir bir katmanda ele almak için geliştiriliyor. Göreve özgü gereksinimleri tanımlamayı, değişiklikleri değerlendirmeyi, sürümlemeyi, yetkili biçimde yayımlamayı ve çalışma anında neyin uygulandığını incelemeyi hedefliyor.
 
+## Vira'yı Studio kullanmadan coding agent üzerinden yönet
+
+Vira'nın geliştirici deneyimi **Agent-first** olacak. `vira-operator` Skill'i yayımlanmış SDK üzerinden davranışları oluşturmayı, Pack yaşam döngüsünü yönetmeyi, değerlendirmeyi, TaskRun çalıştırmayı ve sonuçları incelemeyi destekliyor.
+
+~~~bash
+npx skills add hrpering/tryvira --skill vira-operator
+~~~
+
+Örneğin coding agent'a “Uygulamamı bağla, davranış paketi hazırla, değerlendir; onayım olmadan yayınlama” diyebilirsin. Studio isteğe bağlı kalır. Müşteri API'si henüz bulunmayan özellikleri [Studio'suz kullanım matrisinde](docs/agent-skills/studio-less-parity.md) açıkça ayırıyoruz.
+
 **Geliştirme aşamasında:** SDK ve örnekler herkese açık. Ancak Vira hizmetine ve Studio iş akışlarına genel erişim henüz açık değil. Ürün erişimi olmadan chatbot örneğinin **Vira OFF** tarafını, kendi model sağlayıcı anahtarınızla çalıştırabilirsiniz. **Vira ON** için Vira hesabı, yetkili bağlantı ve yayımlanmış uygun davranış gerekiyor.
 
 ## Neden Vira?
@@ -66,7 +76,7 @@ Uygulama bir isteği **AUTO TaskRun** üzerinden ilettiğinde Vira, tanımlı g�
 
 ## Başlayın
 
-![Vira ile geliştirme: 27 Skill, Pack örnekleri ve entegrasyon yolları](assets/vira-build.svg)
+![Vira ile geliştirme: 28 Skill, Pack örnekleri ve entegrasyon yolları](assets/vira-build.svg)
 
 | Amacınız | Bağlantı |
 | --- | --- |
