@@ -11,7 +11,7 @@ class DemoAlignment(unittest.TestCase):
 
     def test_reproducible_demo_plan(self):
         content = self.read("docs/agent-skills/video-workflow.md").lower()
-        for needle in ("actual loaded", "new candidate", "local checks",
+        for needle in ("actually loaded", "new candidate", "local checks",
                        "auto taskrun", "teach review loop", "no invented"):
             self.assertIn(needle, content)
 
