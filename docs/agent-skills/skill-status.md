@@ -1,14 +1,14 @@
 # Agent Skill catalog and examples
 
-Find the developer task covered by each of the 27 Skills, its example, and the current validation level. For live integration testing, use a provisioned Vira environment.
+Find the developer task covered by each of the 28 Skills, its example, and the current validation level. For live integration testing, use a provisioned Vira environment.
 
 For the exact local and live test coverage, use [Skill testing](e2e-readiness.md) and [live acceptance](live-acceptance.md). Live workflows require a provisioned Vira environment.
 
 ## Test coverage
 
-All 27 Skill folders are checked for metadata, links, example structure and package integrity. CI verifies all 27 portable archives and tests extraction into three agent-style directory layouts.
+All 28 Skill folders are checked for metadata, links, example structure and package integrity. CI verifies all 28 portable archives and tests extraction into three agent-style directory layouts.
 
-The 84 model-selection inputs and 34 workflow scenarios are structured evaluation fixtures. Automatic Skill selection has not been measured against a live agent model in this release; the trace-based evaluator can be used for that test.
+The 87 model-selection inputs and 34 workflow scenarios are structured evaluation fixtures. Automatic Skill selection has not been measured against a live agent model in this release; the trace-based evaluator can be used for that test.
 
 Repository CI validates published client contracts through test transports and builds the accompanying examples. Live connection, release, provider and Studio workflows require a separately provisioned environment.
 
@@ -16,6 +16,7 @@ Repository CI validates published client contracts through test transports and b
 
 | Skill | Developer task | Guide or example | Offline coverage |
 | --- | --- | --- | --- |
+| `vira-operator` | Run SDK-backed lifecycle workflows without Studio | Operator CLI and SDK parity matrix | Offline authority/allowlist tests; live tenant required |
 | `vira-observe` | Capture permitted model/tool/action/feedback events | JS/Python connect-observe examples | Dedicated Skill procedure and event negative tests |
 | `vira-runtime-verification` | Check real post-model modules and output-bound receipts | Runtime verification guide | Verifier and fail-closed negative tests |
 | `vira-traces` | Inspect TaskRun child and authority lineage | TaskRun readback guides | Receipt correlation and partial-run scenarios |
@@ -43,6 +44,11 @@ Repository CI validates published client contracts through test transports and b
 | `vira-debug` | Diagnose an integration issue | Troubleshooting guides | Structure and trigger checks |
 | `vira-lifecycle` | Plan a behavior lifecycle | JavaScript lifecycle walkthrough | Shared lifecycle checks |
 | `vira-full-lifecycle` | Coordinate a customer journey across Skills | Marketing Agent tutorial and Teach guide | Handoff and workflow checks |
+
+## Short demonstration route
+
+Use vira-full-lifecycle with vira-build-pack, vira-task-runs and vira-traces. Add vira-observe-teach for a separately governed learning loop. A verified final provider-answer claim also needs real output-bound evidence; the public ON chatbot does not supply it. See the [video workflow](video-workflow.md) and [gap review](production-parity-demo.md).
+
 
 ## Interpretation
 

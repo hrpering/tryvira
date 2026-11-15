@@ -30,6 +30,16 @@ Collect desired reusable behavior, supported Pack schema/version, target resourc
 5. Domain `judge:` checks require a configured verifier extension. An unconfigured judge cannot PASS. Include no-release, missing-source, wrong-tenant and unsupported-verifier tests.
 [Pack field guide](https://github.com/hrpering/tryvira/blob/main/docs/pack-authoring-guide.md).
 
+## Production-aligned quality review
+
+A structurally valid ZIP is not necessarily high-quality behavior. Review each Semantic Task with positive and neighboring negative examples, each Behavior Point with a measurable requirement, each Program with stage-specific modules, and each Strategy with typed state, dependencies, bounded budgets and a real verification plan. Signals must have actual governed producer mapping before they are trusted runtime facts.
+
+Preserve a **strong OFF baseline**. Vira should add concrete evidence-handling, decision rules and action constraints without discarding helpful explanations, uncertainty or next steps. Test positive, boundary, missing-data, conflicting-instruction, wrong-scope and tool-permission cases on equal user inputs. A natural-language judge string is not an executable verifier until a registered runtime extension supports it.
+
+For a newly authored Pack, invoke the read-only validator on its own path, not just on checked-in samples: node scripts/validate-pack-candidate.mjs /path/to/candidate. It checks Task/Point/Program links, examples, test cases and Strategy graph integrity, and explicitly warns about runtime-only verifier extensions. It is a demo-grade structure check, **not** a full server schema or live evaluation.
+
+A Pack can declare a policy but cannot grant a host action, create a trusted Signal producer, or authorize release. Distinguish structural ZIP checking, local fixtures, persisted server evaluation and observed ON provider quality as separate evidence levels. Do not assert a local checker ran on a newly created candidate if it only tested repository samples.
+
 ## Deliverable and failure handling
 Return the candidate files, validation output, inventory, and unresolved conflicts. Stop on schema uncertainty or collision; import is a separate user-authorized operation and never means activation/release.
 

@@ -16,7 +16,7 @@ TARGETS = { "codex": ".codex/skills", "claude": ".claude/skills", "cursor": ".cu
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("archive_directory",type=Path)
-    parser.add_argument("--expected",type=int,default=27)
+    parser.add_argument("--expected",type=int,default=28)
     args=parser.parse_args()
     archives=sorted(args.archive_directory.glob("vira-*.skill"))
     if len(archives)!=args.expected:

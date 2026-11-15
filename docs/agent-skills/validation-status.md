@@ -1,6 +1,6 @@
 # Agent Skills: tests and compatibility
 
-Vira provides 27 task-focused Agent Skills. Each guide includes activation conditions, a workflow, supporting examples and failure handling.
+Vira provides 28 task-focused Agent Skills. Each guide includes activation conditions, a workflow, supporting examples and failure handling.
 
 [Install](installation.md) · [Skills catalog](../../skills/README.md) · [Detailed test coverage](skill-status.md)
 
@@ -8,12 +8,12 @@ Vira provides 27 task-focused Agent Skills. Each guide includes activation condi
 
 | Check | Result type |
 | --- | --- |
-| Skill structure, metadata and links | 27 Skill directories validated |
-| Portable packaging | 27 archives verified with bundled resources |
-| Installation | 27 archives extracted into three clean agent-style layouts |
+| Skill structure, metadata and links | 28 Skill directories validated |
+| Portable packaging | 28 archives verified with bundled resources |
+| Installation | 28 archives extracted into three clean agent-style layouts |
 | Published SDK contracts | Selected JavaScript/Python request and error-handling tests |
 | Examples | Next.js app build/tests, Python syntax checks, Pack archive tests |
-| Selection scenarios | 84 input cases checked for structure and labels |
+| Selection scenarios | 87 input cases checked for structure and labels |
 
 Automated checks use local test transports and scenarios, rather than a running Vira customer account. The [testing guide](e2e-readiness.md) lists the coverage.
 
@@ -28,6 +28,6 @@ Automated checks use local test transports and scenarios, rather than a running 
 | Verified provider answer | Exact model output, post-model verification result and matching receipt |
 | Agent selection | Observed Skill-load events from a real agent/model execution |
 
-Model-driven automatic selection has not been benchmarked for this release. The 84-case scorer is available to capture and measure real agent traces. Current public TaskRun readback also lacks the complete verified final-answer handoff.
+Model-driven automatic selection has not been benchmarked for this release. The 87-case scorer is available to capture and measure real agent traces. Current public TaskRun readback also lacks the complete verified final-answer handoff.
 
 [Live acceptance procedure](live-acceptance.md) · [Client compatibility](production-contract-audit.md) · [Product availability](../product-status.md)

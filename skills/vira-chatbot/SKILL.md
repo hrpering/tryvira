@@ -39,6 +39,10 @@ This demo has no tools or external side effects, and the route has no end-user a
 
 In an extracted standalone `.skill` archive, the Next.js sample is under `references/repo/examples/frameworks/node-next/`; install its pinned npm dependencies from that directory. Runtime Vira and provider credentials remain external.
 
+## Screen recording boundary
+
+The current sample permits an honest **OFF provider answer versus ON TaskRun admission/status** comparison. It is not a two-answer quality benchmark. For a measured OFF/ON comparison, use separate authorized provider-backed acceptance evidence and an output-bound verifier readback. Never display a generated or guessed ON answer as if this sample had obtained it.
+
 ## Deliverable and failure handling
 Give the user the local URL, the modes actually tried, and the observed response status. If dependencies, model credentials, Vira access, scope, or an eligible released behavior are missing, state the exact first blocked step and continue only with an independently usable mode. Never present an OFF-only build as an ON test or a UI runtime check as proof of model compliance.
 

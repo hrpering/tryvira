@@ -4,6 +4,7 @@ This page maps customer goals to public Skills without reproducing low-level SDK
 
 | Customer goal | Primary Skill | Supporting Skills | Coverage note |
 | --- | --- | --- | --- |
+| Operate Vira without opening Studio | `vira-operator` | `vira-full-lifecycle`, specialist Skills | Use the installed SDK for available operations and report missing customer API parity |
 | Start an integration and choose a supported surface | `vira-get-started` | `vira-integrate-app`, `vira-debug` | Confirm customer scope and surface availability |
 | Integrate a JavaScript/TypeScript application | `vira-js-sdk` | `vira-integrate-app`, `vira-framework-integration` | Use the installed npm package documentation |
 | Integrate a Python application | `vira-python-sdk` | `vira-integrate-app`, `vira-framework-integration` | Use the installed PyPI package documentation |
@@ -18,6 +19,9 @@ This page maps customer goals to public Skills without reproducing low-level SDK
 | Observe and complete the Teach loop | `vira-observe-teach` | `vira-lifecycle`, `vira-evaluate`, `vira-release`, `vira-runtime` | Covers evidence through next runtime learning cycle |
 | Evaluate behavior or response quality | `vira-evaluate` | `vira-evaluate-release` | Evaluation is separate from approval and release |
 | Approve or release behavior | `vira-release` | `vira-evaluate-release` | Requires the customer's explicit authority |
+| Preserve customer scope and effect authority | vira-integrate-app, vira-runtime | vira-task-runs, vira-debug | Do not combine child task permissions or accept a caller-declared capability as authorization |
+| Govern tool calls and external actions | vira-runtime | vira-author-behavior, vira-task-runs | Host approval and server authority must precede a real effect; a Pack is not a permission grant |
+| Evaluate and improve candidates without silent activation | vira-evaluate | vira-observe-teach, vira-release | Separate candidate optimization, new evaluation, human approval and release |
 | Apply behavior at runtime | `vira-runtime` | `vira-debug` | Verify returned identity and runtime result |
 | Try the customer chatbot with Vira behavior OFF or ON | `vira-chatbot` | `vira-framework-integration`, `vira-js-sdk`, `vira-runtime` | Run the Next.js example locally; ON requires customer-provisioned access and an eligible released behavior |
 | Orchestrate a TaskRun | `vira-task-runs` | `vira-js-sdk`, `vira-runtime`, `vira-full-lifecycle` | JS and Python TaskRun runners exist; AUTO selects mode; check installed SDK and tenant |

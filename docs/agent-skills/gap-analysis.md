@@ -20,4 +20,10 @@ Operations such as Observe ingestion, Signal mapping, Teach analysis, Pack mater
 
 The Skills do not include API keys, hosted accounts or bundled third-party SDK binaries.
 
+## Production comparison, November 2026
+
+The configured production path has evidence for real AUTO routing, staged Strategy execution and all four child execution modes. The public local Skill and SDK examples do not provide a verified final ON chatbot answer. This revision improves the Skill guidance for conversation-scoped Teach, unbound proposals, tool permissions, Pack quality, receipt interpretation and candidate improvement. It does not claim new hosted features.
+
+Read the [evidence and capability comparison](production-parity-demo.md) and [recordable workflow](video-workflow.md). No private repository source or tenant identity is copied to these guides.
+
 [Testing and readiness](e2e-readiness.md) · [Live acceptance](live-acceptance.md) · [Product availability](../product-status.md)

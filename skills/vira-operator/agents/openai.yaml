@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vira Operator"
+  short_description: "Operate Vira from an agent without opening Studio"
+  default_prompt: "Use $vira-operator to inspect available Vira customer SDK operations, plan the requested lifecycle and execute only with explicit authorization and persisted readback."

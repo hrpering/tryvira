@@ -8,6 +8,10 @@ description: "Plan and execute an evidence-backed Vira behavior lifecycle from s
 
 Coordinate a user's complete governed behavior task across supported Vira surfaces. Start by identifying which stages they requested and which are safe/authorized to execute. A lifecycle is a set of separate persisted transitions; semantic selection, proposal review, materialization, activation, evaluation, release, runtime use, and rollback are not interchangeable.
 
+## Agent-first operation is the default
+
+When the user wants to control Vira from a coding agent, coordinate through `vira-operator`: inspect real SDK capabilities, prepare authorized operations, execute the published SDK and read persisted results. Use the specialist Skills for artifact quality, evaluation and runtime safety. No Studio click is required for an SDK-supported customer workflow. Unsupported billing/admin/optimization features need real public APIs, not a hidden Studio call.
+
 ## Activate this skill when
 The user asks for an end-to-end Vira outcome, such as connecting an app, authoring governed behavior, evaluating it, and preparing or performing a release. Route isolated SDK errors or one artifact operation to a specialist skill. Never use this skill to bypass approval or production controls.
 
@@ -81,6 +85,12 @@ If the product access notice says access is closed, stop live execution at confi
 4. Require real provider output and same-output digest + post-model PASS/receipt before claiming a verified ON chatbot answer; the current public sample intentionally returns admission/pending.
 5. Negative: missing review, stale digest, unconfigured `judge:`, wrong tenant, unsupported host, partial child or customer effect without approval must stop.
 [Canonical runtime](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) · [Verification contract](https://github.com/hrpering/tryvira/blob/main/docs/verified-answer-handoff.md).
+
+## Recordable end-to-end Skill handoff
+
+For a public demonstration follow the [recordable Skill workflow](https://github.com/hrpering/tryvira/blob/main/docs/agent-skills/video-workflow.md): select a Skill from a real developer task, author a reviewable behavior candidate using the public Pack examples, run checks that actually inspect that candidate and only then, with authorized non-production access, read persisted AUTO routing and child receipts. The Teach stage requires a separate evidence/review loop.
+
+A Skill assists a coding agent with authoring and integration. It **does not** enforce released behavior itself; the configured Vira runtime does. Always label evidence as Skill selection, local file validation, live TaskRun state or final output-bound verification. Never upgrade the claim merely because the demo screen looks convincing.
 
 ## Deliverable and failure handling
 Return the staged checklist with surface, IDs/digests, status, persisted evidence, authorization point, verification performed, and next safe action for every stage. Identify the earliest failed boundary; preserve sanitized request IDs/errors; propose and verify the smallest correction. Mark planned, build-checked, live-verified, approved, released, and rolled-back states separately. Never fabricate metrics, receipts, approvals, provider results, or lifecycle completion.

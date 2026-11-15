@@ -1,19 +1,28 @@
-# Coordinate specialists through a real workflow
+# Complete skill-led workflow
+
+Use the [recordable Skills demonstration](https://github.com/hrpering/tryvira/blob/main/docs/agent-skills/video-workflow.md). This is a guide for a developer's own working environment, not a packaged Vira service or a claimed live run.
 
 ## Short test prompt
 
-> Take our FastAPI agent from evidence to released AUTO behavior and a reviewed Teach revision.
+> Inspect the installed Vira Skills. Design a helpful support-assistant behavior that does not invent customer order facts, then tell me how to validate that candidate.
 
 ## Detailed test prompt
 
-> Use vira-observe, vira-signals, vira-author-behavior, vira-build-pack, vira-packs, vira-evaluate, vira-release, vira-task-runs, vira-runtime-verification and vira-traces in order. Stop for each authorization.
+> Choose the needed Vira Skills, create a new portable candidate from the public Pack examples, add positive, negative and missing-data cases, and check the candidate's real files. Use AUTO TaskRun for authorized non-production runtime readback, not a fabricated model response. Separate live execution receipts from final provider-output verification. Describe how consented Observe evidence could enter a human-reviewed Teach revision, evaluation and release cycle.
 
-## Expected result
+## Validate the generated candidate itself
 
-Return scoped artifact/run/output receipt identities only when genuinely returned, and mark live acceptance separately from static checks.
+From the public repository root, run node scripts/validate-pack-candidate.mjs /path/to/candidate and retain its JSON report. The command checks the new candidate rather than only the repository examples; a PASS has evidenceLevel offline-structure-only. Fix all reported errors, then separately evaluate through a provisioned Vira service.
 
-Follow the [production-aligned Skill](https://github.com/hrpering/tryvira/blob/main/skills/vira-full-lifecycle/SKILL.md) and [canonical TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md). Live execution requires customer-authorized non-production scope, real server IDs and supported installed client operations. Never fabricate an acceptance receipt.
+## Deliverables and boundaries
+
+1. Evidence the assistant actually loaded each selected Skill.
+2. A candidate Semantic Task, Behavior Point and Program; add Strategy only for a true staged need.
+3. A record of local validation commands applied to the new candidate, with unsupported checks clearly identified.
+4. If Vira access is genuinely configured, persisted route and TaskRun status with real selected mode, child state and receipts.
+5. A separate output-bound verification status, marked unavailable if not exposed by the installed client.
+6. A Teach review/evaluation/release plan that does not silently promote model suggestions.
 
 ## Negative test
 
-No projection-to-provider alternate chat path or invented verified ON answer.
+Do not invent tenant or TaskRun identities, a second task to force COMPOUND, a registered judge, a permission grant, an ON answer, a receipt or a passing evaluation. No local structural check proves an actual Vira service call.

@@ -12,8 +12,8 @@ class ProductionAlignment(unittest.TestCase):
 
     def test_27_task_specific_skills_with_examples(self):
         folders = sorted(p.parent for p in SKILLS.glob("vira-*/SKILL.md"))
-        self.assertEqual(len(folders), 27)
-        self.assertEqual(len({p.name for p in folders}), 27)
+        self.assertEqual(len(folders), 28)
+        self.assertEqual(len({p.name for p in folders}), 28)
         for folder in folders:
             name = folder.name
             skill = (folder / "SKILL.md").read_text()

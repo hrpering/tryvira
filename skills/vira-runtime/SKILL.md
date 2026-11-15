@@ -31,6 +31,14 @@ Identify the application request boundary, task/context, permitted scope, select
 5. Negatives: wrong scope, stale release, unavailable verifier, failed child, denied tool or altered provider answer must block or show pending; no silent OFF fallback.
 [Runtime verification](https://github.com/hrpering/tryvira/blob/main/docs/runtime-verification.md).
 
+## Tool-call and effect authority
+
+An AI model may **propose** a tool call. It does not grant itself permission to execute external effects. Before a host action, enforce exact tenant/project/environment scope, released artifact identity, tool/action policy, server-attested host capability and any required user/operator approval. Policy text, effect: allow and caller-supplied hostCapabilities are not sufficient authorization.
+
+At pre_tool and pre_action, unsupported or unavailable authorization must block the effect, not merely append a warning to a model answer. COMPOUND and HYBRID children cannot combine their separate privileges into a more powerful parent. An action awaiting consent stays WAITING; continue the same run with the actual server-provided version, never manufacture an approval.
+
+For a demo, show one permitted read-only tool decision and one synthetic effectful request that is **not executed** without approval. Preserve genuine decision evidence. Do not issue real payments, refunds, messages or account changes just to capture the screen.
+
 ## Deliverable and failure handling
 Show the code boundary, result mapping, actual verification evidence or the explicit live-test blocker, and trace fields to inspect. On abstain/deny/error, follow the host's explicit safe failure policy; never convert it into allow or bypass Vira.
 

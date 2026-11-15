@@ -9,7 +9,19 @@
   <a href="README.tr.md">Türkçe</a>
 </p>
 
-> **Early access:** The SDKs, Agent Skills and examples are public. Vira service and Studio access currently require a provisioned account. [See what you can try today](docs/start-here.md).
+> **Early access:** The SDKs, Agent Skills and examples are public. Live Vira operations require a provisioned account; **Studio is optional for SDK-supported operations**. [See what you can try today](docs/start-here.md).
+
+## Operate Vira directly from your coding agent
+
+Vira's primary developer experience is **agent-first**. Use the [Vira Operator Skill](skills/vira-operator/SKILL.md) to inspect supported SDK methods, prepare behavior changes and execute explicitly authorized Vira operations without opening Studio.
+
+~~~bash
+npx skills add hrpering/tryvira --skill vira-operator
+~~~
+
+Ask your coding agent: **“Connect my AI application, build a Behavior Pack, evaluate it and prepare it for release. Don't modify production until I approve.”** The operator calls the real installed SDK, verifies scope and reads actual server state. The [Studio-less capability ledger](docs/agent-skills/studio-less-parity.md) identifies workflows still waiting for public API support; a Skill cannot invent them.
+
+
 
 ## The problem
 
@@ -129,7 +141,7 @@ The sample is intended for local development. Add authentication, rate limits an
 
 ## Build with the stack you already use
 
-![Build with Vira: 27 Agent Skills, graded Behavior Packs and developer integration paths](assets/vira-build.svg)
+![Build with Vira: 28 Agent Skills, graded Behavior Packs and developer integration paths](assets/vira-build.svg)
 
 | Integration | Install or entry point | Guide |
 | --- | --- | --- |

@@ -8,6 +8,10 @@ description: "Navigate Vira Studio workflows using public documentation and veri
 
 Treat Studio docs/routes as workflow guidance, not proof a page is currently accessible or operational. Product access may be closed. Do not claim to create, approve, release, or change anything unless the user has access and explicitly requests the action. Use displayed scope and confirm consequential transitions.
 
+## Studio is optional
+
+Prefer `vira-operator` for **every** operation that the installed customer JavaScript SDK already supports. Studio is a visualization or optional account interface, not a dependency for writing, importing, evaluating, releasing or running behavior. If the requested capability is currently Studio-only, document its missing customer API contract instead of automating internal UI routes with a service key.
+
 ## Activate this skill when
 A user asks where/how to perform a Vira task in Studio or interpret Studio-visible state. Do not claim current product access or automate a UI based only on a documented route.
 

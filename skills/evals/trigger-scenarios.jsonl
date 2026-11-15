@@ -82,3 +82,6 @@
 {"skill":"vira-traces","kind":"positive","prompt":"Inspect the Vira AUTO TaskRun's child receipt and explain which verification stage is missing.","should_trigger":true}
 {"skill":"vira-traces","kind":"negative","prompt":"Explain a regular browser performance trace unrelated to Vira.","should_trigger":false}
 {"skill":"vira-traces","kind":"ambiguous","prompt":"Can you inspect the trace of this agent run?","should_trigger":null}
+{"skill":"vira-operator","kind":"positive","prompt":"Use Vira skills to author, evaluate and release my Behavior Pack from my coding agent without opening Studio.","should_trigger":true}
+{"skill":"vira-operator","kind":"negative","prompt":"Can you suggest a movie to watch tonight?","should_trigger":false}
+{"skill":"vira-operator","kind":"ambiguous","prompt":"Can we manage every Vira setting from my coding agent?","should_trigger":null}

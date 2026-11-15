@@ -2,7 +2,17 @@
 
 Choose how you want to explore Vira: run a public example locally, or connect an existing AI application through a provisioned Vira workspace. The SDKs and examples are public; live service access is separate.
 
-## Start with a familiar task
+## Use Vira inside your coding agent
+
+Install [Vira Operator](../skills/vira-operator/SKILL.md) to plan and execute the customer SDK's supported operations from an agent rather than navigating Studio.
+
+~~~bash
+npx skills add hrpering/tryvira --skill vira-operator
+~~~
+
+The Skill uses the published client and real tenant authority; it cannot grant access to an unprovisioned service or provide missing administrative/public API operations. Check the [Studio-less parity map](agent-skills/studio-less-parity.md).
+
+
 
 Start with [ordinary recipes, support and writing cases](use-cases.md) before trying analytics or multi-stage agent workflows. Each example includes a prompt and a specific failure to watch for. Live governed execution requires a provisioned Vira environment.
 

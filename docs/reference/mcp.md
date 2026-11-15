@@ -1,9 +1,9 @@
 # MCP integration
 
-Published package: `@tryvira/mcp` (`0.1.44`). Runtime: Node.js 20+.
+Published package: `@tryvira/mcp` (`0.1.50`). Runtime: Node.js 20+.
 
 ```bash
-npx -y @tryvira/mcp@0.1.44
+npx -y @tryvira/mcp@0.1.50
 ```
 
 The package is MIT-licensed. The Vira service/backend are governed separately.
@@ -21,7 +21,7 @@ Use placeholders in checked-in configuration:
   "mcpServers": {
     "vira": {
       "command": "npx",
-      "args": ["-y", "@tryvira/mcp@0.1.44"],
+      "args": ["-y", "@tryvira/mcp@0.1.50"],
       "env": {
         "VIRA_API_URL": "https://api.example.invalid",
         "VIRA_API_KEY": "<customer-api-key>",

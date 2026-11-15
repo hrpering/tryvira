@@ -12,12 +12,12 @@
     "verify:registry": "node scripts/verify-registry.mjs",
     "check:examples": "node scripts/check-examples.mjs",
     "verify:scenarios": "node scripts/verify-scenarios.mjs",
-    "verify:packs": "node scripts/verify-pack-examples.mjs && python3 scripts/package-example-packs.py --check && node --test scripts/score-pack-comparison.test.mjs",
+    "verify:packs": "node scripts/verify-pack-examples.mjs && python3 scripts/package-example-packs.py --check && node --test scripts/score-pack-comparison.test.mjs && npm run test:pack-candidate",
     "verify:canonical": "node scripts/verify-canonical-taskrun.mjs",
     "verify:coverage": "node scripts/verify-product-coverage.mjs",
     "sync:registry": "node scripts/sync-published-packages.mjs",
     "test": "npm run verify",
-    "verify:skills": "python3 scripts/validate_agent_skills.py && python3 -m unittest discover -s skills/evals -v",
+    "verify:skills": "python3 scripts/validate_agent_skills.py && python3 -m unittest discover -s skills/evals -v && npm run test:operator",
     "package:skills": "python3 scripts/package_agent_skills.py",
     "eval:skill-trigger": "python3 scripts/export_skill_trigger_eval.py",
     "test:mcp-catalog": "node scripts/mcp-catalog.test.mjs",
@@ -26,7 +26,9 @@
     "test:skill-observe": "node --test skills/vira-observe/examples/observe-contract.test.mjs",
     "test:skill-contracts": "node --test skills/vira-observe/examples/observe-contract.test.mjs examples/javascript/skill-e2e-assertions.test.mjs && python3 scripts/eval_skill_selection.py --validate-only",
     "verify:artwork": "python3 scripts/verify-readme-artwork.py",
-    "verify:public-copy": "node scripts/check-public-copy.mjs"
+    "verify:public-copy": "node scripts/check-public-copy.mjs",
+    "test:pack-candidate": "node --test scripts/validate-pack-candidate.test.mjs",
+    "test:operator": "node --test scripts/test-vira-operator.mjs"
   },
   "license": "UNLICENSED"
 }
