@@ -4,9 +4,9 @@ Vira's public client packages use the `tryvira` package identity and point back 
 
 | Ecosystem | Package | Current package version | Runtime | License | Install |
 | --- | --- | ---: | --- | --- | --- |
-| npm | `@tryvira/sdk` | `0.1.54` | Node.js 20+ | MIT | `npm install @tryvira/sdk@0.1.54` |
-| npm | `@tryvira/mcp` | `0.1.50` | Node.js 20+ | MIT | `npx -y @tryvira/mcp@0.1.50` |
-| PyPI | `tryvira-sdk` | `0.1.52` | Python 3.10+ | MIT | `python -m pip install tryvira-sdk==0.1.52` |
+| npm | `@tryvira/sdk` | `0.1.66` | Node.js 20+ | MIT | `npm install @tryvira/sdk@0.1.66` |
+| npm | `@tryvira/mcp` | `0.1.55` | Node.js 20+ | MIT | `npx -y @tryvira/mcp@0.1.55` |
+| PyPI | `tryvira-sdk` | `0.1.54` | Python 3.10+ | MIT | `python -m pip install tryvira-sdk==0.1.54` |
 
 Package pages:
 

@@ -1,6 +1,6 @@
 # MCP integration reference
 
-**Current package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.46`
+**Current package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.55`
 
 The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
@@ -12,7 +12,7 @@ A returned tool schema describes how to call that tool; it does not grant author
 
 ## Product-level coverage
 
-The current package supports a selection of scoped reads, semantic/runtime behavior operations, and limited behavior authoring and Teach workflows. It does not provide complete parity with the JavaScript SDK or Python client. Pack lifecycle, full evaluation and release workflows, and TaskRun operations should be treated as unsupported unless they appear in the installed server's live `tools/list` and public package documentation.
+The current package exposes the public lifecycle surface through 76 scoped tools. This includes AI System/connection diagnostics; Semantic Tasks, BehaviorPoints, Programs and Strategies; TaskRun resolve/start/read/events/continue/cancel/retry; observations and signals; Teach analysis/recommendation/review; evaluations and comparative findings; Pack evaluation/approval/revisions/materialization; runtime capsule/projection verification; trace search; and host authorization. It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
 
 If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Use the names, schemas and authorization decisions returned by the configured server.
 

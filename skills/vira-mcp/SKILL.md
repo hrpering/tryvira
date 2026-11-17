@@ -6,7 +6,7 @@ description: "Configure or use Vira through its published Model Context Protocol
 
 # Vira MCP integration
 
-Install the currently published `@tryvira/mcp` package without relying on a stale version pin. Initialize the configured MCP client and call `tools/list`; runtime schemas and scoped availability are authoritative. Never infer MCP support from SDK/API methods. Treat effectful tools as mutations subject to configured authority; do not fabricate missing Pack, release, evaluation, or connection tools.
+Install the currently published `@tryvira/mcp` package without relying on a stale version pin. Initialize the configured MCP client and call `tools/list`; runtime schemas and scoped availability are authoritative. Never infer MCP support from SDK/API methods. The current public package includes lifecycle tools for connections, TaskRuns, Packs, Teach, evaluation, revisions, runtime verification and traces, but the live catalog remains authoritative.
 
 Configure `VIRA_API_URL` as the API deployment root supplied by the operator (no `/v1` suffix; not the Studio URL) and `VIRA_API_KEY` through the MCP host's secret-backed environment. The published CLI derives its authority endpoint from this API URL unless the documented optional override is set. Ask for a missing API URL; never guess it.
 
@@ -26,7 +26,7 @@ Inspect the user's MCP host, config format, process launch mechanism, secret sto
 ## Implementation details
 
 1. Read the installed MCP server's package version and real config, then run `initialize` and `tools/list`. Do not hard-code the number or signatures of tools.
-2. The published MCP catalog **does not provide TaskRun or Pack lifecycle tools** even though JS/Python SDKs do. For normal AUTO TaskRun or Pack operations, use a separately documented server-side SDK integration; do not create a fake `start_task_run` MCP tool.
+2. The published MCP catalog provides `resolve_task_run`, `start_task_run`, `get_task_run`, `list_task_run_events`, `continue_task_run`, `cancel_task_run`, `retry_task_run`, and Pack lifecycle tools including `import_pack`, `install_pack`, `evaluate_pack`, `approve_pack`, and `release_pack`. Confirm exact schemas with `tools/list` before calling them. It does not provide complete parity with every SDK/API operation; do not fabricate missing pack tools.
 3. Keep all credentials in host-managed environment and check scope and effectful-tool permissions before a call. A registered tool name is not authorization for external actions.
 4. Negative: an MCP host with no configured API key or missing tool must stop with a surface limitation, not fabricate a success or substitute projection.
 [MCP catalog](https://github.com/hrpering/tryvira/blob/main/docs/reference/mcp-tools.md) · [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md).

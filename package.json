@@ -17,7 +17,7 @@
     "verify:coverage": "node scripts/verify-product-coverage.mjs",
     "sync:registry": "node scripts/sync-published-packages.mjs",
     "test": "npm run verify",
-    "verify:skills": "python3 scripts/validate_agent_skills.py && python3 -m unittest discover -s skills/evals -v && npm run test:operator",
+    "verify:skills": "python3 scripts/validate_agent_skills.py && python3 -m unittest discover -s skills/evals -v && node scripts/verify-skill-mcp-parity.mjs && npm run test:operator",
     "package:skills": "python3 scripts/package_agent_skills.py",
     "eval:skill-trigger": "python3 scripts/export_skill_trigger_eval.py",
     "test:mcp-catalog": "node scripts/mcp-catalog.test.mjs",

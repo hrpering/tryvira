@@ -102,7 +102,8 @@ await vira.activateBehaviorStrategy(strategyId);
 
 Python uses the equivalent `create_behavior_strategy`, `validate_behavior_strategy`, `simulate_behavior_strategy`, and `activate_behavior_strategy` methods.
 
-The published MCP package does not expose Strategy activation. It currently supports
+The published MCP package exposes Strategy validation, activation, simulation and
+execution readback through the current catalog. It currently supports
 Strategy listing only; use the SDK, Python SDK, or HTTP API for the Strategy lifecycle.
 
 The published MCP package exposes this Strategy read tool:

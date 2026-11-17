@@ -8,7 +8,7 @@
 
 ## How to carry out the task
 
-Use [the runnable MCP client example](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/mcp-client/README.md). For TaskRun or Pack lifecycle absent from the published MCP tools, choose a separate documented JS/Python SDK application path.
+Use [the runnable MCP client example](https://github.com/hrpering/tryvira/blob/main/examples/frameworks/mcp-client/README.md). For TaskRun or Pack lifecycle, use the advertised MCP tools when present and authorized; otherwise choose a separate documented JS/Python SDK application path.
 
 This is a customer-run procedure using real installed contracts, not a synthetic Vira success or a mocked service. Obtain the user's own authorized, isolated environment for any live Vira mutation. Keep API/provider keys server-side.
 
@@ -18,7 +18,7 @@ MCP initialize and tools/list result, installed version and explicitly unsupport
 
 ## Required negative test
 
-Never invent `start_task_run`, `import_pack` or `release_pack` as MCP tools, or let read-only tool discovery grant external-action permission.
+Never invent a tool or schema. The current catalog includes `start_task_run`, `import_pack` and `release_pack`, but each effectful call still requires the server authority decision and the customer's scope/policy.
 
 ## Handoff
 

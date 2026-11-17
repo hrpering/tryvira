@@ -13,7 +13,7 @@ Importing, configuring, evaluating, reviewing, upgrading, or releasing a Vira Pa
 
 ## Inputs and preconditions
 
-The current published MCP catalog has no Pack tools; verify live tools before selecting MCP.
+The current published MCP catalog includes Pack tools such as `list_packs`, `diagnose_pack`, `import_pack`, `install_pack`, `evaluate_pack`, `approve_pack`, `release_pack`, and Pack Revision operations. There are no pack tools to fabricate when a customer's installed catalog omits one; verify live schemas and authority before selecting MCP.
 
 - Confirm the customer's Vira API URL, credential scope, target environment, and requested operation.
 - Keep credentials server-side and use only synthetic content in public examples.
