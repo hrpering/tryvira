@@ -2,7 +2,7 @@
 
 Find the developer task covered by each of the 28 Skills, its example, and the current validation level. For live integration testing, use a provisioned Vira environment.
 
-For the exact local and live test coverage, use [Skill testing](e2e-readiness.md) and [live acceptance](live-acceptance.md). Live workflows require a provisioned Vira environment.
+For the exact local and live test coverage, use [Skill testing](e2e-readiness.md), [live acceptance](live-acceptance.md), and the [test trust matrix](test-trust-matrix.md). Live workflows require a provisioned Vira environment.
 
 ## Test coverage
 
