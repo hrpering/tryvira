@@ -74,7 +74,7 @@ If the product access notice says access is closed, stop live execution at confi
 
 ### 6. Surface routing and stop conditions
 - Use the JavaScript SDK, Python SDK, HTTP API, or MCP only for operations those public contracts document. Use Studio only when the user has access and the actual UI workflow can be verified.
-- The published MCP catalog is narrower than the SDK/API: do not assume it can connect systems, complete Pack lifecycle, run evaluation, execute Strategies, create releases, or promote Teach proposals unless runtime discovery explicitly shows that operation.
+- The published MCP catalog is narrower than the SDK/API: it currently includes a governed subset of connection, TaskRun, Pack, Teach, evaluation, revision, runtime-verification and trace operations. Do not assume any operation is available for the active scope until runtime discovery explicitly shows it; missing operations must be routed to a documented SDK/API surface rather than fabricated.
 - Stop at missing scope/capability, consent, unresolved materialization, unsupported operation, failed evaluation, missing reviewer approval, stale digest, or uncertain runtime response semantics. Report the remaining stages and their blockers without claiming end-to-end completion.
 
 ## Implementation details

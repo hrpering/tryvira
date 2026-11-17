@@ -16,4 +16,19 @@ The current package exposes the public lifecycle surface through 76 scoped tools
 
 If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Use the names, schemas and authorization decisions returned by the configured server.
 
+## Skill routing map
+
+Use the Skill for the product decision and lifecycle contract, then use MCP only for the operation family actually advertised by `tools/list`:
+
+| Skill | MCP operation family | Evidence required before handoff |
+| --- | --- | --- |
+| `vira-get-started`, `vira-integrate-app` | AI System and connection discovery/diagnostics | server-returned system/connection identity and scope |
+| `vira-author-behavior`, `vira-strategies` | Semantic Tasks, Behavior Points, Programs and Strategies | validated canonical identity, policy and authority |
+| `vira-task-runs` | resolve/start/read/events/continue/cancel/retry | persisted TaskRun state and child receipts |
+| `vira-packs`, `vira-evaluate`, `vira-release` | Pack import/install/evaluation/approval/revision/materialization/release | exact digest, evaluation status, approval and release readback |
+| `vira-observe-teach`, `vira-signals` | observations, evidence, Teach and signal operations | admitted/consented evidence and persisted analysis/recommendation state |
+| `vira-runtime`, `vira-runtime-verification`, `vira-traces` | runtime verification, host authorization and trace search | output-bound receipt, authority/revision identity and trace correlation |
+
+This is a routing aid, not an authorization grant. A Skill must stop when the installed catalog, scope or server response does not expose the required operation.
+
 See [MCP setup](mcp.md), [Capability discovery](../capability-discovery.md), [Published packages](../published-packages.md), [HTTP integration guidance](api.md), and [Packs](../packs.md).
