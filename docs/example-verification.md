@@ -2,7 +2,7 @@
 
 The public repository contains runnable integration code **and** conceptual examples. They are not interchangeable. A repository that installs dependencies and builds cleanly can still fail against a customer's Vira tenant, external model or application permissions.
 
-**Current reference package line:** `@tryvira/sdk@0.1.66`, `@tryvira/mcp@0.1.55`, `tryvira-sdk==0.1.55`, as synchronized in [published packages](published-packages.md). Version checks use registries; live tenant verification is a separate task.
+**Current reference package line:** `@tryvira/sdk@0.1.66`, `@tryvira/mcp@0.1.55`, `tryvira-sdk==0.1.54`, as synchronized in [published packages](published-packages.md). Version checks use registries; live tenant verification is a separate task.
 
 **Feature coverage:** [Product map](product-feature-map.md) and [status/evidence levels](product-status.md) include Observe, Signals, verified output, Teach, security, billing, integrations and experimental infrastructure. CI can check that documentation exists; it cannot claim those backend capabilities passed customer E2E. A complete verifier proof requires [runtime verification acceptance](runtime-verification.md).
 
