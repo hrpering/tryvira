@@ -12,9 +12,13 @@ A returned tool schema describes how to call that tool; it does not grant author
 
 ## Product-level coverage
 
-The current package exposes the public lifecycle surface through 76 scoped tools. This includes AI System/connection diagnostics; Semantic Tasks, BehaviorPoints, Programs and Strategies; TaskRun resolve/start/read/events/continue/cancel/retry; observations and signals; Teach analysis/recommendation/review; evaluations and comparative findings; Pack evaluation/approval/revisions/materialization; runtime capsule/projection verification; trace search; and host authorization. It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
+The current package exposes the public lifecycle surface through the installed server's versioned tool catalog. This includes AI System/connection diagnostics; Semantic Tasks, BehaviorPoints, Programs and Strategies; TaskRun resolve/start/read/events/continue/cancel/retry; observations and signals; Teach analysis/recommendation/review; evaluations and comparative findings; Pack evaluation/approval/revisions/materialization; runtime capsule/projection verification; trace search; and host authorization. It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
 
 If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Use the names, schemas and authorization decisions returned by the configured server.
+
+## Shared operation policy
+
+Follow the [one operation flow](../agent-first-operation-flow.md): discover live tools first, use installed SDK/PyPI only for a **missing** MCP operation, never for a denial; retain the same scope, review, digest, idempotency and server readback.
 
 ## Skill routing map
 

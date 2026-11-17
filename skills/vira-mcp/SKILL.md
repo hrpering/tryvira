@@ -23,6 +23,10 @@ Inspect the user's MCP host, config format, process launch mechanism, secret sto
 4. For each requested action, match it to an advertised tool and inspect whether it is read-only or effectful before invocation.
 5. Route absent operations to a documented SDK, Python, or HTTP contract; test config parsing separately from any live tool call.
 
+## Shared handoff to other Vira Skills
+
+`vira-mcp` handles tool discovery, schema matching and tool execution. Use `vira-full-lifecycle` for stage ordering, `vira-packs` for candidate quality, `vira-task-runs` for AUTO execution and `vira-observe-teach` for the feedback loop. Preserve the same scope, artifact IDs, evaluation evidence and release state between stages. Follow the [common operation flow](https://github.com/hrpering/tryvira/blob/main/docs/agent-first-operation-flow.md). If a tool is absent, route to the documented installed SDK/PyPI method; **never** retry an authorization denial through another surface.
+
 ## Implementation details
 
 1. Read the installed MCP server's package version and real config, then run `initialize` and `tools/list`. Do not hard-code the number or signatures of tools.

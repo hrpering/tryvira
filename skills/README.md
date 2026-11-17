@@ -57,9 +57,10 @@ npx skills add hrpering/tryvira --skill vira-task-runs
 
 ## Default: agent-first operations
 
-Install `vira-operator` to operate Vira directly from a coding agent rather than clicking through Studio. It calls allowlisted methods from the customer's installed `@tryvira/sdk`, requires explicit mutation approval and reads actual server evidence. Studio-only operations remain listed as gaps instead of being faked. See the [Studio-less parity ledger](../docs/agent-skills/studio-less-parity.md).
+Prefer `vira-mcp` and the task-specific Skill when the host exposes the Vira MCP server; discover the live tool schema. For unavailable MCP operations, use `vira-operator` with the customer's installed `@tryvira/sdk`, or the supported Python SDK in Python projects. Both paths use Vira's canonical scope, authority and real server readback; switching surfaces never bypasses a denied operation. See the [common operation flow](../docs/agent-first-operation-flow.md). Studio-only operations remain listed as gaps instead of being faked. See the [Studio-less parity ledger](../docs/agent-skills/studio-less-parity.md).
 
 ~~~bash
+npx skills add hrpering/tryvira --skill vira-mcp
 npx skills add hrpering/tryvira --skill vira-operator
 ~~~
 
@@ -67,7 +68,7 @@ npx skills add hrpering/tryvira --skill vira-operator
 
 | Skill | Use it for |
 | --- | --- |
-| `vira-operator` | Agent-first control of supported Vira SDK operations without Studio; scoped approval and real readback |
+| `vira-operator` | Version-matched JavaScript SDK fallback for absent MCP tools, with scoped approval and persisted readback |
 | `vira-observe` | Observe-only instrumentation: model/tool/action/feedback events and scoped ingestion |
 | `vira-runtime-verification` | Implement and inspect verification using documented check and receipt contracts |
 | `vira-traces` | TaskRun/child authority, verification receipt and outcome lineage diagnostics |

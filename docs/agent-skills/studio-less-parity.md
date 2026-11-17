@@ -1,12 +1,14 @@
 # Studio-less Vira: capability parity and API backlog
 
-Status: 15 November 2026. Scope: public JavaScript/Python SDK contracts, published MCP capabilities and actual product Studio route families. A route existing in source is **not** proof of a working customer API. Do not expose the Studio's cookie/session endpoints as a shortcut. Agent Skills cannot replace missing service operations by writing instructions.
+Status: 18 November 2026 (public catalog refresh; not a claim of live E2E). Scope: public JavaScript/Python SDK contracts, published MCP capabilities and actual product Studio route families. A route existing in source is **not** proof of a working customer API. Do not expose the Studio's cookie/session endpoints as a shortcut. Agent Skills cannot replace missing service operations by writing instructions.
 
 ## Target architecture
 
-Coding agent → installed Vira Skills → Vira Operator (or supported MCP tools) → published SDK/public API → canonical scope/authority/policy/release boundary → durable receipts and traces.
+Coding agent → installed Vira Skills → discovered MCP tools (or version-matched SDK/PyPI when unavailable) → published public API → canonical scope/authority/policy/release boundary → durable receipts and traces.
 
 Studio is an **optional visualization**, not a prerequisite for authoring, approving, releasing, running, or learning behavior. The API/SDK/MCP must use the same authority and idempotency contracts. Approval of external effects must remain explicit.
+
+[Shared MCP/JS/Python operation flow](../agent-first-operation-flow.md). MCP now documents more Pack, TaskRun, Teach and evaluation operations than the previous SDK-only ledger; the items marked partial below concern wider Studio administration, host capabilities and verified provider output, not the absence of these named MCP tools.
 
 ## Product parity ledger
 
@@ -39,7 +41,7 @@ Studio is an **optional visualization**, not a prerequisite for authoring, appro
 
 ## Priorities for the next product changes
 
-P0: Complete customer API for release and rollback readback, output-bound verification, conflict and approval readback, TaskRun/Teach durable state. P1: Add operation-level public API and SDK coverage for work queue, scopes, optimization and customer integrations. P2: Complete organization/member administration, billing views and other account operations. P3: Make MCP expose authorized versions of the same public operations; no fake parity and no bypass.
+P0: Complete customer API for release and rollback readback, output-bound verification, conflict and approval readback, TaskRun/Teach durable state. P1: Add operation-level public API and SDK coverage for work queue, scopes, optimization and customer integrations. P2: Complete organization/member administration, billing views and other account operations. P3: Continuously test the expanded MCP registry against published SDK/PyPI method availability; no fake parity and no bypass.
 
 Every new operation needs: explicit permission class; tenant- and actor-bound scope; input validation; idempotency for mutations; effectful host approval; durable audit/receipt; typed JS+Python method; MCP tool where safe; positive/wrong-tenant/denial/replay/expired/stale tests. Product capability discovery must report per-surface support **at runtime**. Disallow local agent-written fake server receipts.
 

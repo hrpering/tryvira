@@ -20,7 +20,7 @@ The [Studio-less parity ledger](studio-less-parity.md) identifies public SDK ope
 ## Remaining gaps that documentation cannot resolve
 
 1. **Public chatbot output handoff:** the Next.js sample shows OFF model output and ON TaskRun state. It does not expose the authenticated, verified final ON provider response. This requires an implemented and tested backend/SDK/host handoff, not a new paragraph in a Skill.
-2. **Published surface differences:** MCP cannot be assumed to mirror SDK TaskRun, Pack or release methods. Studio routes are not proof of user access.
+2. **Published surface differences:** MCP now exposes selected TaskRun, Pack and release tools, but must not be assumed to mirror **every** SDK operation or deployed host permission. Studio routes are not proof of user access.
 3. **Automatic Skill-selection measurement:** fixture prompts and structural tests do not prove a real coding agent selected a Skill. Show actual Skill-load evidence before publishing selection accuracy.
 4. **Actual behavior quality:** a local expected-case fixture, a manually written ON answer or a COMPLETED TaskRun is not an independent OFF/ON benchmark. Use comparable provider configurations and persisted evidence.
 5. **Hosted access:** public examples provide no Vira tenant, secrets, already released Pack or production permission. Keep live demo steps conditional on an authorized non-production environment.

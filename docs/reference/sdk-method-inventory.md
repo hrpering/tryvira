@@ -1,22 +1,19 @@
-# Published SDK capability guide
+# Operation map: Skills → MCP → JavaScript / Python SDK
 
-Package versions move independently. This guide maps product tasks to the Skill that should lead them; it does not reproduce method signatures, payload schemas, or endpoint paths. Check the installed JavaScript/Python package documentation for exact operations and data shapes.
+This is the public *operation selection* reference, not a copied OpenAPI contract. **First select the workflow Skill.** If the coding agent already has a Vira MCP server, inspect live \`tools/list\` and use the corresponding tool. When the tool is absent, use an explicitly documented installed JavaScript/Python method without bypassing a server denial. Check the exact installed method signature and version; **Studio is not an API fallback**.
 
-| Product task | Skill | JavaScript SDK | Python SDK | MCP |
+| User intent | Lead Skills | MCP discovery hints | JavaScript \`@tryvira/sdk\` | Python \`tryvira-sdk\` |
 | --- | --- | --- | --- | --- |
-| Connect and configure an application | `vira-get-started`, `vira-integrate-app`, `vira-js-sdk`, `vira-python-sdk` | See installed package documentation | See installed package documentation | See installed server catalog |
-| Observe behavior and manage permitted evidence | `vira-observe`, `vira-observe-teach` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
-| Author governed behavior | `vira-author-behavior`, `vira-signals`, `vira-strategies` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
-| Prepare and govern a Pack | `vira-build-pack`, `vira-packs` | See installed package documentation | See installed package documentation | No Pack tools listed in the current catalog |
-| Teach analysis and improvement loop | `vira-observe-teach`, `vira-lifecycle` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
-| Evaluate a candidate | `vira-evaluate`, `vira-evaluate-release` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
-| Approve and release behavior | `vira-release` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
-| Apply and inspect runtime behavior | `vira-runtime`, `vira-runtime-verification`, `vira-traces`, `vira-debug` | See installed package documentation | See installed package documentation | Discover with `tools/list` |
-| Orchestrate TaskRuns | `vira-task-runs` | `resolveTaskRun` / `startTaskRun` / state reads; verify installed npm contract | `resolve_task_run` / `start_task_run` / state reads; verify installed PyPI contract | No TaskRun tools listed in the current catalog |
-| Integrate with an application framework | `vira-framework-integration` | See installed package documentation | See installed package documentation | See framework host requirements |
+| Install and inspect | \`vira-get-started\`, \`vira-integrate-app\`, \`vira-mcp\` | \`list_capabilities\`, \`list_ai_systems\`, \`connection_health\` | \`listCapabilities\`, \`listAISystems\`, \`connectionHealth\` | \`list_capabilities\`, \`list_ai_systems\`, \`connection_health\` |
+| Connect and observe | \`vira-observe\`, \`vira-signals\` | \`connect_once\`, \`observe\`, \`create_signal_mapping\` | \`connectOnce\`, \`observe\`, \`createSignalMapping\` | Check installed \`connect_once\`, \`observe\`, \`create_signal_mapping\` |
+| Author a behavior | \`vira-author-behavior\`, \`vira-strategies\` | \`create_semantic_task\`, \`create_behavior_point\`, \`create_behavior_program\` | \`createSemanticTask\`, \`createBehaviorPoint\`, \`createBehaviorProgram\` | Check installed snake_case counterparts |
+| Pack lifecycle | \`vira-build-pack\`, \`vira-packs\`, \`vira-release\` | \`import_pack\`, \`install_pack\`, \`evaluate_pack\`, \`approve_pack\`, \`release_pack\` | \`importPack\`, \`installPack\`, \`evaluatePack\`, \`approvePack\`, \`releasePack\` | \`import_pack\`, \`install_pack\`, \`evaluate_pack\`, \`approve_pack\`, \`release_pack\` |
+| Run and recover | \`vira-task-runs\`, \`vira-traces\` | \`resolve_task_run\`, \`start_task_run\`, \`get_task_run\`, \`list_task_run_events\`, \`retry_task_run\` | \`resolveTaskRun\`, \`startTaskRun\`, \`getTaskRun\`, \`listTaskRunEvents\`, \`retryTaskRun\` | \`resolve_task_run\`, \`start_task_run\`, \`get_task_run\`, \`list_task_run_events\`, \`retry_task_run\` |
+| Teach and improve | \`vira-observe-teach\`, \`vira-evaluate\` | \`submit_teach_evidence\`, \`create_teach_analysis\`, \`get_teach_analysis\`, \`create_behavior_revision_candidate\` | \`submitTeachEvidence\`, \`createTeachAnalysis\`, \`getTeachAnalysis\`, \`createBehaviorRevisionCandidate\` | Verify installed Python operations; \`create_teach_analysis\` and \`get_teach_analysis\` are documented |
+| Inspect evidence | \`vira-runtime-verification\`, \`vira-traces\` | \`search_runtime_traces\`, \`get_evaluation\`, \`get_job\` | \`searchRuntimeTraces\`, \`getEvaluation\` | Check installed trace/evaluation read methods | 
 
-The JavaScript SDK, Python package, MCP server, HTTP API, and Studio do not have identical coverage. Check the installed release and the selected customer's scope before using a capability. Consult the method inventory for the installed package or discover the connected MCP server's tools.
+MCP tool availability is versioned and permission-scoped. The SDKs have independent signatures and capabilities. Do not simply convert camelCase to snake_case and assume parameter parity. Use the [full lifecycle and evidence checkpoints](../agent-first-operation-flow.md).
 
-[TaskRun execution modes](../execution-modes.md) include SINGLE, STRATEGY, COMPOUND, HYBRID and AUTO routing; mode selection is not server authorization. [JS runner](../../examples/javascript/taskrun-modes.mjs) · [Python runner](../../examples/python/taskrun_modes.py).
+A route decision is not runtime admission. Pack installation is not release. A queued evaluation is not a PASS. A completed TaskRun is not a post-model verified answer. Each must be read back independently. The four child execution modes are SINGLE, STRATEGY, COMPOUND and HYBRID; AUTO selects a mode according to server eligibility.
 
-The dedicated [Observe](../observe.md), [runtime verification](../runtime-verification.md) and [receipt/trace](../traces.md) guides explain the distinct evidence and authority boundaries. The exact method inventory is available in each published package's own documentation and declarations. This repository maps product tasks to Skills without republishing that low-level contract. The separate [MCP catalog](mcp-tools.md) describes public MCP tools and points integrations to live `tools/list` discovery.
+[JavaScript runner](../../examples/javascript/taskrun-modes.mjs) · [Python runner](../../examples/python/taskrun_modes.py) · [MCP client](../../examples/frameworks/mcp-client/README.md) · [Studio-less limits](../agent-skills/studio-less-parity.md).

@@ -25,11 +25,14 @@ examples in `references/repo/` and rewrites owned links locally. This does
 
 ## Operate without Studio
 
-Install `vira-operator` to perform supported authoring, Pack, TaskRun, evaluation, Teach and release workflows from a coding agent. It uses the customer-installed `@tryvira/sdk`; no Studio login cookie or undocumented UI endpoint is used. See the [product parity matrix](studio-less-parity.md) for missing customer API operations.
+Install `vira-mcp` when the host supports MCP, and add the lifecycle/Pack/TaskRun Skills that describe the desired task. Discover the actual tools from `tools/list`. Where a tool is absent, `vira-operator` can run the documented installed `@tryvira/sdk` method, or use the existing Python SDK in Python projects. No Studio login cookie or undocumented UI endpoint is used. A denied MCP call is **not** a reason to fall back to SDK. See the [product parity matrix](studio-less-parity.md) for missing customer API operations.
 
 ~~~bash
+npx skills add hrpering/tryvira --skill vira-mcp
 npx skills add hrpering/tryvira --skill vira-operator
 ~~~
+
+[Common operation flow](../agent-first-operation-flow.md) · [MCP host example](../../examples/frameworks/mcp-client/README.md)
 
 ## skills.sh / Codex / Claude Code / Cursor
 
