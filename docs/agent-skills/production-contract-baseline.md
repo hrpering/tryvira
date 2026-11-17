@@ -46,7 +46,7 @@ A TaskRun COMPLETED status is **not** proof that the final provider response pas
 
 ## Surface and safety checks
 
-- MCP: initialize and inspect `tools/list`; the published MCP catalog does not currently expose TaskRun or Pack lifecycle equivalents.
+- MCP: initialize and inspect `tools/list`; the published catalog exposes the current TaskRun and Pack lifecycle subset, but does not imply complete SDK parity.
 - HTTP: only documented operation paths; no invented final-answer endpoint.
 - Studio/Admin: route existence does not establish authenticated availability.
 - Effectful actions: host-side tool permissions, server-attested capabilities, exact scope, release identity and explicit user/operator authority remain required.

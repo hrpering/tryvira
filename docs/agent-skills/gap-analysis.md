@@ -13,7 +13,7 @@ Operations such as Observe ingestion, Signal mapping, Teach analysis, Pack mater
 | Surface | Current consideration |
 | --- | --- |
 | JavaScript and Python | Check the installed package version and supported operations |
-| MCP | Use the installed server's `tools/list`; the published tool catalog does not cover the full SDK lifecycle |
+| MCP | Use the installed server's `tools/list`; the published tool catalog covers the current lifecycle subset but not full SDK parity |
 | Studio | Requires account access; not all UI flows have public live acceptance evidence |
 | Model-driven Skill selection | A trace-based evaluator and 84 scenarios are supplied; live automatic-selection scores are not yet published |
 | ON chatbot | AUTO TaskRun admission and state are demonstrated; final verified provider-output retrieval is a separate integration requirement |
