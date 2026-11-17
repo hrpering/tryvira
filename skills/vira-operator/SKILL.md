@@ -30,7 +30,7 @@ Use the developer's existing project and real Vira API deployment, not the Studi
 
 ## Operator CLI
 
-Installed with this Skill at `scripts/operate.mjs`. Run from an application repository containing the published \`@tryvira/sdk\` dependency, Node.js 22+ and server-side Vira environment configuration.
+Installed with this Skill at `scripts/operate.mjs`. Run from an application repository containing the published `@tryvira/sdk` dependency, Node.js 22+ and server-side Vira environment configuration.
 
 ~~~bash
 npm install @tryvira/sdk
@@ -42,7 +42,7 @@ node .agents/skills/vira-operator/scripts/operate.mjs run listPacks --args ./rea
 
 Use `catalog --installed` to list methods present in the installed SDK version, without needing a service credential. Unavailable operations are not executed or claimed. The static catalog is a maximum allowlist, not a guarantee of server access.
 
-The exact installed Skill path depends on the coding agent. Point to that installed folder, not an assumed \`.agents\` location. \`read.json\` is \`{"args":[]}\`. Every method accepts a positional \`args\` array **matching the installed SDK version**, not an invented JSON API. Methods not in the allowlist and methods unavailable in the installed package fail explicitly.
+The exact installed Skill path depends on the coding agent. Point to that installed folder, not an assumed `.agents` location. `read.json` is `{"args":[]}`. Every method accepts a positional `args` array **matching the installed SDK version**, not an invented JSON API. Methods not in the allowlist and methods unavailable in the installed package fail explicitly.
 
 For a **consequential** operation, the agent must first obtain user approval, prepare a scoped plan and only then use the opt-in flags:
 
