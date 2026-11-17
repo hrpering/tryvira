@@ -30,4 +30,4 @@ Automated checks use local test transports and scenarios, rather than a running 
 
 Model-driven automatic selection has not been benchmarked for this release. The 87-case scorer is available to capture and measure real agent traces. Current public TaskRun readback also lacks the complete verified final-answer handoff.
 
-[Live acceptance procedure](live-acceptance.md) · [Client compatibility](production-contract-audit.md) · [Product availability](../product-status.md)
+[Live acceptance procedure](live-acceptance.md) · [Selection scoring](selection-scoring.md) · [Client compatibility](production-contract-audit.md) · [Product availability](../product-status.md)
