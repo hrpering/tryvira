@@ -12,7 +12,7 @@ assert.deepEqual(tools.map(({ name, effectful }) => ({ name, effectful })), [
   { name: "read_status", effectful: false },
   { name: "create_proposal", effectful: true },
 ]);
-const catalog = renderMcpCatalog("0.1.54", tools);
+const catalog = renderMcpCatalog("0.1.55", tools);
 assert.match(catalog, /contains 2 tools/);
 assert.match(catalog, /tools\/list/);
 assert.doesNotMatch(catalog, /`create_proposal`|`read_status`/);
