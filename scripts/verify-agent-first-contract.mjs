@@ -4,13 +4,14 @@ import { readFile } from "node:fs/promises";
 
 const read = p => readFile(new URL("../" + p, import.meta.url), "utf8");
 const versions = JSON.parse(await read("package-versions.json"));
-const [mcp, inventory, guide, skill, operator, mcpClient, mcpExample, jsManifest, jsReadme, pyRequirements, pyFastapi, pyReadme, pyRunner] = await Promise.all([
+const [mcp, inventory, guide, skill, operator, mcpClient, mcpExample, jsManifest, jsReadme, pyRequirements, pyFastapi, pyLock, pyReadme, pyRunner] = await Promise.all([
   "docs/reference/mcp.md", "docs/reference/sdk-method-inventory.md",
   "docs/agent-first-operation-flow.md", "skills/vira-mcp/SKILL.md",
   "skills/vira-operator/SKILL.md", "examples/frameworks/mcp-client/client.mjs",
   "examples/agent-first/README.md", "examples/javascript/package.json",
   "examples/javascript/README.md", "examples/python/requirements.txt",
   "examples/frameworks/python_fastapi/requirements.txt",
+  "examples/frameworks/python_fastapi/requirements.lock",
   "examples/python/README.md", "examples/python/taskrun_modes.py",
 ].map(read));
 
@@ -20,7 +21,10 @@ const pythonVersion = versions.pypi["tryvira-sdk"];
 assert.equal(JSON.parse(jsManifest).dependencies["@tryvira/sdk"], sdkVersion);
 assert.match(jsReadme, new RegExp(sdkVersion.replaceAll(".", "\\.")));
 assert.match(pyRequirements, new RegExp("tryvira-sdk==" + pythonVersion.replaceAll(".", "\\.")));
-assert.match(pyFastapi, new RegExp("tryvira-sdk==" + pythonVersion.replaceAll(".", "\\.")));
+// Framework sample stays on its independently hash-locked SDK version.
+const pyFastapiPin = pyFastapi.match(/^tryvira-sdk==([^\s]+)$/m)?.[1];
+assert.ok(pyFastapiPin, "Missing FastAPI pinned SDK version");
+assert.ok(pyLock.includes("tryvira-sdk==" + pyFastapiPin + " \\"), "FastAPI lock does not match requirements.txt");
 assert.match(pyReadme, new RegExp(pythonVersion.replaceAll(".", "\\.")));
 assert.match(pyRunner, new RegExp(pythonVersion.replaceAll(".", "\\.")));
 for (const doc of [mcp, mcpClient]) assert.ok(doc.includes(mcpVersion), "MCP pin not aligned");
