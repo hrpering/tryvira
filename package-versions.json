@@ -1,7 +1,7 @@
 {
   "npm": {
     "@tryvira/sdk": "0.1.66",
-    "@tryvira/mcp": "0.1.55"
+    "@tryvira/mcp": "0.1.54"
   },
   "pypi": {
     "tryvira-sdk": "0.1.54"
