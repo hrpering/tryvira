@@ -12,6 +12,6 @@ for (const tool of ['start_task_run','get_task_run','list_task_run_events','impo
   assert.match(mcpSkill, new RegExp(`\\b${tool}\\b`), `MCP Skill missing ${tool}`);
 assert.doesNotMatch(mcpSkill, /does not provide TaskRun|has no Pack tools|do not create a fake `start_task_run`/);
 const catalog = await readFile(new URL('../docs/reference/mcp-tools.md', import.meta.url), 'utf8');
-assert.match(catalog, /0\.1\.54/);
+assert.match(catalog, /0\.1\.55/);
 assert.match(catalog, /76 scoped tools/);
-console.log(`SKILL_MCP_PARITY_PASS skills=${skills.length} mcpVersion=0.1.54`);
+console.log(`SKILL_MCP_PARITY_PASS skills=${skills.length} mcpVersion=0.1.55`);
