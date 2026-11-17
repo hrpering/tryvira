@@ -67,7 +67,7 @@ class SkillScenarios(unittest.TestCase):
     def test_signal_and_strategy_skills_keep_governance_transitions_separate(self):
         signals = (ROOT / "skills/vira-signals/SKILL.md").read_text().lower()
         strategy = (ROOT / "skills/vira-strategies/SKILL.md").read_text().lower()
-        for phrase in ("consent", "human review", "materialize", "producer mapping", "mcp does not expose"):
+        for phrase in ("consent", "human review", "materialize", "producer mapping", "tools/list"):
             self.assertIn(phrase, signals)
         for phrase in ("structural simulation", "not provider execution", "authority digest", "waiting", "do not create a replacement"):
             self.assertIn(phrase, strategy)

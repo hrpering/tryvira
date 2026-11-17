@@ -23,6 +23,10 @@ Inspect Node version, installed SDK version/types, module system, `VIRA_API_URL`
 4. For Pack flows, use supported manifest/archive input, direct variables map, wait for 202 materialization, and pass a persisted evaluationId bound to the exact digest.
 5. Build the integration and, when the user provides an authorized isolated non-production scope, run it against the actual Vira API and report returned request IDs/statuses. Do not present static checks, source review, or build output as evidence of live Vira behavior.
 
+## Agent-first surface handoff
+
+If the host already exposes Vira MCP, use the matching discovered tool for lifecycle operations and use this Skill for JS application integration details. Use the JavaScript SDK for a missing MCP operation or when an existing JavaScript application calls Vira directly. Never use SDK as a fallback for denied MCP authority. Preserve exact scope, idempotency and persisted receipt identity across paths. [Shared operation flow](https://github.com/hrpering/tryvira/blob/main/docs/agent-first-operation-flow.md).
+
 ## Implementation details
 
 **Canonical customer path: AUTO TaskRun.** The SDK does not forward a requested mode through the convenience helper, so use the explicit admission method below.

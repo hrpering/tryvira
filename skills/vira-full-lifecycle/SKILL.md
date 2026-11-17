@@ -10,7 +10,7 @@ Coordinate a user's complete governed behavior task across supported Vira surfac
 
 ## Agent-first operation is the default
 
-When the user wants to control Vira from a coding agent, coordinate through `vira-operator`: inspect real SDK capabilities, prepare authorized operations, execute the published SDK and read persisted results. Use the specialist Skills for artifact quality, evaluation and runtime safety. No Studio click is required for an SDK-supported customer workflow. Unsupported billing/admin/optimization features need real public APIs, not a hidden Studio call.
+When the user wants to control Vira from a coding agent, prefer the connected `vira-mcp` tools advertised by live `tools/list`; where the operation is absent, coordinate through `vira-operator` for the installed JavaScript SDK or through the installed Python SDK in a Python project. Read persisted results through the same Vira authority. **Never fallback on a denial.** Follow the [shared operation flow](https://github.com/hrpering/tryvira/blob/main/docs/agent-first-operation-flow.md). Use the specialist Skills for artifact quality, evaluation and runtime safety. No Studio click is required for an SDK-supported customer workflow. Unsupported billing/admin/optimization features need real public APIs, not a hidden Studio call.
 
 ## Activate this skill when
 The user asks for an end-to-end Vira outcome, such as connecting an app, authoring governed behavior, evaluating it, and preparing or performing a release. Route isolated SDK errors or one artifact operation to a specialist skill. Never use this skill to bypass approval or production controls.
@@ -27,7 +27,7 @@ Use `vira-lifecycle` for a plan-only review and this skill to coordinate executi
 | Stage | Skill to invoke | Handoff needed to continue |
 | --- | --- | --- |
 | Choose integration and inspect access | `vira-get-started`, then `vira-integrate-app` | Stack, API root, scoped capability evidence, and whether access is actually open |
-| Install packages or use a specific surface | `vira-npm-cli`; then one of `vira-js-sdk`, `vira-python-sdk`, `vira-http-api`, or `vira-mcp` | Registry/package version, chosen surface, method/tool contract, and safe config names |
+| Install packages or use a specific surface | `vira-npm-cli`; then one of `vira-js-sdk`, `vira-python-sdk`, `vira-http-api`, or `vira-mcp` | Registry/package version, live MCP tools or installed SDK/PyPI methods, chosen surface and safe config names |
 | Implement a framework boundary | `vira-framework-integration` | Server-side call site, provider path, fail-closed behavior, and build/live verification status |
 | Author behavior | `vira-author-behavior`; optionally `vira-signals` or `vira-strategies` | Reviewed task/point/program/strategy or signal IDs, schema validation, and unresolved policy questions |
 | Build, import, and materialize a Pack | `vira-build-pack`, then `vira-packs` | Manifest/objects, conflict review, Pack ID/digest, variables, and persisted materialization receipt |

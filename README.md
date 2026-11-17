@@ -13,13 +13,14 @@
 
 ## Operate Vira directly from your coding agent
 
-Vira's primary developer experience is **agent-first**. Use the [Vira Operator Skill](skills/vira-operator/SKILL.md) to inspect supported SDK methods, prepare behavior changes and execute explicitly authorized Vira operations without opening Studio.
+Vira's primary developer experience is **agent-first**. Use [Vira MCP](skills/vira-mcp/SKILL.md) with the task-specific Skills when your host supports MCP, or the [Vira Operator Skill](skills/vira-operator/SKILL.md) with the version-matched SDK when it does not. Both operate through the same Vira service authority; Studio is optional for supported operations.
 
 ~~~bash
+npx skills add hrpering/tryvira --skill vira-mcp
 npx skills add hrpering/tryvira --skill vira-operator
 ~~~
 
-Ask your coding agent: **“Connect my AI application, build a Behavior Pack, evaluate it and prepare it for release. Don't modify production until I approve.”** The operator calls the real installed SDK, verifies scope and reads actual server state. The [Studio-less capability ledger](docs/agent-skills/studio-less-parity.md) identifies workflows still waiting for public API support; a Skill cannot invent them.
+Ask your coding agent: **“Connect my AI application, build a Behavior Pack, evaluate it and prepare it for release. Don't modify production until I approve.”** The agent discovers actual MCP tools or installed SDK methods, verifies scope, and reads real server state. [See the common operation flow](docs/agent-first-operation-flow.md). The [Studio-less capability ledger](docs/agent-skills/studio-less-parity.md) identifies workflows still waiting for public API support; a Skill cannot invent them.
 
 
 

@@ -13,5 +13,10 @@ for (const tool of ['start_task_run','get_task_run','list_task_run_events','impo
 assert.doesNotMatch(mcpSkill, /does not provide TaskRun|has no Pack tools|do not create a fake `start_task_run`/);
 const catalog = await readFile(new URL('../docs/reference/mcp-tools.md', import.meta.url), 'utf8');
 assert.match(catalog, /0\.1\.55/);
-assert.match(catalog, /76 scoped tools/);
-console.log(`SKILL_MCP_PARITY_PASS skills=${skills.length} mcpVersion=0.1.55`);
+assert.match(catalog, /versioned tool catalog/);
+const setup = await readFile(new URL('../docs/reference/mcp.md', import.meta.url), 'utf8');
+assert.doesNotMatch(setup, /does not expose Teach proposal transitions|does not expose.*Pack operations/i);
+const shared = await readFile(new URL('../docs/agent-first-operation-flow.md', import.meta.url), 'utf8');
+for (const name of ['start_task_run','get_task_run','import_pack','evaluate_pack','approve_pack','release_pack'])
+  assert.ok(shared.includes(name), 'missing common operation: ' + name);
+console.log(`SKILL_MCP_PARITY_PASS skills=${skills.length} mcpVersion=0.1.55 (static only)`);

@@ -23,6 +23,10 @@ Inspect Python version, active virtual environment, dependency manager/lockfile,
 4. Implement the minimum supported call with explicit exception handling, idempotency for writes, and no cross-surface API assumptions.
 5. Build and run the example against an authorized isolated non-production scope when requested. Report actual API status/IDs; do not replace a Vira call with a fabricated client response.
 
+## Agent-first surface handoff
+
+When the coding agent has a connected Vira MCP server, discover and use the authorized MCP tool first for lifecycle operations. Use Python `tryvira-sdk` for application integration or when MCP does not advertise the operation. Never bypass an MCP denial by calling the Python SDK, and never assume JS/SDK method-name parity without inspecting the installed Python signature. Preserve scope and real server IDs. [Shared operation flow](https://github.com/hrpering/tryvira/blob/main/docs/agent-first-operation-flow.md).
+
 ## Implementation details
 
 1. Use the installed `tryvira-sdk` client with trusted server-side API root/secret. Python `resolve_task_run({"input": text,"requestedMode":"AUTO","connectionId":connection_id})` is proposal-only; `start_task_run({"taskRunId": run_id,"requestId": request_id,"input": text,"requestedMode":"AUTO","connectionId":connection_id}, idempotency_key=key)` is admission.

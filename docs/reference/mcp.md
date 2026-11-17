@@ -1,113 +1,54 @@
 # MCP integration
 
-Published package: `@tryvira/mcp` (`0.1.55`). Runtime: Node.js 20+.
+Published client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) (documented version **0.1.55**), Node.js 20+.
 
 ```bash
 npx -y @tryvira/mcp@0.1.55
 ```
 
-The package is MIT-licensed. The Vira service/backend are governed separately.
-
-`@tryvira/mcp` exposes Vira through MCP while Vira remains responsible for authentication, scope, authority, release state, policy and receipts. The MCP process does not become a second execution authority.
+This is a stdio client of the Vira Control API, **not** another Vira runtime or authority. The installed package's `tools/list` and the customer's server-side permissions are authoritative. It does not automatically read a `.env` file.
 
 ## Configuration
 
-The default launcher uses MCP stdio and reads environment variables from its parent process. It does **not** automatically load a `.env` file. Vira is under active development and product access is not open yet.
-
-Use placeholders in checked-in configuration:
-
-```json
-{
-  "mcpServers": {
-    "vira": {
-      "command": "npx",
-      "args": ["-y", "@tryvira/mcp@0.1.55"],
-      "env": {
-        "VIRA_API_URL": "https://api.example.invalid",
-        "VIRA_API_KEY": "<customer-api-key>",
-        "VIRA_MCP_AUTHORITY_URL": "https://api.example.invalid/v1/mcp/authorize",
-        "VIRA_ORGANIZATION_ID": "<organization>",
-        "VIRA_PROJECT_ID": "<project>",
-        "VIRA_ENVIRONMENT_ID": "<environment>"
-      }
-    }
-  }
-}
-```
-
-The published CLI requires `VIRA_API_URL`, `VIRA_API_KEY`, and the organization/project/environment scope. It sends effectful-tool authorization requests to `VIRA_MCP_AUTHORITY_URL`, which defaults to `${VIRA_API_URL}/v1/mcp/authorize`; the override is optional.
-
-Never commit real API keys, tenant identifiers, production traces, or private service URLs.
-
-## Protocol / discovery sequence
-
-A client should follow the MCP discovery flow instead of hard-coding a stale tool list:
+Configure an MCP-compatible host with the following environment fields in **host-managed secret configuration**, not committed project files:
 
 ```text
-server/discover
-→ initialize
-→ tools/list
-→ tools/call
+VIRA_API_URL=<your-Vira-API-root>
+VIRA_API_KEY=<server-held-customer-key>
+VIRA_ORGANIZATION_ID=<organization>
+VIRA_PROJECT_ID=<project>
+VIRA_ENVIRONMENT_ID=<environment>
 ```
 
-The published package's current tools and descriptions are listed in the
-[registry-synchronized MCP catalog](mcp-tools.md). The installed package's
-`tools/list` response is the source of truth for the schemas available at runtime.
+Use the root API URL, not the Studio URL and not a `/v1`-suffixed path. The optional `VIRA_MCP_AUTHORITY_URL` defaults to `<VIRA_API_URL>/v1/mcp/authorize`. Effectful calls require an allow decision at this authority boundary. The scope bound to the key must match the requested scope.
 
-## Read-only vs effectful tools
+## Discover and operate
 
-Read-only semantic/discovery operations can return candidates/evidence. Effectful operations remain authority-gated.
-
-The published package includes semantic and runtime resolution:
+The supported discovery flow is:
 
 ```text
-resolve_semantic
-resolve_runtime
+server/discover → initialize → tools/list → tools/call
 ```
 
-The package also includes these read and authoring tools:
+Find the exact tool and its schema in **your installed server's** `tools/list`. Version 0.1.55 contains tools for Connections and AI Systems, TaskRun resolve/start/read/events/continue/cancel/retry, Pack import/install/evaluate/approve/release, Teach analysis/recommendation/review, Strategy/Program authoring, observation and signals, evaluations, job readback, trace search and host authorization. Availability can be further constrained by role, scope, release eligibility or policy.
 
-```text
-list_capabilities
-list_semantic_tasks
-create_semantic_task
-list_behavior_points
-create_behavior_point
-list_behavior_programs
-list_behavior_strategies
-submit_teach_evidence
-create_teach_proposal
-```
+A useful read-only first call is `list_capabilities`; move to `list_ai_systems` or `list_packs` only once the host confirms the tool and scope. A real application run normally uses AUTO TaskRun. `resolve_task_run` provides a proposal; `start_task_run` requests admission, then `get_task_run` and `list_task_run_events` read persisted state. Do not treat ROUTED, 202 or COMPLETED as a verified end-user answer.
 
-The package does not expose Teach proposal transitions, Strategy activation or
-execution, Pack operations, Behavior Evaluation, or release tools. Those operations
-remain available only on the SDK/API surfaces that document them.
+For writes, obtain explicit user/operator authorization; then obey Vira's role, scope, policy, evaluation and release checks. The MCP client cannot grant itself a role. Do not retry a denial through a different surface. The host must retain callback ownership for external tool execution: `authorize_host_tool` authorizes a proposal, it does not run the tool itself.
 
-Authentication success is not authorization success. Wrong scope, missing role, unreleased behavior, invalid digest, policy denial, or an unavailable verifier must remain errors.
+## A single agent-first workflow
 
-## Semantic and runtime are different
+The canonical sequence is **discover → connect → observe → Teach/author → materialize → evaluate → approve/release → AUTO TaskRun → readback → proposed improvement**. Each stage has its own server-returned identity, persisted state and approval requirements. Skills describe this process and call MCP first when available; an installed SDK is a documented fallback for an **absent** operation, not a way around Vira's denial.
 
-`resolve_semantic` returns semantic evidence/candidates. It does not grant runtime authority.
+See [one operation flow](../agent-first-operation-flow.md), [tool/Skill map](mcp-tools.md), and the [runnable MCP client](../../examples/frameworks/mcp-client/README.md).
 
-`resolve_runtime` and authoring/evidence mutations in this package must satisfy the
-configured authority path and current release/scope/policy rules.
+## Problems and boundaries
 
-## Local effectful testing
+- `MCP_SCOPE_MISMATCH`: scope in request differs from credential scope.
+- `MCP_AUTHORITY_DENIED` or role-required errors: check the granted role; never bypass.
+- Missing tool: inspect package version and `tools/list`; switch to a documented SDK method only for absence.
+- Pending async work: inspect the returned job/task ID and readback before claiming completion.
+- Provider-output verification is distinct from TaskRun completion; a successful MCP tool call is not a post-model PASS.
+- Missing host interception/pre-display capability means that enforcement level is unavailable.
 
-The local effectful bypass is development-only and must not be treated as a production authorization mechanism. Production effectful operations must go through the authority boundary.
-
-## Troubleshooting
-
-Common contract errors include:
-
-- `VIRA_API_KEY_REQUIRED`: configure a customer credential in the host environment.
-- `MCP_AUTHORITY_DENIED`: the authority endpoint did not allow the effectful call. Check actor roles, scope, policy and release eligibility.
-- `MCP_SCOPE_MISMATCH`: align requested scope with credential scope.
-- `RUNTIME_STRATEGY_SELECTION_REQUIRED`: a released eligible Strategy selector is required.
-- `STRATEGY_VERIFIER_UNAVAILABLE`: the required verifier is not available.
-
-Keep MCP request IDs, authority decision digests and returned Vira receipts together when debugging.
-
-## Next steps
-
-See [MCP tools](mcp-tools.md), [Capability discovery](../capability-discovery.md), [Packs](../packs.md), and the [Developer guide](../developer-guide.md).
+[Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).

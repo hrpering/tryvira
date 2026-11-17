@@ -12,7 +12,7 @@ Use Signals when an integration needs a stable, typed evidence value that behavi
 Creating or diagnosing Signal discovery proposals, reviewing/materializing approved definitions, or creating and reviewing producer mappings. Do not use it for ordinary telemetry design or to activate behavior/release a Pack.
 
 ## Inputs and preconditions
-Identify the scoped project/environment, authorized evidence source and consent/privacy basis, event types and actual producer payload shape, desired stable meaning/value type, and downstream consumer. Check capability discovery and the installed SDK method signatures; MCP does not expose the Signal lifecycle.
+Identify the scoped project/environment, authorized evidence source and consent/privacy basis, event types and actual producer payload shape, desired stable meaning/value type, and downstream consumer. Check capability discovery, the installed SDK signatures and the MCP server's actual `tools/list`. Recent MCP packages expose Signal discovery/review/mapping tools; do not assume their presence or permission in every host.
 
 ## Workflow
 1. Inspect the permitted observations, feedback, or outcomes. Minimize/redact content and retain evidence IDs; do not submit raw conversations by default.

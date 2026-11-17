@@ -1,14 +1,28 @@
-# MCP client: real Vira server discovery
+# MCP client: discover and call a real Vira server
 
-Requires Node.js 20+. Install the locked MCP client dependencies, then configure the host with the real Vira API URL, scoped credential, and any authority settings required by your deployment. Pin and review the published MCP server version before running it.
+Requires Node.js 20+. Uses the published `@tryvira/mcp@0.1.55` stdio server with `@modelcontextprotocol/client`. Run this from `examples/frameworks/mcp-client` after configuring an authorized, isolated development tenant. Secrets belong in the host environment, not the repository.
 
 ```bash
 npm ci
-export VIRA_MCP_COMMAND=npx
-export VIRA_MCP_ARGS='--yes @tryvira/mcp@0.1.44'
+# Configure VIRA_API_URL, VIRA_API_KEY, VIRA_ORGANIZATION_ID,
+# VIRA_PROJECT_ID and VIRA_ENVIRONMENT_ID through your host's secret store.
 npm start
 ```
 
-The client starts the configured server over stdio, initializes a real MCP session, and reads the server's current `tools/list`. It does not assume that JavaScript/Python SDK methods exist in MCP. To call a discovered tool, set `VIRA_MCP_TOOL` and `VIRA_MCP_ARGUMENTS` to the actual advertised schema. Review its access annotation and require explicit host/operator approval for effectful or open-world tools; the example's approval flag is not a replacement for Vira authorization.
+Without `VIRA_MCP_TOOL`, the script initializes the server and prints its **actual** `tools/list` names. It does not perform an effectful operation or invent a server receipt.
 
-The MCP package exposes only a subset of Vira operations. Route missing operations to the documented SDK/HTTP surface. This command calls the real MCP server and requires an available, authorized Vira deployment; no live call was made while preparing this example.
+For an inspection tool, explicitly choose a discovered name and supply arguments that match its live schema:
+
+```bash
+VIRA_MCP_TOOL=list_capabilities VIRA_MCP_ARGUMENTS='{}' npm start
+```
+
+The example allows only a narrow, explicitly named set of read-only inspections without extra operator approval. All other tools need `VIRA_MCP_APPROVED=yes` **after real authorization by the user/operator**. This flag is only an extra host safeguard, never a replacement for the Vira server's scope/role/release authorization. MCP servers that omit effect annotations are treated conservatively.
+
+By default the example prints only tool name, error status and content types, not raw customer data. To inspect full results in a **trusted local terminal only**, explicitly set `VIRA_MCP_SHOW_RESULT=yes`; avoid screenshots and logging secrets.
+
+If you must use an alternate reviewed server package/command, set `VIRA_MCP_COMMAND` and `VIRA_MCP_ARGS_JSON` (JSON array of arguments), instead of relying on naïve whitespace splitting. Tool argument schemas must be read from `tools/list` and must never be invented from SDK signatures.
+
+A tool failure, wrong scope, missing approval, or policy denial is a terminal denial for that action, **not** an invitation to retry through JavaScript/Python. Only a missing tool may be routed to the version-matched documented SDK method.
+
+[Common agent-first workflow](../../../docs/agent-first-operation-flow.md) · [MCP tool/Skill map](../../../docs/reference/mcp-tools.md) · [Python/JS examples](../../agent-first/README.md).
