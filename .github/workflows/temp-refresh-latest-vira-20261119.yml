@@ -24,8 +24,10 @@ jobs:
         with:
           python-version: "3.12"
       - uses: astral-sh/setup-uv@v10.3.2
-      - name: Sync current Vira client pins
-        run: node scripts/sync-example-manifests.mjs
+      - name: Refresh registry-confirmed Vira versions then sync example pins
+        run: |
+          npm run sync:registry
+          node scripts/sync-example-manifests.mjs
       - name: Rebuild npm integrity locks from registry
         run: |
           npm install --package-lock-only --ignore-scripts --no-audit --no-fund --prefix examples/frameworks/node-next
@@ -39,7 +41,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add examples/javascript/package.json examples/semantic-runtime/package.json \
+          git add package-versions.json README.md README.tr.md docs examples/javascript/package.json examples/semantic-runtime/package.json \
             examples/frameworks/node-next/package.json examples/frameworks/node-next/package-lock.json \
             tutorials/marketing-agent/package.json tutorials/marketing-agent/package-lock.json \
             examples/frameworks/mcp-client/package-lock.json \
