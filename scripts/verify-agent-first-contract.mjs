@@ -39,4 +39,64 @@ assert.match(mcpClient, /inspectedReadOnly/);
 assert.match(mcpExample, /MCP.*JavaScript.*Python/s);
 assert.match(operator, /do not retry a denial/);
 assert.match(skill, /never.*retry.*denial|never.*authorization denial/i);
+
+// Cross-check public entrypoints that previously drifted from canonical versions.
+const publicPaths = [
+  "examples/README.md", "examples/mcp/README.md",
+  "examples/mcp/client-config.example.json",
+  "docs/agent-skills/gap-analysis.md",
+  "docs/agent-skills/capability-coverage.md",
+  "docs/ai-prompts/setup-python-sdk.md",
+  "examples/semantic-runtime/README.md",
+  "examples/semantic-runtime/package.json",
+];
+const entrypoints = await Promise.all(publicPaths.map(read));
+for (let i = 0; i < publicPaths.length; i++) {
+  const content = entrypoints[i];
+  const path = publicPaths[i];
+  assert.doesNotMatch(content, /27 (?:Vira Agent Skills|task-specific Vira Skills)|84 scenarios|published package exposes 11 tools/i,
+    path + ": stale public capability claim");
+  assert.doesNotMatch(content, /(?:@tryvira\/(?:mcp|sdk)@0\.1\.44|tryvira-sdk==0\.1\.44)/,
+    path + ": stale recommended version");
+}
+assert.ok(entrypoints[0].includes(sdkVersion) && entrypoints[0].includes(pythonVersion)
+  && entrypoints[0].includes(mcpVersion), "public examples index versions drifted");
+assert.match(entrypoints[2], /@tryvira\/mcp@0\.1\.55/);
+assert.match(entrypoints[4], /28 task-specific Vira Skills/);
+
+const jsObserve = await read("examples/javascript/connect-observe.mjs");
+const pyObserve = await read("examples/python/connect_observe.py");
+const quality = await read(".github/workflows/quality.yml");
+for (const field of ["organizationId","projectId","environmentId","eventId","connectionId","aiSystemId"]) {
+  assert.ok(jsObserve.includes(field) && pyObserve.includes(field),
+    "missing scoped Observe field " + field);
+}
+assert.match(jsObserve, /buildObservationRequest/);
+assert.match(jsObserve, /VIRA_ALLOW_OBSERVE/);
+assert.match(pyObserve, /client\.observe\(event/);
+assert.match(pyObserve, /VIRA_ALLOW_OBSERVE/);
+assert.match(quality, /npm test --prefix examples\/javascript/);
+assert.match(quality, /unittest discover -s examples\/python/);
+
+const compatibility = await read("docs/example-package-compatibility.md");
+assert.match(compatibility, /Lockfile|lockfile-tested/);
+for (const base of ["examples/frameworks/node-next","tutorials/marketing-agent"]) {
+  const manifest = JSON.parse(await read(base+"/package.json"));
+  const lock = JSON.parse(await read(base+"/package-lock.json"));
+  assert.equal(lock.packages[""].dependencies["@tryvira/sdk"],
+    manifest.dependencies["@tryvira/sdk"], base + ": manifest/lock drift");
+  assert.ok(lock.packages["node_modules/@tryvira/sdk"]?.version,
+    base + ": no resolved SDK in lockfile");
+}
+for (const base of ["examples/frameworks/python_fastapi","examples/frameworks/langgraph"]) {
+  const requirements = await read(base+"/requirements.txt");
+  const lock = await read(base+"/requirements.lock");
+  const version = requirements.match(/^tryvira-sdk==([^\s]+)$/m)?.[1];
+  assert.ok(version && lock.includes("tryvira-sdk=="+version+" \\"),
+    base+": PyPI lock mismatch");
+}
+const syncSource = await read("scripts/sync-published-packages.mjs");
+assert.match(syncSource, /SAFE_VERSION_SYNC_PATHS/);
+assert.doesNotMatch(syncSource, /await writeFile\(join\(root, "docs\/reference\/mcp-tools.md"\), catalog\)/);
+
 console.log("AGENT_FIRST_PUBLIC_CONTRACT_PASS (static docs/examples/version consistency; no live Vira API)");
