@@ -79,7 +79,7 @@ assert.match(quality, /npm test --prefix examples\/javascript/);
 assert.match(quality, /unittest discover -s examples\/python/);
 
 const compatibility = await read("docs/example-package-compatibility.md");
-assert.match(compatibility, /Lockfile|lockfile-tested/);
+assert.match(compatibility, /lockfile|hash-verified/i);
 for (const base of ["examples/frameworks/node-next","tutorials/marketing-agent"]) {
   const manifest = JSON.parse(await read(base+"/package.json"));
   const lock = JSON.parse(await read(base+"/package-lock.json"));
