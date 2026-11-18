@@ -50,6 +50,11 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+      - name: Verify current JavaScript SDK Observe example
+        run: |
+          npm install --prefix examples/javascript --ignore-scripts --no-audit --no-fund
+          npm test --prefix examples/javascript
+
       - name: Verify framework examples (JavaScript)
         run: |
           npm ci --prefix examples/frameworks/node-next
@@ -77,6 +82,12 @@ jobs:
           uv venv --python 3.12 examples/frameworks/langgraph/.venv
           uv pip sync --python examples/frameworks/langgraph/.venv/bin/python examples/frameworks/langgraph/requirements.lock
           examples/frameworks/langgraph/.venv/bin/python -m compileall -q examples/frameworks/langgraph
+
+      - name: Verify current Python SDK Observe example
+        run: |
+          uv venv --python 3.12 examples/python/.venv
+          uv pip install --python examples/python/.venv/bin/python 'tryvira-sdk==0.1.54'
+          examples/python/.venv/bin/python -m unittest discover -s examples/python -p 'test_*.py' -v
 
       - name: Verify documented public package releases
         run: npm run verify:registry
