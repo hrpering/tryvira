@@ -39,7 +39,7 @@ def run_connect_observe(client, env: Mapping[str, str], make_id=None) -> dict:
     if env.get("VIRA_ALLOW_OBSERVE") != "yes":
         raise RuntimeError("VIRA_ALLOW_OBSERVE=yes required before creating connection/evidence")
     make_id = make_id or (lambda: str(uuid4()))
-    scope = {k: required(env, k) for k in ("organizationId", "projectId", "environmentId")} if "organizationId" in env else {
+    scope = {
         "organizationId": required(env, "VIRA_ORGANIZATION_ID"),
         "projectId": required(env, "VIRA_PROJECT_ID"),
         "environmentId": required(env, "VIRA_ENVIRONMENT_ID"),
