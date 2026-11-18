@@ -30,7 +30,7 @@ from the public repository and verify all 28 archives using
 Archives mirror linked public source resources and selected runnable example folders under `references/repo/`;
 Pack, Framework, Chatbot and TaskRun Skills include needed standalone source examples and builder scripts. Run them from the local `references/repo/` path. npm/PyPI SDK dependencies and real Vira service access remain external.
 
-[Skill tests and compatibility](../docs/agent-skills/e2e-readiness.md) ·
+[Public E2E completion plan](../docs/agent-skills/e2e-completion-plan.md) · [Example package versions](../docs/example-package-compatibility.md) · [Skill tests and compatibility](../docs/agent-skills/e2e-readiness.md) ·
 [Model-selection evaluation](../docs/agent-skills/live-acceptance.md).
 
 ## Install

@@ -7,10 +7,11 @@
 | [Structured dual-prompt scenario fixtures](scenarios/README.md) | 12 synthetic tasks, 24 copyable prompts, behavior checks and negative cases; schema tested offline |
 | [Use-case prompts by complexity](../docs/use-cases.md) | 12 beginner-to-advanced scenarios and negative cases; these are not runnable integrations |
 | [JavaScript lifecycle walkthrough](javascript/end-to-end-lifecycle.mjs) | connect, capability discovery, evidence, Task/Point authoring, and semantic/runtime separation; the optional Pack section is a partial lifecycle skeleton |
-| [JavaScript](javascript/) | `@tryvira/sdk` (latest `0.1.44`) connect/observe, capability discovery, canonical authoring, runtime and response quality |
-| [Python](python/) | `tryvira-sdk` `0.1.44` integration + response quality |
+| [Agent-first operational walkthrough](agent-first/README.md) | Skills choose lifecycle stages; installed MCP or JS/Python SDK performs server-authorized operations; no fake live receipts |
+| [JavaScript](javascript/) | `@tryvira/sdk` `0.1.66` (current example) connect/observe, capability discovery, canonical authoring, runtime and response quality |
+| [Python](python/) | `tryvira-sdk` `0.1.54` integration + response quality |
 | [Semantic + runtime](semantic-runtime/) | semantic selection followed by governed runtime resolution |
-| [MCP](mcp/) | `@tryvira/mcp` `0.1.44` host configuration, live tool discovery, semantic/runtime resolution, basic authoring, and Teach evidence/proposal creation |
+| [MCP](mcp/) | `@tryvira/mcp` `0.1.55` host configuration, live tool discovery, semantic/runtime resolution, basic authoring, and Teach evidence/proposal creation |
 | [Marketing Pack](packs/marketing-starter/) | 26 evaluated-design scenarios, budget-aware marketing launch behavior and governed materialization/evaluation/release |
 | [Strategy integration](strategy/) | references to the published SDK/API contracts |
 
@@ -35,6 +36,8 @@ listCapabilities
 ```
 
 `end-to-end-lifecycle.mjs` additionally demonstrates that semantic resolution is not authority, runtime can legitimately deny before an eligible release exists, and Pack import must not be confused with production verification/release. This file is not a full production-release demo: it does not create/evaluate/release a complete Pack or complete the later Teach loop.
+
+[Package-version and compatibility policy](../docs/example-package-compatibility.md) distinguishes the current starters from deliberately hash-locked framework samples.
 
 The [execution modes guide](../docs/execution-modes.md) distinguishes a single task from a multi-step Strategy, multiple Compound tasks, Hybrid child modes and AUTO selection. Admission requires real registered and released resources, role/scope and host eligibility; a route proposal and local build are separate from actual TaskRun execution.
 
