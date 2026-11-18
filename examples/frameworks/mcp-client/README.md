@@ -1,6 +1,6 @@
 # MCP client: discover and call a real Vira server
 
-Requires Node.js 20+. Uses the published `@tryvira/mcp@0.1.55` stdio server with `@modelcontextprotocol/client`. Run this from `examples/frameworks/mcp-client` after configuring an authorized, isolated development tenant. Secrets belong in the host environment, not the repository.
+Requires Node.js 20+. Uses the published `@tryvira/mcp@0.1.59` stdio server with `@modelcontextprotocol/client`. Run this from `examples/frameworks/mcp-client` after configuring an authorized, isolated development tenant. Secrets belong in the host environment, not the repository.
 
 ```bash
 npm ci
