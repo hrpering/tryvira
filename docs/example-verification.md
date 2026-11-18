@@ -2,7 +2,7 @@
 
 The public repository contains runnable integration code **and** conceptual examples. They are not interchangeable. A repository that installs dependencies and builds cleanly can still fail against a customer's Vira tenant, external model or application permissions.
 
-**Current reference package line:** `@tryvira/sdk@0.1.66`, `@tryvira/mcp@0.1.55`, `tryvira-sdk==0.1.54`, as synchronized in [published packages](published-packages.md). Version checks use registries; live tenant verification is a separate task.
+**Current reference package line:** `@tryvira/sdk@0.1.67`, `@tryvira/mcp@0.1.59`, `tryvira-sdk==0.1.54`, as synchronized in [published packages](published-packages.md). Version checks use registries; live tenant verification is a separate task.
 
 **Feature coverage:** [Product map](product-feature-map.md) and [status/evidence levels](product-status.md) include Observe, Signals, verified output, Teach, security, billing, integrations and experimental infrastructure. CI can check that documentation exists; it cannot claim those backend capabilities passed customer E2E. A complete verifier proof requires [runtime verification acceptance](runtime-verification.md).
 
@@ -11,8 +11,8 @@ The public repository contains runnable integration code **and** conceptual exam
 | Entry point | SDK/API surface | Automated verification | Not verified by this CI |
 | --- | --- | --- | --- |
 | [JavaScript connection / authoring / lifecycle](../examples/javascript/README.md) | Published JS SDK | Source syntax, versioned package reference; task method names checked in pinned SDK tests | Real customer connection, authoring and release acceptance |
-| [JavaScript TaskRun modes](../examples/javascript/taskrun-modes.mjs) | Published JS SDK | Syntax; routing/admission/mode/state request shapes tested against installed 0.1.44 npm client via offline transport | Actual semantic eligibility, permission, execution, released strategies |
-| [Python connection and quality](../examples/python/README.md) | Published Python SDK | Python syntax and exported TaskRun method availability from installed 0.1.44 client | Actual customer outcome and model quality |
+| [JavaScript TaskRun modes](../examples/javascript/taskrun-modes.mjs) | Published JS SDK | Syntax; routing/admission/mode/state request shapes tested against installed 0.1.67 npm client via offline transport | Actual semantic eligibility, permission, execution, released strategies |
+| [Python connection and quality](../examples/python/README.md) | Published Python SDK | Python syntax and exported TaskRun method availability from installed 0.1.54 PyPI client | Actual customer outcome and model quality |
 | [Python TaskRun modes](../examples/python/taskrun_modes.py) | Published Python SDK | Source syntax; method-surface import check in Python venv | Actual routing, admission, continuation or effects |
 | [Next.js OFF/AUTO admission sample](../examples/frameworks/node-next/README.md) | Published JS SDK + provider baseline | npm install, ON TaskRun admission/readback tests, OFF provider path tests, Next.js build | Canonical verified ON chatbot answer until provider/verifier retrieval exists |
 | [FastAPI example](../examples/frameworks/python_fastapi/README.md) | Python SDK | Locked dependency install, Python compilation | Live endpoint start, Vira response and model invocation |

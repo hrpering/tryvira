@@ -17,7 +17,7 @@ An application must stop when runtime returns deny/abstain.
 ```text
 Add a Vira semantic-to-runtime integration for this application.
 
-Use @tryvira/sdk@0.1.66 and inspect the installed TypeScript declarations before
+Use @tryvira/sdk@0.1.67 and inspect the installed TypeScript declarations before
 writing code. Resolve the user's request semantically, display the candidate and
 confidence/evidence fields without treating them as permission, then call runtime
 resolution with the explicit organization/project/environment scope and an idempotency

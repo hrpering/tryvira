@@ -89,6 +89,7 @@ try {
     "examples/javascript/README.md", "examples/python/README.md",
     "examples/semantic-runtime/README.md",
     "examples/agent-first/README.md", "examples/frameworks/mcp-client/README.md",
+    "docs/example-verification.md", "docs/troubleshooting/mcp-errors.md",
     "docs/agent-first-operation-flow.md", "docs/agent-skills/e2e-completion-plan.md"
   ];
   for (const relativePath of SAFE_VERSION_SYNC_PATHS) {
@@ -101,10 +102,18 @@ try {
       ["tryvira-sdk", oldVersions.pypi?.["tryvira-sdk"], latest.pypi["tryvira-sdk"]]
     ];
     for (const [name, previous, current] of updates) {
-      if (!previous || previous === current) continue;
-      updated = updated.split("\n").map(line =>
-        line.includes(name) ? line.replaceAll(previous, current) : line
-      ).join("\n");
+      // A partially stale page may still reference an older version even if the
+      // global registry marker was updated in another commit. Update any known
+      // predecessor on active, explicitly whitelisted documentation.
+      const historic = name === "@tryvira/sdk" ? ["0.1.44","0.1.66"] :
+        name === "@tryvira/mcp" ? ["0.1.44","0.1.55"] : ["0.1.44"];
+      const replacements = [...new Set([previous, ...historic].filter(v=>v&&v!==current))];
+      updated = updated.split("\n").map(line => {
+        if (!line.includes(name)) return line;
+        let next=line;
+        for (const prior of replacements) next=next.replaceAll(prior,current);
+        return next;
+      }).join("\n");
     }
     if (updated !== original) await writeFile(path, updated);
   }
