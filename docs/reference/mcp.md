@@ -47,8 +47,9 @@ See [one operation flow](../agent-first-operation-flow.md), [tool/Skill map](mcp
 - `MCP_SCOPE_MISMATCH`: scope in request differs from credential scope.
 - `MCP_AUTHORITY_DENIED` or role-required errors: check the granted role; never bypass.
 - Missing tool: inspect package version and `tools/list`; switch to a documented SDK method only for absence.
+- Inbox, conflict and optimization writes: verify actual actor scope, approval and effect permission; never treat an inspection as a decision or a queued optimization as an approved release.
 - Pending async work: inspect the returned job/task ID and readback before claiming completion.
 - Provider-output verification is distinct from TaskRun completion; a successful MCP tool call is not a post-model PASS.
 - Missing host interception/pre-display capability means that enforcement level is unavailable.
 
-[Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).
+[Registry-generated 91-tool inventory](mcp-published-tools.json) · [Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).

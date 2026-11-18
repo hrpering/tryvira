@@ -20,6 +20,10 @@ The compact interface table above is **not** the full product inventory. [Full p
 
 **Signals are not a synonym for observations; artifact verification, candidate evaluation and runtime post-model verification are separate gates.** [Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md).
 
+## Published MCP 0.1.59 review and optimization additions
+
+A provisioned MCP host can discover `get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`, `start_optimization`, `get_optimization_run` and `cancel_optimization_run` from the [91-tool npm package snapshot](reference/mcp-published-tools.json). **This does not prove JS/Python parity or tenant authorization**; the relevant SDK may need a documented method added. Inspect and optimize do not imply approval/release.
+
 ## TaskRun mode selection
 
 The SDK's requested modes are **SINGLE**, **STRATEGY**, **COMPOUND**, **HYBRID**, plus **AUTO** for routing. AUTO is not another execution mode. COMPOUND requires multiple registered, eligible tasks; STRATEGY requires an eligible released Strategy and a capable host; HYBRID combines child modes. A route may clarify, abstain, deny or report an unsupported host.

@@ -20,6 +20,10 @@ MCP initialize and tools/list result, installed version and explicitly unsupport
 
 Never invent a tool or schema. The current catalog includes `start_task_run`, `import_pack` and `release_pack`, but each effectful call still requires the server authority decision and the customer's scope/policy.
 
+## Current MCP 0.1.59 review and optimization examples
+
+Ask the coding agent to inspect the live tool catalog, then read `get_scope`, `list_inbox`, `get_conflict_inspection` (if an actual inspection ID exists), or `get_optimization_run` (if an actual run ID exists). Writing notification state, creating an inspection, deciding a conflict or starting/cancelling an optimization requires a separate explicit authorization and server result. The [published tool inventory](https://github.com/hrpering/tryvira/blob/main/docs/reference/mcp-published-tools.json) lists names and effect classes, not schemas or permissions.
+
 ## Handoff
 
 Consult [the Skill's specific production-aligned procedure](https://github.com/hrpering/tryvira/blob/main/skills/vira-mcp/SKILL.md), [full product status](https://github.com/hrpering/tryvira/blob/main/docs/product-status.md) and [AUTO TaskRun](https://github.com/hrpering/tryvira/blob/main/docs/canonical-taskrun.md) before calling an unverified operation. Do not infer support across SDK, HTTP, MCP or Studio.

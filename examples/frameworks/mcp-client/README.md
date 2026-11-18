@@ -26,3 +26,7 @@ If you must use an alternate reviewed server package/command, set `VIRA_MCP_COMM
 A tool failure, wrong scope, missing approval, or policy denial is a terminal denial for that action, **not** an invitation to retry through JavaScript/Python. Only a missing tool may be routed to the version-matched documented SDK method.
 
 [Common agent-first workflow](../../../docs/agent-first-operation-flow.md) · [MCP tool/Skill map](../../../docs/reference/mcp-tools.md) · [Python/JS examples](../../agent-first/README.md).
+
+## Published MCP 0.1.59 coverage
+
+The current published package has a [registry-generated 91-tool inventory](../../../docs/reference/mcp-published-tools.json), including Inbox, Conflict Inspector and Optimization tools. The example remains conservative: discover with `tools/list`, make read-only calls first, and require explicit human approval for any effectful call. The MCP host flag never substitutes for Vira's server-side authorization.
