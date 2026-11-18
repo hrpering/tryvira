@@ -40,7 +40,8 @@ jobs:
         run: |
           npx -y skills@1.7.4 add . --list > /tmp/vira-skills-list.txt
           cat /tmp/vira-skills-list.txt
-          grep -E '\\bvira\\b' /tmp/vira-skills-list.txt
+          grep -q 'Found' /tmp/vira-skills-list.txt
+          grep -q 'vira' /tmp/vira-skills-list.txt
           if grep -E 'vira-(mcp|operator|full-lifecycle)' /tmp/vira-skills-list.txt; then
             echo "ROOT_DISCOVERY_SHOULD_NOT_EXPOSE_28_SPECIALISTS"
             exit 1
