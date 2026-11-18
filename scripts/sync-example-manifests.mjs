@@ -48,12 +48,13 @@ for(const path of [
   });
 }
 
+const publishedMcpPin = new RegExp("@tryvira/mcp@\\d+\\.\\d+\\.\\d+","g");
 await updateFile("examples/frameworks/mcp-client/client.mjs",raw=>{
-  assert.match(raw,/@tryvira\\/mcp@\\d+\\.\\d+\\.\\d+/);
-  return raw.replace(/@tryvira\\/mcp@\\d+\\.\\d+\\.\\d+/g,"@tryvira/mcp@"+latestMCP);
+  assert.match(raw, publishedMcpPin);
+  return raw.replace(publishedMcpPin,"@tryvira/mcp@"+latestMCP);
 });
 await updateFile("examples/frameworks/mcp-client/README.md",raw=>
-  raw.replace(/@tryvira\\/mcp@\\d+\\.\\d+\\.\\d+/g,"@tryvira/mcp@"+latestMCP));
+  raw.replace(publishedMcpPin,"@tryvira/mcp@"+latestMCP));
 
 await updateFile("examples/mcp/client-config.example.json",raw=>{
   const config=JSON.parse(raw);
