@@ -1,0 +1,43 @@
+name: Temporary current registry sync and lock refresh
+on:
+  push:
+    branches:
+      - fix/latest-sdk-mcp-api-skills-20261119
+permissions:
+  contents: write
+jobs:
+  update:
+    if: github.repository == 'hrpering/tryvira'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: fix/latest-sdk-mcp-api-skills-20261119
+          fetch-depth: 1
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v10.3.2
+      - name: Fetch latest published npm and PyPI contracts
+        run: |
+          npm run sync:registry
+          node scripts/sync-example-manifests.mjs
+      - name: Refresh exact lockfiles without changing unrelated dependencies
+        run: |
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --prefix examples/frameworks/node-next
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --prefix tutorials/marketing-agent
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --prefix examples/frameworks/mcp-client
+          uv pip compile --python-version 3.12 --generate-hashes examples/frameworks/python_fastapi/requirements.txt -o examples/frameworks/python_fastapi/requirements.lock
+          uv pip compile --python-version 3.12 --generate-hashes examples/frameworks/langgraph/requirements.txt -o examples/frameworks/langgraph/requirements.lock
+      - name: Commit registry update to trusted branch only
+        run: |
+          git add package-versions.json README.md README.tr.md docs examples tutorials
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build: refresh MCP npm registry release and exact tool catalog"
+          git push origin HEAD:fix/latest-sdk-mcp-api-skills-20261119
