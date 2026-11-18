@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@openai/agents": "0.21.0",
-    "@tryvira/sdk": "0.1.44",
+    "@tryvira/sdk": "0.1.66",
     "next": "16.4.5",
     "react": "19.3.1",
     "react-dom": "19.3.1"

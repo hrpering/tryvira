@@ -1,6 +1,6 @@
 # Client versions in runnable examples
 
-**Current reference versions (18 November 2026):** JavaScript `@tryvira/sdk@0.1.66`; MCP `@tryvira/mcp@0.1.55`; Python `tryvira-sdk==0.1.54`. These are independently released packages. Use the installed package schema and `tools/list` before invoking an operation.
+**Current reference versions (automatically tracked):** JavaScript `@tryvira/sdk@0.1.66`; MCP `@tryvira/mcp@0.1.55`; Python `tryvira-sdk==0.1.54`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
 
 | Example | Declared version | Version policy | What CI actually proves |
 | --- | --- | --- | --- |
@@ -9,10 +9,10 @@
 | `examples/mcp` | MCP 0.1.55 | Current host instructions | Configuration JSON and published version reference |
 | `examples/frameworks/mcp-client` | MCP 0.1.55 | Current MCP client | stdio client syntax and external dependency install |
 | `examples/semantic-runtime` | JS SDK 0.1.66 | Current *diagnostic* starter | Syntax; not a canonical ON chatbot |
-| `examples/frameworks/node-next` | JS SDK 0.1.44 | **Lockfile-tested compatibility sample** | npm ci, tests and Next build on its committed lock |
-| `tutorials/marketing-agent` | JS SDK ^0.1.44; lock resolves 0.1.44 | **Lockfile-tested compatibility tutorial** | npm ci and safety tests on its committed lock |
-| `examples/frameworks/python_fastapi` | Python SDK 0.1.44 | **Hash-locked compatibility sample** | uv sync --require-hashes and Python contract tests on its committed lock |
-| `examples/frameworks/langgraph` | Python SDK 0.1.44 | **Hash-locked compatibility sample** | uv sync and Python syntax on its committed lock |
+| `examples/frameworks/node-next` | JS SDK 0.1.66 | **Lockfile-tested compatibility sample** | npm ci, tests and Next build on its committed lock |
+| `tutorials/marketing-agent` | JS SDK 0.1.66 | **Lockfile-tested compatibility tutorial** | npm ci and safety tests on its committed lock |
+| `examples/frameworks/python_fastapi` | Python SDK 0.1.54 | **Hash-locked compatibility sample** | uv sync --require-hashes and Python contract tests on its committed lock |
+| `examples/frameworks/langgraph` | Python SDK 0.1.54 | **Hash-locked compatibility sample** | uv sync and Python syntax on its committed lock |
 
 **Intentional difference:** a framework example with a committed lockfile is not silently upgraded when a new SDK is published. Its version is a tested compatibility target, not the latest recommended dependency for a new application. To migrate it, update its manifest **and regenerate the lockfile with the same package manager**; run its integration tests and build before committing. Never edit npm tarball integrity fields or Python hashes by string replacement.
 

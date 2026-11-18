@@ -891,9 +891,9 @@ truststore==0.10.5 \
     # via
     #   httpcore2
     #   httpx2
-tryvira-sdk==0.1.44 \
-    --hash=sha256:50248636b464510d14f11e2d5fc1a4e4894c4da0adede2c6008ca7ced1238dda \
-    --hash=sha256:61d391cd69f069155f603789b80f0d7c4b5beb1b69c1d4c971908bf0e3eb5f12
+tryvira-sdk==0.1.54 \
+    --hash=sha256:4a27230cfb02943aa18f5f51a9efdac34eecad49349232851e1c61845642bab1 \
+    --hash=sha256:ca18ecbcf615e745236b6990e57ba13d1673a815b9743bb4fd2c342a9482a228
     # via -r examples/frameworks/python_fastapi/requirements.txt
 typing-extensions==4.16.0 \
     --hash=sha256:481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8 \
