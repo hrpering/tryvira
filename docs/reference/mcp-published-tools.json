@@ -1,0 +1,370 @@
+{
+  "package": "@tryvira/mcp",
+  "version": "0.1.59",
+  "tools": [
+    {
+      "name": "accept_teach_recommendation",
+      "effectful": true
+    },
+    {
+      "name": "activate_behavior_strategy",
+      "effectful": true
+    },
+    {
+      "name": "approve_pack",
+      "effectful": true
+    },
+    {
+      "name": "authorize_host_tool",
+      "effectful": true
+    },
+    {
+      "name": "cancel_optimization_run",
+      "effectful": true
+    },
+    {
+      "name": "cancel_task_run",
+      "effectful": true
+    },
+    {
+      "name": "compile_behavior_capsule",
+      "effectful": true
+    },
+    {
+      "name": "connect_once",
+      "effectful": true
+    },
+    {
+      "name": "connection_health",
+      "effectful": false
+    },
+    {
+      "name": "connection_inventory",
+      "effectful": false
+    },
+    {
+      "name": "continue_task_run",
+      "effectful": true
+    },
+    {
+      "name": "create_behavior_point",
+      "effectful": true
+    },
+    {
+      "name": "create_behavior_program",
+      "effectful": true
+    },
+    {
+      "name": "create_behavior_revision_candidate",
+      "effectful": true
+    },
+    {
+      "name": "create_evaluation_plan",
+      "effectful": true
+    },
+    {
+      "name": "create_improvement_proposal",
+      "effectful": true
+    },
+    {
+      "name": "create_pack_revision",
+      "effectful": true
+    },
+    {
+      "name": "create_release",
+      "effectful": true
+    },
+    {
+      "name": "create_semantic_task",
+      "effectful": true
+    },
+    {
+      "name": "create_signal_discovery_proposal",
+      "effectful": true
+    },
+    {
+      "name": "create_signal_mapping",
+      "effectful": true
+    },
+    {
+      "name": "create_teach_analysis",
+      "effectful": true
+    },
+    {
+      "name": "create_teach_proposal",
+      "effectful": true
+    },
+    {
+      "name": "delete_behavior_program",
+      "effectful": true
+    },
+    {
+      "name": "diagnose_pack",
+      "effectful": false
+    },
+    {
+      "name": "edit_teach_recommendation",
+      "effectful": true
+    },
+    {
+      "name": "evaluate_behavior_revision_candidate",
+      "effectful": true
+    },
+    {
+      "name": "evaluate_pack",
+      "effectful": true
+    },
+    {
+      "name": "feedback",
+      "effectful": true
+    },
+    {
+      "name": "get_ai_system",
+      "effectful": false
+    },
+    {
+      "name": "get_behavior_program",
+      "effectful": false
+    },
+    {
+      "name": "get_conflict_inspection",
+      "effectful": false
+    },
+    {
+      "name": "get_connection",
+      "effectful": false
+    },
+    {
+      "name": "get_evaluation",
+      "effectful": false
+    },
+    {
+      "name": "get_evaluation_comparison",
+      "effectful": false
+    },
+    {
+      "name": "get_evaluation_plan",
+      "effectful": false
+    },
+    {
+      "name": "get_improvement_proposal",
+      "effectful": false
+    },
+    {
+      "name": "get_job",
+      "effectful": false
+    },
+    {
+      "name": "get_optimization_run",
+      "effectful": false
+    },
+    {
+      "name": "get_pack_revision",
+      "effectful": false
+    },
+    {
+      "name": "get_pack_revision_diff",
+      "effectful": false
+    },
+    {
+      "name": "get_scope",
+      "effectful": false
+    },
+    {
+      "name": "get_signal_mapping",
+      "effectful": false
+    },
+    {
+      "name": "get_task_run",
+      "effectful": false
+    },
+    {
+      "name": "get_teach_analysis",
+      "effectful": false
+    },
+    {
+      "name": "get_teach_behavior_set",
+      "effectful": false
+    },
+    {
+      "name": "get_teach_run_recommendation",
+      "effectful": false
+    },
+    {
+      "name": "import_pack",
+      "effectful": true
+    },
+    {
+      "name": "inspect_conflicts",
+      "effectful": true
+    },
+    {
+      "name": "install_pack",
+      "effectful": true
+    },
+    {
+      "name": "list_ai_systems",
+      "effectful": false
+    },
+    {
+      "name": "list_behavior_points",
+      "effectful": false
+    },
+    {
+      "name": "list_behavior_programs",
+      "effectful": false
+    },
+    {
+      "name": "list_behavior_strategies",
+      "effectful": false
+    },
+    {
+      "name": "list_capabilities",
+      "effectful": false
+    },
+    {
+      "name": "list_host_tools",
+      "effectful": false
+    },
+    {
+      "name": "list_inbox",
+      "effectful": false
+    },
+    {
+      "name": "list_packs",
+      "effectful": false
+    },
+    {
+      "name": "list_semantic_tasks",
+      "effectful": false
+    },
+    {
+      "name": "list_system_connections",
+      "effectful": false
+    },
+    {
+      "name": "list_task_run_events",
+      "effectful": false
+    },
+    {
+      "name": "mark_inbox_read",
+      "effectful": true
+    },
+    {
+      "name": "materialize_pack_revision",
+      "effectful": true
+    },
+    {
+      "name": "materialize_signal_discovery",
+      "effectful": true
+    },
+    {
+      "name": "observe",
+      "effectful": true
+    },
+    {
+      "name": "outcome",
+      "effectful": true
+    },
+    {
+      "name": "reject_teach_recommendation",
+      "effectful": true
+    },
+    {
+      "name": "release_pack",
+      "effectful": true
+    },
+    {
+      "name": "request_teach_proposal_changes",
+      "effectful": true
+    },
+    {
+      "name": "resolve_conflict",
+      "effectful": true
+    },
+    {
+      "name": "resolve_runtime",
+      "effectful": true
+    },
+    {
+      "name": "resolve_semantic",
+      "effectful": false
+    },
+    {
+      "name": "resolve_task_run",
+      "effectful": false
+    },
+    {
+      "name": "retry_task_run",
+      "effectful": true
+    },
+    {
+      "name": "review_comparative_finding",
+      "effectful": true
+    },
+    {
+      "name": "review_improvement_proposal",
+      "effectful": true
+    },
+    {
+      "name": "review_signal_discovery_proposal",
+      "effectful": true
+    },
+    {
+      "name": "review_signal_mapping",
+      "effectful": true
+    },
+    {
+      "name": "seal_evaluation_plan",
+      "effectful": true
+    },
+    {
+      "name": "search_runtime_traces",
+      "effectful": false
+    },
+    {
+      "name": "serve_behavior_projection",
+      "effectful": true
+    },
+    {
+      "name": "simulate_behavior_strategy",
+      "effectful": false
+    },
+    {
+      "name": "start_evaluation",
+      "effectful": true
+    },
+    {
+      "name": "start_optimization",
+      "effectful": true
+    },
+    {
+      "name": "start_strategy_execution",
+      "effectful": true
+    },
+    {
+      "name": "start_task_run",
+      "effectful": true
+    },
+    {
+      "name": "submit_teach_evidence",
+      "effectful": true
+    },
+    {
+      "name": "test_connection",
+      "effectful": true
+    },
+    {
+      "name": "transition_behavior_revision_candidate",
+      "effectful": true
+    },
+    {
+      "name": "transition_pack_revision",
+      "effectful": true
+    },
+    {
+      "name": "validate_behavior_strategy",
+      "effectful": true
+    }
+  ]
+}
