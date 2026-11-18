@@ -6,7 +6,7 @@ This is the customer-executable acceptance plan for MCP, JavaScript, Python, Ski
 
 1. Verify that `README`, SDK/PyPI/MCP setup prompts and all 28 Skills agree on the installed client versions, advertised lifecycle families and selected surface.
 2. Install the **current** JS and Python starter SDKs. Assert scoped Observe event serialization and negative wrong-scope/missing-field behavior with transport-injected tests.
-3. Parse the actual published MCP 0.1.59 artifact (91-tool snapshot) and initialize the real server with `tools/list` when connected. Do not count a documented tool as authorization. A standalone MCP host smoke test validates startup, not Pack release.
+3. Parse the actual published MCP 0.1.60 artifact (91-tool snapshot) and initialize the real server with `tools/list` when connected. Do not count a documented tool as authorization. A standalone MCP host smoke test validates startup, not Pack release.
 4. Verify the legacy Next.js/marketing/FastAPI/LangGraph manifests and **their own committed lockfiles**. Run Next build/tests, marketing safety, Python package and syntax tests.
 5. Validate 28 portable Skills, archive completeness, 87 trigger fixtures, negative cases, relative docs links and a real-agent trace schema (no synthesized Skill loads).
 6. Validate the public docs' capability/availability statements against supported, versioned contract descriptions. Verify that wrong-scope, approval denial, replay and missing provider proof are not silently reported as successful.

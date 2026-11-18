@@ -13,7 +13,7 @@ Vira is operated from a coding agent without requiring Studio. **Skills decide t
 
 ## Operation matrix
 
-The MCP names below were checked against the Vira MCP 0.1.59 source catalog. They are **discovery hints**, not a promise of permission or fully equivalent SDK signatures.
+The MCP names below were checked against the Vira MCP 0.1.60 source catalog. They are **discovery hints**, not a promise of permission or fully equivalent SDK signatures.
 
 | Goal | MCP tools to discover | JavaScript SDK | Python SDK | Required evidence |
 | --- | --- | --- | --- | --- |

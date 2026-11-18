@@ -1,6 +1,6 @@
 # MCP integration reference
 
-**Current package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.59`
+**Current package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.60`
 
 The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
@@ -12,9 +12,9 @@ A returned tool schema describes how to call that tool; it does not grant author
 
 ## Registry-verified tool inventory
 
-The [public npm MCP tool snapshot](mcp-published-tools.json) records all **91 tools** from published `@tryvira/mcp@0.1.59` with read/effect classifications. Its version and entries are checked directly against the npm tarball in CI. This is a *discovery reference*, **not an authorization grant or a substitute for a live `tools/list`**.
+The [public npm MCP tool snapshot](mcp-published-tools.json) records all **91 tools** from published `@tryvira/mcp@0.1.60` with read/effect classifications. Its version and entries are checked directly against the npm tarball in CI. This is a *discovery reference*, **not an authorization grant or a substitute for a live `tools/list`**.
 
-### New MCP families in 0.1.59
+### New MCP families in 0.1.60
 
 | Goal | Tools to discover | Read/write boundary |
 | --- | --- | --- |
