@@ -4,7 +4,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@tryvira/mcp@0.1.55"
+        "@tryvira/mcp@0.1.59"
       ],
       "env": {
         "VIRA_API_URL": "<your-vira-api-root>",

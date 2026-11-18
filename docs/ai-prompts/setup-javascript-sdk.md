@@ -28,7 +28,7 @@ governed runtime resolution. Do not create a Pack or release behavior yet.
 
 Requirements:
 1. Inspect package.json, the module system, Node version, and existing configuration.
-2. Install @tryvira/sdk@0.1.66 or the current registry version and use the repository's package manager.
+2. Install @tryvira/sdk@0.1.67 or the current registry version and use the repository's package manager.
 3. Read VIRA_API_URL, VIRA_API_KEY, VIRA_ORGANIZATION_ID,
    VIRA_PROJECT_ID, and VIRA_ENVIRONMENT_ID from the environment.
 4. Add a small integration module using ViraClient, connectOnce, observe,
