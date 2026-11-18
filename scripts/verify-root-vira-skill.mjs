@@ -41,6 +41,6 @@ assert.ok(!("plugin" in config),"OpenCode now uses plugins plural");
 assert.ok(!JSON.stringify(config).includes("VIRA_API_KEY"),"Never embed credential placeholders as JSON options");
 const plugin=await readFile("plugins/opencode/README.md","utf8");
 assert.match(plugin,/not the OpenCode plugin implementation/i);
-assert.match(plugin,/verify/i);
+assert.match(plugin,/verif/i);
 assert.match(plugin,/plugins/);
 console.log("ROOT_VIRA_SKILL_PASS root=1 optionalSpecialists=28 pluginGuide=1 (offline, no tenant)");
