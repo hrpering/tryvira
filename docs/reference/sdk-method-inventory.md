@@ -5,6 +5,9 @@ This is the public *operation selection* reference, not a copied OpenAPI contrac
 | User intent | Lead Skills | MCP discovery hints | JavaScript `@tryvira/sdk` | Python `tryvira-sdk` |
 | --- | --- | --- | --- | --- |
 | Install and inspect | `vira-get-started`, `vira-integrate-app`, `vira-mcp`, `vira-js-sdk`, `vira-python-sdk` | `list_capabilities`, `list_ai_systems`, `connection_health` | `listCapabilities`, `listAISystems`, `connectionHealth` | `list_capabilities`, `list_ai_systems`, `connection_health` |
+| Actor scope / Inbox | `vira-mcp`, `vira-full-lifecycle` | `get_scope`, `list_inbox`, `mark_inbox_read` | No assumed JS equivalent; inspect installed client | No assumed Python equivalent; inspect installed client |
+| Conflict inspection | `vira-author-behavior`, `vira-debug` | `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` | No assumed JS equivalent | No assumed Python equivalent |
+| Scoped optimization | `vira-evaluate`, `vira-full-lifecycle` | `start_optimization`, `get_optimization_run`, `cancel_optimization_run` | Only call installed documented methods | Only call installed documented methods |
 | Connect and observe | `vira-observe`, `vira-signals` | `connect_once`, `observe`, `create_signal_mapping` | `connectOnce`, `observe`, `createSignalMapping` | Check installed `connect_once`, `observe`, `create_signal_mapping` |
 | Author a behavior | `vira-author-behavior`, `vira-strategies` | `create_semantic_task`, `create_behavior_point`, `create_behavior_program` | `createSemanticTask`, `createBehaviorPoint`, `createBehaviorProgram` | Check installed snake_case counterparts |
 | Pack lifecycle | `vira-build-pack`, `vira-packs`, `vira-release` | `import_pack`, `install_pack`, `evaluate_pack`, `approve_pack`, `release_pack` | `importPack`, `installPack`, `evaluatePack`, `approvePack`, `releasePack` | `import_pack`, `install_pack`, `evaluate_pack`, `approve_pack`, `release_pack` |
@@ -12,7 +15,7 @@ This is the public *operation selection* reference, not a copied OpenAPI contrac
 | Teach and improve | `vira-observe-teach`, `vira-evaluate` | `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis`, `create_behavior_revision_candidate` | `submitTeachEvidence`, `createTeachAnalysis`, `getTeachAnalysis`, `createBehaviorRevisionCandidate` | Verify installed Python operations; `create_teach_analysis` and `get_teach_analysis` are documented |
 | Inspect evidence | `vira-runtime`, `vira-runtime-verification`, `vira-traces` | `search_runtime_traces`, `get_evaluation`, `get_job` | `searchRuntimeTraces`, `getEvaluation` | Check installed trace/evaluation read methods | 
 
-MCP tool availability is versioned and permission-scoped. The SDKs have independent signatures and capabilities. Do not simply convert camelCase to snake_case and assume parameter parity. Use the [full lifecycle and evidence checkpoints](../agent-first-operation-flow.md).
+The new Inbox, Conflict and Optimization rows are **actual MCP 0.1.60 tools**, not implied SDK/PyPI parity. Effectful tools require exact actor authorization and evidence readback. MCP tool availability is versioned and permission-scoped. The SDKs have independent signatures and capabilities. Do not simply convert camelCase to snake_case and assume parameter parity. Use the [full lifecycle and evidence checkpoints](../agent-first-operation-flow.md).
 
 A route decision is not runtime admission. Pack installation is not release. A queued evaluation is not a PASS. A completed TaskRun is not a post-model verified answer. Each must be read back independently. The four child execution modes are SINGLE, STRATEGY, COMPOUND and HYBRID; AUTO selects a mode according to server eligibility.
 

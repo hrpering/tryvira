@@ -7,7 +7,7 @@ const transport = new StdioClientTransport({
   command: process.env.VIRA_MCP_COMMAND ?? "npx",
   args: (() => {
     const provided = process.env.VIRA_MCP_ARGS_JSON;
-    if (!provided) return ["-y", "@tryvira/mcp@0.1.55"];
+    if (!provided) return ["-y", "@tryvira/mcp@0.1.60"];
     const parsed = JSON.parse(provided);
     if (!Array.isArray(parsed) || parsed.some(item => typeof item !== "string")) {
       throw new Error("VIRA_MCP_ARGS_JSON must be an array of CLI arguments");

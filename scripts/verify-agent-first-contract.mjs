@@ -21,7 +21,7 @@ const pythonVersion = versions.pypi["tryvira-sdk"];
 assert.equal(JSON.parse(jsManifest).dependencies["@tryvira/sdk"], sdkVersion);
 assert.match(jsReadme, new RegExp(sdkVersion.replaceAll(".", "\\.")));
 assert.match(pyRequirements, new RegExp("tryvira-sdk==" + pythonVersion.replaceAll(".", "\\.")));
-// Framework sample stays on its independently hash-locked SDK version.
+// Framework samples are regenerated and locked against current published SDK versions.
 const pyFastapiPin = pyFastapi.match(/^tryvira-sdk==([^\s]+)$/m)?.[1];
 assert.ok(pyFastapiPin, "Missing FastAPI pinned SDK version");
 assert.ok(pyLock.includes("tryvira-sdk==" + pyFastapiPin + " \\"), "FastAPI lock does not match requirements.txt");
@@ -61,7 +61,7 @@ for (let i = 0; i < publicPaths.length; i++) {
 }
 assert.ok(entrypoints[0].includes(sdkVersion) && entrypoints[0].includes(pythonVersion)
   && entrypoints[0].includes(mcpVersion), "public examples index versions drifted");
-assert.match(entrypoints[2], /@tryvira\/mcp@0\.1\.55/);
+assert.ok(entrypoints[2].includes(`@tryvira/mcp@${mcpVersion}`));
 assert.match(entrypoints[4], /28 task-specific Vira Skills/);
 
 const jsObserve = await read("examples/javascript/connect-observe.mjs");
@@ -79,20 +79,21 @@ assert.match(quality, /npm test --prefix examples\/javascript/);
 assert.match(quality, /unittest discover -s examples\/python/);
 
 const compatibility = await read("docs/example-package-compatibility.md");
-assert.match(compatibility, /Lockfile|lockfile-tested/);
+assert.match(compatibility, /lockfile|hash-verified/i);
 for (const base of ["examples/frameworks/node-next","tutorials/marketing-agent"]) {
   const manifest = JSON.parse(await read(base+"/package.json"));
   const lock = JSON.parse(await read(base+"/package-lock.json"));
+  assert.equal(manifest.dependencies["@tryvira/sdk"], sdkVersion, base + ": stale current SDK pin");
   assert.equal(lock.packages[""].dependencies["@tryvira/sdk"],
     manifest.dependencies["@tryvira/sdk"], base + ": manifest/lock drift");
-  assert.ok(lock.packages["node_modules/@tryvira/sdk"]?.version,
-    base + ": no resolved SDK in lockfile");
+  assert.equal(lock.packages["node_modules/@tryvira/sdk"]?.version, sdkVersion,
+    base + ": stale resolved SDK");
 }
 for (const base of ["examples/frameworks/python_fastapi","examples/frameworks/langgraph"]) {
   const requirements = await read(base+"/requirements.txt");
   const lock = await read(base+"/requirements.lock");
   const version = requirements.match(/^tryvira-sdk==([^\s]+)$/m)?.[1];
-  assert.ok(version && lock.includes("tryvira-sdk=="+version+" \\"),
+  assert.ok(version === pythonVersion && lock.includes("tryvira-sdk=="+version+" \\"),
     base+": PyPI lock mismatch");
 }
 const syncSource = await read("scripts/sync-published-packages.mjs");

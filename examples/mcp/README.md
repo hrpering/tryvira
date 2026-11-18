@@ -3,7 +3,7 @@
 Use the [MCP client example](../frameworks/mcp-client/README.md) for a runnable stdio host, or copy [the generic host configuration](client-config.example.json) into the format supported by your MCP client.
 
 ```bash
-npx -y @tryvira/mcp@0.1.55
+npx -y @tryvira/mcp@0.1.60
 ```
 
 The configuration is an **illustrative template** with placeholders only. Supply the actual `VIRA_API_URL`, `VIRA_API_KEY` and scoped identifiers through the host's trusted secret mechanism. The API URL is a deployment root, not a Studio URL. Keep real credentials out of source control.

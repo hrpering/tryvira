@@ -24,7 +24,8 @@ Collect sanitized error code/message, request ID, operation, surface/package ver
 ## Implementation details
 
 1. **Admission:** inspect actual TaskRun route, server-derived tenant scope, task registration, connection and immutable plan digest. `NEEDS_CLARIFICATION`, `ABSTAIN`, `DENIED` and `UNSUPPORTED_HOST` are distinct, not 500s.
-2. **Execution:** check chosen SINGLE/STRATEGY/COMPOUND/HYBRID, materialized Strategy eligibility, child task keys, server-attested host capabilities and real child receipts. `WAITING_USER`/`WAITING_HOST`/`WAITING_APPROVAL` require correct state-version continuation.
+2. **MCP operations:** for the 0.1.60 `get_scope`, Inbox, Conflict Inspector and Optimization tool families, confirm live `tools/list` and exact authority. `inspect_conflicts` creates a durable inspection and is effectful; `resolve_conflict`, `mark_inbox_read`, `start_optimization` and `cancel_optimization_run` need explicit authorized writes. Do not classify them as Studio-only or bypass a deny via raw HTTP.
+3. **Execution:** check chosen SINGLE/STRATEGY/COMPOUND/HYBRID, materialized Strategy eligibility, child task keys, server-attested host capabilities and real child receipts. `WAITING_USER`/`WAITING_HOST`/`WAITING_APPROVAL` require correct state-version continuation.
 3. **Verification:** compare exact released Program/artifact digest, supported verifier checks, output digest and actual provider response. `VERIFIER_REQUIRED`, unsupported judge extension, missing final-answer readback or tampering means no verified output.
 4. **Evidence:** trace observation/eventId through approved Signal mapping, Teach analysis/consent, evaluation and release. Do not conflate each stage's success.
 5. Negative: don't “fix” a failed ON execution by calling `behavior-projection` and prompting the model directly.

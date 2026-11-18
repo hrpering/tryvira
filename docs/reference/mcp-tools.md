@@ -1,6 +1,6 @@
 # MCP integration reference
 
-**Current package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.55`
+**Current package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.60`
 
 The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
@@ -9,6 +9,21 @@ The MCP package is a separate customer-facing client with narrower coverage than
 Use the installed MCP server's `tools/list` response to see the current tool names and schemas available to the customer's configured deployment and credential scope. Package releases can change the available tools. This repository intentionally does not mirror low-level tool signatures or Teach/Pack request schemas.
 
 A returned tool schema describes how to call that tool; it does not grant authorization. Follow the server's authority decisions and the customer's scope. Keep review, evaluation, approval, release, and runtime actions separate.
+
+## Registry-verified tool inventory
+
+The [public npm MCP tool snapshot](mcp-published-tools.json) records all the published tools from published `@tryvira/mcp@0.1.60` with read/effect classifications. Its version and entries are checked directly against the npm tarball in CI. This is a *discovery reference*, **not an authorization grant or a substitute for a live `tools/list`**.
+
+### New MCP families in 0.1.60
+
+| Goal | Tools to discover | Read/write boundary |
+| --- | --- | --- |
+| Inspect active scope | `get_scope` | Read configured organization/project/environment; do not infer a new permission |
+| Work with review notifications | `list_inbox`, `mark_inbox_read` | Listing is read-only; marking read is a persisted write |
+| Inspect and decide conflicts | `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` | Inspection creates persisted state; resolution requires explicit approval and server authorization |
+| Operate optimization | `start_optimization`, `get_optimization_run`, `cancel_optimization_run` | Starting/cancelling modifies state; run status is a read and does not imply optimization succeeded |
+
+These tool families exist in the published MCP distribution. Their underlying provider, actor role, tenant scope and evaluation prerequisites still determine whether a real tenant can execute them. They **do not prove complete Studio queue management, conflict UX or optimization dataset parity**.
 
 ## Product-level coverage
 
@@ -26,12 +41,15 @@ Use the Skill for the product decision and lifecycle contract, then use MCP only
 
 | Skill | MCP operation family | Evidence required before handoff |
 | --- | --- | --- |
-| `vira-get-started`, `vira-integrate-app` | AI System and connection discovery/diagnostics | server-returned system/connection identity and scope |
+| `vira-get-started`, `vira-integrate-app` | Scope (`get_scope`), AI System and connection discovery/diagnostics | server-returned system/connection identity and scope |
 | `vira-author-behavior`, `vira-strategies` | Semantic Tasks, Behavior Points, Programs and Strategies | validated canonical identity, policy and authority |
 | `vira-task-runs` | resolve/start/read/events/continue/cancel/retry | persisted TaskRun state and child receipts |
 | `vira-packs`, `vira-evaluate`, `vira-release` | Pack import/install/evaluation/approval/revision/materialization/release | exact digest, evaluation status, approval and release readback |
 | `vira-observe-teach`, `vira-signals` | observations, evidence, Teach and signal operations | admitted/consented evidence and persisted analysis/recommendation state |
 | `vira-runtime`, `vira-runtime-verification`, `vira-traces` | runtime verification, host authorization and trace search | output-bound receipt, authority/revision identity and trace correlation |
+| `vira-full-lifecycle`, `vira-mcp` | scoped Inbox discovery/mark-read and review notices | server-returned actor/scope and persisted notification ID |
+| `vira-author-behavior`, `vira-debug` | create/read conflict inspection, approve or reject a conflict resolution | persisted inspection, human decision and exact authority |
+| `vira-evaluate`, `vira-full-lifecycle` | start/read/cancel an optimization run | reviewed dataset/holdout policy, actual optimization run ID and status |
 
 This is a routing aid, not an authorization grant. A Skill must stop when the installed catalog, scope or server response does not expose the required operation.
 

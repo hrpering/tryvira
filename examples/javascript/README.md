@@ -1,6 +1,6 @@
 # JavaScript and TypeScript examples
 
-These examples use the published `@tryvira/sdk` `0.1.66` line and the hosted API contract. Supply your
+These examples use the published `@tryvira/sdk` `0.1.67` line and the hosted API contract. Supply your
 own scoped credentials through environment variables and keep payloads synthetic.
 
 ## Choose an example
@@ -49,7 +49,7 @@ Use `SINGLE` for one task, `STRATEGY` for a multi-step eligible task, `COMPOUND`
 ## Prompt for a coding agent
 
 ```text
-Integrate @tryvira/sdk@0.1.66 into this existing Node.js application.
+Integrate @tryvira/sdk@0.1.67 into this existing Node.js application.
 
 First inspect the package manager, Node version, module system, and existing config.
 Implement the smallest safe example: connectOnce, retain systemId/connectionId,

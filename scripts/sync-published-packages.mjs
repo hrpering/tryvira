@@ -62,6 +62,15 @@ try {
   }
   const cli = run("tar", ["-xOf", tarball, `package/${mcpPackage.bin["vira-mcp"]}`]);
   const tools = parseMcpTools(cli);
+  const snapshot = {
+    package: "@tryvira/mcp",
+    version: latest.npm["@tryvira/mcp"],
+    tools: tools.map(({name,effectful})=>({name,effectful:Boolean(effectful)}))
+      .sort((a,b)=>a.name.localeCompare(b.name)),
+  };
+  await writeFile(join(root,"docs/reference/mcp-published-tools.json"),
+    JSON.stringify(snapshot,null,2)+"\n");
+
 
 
   const versionsPath = join(root, "package-versions.json");
@@ -78,7 +87,10 @@ try {
     "docs/ai-prompts/setup-python-sdk.md", "docs/ai-prompts/setup-mcp.md",
     "examples/README.md", "examples/mcp/README.md",
     "examples/javascript/README.md", "examples/python/README.md",
-    "examples/semantic-runtime/README.md"
+    "examples/semantic-runtime/README.md",
+    "examples/agent-first/README.md", "examples/frameworks/mcp-client/README.md",
+    "docs/example-verification.md", "docs/troubleshooting/mcp-errors.md",
+    "docs/agent-first-operation-flow.md", "docs/agent-skills/e2e-completion-plan.md"
   ];
   for (const relativePath of SAFE_VERSION_SYNC_PATHS) {
     const path = join(root, relativePath);
@@ -90,10 +102,18 @@ try {
       ["tryvira-sdk", oldVersions.pypi?.["tryvira-sdk"], latest.pypi["tryvira-sdk"]]
     ];
     for (const [name, previous, current] of updates) {
-      if (!previous || previous === current) continue;
-      updated = updated.split("\n").map(line =>
-        line.includes(name) ? line.replaceAll(previous, current) : line
-      ).join("\n");
+      // A partially stale page may still reference an older version even if the
+      // global registry marker was updated in another commit. Update any known
+      // predecessor on active, explicitly whitelisted documentation.
+      const historic = name === "@tryvira/sdk" ? ["0.1.44","0.1.66"] :
+        name === "@tryvira/mcp" ? ["0.1.44","0.1.55"] : ["0.1.44"];
+      const replacements = [...new Set([previous, ...historic].filter(v=>v&&v!==current))];
+      updated = updated.split("\n").map(line => {
+        if (!line.includes(name)) return line;
+        let next=line;
+        for (const prior of replacements) next=next.replaceAll(prior,current);
+        return next;
+      }).join("\n");
     }
     if (updated !== original) await writeFile(path, updated);
   }

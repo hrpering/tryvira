@@ -89,5 +89,10 @@ jobs:
           uv pip install --python examples/python/.venv/bin/python 'tryvira-sdk==0.1.54'
           examples/python/.venv/bin/python -m unittest discover -s examples/python -p 'test_*.py' -v
 
-      - name: Verify documented public package releases
-        run: npm run verify:registry
+      - name: Verify current public SDK, PyPI, MCP copy references
+        run: node scripts/sync-public-client-copy.mjs --check
+
+      - name: Verify published SDK/PyPI releases and exact MCP npm tool list
+        run: |
+          npm run verify:registry
+          npm run verify:mcp-registry-catalog

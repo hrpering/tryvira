@@ -1,9 +1,9 @@
 # MCP integration
 
-Published client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) (documented version **0.1.55**), Node.js 20+.
+Published client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) (documented version **0.1.60**), Node.js 20+.
 
 ```bash
-npx -y @tryvira/mcp@0.1.55
+npx -y @tryvira/mcp@0.1.60
 ```
 
 This is a stdio client of the Vira Control API, **not** another Vira runtime or authority. The installed package's `tools/list` and the customer's server-side permissions are authoritative. It does not automatically read a `.env` file.
@@ -30,7 +30,7 @@ The supported discovery flow is:
 server/discover → initialize → tools/list → tools/call
 ```
 
-Find the exact tool and its schema in **your installed server's** `tools/list`. Version 0.1.55 contains tools for Connections and AI Systems, TaskRun resolve/start/read/events/continue/cancel/retry, Pack import/install/evaluate/approve/release, Teach analysis/recommendation/review, Strategy/Program authoring, observation and signals, evaluations, job readback, trace search and host authorization. Availability can be further constrained by role, scope, release eligibility or policy.
+Find the exact tool and its schema in **your installed server's** `tools/list`. Version 0.1.60 contains tools for Connections and AI Systems, TaskRun resolve/start/read/events/continue/cancel/retry, Pack import/install/evaluate/approve/release, Teach analysis/recommendation/review, Strategy/Program authoring, observation and signals, evaluations, job readback, trace search and host authorization. Availability can be further constrained by role, scope, release eligibility or policy.
 
 A useful read-only first call is `list_capabilities`; move to `list_ai_systems` or `list_packs` only once the host confirms the tool and scope. A real application run normally uses AUTO TaskRun. `resolve_task_run` provides a proposal; `start_task_run` requests admission, then `get_task_run` and `list_task_run_events` read persisted state. Do not treat ROUTED, 202 or COMPLETED as a verified end-user answer.
 
@@ -47,8 +47,9 @@ See [one operation flow](../agent-first-operation-flow.md), [tool/Skill map](mcp
 - `MCP_SCOPE_MISMATCH`: scope in request differs from credential scope.
 - `MCP_AUTHORITY_DENIED` or role-required errors: check the granted role; never bypass.
 - Missing tool: inspect package version and `tools/list`; switch to a documented SDK method only for absence.
+- Inbox, conflict and optimization writes: verify actual actor scope, approval and effect permission; never treat an inspection as a decision or a queued optimization as an approved release.
 - Pending async work: inspect the returned job/task ID and readback before claiming completion.
 - Provider-output verification is distinct from TaskRun completion; a successful MCP tool call is not a post-model PASS.
 - Missing host interception/pre-display capability means that enforcement level is unavailable.
 
-[Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).
+[Registry-generated versioned-tool inventory](mcp-published-tools.json) · [Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).
