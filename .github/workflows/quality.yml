@@ -47,6 +47,20 @@ jobs:
             exit 1
           fi
 
+      - name: Install the single root Vira Skill in an isolated project
+        run: |
+          SOURCE_ROOT="$PWD"
+          INSTALL_DIR="$(mktemp -d)"
+          (cd "$INSTALL_DIR" && npx -y skills@1.7.4 add "$SOURCE_ROOT" --skill vira --copy -a codex -y > /tmp/vira-single-install.txt)
+          cat /tmp/vira-single-install.txt
+          find -L "$INSTALL_DIR" -name SKILL.md -print > /tmp/vira-single-installed-paths.txt
+          cat /tmp/vira-single-installed-paths.txt
+          grep -q '/vira/SKILL.md' /tmp/vira-single-installed-paths.txt
+          if grep -Eq '/vira-(mcp|operator|full-lifecycle)/SKILL.md' /tmp/vira-single-installed-paths.txt; then
+            echo "UNEXPECTED_SPECIALIST_INSTALL"
+            exit 1
+          fi
+
       - name: Probe separately distributed OpenCode plugin (informational)
         run: |
           if npm view @tryvira/opencode version --json --fetch-retries=1 --fetch-timeout=15000; then
