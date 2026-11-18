@@ -1,0 +1,55 @@
+name: One-time latest Vira package lock refresh (trusted branch only)
+on:
+  push:
+    branches:
+      - fix/latest-sdk-mcp-api-skills-20261119
+permissions:
+  contents: write
+jobs:
+  update-locks:
+    if: github.repository == 'hrpering/tryvira'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out trusted branch
+        uses: actions/checkout@v7
+        with:
+          ref: fix/latest-sdk-mcp-api-skills-20261119
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v10.3.2
+      - name: Sync current Vira client pins
+        run: node scripts/sync-example-manifests.mjs
+      - name: Rebuild npm integrity locks from registry
+        run: |
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --prefix examples/frameworks/node-next
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --prefix tutorials/marketing-agent
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --prefix examples/frameworks/mcp-client
+      - name: Rebuild Python hash locks from PyPI
+        run: |
+          uv pip compile --python-version 3.12 --generate-hashes examples/frameworks/python_fastapi/requirements.txt -o examples/frameworks/python_fastapi/requirements.lock
+          uv pip compile --python-version 3.12 --generate-hashes examples/frameworks/langgraph/requirements.txt -o examples/frameworks/langgraph/requirements.lock
+      - name: Commit only dependency updates to trusted branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add examples/javascript/package.json examples/semantic-runtime/package.json \
+            examples/frameworks/node-next/package.json examples/frameworks/node-next/package-lock.json \
+            tutorials/marketing-agent/package.json tutorials/marketing-agent/package-lock.json \
+            examples/frameworks/mcp-client/package-lock.json \
+            examples/python/requirements.txt \
+            examples/frameworks/python_fastapi/requirements.txt examples/frameworks/python_fastapi/requirements.lock \
+            examples/frameworks/langgraph/requirements.txt examples/frameworks/langgraph/requirements.lock \
+            examples/mcp/client-config.example.json docs/example-package-compatibility.md
+          if git diff --cached --quiet; then
+            echo "Version-aligned dependency locks already current"
+          else
+            git commit -m "build: regenerate latest Vira npm and PyPI example locks"
+            git push origin HEAD:fix/latest-sdk-mcp-api-skills-20261119
+          fi
