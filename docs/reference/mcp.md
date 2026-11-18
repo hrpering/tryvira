@@ -52,4 +52,4 @@ See [one operation flow](../agent-first-operation-flow.md), [tool/Skill map](mcp
 - Provider-output verification is distinct from TaskRun completion; a successful MCP tool call is not a post-model PASS.
 - Missing host interception/pre-display capability means that enforcement level is unavailable.
 
-[Registry-generated 91-tool inventory](mcp-published-tools.json) · [Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).
+[Registry-generated versioned-tool inventory](mcp-published-tools.json) · [Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).

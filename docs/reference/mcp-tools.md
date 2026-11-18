@@ -12,7 +12,7 @@ A returned tool schema describes how to call that tool; it does not grant author
 
 ## Registry-verified tool inventory
 
-The [public npm MCP tool snapshot](mcp-published-tools.json) records all **91 tools** from published `@tryvira/mcp@0.1.60` with read/effect classifications. Its version and entries are checked directly against the npm tarball in CI. This is a *discovery reference*, **not an authorization grant or a substitute for a live `tools/list`**.
+The [public npm MCP tool snapshot](mcp-published-tools.json) records all the published tools from published `@tryvira/mcp@0.1.60` with read/effect classifications. Its version and entries are checked directly against the npm tarball in CI. This is a *discovery reference*, **not an authorization grant or a substitute for a live `tools/list`**.
 
 ### New MCP families in 0.1.60
 

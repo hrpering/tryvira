@@ -30,6 +30,7 @@ jobs:
         run: |
           npm run sync:registry
           node scripts/sync-example-manifests.mjs
+          node scripts/sync-public-client-copy.mjs
       - name: Regenerate exact npm integrity locks and Python hash locks
         run: |
           npm install --package-lock-only --ignore-scripts --no-audit --no-fund --prefix examples/frameworks/node-next

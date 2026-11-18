@@ -29,4 +29,4 @@ A tool failure, wrong scope, missing approval, or policy denial is a terminal de
 
 ## Published MCP 0.1.60 coverage
 
-The current published package has a [registry-generated 91-tool inventory](../../../docs/reference/mcp-published-tools.json), including Inbox, Conflict Inspector and Optimization tools. The example remains conservative: discover with `tools/list`, make read-only calls first, and require explicit human approval for any effectful call. The MCP host flag never substitutes for Vira's server-side authorization.
+The current published package has a [registry-generated versioned-tool inventory](../../../docs/reference/mcp-published-tools.json), including Inbox, Conflict Inspector and Optimization tools. The example remains conservative: discover with `tools/list`, make read-only calls first, and require explicit human approval for any effectful call. The MCP host flag never substitutes for Vira's server-side authorization.

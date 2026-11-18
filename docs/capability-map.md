@@ -22,7 +22,7 @@ The compact interface table above is **not** the full product inventory. [Full p
 
 ## Published MCP 0.1.60 review and optimization additions
 
-A provisioned MCP host can discover `get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`, `start_optimization`, `get_optimization_run` and `cancel_optimization_run` from the [91-tool npm package snapshot](reference/mcp-published-tools.json). **This does not prove JS/Python parity or tenant authorization**; the relevant SDK may need a documented method added. Inspect and optimize do not imply approval/release.
+A provisioned MCP host can discover `get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`, `start_optimization`, `get_optimization_run` and `cancel_optimization_run` from the [versioned-tool npm package snapshot](reference/mcp-published-tools.json). **This does not prove JS/Python parity or tenant authorization**; the relevant SDK may need a documented method added. Inspect and optimize do not imply approval/release.
 
 ## TaskRun mode selection
 
