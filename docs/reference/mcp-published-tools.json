@@ -1,6 +1,6 @@
 {
   "package": "@tryvira/mcp",
-  "version": "0.1.59",
+  "version": "0.1.60",
   "tools": [
     {
       "name": "accept_teach_recommendation",

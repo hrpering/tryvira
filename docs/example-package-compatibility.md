@@ -1,13 +1,13 @@
 # Client versions in runnable examples
 
-**Current reference versions (automatically tracked):** JavaScript `@tryvira/sdk@0.1.67`; MCP `@tryvira/mcp@0.1.59`; Python `tryvira-sdk==0.1.54`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
+**Current reference versions (automatically tracked):** JavaScript `@tryvira/sdk@0.1.67`; MCP `@tryvira/mcp@0.1.60`; Python `tryvira-sdk==0.1.54`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
 
 | Example | Declared version | Version policy | What CI actually proves |
 | --- | --- | --- | --- |
 | `examples/javascript` | JS SDK 0.1.67 | Current starter | Code syntax and offline Observe request tests with the installed release |
 | `examples/python` | Python SDK 0.1.54 | Current starter | Python source + offline injected-client tests with scoped Observe event |
-| `examples/mcp` | MCP 0.1.59 | Current host instructions | Configuration JSON and published version reference |
-| `examples/frameworks/mcp-client` | MCP 0.1.59 | Current MCP client | stdio client syntax and external dependency install |
+| `examples/mcp` | MCP 0.1.60 | Current host instructions | Configuration JSON and published version reference |
+| `examples/frameworks/mcp-client` | MCP 0.1.60 | Current MCP client | stdio client syntax and external dependency install |
 | `examples/semantic-runtime` | JS SDK 0.1.67 | Current *diagnostic* starter | Syntax; not a canonical ON chatbot |
 | `examples/frameworks/node-next` | JS SDK 0.1.67 | **Current SDK, hash-verified lock** | npm ci, tests and Next build on its committed lock |
 | `tutorials/marketing-agent` | JS SDK 0.1.67 | **Current SDK, integrity-verified lock** | npm ci and safety tests on its committed lock |

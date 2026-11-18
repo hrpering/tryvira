@@ -11,7 +11,7 @@
 | [JavaScript](javascript/) | `@tryvira/sdk` `0.1.67` (current example) connect/observe, capability discovery, canonical authoring, runtime and response quality |
 | [Python](python/) | `tryvira-sdk` `0.1.54` integration + response quality |
 | [Semantic + runtime](semantic-runtime/) | semantic selection followed by governed runtime resolution |
-| [MCP](mcp/) | `@tryvira/mcp` `0.1.59` host configuration, live tool discovery, semantic/runtime resolution, basic authoring, and Teach evidence/proposal creation |
+| [MCP](mcp/) | `@tryvira/mcp` `0.1.60` host configuration, live tool discovery, semantic/runtime resolution, basic authoring, and Teach evidence/proposal creation |
 | [Marketing Pack](packs/marketing-starter/) | 26 evaluated-design scenarios, budget-aware marketing launch behavior and governed materialization/evaluation/release |
 | [Strategy integration](strategy/) | references to the published SDK/API contracts |
 

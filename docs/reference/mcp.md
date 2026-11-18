@@ -1,9 +1,9 @@
 # MCP integration
 
-Published client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) (documented version **0.1.59**), Node.js 20+.
+Published client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) (documented version **0.1.60**), Node.js 20+.
 
 ```bash
-npx -y @tryvira/mcp@0.1.59
+npx -y @tryvira/mcp@0.1.60
 ```
 
 This is a stdio client of the Vira Control API, **not** another Vira runtime or authority. The installed package's `tools/list` and the customer's server-side permissions are authoritative. It does not automatically read a `.env` file.
