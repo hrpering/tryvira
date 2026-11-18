@@ -13,12 +13,13 @@
 
 ## Operate Vira directly from your coding agent
 
-Vira's primary developer experience is **agent-first**. Use [Vira MCP](skills/vira-mcp/SKILL.md) with the task-specific Skills when your host supports MCP, or the [Vira Operator Skill](skills/vira-operator/SKILL.md) with the version-matched SDK when it does not. Both operate through the same Vira service authority; Studio is optional for supported operations.
+Vira is **agent-first**. Install the single [`vira` root Skill](SKILL.md); it routes integration, MCP/SDK, Packs, Teach, evaluation, release, TaskRuns and traces without asking developers to select among 28 specialist manuals. The specialists remain optional advanced references, while actual Vira access and authority stay with the customer service.
 
 ~~~bash
-npx skills add hrpering/tryvira --skill vira-mcp
-npx skills add hrpering/tryvira --skill vira-operator
+npx skills add hrpering/tryvira --skill vira
 ~~~
+
+The default Skill uses the connected MCP server when available, otherwise documented installed JavaScript/Python SDK methods, and never routes around an authorization denial. OpenCode users can follow the [public OpenCode adapter setup](plugins/opencode/README.md). The separately distributed plugin is not embedded in this repository.
 
 Ask your coding agent: **“Connect my AI application, build a Behavior Pack, evaluate it and prepare it for release. Don't modify production until I approve.”** The agent discovers actual MCP tools or installed SDK methods, verifies scope, and reads real server state. [See the common operation flow](docs/agent-first-operation-flow.md). The [Studio-less capability ledger](docs/agent-skills/studio-less-parity.md) identifies workflows still waiting for public API support; a Skill cannot invent them.
 

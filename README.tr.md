@@ -6,11 +6,13 @@ Vira; mevcut AI uygulamalarının ve agent'ların davranışlarını modelden ve
 
 ## Vira'yı Studio kullanmadan coding agent üzerinden yönet
 
-Vira'nın geliştirici deneyimi **Agent-first** olacak. `vira-operator` Skill'i yayımlanmış SDK üzerinden davranışları oluşturmayı, Pack yaşam döngüsünü yönetmeyi, değerlendirmeyi, TaskRun çalıştırmayı ve sonuçları incelemeyi destekliyor.
+Vira'nın geliştirici deneyimi **agent-first**. Artık **tek bir [`vira` kök Skill'i](SKILL.md)** kuruyorsun. MCP, JS/Python SDK, Behavior Pack, Teach, Evaluation, Release ve TaskRun işlerini içeride yönlendiriyor; 28 uzman Skill'i ayrı ayrı seçmene gerek kalmıyor.
 
 ~~~bash
-npx skills add hrpering/tryvira --skill vira-operator
+npx skills add hrpering/tryvira --skill vira
 ~~~
+
+Uzman Skill'ler gelişmiş referanslar olarak korunuyor. OpenCode entegrasyonu için [public kurulum rehberine](plugins/opencode/README.md) bakabilirsin; plugin ayrı dağıtılır, bu repoya plugin kaynak kodu eklenmiş değil.
 
 Örneğin coding agent'a “Uygulamamı bağla, davranış paketi hazırla, değerlendir; onayım olmadan yayınlama” diyebilirsin. Studio isteğe bağlı kalır. Müşteri API'si henüz bulunmayan özellikleri [Studio'suz kullanım matrisinde](docs/agent-skills/studio-less-parity.md) açıkça ayırıyoruz.
 

@@ -1,6 +1,6 @@
 # Vira Agent Skills
 
-Vira Agent Skills help coding assistants integrate Vira into existing apps using documented SDKs, Behavior Packs and TaskRun workflows. The 28 Skills can be installed directly from GitHub; they are not yet listed on skills.sh.
+Install the **one public `vira` root Skill** for the full agent-first workflow. It coordinates the 28 specialist domains within a single self-contained instruction file, while the original 28 specialist Skills remain optional advanced references. A single root Skill is not 28 independently installed packages, and installing it does not install SDKs or a Vira service.
 
 ![Build with Vira: 28 Agent Skills, graded Packs and developer workflows](../assets/vira-build.svg)
 
@@ -8,7 +8,7 @@ Vira Agent Skills help coding assistants integrate Vira into existing apps using
 
 Do not start by listing 28 names. A Skill teaches a coding assistant how to author, integrate and evaluate Vira; the **Vira service** governs actual execution and records receipts. These are different jobs.
 
-1. Install vira-full-lifecycle, vira-build-pack, vira-task-runs and vira-traces.
+1. Install just the root `vira` Skill; consult specialized source guides only when more detail is useful.
 2. Use the included public Pack examples to create a new, separately validated candidate with positive, negative and missing-data cases.
 3. If authorized development access is available, request AUTO TaskRun and inspect actual selected mode, child state and receipts. Otherwise stop at the local evidence level.
 4. Explain Teach as a distinct evidence-to-reviewed-revision cycle, not an automatic release.
@@ -35,33 +35,26 @@ Pack, Framework, Chatbot and TaskRun Skills include needed standalone source exa
 
 ## Install
 
-From the target application repository, install one skill from this public repository’s `main` branch:
+From the target application, install the complete default agent-facing workflow as **one Skill**:
 
 ```bash
-npx skills add hrpering/tryvira --skill vira-js-sdk
+npx skills add hrpering/tryvira --skill vira
 ```
 
-To try the local chatbot with Vira OFF/ON, install its guide:
+The root `SKILL.md` is self-contained even when the CLI only copies that file. Its built-in router covers all 28 specialist categories. For expert-only deep dives, select a specialist's direct GitHub path, e.g. `npx skills add https://github.com/hrpering/tryvira/tree/main/skills/vira-build-pack`; this is optional and does not change the default `vira` installation.
 
-```bash
-npx skills add hrpering/tryvira --skill vira-chatbot
-```
+To try the local chatbot with Vira OFF/ON, start with the root `vira` Skill and the [Next.js example](../examples/frameworks/node-next/README.md).
 
-Install the full library by omitting `--skill` or select the target agent in the CLI. See [installation and compatibility details](../docs/agent-skills/installation.md). For a local checkout, point your agent at `skills/` or copy the selected skill folder into its supported skills directory.
+Installing from the repository root should select the root `vira` Skill by default. The 28 specialist Skill directories remain in this repository for advanced direct-path use and for their independently verified archives. See [installation and compatibility details](../docs/agent-skills/installation.md).
 
-For a published JavaScript or Python TaskRun workflow, install `vira-task-runs` alongside the matching SDK Skill:
-
-```bash
-npx skills add hrpering/tryvira --skill vira-task-runs
-```
+For JavaScript/Python TaskRun workflows, the root Skill discovers the installed SDK method and handles the route/admission/readback boundaries. Optional specialist reference: [vira-task-runs](vira-task-runs/SKILL.md).
 
 ## Default: agent-first operations
 
 Prefer `vira-mcp` and the task-specific Skill when the host exposes the Vira MCP server; discover the live tool schema. For unavailable MCP operations, use `vira-operator` with the customer's installed `@tryvira/sdk`, or the supported Python SDK in Python projects. Both paths use Vira's canonical scope, authority and real server readback; switching surfaces never bypasses a denied operation. See the [common operation flow](../docs/agent-first-operation-flow.md). Studio-only operations remain listed as gaps instead of being faked. See the [Studio-less parity ledger](../docs/agent-skills/studio-less-parity.md).
 
 ~~~bash
-npx skills add hrpering/tryvira --skill vira-mcp
-npx skills add hrpering/tryvira --skill vira-operator
+npx skills add hrpering/tryvira --skill vira
 ~~~
 
 ## Skills

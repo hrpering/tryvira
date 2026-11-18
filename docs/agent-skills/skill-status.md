@@ -1,6 +1,6 @@
 # Agent Skill catalog and examples
 
-Find the developer task covered by each of the 28 Skills, its example, and the current validation level. For live integration testing, use a provisioned Vira environment.
+The default install is now the **one self-contained root `vira` Skill**. The 28 specialist manuals listed below remain advanced references with their own validated archives. Find the developer task covered by each specialist, its example, and the current validation level. For live integration testing, use a provisioned Vira environment.
 
 For the exact local and live test coverage, use [Skill testing](e2e-readiness.md), [live acceptance](live-acceptance.md), and the [test trust matrix](test-trust-matrix.md). Live workflows require a provisioned Vira environment.
 
