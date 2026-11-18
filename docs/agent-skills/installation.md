@@ -1,6 +1,6 @@
 # Install Vira Agent Skills
 
-The library is designed around the open Agent Skills `SKILL.md` format. Install one skill or a small set; users do not need the full library.
+The default product is **one self-contained `vira` Skill at the repository root**, following the open Agent Skills format. It covers the operational routing of the 28 specialist manuals without installing them all. The specialist directories and portable archives remain optional.
 
 ## Licenses and bundled resources
 
@@ -25,11 +25,10 @@ examples in `references/repo/` and rewrites owned links locally. This does
 
 ## Operate without Studio
 
-Install `vira-mcp` when the host supports MCP, and add the lifecycle/Pack/TaskRun Skills that describe the desired task. Discover the actual tools from `tools/list`. Where a tool is absent, `vira-operator` can run the documented installed `@tryvira/sdk` method, or use the existing Python SDK in Python projects. No Studio login cookie or undocumented UI endpoint is used. A denied MCP call is **not** a reason to fall back to SDK. See the [product parity matrix](studio-less-parity.md) for missing customer API operations.
+Install the single root `vira` Skill. It chooses connected MCP tools when the host supports MCP and routes SDK fallbacks only when those tools are absent. Discover the actual tools from `tools/list`. Where a tool is absent, `vira-operator` can run the documented installed `@tryvira/sdk` method, or use the existing Python SDK in Python projects. No Studio login cookie or undocumented UI endpoint is used. A denied MCP call is **not** a reason to fall back to SDK. See the [product parity matrix](studio-less-parity.md) for missing customer API operations.
 
 ~~~bash
-npx skills add hrpering/tryvira --skill vira-mcp
-npx skills add hrpering/tryvira --skill vira-operator
+npx skills add hrpering/tryvira --skill vira
 ~~~
 
 [Common operation flow](../agent-first-operation-flow.md) · [MCP host example](../../examples/frameworks/mcp-client/README.md)
@@ -42,13 +41,21 @@ From the target application repository, install a skill from this public reposit
 npx skills add hrpering/tryvira
 ```
 
-Follow the CLI's agent and skill selection prompts. For one skill, the current CLI supports selecting a named skill:
+The repository-root `SKILL.md` provides the default `vira` entrypoint. For explicit selection, use:
 
 ```bash
-npx skills add hrpering/tryvira --skill vira-js-sdk
+npx skills add hrpering/tryvira --skill vira
 ```
 
-Use `npx skills add --help` to check current selector flags. The CLI documents support for Codex, Claude Code, and Cursor; installation writes skill files into the target repository for the selected agent. Start a new agent session after installation and confirm the installed skill appears before relying on it. This repository's collection is not yet listed in the skills.sh directory; the CLI installs from GitHub.
+For a separate specialist, use its direct GitHub path, for example:
+
+```bash
+npx skills add https://github.com/hrpering/tryvira/tree/main/skills/vira-js-sdk
+```
+
+Installing the root Skill **does not bundle 28 specialist folders**, install MCP/SDK, or create a Vira account. It provides the consolidated workflow itself. Existing skills.sh entries for previously indexed specialists may remain visible until the directory refreshes.
+
+Use `npx skills add --help` to check current selector flags. The CLI documents support for Codex, Claude Code, and Cursor; installation writes skill files into the target repository for the selected agent. Start a new agent session after installation and confirm the installed skill appears before relying on it. The GitHub repository is the source for installing this root Skill; the public skills.sh directory's indexing and cache are controlled by that service, not by the Vira repository.
 
 ## Direct local installation
 

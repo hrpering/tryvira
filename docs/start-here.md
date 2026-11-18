@@ -4,10 +4,10 @@ Choose how you want to explore Vira: run a public example locally, or connect an
 
 ## Use Vira inside your coding agent
 
-Install [Vira Operator](../skills/vira-operator/SKILL.md) to plan and execute the customer SDK's supported operations from an agent rather than navigating Studio.
+Install the [single Vira Skill](../SKILL.md) to guide MCP, SDK, Packs, Teach, evaluation, release and TaskRun operations directly from your coding agent.
 
 ~~~bash
-npx skills add hrpering/tryvira --skill vira-operator
+npx skills add hrpering/tryvira --skill vira
 ~~~
 
 The Skill uses the published client and real tenant authority; it cannot grant access to an unprovisioned service or provide missing administrative/public API operations. Check the [Studio-less parity map](agent-skills/studio-less-parity.md).
