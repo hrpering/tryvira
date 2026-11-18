@@ -1,6 +1,6 @@
 # Studio-less Vira: capability parity and API backlog
 
-Status: 18 November 2026 (public catalog refresh; not a claim of live E2E). Scope: public JavaScript/Python SDK contracts, published MCP capabilities and actual product Studio route families. A route existing in source is **not** proof of a working customer API. Do not expose the Studio's cookie/session endpoints as a shortcut. Agent Skills cannot replace missing service operations by writing instructions.
+Status: 19 November 2026 (public catalog refresh; not a claim of live E2E). Scope: public JavaScript/Python SDK contracts, published MCP capabilities and actual product Studio route families. A route existing in source is **not** proof of a working customer API. Do not expose the Studio's cookie/session endpoints as a shortcut. Agent Skills cannot replace missing service operations by writing instructions.
 
 ## Target architecture
 
@@ -25,9 +25,9 @@ Studio is an **optional visualization**, not a prerequisite for authoring, appro
 | Evaluations, comparisons, quality, candidate revisions | **SDK available** | Versioned datasets, actual evaluations and per-case evidence |
 | Release / deploy health | **SDK partially available** | Deployments inventory, rollback and approval workflows need complete public read/write parity |
 | Runtime traces / violations / trajectory monitoring | **Partial SDK**: trace search; others lack full public parity | Read detail, filter, annotate violations, trace cause and artifact lineage |
-| Inbox, work queue, approvals, audit | **Studio-only or partial public** | Dedicated SDK/API queues, claim/review/decide, audit records and filtering |
-| Conflict Inspector | **Studio-only/partial** | Public scoped inspect, resolve, execute and immutable receipt |
-| Optimize datasets, freeze, independent evaluation, rollback | **Studio-only/partial** | Public dataset lifecycle and optimization approval/rollback methods |
+| Inbox, work queue, approvals, audit | **MCP partial**: `list_inbox`, `mark_inbox_read` now published; claim/review/audit parity remains partial | Complete role-scoped work queue and audit transitions with durable readback |
+| Conflict Inspector | **MCP partial**: `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` are published, authority-gated operations | Persisted inspection and approval decision; full reviewer UX, execution effects and audit parity still require testing |
+| Optimization | **MCP partial**: `start_optimization`, `get_optimization_run`, `cancel_optimization_run` are published; advanced dataset/holdout/freeze/rollback still partial | Durable optimization run/receipt, independent evaluation and explicit approval to release outputs |
 | AI drafts, builder plans, lesson history | **Studio-only/partial** | Public agent-readable views and safe review transitions |
 | Scope composition/delegation and preferences | **Studio-only/partial** | Scoped list/compose, grant/renew/revoke and preference APIs |
 | Organization, workspace, projects, environments, membership | **Studio-only/partial** | Full customer identity/resource lifecycle with admin delegation |
@@ -41,7 +41,7 @@ Studio is an **optional visualization**, not a prerequisite for authoring, appro
 
 ## Priorities for the next product changes
 
-P0: Complete customer API for release and rollback readback, output-bound verification, conflict and approval readback, TaskRun/Teach durable state. P1: Add operation-level public API and SDK coverage for work queue, scopes, optimization and customer integrations. P2: Complete organization/member administration, billing views and other account operations. P3: Continuously test the expanded MCP registry against published SDK/PyPI method availability; no fake parity and no bypass.
+P0: Complete public output-bound verification and release/rollback readback; run live tenant checks on new conflict, Inbox and optimization MCP tools. P1: Finish remaining queue, approval, scope, dataset/holdout, rollback and customer integration parity in public JS/Python clients. P2: Complete organization/member administration, billing views and other account operations. P3: Continuously test the expanded MCP registry against published SDK/PyPI method availability; no fake parity and no bypass.
 
 Every new operation needs: explicit permission class; tenant- and actor-bound scope; input validation; idempotency for mutations; effectful host approval; durable audit/receipt; typed JS+Python method; MCP tool where safe; positive/wrong-tenant/denial/replay/expired/stale tests. Product capability discovery must report per-surface support **at runtime**. Disallow local agent-written fake server receipts.
 

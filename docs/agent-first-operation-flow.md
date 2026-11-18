@@ -13,10 +13,14 @@ Vira is operated from a coding agent without requiring Studio. **Skills decide t
 
 ## Operation matrix
 
-The MCP names below were checked against the Vira MCP 0.1.55 source catalog. They are **discovery hints**, not a promise of permission or fully equivalent SDK signatures.
+The MCP names below were checked against the Vira MCP 0.1.59 source catalog. They are **discovery hints**, not a promise of permission or fully equivalent SDK signatures.
 
 | Goal | MCP tools to discover | JavaScript SDK | Python SDK | Required evidence |
 | --- | --- | --- | --- | --- |
+| Inspect signed-in scope | `get_scope` | Check installed SDK scope access | Check installed SDK scope access | Configured scope and actor-matched response; no guessed tenant |
+| Review Inbox | `list_inbox`, `mark_inbox_read` | Use MCP where available; do not invent JS methods | Use MCP where available; do not invent Python methods | Real notification identity, user intent and write authorization |
+| Resolve conflicts | `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` | Use MCP when exposed, verify installed alternatives individually | Use MCP when exposed, verify installed alternatives individually | Persisted inspection ID, exact decision, reviewer authority and readback |
+| Optimize candidates | `start_optimization`, `get_optimization_run`, `cancel_optimization_run` | Check installed SDK; do not infer Python/JS parity | Check installed SDK; do not infer JS/Python parity | Approved dataset/holdout, scoped run ID, actual status, no silent release |
 | Discover scope and AI System | `list_capabilities`, `list_ai_systems`, `list_system_connections`, `connection_health` | `listCapabilities`, `listAISystems`, `listSystemConnections`, `connectionHealth` | `list_capabilities`, `list_ai_systems`, `list_system_connections`, `connection_health` | Actual scoped IDs and capability state |
 | Connect an agent | `connect_once`, `get_connection` | `connectOnce`, `getConnection` | `connect_once`, `get_connection` | Returned AI System and Connection IDs |
 | Observe and Teach | `observe`, `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis` | `observe`, `submitTeachEvidence`, `createTeachAnalysis`, `getTeachAnalysis` | `observe`, `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis` | Consent, accepted evidence and analysis status |
@@ -41,7 +45,7 @@ Some rows have different signatures across SDKs. Do **not** transform MCP argume
 
 ## Availability boundaries
 
-MCP, SDKs, PyPI and Studio are not guaranteed to share all operations. The source catalog is wider than some deployed tenant permissions. Work queues, conflict resolution, optimization administration, membership, billing and credential management may still require separately documented public operations; do not drive private Studio cookie routes. OpenCode and other hosts may be unable to intercept a streamed answer before display: report that capability as unsupported rather than claiming pre-display enforcement.
+MCP, SDKs, PyPI and Studio are not guaranteed to share all operations. The source catalog is wider than some deployed tenant permissions. Inbox list/read, conflict inspect/resolve and optimization start/read/cancel now have published MCP tools, but complete work queues, dataset lifecycle, membership, billing and credential management may still require separately documented public operations; do not drive private Studio cookie routes. OpenCode and other hosts may be unable to intercept a streamed answer before display: report that capability as unsupported rather than claiming pre-display enforcement.
 
 ## Try it without a Studio login
 

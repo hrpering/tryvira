@@ -6,7 +6,7 @@ This is the customer-executable acceptance plan for MCP, JavaScript, Python, Ski
 
 1. Verify that `README`, SDK/PyPI/MCP setup prompts and all 28 Skills agree on the installed client versions, advertised lifecycle families and selected surface.
 2. Install the **current** JS and Python starter SDKs. Assert scoped Observe event serialization and negative wrong-scope/missing-field behavior with transport-injected tests.
-3. Parse the actual MCP 0.1.55 server via `initialize` and `tools/list` when connected. Do not count a documented tool as authorization. A standalone MCP host smoke test validates startup, not Pack release.
+3. Parse the actual published MCP 0.1.59 artifact (91-tool snapshot) and initialize the real server with `tools/list` when connected. Do not count a documented tool as authorization. A standalone MCP host smoke test validates startup, not Pack release.
 4. Verify the legacy Next.js/marketing/FastAPI/LangGraph manifests and **their own committed lockfiles**. Run Next build/tests, marketing safety, Python package and syntax tests.
 5. Validate 28 portable Skills, archive completeness, 87 trigger fixtures, negative cases, relative docs links and a real-agent trace schema (no synthesized Skill loads).
 6. Validate the public docs' capability/availability statements against supported, versioned contract descriptions. Verify that wrong-scope, approval denial, replay and missing provider proof are not silently reported as successful.
@@ -24,7 +24,8 @@ Prerequisites: customer-controlled `VIRA_API_URL`, scoped secret key and organiz
 5. **TaskRun:** use AUTO routing on the released artifact, inspect persisted mode, child states and receipt lineage; run eligible SINGLE, STRATEGY, COMPOUND and HYBRID cases separately and collect input digests/authority/scope for each.
 6. **Provider answer:** obtain the actual user-visible output and a matching post-model verification receipt from a **published, authenticated backend/SDK read surface**. If that surface is absent, mark the outcome `BLOCKED_VERIFIED_OUTPUT_HANDOFF` and do not present an ON answer as verified.
 7. **Improve:** submit consented actual feedback/outcome, review Teach proposal, materialize a **new** immutable revision, re-evaluate, approve and separately release it, then compare old/new genuine TaskRun evidence. Do not silently overwrite live behavior.
-8. **Security negatives:** wrong tenant, missing reviewer authority, expired scope, stale stateVersion, changed output digest, missing tool approval, provider timeout and duplicate idempotency keys must be denied or explicitly blocked.
+8. **Admin-related MCP checks:** inspect `get_scope`, read `list_inbox`, and verify `mark_inbox_read`, `inspect_conflicts`, `resolve_conflict`, `start_optimization` and `cancel_optimization_run` only in a reviewer-authorized sandbox, with persisted server readback. Absence of public SDK equivalents is **not** a license to invent methods.
+9. **Security negatives:** wrong tenant, missing reviewer authority, expired scope, stale stateVersion, changed output digest, missing tool approval, provider timeout and duplicate idempotency keys must be denied or explicitly blocked.
 
 Each checkpoint needs real ID, server status, trace/receipt pointer, artifact digest and evidence timestamp. Redact content and credentials. A missing checkpoint is **PARTIAL/BLOCKED**, never a synthetic PASS.
 
