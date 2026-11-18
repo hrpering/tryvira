@@ -8,7 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "verify": "node scripts/verify-repo.mjs && npm run verify:public-copy && npm run verify:artwork && npm run verify:packs && npm run verify:canonical && npm run verify:coverage && npm run check:examples && npm run verify:scenarios && npm run verify:skills && npm run test:skill-contracts && npm run test:mcp-catalog && npm run check:tutorial-safety && npm run verify:agent-first",
+    "verify": "node scripts/verify-repo.mjs && npm run verify:public-copy && npm run verify:artwork && npm run verify:packs && npm run verify:canonical && npm run verify:coverage && npm run check:examples && npm run verify:scenarios && npm run verify:skills && npm run test:skill-contracts && npm run test:mcp-catalog && npm run check:tutorial-safety && npm run verify:agent-first && npm run verify:latest-clients && npm run verify:mcp-catalog-snapshot",
     "verify:registry": "node scripts/verify-registry.mjs",
     "check:examples": "node scripts/check-examples.mjs",
     "verify:scenarios": "node scripts/verify-scenarios.mjs",
@@ -29,7 +29,10 @@
     "verify:public-copy": "node scripts/check-public-copy.mjs",
     "test:pack-candidate": "node --test scripts/validate-pack-candidate.test.mjs",
     "test:operator": "node --test scripts/test-vira-operator.mjs",
-    "verify:agent-first": "node scripts/verify-agent-first-contract.mjs && node scripts/verify-skill-mcp-parity.mjs"
+    "verify:agent-first": "node scripts/verify-agent-first-contract.mjs && node scripts/verify-skill-mcp-parity.mjs",
+    "verify:mcp-catalog-snapshot": "node scripts/verify-mcp-registry-catalog.mjs",
+    "verify:mcp-registry-catalog": "node scripts/verify-mcp-registry-catalog.mjs --published",
+    "verify:latest-clients": "node scripts/sync-example-manifests.mjs --check"
   },
   "license": "UNLICENSED"
 }
