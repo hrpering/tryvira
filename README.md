@@ -9,6 +9,10 @@
   <a href="README.tr.md">Türkçe</a>
 </p>
 
+<p align="center">
+  [![Vira MCP MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp/badges/score.svg)](https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp)
+</p>
+
 > **Early access:** The SDKs, Agent Skills and examples are public. Live Vira operations require a provisioned account; **Studio is optional for SDK-supported operations**. [See what you can try today](docs/start-here.md).
 
 ## Operate Vira directly from your coding agent
