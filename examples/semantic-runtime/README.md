@@ -1,5 +1,7 @@
 # Semantic selection and runtime authorization
 
+**Advanced/diagnostic only.** For a normal user-facing application, use [AUTO TaskRun](../../docs/canonical-taskrun.md) rather than building the chatbot ON path from `resolveRuntime`.
+
 This example demonstrates a boundary that is easy to get wrong:
 
 ```text
@@ -15,7 +17,7 @@ An application must stop when runtime returns deny/abstain.
 ```text
 Add a Vira semantic-to-runtime integration for this application.
 
-Use @tryvira/sdk@0.1.44 and inspect the installed TypeScript declarations before
+Use @tryvira/sdk@0.1.66 and inspect the installed TypeScript declarations before
 writing code. Resolve the user's request semantically, display the candidate and
 confidence/evidence fields without treating them as permission, then call runtime
 resolution with the explicit organization/project/environment scope and an idempotency

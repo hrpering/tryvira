@@ -26,7 +26,7 @@ export VIRA_API_KEY="<server-side-key>"
 export VIRA_ORGANIZATION_ID="<organization-id>"
 export VIRA_PROJECT_ID="<project-id>"
 export VIRA_ENVIRONMENT_ID="<environment-id>"
-node connect-observe.mjs
+VIRA_ALLOW_OBSERVE=yes node connect-observe.mjs
 ```
 
 Use a new idempotency key for a new operation and reuse the same key only when

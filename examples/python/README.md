@@ -11,13 +11,14 @@ export VIRA_API_KEY="<server-side-key>"
 export VIRA_ORGANIZATION_ID="<organization-id>"
 export VIRA_PROJECT_ID="<project-id>"
 export VIRA_ENVIRONMENT_ID="<environment-id>"
+VIRA_ALLOW_OBSERVE=yes python connect_observe.py
 python quality_decision.py
 ```
 
 `quality_decision.py` demonstrates bounded response quality selection only. It does
 not connect an AI system, record observations, or create release evidence. Run
 `connect_observe.py` separately to exercise the connection and sanitized observation
-example.
+example. The ingestion step requires `VIRA_ALLOW_OBSERVE=yes` and sends a synthetic event with the complete organization/project/environment scope; it does not release behavior.
 
 ## Try TaskRun mode routing
 
