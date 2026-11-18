@@ -62,6 +62,15 @@ try {
   }
   const cli = run("tar", ["-xOf", tarball, `package/${mcpPackage.bin["vira-mcp"]}`]);
   const tools = parseMcpTools(cli);
+  const snapshot = {
+    package: "@tryvira/mcp",
+    version: latest.npm["@tryvira/mcp"],
+    tools: tools.map(({name,effectful})=>({name,effectful:Boolean(effectful)}))
+      .sort((a,b)=>a.name.localeCompare(b.name)),
+  };
+  await writeFile(join(root,"docs/reference/mcp-published-tools.json"),
+    JSON.stringify(snapshot,null,2)+"\n");
+
 
 
   const versionsPath = join(root, "package-versions.json");
@@ -78,7 +87,9 @@ try {
     "docs/ai-prompts/setup-python-sdk.md", "docs/ai-prompts/setup-mcp.md",
     "examples/README.md", "examples/mcp/README.md",
     "examples/javascript/README.md", "examples/python/README.md",
-    "examples/semantic-runtime/README.md"
+    "examples/semantic-runtime/README.md",
+    "examples/agent-first/README.md", "examples/frameworks/mcp-client/README.md",
+    "docs/agent-first-operation-flow.md", "docs/agent-skills/e2e-completion-plan.md"
   ];
   for (const relativePath of SAFE_VERSION_SYNC_PATHS) {
     const path = join(root, relativePath);
