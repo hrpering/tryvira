@@ -36,6 +36,24 @@ jobs:
       - name: Verify public repository
         run: npm run verify
 
+      - name: Verify one-root-Skill discovery with the public Skills CLI
+        run: |
+          npx -y skills@1.7.4 add . --list > /tmp/vira-skills-list.txt
+          cat /tmp/vira-skills-list.txt
+          grep -E '\\bvira\\b' /tmp/vira-skills-list.txt
+          if grep -E 'vira-(mcp|operator|full-lifecycle)' /tmp/vira-skills-list.txt; then
+            echo "ROOT_DISCOVERY_SHOULD_NOT_EXPOSE_28_SPECIALISTS"
+            exit 1
+          fi
+
+      - name: Probe separately distributed OpenCode plugin (informational)
+        run: |
+          if npm view @tryvira/opencode version --json --fetch-retries=1 --fetch-timeout=15000; then
+            echo "OpenCode npm release found. Plugin source is not included in public repo."
+          else
+            echo "OpenCode plugin npm publication not established; the public repo offers integration guidance only."
+          fi
+
       - name: Package and independently verify all 28 Agent Skills
         run: |
           npm run package:skills -- --out /tmp/tryvira-skill-packages
