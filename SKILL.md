@@ -41,6 +41,10 @@ Use `VIRA_API_URL` as a user-provided API deployment root (not a Studio URL and 
 
 For every effectful operation, obtain the user's explicit permission for that specific change and pass the server's own policy/role check. Keep an idempotency key stable for retries of *the same* write, unique for different writes. Preserve original scope, IDs, revision and digest across MCP/SDK handoffs. After asynchronous 202/queued results, poll documented readbacks instead of reporting completion.
 
+For business-record tools, authorization must receive server-resolved owner/identity/status evidence and its receipt. Never treat model or client fields such as `ownerId`, `customerId`, `status`, `hostCapabilities`, or `confirmed:true` as trusted evidence. If the host capability attestation or owner preflight cannot be resolved, stop or fail closed.
+
+For an effectful action awaiting consent, create a server-owned one-use approval for the exact proposal, tool, arguments digest, actor, session, release and data version. Pass the returned `approvalId` only to that matching authorization attempt. Denied, expired, replayed, or argument-changed approvals must not execute.
+
 A routing proposal is not admission; installation is not release; approval is not execution. TaskRun `COMPLETED` alone is **not** a separately output-bound `post_model` verifier PASS. If the real customer/host cannot retrieve a verified final answer, report that limitation and never silently substitute a direct model invocation for the ON path.
 
 ## Quality and troubleshooting

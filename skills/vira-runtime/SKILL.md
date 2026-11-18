@@ -21,6 +21,7 @@ Identify the application request boundary, task/context, permitted scope, select
 4. Interpret only fields and projection semantics defined by the installed public SDK/API contract for this operation. Do not assume one generic ALLOW/DENY response field; do not rebuild policy locally or skip post-model verification where required.
 5. Emit minimized feedback linked to the real request/receipt only when its documented contract and consent rules permit it. The JS/Python `outcome` helper sets `eventType: "business.outcome"` and uses the common observation envelope, but the public contract does not define event-specific business-result fields. Do not call `outcome()` to attribute a business result until its event-specific payload schema is published; do not invent fields or claim attribution.
 6. Verify actual allow/deny/abstain/error outcomes only when returned by the authorized non-production service; inspect the real trace correlation and never synthesize receipts.
+7. For business-record tools, require server-resolved owner/identity/status evidence and its receipt before authorization. Client or model claims such as `ownerId`, `customerId`, `status`, or `confirmed` are not trusted evidence.
 
 ## Implementation details
 
@@ -36,6 +37,8 @@ Identify the application request boundary, task/context, permitted scope, select
 An AI model may **propose** a tool call. It does not grant itself permission to execute external effects. Before a host action, enforce exact tenant/project/environment scope, released artifact identity, tool/action policy, server-attested host capability and any required user/operator approval. Policy text, effect: allow and caller-supplied hostCapabilities are not sufficient authorization.
 
 At pre_tool and pre_action, unsupported or unavailable authorization must block the effect, not merely append a warning to a model answer. COMPOUND and HYBRID children cannot combine their separate privileges into a more powerful parent. An action awaiting consent stays WAITING; continue the same run with the actual server-provided version, never manufacture an approval.
+
+For an effectful action that requires confirmation, create the server-owned approval for the exact proposal, tool, arguments digest, actor, session, release and data version. Pass the returned one-use `approvalId` only to the matching authorization attempt. Denied, expired, replayed, or argument-changed approvals must fail closed; `confirmed:true` is never a substitute.
 
 For a demo, show one permitted read-only tool decision and one synthetic effectful request that is **not executed** without approval. Preserve genuine decision evidence. Do not issue real payments, refunds, messages or account changes just to capture the screen.
 
