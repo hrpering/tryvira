@@ -14,6 +14,7 @@
     <th align="center">Official MCP Registry</th>
     <th align="center">MCP Quality · Glama</th>
     <th align="center">SDK Security · Socket</th>
+    <th align="center">MCPtry · Listing</th>
   </tr>
   <tr>
     <td align="center">
@@ -29,6 +30,11 @@
     <td align="center">
       <a href="https://badge.socket.dev/npm/package/@tryvira/sdk/0.1.74">
         <img src="https://badge.socket.dev/npm/package/@tryvira/sdk/0.1.74" alt="Socket security badge for @tryvira/sdk 0.1.74" height="72" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://mcptry.com/servers/io.github.hrpering/vira">
+        <img src="https://mcptry.com/badge/io.github.hrpering/vira" alt="Vira on MCPtry" height="72" />
       </a>
     </td>
   </tr>
