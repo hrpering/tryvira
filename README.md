@@ -9,7 +9,15 @@
   <a href="README.tr.md">Türkçe</a>
 </p>
 
-[![Vira MCP MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp/badges/score.svg)](https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp)
+<p align="center">
+  <a href="https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp">
+    <img src="https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp/badges/score.svg" alt="Vira MCP on Glama · tool quality and endpoint health" height="36" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://badge.socket.dev/npm/package/@tryvira/sdk/0.1.74">
+    <img src="https://badge.socket.dev/npm/package/@tryvira/sdk/0.1.74" alt="Socket Badge · @tryvira/sdk v0.1.74" height="36" />
+  </a>
+</p>
 
 > **Early access:** The SDKs, Agent Skills and examples are public. Live Vira operations require a provisioned account; **Studio is optional for SDK-supported operations**. [See what you can try today](docs/start-here.md).
 
