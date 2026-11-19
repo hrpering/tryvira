@@ -9,15 +9,24 @@
   <a href="README.tr.md">Türkçe</a>
 </p>
 
-<p align="center">
-  <a href="https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp">
-    <img src="https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp/badges/score.svg" alt="Vira MCP on Glama · tool quality and endpoint health" height="36" />
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://badge.socket.dev/npm/package/@tryvira/sdk/0.1.74">
-    <img src="https://badge.socket.dev/npm/package/@tryvira/sdk/0.1.74" alt="Socket Badge · @tryvira/sdk v0.1.74" height="36" />
-  </a>
-</p>
+<table align="center">
+  <tr>
+    <th align="center">MCP Quality · Glama</th>
+    <th align="center">SDK Security · Socket</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp">
+        <img src="https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp/badges/score.svg" alt="Vira MCP quality on Glama" height="72" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://badge.socket.dev/npm/package/@tryvira/sdk/0.1.74">
+        <img src="https://badge.socket.dev/npm/package/@tryvira/sdk/0.1.74" alt="Socket security badge for @tryvira/sdk 0.1.74" height="72" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 > **Early access:** The SDKs, Agent Skills and examples are public. Live Vira operations require a provisioned account; **Studio is optional for SDK-supported operations**. [See what you can try today](docs/start-here.md).
 
