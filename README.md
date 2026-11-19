@@ -11,10 +11,16 @@
 
 <table align="center">
   <tr>
+    <th align="center">Official MCP Registry</th>
     <th align="center">MCP Quality · Glama</th>
     <th align="center">SDK Security · Socket</th>
   </tr>
   <tr>
+    <td align="center">
+      <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.hrpering%2Fvira/versions/latest">
+        <img src="https://img.shields.io/badge/MCP_Registry-View_Entry-087f5b?style=for-the-badge" alt="View Vira on the Official MCP Registry" height="72" />
+      </a>
+    </td>
     <td align="center">
       <a href="https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp">
         <img src="https://glama.ai/mcp/connectors/xyz.tryvira.api/vira-mcp/badges/score.svg" alt="Vira MCP quality on Glama" height="72" />
