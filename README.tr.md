@@ -20,7 +20,7 @@ Uzman Skill'ler gelişmiş referanslar olarak korunuyor. OpenCode entegrasyonu i
 
 ## Yasal belgeler
 
-[Kullanım Koşulları (Türkçe)](docs/legal/terms.tr.md) · [Terms of Service (English)](docs/legal/terms.en.md) · [Gizlilik Politikası (Türkçe)](docs/legal/privacy.tr.md) · [Privacy Policy (English)](docs/legal/privacy.en.md) · [Yasal belgeler](docs/legal/README.md)
+[Kullanım Koşulları (Türkçe)](docs/legal/terms.tr.md) · [Terms of Service (English)](docs/legal/terms.en.md) · [Gizlilik Politikası (Türkçe)](docs/legal/privacy.tr.md) · [Privacy Policy (English)](docs/legal/privacy.en.md) · [Çerez Politikası (Türkçe)](docs/legal/cookies.tr.md) · [Cookie Policy (English)](docs/legal/cookies.en.md) · [Yasal belgeler](docs/legal/README.md)
 
 ## Neden Vira?
 
