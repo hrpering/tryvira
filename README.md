@@ -40,6 +40,12 @@
   </tr>
 </table>
 
+<p align="center">
+  <a href="https://mcprush.com/to/vira-own-how-your-ai-behaves-mcp?ref=badge">
+    <img src="https://mcprush.com/badge/vira-own-how-your-ai-behaves-mcp/card.svg" alt="Vira on MCPRush" height="72" />
+  </a>
+</p>
+
 > **Early access:** The SDKs, Agent Skills and examples are public. Live Vira operations require a provisioned account; **Studio is optional for SDK-supported operations**. [See what you can try today](docs/start-here.md).
 
 ## Operate Vira directly from your coding agent
