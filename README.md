@@ -196,9 +196,7 @@ Each integration has its own supported operations. Check the [compatibility guid
 
 ## Legal
 
-[Terms of Service (English)](docs/legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](docs/legal/terms.tr.md) · [Legal documents & planned policies](docs/legal/README.md)
-
-Legal drafts refer to the service at **https://studio.tryvira.xyz**. They are not yet a substitute for the Studio's versioned acceptance and required privacy disclosures.
+[Terms of Service (English)](docs/legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](docs/legal/terms.tr.md) · [Privacy Policy (English)](docs/legal/privacy.en.md) · [Gizlilik Politikası (Türkçe)](docs/legal/privacy.tr.md) · [Legal documents](docs/legal/README.md)
 
 ## Trust, limits, and licensing
 
