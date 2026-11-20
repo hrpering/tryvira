@@ -157,7 +157,7 @@ Information may be transferred to, accessed from, or processed in other countrie
 
 Where required by the GDPR, transfers outside the European Economic Area are subject to an applicable adequacy decision, suitable safeguards, such as Standard Contractual Clauses where in place, or another lawful transfer mechanism. Transfers subject to KVKK must also meet the applicable requirements of its Article 9.
 
-The applicable transfer arrangements depend on the recipients and deployment. You may request additional information at hello@tryvira.xyz.
+The applicable transfer arrangements depend on the recipients and deployment. See our [Third-Party Services and Sub-processors Register](subprocessors.en.md), or request additional information at hello@tryvira.xyz.
 
 ## 13. Security and Access
 
@@ -191,7 +191,7 @@ A single fixed retention limit for all Observe, Teach, or trace records is not s
 
 Depending on applicable law, you may have rights to learn about processing, access information, correct inaccuracies, request deletion or restriction, receive portable data where applicable, object to processing or direct marketing, withdraw consent, and exercise applicable rights relating to automated decisions. You may also complain to a competent data protection authority.
 
-In Türkiye, **KVKK Article 11** provides statutory rights concerning information about processing, access, correction, deletion or destruction where applicable, notification to third parties, certain exclusively automated analysis, and compensation where legally justified.
+In Türkiye, **KVKK Article 11** provides statutory rights concerning information about processing, access, correction, deletion or destruction where applicable, notification to third parties, certain exclusively automated analysis, and compensation where legally justified. See our [KVKK Data Notice](kvkk-notice.en.md).
 
 Send requests to **hello@tryvira.xyz**. We may reasonably verify your identity and authority before acting and will respond within applicable legal time limits. Where an organizational customer is the controller, requests regarding that organization's end users may need to be handled through the customer, with assistance from Vira where required.
 
