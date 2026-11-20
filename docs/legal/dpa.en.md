@@ -92,7 +92,7 @@ Where a transfer requires additional safeguards, the parties shall put an approp
 
 ## 11. Data Return, Deletion, and Retention
 
-At the end of the Services, Vira shall, at the Customer's choice where applicable and technically supported, return or delete Customer Personal Data as instructed, unless a legal obligation requires retention.
+At the end of the Services, Vira shall, at the Customer's choice, return or delete all Customer Personal Data and delete existing copies, unless applicable law requires storage. Vira shall provide available export methods or coordinate a verified return/deletion request with the Customer. Backup and third-party copies must be addressed according to the applicable legal obligations and agreed technical procedures.
 
 Eligible account data subject to deletion is covered by Vira's **30-day post-account-deletion** process, subject to legally justified exceptions. Other customer-requested erasure may depend on the kind of data, accessible export/deletion tools, backups, and verified instructions. Vira shall not retain personal data solely because a storage quota remains unused.
 
