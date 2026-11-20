@@ -1,45 +1,50 @@
-# Published client packages
+# Public client packages and version verification
 
-Vira's public client packages use the `tryvira` package identity and point back to this public repository. The badges in the repository README always read current registry versions; the scheduled sync keeps pinned commands and references aligned.
+Vira's public integration packages are independently versioned. **A version declared in the maintained source is not necessarily the latest version available in npm or PyPI.** Do not use old documentation pins as a substitute for registry checks.
 
-| Ecosystem | Package | Current package version | Runtime | License | Install |
-| --- | --- | ---: | --- | --- | --- |
-| npm | `@tryvira/sdk` | `0.1.67` | Node.js 20+ | MIT | `npm install @tryvira/sdk@0.1.67` |
-| npm | `@tryvira/mcp` | `0.1.60` | Node.js 20+ | MIT | `npx -y @tryvira/mcp@0.1.60` |
-| PyPI | `tryvira-sdk` | `0.1.54` | Python 3.10+ | MIT | `python -m pip install tryvira-sdk==0.1.54` |
+Source-manifest comparison: **21 November 2026**.
 
-Package pages:
+| Ecosystem | Package | Maintained source version | Last version cited by the earlier public docs | Runtime | License |
+| --- | --- | ---: | ---: | --- | --- |
+| npm | [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk) | `0.1.74` | `0.1.67` | Node.js 20+ | MIT |
+| npm | [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) | `0.1.78` | `0.1.60` | Node.js 20+ | MIT |
+| npm | [`@tryvira/opencode`](https://www.npmjs.com/package/@tryvira/opencode) | `0.1.67` | `0.1.61` | Node.js 20+ | MIT |
+| PyPI | [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) | `0.1.55` | `0.1.54` | Python 3.10+ | MIT |
 
-- https://www.npmjs.com/package/@tryvira/sdk
-- https://www.npmjs.com/package/@tryvira/mcp
-- https://pypi.org/project/tryvira-sdk/
+**The source versions above are inspected manifest values, not independently verified registry releases.** Confirm published availability before pinning or using a specific version in an example:
 
-Repository / documentation:
+```bash
+npm view @tryvira/sdk version
+npm view @tryvira/mcp version
+npm view @tryvira/opencode version
+python -m pip index versions tryvira-sdk
+```
 
-- https://github.com/hrpering/tryvira
+Install the actual released version. For exploratory setup, the unpinned commands resolve the registry's current release; production and test fixtures should pin the inspected version and commit their lockfile.
 
-## Current published client surfaces
+```bash
+npm install @tryvira/sdk
+npx -y @tryvira/mcp
+python -m pip install tryvira-sdk
+```
 
-These versions reflect the current npm/PyPI registry releases. Framework sample projects intentionally use their own pinned and lockfile-tested client versions; check each sample's manifest before upgrading. Their available operations differ. Use each surface's reference and discover MCP tools at runtime.
+For OpenCode, see its [host-specific plugin setup](../plugins/opencode/README.md); a standalone npm installation does not prove the host loaded the adapter.
 
-The JavaScript SDK, Python SDK, and MCP package have different operation sets. The [MCP tool catalog](reference/mcp-tools.md) is refreshed from the latest published MCP package. MCP exposes its own tool set. Use the running server's scoped tool discovery to check availability.
+## Interfaces and authority
 
-Use [Capability discovery](capability-discovery.md) instead of assuming a credential, deployment or integration exposes every operation.
+- JavaScript SDK: `ViraClient`, connection/observation and governed lifecycle methods. Canonical verb-noun helpers such as `connectAiSystem`, `recordUserFeedback`, and `recordBusinessOutcome` coexist with older aliases in the inspected source. Use the **installed** types.
+- Python SDK: independently versioned client of the same scoped HTTP authority. Confirm Python methods against the installed package; do not assume JS signature parity.
+- MCP: stdio adapter for the installed SDK/service. Inspect the running MCP server's `tools/list` and the scope bound to the configured credential. The [0.1.60 tool snapshot](reference/mcp-published-tools.json) is historical, not a current-source or live catalog.
+- OpenCode plugin: host adapter with `off`, `observe`, and conditional `enforce`. It is not a replacement for MCP or the SDK.
 
-## Authority boundary
+All surfaces enforce Vira's server-side role, scope, policies, evaluation and release gates. Semantic selection is not authorization; import/install is not production release; a successful network call is not a verified model answer.
 
-The SDKs are thin clients. They do not create a second behavior authority, execute tools locally on behalf of Vira, release behavior locally, or maintain a parallel telemetry store.
+## Publishing and verification
 
-Semantic resolution returns evidence/candidates. It is not authorization. Runtime and effectful mutations remain governed by server-side scope, role, policy, release state, idempotency and receipt contracts.
+Publication and actual installation must be separately checked. npm package dry-run, public-surface smoke checks, PyPI wheel inspection and release checks are independent of Vira Pack evaluation/release. Do not upload private server code, database migrations, local credentials or customer evidence.
 
-## Package verification
+This public documentation set and sample projects may intentionally pin versions tested at a different time. Update their pins and the [MCP snapshot](reference/mcp-published-tools.json) **only after inspecting the matching registry artifacts**, testing the consumer and recording snapshot provenance. Do not automatically copy internal source versions into published-package claims.
 
-The npm packages are prepared with package dry-run and public-surface smoke checks before publication. That package-publishing check is distinct from a Vira Pack lifecycle. A Vira Pack still follows its own governed import, validation/materialization, evaluation, approval and release flow.
+The client package metadata declares MIT licensing. The [repository license](../LICENSE) applies separately to public documentation and assets; public source visibility is not an open-source license grant for the hosted service.
 
-## Licensing boundary
-
-The client packages above are MIT-licensed according to their package metadata and package license files. The repository [LICENSE](../LICENSE) applies only to documentation, examples, and visual assets here. The hosted service, application, backend, and branding are governed separately.
-
-## Versioning note
-
-The documentation repository version is not required to match client package versions. Package versions describe independently published client artifacts; the docs version describes this repository's documentation set.
+[Full compatibility and phased verification plan](integration-compatibility.md) · [JavaScript](reference/javascript-sdk.md) · [Python](reference/python-sdk.md) · [MCP](reference/mcp.md) · [OpenCode](../plugins/opencode/README.md)
