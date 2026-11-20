@@ -129,7 +129,7 @@ Where consent is required, optional analytics and advertising tracking is disabl
 
 Advertising and measurement providers may process identifiers and interaction data according to their roles and terms. Depending on applicable US state law, some advertising disclosures may qualify as targeted advertising, a "sale," or "sharing" even if no money changes hands. Relevant statutory choices and opt-outs apply where required.
 
-Our separate Cookie Policy provides more detailed cookie and tracking information.
+You can review your tracking categories and update your choices through the cookie preference controls. For further information about a particular tracking technology, contact hello@tryvira.xyz.
 
 ## 10. Communications
 
