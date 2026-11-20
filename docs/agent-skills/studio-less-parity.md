@@ -1,6 +1,6 @@
 # Studio-less Vira: capability parity and API backlog
 
-Status: 19 November 2026 (public catalog refresh; not a claim of live E2E). Scope: public JavaScript/Python SDK contracts, published MCP capabilities and actual product Studio route families. A route existing in source is **not** proof of a working customer API. Do not expose the Studio's cookie/session endpoints as a shortcut. Agent Skills cannot replace missing service operations by writing instructions.
+Status: 21 November 2026 (source/public-doc compatibility review; not a claim of registry or live E2E). Scope: public JavaScript/Python SDK contracts, published MCP capabilities and actual product Studio route families. A route existing in source is **not** proof of a working customer API. Do not expose the Studio's cookie/session endpoints as a shortcut. Agent Skills cannot replace missing service operations by writing instructions.
 
 ## Target architecture
 
@@ -8,7 +8,7 @@ Coding agent → installed Vira Skills → discovered MCP tools (or version-matc
 
 Studio is an **optional visualization**, not a prerequisite for authoring, approving, releasing, running, or learning behavior. The API/SDK/MCP must use the same authority and idempotency contracts. Approval of external effects must remain explicit.
 
-[Shared MCP/JS/Python operation flow](../agent-first-operation-flow.md). MCP now documents more Pack, TaskRun, Teach and evaluation operations than the previous SDK-only ledger; the items marked partial below concern wider Studio administration, host capabilities and verified provider output, not the absence of these named MCP tools.
+[Shared MCP/JS/Python operation flow](../agent-first-operation-flow.md) · [Version and host compatibility](../integration-compatibility.md). MCP now documents more Pack, TaskRun, Teach and evaluation operations than the previous SDK-only ledger; the items marked partial below concern wider Studio administration, host capabilities and verified provider output, not the absence of these named MCP tools.
 
 ## Product parity ledger
 
