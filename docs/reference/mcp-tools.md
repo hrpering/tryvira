@@ -1,6 +1,6 @@
 # MCP integration reference
 
-**Current package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.60`
+**Package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp). Maintained source manifest: `0.1.78` (21 November 2026); the historical published tool snapshot below is for `0.1.60`, not proof of the latest registry build.
 
 The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
@@ -10,9 +10,9 @@ Use the installed MCP server's `tools/list` response to see the current tool nam
 
 A returned tool schema describes how to call that tool; it does not grant authorization. Follow the server's authority decisions and the customer's scope. Keep review, evaluation, approval, release, and runtime actions separate.
 
-## Registry-verified tool inventory
+## Historical published tool inventory
 
-The [public npm MCP tool snapshot](mcp-published-tools.json) records all the published tools from published `@tryvira/mcp@0.1.60` with read/effect classifications. Its version and entries are checked directly against the npm tarball in CI. This is a *discovery reference*, **not an authorization grant or a substitute for a live `tools/list`**.
+The [public npm MCP tool snapshot](mcp-published-tools.json) is tagged `@tryvira/mcp@0.1.60` with read/effect classifications. It is **not** regenerated from the newer source or verified against the latest npm tarball in this update. Treat it as a historical discovery reference, **not an authorization grant or a substitute for live `tools/list`**. Regenerate it only from a verified published artifact.
 
 ### New MCP families in 0.1.60
 
@@ -27,9 +27,11 @@ These tool families exist in the published MCP distribution. Their underlying pr
 
 ## Product-level coverage
 
-The current package exposes the public lifecycle surface through the installed server's versioned tool catalog. This includes AI System/connection diagnostics; Semantic Tasks, BehaviorPoints, Programs and Strategies; TaskRun resolve/start/read/events/continue/cancel/retry; observations and signals; Teach analysis/recommendation/review; evaluations and comparative findings; Pack evaluation/approval/revisions/materialization; runtime capsule/projection verification; trace search; and host authorization. It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
+The inspected source offers the public lifecycle surface through the installed server's versioned tool catalog. This includes AI System/connection diagnostics; Semantic Tasks, BehaviorPoints, Programs and Strategies; TaskRun resolve/start/read/events/continue/cancel/retry; observations and signals; Teach analysis/recommendation/review; evaluations and comparative findings; Pack evaluation/approval/revisions/materialization; runtime capsule/projection verification; trace search; and host authorization. It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
 
 If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Use the names, schemas and authorization decisions returned by the configured server.
+
+Canonical MCP names in the inspected source include `connect_ai_system`, `record_user_feedback` and `record_business_outcome`. Older names can remain callable as compatibility aliases without appearing in `tools/list`. Always prefer the installed server's advertised names and schemas.
 
 ## Shared operation policy
 
