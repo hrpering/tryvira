@@ -93,6 +93,8 @@ Barındırılan Hizmetler, korunan altyapı ve hesap temelli API'ler bu Koşulla
 
 ## 11. Paketler, Fiyatlandırma ve Özel Aktivasyon
 
+Ek ticari bilgiler [Faturalandırma ve Abonelik Bilgilendirmesi'nde](billing.tr.md) açıklanır.
+
 Vira; ücretsiz, bireysel, profesyonel, işletme ve kurumsal paketler gösterebilir. Açıkça satın alma veya abonelik mekanizması sunulmadıkça yayımlanan paket ve fiyat bilgileri bilgilendirme amaçlıdır.
 
 **Mevcut aşamada ücretli erişim yalnızca bireysel olarak onaylanan teklif veya özel ticari düzenleme üzerinden etkinleştirilir.** Paket veya fiyat gösterilmesi otomatik satın alma hakkı vermez. Hesap oluşturulması, görünen paketin seçilmesi veya bilgi talebi iletilmesi tek başına ücretli abonelik başlatmaz.
@@ -118,6 +120,8 @@ Bu politika zorunlu tüketici haklarını kaldırmaz. Türkiye, AB ve diğer ül
 Ayıplı veya sözleşmeye uygun olmayan hizmetlerden ya da emredici mevzuat ihlallerinden doğan haklar saklıdır.
 
 ## 14. Kabul Edilebilir Kullanım
+
+Barındırılan entegrasyonlar, ajanlar, kimlik bilgileri ve izinli veri kullanımıyla ilgili ek koşullar [Kabul Edilebilir Kullanım Politikası'nda](acceptable-use.tr.md) açıklanır.
 
 Hizmetleri; hukuku veya üçüncü taraf haklarını ihlal etmek, yetkisiz sistem/veri erişimi sağlamak, zararlı yazılım dağıtmak, kötü amaçlı sızma faaliyeti yürütmek, erişim/izin/kullanım kontrollerini aşmak, işleme hakkınız bulunmayan içerik göndermek, dolandırıcılık veya başka yasa dışı faaliyet yürütmek, değerlendirme veya doğrulama sonuçlarını tam uyum ya da kusursuz AI performans garantisi gibi yanlış tanıtmak ya da başkalarının Hizmet kullanımına zarar vermek için kullanamazsınız.
 

@@ -196,7 +196,7 @@ Each integration has its own supported operations. Check the [compatibility guid
 
 ## Legal
 
-[Terms of Service (English)](docs/legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](docs/legal/terms.tr.md) · [Privacy Policy (English)](docs/legal/privacy.en.md) · [Gizlilik Politikası (Türkçe)](docs/legal/privacy.tr.md) · [Cookie Policy (English)](docs/legal/cookies.en.md) · [Çerez Politikası (Türkçe)](docs/legal/cookies.tr.md) · [Legal documents](docs/legal/README.md)
+[Terms (EN)](docs/legal/terms.en.md) · [Terms (TR)](docs/legal/terms.tr.md) · [Privacy (EN)](docs/legal/privacy.en.md) · [Privacy (TR)](docs/legal/privacy.tr.md) · [Cookies (EN)](docs/legal/cookies.en.md) · [Cookies (TR)](docs/legal/cookies.tr.md) · [AUP (EN)](docs/legal/acceptable-use.en.md) · [Complete legal directory (DPA, KVKK, billing, subprocessors)](docs/legal/README.md)
 
 ## Trust, limits, and licensing
 

@@ -93,6 +93,8 @@ Use of hosted Services, protected infrastructure, and account-based APIs remains
 
 ## 11. Plans, Pricing, and Custom Commercial Activation
 
+Additional commercial information is available in [Billing and Subscription Disclosures](billing.en.md).
+
 Vira may display free, individual, professional, business, and enterprise plans. Published plan descriptions and prices are informational unless a purchase or subscription mechanism is expressly offered.
 
 **At present, paid access is activated only through an individually approved offer or custom commercial arrangement.** Displaying a plan or price does not confer a right to purchase it automatically. Account registration, choosing a displayed plan, or sending an inquiry does not alone create a paid subscription.
@@ -118,6 +120,8 @@ This does **not** exclude mandatory consumer rights. Consumers in Türkiye, the 
 Nothing here removes rights to refunds or other statutory remedies for non-conforming services or breaches of mandatory law.
 
 ## 14. Acceptable Use
+
+The [Acceptable Use Policy](acceptable-use.en.md) provides further requirements for hosted integrations, agents, credentials, and permitted data use.
 
 You must not use the Services to violate law or third-party rights; gain unauthorized system or data access; distribute malware; conduct malicious intrusion; circumvent permissions or usage controls; submit content you lack the right to process; commit fraud or other illegal activity; misrepresent evaluations or verification as guarantees of compliance or perfect AI performance; or interfere with the Services for others.
 
