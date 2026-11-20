@@ -42,7 +42,7 @@ Vira separates *what should happen* from *how an application runs*. You can expl
 
 ## Legal
 
-[Terms of Service (English)](legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](legal/terms.tr.md) · [Privacy Policy (English)](legal/privacy.en.md) · [Gizlilik Politikası (Türkçe)](legal/privacy.tr.md) · [Legal documents](legal/README.md)
+[Terms of Service (English)](legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](legal/terms.tr.md) · [Privacy Policy (English)](legal/privacy.en.md) · [Gizlilik Politikası (Türkçe)](legal/privacy.tr.md) · [Cookie Policy (English)](legal/cookies.en.md) · [Çerez Politikası (Türkçe)](legal/cookies.tr.md) · [Legal documents](legal/README.md)
 
 ## Help and contributing
 
