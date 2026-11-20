@@ -32,7 +32,10 @@ async function visit(dir){
           errors.push(path+":"+(index+1)+" expected "+expected+" found "+match[1]);
         }
       }
-      if(/\b0\.1\.(?:44|55|66)\b/.test(line) &&
+      // Non-package-specific 0.1.55/0.1.66 matches are not inherently
+      // obsolete: newer source manifests and historical snapshots may use them.
+      // Package-specific stale pinned references are checked above.
+      if(/\b0\.1\.44\b/.test(line) &&
          !/historical|previously pinned|prior release|changelog|legacy comparison/i.test(line.toLowerCase())){
         errors.push(path+":"+(index+1)+" includes an obsolete active client version");
       }
