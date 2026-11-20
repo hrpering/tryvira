@@ -6,7 +6,7 @@ description: "Operate Vira directly from coding agents through its documented SD
 
 # Operate Vira without Studio
 
-Use this Skill when the developer wants to **operate Vira using natural language in a coding agent**, instead of clicking through Studio. Vira Operator is the **SDK-backed path when an MCP tool is absent or the host has no MCP connection**, not a competing control plane. First check the connected MCP `tools/list`; do not retry a denial through the SDK. It is not a web dashboard, substitute backend, raw HTTP proxy or new authorization layer. MCP 0.1.60 now offers `list_inbox`, `inspect_conflicts`, `resolve_conflict`, `start_optimization`, `get_optimization_run` and `cancel_optimization_run`; use those advertised tools when connected rather than claiming they are Studio-only or inventing SDK methods.
+Use this Skill when the developer wants to **operate Vira using natural language in a coding agent**, instead of clicking through Studio. Vira Operator is the **SDK-backed path when an MCP tool is absent or the host has no MCP connection**, not a competing control plane. First check the connected MCP `tools/list`; do not retry a denial through the SDK. It is not a web dashboard, substitute backend, raw HTTP proxy or new authorization layer. The historical MCP 0.1.60 catalog includes `list_inbox`, `inspect_conflicts`, `resolve_conflict`, `start_optimization`, `get_optimization_run` and `cancel_optimization_run`; use them only when actually advertised by the installed host rather than claiming they are Studio-only or inventing SDK methods.
 
 ## Activate this skill when
 
