@@ -10,7 +10,7 @@ Vira exposes related product workflows through the JavaScript SDK, Python SDK, H
 | Teach AI and review proposals | See current client guide | See current client guide | See deployment's public API reference | Check installed server tools | Availability varies |
 | Evaluate, approve, and release | See current client guide | See current client guide | See deployment's public API reference | Check installed server tools | Availability varies |
 | Apply and verify runtime behavior | See current client guide | See current client guide | See deployment's public API reference | Check installed server tools | Availability varies |
-| Orchestrate TaskRuns | Published SDK mode routing, admission and state methods; check installed release | Published Python mode routing, admission and state methods; check installed release | No raw TaskRun contract republished here | No TaskRun tool listed in current MCP catalog | Availability varies |
+| Orchestrate TaskRuns | Published SDK mode routing, admission and state methods; check installed release | Published Python mode routing, admission and state methods; check installed release | No raw TaskRun contract republished here | TaskRun resolve/start/read/events/continue/cancel/retry tools; verify with installed `tools/list` | Availability varies |
 
 Do not treat this table as an authorization rule. Check the installed package version and public reference, the connected MCP server's `tools/list`, and the capabilities available to the customer's scope before selecting an operation.
 
@@ -20,9 +20,9 @@ The compact interface table above is **not** the full product inventory. [Full p
 
 **Signals are not a synonym for observations; artifact verification, candidate evaluation and runtime post-model verification are separate gates.** [Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md).
 
-## Published MCP 0.1.60 review and optimization additions
+## Historical 0.1.60 MCP snapshot: review and optimization additions
 
-A provisioned MCP host can discover `get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`, `start_optimization`, `get_optimization_run` and `cancel_optimization_run` from the [versioned-tool npm package snapshot](reference/mcp-published-tools.json). **This does not prove JS/Python parity or tenant authorization**; the relevant SDK may need a documented method added. Inspect and optimize do not imply approval/release.
+The historical MCP 0.1.60 snapshot advertises `get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`, `start_optimization`, `get_optimization_run` and `cancel_optimization_run` in the [historical versioned-tool npm package snapshot](reference/mcp-published-tools.json). **This does not prove newer package parity, JS/Python parity or tenant authorization**; the relevant SDK may need a documented method added. Inspect and optimize do not imply approval/release.
 
 ## TaskRun mode selection
 
