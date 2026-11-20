@@ -1,11 +1,9 @@
 # Vira Kullanım Koşulları
 
 **Son güncelleme:** 20 Kasım 2026  
-**Sürüm:** 1.0 — Hukuki inceleme taslağı  
+**Sürüm:** 1.0  
 **Hizmet sitesi:** https://studio.tryvira.xyz  
 **İletişim:** hello@tryvira.xyz
-
-> **Yayımlama notu:** Bu metin inceleme amaçlı taslaktır. Dosyanın GitHub'da yayımlanması tek başına kullanıcıların Koşulları kabul ettiği anlamına gelmez. Bağlayıcı sözleşme olarak kullanılmadan önce ilgili hizmette uygun kabul ve sürüm kaydı süreci uygulanmalıdır.
 
 ## 1. Giriş ve Sözleşmenin Kabulü
 
@@ -194,8 +192,6 @@ Türkçe ve İngilizce metinlerin aynı anlamı taşıması amaçlanır. Tutars�
 **Yerleşim:** İstanbul, Türkiye  
 **Hizmet sitesi:** https://studio.tryvira.xyz  
 **Genel ve hukuki iletişim:** hello@tryvira.xyz
-
-Kanunen gerekli ek hizmet sağlayıcı kimliği, adres ve resmî tebligat bilgileri, uygulanabilir durumlarda ticari faaliyet başlamadan önce uygun bilgilendirme alanlarında sunulmalıdır.
 
 ---
 
