@@ -6,7 +6,7 @@ description: "Implement or debug a Vira integration using the published Python S
 
 # Python SDK
 
-Use the currently published `tryvira-sdk`; discover current registry version rather than copying a stale pin. Verify method names/signatures against the Python reference and installed package. Read secrets from environment variables; use context management when appropriate; retain scope and idempotency behavior. Do not assume MCP or JS-only functionality has a Python equivalent without checking. For ordinary AI requests use AUTO TaskRun; `serve_behavior_projection` is an advanced diagnostic SDK surface only.
+Use the registry-published `tryvira-sdk`; discover its current PyPI version rather than copying a stale pin. The maintained source declares 0.1.55 as of 21 November 2026, which must not be mistaken for a verified PyPI release. Python methods and argument shapes must be read from the installed client. Verify method names/signatures against the Python reference and installed package. Read secrets from environment variables; use context management when appropriate; retain scope and idempotency behavior. Do not assume MCP or JS-only functionality has a Python equivalent without checking. For ordinary AI requests use AUTO TaskRun; `serve_behavior_projection` is an advanced diagnostic SDK surface only.
 
 Set `VIRA_API_URL` to the API deployment root supplied by the account/operator (without `/v1`, and not the Studio URL); pass it as the first `ViraClient` argument. Keep `VIRA_API_KEY` in a server-side secret manager. Ask for the endpoint when absent; never infer it.
 
