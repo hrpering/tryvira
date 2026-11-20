@@ -191,7 +191,7 @@ Observe, Teach veya trace kayıtlarının tamamına tek bir sabit süre uygulanm
 
 Geçerli mevzuata göre verilerinizin işlenip işlenmediğini öğrenme, bilgi ve erişim talep etme, yanlış verilerin düzeltilmesini isteme, silme veya kısıtlama talebinde bulunma, uygulanabildiğinde veri taşınabilirliği, işleme veya doğrudan pazarlamaya itiraz, rızayı geri alma ve otomatik kararlara ilişkin belirli haklara sahip olabilirsiniz. Yetkili veri koruma otoritesine şikâyet hakkınız da olabilir.
 
-Türkiye'de **KVKK Madde 11** kapsamında veri işleme hakkında bilgi alma, düzeltme, koşulları varsa silme veya yok etme, ilgili üçüncü kişilere bildirim, belirli münhasıran otomatik analizlere itiraz ve kanuni şartlarla zararın giderilmesini isteme hakları bulunmaktadır. Ayrıntılar için [KVKK Aydınlatma Metni](kvkk-notice.tr.md) incelenebilir.
+Türkiye'de **KVKK Madde 11** kapsamında veri işleme hakkında bilgi alma, düzeltme, koşulları varsa silme veya yok etme, ilgili üçüncü kişilere bildirim, belirli münhasıran otomatik analizlere itiraz ve kanuni şartlarla zararın giderilmesini isteme hakları bulunmaktadır. Ayrıntılar için [KVKK Aydınlatma Metni](kvkk-notice.tr.md), [Türkiye KVKK kayıt ve haklar açıklaması](tr-kvkk-notice.md), [AB GDPR Ek Hükümleri](eu-gdpr-addendum.tr.md) ve uygulanabildiğinde [ABD Eyaletleri Gizlilik Ek Hükümleri](us-state-privacy-addendum.tr.md) incelenebilir.
 
 Taleplerinizi **hello@tryvira.xyz** adresine iletebilirsiniz. İşlem yapmadan önce kimlik ve yetkinizi makul ölçüde doğrulayabiliriz. Talepler geçerli yasal sürelerde yanıtlanır. Bir kurumsal müşteri veri sorumlusuysa kendi son kullanıcılarına ilişkin taleplerin müşteri üzerinden ele alınması gerekebilir; Vira gerektiğinde destek sağlar.
 

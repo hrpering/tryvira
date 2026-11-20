@@ -7,7 +7,7 @@
 
 ## 1. Scope
 
-This document explains the commercial principles applicable to Vira accounts, individually approved subscriptions, and potential future self-service plans. It supplements the [Terms of Service](terms.en.md).
+This document explains the commercial principles applicable to Vira accounts, individually approved subscriptions, and potential future self-service plans. It supplements the [Terms of Service](terms.en.md). For qualifying consumers in Türkiye, see also the [Türkiye Consumer Service and Subscription Terms](tr-consumer-terms.en.md).
 
 **Vira is operated by Esad Türkel**, an independent individual service provider in Istanbul, Türkiye. Vira is a product name and is not currently an incorporated company.
 

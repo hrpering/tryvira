@@ -93,7 +93,7 @@ Use of hosted Services, protected infrastructure, and account-based APIs remains
 
 ## 11. Plans, Pricing, and Custom Commercial Activation
 
-Additional commercial information is available in [Billing and Subscription Disclosures](billing.en.md).
+Additional commercial information is available in [Billing and Subscription Disclosures](billing.en.md). Qualifying consumers in Türkiye should also review the [Türkiye Consumer Service and Subscription Terms](tr-consumer-terms.en.md).
 
 Vira may display free, individual, professional, business, and enterprise plans. Published plan descriptions and prices are informational unless a purchase or subscription mechanism is expressly offered.
 

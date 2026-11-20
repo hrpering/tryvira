@@ -42,7 +42,7 @@ Vira separates *what should happen* from *how an application runs*. You can expl
 
 ## Legal
 
-[Terms](legal/terms.en.md) · [Privacy](legal/privacy.en.md) · [Cookies](legal/cookies.en.md) · [Acceptable Use](legal/acceptable-use.en.md) · [KVKK Notice](legal/kvkk-notice.tr.md) · [All legal documents (EN/TR)](legal/README.md)
+[Terms](legal/terms.en.md) · [Privacy](legal/privacy.en.md) · [Cookies](legal/cookies.en.md) · [Acceptable Use](legal/acceptable-use.en.md) · [KVKK Notice](legal/kvkk-notice.tr.md) · [All legal documents (EN/TR, regional terms)](legal/README.md)
 
 ## Help and contributing
 
