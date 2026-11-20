@@ -6,7 +6,9 @@ description: "Implement or debug a Vira integration using the published JavaScri
 
 # JavaScript / TypeScript SDK
 
-Use the currently published `@tryvira/sdk`; discover the registry version rather than copying a stale pin. Verify method names and signatures against the public SDK reference and installed package types. Use `ViraClient`, scoped env configuration, stable idempotency keys for retried mutations, and explicit error handling. Semantic resolve is not authorization. Never invent an SDK method from another surface. For TaskRun routing and state transitions, hand off to `vira-task-runs`; Python has corresponding TaskRun methods; inspect HTTP and MCP independently.
+Use the actually published `@tryvira/sdk`; check the registry version before installing or pinning. The maintained source manifest declares 0.1.74 as of 21 November 2026 but that alone is not proof of npm publication. Verify method names and signatures against the public SDK reference and installed package types. Use `ViraClient`, scoped env configuration, stable idempotency keys for retried mutations, and explicit error handling. Semantic resolve is not authorization. Never invent an SDK method from another surface. For TaskRun routing and state transitions, hand off to `vira-task-runs`; Python has corresponding TaskRun methods; inspect HTTP and MCP independently.
+
+The inspected JavaScript source exposes canonical `connectAiSystem`, `recordUserFeedback` and `recordBusinessOutcome` plus older `connectOnce`, `feedback` and `outcome` compatibility aliases. Check the installed package types before choosing a name.
 
 The SDK needs `VIRA_API_URL`, the Vira API deployment root supplied by the operator, as `baseUrl` (do not append `/v1` and do not use the Studio URL). Keep `VIRA_API_KEY` server-side. If the URL is missing, ask for it; do not guess a host.
 
