@@ -92,7 +92,7 @@ Ek güvencenin gerekli olduğu aktarımlarda taraflar, aktarım öncesinde hukuk
 
 ## 11. Veri İadesi, Silme ve Saklama
 
-Hizmetler sona erdiğinde Vira; mevzuatın saklamayı zorunlu kıldığı veriler dışında, uygulanabilir ve teknik olarak desteklendiği ölçüde Müşterinin seçimine göre verileri iade eder veya talimatla siler.
+Hizmetler sona erdiğinde Vira, mevzuat saklamayı zorunlu kılmadıkça, Müşterinin seçimine göre Müşteri Kişisel Verilerinin tamamını iade eder veya siler ve mevcut kopyalarını da siler. Vira, mevcut dışa aktarma yollarını sunar veya Müşteriyle doğrulanmış iade/silme işlemini koordine eder. Yedek ve üçüncü taraf kopyaları bakımından ilgili kanuni yükümlülükler ve üzerinde anlaşılan teknik süreçler uygulanır.
 
 Silinmesi gereken hesap verileri için Vira'nın **hesap silme sonrasındaki 30 günlük** süreci geçerlidir; hukuken haklı istisnalar saklıdır. Hesap kapatılmadan talep edilen diğer silme işlemleri verinin türüne, dışa aktarma/silme araçlarına, yedeklere ve doğrulanmış talimatlara göre yürütülür. Sırf depolama kotası kullanılmadığı için kişisel veriler saklanmaz.
 
