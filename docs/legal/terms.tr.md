@@ -93,7 +93,7 @@ Barındırılan Hizmetler, korunan altyapı ve hesap temelli API'ler bu Koşulla
 
 ## 11. Paketler, Fiyatlandırma ve Özel Aktivasyon
 
-Ek ticari bilgiler [Faturalandırma ve Abonelik Bilgilendirmesi'nde](billing.tr.md) açıklanır.
+Ek ticari bilgiler [Faturalandırma ve Abonelik Bilgilendirmesi'nde](billing.tr.md) açıklanır. Türkiye'de tüketici sıfatıyla işlem yapanlara [Türkiye Tüketici Hizmet ve Abonelik Koşulları](tr-consumer-terms.md) da uygulanır.
 
 Vira; ücretsiz, bireysel, profesyonel, işletme ve kurumsal paketler gösterebilir. Açıkça satın alma veya abonelik mekanizması sunulmadıkça yayımlanan paket ve fiyat bilgileri bilgilendirme amaçlıdır.
 
