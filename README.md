@@ -194,6 +194,12 @@ Each integration has its own supported operations. Check the [compatibility guid
 - **Working with behavior changes?** [Packs](docs/packs.md), [Teach AI](docs/teach.md), [evaluation](docs/evaluation-and-approval.md), and [runtime](docs/runtime.md).
 - **Contributing?** [Contribution guide](CONTRIBUTING.md), [support](SUPPORT.md), and [security reporting](SECURITY.md).
 
+## Legal
+
+[Terms of Service (English)](docs/legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](docs/legal/terms.tr.md) · [Legal documents & planned policies](docs/legal/README.md)
+
+Legal drafts refer to the service at **https://studio.tryvira.xyz**. They are not yet a substitute for the Studio's versioned acceptance and required privacy disclosures.
+
 ## Trust, limits, and licensing
 
 Vira is **not** a foundation model, an agent framework, or an automatic replacement for application authorization. Runtime outcomes depend on the integration boundary. Semantic matches and Teach suggestions are not permission to release or execute. Check the [authority and security model](docs/security-model.md).
