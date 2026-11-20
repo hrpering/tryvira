@@ -42,7 +42,7 @@
 
 <p align="center">
   <a href="https://mcprush.com/to/vira-own-how-your-ai-behaves-mcp?ref=badge">
-    <img src="https://mcprush.com/badge/vira-own-how-your-ai-behaves-mcp/card.svg" alt="Vira on MCPRush" height="72" />
+    <img src="https://mcprush.com/badge/vira-own-how-your-ai-behaves-mcp/card.svg" alt="Vira on MCPRush" width="420" />
   </a>
 </p>
 
