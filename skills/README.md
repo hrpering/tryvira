@@ -47,7 +47,7 @@ To try the local chatbot with Vira OFF/ON, start with the root `vira` Skill and 
 
 Installing from the repository root should select the root `vira` Skill by default. The 28 specialist Skill directories remain in this repository for advanced direct-path use and for their independently verified archives. See [installation and compatibility details](../docs/agent-skills/installation.md).
 
-For JavaScript/Python TaskRun workflows, the root Skill discovers the installed SDK method and handles the route/admission/readback boundaries. Optional specialist reference: [vira-task-runs](vira-task-runs/SKILL.md).
+For JavaScript/Python/MCP TaskRun workflows, the root Skill discovers the installed SDK method or live MCP tools and handles the route/admission/readback boundaries. Optional specialist reference: [vira-task-runs](vira-task-runs/SKILL.md).
 
 ## Default: agent-first operations
 
@@ -89,6 +89,8 @@ npx skills add hrpering/tryvira --skill vira
 | `vira-debug` | Surface-specific troubleshooting |
 | `vira-lifecycle` | End-to-end behavior lifecycle planning |
 | `vira-full-lifecycle` | Orchestrate a complete governed user workflow |
+
+For package source/registry version differences and OpenCode approval limitations, see the [integration compatibility guide](../docs/integration-compatibility.md). MCP canonical names may differ from older callable aliases; always follow the live tool catalog.
 
 Shared sources: [capability matrix](../references/capability-matrix.md), [authority and safety](../references/authority-and-safety.md), [coverage and validation report](../docs/agent-skills/validation-status.md), [maintenance process](../docs/agent-skills/maintenance.md). These skills distinguish SDK, Python, HTTP, MCP, and Studio capability. MCP tools must be discovered at runtime; SDK operations are not automatically MCP tools.
 
