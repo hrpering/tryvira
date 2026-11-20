@@ -1,12 +1,14 @@
 # JavaScript / TypeScript SDK
 
-**Current package:** [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk) `0.1.67`
+**Package:** [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk). **Inspected source manifest:** `0.1.74` (21 November 2026); check npm before claiming this version is published.
 
 **Runtime:** Node.js 20+
 
-**Install:** `npm install @tryvira/sdk@0.1.67`
+**Install:** `npm install @tryvira/sdk` (then pin the registry-verified version in a lockfile).
 
-The published npm package is the authoritative source for the current method signatures and request/response types. This repository's public integration guidance intentionally avoids reproducing low-level operation schemas. Read the package README and type declarations for the exact version installed in your application.
+The installed, registry-published npm package is the authoritative source for the current method signatures and request/response types. This repository's public integration guidance intentionally avoids reproducing low-level operation schemas. Read the package README and type declarations for the exact version installed in your application.
+
+The inspected source also provides `connectAiSystem`, `recordUserFeedback`, and `recordBusinessOutcome` as canonical helper names, alongside older `connectOnce`, `feedback`, and `outcome` aliases. Check the installed package exports before using the newer names. See [version verification](../published-packages.md).
 
 ## Configure a customer-owned Vira deployment
 
