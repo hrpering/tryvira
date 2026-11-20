@@ -13,7 +13,7 @@ Vira is operated from a coding agent without requiring Studio. **Skills decide t
 
 ## Operation matrix
 
-The MCP names below were checked against the Vira MCP 0.1.60 source catalog. They are **discovery hints**, not a promise of permission or fully equivalent SDK signatures.
+The MCP names below include historical 0.1.60 snapshot names and source-reviewed canonical names as of 21 November 2026. They are **discovery hints**, not a promise of permission or fully equivalent SDK signatures.
 
 | Goal | MCP tools to discover | JavaScript SDK | Python SDK | Required evidence |
 | --- | --- | --- | --- | --- |
@@ -22,7 +22,7 @@ The MCP names below were checked against the Vira MCP 0.1.60 source catalog. The
 | Resolve conflicts | `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` | Use MCP when exposed, verify installed alternatives individually | Use MCP when exposed, verify installed alternatives individually | Persisted inspection ID, exact decision, reviewer authority and readback |
 | Optimize candidates | `start_optimization`, `get_optimization_run`, `cancel_optimization_run` | Check installed SDK; do not infer Python/JS parity | Check installed SDK; do not infer JS/Python parity | Approved dataset/holdout, scoped run ID, actual status, no silent release |
 | Discover scope and AI System | `list_capabilities`, `list_ai_systems`, `list_system_connections`, `connection_health` | `listCapabilities`, `listAISystems`, `listSystemConnections`, `connectionHealth` | `list_capabilities`, `list_ai_systems`, `list_system_connections`, `connection_health` | Actual scoped IDs and capability state |
-| Connect an agent | `connect_once`, `get_connection` | `connectOnce`, `getConnection` | `connect_once`, `get_connection` | Returned AI System and Connection IDs |
+| Connect an agent | `connect_ai_system` (older alias: `connect_once`), `get_connection` | `connectAiSystem` (older alias: `connectOnce`), `getConnection` | `connect_once`, `get_connection` | Returned AI System and Connection IDs |
 | Observe and Teach | `observe`, `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis` | `observe`, `submitTeachEvidence`, `createTeachAnalysis`, `getTeachAnalysis` | `observe`, `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis` | Consent, accepted evidence and analysis status |
 | Author and build | `create_semantic_task`, `create_behavior_point`, `create_behavior_program`, `import_pack` | `createSemanticTask`, `createBehaviorPoint`, `createBehaviorProgram`, `importPack` | `create_semantic_task`, `create_behavior_point`, `create_behavior_program`, `import_pack` | Canonical IDs and immutable candidate digest |
 | Materialize/evaluate | `install_pack`, `get_job`, `evaluate_pack`, `get_evaluation` | `installPack`, `evaluatePack`, `getEvaluation` | `install_pack`, `evaluate_pack`, `get_evaluation` | Completed materialization and actual evaluation tied to digest |
