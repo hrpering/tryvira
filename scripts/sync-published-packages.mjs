@@ -82,15 +82,15 @@ try {
   // their dependency graphs using the project package manager.
   const SAFE_VERSION_SYNC_PATHS = [
     "README.md", "README.tr.md",\n    // This human-authored page separates source-manifest versions from registry\n    // releases and historical snapshots; blind replacement corrupts that audit.\n    // Current published versions remain in package-versions.json.
-    // Do not rewrite source-manifest comparison pages via a registry pin replacement.\n    "docs/reference/javascript-sdk.md", "docs/reference/python-sdk.md",
-    "docs/reference/mcp.md", "docs/ai-prompts/setup-javascript-sdk.md",
+    // Do not rewrite source-manifest comparison pages via a registry pin replacement.\n    
+    "docs/ai-prompts/setup-javascript-sdk.md",
     "docs/ai-prompts/setup-python-sdk.md", "docs/ai-prompts/setup-mcp.md",
     "examples/README.md", "examples/mcp/README.md",
     "examples/javascript/README.md", "examples/python/README.md",
     "examples/semantic-runtime/README.md",
     "examples/agent-first/README.md", "examples/frameworks/mcp-client/README.md",
     "docs/example-verification.md", "docs/troubleshooting/mcp-errors.md",
-    "docs/agent-first-operation-flow.md", "docs/agent-skills/e2e-completion-plan.md"
+    "docs/agent-skills/e2e-completion-plan.md"
   ];
   for (const relativePath of SAFE_VERSION_SYNC_PATHS) {
     const path = join(root, relativePath);
