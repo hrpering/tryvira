@@ -129,7 +129,7 @@ Hukuken gerekli olduğunda zorunlu olmayan analitik ve reklam takibi, kullanıc�
 
 Reklam ve ölçüm sağlayıcıları, kendi sıfat ve koşullarına göre tanımlayıcıları ve etkileşim verilerini işleyebilir. ABD'nin uygulanabilir bazı eyalet yasaları bakımından reklam aktarımı, para ödemesi olmasa da hedefli reklam, "satış" veya "paylaşım" sayılabilir. Kanunen gerekli tercih ve itiraz hakları saklıdır.
 
-Ayrı Çerez Politikamız, kullanılan çerez ve takip teknolojileri hakkında daha ayrıntılı bilgi sağlar.
+Takip kategorilerini çerez tercihleri üzerinden inceleyebilir ve seçimlerinizi güncelleyebilirsiniz. Belirli bir takip teknolojisi hakkında ek bilgi için hello@tryvira.xyz adresine başvurabilirsiniz.
 
 ## 10. İletişim
 
