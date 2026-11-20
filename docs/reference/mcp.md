@@ -1,9 +1,9 @@
 # MCP integration
 
-Published client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) (documented version **0.1.60**), Node.js 20+.
+Client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp), Node.js 20+. The maintained source declares **0.1.78** as of 21 November 2026. The published tool snapshot in this repository represents **0.1.60**; confirm actual registry version separately.
 
 ```bash
-npx -y @tryvira/mcp@0.1.60
+npx -y @tryvira/mcp
 ```
 
 This is a stdio client of the Vira Control API, **not** another Vira runtime or authority. The installed package's `tools/list` and the customer's server-side permissions are authoritative. It does not automatically read a `.env` file.
@@ -30,7 +30,9 @@ The supported discovery flow is:
 server/discover → initialize → tools/list → tools/call
 ```
 
-Find the exact tool and its schema in **your installed server's** `tools/list`. Version 0.1.60 contains tools for Connections and AI Systems, TaskRun resolve/start/read/events/continue/cancel/retry, Pack import/install/evaluate/approve/release, Teach analysis/recommendation/review, Strategy/Program authoring, observation and signals, evaluations, job readback, trace search and host authorization. Availability can be further constrained by role, scope, release eligibility or policy.
+Find the exact tool and its schema in **your installed server's** `tools/list`. The inspected source and earlier published catalog include tools for Connections and AI Systems, TaskRun resolve/start/read/events/continue/cancel/retry, Pack import/install/evaluate/approve/release, Teach analysis/recommendation/review, Strategy/Program authoring, observation and signals, evaluations, job readback, trace search and host authorization. Availability can be further constrained by role, scope, release eligibility or policy.
+
+Prefer current canonical tool names such as `connect_ai_system`, `record_user_feedback` and `record_business_outcome` when they appear in live discovery; older compatibility aliases such as `connect_once`, `feedback` and `outcome` need not be advertised in `tools/list`. The installed catalog and schema win.
 
 A useful read-only first call is `list_capabilities`; move to `list_ai_systems` or `list_packs` only once the host confirms the tool and scope. A real application run normally uses AUTO TaskRun. `resolve_task_run` provides a proposal; `start_task_run` requests admission, then `get_task_run` and `list_task_run_events` read persisted state. Do not treat ROUTED, 202 or COMPLETED as a verified end-user answer.
 
@@ -52,4 +54,4 @@ See [one operation flow](../agent-first-operation-flow.md), [tool/Skill map](mcp
 - Provider-output verification is distinct from TaskRun completion; a successful MCP tool call is not a post-model PASS.
 - Missing host interception/pre-display capability means that enforcement level is unavailable.
 
-[Registry-generated versioned-tool inventory](mcp-published-tools.json) · [Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).
+[Historical 0.1.60 versioned-tool inventory](mcp-published-tools.json) · [Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).
