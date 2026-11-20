@@ -6,13 +6,14 @@ Legal documents for Vira services available under **tryvira.xyz**, including **s
 | --- | --- | --- |
 | Terms of Service | [Terms of Service](terms.en.md) | [Kullanım Koşulları](terms.tr.md) |
 | Privacy Policy | [Privacy Policy](privacy.en.md) | [Gizlilik Politikası](privacy.tr.md) |
+| Cookie Policy | [Cookie Policy](cookies.en.md) | [Çerez Politikası](cookies.tr.md) |
 
 **Service operator:** Esad Türkel, Istanbul, Türkiye  
 **Contact:** hello@tryvira.xyz
 
 ## Other policies
 
-Additional service-specific legal materials, including Cookie Policy, Acceptable Use Policy, and enterprise Data Processing Agreements, may be provided separately as relevant to the service or commercial arrangement.
+Additional service-specific legal materials, including Acceptable Use Policy and enterprise Data Processing Agreements, may be provided separately as relevant to the service or commercial arrangement.
 
 Software licensing is separate from the hosted service Terms. See the repository [license](../../LICENSE) and the [published-package licensing guide](../published-packages.md) for the terms applicable to distributed software components.
 
