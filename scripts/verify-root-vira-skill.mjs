@@ -36,7 +36,14 @@ for(const [label,page] of [["README",en],["README.tr",tr],["installation",instal
 assert.doesNotMatch(en,/npx skills add hrpering\/tryvira --skill vira-(?:mcp|operator)/,"README should no longer require two separate Skills");
 
 const config=JSON.parse(await readFile("plugins/opencode/opencode.example.json","utf8"));
-assert.ok(Array.isArray(config.plugins)&&config.plugins.includes("@tryvira/opencode"));
+assert.ok(Array.isArray(config.plugins));
+const configuredPlugin = config.plugins.find(entry =>
+  entry === "@tryvira/opencode" ||
+  (entry && typeof entry === "object" && entry.package === "@tryvira/opencode"));
+assert.ok(configuredPlugin, "The sample must configure the Vira OpenCode package");
+if (typeof configuredPlugin === "object") {
+  assert.equal(configuredPlugin.options?.mode, "observe", "Public OpenCode starter must default to observe");
+}
 assert.ok(!("plugin" in config),"OpenCode now uses plugins plural");
 assert.ok(!JSON.stringify(config).includes("VIRA_API_KEY"),"Never embed credential placeholders as JSON options");
 const plugin=await readFile("plugins/opencode/README.md","utf8");
