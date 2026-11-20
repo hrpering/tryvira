@@ -1,11 +1,9 @@
 # Vira Terms of Service
 
 **Last updated:** November 20, 2026  
-**Version:** 1.0 — Draft for legal review  
+**Version:** 1.0  
 **Service website:** https://studio.tryvira.xyz  
 **Contact:** hello@tryvira.xyz
-
-> **Publication note:** This draft is provided for review. Publishing a repository file alone does not establish user acceptance of these Terms. The applicable service must implement an appropriate acceptance and version-recording process before relying on them as a binding agreement.
 
 ## 1. Introduction and Agreement
 
@@ -194,8 +192,6 @@ The Turkish and English versions are intended to have equivalent meaning. For us
 **Location:** Istanbul, Türkiye  
 **Service website:** https://studio.tryvira.xyz  
 **General and legal contact:** hello@tryvira.xyz
-
-Additional legally required provider identification, address, and service-of-notice details must be made available through appropriate disclosures before commercial operation where applicable.
 
 ---
 

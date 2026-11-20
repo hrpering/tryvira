@@ -42,9 +42,7 @@ Vira separates *what should happen* from *how an application runs*. You can expl
 
 ## Legal
 
-[Terms of Service (English)](legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](legal/terms.tr.md) · [Legal documents and upcoming policies](legal/README.md)
-
-These are drafts pending legal review and the Studio acceptance flow; publication in GitHub does not itself make them effective.
+[Terms of Service (English)](legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](legal/terms.tr.md) · [Privacy Policy (English)](legal/privacy.en.md) · [Gizlilik Politikası (Türkçe)](legal/privacy.tr.md) · [Legal documents](legal/README.md)
 
 ## Help and contributing
 

@@ -20,9 +20,7 @@ Uzman Skill'ler gelişmiş referanslar olarak korunuyor. OpenCode entegrasyonu i
 
 ## Yasal belgeler
 
-[Kullanım Koşulları (Türkçe)](docs/legal/terms.tr.md) · [Terms of Service (English)](docs/legal/terms.en.md) · [Yasal belgeler ve hazırlık listesi](docs/legal/README.md)
-
-Bu taslak belgeler **https://studio.tryvira.xyz** için hazırlanmıştır. GitHub'da yayımlanması, Studio'da kullanıcı onayı alındığı veya zorunlu gizlilik bildirimlerinin tamamlandığı anlamına gelmez.
+[Kullanım Koşulları (Türkçe)](docs/legal/terms.tr.md) · [Terms of Service (English)](docs/legal/terms.en.md) · [Gizlilik Politikası (Türkçe)](docs/legal/privacy.tr.md) · [Privacy Policy (English)](docs/legal/privacy.en.md) · [Yasal belgeler](docs/legal/README.md)
 
 ## Neden Vira?
 
