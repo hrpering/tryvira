@@ -80,9 +80,10 @@ try {
   // Limit automatic version replacement to human-readable latest-install references.
   // Never rewrite hashed lockfiles or package manifests without regenerating
   // their dependency graphs using the project package manager.
+  // This whitelist contains install-oriented text only. Historical source vs
+  // registry comparison tables and versioned snapshots are not auto-replaced.
   const SAFE_VERSION_SYNC_PATHS = [
-    "README.md", "README.tr.md",\n    // This human-authored page separates source-manifest versions from registry\n    // releases and historical snapshots; blind replacement corrupts that audit.\n    // Current published versions remain in package-versions.json.
-    // Do not rewrite source-manifest comparison pages via a registry pin replacement.\n    
+    "README.md", "README.tr.md",
     "docs/ai-prompts/setup-javascript-sdk.md",
     "docs/ai-prompts/setup-python-sdk.md", "docs/ai-prompts/setup-mcp.md",
     "examples/README.md", "examples/mcp/README.md",
