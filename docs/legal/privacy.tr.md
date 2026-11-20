@@ -157,7 +157,7 @@ Model sağlayıcıları, kimlik doğrulama hizmetleri, reklam ve analitik teknol
 
 GDPR'ın gerektirdiği durumlarda Avrupa Ekonomik Alanı dışına aktarım, geçerli yeterlilik kararı, yürürlükte olduğu ölçüde Standart Sözleşme Maddeleri gibi uygun güvenceler veya diğer hukuka uygun mekanizmalara dayanır. KVKK kapsamındaki aktarımlar ayrıca Kanun'un 9. maddesindeki şartlara uygun olmalıdır.
 
-Uygulanan aktarım düzenlemeleri alıcıya ve dağıtım yapılandırmasına bağlıdır. Ayrıntılı bilgi için hello@tryvira.xyz adresine başvurabilirsiniz.
+Uygulanan aktarım düzenlemeleri alıcıya ve dağıtım yapılandırmasına bağlıdır. [Üçüncü Taraf Hizmetler ve Alt Veri İşleyenler Kaydı](subprocessors.tr.md) üzerinden genel bilgileri inceleyebilir veya hello@tryvira.xyz adresine başvurabilirsiniz.
 
 ## 13. Güvenlik ve Erişim
 
@@ -191,7 +191,7 @@ Observe, Teach veya trace kayıtlarının tamamına tek bir sabit süre uygulanm
 
 Geçerli mevzuata göre verilerinizin işlenip işlenmediğini öğrenme, bilgi ve erişim talep etme, yanlış verilerin düzeltilmesini isteme, silme veya kısıtlama talebinde bulunma, uygulanabildiğinde veri taşınabilirliği, işleme veya doğrudan pazarlamaya itiraz, rızayı geri alma ve otomatik kararlara ilişkin belirli haklara sahip olabilirsiniz. Yetkili veri koruma otoritesine şikâyet hakkınız da olabilir.
 
-Türkiye'de **KVKK Madde 11** kapsamında veri işleme hakkında bilgi alma, düzeltme, koşulları varsa silme veya yok etme, ilgili üçüncü kişilere bildirim, belirli münhasıran otomatik analizlere itiraz ve kanuni şartlarla zararın giderilmesini isteme hakları bulunmaktadır.
+Türkiye'de **KVKK Madde 11** kapsamında veri işleme hakkında bilgi alma, düzeltme, koşulları varsa silme veya yok etme, ilgili üçüncü kişilere bildirim, belirli münhasıran otomatik analizlere itiraz ve kanuni şartlarla zararın giderilmesini isteme hakları bulunmaktadır. Ayrıntılar için [KVKK Aydınlatma Metni](kvkk-notice.tr.md) incelenebilir.
 
 Taleplerinizi **hello@tryvira.xyz** adresine iletebilirsiniz. İşlem yapmadan önce kimlik ve yetkinizi makul ölçüde doğrulayabiliriz. Talepler geçerli yasal sürelerde yanıtlanır. Bir kurumsal müşteri veri sorumlusuysa kendi son kullanıcılarına ilişkin taleplerin müşteri üzerinden ele alınması gerekebilir; Vira gerektiğinde destek sağlar.
 
