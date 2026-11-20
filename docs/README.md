@@ -40,6 +40,12 @@ Vira separates *what should happen* from *how an application runs*. You can expl
 
 **Integration note:** Available operations differ by SDK, MCP server, hosted environment and credentials. The public Next.js ON example currently shows AUTO TaskRun status, not a final provider answer verified by Vira. See [current availability](product-status.md).
 
+## Legal
+
+[Terms of Service (English)](legal/terms.en.md) · [Kullanım Koşulları (Türkçe)](legal/terms.tr.md) · [Legal documents and upcoming policies](legal/README.md)
+
+These are drafts pending legal review and the Studio acceptance flow; publication in GitHub does not itself make them effective.
+
 ## Help and contributing
 
 [Contributing](../CONTRIBUTING.md) · [Support](../SUPPORT.md) · [Security reporting](../SECURITY.md) · [Repository license](../LICENSE)
