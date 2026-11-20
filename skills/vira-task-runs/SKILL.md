@@ -23,7 +23,7 @@ Use an isolated development scope when available. Production use remains subject
 
 ## Workflow
 
-1. **Check support.** Confirm that the installed package and customer scope support TaskRuns. Python has corresponding TaskRun methods; do not infer HTTP or MCP parity from either client.
+1. **Check support.** Confirm that the installed package and customer scope support TaskRuns. Python has corresponding TaskRun methods, and inspected MCP source advertises `resolve_task_run`, `start_task_run`, `get_task_run`, `list_task_run_events`, `continue_task_run`, `cancel_task_run`, and `retry_task_run`; use them only when the running MCP `tools/list` exposes the exact schema. Do not infer raw HTTP parity from either client.
 2. **Review the request.** Resolve ambiguity and confirm the intended outcome, boundaries, and budget before admitting work.
 3. **Route before start.** If the supported interface provides a proposal-only routing step, inspect its result. Clarification, denial, abstention, or unsupported-host outcomes are stops, not invitations to bypass the boundary.
 4. **Authorize admission.** Start only after the user has approved the request and the customer scope is verified. Use the documented idempotency mechanism for retried mutations.
