@@ -7,7 +7,7 @@
 
 ## 1. Kapsam
 
-Bu belge, Vira hesaplarına, bireysel olarak onaylanan aboneliklere ve gelecekte sunulabilecek otomatik satın alma paketlerine ilişkin ticari ilkeleri açıklar. [Kullanım Koşulları'nı](terms.tr.md) tamamlar.
+Bu belge, Vira hesaplarına, bireysel olarak onaylanan aboneliklere ve gelecekte sunulabilecek otomatik satın alma paketlerine ilişkin ticari ilkeleri açıklar. [Kullanım Koşulları'nı](terms.tr.md) tamamlar. Türkiye'de tüketici işlemlerinde [Türkiye Tüketici Hizmet ve Abonelik Koşulları](tr-consumer-terms.md) da dikkate alınır.
 
 **Vira, İstanbul, Türkiye'de yerleşik gerçek kişi hizmet sağlayıcısı Esad Türkel tarafından işletilir.** Vira bir ürün adıdır; mevcut durumda şirket tüzel kişiliğini ifade etmez.
 
