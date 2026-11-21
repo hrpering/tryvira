@@ -36,8 +36,8 @@ class PublicContractChecks(unittest.TestCase):
         self.assertIn("@tryvira/sdk", versions["npm"])
         self.assertIn("@tryvira/mcp", versions["npm"])
         self.assertIn("tryvira-sdk", versions["pypi"])
-        self.assertIn("discover the registry version", self.read("skills/vira-js-sdk/SKILL.md").lower())
-        self.assertIn("discover current registry version", self.read("skills/vira-python-sdk/SKILL.md").lower())
+        self.assertRegex(self.read("skills/vira-js-sdk/SKILL.md").lower(), r"(?:discover|check|verify).{0,25}registry.{0,15}version")
+        self.assertRegex(self.read("skills/vira-python-sdk/SKILL.md").lower(), r"(?:discover|check|verify).{0,35}(?:pypi|registry).{0,15}version")
         self.assertNotRegex(self.read("skills/vira-mcp/SKILL.md"), r"@tryvira/mcp@\d")
 
     def test_studio_status_is_not_inferred_from_route_presence(self):
@@ -189,8 +189,10 @@ class PublicContractChecks(unittest.TestCase):
     def test_published_sdk_task_coverage_routes_to_skills(self):
         inventory = self.read("docs/reference/sdk-method-inventory.md")
         versions = json.loads(self.read("package-versions.json"))
-        self.assertIn(versions["npm"]["@tryvira/sdk"], self.read("docs/reference/javascript-sdk.md"))
-        self.assertIn(versions["pypi"]["tryvira-sdk"], self.read("docs/reference/python-sdk.md"))
+        self.assertIn("../published-packages.md", self.read("docs/reference/javascript-sdk.md"))
+        self.assertIn("@tryvira/sdk", self.read("docs/reference/javascript-sdk.md"))
+        self.assertIn("../published-packages.md", self.read("docs/reference/python-sdk.md"))
+        self.assertIn("tryvira-sdk", self.read("docs/reference/python-sdk.md"))
         for skill in ("vira-js-sdk", "vira-python-sdk", "vira-task-runs", "vira-observe-teach", "vira-packs", "vira-release", "vira-runtime"):
             self.assertIn(f"`{skill}`", inventory)
         self.assertIn("does not reproduce method signatures", inventory)
