@@ -20,6 +20,10 @@ The compact interface table above is **not** the full product inventory. [Full p
 
 **Signals are not a synonym for observations; artifact verification, candidate evaluation and runtime post-model verification are separate gates.** [Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md).
 
+## MCP source vs published package
+
+The maintained shared MCP source catalog (`0.1.79`) declares **61** tool names. The reviewed published npm `0.1.78` snapshot contains **47**. This is a **cross-release comparison**, not a live hosted availability claim. The [generated compatibility report](mcp-surface-parity.md) lists their exact differences and updates when the published snapshot is synchronized.
+
 ## Published 0.1.78 MCP capabilities
 
 The [registry-verified versioned MCP snapshot](reference/mcp-published-tools.json) includes 47 advertised tools. It promotes scope, Inbox and conflict operations (`get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`), alongside TaskRun and Pack lifecycle tools and the authority-gated `read_control_api` / `write_control_api` surface. The dedicated optimization tool names advertised in the old 0.1.60 snapshot are **not promoted in 0.1.78**. A generic tool is not a license to guess an API path or bypass authorization. No JS/Python parity or tenant permission is implied.

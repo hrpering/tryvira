@@ -4,6 +4,8 @@
 
 The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
+**Compatibility note:** The maintained shared MCP source catalog now declares **61 tool names for version `0.1.79`**, while this verified npm `0.1.78` snapshot contains **47**. They are distinct revisions, not interchangeable claims. See the [generated source/npm comparison](../mcp-surface-parity.md). The source list does not prove a deployed hosted endpoint.
+
 ## Discover what the installed server supports
 
 Use the installed MCP server's `tools/list` response to see the current tool names and schemas available to the customer's configured deployment and credential scope. Package releases can change the available tools. This repository intentionally does not mirror low-level tool signatures or Teach/Pack request schemas.
@@ -27,7 +29,7 @@ The dedicated optimization tools from the older 0.1.60 catalog are **not first-c
 
 ## Product-level coverage
 
-The registry-verified 0.1.78 package offers a deliberately promoted public lifecycle surface plus generic access to documented registered Control API operations. This includes AI System/connection diagnostics; Semantic Tasks, BehaviorPoints, Programs and Strategies; TaskRun resolve/start/read/events/continue/cancel/retry; observations and signals; Teach analysis/recommendation/review; evaluations and comparative findings; Pack evaluation/approval/revisions/materialization; runtime capsule/projection verification; trace search; and host authorization. It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
+The registry-verified 0.1.78 package offers a deliberately promoted public lifecycle surface plus generic access to documented registered Control API operations. It offers promoted AI System connections, scoped task/point/strategy reads, TaskRun resolve/start/read/events/continue/cancel/retry, observations and feedback, Teach proposals, evaluations, Pack lifecycle and revision actions, runtime projection, plus registered Control API reads/writes. **Not every wider product feature (including trace search or host authorization) has its own promoted `0.1.78` tool.** It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
 
 If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Use the names, schemas and authorization decisions returned by the configured server.
 
@@ -51,7 +53,7 @@ Use the Skill for the product decision and lifecycle contract, then use MCP only
 | `vira-runtime`, `vira-runtime-verification`, `vira-traces` | runtime verification, host authorization and trace search | output-bound receipt, authority/revision identity and trace correlation |
 | `vira-full-lifecycle`, `vira-mcp` | scoped Inbox discovery/mark-read and review notices | server-returned actor/scope and persisted notification ID |
 | `vira-author-behavior`, `vira-debug` | create/read conflict inspection, approve or reject a conflict resolution | persisted inspection, human decision and exact authority |
-| `vira-evaluate`, `vira-full-lifecycle` | start/read/cancel an optimization run | reviewed dataset/holdout policy, actual optimization run ID and status |
+| `vira-evaluate`, `vira-full-lifecycle` | optimization only where an installed tool or registered and authorized API operation exists | reviewed dataset/holdout policy, actual optimization run ID and status |
 
 This is a routing aid, not an authorization grant. A Skill must stop when the installed catalog, scope or server response does not expose the required operation.
 

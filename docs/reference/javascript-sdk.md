@@ -1,6 +1,6 @@
 # JavaScript / TypeScript SDK
 
-**Package:** [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk). **Inspected source manifest:** `0.1.74` (21 November 2026); check npm before claiming this version is published.
+**Package:** [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk). **Inspected source manifest:** `0.1.75` (21 November 2026); check npm before claiming this version is published.
 
 **Runtime:** Node.js 20+
 

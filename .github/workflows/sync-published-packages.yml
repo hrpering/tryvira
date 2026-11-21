@@ -14,6 +14,8 @@ on:
       - scripts/sync-published-packages.mjs
       - scripts/sync-public-client-copy.mjs
       - scripts/sync-example-manifests.mjs
+      - scripts/verify-mcp-surface-parity.mjs
+      - docs/reference/mcp-maintained-source-tools.json
 permissions:
   contents: write
   pull-requests: write
@@ -40,6 +42,7 @@ jobs:
       - name: Read npm/PyPI and published MCP catalog
         run: |
           npm run sync:registry
+          node scripts/verify-mcp-surface-parity.mjs --write
           node scripts/sync-example-manifests.mjs
           node scripts/sync-public-client-copy.mjs
       - name: Regenerate exact npm integrity locks and Python hash locks

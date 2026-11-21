@@ -1,6 +1,6 @@
 # MCP integration
 
-Client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp), Node.js 20+. Registry metadata and the published npm tarball confirm **0.1.78** as of 21 November 2026. The [versioned tool snapshot](mcp-published-tools.json) represents this release's **47 advertised tools**; check the installed version and live catalog again when upgrading.
+Client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp), Node.js 20+. The checked npm `0.1.78` artifact advertises **47 tools**, as recorded in the [versioned tool snapshot](mcp-published-tools.json). The maintained source `0.1.79` declares **61** via a shared hosted/npm catalog, but source declaration is not proof of publication or live deployment. See the [source-versus-npm comparison](../mcp-surface-parity.md). Check installed version and `tools/list` before use.
 
 ```bash
 npx -y @tryvira/mcp
@@ -54,4 +54,4 @@ See [one operation flow](../agent-first-operation-flow.md), [tool/Skill map](mcp
 - Provider-output verification is distinct from TaskRun completion; a successful MCP tool call is not a post-model PASS.
 - Missing host interception/pre-display capability means that enforcement level is unavailable.
 
-[Historical 0.1.60 versioned-tool inventory](mcp-published-tools.json) · [Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).
+[Published npm versioned-tool inventory](mcp-published-tools.json) · [Source/npm parity](../mcp-surface-parity.md) · [Published package versions](../published-packages.md) · [JavaScript SDK](javascript-sdk.md) · [Python SDK](python-sdk.md) · [Operation reference](sdk-method-inventory.md).
