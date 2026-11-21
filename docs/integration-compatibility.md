@@ -9,11 +9,15 @@ Vira's public Skills, JavaScript/Python clients, MCP server and OpenCode adapter
 | Package | Version declared by the maintained package source (21 Nov 2026) | Prior version cited in this documentation | Confirm the installable release |
 | --- | --- | --- | --- |
 | `@tryvira/sdk` | `0.1.74` | `0.1.67` | `npm view @tryvira/sdk version` |
-| `@tryvira/mcp` | `0.1.78` | `0.1.60` | `npm view @tryvira/mcp version` |
+| `@tryvira/mcp` | `0.1.79` | `0.1.60` | `npm view @tryvira/mcp version` |
 | `@tryvira/opencode` | `0.1.67` | `0.1.61` | `npm view @tryvira/opencode version` |
 | `tryvira-sdk` (PyPI) | `0.1.55` | `0.1.54` | `python -m pip index versions tryvira-sdk` |
 
-**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55`, and the OpenCode npm `0.1.67` probe. The MCP tarball yielded **47 advertised tools** and its snapshot comparison passed. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
+**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55`, and the OpenCode npm `0.1.67` probe. The npm `0.1.78` tarball yielded **47 advertised tools** and its snapshot comparison passed. The subsequently reviewed maintained `0.1.79` shared MCP source catalog declares **61**; this is not yet an npm/host acceptance result. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
+
+## MCP surface parity
+
+The maintained shared hosted/npm MCP source catalog (version `0.1.79`) declares **61** tool names. The previously registry-verified npm `0.1.78` package exposes **47**. The [generated comparison](mcp-surface-parity.md) gives their name-level differences and clearly labels source declaration versus actual npm artifact. Same-version catalog names must match in CI; different-version lists are informational, never an excuse to bypass scope or authority. Live hosted `tools/list` and schema/effect parity have not been established.
 
 ## Operation boundaries
 
@@ -54,7 +58,7 @@ The verified OpenCode hook surface does **not** provide a supported response-bef
 | 1 — SDK + MCP documentation | **Updated** | Package guides, aliases, TaskRun capability matrix and historical MCP catalog status corrected |
 | 2 — Agent Skills | **Updated** | Root Skill and selected MCP/JS/Python/TaskRun/lifecycle/optimization/debugging guides aligned; all 28 specialist guides retained |
 | 3 — OpenCode | **Updated** | Observe-only example, host capability requirements, native one-use approval and output-verification limits documented |
-| 4 — Example/regression tests | **Completed** | PR [#28](https://github.com/hrpering/tryvira/pull/28) merged after successful GitHub Actions quality checks; registry-verified package pins, regenerated npm/Python locks and 47-tool MCP snapshot passed public package verification |
+| 4 — Example/regression tests | **Completed for 0.1.78** | PR [#28](https://github.com/hrpering/tryvira/pull/28) passed public checks and verified npm 0.1.78; new source 0.1.79 requires a separate published artifact check, synced locks and same-version MCP parity validation |
 | 5 — Live acceptance | **Not run** | Requires authorized tenant/host, actual tool discovery, real API readback, negative-scope and permission tests and post-model evidence |
 
 The package synchronization workflow ran `npm run verify`, registry metadata checks, published MCP tarball comparison and regenerated dependency locks successfully before creating its update branch. Those checks are not proof of a live Vira tenant, OpenCode host approval or a separately verified provider answer.
