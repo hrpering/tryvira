@@ -14,8 +14,8 @@ This page maps customer goals to public Skills without reproducing low-level SDK
 | Author a governed behavior | `vira-author-behavior` | `vira-signals`, `vira-strategies` | Keep authoring and runtime authority separate |
 | Build and govern a Pack | `vira-build-pack` | `vira-packs` | Check the installed surface and persisted candidate state |
 | Instrument a connected AI application with Observe events | `vira-observe` | `vira-integrate-app`, `vira-js-sdk`, `vira-python-sdk` | Event ingestion is not runtime verification or Teach completion |
-| Review inbox notifications and conflicts | `vira-mcp` | `vira-full-lifecycle`, `vira-debug`, `vira-author-behavior` | Published MCP 0.1.60 offers scoped Inbox and conflict inspect/read/resolve; effectful tools require operator and server authority |
-| Start and inspect optimization | `vira-evaluate` | `vira-mcp`, `vira-full-lifecycle` | Published MCP 0.1.60 start/read/cancel only; dataset/holdout/release parity is separate |
+| Review inbox notifications and conflicts | `vira-mcp` | `vira-full-lifecycle`, `vira-debug`, `vira-author-behavior` | Published MCP 0.1.78 offers scoped Inbox and conflict inspect/read/resolve; effectful tools require operator and server authority |
+| Start and inspect optimization | `vira-evaluate` | `vira-mcp`, `vira-full-lifecycle` | Published MCP 0.1.78 start/read/cancel only; dataset/holdout/release parity is separate |
 | Govern real post-model checks | `vira-runtime-verification` | `vira-task-runs`, `vira-runtime`, `vira-evaluate` | Verify actual output-bound receipt or mark unsupported |
 | Inspect TaskRun/child execution receipts and traces | `vira-traces` | `vira-runtime`, `vira-debug` | Read server evidence; never synthesize receipt or identity |
 | Observe and complete the Teach loop | `vira-observe-teach` | `vira-lifecycle`, `vira-evaluate`, `vira-release`, `vira-runtime` | Covers evidence through next runtime learning cycle |
