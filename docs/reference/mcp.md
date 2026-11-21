@@ -1,6 +1,6 @@
 # MCP integration
 
-Client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp), Node.js 20+. The maintained source declares **0.1.78** as of 21 November 2026. The published tool snapshot in this repository represents **0.1.60**; confirm actual registry version separately.
+Client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp), Node.js 20+. Registry metadata and the published npm tarball confirm **0.1.78** as of 21 November 2026. The [versioned tool snapshot](mcp-published-tools.json) represents this release's **47 advertised tools**; check the installed version and live catalog again when upgrading.
 
 ```bash
 npx -y @tryvira/mcp
@@ -30,13 +30,13 @@ The supported discovery flow is:
 server/discover → initialize → tools/list → tools/call
 ```
 
-Find the exact tool and its schema in **your installed server's** `tools/list`. The inspected source and earlier published catalog include tools for Connections and AI Systems, TaskRun resolve/start/read/events/continue/cancel/retry, Pack import/install/evaluate/approve/release, Teach analysis/recommendation/review, Strategy/Program authoring, observation and signals, evaluations, job readback, trace search and host authorization. Availability can be further constrained by role, scope, release eligibility or policy.
+Find the exact tool and its schema in **your installed server's** `tools/list`. The 0.1.78 public catalog promotes scoped connections, semantic resolution, TaskRun lifecycle, Pack evaluation/approval/release, Teach proposals, review/conflict actions, and a pair of generic registered Control API tools. **Not every internal SDK/API operation is a separately advertised MCP tool.** Availability can be further constrained by role, scope, release eligibility or policy.
 
 Prefer current canonical tool names such as `connect_ai_system`, `record_user_feedback` and `record_business_outcome` when they appear in live discovery; older compatibility aliases such as `connect_once`, `feedback` and `outcome` need not be advertised in `tools/list`. The installed catalog and schema win.
 
-A useful read-only first call is `list_capabilities`; move to `list_ai_systems` or `list_packs` only once the host confirms the tool and scope. A real application run normally uses AUTO TaskRun. `resolve_task_run` provides a proposal; `start_task_run` requests admission, then `get_task_run` and `list_task_run_events` read persisted state. Do not treat ROUTED, 202 or COMPLETED as a verified end-user answer.
+A useful read-only first call is `list_capabilities`; inspect the installed catalog for follow-up system/Pack listing tools or a documented registered Control API read. Do not assume that `list_ai_systems` or `list_packs` is directly promoted. A real application run normally uses AUTO TaskRun. `resolve_task_run` provides a proposal; `start_task_run` requests admission, then `get_task_run` and `list_task_run_events` read persisted state. Do not treat ROUTED, 202 or COMPLETED as a verified end-user answer.
 
-For writes, obtain explicit user/operator authorization; then obey Vira's role, scope, policy, evaluation and release checks. The MCP client cannot grant itself a role. Do not retry a denial through a different surface. The host must retain callback ownership for external tool execution: `authorize_host_tool` authorizes a proposal, it does not run the tool itself.
+For writes, obtain explicit user/operator authorization; then obey Vira's role, scope, policy, evaluation and release checks. The MCP client cannot grant itself a role. Do not retry a denial through a different surface. The host must retain callback ownership for external tool execution. If an installed release exposes an `authorize_host_tool` operation, it authorizes a proposal rather than executing the tool itself; do not invent it when absent.
 
 ## A single agent-first workflow
 
