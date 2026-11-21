@@ -13,7 +13,7 @@ Vira's public Skills, JavaScript/Python clients, MCP server and OpenCode adapter
 | `@tryvira/opencode` | `0.1.68` | `0.1.61` | `npm view @tryvira/opencode version` |
 | `tryvira-sdk` (PyPI) | `0.1.56` | `0.1.54` | `python -m pip index versions tryvira-sdk` |
 
-**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.75`, npm `@tryvira/mcp@0.1.79`, PyPI `tryvira-sdk==0.1.56` and the earlier OpenCode npm `0.1.67` probe. The npm MCP 0.1.79 tarball exposes **61 tools**, and its tool names match all 61 in the maintained shared source catalog. This confirms published name parity only; it is not a live hosted or model-output acceptance result. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
+**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.75`, npm `@tryvira/mcp@0.1.79`, PyPI `tryvira-sdk==0.1.56` and the OpenCode npm `0.1.68` probe. The npm MCP 0.1.79 tarball exposes **61 tools**, and its tool names match all 61 in the maintained shared source catalog. This confirms published name parity only; it is not a live hosted or model-output acceptance result. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
 
 ## MCP surface parity
 
