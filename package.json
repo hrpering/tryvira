@@ -29,7 +29,7 @@
     "verify:public-copy": "node scripts/check-public-copy.mjs",
     "test:pack-candidate": "node --test scripts/validate-pack-candidate.test.mjs",
     "test:operator": "node --test scripts/test-vira-operator.mjs",
-    "verify:agent-first": "node scripts/verify-agent-first-contract.mjs && node scripts/verify-skill-mcp-parity.mjs",
+    "verify:agent-first": "node scripts/verify-agent-first-contract.mjs && node scripts/verify-skill-mcp-parity.mjs && node scripts/verify-mcp-surface-parity.mjs --check",
     "verify:mcp-catalog-snapshot": "node scripts/verify-mcp-registry-catalog.mjs",
     "verify:mcp-registry-catalog": "node scripts/verify-mcp-registry-catalog.mjs --published",
     "verify:latest-clients": "node scripts/sync-example-manifests.mjs --check",
