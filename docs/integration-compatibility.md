@@ -8,12 +8,12 @@ Vira's public Skills, JavaScript/Python clients, MCP server and OpenCode adapter
 
 | Package | Version declared by the maintained package source (21 Nov 2026) | Prior version cited in this documentation | Confirm the installable release |
 | --- | --- | --- | --- |
-| `@tryvira/sdk` | `0.1.74` | `0.1.67` | `npm view @tryvira/sdk version` |
+| `@tryvira/sdk` | `0.1.75` | `0.1.67` | `npm view @tryvira/sdk version` |
 | `@tryvira/mcp` | `0.1.79` | `0.1.60` | `npm view @tryvira/mcp version` |
-| `@tryvira/opencode` | `0.1.67` | `0.1.61` | `npm view @tryvira/opencode version` |
-| `tryvira-sdk` (PyPI) | `0.1.55` | `0.1.54` | `python -m pip index versions tryvira-sdk` |
+| `@tryvira/opencode` | `0.1.68` | `0.1.61` | `npm view @tryvira/opencode version` |
+| `tryvira-sdk` (PyPI) | `0.1.56` | `0.1.54` | `python -m pip index versions tryvira-sdk` |
 
-**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55`, and the OpenCode npm `0.1.67` probe. The npm `0.1.78` tarball yielded **47 advertised tools** and its snapshot comparison passed. The subsequently reviewed maintained `0.1.79` shared MCP source catalog declares **61**; this is not yet an npm/host acceptance result. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
+**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55`, and the OpenCode npm `0.1.67` probe. The npm `0.1.78` tarball yielded **47 advertised tools** and its snapshot comparison passed. The subsequently reviewed maintained `0.1.79` shared MCP source catalog declares **61**. Registry metadata also confirms npm version `0.1.79` is published; its actual CLI tool list still needs tarball comparison and synced public references. This is not a hosted acceptance result. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
 
 ## MCP surface parity
 
