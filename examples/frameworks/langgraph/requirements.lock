@@ -945,9 +945,9 @@ truststore==0.10.5 \
     # via
     #   httpcore2
     #   httpx2
-tryvira-sdk==0.1.55 \
-    --hash=sha256:2ed938a72e260fe0120745a250b55e5c75e9a8f31d82d52d81748b6691b11f1a \
-    --hash=sha256:e53f42cfdcaeec6c83a4f817c4d6c142f7de14ca4bf751fad0bc23118ca1f385
+tryvira-sdk==0.1.56 \
+    --hash=sha256:2d5ce3bc765110f3309a4b800971e6cde3ef24840256f7b8aa0011e941a20706 \
+    --hash=sha256:5d95c1453f55fb1c2cd8b015d92dfff2ece984089a7ce92c4d82ee02bbc6b206
     # via -r examples/frameworks/langgraph/requirements.txt
 typing-extensions==4.16.0 \
     --hash=sha256:481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8 \

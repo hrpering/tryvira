@@ -13,11 +13,11 @@ Vira's public Skills, JavaScript/Python clients, MCP server and OpenCode adapter
 | `@tryvira/opencode` | `0.1.68` | `0.1.61` | `npm view @tryvira/opencode version` |
 | `tryvira-sdk` (PyPI) | `0.1.56` | `0.1.54` | `python -m pip index versions tryvira-sdk` |
 
-**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55`, and the OpenCode npm `0.1.67` probe. The npm `0.1.78` tarball yielded **47 advertised tools** and its snapshot comparison passed. The subsequently reviewed maintained `0.1.79` shared MCP source catalog declares **61**. Registry metadata also confirms npm version `0.1.79` is published; its actual CLI tool list still needs tarball comparison and synced public references. This is not a hosted acceptance result. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
+**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.75`, npm `@tryvira/mcp@0.1.79`, PyPI `tryvira-sdk==0.1.56` and the OpenCode npm `0.1.68` probe. The npm MCP 0.1.79 tarball exposes **61 tools**, and its tool names match all 61 in the maintained shared source catalog. This confirms published name parity only; it is not a live hosted or model-output acceptance result. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
 
 ## MCP surface parity
 
-The maintained shared hosted/npm MCP source catalog (version `0.1.79`) declares **61** tool names. The previously registry-verified npm `0.1.78` package exposes **47**. The [generated comparison](mcp-surface-parity.md) gives their name-level differences and clearly labels source declaration versus actual npm artifact. Same-version catalog names must match in CI; different-version lists are informational, never an excuse to bypass scope or authority. Live hosted `tools/list` and schema/effect parity have not been established.
+The maintained shared hosted/npm MCP source catalog and the registry-verified npm `0.1.79` package each advertise **61 matching names**. The [generated comparison](mcp-surface-parity.md) shows source and published evidence separately. The same-version tool-name parity gate now passes; it does **not** establish live hosted `tools/list`, matching request/response schemas, identical effect/approval behavior or customer permission.
 
 ## Operation boundaries
 
@@ -26,7 +26,7 @@ The maintained shared hosted/npm MCP source catalog (version `0.1.79`) declares 
 | Root `vira` Skill + specialists | Agent instructions, sequencing, safe handoff and inspection | Skills add new server capabilities or grant authority |
 | JavaScript / TypeScript SDK | Direct application lifecycle integration; typed `ViraClient` calls | Every SDK method is an MCP tool; all environments can execute it |
 | Python SDK | Python-side calls through the same scoped HTTP authority | Identical method shapes or method availability across languages |
-| MCP | Agent discovery through **live** `tools/list`; scoped lifecycle tools, TaskRun, Pack, Teach, traces and permission-aware operations | The 0.1.78 snapshot replaces the installed server's live catalog; a tool grants authority |
+| MCP | Agent discovery through **live** `tools/list`; scoped lifecycle tools, TaskRun, Pack, Teach and permission-aware operations | A versioned npm snapshot replaces live discovery, or a listed tool grants authority |
 | OpenCode plugin | Host-context projection, observations and **capability-attested** pre-tool authorization | OpenCode can block or repair a response *before display*; unsupported host hooks work anyway |
 
 The JavaScript client uses canonical verb-noun helpers such as `connectAiSystem`, `recordUserFeedback` and `recordBusinessOutcome`; older `connectOnce`, `feedback` and `outcome` names are retained as aliases in the inspected source. MCP similarly advertises `connect_ai_system`, `record_user_feedback` and `record_business_outcome` while compatibility aliases need not appear in live discovery. Follow **the actual installed package declarations and live MCP catalog**, not assumptions about cross-surface parity.
@@ -58,7 +58,7 @@ The verified OpenCode hook surface does **not** provide a supported response-bef
 | 1 — SDK + MCP documentation | **Updated** | Package guides, aliases, TaskRun capability matrix and historical MCP catalog status corrected |
 | 2 — Agent Skills | **Updated** | Root Skill and selected MCP/JS/Python/TaskRun/lifecycle/optimization/debugging guides aligned; all 28 specialist guides retained |
 | 3 — OpenCode | **Updated** | Observe-only example, host capability requirements, native one-use approval and output-verification limits documented |
-| 4 — Example/regression tests | **Completed for 0.1.78** | PR [#28](https://github.com/hrpering/tryvira/pull/28) passed public checks and verified npm 0.1.78; new source 0.1.79 requires a separate published artifact check, synced locks and same-version MCP parity validation |
+| 4 — Example/regression tests | **Completed for 0.1.79** | Published npm MCP 0.1.79 verified with 61 tool names matching source; npm/Python example locks regenerated and source/npm comparison CI passed in the registry synchronization workflow |
 | 5 — Live acceptance | **Not run** | Requires authorized tenant/host, actual tool discovery, real API readback, negative-scope and permission tests and post-model evidence |
 
 The package synchronization workflow ran `npm run verify`, registry metadata checks, published MCP tarball comparison and regenerated dependency locks successfully before creating its update branch. Those checks are not proof of a live Vira tenant, OpenCode host approval or a separately verified provider answer.

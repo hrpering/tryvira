@@ -5,27 +5,14 @@ This report is generated from the reviewed maintained **source declaration** and
 | Surface | Version | Advertised tools | Evidence |
 | --- | --- | ---: | --- |
 | Maintained Vira server/client shared catalog (source) | `0.1.79` | **61** | Reviewed source declaration on 2026-11-21; **not** a live hosted endpoint check |
-| Published `@tryvira/mcp` npm artifact | `0.1.78` | **47** | [Versioned npm CLI snapshot](reference/mcp-published-tools.json); npm bundle compared in registry CI |
-| Common tool names | These two snapshots | **47** | Name intersection only |
+| Published `@tryvira/mcp` npm artifact | `0.1.79` | **61** | [Versioned npm CLI snapshot](reference/mcp-published-tools.json); npm bundle compared in registry CI |
+| Common tool names | These two snapshots | **61** | Name intersection only |
 
-The two inventories **differ**: 14 tool(s) only in the maintained source snapshot, 0 only in the published npm snapshot. They describe **different package revisions**, so this difference must not be portrayed as a broken installed package or as complete public parity.
+The two inventories **have the same advertised names**: 0 tool(s) only in the maintained source snapshot, 0 only in the published npm snapshot. Both snapshots describe the same release version; the parity test requires their names to match.
 
-## Declared by maintained source, absent from this npm snapshot (14)
+## Declared by maintained source, absent from this npm snapshot (0)
 
-- `accept_behavior_revision_candidate`
-- `continue_strategy_execution`
-- `create_behavior_point`
-- `create_improvement_proposal`
-- `create_observation`
-- `create_release`
-- `create_semantic_task`
-- `get_behavior_strategy`
-- `get_pack_revision_diff`
-- `get_strategy_execution_trace`
-- `list_ai_systems`
-- `list_discovery_candidates`
-- `list_packs`
-- `review_discovery_candidate`
+None.
 
 ## Present in this npm snapshot, absent from maintained source declaration (0)
 
