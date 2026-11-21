@@ -45,4 +45,29 @@ assert.ok(!newer.some(tool => tool.name === "secret_internal_write"));
 assert.throws(() => parseMcpTools('var fullTools = [{name:"x"}];'),
   /registration format unknown/);
 
+
+// Canonical public-tool-catalog bundles (the npm and hosted transports share
+// this inventory). A private/unpromoted tool must never enter the snapshot.
+const canonicalCli = String.raw`
+var coreTools = Object.freeze([
+  { name: "get_scope", description: "Read scope", inputSchema: {} },
+  { name: "start_task_run", description: "Start work", inputSchema: {}, effectful: true },
+  { name: "internal_only", description: "Private tool", inputSchema: {}, effectful: true },
+]);
+var MCP_PUBLIC_CORE_TOOL_NAMES = Object.freeze(["get_scope", "start_task_run"]);
+var genericControlTools = Object.freeze([
+  { name: "read_control_api", description: "Registered read", inputSchema: {} },
+  { name: "write_control_api", description: "Registered write", inputSchema: {}, effectful: true },
+]);
+var MCP_PUBLIC_TOOL_CATALOG = Object.freeze([...coreTools.filter((tool) => MCP_PUBLIC_CORE_TOOL_NAMES.includes(tool.name)), ...genericControlTools].map((tool) => tool));
+var tools = Object.freeze(MCP_PUBLIC_TOOL_CATALOG.map((definition) => definition));
+`;
+assert.deepEqual(parseMcpTools(canonicalCli).map(({name,effectful})=>[name,effectful]), [
+  ["get_scope",false],
+  ["start_task_run",true],
+  ["read_control_api",false],
+  ["write_control_api",true],
+]);
+assert.throws(()=>parseMcpTools(canonicalCli.replace('"start_task_run"]);','"missing_tool"]);')), /catalog is missing/);
+
 console.log("MCP_CATALOG_TEST_PASS");
