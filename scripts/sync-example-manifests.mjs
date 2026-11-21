@@ -78,8 +78,12 @@ await updateFile("docs/example-package-compatibility.md",raw=>{
     [/^(\| \`examples\/frameworks\/python_fastapi\` \| Python SDK )[^|]+(\|.*)$/m,"$1"+latestPY+" $2"],
     [/^(\| \`examples\/frameworks\/langgraph\` \| Python SDK )[^|]+(\|.*)$/m,"$1"+latestPY+" $2"]
   ];
-  let output=raw.replace(/^\*\*(?:Current reference versions|Last registry-synced example versions)[^\n]*\n/m,
-    "**Current reference versions (automatically tracked):** JavaScript \`@tryvira/sdk@"+latestJS+"\`; MCP \`@tryvira/mcp@"+latestMCP+"\`; Python \`tryvira-sdk=="+latestPY+"\`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and \`tools/list\` before invoking an operation.\n");
+  // Preserve whether the page calls these versions last-synced or current.
+  // A registry update changes pins, not the provenance claim in the heading.
+  let output=raw.replace(/^(\*\*(?:Current reference versions|Last registry-synced example versions)[^\n]*\n)/m,
+    line=>line.replace(/@tryvira\/sdk@\d+\.\d+\.\d+/g,"@tryvira/sdk@"+latestJS)
+      .replace(/@tryvira\/mcp@\d+\.\d+\.\d+/g,"@tryvira/mcp@"+latestMCP)
+      .replace(/tryvira-sdk==\d+\.\d+\.\d+/g,"tryvira-sdk=="+latestPY));
   for(const [pattern,replacement] of replacements) {
     assert.match(output,pattern,"compatibility matrix row missing: "+pattern.source);
     output=output.replace(pattern,replacement);
