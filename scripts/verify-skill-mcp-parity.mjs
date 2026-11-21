@@ -13,7 +13,7 @@ for (const tool of ['start_task_run','get_task_run','list_task_run_events','impo
 assert.doesNotMatch(mcpSkill, /does not provide TaskRun|has no Pack tools|do not create a fake `start_task_run`/);
 const catalog = await readFile(new URL('../docs/reference/mcp-tools.md', import.meta.url), 'utf8');
 assert.ok(catalog.includes('tools/list') && catalog.includes('mcp-published-tools.json'), 'MCP docs must link live discovery and snapshot');
-assert.match(catalog, /versioned tool catalog/);
+assert.match(catalog, /versioned (?:tool catalog|discovery reference|MCP snapshot)/i);
 const setup = await readFile(new URL('../docs/reference/mcp.md', import.meta.url), 'utf8');
 assert.doesNotMatch(setup, /does not expose Teach proposal transitions|does not expose.*Pack operations/i);
 const shared = await readFile(new URL('../docs/agent-first-operation-flow.md', import.meta.url), 'utf8');

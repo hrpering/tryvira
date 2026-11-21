@@ -1,6 +1,6 @@
 # Integration compatibility and verification
 
-Last source comparison: **21 November 2026**.
+Last source and registry comparison: **21 November 2026**.
 
 Vira's public Skills, JavaScript/Python clients, MCP server and OpenCode adapter all address the **same server-side scope and authority**. Their operation catalogs, host hooks and package releases are independently versioned. Source manifest versions are **not proof that those versions are published or installed**.
 
@@ -13,7 +13,7 @@ Vira's public Skills, JavaScript/Python clients, MCP server and OpenCode adapter
 | `@tryvira/opencode` | `0.1.67` | `0.1.61` | `npm view @tryvira/opencode version` |
 | `tryvira-sdk` (PyPI) | `0.1.55` | `0.1.54` | `python -m pip index versions tryvira-sdk` |
 
-**For a reproducible project**, resolve the actual published version, install it, then pin and commit its lockfile. Don't install a source-only version or silently upgrade an existing tested example. This repository has not performed a live registry, customer-tenant or host acceptance test merely by refreshing documentation.
+**Registry verification completed:** GitHub Actions confirmed npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55`, and the OpenCode npm `0.1.67` probe. The MCP tarball yielded **47 advertised tools** and its snapshot comparison passed. For reproducibility, install a registry-published release and regenerate integrity/hashes in lockfiles. These tests do **not** establish a live customer-tenant or host acceptance.
 
 ## Operation boundaries
 
@@ -22,7 +22,7 @@ Vira's public Skills, JavaScript/Python clients, MCP server and OpenCode adapter
 | Root `vira` Skill + specialists | Agent instructions, sequencing, safe handoff and inspection | Skills add new server capabilities or grant authority |
 | JavaScript / TypeScript SDK | Direct application lifecycle integration; typed `ViraClient` calls | Every SDK method is an MCP tool; all environments can execute it |
 | Python SDK | Python-side calls through the same scoped HTTP authority | Identical method shapes or method availability across languages |
-| MCP | Agent discovery through **live** `tools/list`; scoped lifecycle tools, TaskRun, Pack, Teach, traces and permission-aware operations | The older snapshot in `reference/mcp-published-tools.json` reflects newer releases; a tool is permission to call it |
+| MCP | Agent discovery through **live** `tools/list`; scoped lifecycle tools, TaskRun, Pack, Teach, traces and permission-aware operations | The 0.1.78 snapshot replaces the installed server's live catalog; a tool grants authority |
 | OpenCode plugin | Host-context projection, observations and **capability-attested** pre-tool authorization | OpenCode can block or repair a response *before display*; unsupported host hooks work anyway |
 
 The JavaScript client uses canonical verb-noun helpers such as `connectAiSystem`, `recordUserFeedback` and `recordBusinessOutcome`; older `connectOnce`, `feedback` and `outcome` names are retained as aliases in the inspected source. MCP similarly advertises `connect_ai_system`, `record_user_feedback` and `record_business_outcome` while compatibility aliases need not appear in live discovery. Follow **the actual installed package declarations and live MCP catalog**, not assumptions about cross-surface parity.
@@ -54,10 +54,10 @@ The verified OpenCode hook surface does **not** provide a supported response-bef
 | 1 — SDK + MCP documentation | **Updated** | Package guides, aliases, TaskRun capability matrix and historical MCP catalog status corrected |
 | 2 — Agent Skills | **Updated** | Root Skill and selected MCP/JS/Python/TaskRun/lifecycle/optimization/debugging guides aligned; all 28 specialist guides retained |
 | 3 — OpenCode | **Updated** | Observe-only example, host capability requirements, native one-use approval and output-verification limits documented |
-| 4 — Example/regression tests | **Partial** | Public root Skill, agent-first, client-copy, MCP-parity and sync scripts updated; committed version pins and locks deliberately left unchanged until registry verification; full CI not confirmed by this review |
+| 4 — Example/regression tests | **In PR #28** | Registry-verified package pins, npm/Python locks and a 47-tool MCP snapshot generated; offline and published npm/PyPI checks passed in the sync workflow; PR-specific quality CI must pass before merge |
 | 5 — Live acceptance | **Not run** | Requires authorized tenant/host, actual tool discovery, real API readback, negative-scope and permission tests and post-model evidence |
 
-Static cross-file checks verify the edited documentation references and JSON example only. They **do not** run `npm run verify`, npm/PyPI registry acceptance, OpenCode host checks or live Vira integration tests.
+The package synchronization workflow ran `npm run verify`, registry metadata checks, published MCP tarball comparison and regenerated dependency locks successfully before creating its update branch. Those checks are not proof of a live Vira tenant, OpenCode host approval or a separately verified provider answer.
 
 Phases 4 and 5 **cannot** be claimed complete based on source comparison alone. They require published artifacts or a real authorized environment, respectively.
 

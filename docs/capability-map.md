@@ -20,9 +20,9 @@ The compact interface table above is **not** the full product inventory. [Full p
 
 **Signals are not a synonym for observations; artifact verification, candidate evaluation and runtime post-model verification are separate gates.** [Observe](observe.md) · [Signals](signals.md) · [Runtime verification](runtime-verification.md).
 
-## Historical 0.1.60 MCP snapshot: review and optimization additions
+## Published 0.1.78 MCP capabilities
 
-The historical MCP 0.1.60 snapshot advertises `get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`, `start_optimization`, `get_optimization_run` and `cancel_optimization_run` in the [historical versioned-tool npm package snapshot](reference/mcp-published-tools.json). **This does not prove newer package parity, JS/Python parity or tenant authorization**; the relevant SDK may need a documented method added. Inspect and optimize do not imply approval/release.
+The [registry-verified versioned MCP snapshot](reference/mcp-published-tools.json) includes 47 advertised tools. It promotes scope, Inbox and conflict operations (`get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`), alongside TaskRun and Pack lifecycle tools and the authority-gated `read_control_api` / `write_control_api` surface. The dedicated optimization tool names advertised in the old 0.1.60 snapshot are **not promoted in 0.1.78**. A generic tool is not a license to guess an API path or bypass authorization. No JS/Python parity or tenant permission is implied.
 
 ## TaskRun mode selection
 

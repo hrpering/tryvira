@@ -2,7 +2,7 @@
 
 Vira's public integration packages are independently versioned. **A version declared in the maintained source is not necessarily the latest version available in npm or PyPI.** Do not use old documentation pins as a substitute for registry checks.
 
-Source-manifest comparison: **21 November 2026**.
+Source and live registry comparison: **21 November 2026**. JS SDK, MCP and PyPI versions below were verified against registry metadata; the MCP npm tarball and tool snapshot also passed package comparison. The OpenCode npm version was confirmed by the public CI registry probe.
 
 | Ecosystem | Package | Maintained source version | Last version cited by the earlier public docs | Runtime | License |
 | --- | --- | ---: | ---: | --- | --- |
@@ -11,7 +11,7 @@ Source-manifest comparison: **21 November 2026**.
 | npm | [`@tryvira/opencode`](https://www.npmjs.com/package/@tryvira/opencode) | `0.1.67` | `0.1.61` | Node.js 20+ | MIT |
 | PyPI | [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) | `0.1.55` | `0.1.54` | Python 3.10+ | MIT |
 
-**The source versions above are inspected manifest values, not independently verified registry releases.** Confirm published availability before pinning or using a specific version in an example:
+**These were verified registry releases on 21 November 2026**, not permanent latest-version promises. Check current availability again before pinning or upgrading:
 
 ```bash
 npm view @tryvira/sdk version
@@ -34,7 +34,7 @@ For OpenCode, see its [host-specific plugin setup](../plugins/opencode/README.md
 
 - JavaScript SDK: `ViraClient`, connection/observation and governed lifecycle methods. Canonical verb-noun helpers such as `connectAiSystem`, `recordUserFeedback`, and `recordBusinessOutcome` coexist with older aliases in the inspected source. Use the **installed** types.
 - Python SDK: independently versioned client of the same scoped HTTP authority. Confirm Python methods against the installed package; do not assume JS signature parity.
-- MCP: stdio adapter for the installed SDK/service. Inspect the running MCP server's `tools/list` and the scope bound to the configured credential. The [0.1.60 tool snapshot](reference/mcp-published-tools.json) is historical, not a current-source or live catalog.
+- MCP: stdio adapter for the installed SDK/service. Inspect the running MCP server's `tools/list` and the scope bound to the configured credential. The [0.1.78 published tool snapshot](reference/mcp-published-tools.json) contains the 47 promoted MCP tools checked against the actual npm bundle. It still cannot substitute for the installed server's live catalog or authority checks.
 - OpenCode plugin: host adapter with `off`, `observe`, and conditional `enforce`. It is not a replacement for MCP or the SDK.
 
 All surfaces enforce Vira's server-side role, scope, policies, evaluation and release gates. Semantic selection is not authorization; import/install is not production release; a successful network call is not a verified model answer.

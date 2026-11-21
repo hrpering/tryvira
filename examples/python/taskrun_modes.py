@@ -4,7 +4,7 @@ By default, this script requests a route proposal only. A live customer Vira
 account is required for routing. Admission is an explicit opt-in, with a
 second assertion that the endpoint belongs to an authorized test scope.
 
-Usage from examples/python after installing tryvira-sdk==0.1.54:
+Usage from examples/python after installing tryvira-sdk==0.1.55:
     python taskrun_modes.py AUTO
     python taskrun_modes.py SINGLE
     python taskrun_modes.py STRATEGY

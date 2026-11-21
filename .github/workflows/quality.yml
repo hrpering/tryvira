@@ -117,7 +117,8 @@ jobs:
       - name: Verify current Python SDK Observe example
         run: |
           uv venv --python 3.12 examples/python/.venv
-          uv pip install --python examples/python/.venv/bin/python 'tryvira-sdk==0.1.54'
+          PY_SDK_VERSION="$(python3 -c 'import json; print(json.load(open("package-versions.json"))["pypi"]["tryvira-sdk"])')"
+          uv pip install --python examples/python/.venv/bin/python "tryvira-sdk==$PY_SDK_VERSION"
           examples/python/.venv/bin/python -m unittest discover -s examples/python -p 'test_*.py' -v
 
       - name: Verify current public SDK, PyPI, MCP copy references
