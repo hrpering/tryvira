@@ -1,0 +1,42 @@
+# MCP catalog comparison: maintained source vs published npm
+
+This report is generated from the reviewed maintained **source declaration** and the registry-verified **published npm artifact**. Neither inventory establishes live hosted `tools/list`, tenant permissions, tool schemas or effect/approval parity.
+
+| Surface | Version | Advertised tools | Evidence |
+| --- | --- | ---: | --- |
+| Maintained Vira server/client shared catalog (source) | `0.1.79` | **61** | Reviewed source declaration on 2026-11-21; **not** a live hosted endpoint check |
+| Published `@tryvira/mcp` npm artifact | `0.1.78` | **47** | [Versioned npm CLI snapshot](reference/mcp-published-tools.json); npm bundle compared in registry CI |
+| Common tool names | These two snapshots | **47** | Name intersection only |
+
+The two inventories **differ**: 14 tool(s) only in the maintained source snapshot, 0 only in the published npm snapshot. They describe **different package revisions**, so this difference must not be portrayed as a broken installed package or as complete public parity.
+
+## Declared by maintained source, absent from this npm snapshot (14)
+
+- `accept_behavior_revision_candidate`
+- `continue_strategy_execution`
+- `create_behavior_point`
+- `create_improvement_proposal`
+- `create_observation`
+- `create_release`
+- `create_semantic_task`
+- `get_behavior_strategy`
+- `get_pack_revision_diff`
+- `get_strategy_execution_trace`
+- `list_ai_systems`
+- `list_discovery_candidates`
+- `list_packs`
+- `review_discovery_candidate`
+
+## Present in this npm snapshot, absent from maintained source declaration (0)
+
+None.
+
+## What to check in an actual integration
+
+1. Inspect the installed `@tryvira/mcp` version and run `initialize` followed by `tools/list`.
+2. Use only returned names, input schemas and authorization decisions. A missing tool can require a newer published package or a separately documented SDK/API integration.
+3. Never treat `read_control_api` or `write_control_api` as permission to guess routes or bypass a denial.
+4. Treat post-model verification, approvals and release authority as separate evidence requirements.
+5. Public CI checks the npm tarball and this comparison. It **cannot continuously read private maintained source** or validate a live hosted endpoint; refresh the source declaration when that catalog changes.
+
+[Package setup](reference/mcp.md) · [MCP tool reference](reference/mcp-tools.md) · [Agent-first operation flow](agent-first-operation-flow.md) · [Version and acceptance plan](integration-compatibility.md)
