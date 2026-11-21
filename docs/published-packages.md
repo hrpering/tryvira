@@ -2,7 +2,7 @@
 
 Vira's public integration packages are independently versioned. **A version declared in the maintained source is not necessarily the latest version available in npm or PyPI.** Do not use old documentation pins as a substitute for registry checks.
 
-Source and registry comparison: **21 November 2026**. Public CI previously verified npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55` and the OpenCode npm `0.1.67` probe. The latest registry sync verified `@tryvira/mcp@0.1.79`, `@tryvira/sdk@0.1.75` and `tryvira-sdk==0.1.56`. It also inspected the published `@tryvira/mcp@0.1.79` tarball and confirmed **61 advertised tool names**, matching all 61 names in the maintained source catalog. This is not proof of live hosted runtime parity.
+Source and registry comparison: **21 November 2026**. Public CI previously verified npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55` and the OpenCode npm `0.1.68` probe. The latest registry sync verified `@tryvira/mcp@0.1.79`, `@tryvira/sdk@0.1.75` and `tryvira-sdk==0.1.56`. It also inspected the published `@tryvira/mcp@0.1.79` tarball and confirmed **61 advertised tool names**, matching all 61 names in the maintained source catalog. This is not proof of live hosted runtime parity.
 
 | Ecosystem | Package | Maintained source version | Last version cited by the earlier public docs | Runtime | License |
 | --- | --- | ---: | ---: | --- | --- |
