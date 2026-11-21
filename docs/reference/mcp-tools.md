@@ -1,6 +1,6 @@
 # MCP integration reference
 
-**Package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp). Maintained source manifest: `0.1.78` (21 November 2026); the historical published tool snapshot below is for `0.1.60`, not proof of the latest registry build.
+**Verified npm package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.78` (21 November 2026). The registry tarball was checked against the **47 advertised tools** in the snapshot below.
 
 The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
@@ -10,24 +10,24 @@ Use the installed MCP server's `tools/list` response to see the current tool nam
 
 A returned tool schema describes how to call that tool; it does not grant authorization. Follow the server's authority decisions and the customer's scope. Keep review, evaluation, approval, release, and runtime actions separate.
 
-## Historical published tool inventory
+## Registry-verified published tool inventory
 
-The [public npm MCP tool snapshot](mcp-published-tools.json) is tagged `@tryvira/mcp@0.1.60` with read/effect classifications. It is **not** regenerated from the newer source or verified against the latest npm tarball in this update. Treat it as a historical discovery reference, **not an authorization grant or a substitute for live `tools/list`**. Regenerate it only from a verified published artifact.
+The [public npm MCP tool snapshot](mcp-published-tools.json) is tagged `@tryvira/mcp@0.1.78`: the synchronization workflow downloaded the npm tarball, extracted the promoted tool subset and compared the exact names and effect classifications in CI. This is a **versioned discovery reference**, not an authorization grant or substitute for live `tools/list`.
 
-### New MCP families in 0.1.60
+### Promoted review and control families in 0.1.78
 
 | Goal | Tools to discover | Read/write boundary |
 | --- | --- | --- |
 | Inspect active scope | `get_scope` | Read configured organization/project/environment; do not infer a new permission |
 | Work with review notifications | `list_inbox`, `mark_inbox_read` | Listing is read-only; marking read is a persisted write |
 | Inspect and decide conflicts | `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` | Inspection creates persisted state; resolution requires explicit approval and server authorization |
-| Operate optimization | `start_optimization`, `get_optimization_run`, `cancel_optimization_run` | Starting/cancelling modifies state; run status is a read and does not imply optimization succeeded |
+| Access other registered Control API operations | `read_control_api`, `write_control_api` | Generic access still requires a documented registered route, role, policy, effect approval and a persisted receipt |
 
-These tool families exist in the published MCP distribution. Their underlying provider, actor role, tenant scope and evaluation prerequisites still determine whether a real tenant can execute them. They **do not prove complete Studio queue management, conflict UX or optimization dataset parity**.
+The dedicated optimization tools from the older 0.1.60 catalog are **not first-class tools in 0.1.78**. Never guess their endpoints or use `write_control_api` to bypass a denial. Provider, actor, tenant, evaluation and release prerequisites still apply. This does **not** establish complete Studio administration or optimizer parity.
 
 ## Product-level coverage
 
-The inspected source offers the public lifecycle surface through the installed server's versioned tool catalog. This includes AI System/connection diagnostics; Semantic Tasks, BehaviorPoints, Programs and Strategies; TaskRun resolve/start/read/events/continue/cancel/retry; observations and signals; Teach analysis/recommendation/review; evaluations and comparative findings; Pack evaluation/approval/revisions/materialization; runtime capsule/projection verification; trace search; and host authorization. It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
+The registry-verified 0.1.78 package offers a deliberately promoted public lifecycle surface plus generic access to documented registered Control API operations. This includes AI System/connection diagnostics; Semantic Tasks, BehaviorPoints, Programs and Strategies; TaskRun resolve/start/read/events/continue/cancel/retry; observations and signals; Teach analysis/recommendation/review; evaluations and comparative findings; Pack evaluation/approval/revisions/materialization; runtime capsule/projection verification; trace search; and host authorization. It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
 
 If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Use the names, schemas and authorization decisions returned by the configured server.
 
