@@ -48,6 +48,11 @@ for(const path of [
   });
 }
 
+// Keep the TaskRun starter's installation docstring tied to its requirements,
+// not to an obsolete hand-written PyPI pin.
+await updateFile("examples/python/taskrun_modes.py",raw=>
+  raw.replace(/(installing tryvira-sdk==)\d+\.\d+\.\d+/g,"$1"+latestPY));
+
 const publishedMcpPin = new RegExp("@tryvira/mcp@\\d+\\.\\d+\\.\\d+","g");
 await updateFile("examples/frameworks/mcp-client/client.mjs",raw=>{
   assert.match(raw, publishedMcpPin);
