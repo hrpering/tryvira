@@ -13,14 +13,14 @@ Vira is operated from a coding agent without requiring Studio. **Skills decide t
 
 ## Operation matrix
 
-The MCP names below are **discovery hints across multiple releases**, not proof that one installed MCP package exports all of them. The reviewed `0.1.78` npm snapshot has 47 tools; the subsequent shared `0.1.79` maintained source declaration has 61. Read the [surface comparison](mcp-surface-parity.md) and the installed `tools/list` before invoking a tool; version changes do not grant permissions.
+The MCP names below are **discovery hints across multiple releases**, not proof that one installed MCP package exports all of them. The registry-verified `0.1.79` npm artifact and maintained shared source declaration each have **61 matching tool names**. This is name-level parity, not verified hosted execution. Read the [surface comparison](mcp-surface-parity.md) and the installed `tools/list` before invoking a tool; version changes do not grant permissions.
 
 | Goal | MCP tools to discover | JavaScript SDK | Python SDK | Required evidence |
 | --- | --- | --- | --- | --- |
 | Inspect signed-in scope | `get_scope` | Check installed SDK scope access | Check installed SDK scope access | Configured scope and actor-matched response; no guessed tenant |
 | Review Inbox | `list_inbox`, `mark_inbox_read` | Use MCP where available; do not invent JS methods | Use MCP where available; do not invent Python methods | Real notification identity, user intent and write authorization |
 | Resolve conflicts | `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` | Use MCP when exposed, verify installed alternatives individually | Use MCP when exposed, verify installed alternatives individually | Persisted inspection ID, exact decision, reviewer authority and readback |
-| Optimize candidates | The 0.1.60 `start_optimization` / `get_optimization_run` / `cancel_optimization_run` tools are **not promoted in 0.1.78**. Use only a documented registered Control API route via `read_control_api` / `write_control_api` when authorized | Check installed SDK; no assumed JS/Python parity | Check installed SDK; no assumed JS/Python parity | Approved dataset/holdout, scoped run ID, actual status, no silent release |
+| Optimize candidates | The older 0.1.60 `start_optimization` / `get_optimization_run` / `cancel_optimization_run` tools are **not promoted in 0.1.79**. Use only a documented registered Control API route via `read_control_api` / `write_control_api` when authorized | Check installed SDK; no assumed JS/Python parity | Check installed SDK; no assumed JS/Python parity | Approved dataset/holdout, scoped run ID, actual status, no silent release |
 | Discover scope and AI System | `list_capabilities`, `list_ai_systems`, `list_system_connections`, `connection_health` | `listCapabilities`, `listAISystems`, `listSystemConnections`, `connectionHealth` | `list_capabilities`, `list_ai_systems`, `list_system_connections`, `connection_health` | Actual scoped IDs and capability state |
 | Connect an agent | `connect_ai_system` (older alias: `connect_once`), `get_connection` | `connectAiSystem` (older alias: `connectOnce`), `getConnection` | `connect_once`, `get_connection` | Returned AI System and Connection IDs |
 | Observe and Teach | `observe`, `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis` | `observe`, `submitTeachEvidence`, `createTeachAnalysis`, `getTeachAnalysis` | `observe`, `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis` | Consent, accepted evidence and analysis status |
@@ -45,7 +45,7 @@ Some rows have different signatures across SDKs. Do **not** transform MCP argume
 
 ## Availability boundaries
 
-MCP, SDKs, PyPI and Studio are not guaranteed to share all operations. Inbox and conflict tools exist in the published `0.1.78` MCP catalog, but dedicated optimization start/read/cancel tools are **not** promoted in that version. The maintained `0.1.79` shared source catalog and actual published npm catalog must be compared separately. Complete work queues, dataset lifecycle, membership, billing and credential management require individually documented operations; do not drive private Studio cookie routes. OpenCode and other hosts may be unable to intercept a streamed answer before display: report that capability as unsupported rather than claiming pre-display enforcement.
+MCP, SDKs, PyPI and Studio are not guaranteed to share all operations. Inbox and conflict tools are in the published `0.1.79` MCP catalog, but dedicated optimization start/read/cancel tools are **not** promoted in that version. The maintained source and published `0.1.79` npm artifact have matching advertised names; live hosted access still needs its own verification. Complete work queues, dataset lifecycle, membership, billing and credential management require individually documented operations; do not drive private Studio cookie routes. OpenCode and other hosts may be unable to intercept a streamed answer before display: report that capability as unsupported rather than claiming pre-display enforcement.
 
 ## Try it without a Studio login
 
