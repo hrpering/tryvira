@@ -3,6 +3,13 @@ on:
   schedule:
     - cron: "17 0 1 * *"
   workflow_dispatch:
+  # Re-evaluate the release sync when the maintainer explicitly updates this
+  # workflow on main. Ordinary commits and generated PRs do not retrigger it.
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/sync-published-packages.yml
 permissions:
   contents: write
   pull-requests: write
