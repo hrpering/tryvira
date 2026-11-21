@@ -2,14 +2,14 @@
 
 Vira's public integration packages are independently versioned. **A version declared in the maintained source is not necessarily the latest version available in npm or PyPI.** Do not use old documentation pins as a substitute for registry checks.
 
-Source and registry comparison: **21 November 2026**. Public CI previously verified npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55` and the OpenCode npm `0.1.67` probe. The newer MCP **source** manifest declares `0.1.79` and 61 shared catalog tool names; it must be independently checked against npm before being treated as published.
+Source and registry comparison: **21 November 2026**. Public CI previously verified npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55` and the OpenCode npm `0.1.67` probe. A later registry check verified that `@tryvira/mcp@0.1.79`, `@tryvira/sdk@0.1.75` and `tryvira-sdk==0.1.56` are published. The `0.1.79` MCP tool count still requires a published tarball comparison before claiming package parity.
 
 | Ecosystem | Package | Maintained source version | Last version cited by the earlier public docs | Runtime | License |
 | --- | --- | ---: | ---: | --- | --- |
-| npm | [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk) | `0.1.74` | `0.1.67` | Node.js 20+ | MIT |
+| npm | [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk) | `0.1.75` | `0.1.67` | Node.js 20+ | MIT |
 | npm | [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) | `0.1.79` | `0.1.60` | Node.js 20+ | MIT |
-| npm | [`@tryvira/opencode`](https://www.npmjs.com/package/@tryvira/opencode) | `0.1.67` | `0.1.61` | Node.js 20+ | MIT |
-| PyPI | [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) | `0.1.55` | `0.1.54` | Python 3.10+ | MIT |
+| npm | [`@tryvira/opencode`](https://www.npmjs.com/package/@tryvira/opencode) | `0.1.68` | `0.1.61` | Node.js 20+ | MIT |
+| PyPI | [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) | `0.1.56` | `0.1.54` | Python 3.10+ | MIT |
 
 **The previously verified release versions are listed above**, while the table separately shows the maintained source versions. A source-only bump is not evidence of an npm/PyPI release. Recheck registry availability before pinning or upgrading:
 
