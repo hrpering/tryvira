@@ -13,7 +13,7 @@ Vira is operated from a coding agent without requiring Studio. **Skills decide t
 
 ## Operation matrix
 
-The MCP names below reflect the **registry-verified 0.1.78 advertised catalog**, with older 0.1.60-only operations identified where useful. They are **discovery hints**, not a promise of permission or equivalent SDK signatures.
+The MCP names below are **discovery hints across multiple releases**, not proof that one installed MCP package exports all of them. The reviewed `0.1.78` npm snapshot has 47 tools; the subsequent shared `0.1.79` maintained source declaration has 61. Read the [surface comparison](mcp-surface-parity.md) and the installed `tools/list` before invoking a tool; version changes do not grant permissions.
 
 | Goal | MCP tools to discover | JavaScript SDK | Python SDK | Required evidence |
 | --- | --- | --- | --- | --- |
@@ -45,7 +45,7 @@ Some rows have different signatures across SDKs. Do **not** transform MCP argume
 
 ## Availability boundaries
 
-MCP, SDKs, PyPI and Studio are not guaranteed to share all operations. The source catalog is wider than some deployed tenant permissions. Inbox list/read, conflict inspect/resolve and optimization start/read/cancel now have published MCP tools, but complete work queues, dataset lifecycle, membership, billing and credential management may still require separately documented public operations; do not drive private Studio cookie routes. OpenCode and other hosts may be unable to intercept a streamed answer before display: report that capability as unsupported rather than claiming pre-display enforcement.
+MCP, SDKs, PyPI and Studio are not guaranteed to share all operations. Inbox and conflict tools exist in the published `0.1.78` MCP catalog, but dedicated optimization start/read/cancel tools are **not** promoted in that version. The maintained `0.1.79` shared source catalog and actual published npm catalog must be compared separately. Complete work queues, dataset lifecycle, membership, billing and credential management require individually documented operations; do not drive private Studio cookie routes. OpenCode and other hosts may be unable to intercept a streamed answer before display: report that capability as unsupported rather than claiming pre-display enforcement.
 
 ## Try it without a Studio login
 
