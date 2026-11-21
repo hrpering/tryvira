@@ -54,11 +54,11 @@ The verified OpenCode hook surface does **not** provide a supported response-bef
 | 1 — SDK + MCP documentation | **Updated** | Package guides, aliases, TaskRun capability matrix and historical MCP catalog status corrected |
 | 2 — Agent Skills | **Updated** | Root Skill and selected MCP/JS/Python/TaskRun/lifecycle/optimization/debugging guides aligned; all 28 specialist guides retained |
 | 3 — OpenCode | **Updated** | Observe-only example, host capability requirements, native one-use approval and output-verification limits documented |
-| 4 — Example/regression tests | **In PR #28** | Registry-verified package pins, npm/Python locks and a 47-tool MCP snapshot generated; offline and published npm/PyPI checks passed in the sync workflow; PR-specific quality CI must pass before merge |
+| 4 — Example/regression tests | **Completed** | PR [#28](https://github.com/hrpering/tryvira/pull/28) merged after successful GitHub Actions quality checks; registry-verified package pins, regenerated npm/Python locks and 47-tool MCP snapshot passed public package verification |
 | 5 — Live acceptance | **Not run** | Requires authorized tenant/host, actual tool discovery, real API readback, negative-scope and permission tests and post-model evidence |
 
 The package synchronization workflow ran `npm run verify`, registry metadata checks, published MCP tarball comparison and regenerated dependency locks successfully before creating its update branch. Those checks are not proof of a live Vira tenant, OpenCode host approval or a separately verified provider answer.
 
-Phases 4 and 5 **cannot** be claimed complete based on source comparison alone. They require published artifacts or a real authorized environment, respectively.
+Phase 4 has published-registry, lockfile and CI evidence. Phase 5 still requires a separately authorized tenant, host callbacks and live execution/verification evidence; it cannot be inferred from package tests.
 
 See [common agent-first flow](agent-first-operation-flow.md), [MCP tools](reference/mcp-tools.md), [SDK references](reference/javascript-sdk.md) / [Python](reference/python-sdk.md), and [Studio-less parity](agent-skills/studio-less-parity.md).
