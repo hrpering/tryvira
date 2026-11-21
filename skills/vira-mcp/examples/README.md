@@ -20,9 +20,11 @@ MCP initialize and tools/list result, installed version and explicitly unsupport
 
 Never invent a tool or schema. The current catalog includes `start_task_run`, `import_pack` and `release_pack`, but each effectful call still requires the server authority decision and the customer's scope/policy.
 
-## Current MCP 0.1.60 review and optimization examples
+## Review, conflict and optimization examples
 
-Ask the coding agent to inspect the live tool catalog, then read `get_scope`, `list_inbox`, `get_conflict_inspection` (if an actual inspection ID exists), or `get_optimization_run` (if an actual run ID exists). Writing notification state, creating an inspection, deciding a conflict or starting/cancelling an optimization requires a separate explicit authorization and server result. The [published tool inventory](https://github.com/hrpering/tryvira/blob/main/docs/reference/mcp-published-tools.json) lists names and effect classes, not schemas or permissions.
+Inspect **live** `tools/list` and the installed package version before selecting an operation. In the registry-verified MCP 0.1.78 catalog, `get_scope`, `list_inbox`, `get_conflict_inspection` and `resolve_conflict` are promoted tools. Dedicated optimization tools such as `get_optimization_run` were visible in the older 0.1.60 snapshot, but are **not advertised by 0.1.78**. Only use `read_control_api` or `write_control_api` for an optimization route when that route is documented, registered and authorized by the same Vira service. Never fabricate a route or use a generic write to bypass an explicit denial.
+
+Marking notifications read, creating inspections, deciding conflicts and starting or cancelling optimization are effectful operations requiring the corresponding server permission. The [published npm tool inventory](https://github.com/hrpering/tryvira/blob/main/docs/reference/mcp-published-tools.json) lists names and effect classifications, not live permissions or schemas.
 
 ## Handoff
 
