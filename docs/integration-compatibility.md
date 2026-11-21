@@ -46,6 +46,19 @@ The verified OpenCode hook surface does **not** provide a supported response-bef
 | **4. Examples and catalog** | Upgrade pinned runnable examples and the generated MCP snapshot only against actual registry artifacts; validate code and expected schemas | Offline smoke tests, npm/PyPI package inspection and documented lockfile/snapshot provenance pass |
 | **5. Live acceptance** | With an authorized test tenant, verify connection, observation, Pack evaluation/release, TaskRun, host approval and receipt readback | Actual IDs and server decisions recorded, negative-scope/approval cases fail closed; no secret published |
 
+## Implementation status (21 November 2026)
+
+| Phase | Status | What is committed / still needed |
+| --- | --- | --- |
+| 0 — Source baseline | **Updated** | Source-manifest version comparison and public surface boundaries recorded here |
+| 1 — SDK + MCP documentation | **Updated** | Package guides, aliases, TaskRun capability matrix and historical MCP catalog status corrected |
+| 2 — Agent Skills | **Updated** | Root Skill and selected MCP/JS/Python/TaskRun/lifecycle/optimization/debugging guides aligned; all 28 specialist guides retained |
+| 3 — OpenCode | **Updated** | Observe-only example, host capability requirements, native one-use approval and output-verification limits documented |
+| 4 — Example/regression tests | **Partial** | Public root Skill, agent-first, client-copy, MCP-parity and sync scripts updated; committed version pins and locks deliberately left unchanged until registry verification; full CI not confirmed by this review |
+| 5 — Live acceptance | **Not run** | Requires authorized tenant/host, actual tool discovery, real API readback, negative-scope and permission tests and post-model evidence |
+
+Static cross-file checks verify the edited documentation references and JSON example only. They **do not** run `npm run verify`, npm/PyPI registry acceptance, OpenCode host checks or live Vira integration tests.
+
 Phases 4 and 5 **cannot** be claimed complete based on source comparison alone. They require published artifacts or a real authorized environment, respectively.
 
 See [common agent-first flow](agent-first-operation-flow.md), [MCP tools](reference/mcp-tools.md), [SDK references](reference/javascript-sdk.md) / [Python](reference/python-sdk.md), and [Studio-less parity](agent-skills/studio-less-parity.md).
