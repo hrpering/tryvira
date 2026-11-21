@@ -13,7 +13,7 @@ Learn how Vira helps you define, test, release and inspect the behavior of an ex
 | Understand the product and its use cases | [Overview](what-is-vira.md) · [Practical scenarios](use-cases.md) |
 | Try the chatbot or an integration example | [Quickstart](start-here.md) · [Next.js chatbot](../examples/frameworks/node-next/README.md) |
 | Add Vira to an existing JavaScript or Python application | [Developer guide](developer-guide.md) · [Integration patterns](integration-patterns.md) |
-| Check example SDK compatibility | [Version and lockfile matrix](example-package-compatibility.md) |
+| Check package and host compatibility | [Registry vs source versions](integration-compatibility.md) · [Example locks](example-package-compatibility.md) |
 | Work with an AI coding agent | [One MCP/SDK/PyPI operation flow](agent-first-operation-flow.md) · [28 Agent Skills](../skills/README.md) |
 | Evaluate Vira for a team | [Team guide](for-teams.md) · [Product capabilities](product-feature-map.md) |
 | Diagnose an integration | [Troubleshooting](troubleshooting/README.md) |
@@ -32,7 +32,7 @@ Vira separates *what should happen* from *how an application runs*. You can expl
 
 ## Developer reference
 
-- [JavaScript SDK](reference/javascript-sdk.md) · [Python SDK](reference/python-sdk.md) · [MCP](reference/mcp.md) · [HTTP API](reference/api.md)
+- [JavaScript SDK](reference/javascript-sdk.md) · [Python SDK](reference/python-sdk.md) · [MCP](reference/mcp.md) · [OpenCode](../plugins/opencode/README.md) · [HTTP API](reference/api.md)
 - [Client capability compatibility](capability-map.md) · [Published packages](published-packages.md) · [Product availability](product-status.md)
 - [Core concepts](core-concepts.md) · [Architecture](architecture.md) · [Authoring guide](pack-authoring-guide.md)
 - [Behavior strategy guide](strategies.md) · [Semantic routing](semantic-routing.md) · [Security and scope](auth-and-scope.md)
