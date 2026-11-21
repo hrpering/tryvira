@@ -12,13 +12,22 @@ assert.equal(snapshot.package,"@tryvira/mcp");
 assert.equal(snapshot.version,version);
 assert.ok(Array.isArray(snapshot.tools)&&snapshot.tools.length>0);
 assert.equal(new Set(snapshot.tools.map(t=>t.name)).size,snapshot.tools.length);
+// Require stable, advertised public lifecycle tools across the old flat and
+// newer promoted-catalog releases. Optimization and other non-promoted
+// operations may be routed through authenticated read/write_control_api.
 for(const name of ["get_scope","list_inbox","mark_inbox_read","inspect_conflicts",
-  "get_conflict_inspection","resolve_conflict","start_optimization","get_optimization_run",
-  "cancel_optimization_run","start_task_run","import_pack","release_pack","create_teach_analysis"]) {
+  "get_conflict_inspection","resolve_conflict","start_task_run","import_pack",
+  "release_pack","evaluate_pack"]) {
   assert.ok(snapshot.tools.some(t=>t.name===name),"Missing published MCP tool: "+name);
 }
-for(const name of ["mark_inbox_read","inspect_conflicts","resolve_conflict","start_optimization","cancel_optimization_run"]){
+for(const name of ["mark_inbox_read","inspect_conflicts","resolve_conflict"]){
   assert.equal(snapshot.tools.find(t=>t.name===name)?.effectful,true,name+" must be effectful");
+}
+const genericRead=snapshot.tools.find(t=>t.name==="read_control_api");
+const genericWrite=snapshot.tools.find(t=>t.name==="write_control_api");
+if(genericRead||genericWrite) {
+  assert.equal(genericRead?.effectful,false,"generic read must be read-only");
+  assert.equal(genericWrite?.effectful,true,"generic write must be effectful");
 }
 if(process.argv.includes("--published")){
   const tmp=await mkdtemp(join(tmpdir(),"vira-mcp-published-"));
