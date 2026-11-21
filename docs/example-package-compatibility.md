@@ -1,6 +1,6 @@
 # Client versions in runnable examples
 
-**Current reference versions (automatically tracked):** JavaScript `@tryvira/sdk@0.1.67`; MCP `@tryvira/mcp@0.1.60`; Python `tryvira-sdk==0.1.54`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
+**Last registry-synced example versions (not independently rechecked on 21 November 2026):** JavaScript `@tryvira/sdk@0.1.67`; MCP `@tryvira/mcp@0.1.60`; Python `tryvira-sdk==0.1.54`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
 
 | Example | Declared version | Version policy | What CI actually proves |
 | --- | --- | --- | --- |
@@ -14,7 +14,7 @@
 | `examples/frameworks/python_fastapi` | Python SDK 0.1.54 | **Current SDK, hash-verified lock** | uv sync --require-hashes and Python contract tests on its committed lock |
 | `examples/frameworks/langgraph` | Python SDK 0.1.54 | **Current SDK, hash-verified lock** | uv sync and Python syntax on its committed lock |
 
-**Current state:** all runnable Vira examples use the registry-confirmed newest SDK/PyPI version. Frameworks retain committed npm/Python lockfiles, **regenerated from registries rather than string-edited**. Future version changes must update all Vira manifests **and regenerate locks** before review; do not change unrelated provider dependencies. Never edit npm tarball integrity fields or Python hashes by string replacement.
+**Recorded sync state:** runnable Vira examples use the last registry-verified package versions in `package-versions.json`; this does **not** establish they remain the newest npm/PyPI versions. Frameworks retain committed npm/Python lockfiles generated from their recorded releases, **not string-edited**. Future version changes must update all Vira manifests **and regenerate locks** before review; do not change unrelated provider dependencies. Never edit npm tarball integrity fields or Python hashes by string replacement.
 
 The public repository's registry sync now updates the package index, all Vira example manifests and a source-generated MCP tool snapshot, regenerates npm/Python dependency locks, verifies them and opens a reviewable PR rather than silently pushing to main. Version checks compare each committed manifest with its own lockfile and also check the current, lockless starters against `package-versions.json`.
 
