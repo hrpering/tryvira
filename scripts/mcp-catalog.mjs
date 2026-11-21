@@ -34,9 +34,39 @@ function validateTools(tools) {
   return tools;
 }
 
+function extractFrozenArray(source, declaration) {
+  const pattern = new RegExp('\\b(?:var|const|let)\\s+' + declaration + '\\s*=\\s*Object\\.freeze\\(\\[');
+  const match = source.match(pattern);
+  if (!match) throw new Error('MCP bundle missing the ' + declaration + ' frozen array');
+  const start = match.index + match[0].length;
+  const end = source.indexOf(']);', start);
+  if (end < 0) throw new Error('MCP bundle ' + declaration + ' frozen array is unterminated');
+  return source.slice(start, end);
+}
+
 export function parseMcpTools(cliSource) {
   if (/\b(?:var|let|const)\s+tools\s*=\s*\[/.test(cliSource)) {
     return validateTools(parseEntries(extractArray(cliSource, 'tools')));
+  }
+
+  // Newer versions use ONE shared public catalog for hosted MCP and npm.
+  // Derive the advertised names from its canonical allowlist, not from the
+  // much larger internal fullTools or the historical promotedNames subset.
+  if (/\bMCP_PUBLIC_TOOL_CATALOG\s*=\s*Object\.freeze\(\[\.\.\.coreTools\.filter\(/.test(cliSource) &&
+      /\btools\s*=\s*Object\.freeze\(MCP_PUBLIC_TOOL_CATALOG\.map\(/.test(cliSource)) {
+    const allowedNames = [...extractFrozenArray(cliSource, 'MCP_PUBLIC_CORE_TOOL_NAMES')
+      .matchAll(/"([a-z][a-z0-9_]*)"/g)].map(match => match[1]);
+    const core = parseEntries(extractFrozenArray(cliSource, 'coreTools'));
+    const generic = parseEntries(extractFrozenArray(cliSource, 'genericControlTools'));
+    const allowed = new Set(allowedNames);
+    if (!allowed.size || allowed.size !== allowedNames.length ||
+        !allowedNames.every(name => core.some(tool => tool.name === name)) ||
+        generic.length !== 2 ||
+        !generic.some(tool => tool.name === 'read_control_api') ||
+        !generic.some(tool => tool.name === 'write_control_api')) {
+      throw new Error('MCP canonical public catalog is missing or duplicated');
+    }
+    return validateTools([...core.filter(tool => allowed.has(tool.name)), ...generic]);
   }
 
   // This matches the registered public subset, never the complete internal list.
