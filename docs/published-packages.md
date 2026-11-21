@@ -2,7 +2,7 @@
 
 Vira's public integration packages are independently versioned. **A version declared in the maintained source is not necessarily the latest version available in npm or PyPI.** Do not use old documentation pins as a substitute for registry checks.
 
-Source and live registry comparison: **21 November 2026**. JS SDK, MCP and PyPI versions below were verified against registry metadata; the MCP npm tarball and tool snapshot also passed package comparison. The OpenCode npm version was confirmed by the public CI registry probe.
+Source and registry comparison: **21 November 2026**. Public CI previously verified npm `@tryvira/sdk@0.1.74`, npm `@tryvira/mcp@0.1.78`, PyPI `tryvira-sdk==0.1.55` and the OpenCode npm `0.1.67` probe. The newer MCP **source** manifest declares `0.1.79` and 61 shared catalog tool names; it must be independently checked against npm before being treated as published.
 
 | Ecosystem | Package | Maintained source version | Last version cited by the earlier public docs | Runtime | License |
 | --- | --- | ---: | ---: | --- | --- |
@@ -11,7 +11,7 @@ Source and live registry comparison: **21 November 2026**. JS SDK, MCP and PyPI 
 | npm | [`@tryvira/opencode`](https://www.npmjs.com/package/@tryvira/opencode) | `0.1.67` | `0.1.61` | Node.js 20+ | MIT |
 | PyPI | [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) | `0.1.55` | `0.1.54` | Python 3.10+ | MIT |
 
-**These were verified registry releases on 21 November 2026**, not permanent latest-version promises. Check current availability again before pinning or upgrading:
+**The previously verified release versions are listed above**, while the table separately shows the maintained source versions. A source-only bump is not evidence of an npm/PyPI release. Recheck registry availability before pinning or upgrading:
 
 ```bash
 npm view @tryvira/sdk version
