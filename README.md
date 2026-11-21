@@ -119,7 +119,7 @@ Vira is not limited to one industry or to complex agents. Start simple, then mov
 
 Start with a single task, or govern a process with several steps or coordinated tasks. Vira's AUTO TaskRun can select among eligible SINGLE, STRATEGY, COMPOUND and HYBRID execution paths, depending on the connected application and released behavior.
 
-[Execution modes](docs/execution-modes.md) · [TaskRun example](examples/javascript/taskrun-modes.mjs)
+[Execution modes](docs/execution-modes.md) · [TaskRun example](examples/javascript/taskrun-modes.mjs) · [Integration compatibility](docs/integration-compatibility.md)
 
 ## Learn to author high-quality Behavior Packs
 
@@ -187,6 +187,7 @@ The sample is intended for local development. Add authentication, rate limits an
 | JavaScript / TypeScript | `npm install @tryvira/sdk` | [SDK guide](docs/reference/javascript-sdk.md) |
 | Python | `python -m pip install tryvira-sdk` | [Python guide](docs/reference/python-sdk.md) |
 | MCP | `npx -y @tryvira/mcp` | [MCP setup and tool discovery](docs/reference/mcp.md) |
+| OpenCode plugin | Configure `@tryvira/opencode` in OpenCode | [OpenCode host integration](plugins/opencode/README.md) |
 | HTTP | Customer deployment's documented API | [HTTP integration boundaries](docs/reference/api.md) |
 | Agent Skills | Task-specific guidance for coding agents | [Skills library](skills/README.md) |
 
