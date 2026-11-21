@@ -28,10 +28,18 @@ OLD = (
     "social-preview.png",
     "Vira Davranış Döngüsü Infografiği.png",
 )
+# This square PNG is the distribution icon for MCP listings, not a README
+# illustration. Keep SVG-only constraints for the five editorial illustrations.
+DISTRIBUTION_ASSETS = {"assets/vira-mcp-icon.png"}
 actual = {str(path.relative_to(ROOT)) for path in (ROOT / "assets").iterdir() if path.is_file()}
-if actual != IMAGES:
+expected = IMAGES | DISTRIBUTION_ASSETS
+if actual != expected:
     raise SystemExit("ARTWORK_ASSET_INVENTORY_MISMATCH missing="
-                     + str(sorted(IMAGES-actual)) + " old_or_extra=" + str(sorted(actual-IMAGES)))
+                     + str(sorted(expected-actual)) + " old_or_extra=" + str(sorted(actual-expected)))
+for asset in DISTRIBUTION_ASSETS:
+    png = (ROOT / asset).read_bytes()
+    if not png.startswith(bytes.fromhex("89504e470d0a1a0a")) or len(png) < 24:
+        raise SystemExit("ARTWORK_DISTRIBUTION_PNG_INVALID " + asset)
 for img in sorted(IMAGES):
     path = ROOT / img
     tree = ET.parse(path)
