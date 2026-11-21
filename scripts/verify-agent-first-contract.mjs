@@ -27,7 +27,8 @@ assert.ok(pyFastapiPin, "Missing FastAPI pinned SDK version");
 assert.ok(pyLock.includes("tryvira-sdk==" + pyFastapiPin + " \\"), "FastAPI lock does not match requirements.txt");
 assert.match(pyReadme, new RegExp(pythonVersion.replaceAll(".", "\\.")));
 assert.match(pyRunner, new RegExp(pythonVersion.replaceAll(".", "\\.")));
-for (const doc of [mcp, mcpClient]) assert.ok(doc.includes(mcpVersion), "MCP pin not aligned");
+assert.ok(mcpClient.includes(mcpVersion), "MCP client example pin not aligned");
+assert.ok(mcp.includes("tools/list"), "MCP guide must describe live discovery");
 for (const name of ["start_task_run", "get_task_run", "list_task_run_events", "import_pack", "evaluate_pack", "approve_pack", "release_pack", "create_teach_analysis"]) {
   assert.ok(mcp.includes(name) || inventory.includes(name), "operation missing from public guide: " + name);
   assert.ok(guide.includes(name), "missing from shared workflow: " + name);
