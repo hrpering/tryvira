@@ -21,5 +21,17 @@ for (const name of ['start_task_run','get_task_run','import_pack','evaluate_pack
   assert.ok(shared.includes(name), 'missing common operation: ' + name);
 const snapshot=JSON.parse(await readFile(new URL('../docs/reference/mcp-published-tools.json', import.meta.url),'utf8'));
 assert.equal(snapshot.version,mcpVersion);
-for(const name of ['get_scope','list_inbox','mark_inbox_read','inspect_conflicts','get_conflict_inspection','resolve_conflict','start_optimization','get_optimization_run','cancel_optimization_run'])assert.ok(snapshot.tools.some(x=>x.name===name),'New public tool absent: '+name);
+for(const name of ['get_scope','list_inbox','mark_inbox_read','inspect_conflicts','get_conflict_inspection','resolve_conflict',
+  'start_task_run','import_pack','evaluate_pack','approve_pack','release_pack']) {
+  assert.ok(snapshot.tools.some(x=>x.name===name),'Required published lifecycle tool absent: '+name);
+}
+// Older bundles exposed dedicated optimization tools. Newer bundles can
+// expose registered optimization operations through read/write_control_api.
+// Tool absence is a surface difference, never an authorization fallback.
+const generic = snapshot.tools.some(x=>x.name==='write_control_api');
+if(generic) {
+  assert.ok(snapshot.tools.some(x=>x.name==='read_control_api'),'Generic read tool missing');
+  assert.equal(snapshot.tools.find(x=>x.name==='write_control_api').effectful,true);
+}
+
 console.log(`SKILL_MCP_PARITY_PASS skills=${skills.length} mcpVersion=${mcpVersion} tools=${snapshot.tools.length} (static only)`);
