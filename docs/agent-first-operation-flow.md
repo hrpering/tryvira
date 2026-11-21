@@ -13,14 +13,14 @@ Vira is operated from a coding agent without requiring Studio. **Skills decide t
 
 ## Operation matrix
 
-The MCP names below include historical 0.1.60 snapshot names and source-reviewed canonical names as of 21 November 2026. They are **discovery hints**, not a promise of permission or fully equivalent SDK signatures.
+The MCP names below reflect the **registry-verified 0.1.78 advertised catalog**, with older 0.1.60-only operations identified where useful. They are **discovery hints**, not a promise of permission or equivalent SDK signatures.
 
 | Goal | MCP tools to discover | JavaScript SDK | Python SDK | Required evidence |
 | --- | --- | --- | --- | --- |
 | Inspect signed-in scope | `get_scope` | Check installed SDK scope access | Check installed SDK scope access | Configured scope and actor-matched response; no guessed tenant |
 | Review Inbox | `list_inbox`, `mark_inbox_read` | Use MCP where available; do not invent JS methods | Use MCP where available; do not invent Python methods | Real notification identity, user intent and write authorization |
 | Resolve conflicts | `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` | Use MCP when exposed, verify installed alternatives individually | Use MCP when exposed, verify installed alternatives individually | Persisted inspection ID, exact decision, reviewer authority and readback |
-| Optimize candidates | `start_optimization`, `get_optimization_run`, `cancel_optimization_run` | Check installed SDK; do not infer Python/JS parity | Check installed SDK; do not infer JS/Python parity | Approved dataset/holdout, scoped run ID, actual status, no silent release |
+| Optimize candidates | The 0.1.60 `start_optimization` / `get_optimization_run` / `cancel_optimization_run` tools are **not promoted in 0.1.78**. Use only a documented registered Control API route via `read_control_api` / `write_control_api` when authorized | Check installed SDK; no assumed JS/Python parity | Check installed SDK; no assumed JS/Python parity | Approved dataset/holdout, scoped run ID, actual status, no silent release |
 | Discover scope and AI System | `list_capabilities`, `list_ai_systems`, `list_system_connections`, `connection_health` | `listCapabilities`, `listAISystems`, `listSystemConnections`, `connectionHealth` | `list_capabilities`, `list_ai_systems`, `list_system_connections`, `connection_health` | Actual scoped IDs and capability state |
 | Connect an agent | `connect_ai_system` (older alias: `connect_once`), `get_connection` | `connectAiSystem` (older alias: `connectOnce`), `getConnection` | `connect_once`, `get_connection` | Returned AI System and Connection IDs |
 | Observe and Teach | `observe`, `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis` | `observe`, `submitTeachEvidence`, `createTeachAnalysis`, `getTeachAnalysis` | `observe`, `submit_teach_evidence`, `create_teach_analysis`, `get_teach_analysis` | Consent, accepted evidence and analysis status |
