@@ -17,6 +17,9 @@ async function visit(dir){
     if(!scanExt.has(extname(path))||/package-lock|requirements\.lock|CHANGELOG|model-runs\.jsonl/i.test(path))continue;
     const body=await readFile(path,"utf8");
     for(const [index,line] of body.split("\n").entries()){
+      // Source-version comparisons and explicitly historical release snapshots
+      // are not installation recommendations and must not be rewritten by CI.
+      const historical = /historical|last version cited|previously|prior docs|source manifest|source-version|inspected source|snapshot|comparison/i.test(line);
       const patterns=[
         [/@tryvira\/sdk@(\d+\.\d+\.\d+)/g,js],
         [/@tryvira\/mcp@(\d+\.\d+\.\d+)/g,mcp],
@@ -28,7 +31,7 @@ async function visit(dir){
         [/\bMCP (\d+\.\d+\.\d+)/g,mcp],
       ];
       for(const [regex,expected] of patterns){
-        for(const match of line.matchAll(regex))if(match[1]!==expected){
+        for(const match of line.matchAll(regex))if(match[1]!==expected && !historical){
           errors.push(path+":"+(index+1)+" expected "+expected+" found "+match[1]);
         }
       }
