@@ -1,6 +1,6 @@
 # Client versions in runnable examples
 
-**Last registry-synced example versions (not independently rechecked on 21 November 2026):** JavaScript `@tryvira/sdk@0.1.74`; MCP `@tryvira/mcp@0.1.78`; Python `tryvira-sdk==0.1.55`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
+**Last registry-synced example versions (registry-verified on 21 November 2026):** JavaScript `@tryvira/sdk@0.1.74`; MCP `@tryvira/mcp@0.1.78`; Python `tryvira-sdk==0.1.55`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
 
 | Example | Declared version | Version policy | What CI actually proves |
 | --- | --- | --- | --- |
