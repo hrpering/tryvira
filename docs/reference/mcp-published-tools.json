@@ -1,7 +1,11 @@
 {
   "package": "@tryvira/mcp",
-  "version": "0.1.78",
+  "version": "0.1.79",
   "tools": [
+    {
+      "name": "accept_behavior_revision_candidate",
+      "effectful": true
+    },
     {
       "name": "accept_teach_recommendation",
       "effectful": true
@@ -19,7 +23,15 @@
       "effectful": true
     },
     {
+      "name": "continue_strategy_execution",
+      "effectful": true
+    },
+    {
       "name": "continue_task_run",
+      "effectful": true
+    },
+    {
+      "name": "create_behavior_point",
       "effectful": true
     },
     {
@@ -27,7 +39,23 @@
       "effectful": true
     },
     {
+      "name": "create_improvement_proposal",
+      "effectful": true
+    },
+    {
+      "name": "create_observation",
+      "effectful": true
+    },
+    {
       "name": "create_pack_revision",
+      "effectful": true
+    },
+    {
+      "name": "create_release",
+      "effectful": true
+    },
+    {
+      "name": "create_semantic_task",
       "effectful": true
     },
     {
@@ -45,6 +73,10 @@
     {
       "name": "evaluate_pack",
       "effectful": true
+    },
+    {
+      "name": "get_behavior_strategy",
+      "effectful": false
     },
     {
       "name": "get_conflict_inspection",
@@ -67,7 +99,15 @@
       "effectful": false
     },
     {
+      "name": "get_pack_revision_diff",
+      "effectful": false
+    },
+    {
       "name": "get_scope",
+      "effectful": false
+    },
+    {
+      "name": "get_strategy_execution_trace",
       "effectful": false
     },
     {
@@ -91,6 +131,10 @@
       "effectful": true
     },
     {
+      "name": "list_ai_systems",
+      "effectful": false
+    },
+    {
       "name": "list_behavior_points",
       "effectful": false
     },
@@ -103,11 +147,19 @@
       "effectful": false
     },
     {
+      "name": "list_discovery_candidates",
+      "effectful": false
+    },
+    {
       "name": "list_evaluations",
       "effectful": false
     },
     {
       "name": "list_inbox",
+      "effectful": false
+    },
+    {
+      "name": "list_packs",
       "effectful": false
     },
     {
@@ -160,6 +212,10 @@
     },
     {
       "name": "retry_task_run",
+      "effectful": true
+    },
+    {
+      "name": "review_discovery_candidate",
       "effectful": true
     },
     {

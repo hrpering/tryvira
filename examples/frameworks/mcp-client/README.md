@@ -1,6 +1,6 @@
 # MCP client: discover and call a real Vira server
 
-Requires Node.js 20+. Uses the published `@tryvira/mcp@0.1.78` stdio server with `@modelcontextprotocol/client`. Run this from `examples/frameworks/mcp-client` after configuring an authorized, isolated development tenant. Secrets belong in the host environment, not the repository.
+Requires Node.js 20+. Uses the published `@tryvira/mcp@0.1.79` stdio server with `@modelcontextprotocol/client`. Run this from `examples/frameworks/mcp-client` after configuring an authorized, isolated development tenant. Secrets belong in the host environment, not the repository.
 
 ```bash
 npm ci
@@ -27,6 +27,6 @@ A tool failure, wrong scope, missing approval, or policy denial is a terminal de
 
 [Common agent-first workflow](../../../docs/agent-first-operation-flow.md) · [MCP tool/Skill map](../../../docs/reference/mcp-tools.md) · [Python/JS examples](../../agent-first/README.md).
 
-## Published MCP 0.1.78 coverage
+## Published MCP 0.1.79 coverage
 
 The current published package has a [registry-generated versioned-tool inventory](../../../docs/reference/mcp-published-tools.json), including Inbox, Conflict Inspector and Optimization tools. The example remains conservative: discover with `tools/list`, make read-only calls first, and require explicit human approval for any effectful call. The MCP host flag never substitutes for Vira's server-side authorization.
