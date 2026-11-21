@@ -64,12 +64,18 @@ jobs:
             echo "Published package references already match the registries."
             exit 0
           fi
-          BRANCH="chore/published-vira-clients-$(date -u +%Y%m%d)"
+          BRANCH="chore/published-vira-clients-$(date -u +%Y%m%d)-${GITHUB_RUN_ID}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
           git commit -m "build: align published Vira clients, examples and MCP catalog"
           git push --set-upstream origin "$BRANCH"
-          gh pr create --base main --head "$BRANCH" \
+          if gh pr create --base main --head "$BRANCH" \
             --title "build: update published Vira SDK/PyPI/MCP and examples" \
-            --body "Registry-verified clients and MCP tool snapshot with regenerated npm/Python locks. Review the full CI before merging."
+            --body "Registry-verified clients and MCP tool snapshot with regenerated npm/Python locks. Review the full CI before merging."; then
+            echo "Registry sync PR created successfully."
+          else
+            echo "::warning::GitHub Actions cannot create PRs in this repository. The verified changes were pushed to $BRANCH."
+            echo "Open a PR with the authenticated maintainer account:"
+            echo "https://github.com/hrpering/tryvira/compare/main...$BRANCH?expand=1"
+          fi
