@@ -5,6 +5,18 @@ const v=JSON.parse(await readFile("package-versions.json","utf8"));
 const js=v.npm["@tryvira/sdk"],mcp=v.npm["@tryvira/mcp"],py=v.pypi["tryvira-sdk"];
 const check=process.argv.includes("--check");
 const changed=[],skipped=new Set([".git","node_modules",".next",".venv","dist","__pycache__"]);
+// Comparative docs are audited, not install-command templates. Never erase
+// historical releases or overwrite the maintained-source manifest comparison.
+const sourceComparisonDocs=new Set([
+  "docs/published-packages.md",
+  "docs/integration-compatibility.md",
+  "docs/reference/javascript-sdk.md",
+  "docs/reference/python-sdk.md",
+  "docs/reference/mcp.md",
+  "docs/reference/mcp-tools.md",
+  "docs/agent-first-operation-flow.md",
+  "docs/agent-skills/studio-less-parity.md",
+]);
 const semver="\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?";
 const substitutions=[
   [new RegExp("@tryvira/sdk@"+semver,"g"),"@tryvira/sdk@"+js],
@@ -21,9 +33,19 @@ async function walk(dir){
     if(entry.isDirectory()){if(!skipped.has(entry.name))await walk(join(dir,entry.name));continue;}
     if(!entry.isFile()||!entry.name.endsWith(".md"))continue;
     const path=join(dir,entry.name);
+    if(sourceComparisonDocs.has(path))continue;
     const original=await readFile(path,"utf8");
     let next=original;
-    for(const [pattern,replacement] of substitutions)next=next.replace(pattern,replacement);
+    next=original.split("\n").map(line=>{
+      // Only refresh active package references, not a historical snapshot,
+      // deprecation note, or inspected source release comparison.
+      if(/historical|prior (?:package|version|release)|previously|source.manifest|snapshot|inspected source|source.version|old (?:release|version)/i.test(line)){
+        return line;
+      }
+      let result=line;
+      for(const [pattern,replacement] of substitutions)result=result.replace(pattern,replacement);
+      return result;
+    }).join("\n");
     if(["mcp.md","mcp-tools.md"].includes(basename(path))){
       next=next.replace(new RegExp("(\\bVersion )"+semver+"(\\b)","g"),"$1"+mcp+"$2")
         .replace(new RegExp("(\\bdocumented version \\*\\*)"+semver+"(\\*\\*)","g"),"$1"+mcp+"$2");
