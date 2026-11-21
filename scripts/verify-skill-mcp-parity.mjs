@@ -12,7 +12,7 @@ for (const tool of ['start_task_run','get_task_run','list_task_run_events','impo
   assert.match(mcpSkill, new RegExp(`\\b${tool}\\b`), `MCP Skill missing ${tool}`);
 assert.doesNotMatch(mcpSkill, /does not provide TaskRun|has no Pack tools|do not create a fake `start_task_run`/);
 const catalog = await readFile(new URL('../docs/reference/mcp-tools.md', import.meta.url), 'utf8');
-assert.ok(catalog.includes(mcpVersion), 'MCP docs version drift');
+assert.ok(catalog.includes('tools/list') && catalog.includes('mcp-published-tools.json'), 'MCP docs must link live discovery and snapshot');
 assert.match(catalog, /versioned tool catalog/);
 const setup = await readFile(new URL('../docs/reference/mcp.md', import.meta.url), 'utf8');
 assert.doesNotMatch(setup, /does not expose Teach proposal transitions|does not expose.*Pack operations/i);
