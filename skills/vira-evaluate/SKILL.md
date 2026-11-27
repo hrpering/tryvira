@@ -37,7 +37,7 @@ Specify API deployment URL, credential scope, evaluation type, candidate identit
 
 ## Quality-preserving optimization loop
 
-For a scoped provider-backed optimization request, look for `start_optimization`, `get_optimization_run` and `cancel_optimization_run` in the installed MCP server's live `tools/list`. These operations appear in the historical published 0.1.60 snapshot and in maintained source; do not assume an unverified newer npm release. These are server-authorized lifecycle operations; a returned run ID is not a completed evaluation or permission to release. Do not invent Python/JS equivalents if absent.
+For a scoped provider-backed optimization request, inspect live `tools/list` and registered capability discovery. Dedicated `start_optimization`, `get_optimization_run` and `cancel_optimization_run` are absent from the current 99-name published and maintained source snapshots. Only use a documented, registered operation through `read_control_api` or `write_control_api` if actually advertised and authorized; do not guess an endpoint. These are server-authorized lifecycle operations; a returned run ID is not a completed evaluation or permission to release. Do not invent Python/JS equivalents if absent.
 
 An optimization proposal is not permission to change production. Start with comparable inputs, the same model/configuration where possible and a strong OFF baseline. Evaluate the exact immutable candidate and read individual failed/regressed cases. Use server-executed comparative evaluation and persisted findings when supported; never let clients submit fabricated arm outputs or aggregate scores as evaluation evidence.
 
