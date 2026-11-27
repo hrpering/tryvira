@@ -1,18 +1,18 @@
 # Client versions in runnable examples
 
-**Last registry-synced example versions (registry-verified on 21 November 2026):** JavaScript `@tryvira/sdk@0.1.75`; MCP `@tryvira/mcp@0.1.79`; Python `tryvira-sdk==0.1.56`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
+**Current registry versions (verified on 27 November 2026):** JavaScript `@tryvira/sdk@0.1.93`; MCP `@tryvira/mcp@0.1.90`; Python `tryvira-sdk==0.1.75`. These independently released clients are pinned by the matching example manifests and lockfiles. Use installed methods and `tools/list` before invoking an operation.
 
 | Example | Declared version | Version policy | What CI actually proves |
 | --- | --- | --- | --- |
-| `examples/javascript` | JS SDK 0.1.75 | Current starter | Code syntax and offline Observe request tests with the installed release |
-| `examples/python` | Python SDK 0.1.56 | Current starter | Python source + offline injected-client tests with scoped Observe event |
-| `examples/mcp` | MCP 0.1.79 | Current host instructions | Configuration JSON and published version reference |
-| `examples/frameworks/mcp-client` | MCP 0.1.79 | Current MCP client | stdio client syntax and external dependency install |
-| `examples/semantic-runtime` | JS SDK 0.1.75 | Current *diagnostic* starter | Syntax; not a canonical ON chatbot |
-| `examples/frameworks/node-next` | JS SDK 0.1.75 | **Current SDK, hash-verified lock** | npm ci, tests and Next build on its committed lock |
-| `tutorials/marketing-agent` | JS SDK 0.1.75 | **Current SDK, integrity-verified lock** | npm ci and safety tests on its committed lock |
-| `examples/frameworks/python_fastapi` | Python SDK 0.1.56 | **Current SDK, hash-verified lock** | uv sync --require-hashes and Python contract tests on its committed lock |
-| `examples/frameworks/langgraph` | Python SDK 0.1.56 | **Current SDK, hash-verified lock** | uv sync and Python syntax on its committed lock |
+| `examples/javascript` | JS SDK 0.1.93 | Current starter | Code syntax and offline Observe request tests with the installed release |
+| `examples/python` | Python SDK 0.1.75 | Current starter | Python source + offline injected-client tests with scoped Observe event |
+| `examples/mcp` | MCP 0.1.90 | Current host instructions | Configuration JSON and published version reference |
+| `examples/frameworks/mcp-client` | MCP 0.1.90 | Current MCP client | stdio client syntax and external dependency install |
+| `examples/semantic-runtime` | JS SDK 0.1.93 | Current *diagnostic* starter | Syntax; not a canonical ON chatbot |
+| `examples/frameworks/node-next` | JS SDK 0.1.93 | **Current SDK, hash-verified lock** | npm ci, tests and Next build on its committed lock |
+| `tutorials/marketing-agent` | JS SDK 0.1.93 | **Current SDK, integrity-verified lock** | npm ci and safety tests on its committed lock |
+| `examples/frameworks/python_fastapi` | Python SDK 0.1.75 | **Current SDK, hash-verified lock** | uv sync --require-hashes and Python contract tests on its committed lock |
+| `examples/frameworks/langgraph` | Python SDK 0.1.75 | **Current SDK, hash-verified lock** | uv sync and Python syntax on its committed lock |
 
 **Recorded sync state:** runnable Vira examples use the last registry-verified package versions in `package-versions.json`; this does **not** establish they remain the newest npm/PyPI versions. Frameworks retain committed npm/Python lockfiles generated from their recorded releases, **not string-edited**. Future version changes must update all Vira manifests **and regenerate locks** before review; do not change unrelated provider dependencies. Never edit npm tarball integrity fields or Python hashes by string replacement.
 

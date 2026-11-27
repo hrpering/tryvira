@@ -8,10 +8,10 @@
 | [Use-case prompts by complexity](../docs/use-cases.md) | 12 beginner-to-advanced scenarios and negative cases; these are not runnable integrations |
 | [JavaScript lifecycle walkthrough](javascript/end-to-end-lifecycle.mjs) | connect, capability discovery, evidence, Task/Point authoring, and semantic/runtime separation; the optional Pack section is a partial lifecycle skeleton |
 | [Agent-first operational walkthrough](agent-first/README.md) | Skills choose lifecycle stages; installed MCP or JS/Python SDK performs server-authorized operations; no fake live receipts |
-| [JavaScript](javascript/) | `@tryvira/sdk` `0.1.75` (current example) connect/observe, capability discovery, canonical authoring, runtime and response quality |
-| [Python](python/) | `tryvira-sdk` `0.1.56` integration + response quality |
+| [JavaScript](javascript/) | `@tryvira/sdk` `0.1.93` (current example) connect/observe, capability discovery, canonical authoring, runtime and response quality |
+| [Python](python/) | `tryvira-sdk` `0.1.75` integration + response quality |
 | [Semantic + runtime](semantic-runtime/) | semantic selection followed by governed runtime resolution |
-| [MCP](mcp/) | `@tryvira/mcp` `0.1.79` host configuration, live tool discovery, semantic/runtime resolution, basic authoring, and Teach evidence/proposal creation |
+| [MCP](mcp/) | `@tryvira/mcp` `0.1.90` host configuration, live tool discovery, semantic/runtime resolution, basic authoring, and Teach evidence/proposal creation |
 | [Marketing Pack](packs/marketing-starter/) | 26 evaluated-design scenarios, budget-aware marketing launch behavior and governed materialization/evaluation/release |
 | [Strategy integration](strategy/) | references to the published SDK/API contracts |
 

@@ -1,10 +1,10 @@
 # MCP integration reference
 
-**Verified npm package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.79` (21 November 2026). The registry tarball was checked against the **61 advertised tools** in the snapshot below.
+**Verified npm package:** [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) `0.1.90` (27 November 2026). The registry tarball was checked against the **99 advertised tools** in the snapshot below.
 
 The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
-**Compatibility note:** The maintained shared MCP source catalog and the verified published npm package both describe version `0.1.79` with **61 matching tool names**. This establishes name parity between source and published artifact, not a verified live hosted `tools/list` or identical schema/authority behavior. See the [generated source/npm comparison](../mcp-surface-parity.md). The source list does not prove a deployed hosted endpoint.
+**Compatibility note:** The verified published npm package `0.1.90` advertises **99 tools**. This establishes the package's discovery inventory, not a verified live hosted `tools/list` or identical schema/authority behavior. See the [source/npm comparison](../mcp-surface-parity.md). The snapshot does not prove a deployed hosted endpoint.
 
 ## Discover what the installed server supports
 
@@ -14,9 +14,9 @@ A returned tool schema describes how to call that tool; it does not grant author
 
 ## Registry-verified published tool inventory
 
-The [public npm MCP tool snapshot](mcp-published-tools.json) is tagged `@tryvira/mcp@0.1.79`: the synchronization workflow downloaded the npm tarball, extracted the promoted tool subset and compared the exact names and effect classifications in CI. This is a **versioned discovery reference**, not an authorization grant or substitute for live `tools/list`.
+The [public npm MCP tool snapshot](mcp-published-tools.json) is tagged `@tryvira/mcp@0.1.90` and was extracted from the published npm tarball. This is a **versioned discovery reference**, not an authorization grant or substitute for live `tools/list`.
 
-### Promoted review and control families in 0.1.79
+### Promoted review and control families in 0.1.90
 
 | Goal | Tools to discover | Read/write boundary |
 | --- | --- | --- |
@@ -25,11 +25,11 @@ The [public npm MCP tool snapshot](mcp-published-tools.json) is tagged `@tryvira
 | Inspect and decide conflicts | `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict` | Inspection creates persisted state; resolution requires explicit approval and server authorization |
 | Access other registered Control API operations | `read_control_api`, `write_control_api` | Generic access still requires a documented registered route, role, policy, effect approval and a persisted receipt |
 
-The dedicated optimization tools from the older 0.1.60 catalog are **not first-class tools in 0.1.79**. Never guess their endpoints or use `write_control_api` to bypass a denial. Provider, actor, tenant, evaluation and release prerequisites still apply. This does **not** establish complete Studio administration or optimizer parity.
+The dedicated optimization tools from the older 0.1.60 catalog are **not first-class tools in 0.1.90**. Never guess their endpoints or use `write_control_api` to bypass a denial. Provider, actor, tenant, evaluation and release prerequisites still apply. This does **not** establish complete Studio administration or optimizer parity.
 
 ## Product-level coverage
 
-The registry-verified 0.1.79 package offers a deliberately promoted public lifecycle surface plus generic access to documented registered Control API operations. It offers promoted AI System connections, scoped task/point/strategy reads, TaskRun resolve/start/read/events/continue/cancel/retry, observations and feedback, Teach proposals, evaluations, Pack lifecycle and revision actions, runtime projection, plus registered Control API reads/writes. **Not every wider product feature (including trace search or host authorization) has its own promoted `0.1.78` tool.** It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
+The registry-verified 0.1.90 package offers a deliberately promoted public lifecycle surface plus generic access to documented registered Control API operations. It offers promoted AI System connections, scoped task/point/strategy reads, TaskRun resolve/start/read/events/continue/cancel/retry, observations and feedback, Teach proposals, evaluations, Pack lifecycle and revision actions, runtime projection, plus registered Control API reads/writes. **Not every wider product feature (including trace search or host authorization) has its own promoted `0.1.90` tool.** It does not provide complete parity with the JavaScript SDK or Python client, so use the installed server's live `tools/list` for exact schemas and scoped availability.
 
 If a requested operation is absent, use another documented customer-facing surface only when that surface's current public contract is available. Use the names, schemas and authorization decisions returned by the configured server.
 

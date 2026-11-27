@@ -36,15 +36,17 @@ function version(value, label) {
 }
 
 
-const [sdkMeta, mcpMeta, pythonMeta] = await Promise.all([
+const [sdkMeta, mcpMeta, opencodeMeta, pythonMeta] = await Promise.all([
   getJson("https://registry.npmjs.org/%40tryvira%2Fsdk", "@tryvira/sdk"),
   getJson("https://registry.npmjs.org/%40tryvira%2Fmcp", "@tryvira/mcp"),
+  getJson("https://registry.npmjs.org/%40tryvira%2Fopencode", "@tryvira/opencode"),
   getJson("https://pypi.org/pypi/tryvira-sdk/json", "tryvira-sdk"),
 ]);
 const latest = {
   npm: {
     "@tryvira/sdk": version(sdkMeta["dist-tags"]?.latest, "@tryvira/sdk latest"),
     "@tryvira/mcp": version(mcpMeta["dist-tags"]?.latest, "@tryvira/mcp latest"),
+    "@tryvira/opencode": version(opencodeMeta["dist-tags"]?.latest, "@tryvira/opencode latest"),
   },
   pypi: {
     "tryvira-sdk": version(pythonMeta.info?.version, "tryvira-sdk latest"),
@@ -76,6 +78,13 @@ try {
   const versionsPath = join(root, "package-versions.json");
   const oldVersions = JSON.parse(await readFile(versionsPath, "utf8"));
   await writeFile(versionsPath, `${JSON.stringify(latest, null, 2)}\n`);
+  const serverPath = join(root, "server.json");
+  const server = JSON.parse(await readFile(serverPath, "utf8"));
+  server.version = latest.npm["@tryvira/mcp"];
+  const serverPackage = server.packages?.find(entry => entry.identifier === "@tryvira/mcp");
+  if (!serverPackage) throw new Error("MCP_SERVER_PACKAGE_ENTRY_MISSING");
+  serverPackage.version = latest.npm["@tryvira/mcp"];
+  await writeFile(serverPath, `${JSON.stringify(server, null, 2)}\n`);
 
   // Limit automatic version replacement to human-readable latest-install references.
   // Never rewrite hashed lockfiles or package manifests without regenerating
@@ -125,7 +134,7 @@ try {
     throw new Error("MCP_PUBLISHED_TOOL_CATALOG_EMPTY");
   }
 
-  console.log(`REGISTRY_SYNC_PASS sdk=${latest.npm["@tryvira/sdk"]} mcp=${latest.npm["@tryvira/mcp"]} (${tools.length} tools) python=${latest.pypi["tryvira-sdk"]}`);
+  console.log(`REGISTRY_SYNC_PASS sdk=${latest.npm["@tryvira/sdk"]} mcp=${latest.npm["@tryvira/mcp"]} (${tools.length} tools) opencode=${latest.npm["@tryvira/opencode"]} python=${latest.pypi["tryvira-sdk"]}`);
 } finally {
   await rm(temp, { recursive: true, force: true });
 }

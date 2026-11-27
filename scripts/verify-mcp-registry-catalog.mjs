@@ -12,9 +12,8 @@ assert.equal(snapshot.package,"@tryvira/mcp");
 assert.equal(snapshot.version,version);
 assert.ok(Array.isArray(snapshot.tools)&&snapshot.tools.length>0);
 assert.equal(new Set(snapshot.tools.map(t=>t.name)).size,snapshot.tools.length);
-// Require stable, advertised public lifecycle tools across the old flat and
-// newer promoted-catalog releases. Optimization and other non-promoted
-// operations may be routed through authenticated read/write_control_api.
+// Require stable, advertised public lifecycle tools. Optimization and other
+// non-promoted operations may be routed through authenticated read/write_control_api.
 for(const name of ["get_scope","list_inbox","mark_inbox_read","inspect_conflicts",
   "get_conflict_inspection","resolve_conflict","start_task_run","import_pack",
   "release_pack","evaluate_pack"]) {

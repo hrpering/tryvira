@@ -1,11 +1,11 @@
 # Python examples
 
-These examples use `tryvira-sdk==0.1.56` and `from vira import ViraClient`.
+These examples use `tryvira-sdk==0.1.75` and `from vira import ViraClient`.
 
 ## Install and configure
 
 ```bash
-python -m pip install tryvira-sdk==0.1.56
+python -m pip install tryvira-sdk==0.1.75
 export VIRA_API_URL="https://api.example.invalid"
 export VIRA_API_KEY="<server-side-key>"
 export VIRA_ORGANIZATION_ID="<organization-id>"
@@ -39,7 +39,7 @@ See [execution modes](../../docs/execution-modes.md) and the [published Python S
 ## Prompt for a coding agent
 
 ```text
-Integrate tryvira-sdk==0.1.56 into this existing Python application.
+Integrate tryvira-sdk==0.1.75 into this existing Python application.
 
 Inspect Python version, dependency files, configuration conventions, and the smallest
 integration module first. Implement a focused example using ViraClient, connect_once,

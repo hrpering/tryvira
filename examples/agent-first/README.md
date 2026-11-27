@@ -15,9 +15,9 @@ Configure `VIRA_API_URL`, `VIRA_API_KEY`, `VIRA_ORGANIZATION_ID`, `VIRA_PROJECT_
 
 **MCP:** from `examples/frameworks/mcp-client`, `npm ci && npm start` lists live tools. An explicit read-only discovery call is `VIRA_MCP_TOOL=list_capabilities VIRA_MCP_ARGUMENTS='{}' npm start`. Find the tool in `tools/list` before calling it.
 
-**JavaScript:** from `examples/javascript`, install `@tryvira/sdk@0.1.75`, then `node taskrun-modes.mjs AUTO` to request a routing proposal only.
+**JavaScript:** from `examples/javascript`, install `@tryvira/sdk@0.1.93`, then `node taskrun-modes.mjs AUTO` to request a routing proposal only.
 
-**Python:** from `examples/python`, install `tryvira-sdk==0.1.56`, then `python taskrun_modes.py AUTO` to request the same kind of routing proposal only.
+**Python:** from `examples/python`, install `tryvira-sdk==0.1.75`, then `python taskrun_modes.py AUTO` to request the same kind of routing proposal only.
 
 MCP, JS and Python each have their own request signature. They do **not** automatically produce identical result envelopes. These scripts do not bypass an unavailable backend, permission denial or unreleased behavior.
 

@@ -1,6 +1,6 @@
 # Python SDK
 
-**Package:** [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/). **Inspected source manifest:** `0.1.56` (21 November 2026); verify the PyPI release independently.
+**Package:** [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/). **Inspected source manifest:** `0.1.75` (27 November 2026); verify the PyPI release independently.
 
 **Runtime:** Python 3.10+
 

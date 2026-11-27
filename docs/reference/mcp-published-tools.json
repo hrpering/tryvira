@@ -1,6 +1,6 @@
 {
   "package": "@tryvira/mcp",
-  "version": "0.1.79",
+  "version": "0.1.90",
   "tools": [
     {
       "name": "accept_behavior_revision_candidate",
@@ -12,6 +12,14 @@
     },
     {
       "name": "approve_pack",
+      "effectful": true
+    },
+    {
+      "name": "archive_organization_unit",
+      "effectful": true
+    },
+    {
+      "name": "bind_project_organization_unit",
       "effectful": true
     },
     {
@@ -43,7 +51,15 @@
       "effectful": true
     },
     {
+      "name": "create_notification_destination",
+      "effectful": true
+    },
+    {
       "name": "create_observation",
+      "effectful": true
+    },
+    {
+      "name": "create_organization_unit",
       "effectful": true
     },
     {
@@ -56,6 +72,14 @@
     },
     {
       "name": "create_semantic_task",
+      "effectful": true
+    },
+    {
+      "name": "create_signal_discovery_proposal",
+      "effectful": true
+    },
+    {
+      "name": "create_signal_mapping",
       "effectful": true
     },
     {
@@ -75,11 +99,35 @@
       "effectful": true
     },
     {
+      "name": "execute_managed_chat",
+      "effectful": true
+    },
+    {
+      "name": "get_ai_credit_wallet",
+      "effectful": false
+    },
+    {
+      "name": "get_ai_usage_reconciliation",
+      "effectful": false
+    },
+    {
+      "name": "get_ai_usage_summary",
+      "effectful": false
+    },
+    {
       "name": "get_behavior_strategy",
       "effectful": false
     },
     {
+      "name": "get_compound_task_plan",
+      "effectful": false
+    },
+    {
       "name": "get_conflict_inspection",
+      "effectful": false
+    },
+    {
+      "name": "get_connection_health",
       "effectful": false
     },
     {
@@ -107,6 +155,10 @@
       "effectful": false
     },
     {
+      "name": "get_signal_mapping",
+      "effectful": false
+    },
+    {
       "name": "get_strategy_execution_trace",
       "effectful": false
     },
@@ -115,8 +167,16 @@
       "effectful": false
     },
     {
+      "name": "get_task_run_evidence",
+      "effectful": false
+    },
+    {
       "name": "get_teach_behavior_set",
       "effectful": false
+    },
+    {
+      "name": "grant_ai_system_unit_access",
+      "effectful": true
     },
     {
       "name": "import_pack",
@@ -131,7 +191,19 @@
       "effectful": true
     },
     {
+      "name": "list_ai_credit_budgets",
+      "effectful": false
+    },
+    {
+      "name": "list_ai_system_unit_grants",
+      "effectful": false
+    },
+    {
       "name": "list_ai_systems",
+      "effectful": false
+    },
+    {
+      "name": "list_ai_usage_receipts",
       "effectful": false
     },
     {
@@ -147,6 +219,14 @@
       "effectful": false
     },
     {
+      "name": "list_compound_task_plans",
+      "effectful": false
+    },
+    {
+      "name": "list_connection_inventory",
+      "effectful": false
+    },
+    {
       "name": "list_discovery_candidates",
       "effectful": false
     },
@@ -159,7 +239,27 @@
       "effectful": false
     },
     {
+      "name": "list_notification_destinations",
+      "effectful": false
+    },
+    {
+      "name": "list_organization_billing_admins",
+      "effectful": false
+    },
+    {
+      "name": "list_organization_unit_members",
+      "effectful": false
+    },
+    {
+      "name": "list_organization_units",
+      "effectful": false
+    },
+    {
       "name": "list_packs",
+      "effectful": false
+    },
+    {
+      "name": "list_project_organization_units",
       "effectful": false
     },
     {
@@ -179,6 +279,18 @@
       "effectful": true
     },
     {
+      "name": "materialize_signal_discovery",
+      "effectful": true
+    },
+    {
+      "name": "preview_organization_unit_archive",
+      "effectful": false
+    },
+    {
+      "name": "queue_task_run_host_dispatch",
+      "effectful": true
+    },
+    {
       "name": "read_control_api",
       "effectful": false
     },
@@ -191,7 +303,15 @@
       "effectful": true
     },
     {
+      "name": "release_ai_credit_reservation",
+      "effectful": true
+    },
+    {
       "name": "release_pack",
+      "effectful": true
+    },
+    {
+      "name": "reserve_ai_credits",
       "effectful": true
     },
     {
@@ -211,6 +331,10 @@
       "effectful": false
     },
     {
+      "name": "retire_program_pointer",
+      "effectful": true
+    },
+    {
       "name": "retry_task_run",
       "effectful": true
     },
@@ -219,7 +343,35 @@
       "effectful": true
     },
     {
+      "name": "review_signal_discovery_proposal",
+      "effectful": true
+    },
+    {
+      "name": "review_signal_mapping",
+      "effectful": true
+    },
+    {
+      "name": "revoke_ai_system_unit_access",
+      "effectful": true
+    },
+    {
+      "name": "revoke_notification_destination",
+      "effectful": true
+    },
+    {
+      "name": "save_compound_task_plan",
+      "effectful": true
+    },
+    {
       "name": "serve_behavior_projection",
+      "effectful": true
+    },
+    {
+      "name": "set_organization_billing_admin",
+      "effectful": true
+    },
+    {
+      "name": "set_organization_unit_member",
       "effectful": true
     },
     {

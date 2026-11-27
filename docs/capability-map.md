@@ -22,11 +22,11 @@ The compact interface table above is **not** the full product inventory. [Full p
 
 ## MCP source vs published package
 
-The maintained shared MCP source catalog and the registry-verified npm `0.1.79` package each advertise **61 matching tool names**. This establishes published name parity, not a live hosted `tools/list` or tenant authorization.  The [generated compatibility report](mcp-surface-parity.md) lists their exact differences and updates when the published snapshot is synchronized.
+The maintained shared MCP source catalog and the registry-verified npm `0.1.90` package each advertise **99 matching tool names**. This establishes published name parity, not a live hosted `tools/list` or tenant authorization.  The [generated compatibility report](mcp-surface-parity.md) lists their exact differences and updates when the published snapshot is synchronized.
 
-## Published 0.1.79 MCP capabilities
+## Published 0.1.90 MCP capabilities
 
-The [registry-verified versioned MCP snapshot](reference/mcp-published-tools.json) includes 61 advertised tools. It promotes scope, Inbox and conflict operations (`get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`), alongside TaskRun and Pack lifecycle tools and the authority-gated `read_control_api` / `write_control_api` surface. The dedicated optimization tool names advertised in the old 0.1.60 snapshot are **not promoted in 0.1.79**. A generic tool is not a license to guess an API path or bypass authorization. No JS/Python parity or tenant permission is implied.
+The [registry-verified versioned MCP snapshot](reference/mcp-published-tools.json) includes 99 advertised tools. It promotes scope, Inbox and conflict operations (`get_scope`, `list_inbox`, `mark_inbox_read`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`), alongside TaskRun and Pack lifecycle tools and the authority-gated `read_control_api` / `write_control_api` surface. The dedicated optimization tool names advertised in the old 0.1.60 snapshot are **not promoted in 0.1.90**. A generic tool is not a license to guess an API path or bypass authorization. No JS/Python parity or tenant permission is implied.
 
 ## TaskRun mode selection
 

@@ -20,7 +20,7 @@ approve, or release behavior without an explicit follow-up request.
 Requirements:
 1. Inspect Python version (3.10+), pyproject.toml/requirements files, and the
    existing configuration pattern.
-2. Install tryvira-sdk==0.1.56 using the project's package manager.
+2. Install tryvira-sdk==0.1.75 using the project's package manager.
 3. Read VIRA_API_URL, VIRA_API_KEY, VIRA_ORGANIZATION_ID,
    VIRA_PROJECT_ID, and VIRA_ENVIRONMENT_ID from the environment.
 4. Use ViraClient, connect_once, and observe with stable idempotency keys.
