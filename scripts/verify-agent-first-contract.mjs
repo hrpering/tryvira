@@ -1,5 +1,6 @@
 // Public-docs contract checks only; never claims a live Vira tenant, provider or release.
 import assert from "node:assert/strict";
+import { buildInspectionInput } from "../examples/frameworks/mcp-client/inspection-input.mjs";
 import { readFile } from "node:fs/promises";
 
 const read = p => readFile(new URL("../" + p, import.meta.url), "utf8");
@@ -35,8 +36,17 @@ for (const name of ["start_task_run", "get_task_run", "list_task_run_events", "i
 }
 assert.doesNotMatch(mcp, /does not expose Teach proposal transitions|does not expose.*Pack operations/i);
 assert.doesNotMatch(inventory, /No Pack tools listed|No TaskRun tools listed/);
-assert.match(mcpClient, /Explicit operator approval required/);
-assert.match(mcpClient, /inspectedReadOnly/);
+assert.match(mcpClient, /buildInspectionInput/);
+assert.doesNotMatch(mcpClient, /env:\s*process\.env\b|VIRA_MCP_APPROVED/);
+const discoveredScopeTool = {name:"get_scope",inputSchema:{type:"object",properties:{organizationId:{type:"string"},projectId:{type:"string"},environmentId:{type:"string"}},required:["organizationId","projectId","environmentId"]}};
+const fixtureEnv = {VIRA_ORGANIZATION_ID:"fixture-org",VIRA_PROJECT_ID:"fixture-project",VIRA_ENVIRONMENT_ID:"fixture-dev"};
+assert.deepEqual(buildInspectionInput(discoveredScopeTool,"{}",fixtureEnv),{organizationId:"fixture-org",projectId:"fixture-project",environmentId:"fixture-dev"});
+assert.throws(()=>buildInspectionInput(discoveredScopeTool,'{"organizationId":"wrong"}',fixtureEnv),/Scope mismatch/);
+assert.throws(()=>buildInspectionInput(discoveredScopeTool,"{}",{}),/VIRA_ORGANIZATION_ID is required/);
+assert.throws(()=>buildInspectionInput(discoveredScopeTool,"[]",fixtureEnv),/JSON object/);
+assert.throws(()=>buildInspectionInput({...discoveredScopeTool,name:"release_pack"},"{}",fixtureEnv),/read-only/);
+assert.throws(()=>buildInspectionInput({...discoveredScopeTool,annotations:{readOnlyHint:false}},"{}",fixtureEnv),/read-only/);
+assert.throws(()=>buildInspectionInput({...discoveredScopeTool,inputSchema:null},"{}",fixtureEnv),/schema/);
 assert.match(mcpExample, /MCP.*JavaScript.*Python/s);
 assert.match(operator, /do not retry a denial/);
 assert.match(skill, /never.*retry.*denial|never.*authorization denial/i);

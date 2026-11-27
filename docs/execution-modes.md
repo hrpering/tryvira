@@ -82,4 +82,4 @@ The host owns tool execution and its authorization. Child tasks must not inherit
 
 `STRATEGY` is **one task with multiple steps**. `COMPOUND` is **multiple distinct governed tasks**. `HYBRID` combines SINGLE and STRATEGY children. `AUTO` is a selection request. None substitutes for the separate Pack evaluation, approval, release and runtime authority rules.
 
-The currently published MCP catalog has no TaskRun tools. Availability in Studio and raw HTTP must be verified from the customer's public contracts. See [capability map](capability-map.md) and [developer checklist](developer-checklist.md).
+The 99-name published MCP snapshot includes `resolve_task_run`, `start_task_run`, `get_task_run`, `get_task_run_evidence`, `list_task_run_events`, `continue_task_run`, `retry_task_run` and `cancel_task_run`. Discover live names, exact schemas and authority before use. Admission requires a real scoped AI System ID (`aiSystemId`); routing alone is not admission. Availability in Studio and raw HTTP must be verified from the customer's public contracts. See [capability map](capability-map.md) and [developer checklist](developer-checklist.md).

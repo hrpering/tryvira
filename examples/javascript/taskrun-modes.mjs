@@ -25,7 +25,7 @@ if (process.argv.includes("--help")) {
     "  VIRA_TASKRUN_HOST_CAPABILITIES, VIRA_TASKRUN_HYBRID_PLAN_JSON,",
     "  VIRA_TASKRUN_COMPOUND_PLAN_ID",
     "Default: routing proposal only; NO task execution requested.",
-    "To request admission: VIRA_CONFIRM_TASKRUN_START=yes (authorized test scope only).",
+    "To request admission: VIRA_CONFIRM_TASKRUN_START=yes, VIRA_AI_SYSTEM_ID (real scoped AI System; authorized test scope only).",
   ].join("\n"));
   process.exit(0);
 }
@@ -94,6 +94,8 @@ if (!process.env.VIRA_CONFIRM_NON_PRODUCTION || process.env.VIRA_CONFIRM_NON_PRO
   throw new Error("Set VIRA_CONFIRM_NON_PRODUCTION=yes after verifying an authorized non-production scope");
 }
 
+const aiSystemId = process.env.VIRA_AI_SYSTEM_ID?.trim();
+if (!aiSystemId) throw new Error("VIRA_AI_SYSTEM_ID is required for admission");
 const suffix = randomUUID();
 const taskRunId = "task-run-" + suffix;
 const requestId = "request-" + suffix;
@@ -101,6 +103,7 @@ const compoundPlanId = process.env.VIRA_TASKRUN_COMPOUND_PLAN_ID;
 const admitted = await vira.startTaskRun({
   taskRunId,
   requestId,
+  aiSystemId,
   input,
   requestedMode,
   ...(connectionId ? { connectionId } : {}),

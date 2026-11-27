@@ -69,6 +69,7 @@ const requestId = "request-" + suffix;
 const admission = await vira.startTaskRun({
   taskRunId,
   requestId,
+  aiSystemId: process.env.VIRA_AI_SYSTEM_ID,
   input: "Investigate the incident and summarize verified findings.",
   requestedMode: "AUTO",
   connectionId: process.env.VIRA_CONNECTION_ID,
@@ -81,7 +82,7 @@ console.log(state?.body?.taskRun?.status);
 // Do not assume the server returned a chatbot answer or a post-model verifier receipt.
 ```
 
-`connectionId` must identify a real scoped connection if the host requires one; **caller-declared host capability arrays do not grant authority**. The server must use verified connection/capability attestations.
+`aiSystemId` is required for admission and must identify a real authorized AI System, never a placeholder or model-selected identity. `connectionId` must identify a real scoped connection if the host requires one; **caller-declared host capability arrays do not grant authority**. The server must use verified connection/capability attestations.
 
 For a guarded runnable route tester see [JavaScript](../examples/javascript/taskrun-modes.mjs) and [Python](../examples/python/taskrun_modes.py). For the updated **AUTO TaskRun chat-admission** example, see [Next.js](../examples/frameworks/node-next/README.md).
 
@@ -96,7 +97,7 @@ For a guarded runnable route tester see [JavaScript](../examples/javascript/task
 ## Acceptance checklist for a full chatbot demo
 
 1. Use a released Pack with registered semantic tasks and a real customer-scoped connected host.
-2. Submit a user prompt through `startTaskRun({ requestedMode: "AUTO" })`.
+2. Submit a user prompt through `startTaskRun` with the real `aiSystemId` and `requestedMode: "AUTO"`.
 3. Read selected task/mode and real child state; verify the server did not use caller-invented capabilities.
 4. Confirm real child execution and runtime enforcement under the released artifact/digest.
 5. Confirm provider request and response ran through the authorized model/agent boundary **after** enforcement.

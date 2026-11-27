@@ -12,7 +12,7 @@ The server owns semantic registry decisions, eligible modes, scope and execution
 
 ## Application integration
 
-Start with `@tryvira/sdk` `startTaskRun({requestedMode:"AUTO", ...})`, or `tryvira-sdk` `start_task_run` with an equivalent request mapping. Read the persisted state with `getTaskRun` / `get_task_run` and events with `listTaskRunEvents` / `list_task_run_events`.
+Start with `@tryvira/sdk` `startTaskRun({aiSystemId, requestedMode:"AUTO", ...})`, or `tryvira-sdk` `start_task_run` with an equivalent request mapping. Read the persisted state with `getTaskRun` / `get_task_run` and events with `listTaskRunEvents` / `list_task_run_events`.
 
 An `ADMITTED` or `RUNNING` result is not a finished answer. A `COMPLETED` status and child receipts prove only the recorded TaskRun/child operations; the application must also confirm **real provider output and a post-model verification receipt** before displaying a verified answer. The public TaskRun readback does not automatically expose that full final-answer contract today.
 

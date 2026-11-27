@@ -1,5 +1,11 @@
 # Vira Agent Skills changelog
 
+## 0.7.3 — 2026-11-28
+
+- Align the root and MCP specialist guidance with the current 99-name catalog; distinguish registered generic Control API operations from dedicated optimization tools.
+- Clarify scoped grants and TaskRun evidence versus verified provider output.
+- Preserve published client pins until registry verification; improve the read-only MCP integration example.
+
 ## 0.7.1 — 2026-11-14
 
 - Updated all 27 Skill titles and license metadata to match their bundled application-use license.

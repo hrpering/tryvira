@@ -64,6 +64,7 @@ test("explicit admission carries requestedMode and idempotency key", async () =>
   const { client, calls } = fixture();
   await client.startTaskRun({
     taskRunId: "synthetic-task-run-1",
+    aiSystemId: "synthetic-system",
     requestId: "synthetic-request-1",
     input: "Prepare an operations brief",
     requestedMode: "COMPOUND",
@@ -73,6 +74,7 @@ test("explicit admission carries requestedMode and idempotency key", async () =>
   assert.equal(last.url.pathname, "/v1/task-runs");
   assert.equal(last.method, "POST");
   assert.equal(last.body.requestedMode, "COMPOUND");
+  assert.equal(last.body.aiSystemId, "synthetic-system");
   assert.deepEqual(last.body.budget, { maxChildren: 3, maxCalls: 5 });
   assert.equal(last.headers["idempotency-key"], "offline-admission-1");
 });
@@ -118,7 +120,7 @@ test("published JS client also exposes methods used by the other runnable exampl
 });
 
 
-test("published SDK also exposes the Signal/Teach/Eval/Pack readbacks used by the 27 Skills", () => {
+test("published SDK also exposes the Signal/Teach/Eval/Pack readbacks used by the specialist Skills", () => {
   const {client} = fixture();
   for(const method of [
     "getSignalMapping","createSignalMapping","reviewSignalMapping",
@@ -134,6 +136,7 @@ test("startTaskRunFromPrompt does NOT forward requestedMode; explicit admission 
   const {client,calls}=fixture();
   await client.startTaskRunFromPrompt({
     input:"Summarize and investigate a synthetic incident",
+    aiSystemId:"synthetic-system",
     requestedMode:"HYBRID", // not part of published TaskRunPromptRequest
     connectionId:"conn-synthetic"
   });
@@ -141,10 +144,18 @@ test("startTaskRunFromPrompt does NOT forward requestedMode; explicit admission 
   assert.equal(convenience.url.pathname,"/v1/task-runs");
   assert.equal(convenience.body.requestedMode,undefined);
   assert.equal(convenience.body.connectionId,"conn-synthetic");
+  assert.equal(convenience.body.aiSystemId,"synthetic-system");
   await client.startTaskRun({
-    taskRunId:"explicit-run",requestId:"explicit-request",
+    taskRunId:"explicit-run",requestId:"explicit-request",aiSystemId:"synthetic-system",
     input:"Summarize and investigate a synthetic incident",
     requestedMode:"AUTO",connectionId:"conn-synthetic"
   });
   assert.equal(calls.at(-1).body.requestedMode,"AUTO");
+});
+
+test("admission without AI System fails before network transport", () => {
+  const {client,calls}=fixture();
+  assert.throws(()=>client.startTaskRun({taskRunId:"missing-system",requestId:"missing-system-request",input:"Test"}), /SDK_TASKRUN_AI_SYSTEM_REQUIRED/);
+  assert.throws(()=>client.startTaskRunFromPrompt({input:"Test"}), /SDK_TASKRUN_AI_SYSTEM_REQUIRED/);
+  assert.equal(calls.length,0);
 });

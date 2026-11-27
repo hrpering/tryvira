@@ -33,7 +33,7 @@ If the host already exposes Vira MCP, use the matching discovered tool for lifec
 
 **Canonical customer path: AUTO TaskRun.** The SDK does not forward a requested mode through the convenience helper, so use the explicit admission method below.
 
-1. JS route-only: `resolveTaskRun({input,requestedMode:"AUTO",connectionId})`. Admit only with authorization: `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`. Read actual `getTaskRun` and `listTaskRunEvents`.
+1. JS route-only: `resolveTaskRun({input,requestedMode:"AUTO",connectionId})`. Admit only with authorization: `startTaskRun({taskRunId,requestId,aiSystemId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`. Read actual `getTaskRun` and `listTaskRunEvents`.
 2. Continue/retry/cancel using the **current server stateVersion** and idempotency key; never issue a new task to get around WAITING or a timeout. `startTaskRunFromPrompt` does not forward `requestedMode`; prefer explicit `startTaskRun` when needed.
 3. Observe with actual **organizationId, projectId, environmentId**, `aiSystemId`, `connectionId`, `eventId`, consent and minimized fields. Missing any of the three scope fields fails under the published JS SDK. Use the scoped runnable example in `skills/vira-observe/examples/observe-once.mjs`. Pack: `importPack({manifest,objects})`, `installPack(packId,variablesMap)`, `evaluatePack(packId,{evaluationId:realId})`. Keep separate approval/release.
 4. Direct `resolveRuntime` and `serveBehaviorProjection` are **diagnostics only**, not normal chatbot entry points. A TaskRun `COMPLETED` status is not a provider-verified answer.

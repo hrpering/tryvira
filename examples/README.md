@@ -17,6 +17,10 @@
 
 See also the [Observe → Signal → Teach → runtime verification walkthrough](observe-signal-verify/README.md). This walkthrough describes the supported lifecycle; no live service run is included.
 
+## Evidence-first integration sequence
+
+Start with local Pack validation or the read-only MCP example. With a provisioned development scope, inspect capabilities and AI Systems; use the canonical AUTO TaskRun example for routing and optional admission. If available, inspect the actual TaskRun evidence alongside status and events. Do not report verified ON output until the provider response and output-bound post-model receipt match. See the [last recorded registry/source version comparison](../docs/published-packages.md) before changing any example pins.
+
 ## JavaScript starting points
 
 ```text

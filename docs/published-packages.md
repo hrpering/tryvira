@@ -2,16 +2,16 @@
 
 Vira's public integration packages are independently versioned. **A version declared in the maintained source is not necessarily the latest version available in npm or PyPI.** Do not use old documentation pins as a substitute for registry checks.
 
-Source and registry comparison: **27 November 2026**. The registry artifacts were read back after publication from main commit `3a8b85a9f719406542e23275bb4722bfabb6ccf2`: npm `@tryvira/sdk@0.1.93`, npm `@tryvira/mcp@0.1.90`, npm `@tryvira/opencode@0.1.76`, and PyPI `tryvira-sdk==0.1.75`. The published `@tryvira/mcp@0.1.90` tarball advertises **99 tools**, recorded in the versioned snapshot below. These checks establish registry artifact availability and metadata; they do not prove live hosted runtime parity or signed build provenance.
+Source and registry comparison: **27 November 2026**. The last recorded registry artifact readback confirmed: npm `@tryvira/sdk@0.1.93`, npm `@tryvira/mcp@0.1.90`, npm `@tryvira/opencode@0.1.76`, and PyPI `tryvira-sdk==0.1.75`. The published `@tryvira/mcp@0.1.90` tarball advertises **99 tools**, recorded in the versioned snapshot below. These checks establish registry artifact availability and metadata; they do not prove live hosted runtime parity or signed build provenance.
 
-| Ecosystem | Package | Maintained source version | Last version cited by the earlier public docs | Runtime | License |
+| Ecosystem | Package | Maintained source candidate | Last recorded registry version | Runtime | License |
 | --- | --- | ---: | ---: | --- | --- |
-| npm | [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk) | `0.1.93` | `0.1.67` | Node.js 20+ | MIT |
-| npm | [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) | `0.1.90` | `0.1.60` | Node.js 20+ | MIT |
-| npm | [`@tryvira/opencode`](https://www.npmjs.com/package/@tryvira/opencode) | `0.1.76` | `0.1.61` | Node.js 20+ | MIT |
-| PyPI | [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) | `0.1.75` | `0.1.54` | Python 3.10+ | MIT |
+| npm | [`@tryvira/sdk`](https://www.npmjs.com/package/@tryvira/sdk) | `0.1.94` | `0.1.93` | Node.js 20+ | MIT |
+| npm | [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp) | `0.1.91` | `0.1.90` | Node.js 20+ | MIT |
+| npm | [`@tryvira/opencode`](https://www.npmjs.com/package/@tryvira/opencode) | `0.1.76` | `0.1.76` | Node.js 20+ | MIT |
+| PyPI | [`tryvira-sdk`](https://pypi.org/project/tryvira-sdk/) | `0.1.76` | `0.1.75` | Python 3.10+ | MIT |
 
-**The latest npm/PyPI releases were checked in the registry workflow**, while the table separately shows maintained source versions. A source-only bump is not evidence of an npm/PyPI release. Recheck registry availability before pinning or upgrading:
+**The last recorded npm/PyPI readback is dated 27 November 2026.** SDK, MCP and Python source candidates were newer than those published versions; do not install candidate pins until registry publication is independently verified. OpenCode's version already matched. The table is not a live registry check. A source-only bump is not evidence of an npm/PyPI release. Recheck registry availability before pinning or upgrading:
 
 ```bash
 npm view @tryvira/sdk version

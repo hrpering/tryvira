@@ -15,7 +15,7 @@ A task involves a Vira TaskRun or the user asks how to start, inspect, continue,
 
 - The customer's own Vira API endpoint, server-side key, and authorized scope.
 - The current published JavaScript package documentation for the installed version.
-- An established application connection and a user request whose scope is understood.
+- An established application connection, the real scoped AI System ID (`aiSystemId`) for admission, and a user request whose scope is understood.
 - The user must provide explicit authorization before admitting work that may cause external effects.
 - A bounded budget and a plan for protecting private input in logs.
 
@@ -23,11 +23,11 @@ Use an isolated development scope when available. Production use remains subject
 
 ## Workflow
 
-1. **Check support.** Confirm that the installed package and customer scope support TaskRuns. Python has corresponding TaskRun methods, and inspected MCP source advertises `resolve_task_run`, `start_task_run`, `get_task_run`, `list_task_run_events`, `continue_task_run`, `cancel_task_run`, and `retry_task_run`; use them only when the running MCP `tools/list` exposes the exact schema. Do not infer raw HTTP parity from either client.
+1. **Check support.** Confirm that the installed package and customer scope support TaskRuns. Python has corresponding TaskRun methods, and inspected MCP source advertises `resolve_task_run`, `start_task_run`, `get_task_run`, `get_task_run_evidence`, `list_task_run_events`, `continue_task_run`, `cancel_task_run`, and `retry_task_run`; use them only when the running MCP `tools/list` exposes the exact schema. Do not infer raw HTTP parity from either client.
 2. **Review the request.** Resolve ambiguity and confirm the intended outcome, boundaries, and budget before admitting work.
 3. **Route before start.** If the supported interface provides a proposal-only routing step, inspect its result. Clarification, denial, abstention, or unsupported-host outcomes are stops, not invitations to bypass the boundary.
 4. **Authorize admission.** Start only after the user has approved the request and the customer scope is verified. Use the documented idempotency mechanism for retried mutations.
-5. **Read back progress.** Retain server-issued identifiers. Re-read persisted state before continuing, cancelling, or retrying. Use only the current server-provided state/cursor values and the exact supported transitions for the installed version.
+5. **Read back progress.** Retain server-issued identifiers. When advertised, inspect `get_task_run_evidence` separately from status/events; a returned evidence envelope is not a verified final answer unless it binds the actual provider output, released artifact and post-model PASS. Re-read persisted state before continuing, cancelling, or retrying. Use only the current server-provided state/cursor values and the exact supported transitions for the installed version.
 6. **Continue with new input only when received.** Do not invent a user's missing answer, approval, or actor identity. Confirm the user authorized each effectful continuation.
 7. **Recover conservatively.** Follow the installed documentation's retryable states and preserve the server's plan. For timeouts or unknown mutation results, read the same run before issuing another operation.
 8. **Report the result.** Summarize the last persisted status, redacted identifiers, external effects if any, and any required human action. Never claim completion from a queued response alone.
@@ -38,7 +38,7 @@ Use an isolated development scope when available. Production use remains subject
 
 1. **AUTO is a routing request**, not a fifth execution mode. The four eligible execution modes: SINGLE (one task), STRATEGY (one task's released graph), COMPOUND (multiple registered tasks), HYBRID (eligible mixed children). Only the server selects actual mode and eligibility.
 2. For routing use JS `resolveTaskRun({input,requestedMode:"AUTO",connectionId})` or Python `resolve_task_run({"input":text,"requestedMode":"AUTO","connectionId":connection_id})`. ROUTED is **proposal-only** and can still deny, abstain, clarify or report unsupported host. Do not invent client `hostCapabilities` as a permission source. The SDK/Studio integration should resolve the connected host's verified capability attestation automatically; callers should not paste a `hostCapabilityAttestationId`. If the server cannot resolve one, the run remains unsupported/fail closed.
-3. For authorized admission use JS `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},opts)` or Python `start_task_run({...},idempotency_key=key)`; read `getTaskRun`/`get_task_run` and actual event/child receipts.
+3. For authorized admission use JS `startTaskRun({taskRunId,requestId,aiSystemId,input,requestedMode:"AUTO",connectionId,budget},opts)` or Python `start_task_run({...},idempotency_key=key)`; read `getTaskRun`/`get_task_run` and actual event/child receipts.
 4. WAITING_USER/HOST/APPROVAL, PARTIAL, BLOCKED, FAILED and CANCELLED are distinct; continue/retry/cancel with actual stateVersion and idempotency. A child completion is not final provider post-model PASS. For `WAITING_APPROVAL`, use the server approval operation for the exact pending proposal and pass its one-shot `approvalId` on the next authorization; never resume with a caller boolean or reuse an approval for different arguments.
 5. Execute the published [JS](https://github.com/hrpering/tryvira/blob/main/examples/javascript/taskrun-modes.mjs) or [Python](https://github.com/hrpering/tryvira/blob/main/examples/python/taskrun_modes.py) route-only runner; real admission requires non-production authorization. Negative: missing Strategy materialization or second Compound task must fail closed.
 [Modes](https://github.com/hrpering/tryvira/blob/main/docs/execution-modes.md).

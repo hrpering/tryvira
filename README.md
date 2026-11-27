@@ -62,6 +62,10 @@ Ask your coding agent: **“Connect my AI application, build a Behavior Pack, ev
 
 
 
+## Package and integration status
+
+The last recorded registry versions and newer maintained source candidates are tracked separately in the [package status](docs/published-packages.md). MCP's 99-name published snapshot is a discovery reference, not a hosted authorization or verification claim. Start with the [read-only MCP client](examples/frameworks/mcp-client/README.md) or the [AUTO TaskRun examples](examples/README.md).
+
 ## The problem
 
 Your agent does a task. You correct an answer. The same mistake returns in another session, workflow, or model. A rule gets added to a prompt, another to application code, and a third to a test. Soon nobody can answer: **What is this AI expected to do, which version is live, and was the change evaluated?**

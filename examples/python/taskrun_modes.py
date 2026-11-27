@@ -12,6 +12,7 @@ Usage from examples/python after installing tryvira-sdk==0.1.75:
     python taskrun_modes.py HYBRID
 
 Required environment: VIRA_API_URL and VIRA_API_KEY.
+Admission additionally requires VIRA_AI_SYSTEM_ID.
 Optional: VIRA_TASKRUN_INPUT, VIRA_TASKRUN_HOST_CAPABILITIES,
           VIRA_TASKRUN_HYBRID_PLAN_JSON, VIRA_CONNECTION_ID.
 """
@@ -92,6 +93,7 @@ def main() -> None:
         admission = {
             "requestId": request_id,
             "taskRunId": task_run_id,
+            "aiSystemId": require("VIRA_AI_SYSTEM_ID"),
             **request,
             "budget": {"maxChildren": 4, "maxCalls": 8},
         }

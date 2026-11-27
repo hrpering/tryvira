@@ -1,5 +1,6 @@
 import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
+import { buildInspectionInput } from "./inspection-input.mjs";
 
 // Launch only a server package/version/configuration reviewed by the host operator.
 // The MCP server catalog is discovered dynamically; this does not assume SDK parity.
@@ -14,7 +15,10 @@ const transport = new StdioClientTransport({
     }
     return parsed;
   })(),
-  env: process.env,
+  env: Object.fromEntries([
+    "VIRA_API_URL", "VIRA_API_KEY", "VIRA_ORGANIZATION_ID",
+    "VIRA_PROJECT_ID", "VIRA_ENVIRONMENT_ID", "VIRA_ORGANIZATION_UNIT_ID",
+  ].filter(key => process.env[key] !== undefined).map(key => [key, process.env[key]])),
 });
 const client = new Client({ name: "vira-mcp-host-example", version: "1.0.0" });
 try {
@@ -28,19 +32,7 @@ try {
   } else {
     const tool = tools.find(({ name }) => name === target);
     if (!tool) throw new Error(`Requested tool ${target} is not exposed by this server`);
-    // This older MCP client may not receive tool annotations. Do not assume
-    // that a tool is safe just because destructiveHint/openWorldHint is absent.
-    const inspectedReadOnly = new Set([
-      "list_capabilities", "list_semantic_tasks", "list_behavior_points",
-      "list_behavior_programs", "list_behavior_strategies", "list_packs",
-    ]);
-    const needsApproval = !inspectedReadOnly.has(target)
-      || tool.annotations?.destructiveHint === true
-      || tool.annotations?.openWorldHint === true;
-    if (needsApproval && process.env.VIRA_MCP_APPROVED !== "yes") {
-      throw new Error("Explicit operator approval required; do not bypass Vira server authority");
-    }
-    const input = JSON.parse(process.env.VIRA_MCP_ARGUMENTS ?? "{}");
+    const input = buildInspectionInput(tool, process.env.VIRA_MCP_ARGUMENTS ?? "{}", process.env);
     const result = await client.callTool({ name: target, arguments: input });
     // Default to a safe summary. Full content may contain customer data.
     console.log(JSON.stringify({

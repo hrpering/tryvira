@@ -18,6 +18,10 @@ Uzman Skill'ler gelişmiş referanslar olarak korunuyor. OpenCode entegrasyonu i
 
 **Geliştirme aşamasında:** SDK ve örnekler herkese açık. Ancak Vira hizmetine ve Studio iş akışlarına genel erişim henüz açık değil. Ürün erişimi olmadan chatbot örneğinin **Vira OFF** tarafını, kendi model sağlayıcı anahtarınızla çalıştırabilirsiniz. **Vira ON** için Vira hesabı, yetkili bağlantı ve yayımlanmış uygun davranış gerekiyor.
 
+## Paket ve entegrasyon durumu
+
+[Yayımlanmış paketler ve kaynak adayları](docs/published-packages.md) ayrı izlenir. MCP'nin kayıtlı 99 araç adı canlı sunucu yetkisi veya doğrulanmış çalışma garantisi değildir. İlk entegrasyonda [salt okunur MCP istemcisi](examples/frameworks/mcp-client/README.md) ve [AUTO TaskRun örnekleri](examples/README.md) ile başlayın.
+
 ## Yasal belgeler
 
 [Kullanım Koşulları](docs/legal/terms.tr.md) · [Gizlilik Politikası](docs/legal/privacy.tr.md) · [Çerez Politikası](docs/legal/cookies.tr.md) · [Kabul Edilebilir Kullanım](docs/legal/acceptable-use.tr.md) · [KVKK Aydınlatma](docs/legal/kvkk-notice.tr.md) · [Tüm yasal belgeler (EN/TR, Türkiye/AB/ABD ekleri)](docs/legal/README.md)

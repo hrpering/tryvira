@@ -16,7 +16,7 @@ AUTO is the requested routing mode; the four named child execution modes are sep
 ## JavaScript SDK methods
 
 - `resolveTaskRun({input,requestedMode:"AUTO",connectionId})`: route/proposal only.
-- `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`: explicit admission, subject to real customer scope/authority.
+- `startTaskRun({taskRunId,requestId,aiSystemId,input,requestedMode:"AUTO",connectionId,budget},{idempotencyKey})`: explicit admission, subject to real customer scope/authority.
 - `getTaskRun(taskRunId)`, `listTaskRunEvents(taskRunId)`: persisted state/events.
 - `continueTaskRun(taskRunId,expectedVersion,{cursor?,idempotencyKey?})`, `retryTaskRun(taskRunId,expectedVersion,opts)`, `cancelTaskRun(...)`: versioned transitions.
 - `startTaskRunFromPrompt`: convenience IDs, **does not forward requestedMode**. Use explicit start for named mode.
@@ -27,7 +27,7 @@ AUTO is the requested routing mode; the four named child execution modes are sep
 ## Python SDK methods
 
 - `resolve_task_run({"input": text, "requestedMode":"AUTO", "connectionId":connection_id})`.
-- `start_task_run({"taskRunId":run_id,"requestId":request_id,"input":text,"requestedMode":"AUTO","connectionId":connection_id},idempotency_key=key)`.
+- `start_task_run({"taskRunId":run_id,"requestId":request_id,"aiSystemId":ai_system_id,"input":text,"requestedMode":"AUTO","connectionId":connection_id},idempotency_key=key)`.
 - `get_task_run(run_id)`, `list_task_run_events(run_id)`, `continue_task_run(run_id,expected_version,...)`, `retry_task_run`, `cancel_task_run`.
 - `start_task_run_from_prompt` also **does not forward requestedMode**.
 - `observe` requires organizationId, projectId, environmentId, eventId, eventType, aiSystemId and connectionId in the event. Preserve idempotency.
