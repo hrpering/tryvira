@@ -11,13 +11,13 @@ npm start
 
 Without `VIRA_MCP_TOOL`, the script initializes the server and prints its **actual** `tools/list` names. It does not perform an effectful operation or invent a server receipt.
 
-For an inspection tool, explicitly choose a discovered name and supply arguments that match its live schema:
+For an inspection tool, explicitly choose a discovered name and supply arguments that match its live schema. The example fills declared scope fields from the configured environment, rejects mismatches, and refuses missing required arguments:
 
 ```bash
 VIRA_MCP_TOOL=list_capabilities VIRA_MCP_ARGUMENTS='{}' npm start
 ```
 
-The example allows only a narrow, explicitly named set of read-only inspections without extra operator approval. All other tools need `VIRA_MCP_APPROVED=yes` **after real authorization by the user/operator**. This flag is only an extra host safeguard, never a replacement for the Vira server's scope/role/release authorization. MCP servers that omit effect annotations are treated conservatively.
+The example is intentionally read-only. It allows a narrow set of known inspection tools and refuses any other tool, including an effectful or ambiguously classified one. Use the documented server-owned one-shot approval flow in a separate integration for writes; a local environment flag is not approval. Only explicitly selected Vira configuration variables are passed to the subprocess, not the full parent environment.
 
 By default the example prints only tool name, error status and content types, not raw customer data. To inspect full results in a **trusted local terminal only**, explicitly set `VIRA_MCP_SHOW_RESULT=yes`; avoid screenshots and logging secrets.
 
@@ -29,4 +29,4 @@ A tool failure, wrong scope, missing approval, or policy denial is a terminal de
 
 ## Published MCP 0.1.90 coverage
 
-The current published package has a [registry-generated versioned-tool inventory](../../../docs/reference/mcp-published-tools.json), including Inbox, Conflict Inspector and Optimization tools. The example remains conservative: discover with `tools/list`, make read-only calls first, and require explicit human approval for any effectful call. The MCP host flag never substitutes for Vira's server-side authorization.
+The current published package has a [registry-generated versioned-tool inventory](../../../docs/reference/mcp-published-tools.json), including Inbox and Conflict Inspector tools and registered Control API access. Dedicated optimization tools are not first-class entries in that snapshot. Discover with `tools/list`; use only a documented registered operation and server-side authorization for writes. This example deliberately does not perform them.

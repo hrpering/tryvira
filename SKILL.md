@@ -24,6 +24,10 @@ Use for installing Vira, connecting an AI System, instrumenting observations, an
 
 Use `VIRA_API_URL` as a user-provided API deployment root (not a Studio URL and no `/v1` suffix) and keep `VIRA_API_KEY` exclusively in host/server-side secret storage. Require real `VIRA_ORGANIZATION_ID`, `VIRA_PROJECT_ID`, `VIRA_ENVIRONMENT_ID` from the user environment; never fabricate IDs or print credential values.
 
+## Version and scope checkpoint
+
+Use the installed package and live discovery as the contract. The published MCP catalog recorded on 27 November 2026 has 99 tools; a newer maintained source candidate has the same names but name parity is not publication, schema, deployment or authorization parity. Dedicated optimization tools are absent from that published snapshot. For generic Control API tools, discover the registered operation, exact method and schema; never guess paths or use them to bypass denied authority. For organization-unit, AI System and billing access, read the actor's scoped grants first; a unit role does not imply organization-wide privileges.
+
 ## The complete workflow
 
 | Intent | What to do in order | Evidence to obtain |
@@ -37,7 +41,7 @@ Use `VIRA_API_URL` as a user-provided API deployment root (not a Studio URL and 
 | Approve/release | Show the human the exact candidate, scope, differences and rollback target; obtain explicit authorization; apply Vira approval/release | Separate reviewer approval, released revision/digest and readback |
 | Run the behavior | Prefer canonical AUTO `resolve_task_run`/`start_task_run` and supported read/continue/retry/cancel operations; server selects SINGLE/STRATEGY/COMPOUND/HYBRID | Actual route, TaskRun/child states, receipts, correlation IDs; no invented success |
 | Verify and inspect | Correlate real released Program, scope, authority digest, provider output digest and post-model receipt through supported public read surfaces | Matching verification record and actual output; otherwise mark verified answer unavailable |
-| Optimize/resolve conflicts | In published MCP, inspect actual `get_scope`, `list_inbox`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`, `start_optimization`, `get_optimization_run`, `cancel_optimization_run` if advertised | Server authorization, reviewer decision, run status and persisted identifiers; optimization is not automatic release |
+| Optimize/resolve conflicts | In published MCP, inspect actual `get_scope`, `list_inbox`, `inspect_conflicts`, `get_conflict_inspection`, `resolve_conflict`, and the registered optimization operations only when an installed tool or documented, authorized `read_control_api`/`write_control_api` operation exists | Server authorization, reviewer decision, run status and persisted identifiers; optimization is not automatic release |
 
 For every effectful operation, obtain the user's explicit permission for that specific change and pass the server's own policy/role check. Keep an idempotency key stable for retries of *the same* write, unique for different writes. Preserve original scope, IDs, revision and digest across MCP/SDK handoffs. After asynchronous 202/queued results, poll documented readbacks instead of reporting completion.
 

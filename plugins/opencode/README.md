@@ -2,7 +2,7 @@
 
 This is a **public integration guide** for the separately published `@tryvira/opencode` package. It does not contain the plugin implementation or private Vira server.
 
-**Version check:** the maintained plugin source and the registry readback reports **`@tryvira/opencode@0.1.76`** on 27 November 2026. The earlier public guide referenced `0.1.61`. Recheck `npm view @tryvira/opencode version` and the installed package when upgrading; this does not prove a live OpenCode/Vira host integration. See [integration compatibility](../../docs/integration-compatibility.md).
+**Version check:** the maintained plugin source and the last recorded registry readback report **`@tryvira/opencode@0.1.76`** on 27 November 2026. The earlier public guide referenced `0.1.61`. Start in `observe`, confirm actual host lifecycle hooks and connection evidence, then consider `enforce` only after a supported interception path and server-owned approval checks are demonstrated. Recheck `npm view @tryvira/opencode version` and the installed package when upgrading; this does not prove a live OpenCode/Vira host integration. See [integration compatibility](../../docs/integration-compatibility.md).
 
 ## What the plugin does
 

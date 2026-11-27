@@ -10,7 +10,7 @@ The configuration is an **illustrative template** with placeholders only. Supply
 
 After `initialize`, call **live** `tools/list`. The installed MCP version exposes tool families for AI Systems/Connections, Tasks, Programs, Strategies, Pack import/install/evaluate/approval/release, Teach, Signals, evaluations, TaskRuns, traces and host authorization. The precise list, tool schemas and permission availability must be discovered at runtime; no stale count or other surface's method signature is authoritative.
 
-Start with a supported read-only inspection such as `list_capabilities`. Before any effectful action, obtain the user's explicit approval for the exact scope and operation and obey the MCP server's separate authority decision. A denial must **not** be retried via JS/Python. An absent MCP tool may be routed to a documented, installed SDK method.
+Start with a supported read-only inspection such as `get_scope` or `list_capabilities`. Supply the real organization, project and environment identifiers required by the returned schema; do not send an empty object unless that schema actually allows it. The runnable stdio example fills declared scope fields from the configured environment. Before any effectful action, obtain the user's explicit approval for the exact scope and operation and obey the MCP server's separate authority decision. A denial must **not** be retried via JS/Python. An absent MCP tool may be routed to a documented, installed SDK method.
 
 ## Copyable agent instruction
 

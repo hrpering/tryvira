@@ -14,7 +14,10 @@ const transport = new StdioClientTransport({
     }
     return parsed;
   })(),
-  env: process.env,
+  env: Object.fromEntries([
+    "VIRA_API_URL", "VIRA_API_KEY", "VIRA_ORGANIZATION_ID",
+    "VIRA_PROJECT_ID", "VIRA_ENVIRONMENT_ID", "VIRA_ORGANIZATION_UNIT_ID",
+  ].filter(key => process.env[key] !== undefined).map(key => [key, process.env[key]])),
 });
 const client = new Client({ name: "vira-mcp-host-example", version: "1.0.0" });
 try {
@@ -31,16 +34,30 @@ try {
     // This older MCP client may not receive tool annotations. Do not assume
     // that a tool is safe just because destructiveHint/openWorldHint is absent.
     const inspectedReadOnly = new Set([
-      "list_capabilities", "list_semantic_tasks", "list_behavior_points",
-      "list_behavior_programs", "list_behavior_strategies", "list_packs",
+      "get_scope", "list_capabilities", "list_ai_systems", "list_semantic_tasks",
+      "list_behavior_points", "list_behavior_strategies", "list_packs",
     ]);
     const needsApproval = !inspectedReadOnly.has(target)
       || tool.annotations?.destructiveHint === true
       || tool.annotations?.openWorldHint === true;
-    if (needsApproval && process.env.VIRA_MCP_APPROVED !== "yes") {
-      throw new Error("Explicit operator approval required; do not bypass Vira server authority");
+    if (needsApproval) {
+      throw new Error("This discovery example is read-only. Use the documented server-owned approval workflow for writes.");
     }
     const input = JSON.parse(process.env.VIRA_MCP_ARGUMENTS ?? "{}");
+    if (!input || typeof input !== "object" || Array.isArray(input)) {
+      throw new Error("VIRA_MCP_ARGUMENTS must be a JSON object");
+    }
+    const scopeFields = { organizationId: "VIRA_ORGANIZATION_ID", projectId: "VIRA_PROJECT_ID", environmentId: "VIRA_ENVIRONMENT_ID", organizationUnitId: "VIRA_ORGANIZATION_UNIT_ID" };
+    for (const [field, key] of Object.entries(scopeFields)) {
+      if (!Object.hasOwn(tool.inputSchema?.properties ?? {}, field)) continue;
+      const value = process.env[key];
+      if (value && input[field] !== undefined && input[field] !== value) throw new Error(`Scope mismatch: ${field}`);
+      if (!value && (input[field] !== undefined || tool.inputSchema?.required?.includes(field))) throw new Error(`${key} is required`);
+      if (value) input[field] = value;
+    }
+    for (const field of tool.inputSchema?.required ?? []) {
+      if (input[field] === undefined) throw new Error(`Missing required argument: ${field}`);
+    }
     const result = await client.callTool({ name: target, arguments: input });
     // Default to a safe summary. Full content may contain customer data.
     console.log(JSON.stringify({
