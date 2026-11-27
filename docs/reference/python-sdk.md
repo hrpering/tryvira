@@ -33,7 +33,7 @@ Use [AUTO TaskRun](../canonical-taskrun.md) for the normal application path. `se
 
 ## TaskRun in the published Python client
 
-The published Python client has `resolve_task_run`, `start_task_run`, `get_task_run`, `list_task_run_events`, `continue_task_run`, `retry_task_run` and `cancel_task_run`. Request mappings can select `SINGLE`, `STRATEGY`, `COMPOUND`, `HYBRID` or ask for `AUTO` routing. The prompt-only convenience helper `start_task_run_from_prompt` does not forward all mode-selection options on this client line; use `start_task_run` when requesting an explicit mode.
+The published Python client has `resolve_task_run`, `start_task_run`, `get_task_run`, `list_task_run_events`, `continue_task_run`, `retry_task_run` and `cancel_task_run`. Request mappings can select `SINGLE`, `STRATEGY`, `COMPOUND`, `HYBRID` or ask for `AUTO` routing. Pass the real scoped `aiSystemId` when admitting a TaskRun. The prompt-only convenience helper `start_task_run_from_prompt` does not forward all mode-selection options on this client line; use `start_task_run` when requesting an explicit mode.
 
 For a real but route-only-by-default script, see [Python TaskRun modes](../../examples/python/taskrun_modes.py). The repository's [offline method-surface check](../../scripts/check-published-python-sdk.py) verifies the installed published Python package, not tenant eligibility or live runtime success.
 

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { createSupportHandler } from "../src/support-handler.mjs";
 
 const scope = { organizationId: "org-test", projectId: "project-test", environmentId: "env-test" };
-const config = { baseUrl: "https://api.example.test", apiKey: "test-only-placeholder", scope, connectionId: "test-connection" };
+const config = { baseUrl: "https://api.example.test", apiKey: "test-only-placeholder", scope, aiSystemId: "test-system", connectionId: "test-connection" };
 
 class TestAgent { constructor(options) { this.options = options; } }
 function request(viraMode, extra = {}) {
@@ -49,6 +49,7 @@ test("ON admits AUTO TaskRun; no raw projection and no unverified provider call"
         calls++;
         assert.equal(input.requestedMode, "AUTO");
         assert.equal(input.connectionId, "test-connection");
+        assert.equal(input.aiSystemId, "test-system");
         assert.ok(options.idempotencyKey);
         return { status: 201, requestId: "server-request", body: {taskRun:{
           taskRunId: input.taskRunId, mode: "SINGLE", status: "ADMITTED",
@@ -94,4 +95,11 @@ test("ON fails closed without Vira configuration", async () => {
   const result = await handle(request("on"));
   assert.equal(result.status, 503);
   assert.equal((await result.json()).error, "VIRA_TASKRUN_CONFIGURATION_INCOMPLETE");
+});
+
+test("ON fails closed before admission when AI System identity is missing", async () => {
+  const handle=createSupportHandler({getViraConfig:()=>({...config,aiSystemId:undefined}),createVira(){throw Error("must not initialize")},async runAgent(){throw Error("must not call provider")}});
+  const result=await handle(request("on"));
+  assert.equal(result.status,503);
+  assert.equal((await result.json()).error,"VIRA_TASKRUN_CONFIGURATION_INCOMPLETE");
 });

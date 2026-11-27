@@ -53,7 +53,7 @@ export function createSupportHandler({
       return Response.json({ error: "MODEL_NOT_CONFIGURED" }, { status: 503 });
 
     const config = (isOn || body.observe) ? getViraConfig?.() : null;
-    if (isOn && (!config?.baseUrl || !config?.apiKey || !config?.scope))
+    if (isOn && (!config?.baseUrl || !config?.apiKey || !config?.scope || !config?.aiSystemId))
       return Response.json({ error: "VIRA_TASKRUN_CONFIGURATION_INCOMPLETE", modelInvoked: false }, { status: 503 });
 
     let vira = null;
@@ -68,12 +68,12 @@ export function createSupportHandler({
       // The server selects the actual mode. Never declare an unsupported
       // client-side host capability, task, selected Program or release.
       const prompt = makePrompt(messages);
-      const digest = identity(idempotencyKey, config.scope, prompt);
+      const digest = identity(idempotencyKey, {...config.scope, aiSystemId: config.aiSystemId, connectionId: config.connectionId}, prompt);
       const taskRunId = "chat-taskrun-" + digest;
       const requestId = "chat-request-" + digest;
       try {
         const admitted = await vira.startTaskRun({
-          taskRunId, requestId, input: prompt, requestedMode: "AUTO",
+          taskRunId, requestId, aiSystemId: config.aiSystemId, input: prompt, requestedMode: "AUTO",
           ...(config.connectionId ? { connectionId: config.connectionId } : {}),
           budget: { maxChildren: 4, maxCalls: 8 },
         }, { idempotencyKey: "chat:taskrun:" + digest });

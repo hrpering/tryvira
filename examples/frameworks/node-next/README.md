@@ -28,7 +28,7 @@ Set `VIRA_API_URL`, `VIRA_API_KEY`, `VIRA_ORGANIZATION_ID`, `VIRA_PROJECT_ID`, `
 
 Use the same prompt in ON:
 
-1. The chat route submits `startTaskRun` with `requestedMode: "AUTO"`, bounded budget, unique idempotency identity and the real connection ID when configured.
+1. The chat route submits `startTaskRun` with `requestedMode: "AUTO"`, bounded budget, unique idempotency identity, required real AI System ID (`VIRA_AI_SYSTEM_ID`) and the real connection ID when configured.
 2. The server performs semantic routing, selects the eligible execution mode and admits/persists a TaskRun. It may reject or abstain, which is a valid outcome.
 3. The route reads the persisted TaskRun state and returns HTTP 202 **pending verified chatbot response**. It does not create a provider answer or post-model receipt.
 4. The UI displays the server-selected mode and persisted TaskRun status. A verified ON model response is not available in this public example yet.

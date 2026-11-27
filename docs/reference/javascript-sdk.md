@@ -45,7 +45,7 @@ Use [AUTO TaskRun](../canonical-taskrun.md) for user-facing chatbot/agent reques
 
 The published `@tryvira/sdk` line exposes `resolveTaskRun` and `startTaskRun` for task routing/admission. The requested mode can be `SINGLE`, `STRATEGY`, `COMPOUND`, `HYBRID` or `AUTO`; AUTO asks for a mode recommendation instead of being an execution mode.
 
-The client also exposes `getTaskRun`, `listTaskRunEvents`, `continueTaskRun`, `retryTaskRun` and `cancelTaskRun`. For explicit mode selection use `startTaskRun` rather than assuming `startTaskRunFromPrompt` forwards a `requestedMode` option.
+Admission requires a real scoped `aiSystemId` in both `startTaskRun` and `startTaskRunFromPrompt`. The client also exposes `getTaskRun`, `listTaskRunEvents`, `continueTaskRun`, `retryTaskRun` and `cancelTaskRun`. For explicit mode selection use `startTaskRun` rather than assuming `startTaskRunFromPrompt` forwards a `requestedMode` option.
 
 Run the [route-only by default example](../../examples/javascript/taskrun-modes.mjs) after installing the pinned SDK and configuring a provisioned customer endpoint. The [Next.js test suite](../../examples/frameworks/node-next/test/taskrun-sdk.test.mjs) asserts exact method availability and request serialization against its pinned published npm dependency with an offline transport.
 

@@ -32,7 +32,7 @@ python taskrun_modes.py COMPOUND
 python taskrun_modes.py HYBRID
 ```
 
-Configure `VIRA_API_URL` and `VIRA_API_KEY` for your own authorized tenant. An eligible registered Task and host capability are required; denied or unsupported routes are valid results. Starting a real task requires separate explicit environment assertions for authorization and non-production scope. This example never claims a fabricated completed run.
+Configure `VIRA_API_URL` and `VIRA_API_KEY` for your own authorized tenant. An eligible registered Task and host capability are required; denied or unsupported routes are valid results. Starting a real task requires the actual scoped `VIRA_AI_SYSTEM_ID` plus separate explicit environment assertions for authorization and non-production scope. This example never claims a fabricated completed run.
 
 See [execution modes](../../docs/execution-modes.md) and the [published Python SDK method check](../../scripts/check-published-python-sdk.py).
 

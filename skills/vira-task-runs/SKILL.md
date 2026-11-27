@@ -15,7 +15,7 @@ A task involves a Vira TaskRun or the user asks how to start, inspect, continue,
 
 - The customer's own Vira API endpoint, server-side key, and authorized scope.
 - The current published JavaScript package documentation for the installed version.
-- An established application connection and a user request whose scope is understood.
+- An established application connection, the real scoped AI System ID (`aiSystemId`) for admission, and a user request whose scope is understood.
 - The user must provide explicit authorization before admitting work that may cause external effects.
 - A bounded budget and a plan for protecting private input in logs.
 
@@ -38,7 +38,7 @@ Use an isolated development scope when available. Production use remains subject
 
 1. **AUTO is a routing request**, not a fifth execution mode. The four eligible execution modes: SINGLE (one task), STRATEGY (one task's released graph), COMPOUND (multiple registered tasks), HYBRID (eligible mixed children). Only the server selects actual mode and eligibility.
 2. For routing use JS `resolveTaskRun({input,requestedMode:"AUTO",connectionId})` or Python `resolve_task_run({"input":text,"requestedMode":"AUTO","connectionId":connection_id})`. ROUTED is **proposal-only** and can still deny, abstain, clarify or report unsupported host. Do not invent client `hostCapabilities` as a permission source. The SDK/Studio integration should resolve the connected host's verified capability attestation automatically; callers should not paste a `hostCapabilityAttestationId`. If the server cannot resolve one, the run remains unsupported/fail closed.
-3. For authorized admission use JS `startTaskRun({taskRunId,requestId,input,requestedMode:"AUTO",connectionId,budget},opts)` or Python `start_task_run({...},idempotency_key=key)`; read `getTaskRun`/`get_task_run` and actual event/child receipts.
+3. For authorized admission use JS `startTaskRun({taskRunId,requestId,aiSystemId,input,requestedMode:"AUTO",connectionId,budget},opts)` or Python `start_task_run({...},idempotency_key=key)`; read `getTaskRun`/`get_task_run` and actual event/child receipts.
 4. WAITING_USER/HOST/APPROVAL, PARTIAL, BLOCKED, FAILED and CANCELLED are distinct; continue/retry/cancel with actual stateVersion and idempotency. A child completion is not final provider post-model PASS. For `WAITING_APPROVAL`, use the server approval operation for the exact pending proposal and pass its one-shot `approvalId` on the next authorization; never resume with a caller boolean or reuse an approval for different arguments.
 5. Execute the published [JS](https://github.com/hrpering/tryvira/blob/main/examples/javascript/taskrun-modes.mjs) or [Python](https://github.com/hrpering/tryvira/blob/main/examples/python/taskrun_modes.py) route-only runner; real admission requires non-production authorization. Negative: missing Strategy materialization or second Compound task must fail closed.
 [Modes](https://github.com/hrpering/tryvira/blob/main/docs/execution-modes.md).

@@ -42,7 +42,7 @@ node taskrun-modes.mjs --help
 VIRA_TASKRUN_INPUT="Summarize this incident" node taskrun-modes.mjs AUTO
 ```
 
-Use `SINGLE` for one task, `STRATEGY` for a multi-step eligible task, `COMPOUND` for multiple registered tasks, `HYBRID` for a mixed child plan, or `AUTO` to request mode selection. Routing may return clarification, denial or unsupported host. A real task admission requires `VIRA_CONFIRM_TASKRUN_START=yes` and `VIRA_CONFIRM_NON_PRODUCTION=yes` after verifying an authorized development scope. For multi-task execution, the account must already have eligible registered tasks and host capabilities; this script does not create them.
+Use `SINGLE` for one task, `STRATEGY` for a multi-step eligible task, `COMPOUND` for multiple registered tasks, `HYBRID` for a mixed child plan, or `AUTO` to request mode selection. Routing may return clarification, denial or unsupported host. A real task admission requires the actual scoped `VIRA_AI_SYSTEM_ID`, `VIRA_CONFIRM_TASKRUN_START=yes` and `VIRA_CONFIRM_NON_PRODUCTION=yes` after verifying an authorized development scope. For multi-task execution, the account must already have eligible registered tasks and host capabilities; this script does not create them.
 
 [Full mode guide](../../docs/execution-modes.md) · [Offline published-SDK tests](../frameworks/node-next/test/taskrun-sdk.test.mjs)
 
