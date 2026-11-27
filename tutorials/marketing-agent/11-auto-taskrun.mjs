@@ -17,6 +17,7 @@ if (process.env.VIRA_TUTORIAL_CONFIRM_AUTO_TASKRUN !== "true") {
   );
 }
 const connectionId = required("VIRA_CONNECTION_ID");
+const aiSystemId = required("VIRA_AI_SYSTEM_ID");
 const input = process.env.VIRA_TUTORIAL_TASKRUN_PROMPT ||
   "Build a full-funnel launch plan for a B2B membership product without inventing campaign results.";
 const suffix = randomUUID();
@@ -24,7 +25,7 @@ const taskRunId = "marketing-taskrun-" + suffix;
 const requestId = "marketing-request-" + suffix;
 
 const admitted = await vira.startTaskRun({
-  taskRunId, requestId, input, requestedMode: "AUTO", connectionId,
+  taskRunId, requestId, aiSystemId, input, requestedMode: "AUTO", connectionId,
   budget: { maxChildren: 4, maxCalls: 8 },
 }, { idempotencyKey: "tutorial:taskrun:start:" + requestId });
 const run = admitted?.body?.taskRun;
