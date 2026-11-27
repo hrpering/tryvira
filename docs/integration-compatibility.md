@@ -8,16 +8,16 @@ Vira's public Skills, JavaScript/Python clients, MCP server and OpenCode adapter
 
 | Package | Version declared by the maintained package source (27 Nov 2026) | Prior version cited in this documentation | Confirm the installable release |
 | --- | --- | --- | --- |
-| `@tryvira/sdk` | `0.1.93` | `0.1.67` | `npm view @tryvira/sdk version` |
-| `@tryvira/mcp` | `0.1.90` | `0.1.60` | `npm view @tryvira/mcp version` |
+| `@tryvira/sdk` | `0.1.94` (unpublished candidate) | `0.1.67` | `npm view @tryvira/sdk version` |
+| `@tryvira/mcp` | `0.1.91` (unpublished candidate) | `0.1.60` | `npm view @tryvira/mcp version` |
 | `@tryvira/opencode` | `0.1.76` | `0.1.61` | `npm view @tryvira/opencode version` |
 | `tryvira-sdk` (PyPI) | `0.1.75` | `0.1.54` | `python -m pip index versions tryvira-sdk` |
 
-**Registry readback on 27 November 2026:** npm `@tryvira/sdk@0.1.93`, npm `@tryvira/mcp@0.1.90`, npm `@tryvira/opencode@0.1.76` and PyPI `tryvira-sdk==0.1.75` are available. The MCP 0.1.90 tarball exposes **99 tools** and matches the maintained source declaration by tool name. This confirms registry artifact and name parity only; it is not a live hosted or model-output acceptance result. Lockfiles are regenerated for pinned runnable examples. These checks do **not** establish a live customer-tenant or host acceptance.
+**Registry readback on 27 November 2026:** npm `@tryvira/sdk@0.1.93`, npm `@tryvira/mcp@0.1.90`, npm `@tryvira/opencode@0.1.76` and PyPI `tryvira-sdk==0.1.75` are available. Source main has since advanced to unpublished candidates SDK `0.1.94` and MCP `0.1.91`; runnable examples remain pinned to published versions until registry readback confirms publication. The published MCP 0.1.90 tarball and maintained 0.1.91 source candidate expose the same **99 tool names**. This confirms registry artifact and name parity only; it is not a live hosted or model-output acceptance result. These checks do **not** establish a live customer-tenant or host acceptance.
 
 ## MCP surface parity
 
-The maintained shared hosted/npm MCP source catalog and registry-verified npm `0.1.90` package each advertise **99 matching names**. The [generated comparison](mcp-surface-parity.md) shows source and published evidence separately. The same-version tool-name parity gate now passes; it does **not** establish live hosted `tools/list`, matching request/response schemas, identical effect/approval behavior or customer permission.
+The maintained shared hosted/npm MCP source candidate `0.1.91` and registry-verified npm `0.1.90` package each advertise **99 matching names**. The [generated comparison](mcp-surface-parity.md) shows source and published evidence separately. This name-only parity does **not** establish live hosted `tools/list`, matching request/response schemas, identical effect/approval behavior or customer permission.
 
 ## Operation boundaries
 

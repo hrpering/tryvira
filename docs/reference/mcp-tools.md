@@ -4,7 +4,7 @@
 
 The MCP package is a separate customer-facing client with narrower coverage than the full product. The published MCP tool catalog is separate from JavaScript, Python and HTTP capabilities.
 
-**Compatibility note:** The verified published npm package `0.1.90` advertises **99 tools**. This establishes the package's discovery inventory, not a verified live hosted `tools/list` or identical schema/authority behavior. See the [source/npm comparison](../mcp-surface-parity.md). The snapshot does not prove a deployed hosted endpoint.
+**Compatibility note:** The verified published npm package `0.1.90` advertises **99 tools**; the maintained source candidate `0.1.91` has the same tool names but is not published yet. This establishes the published package's discovery inventory and name-only source parity, not a verified live hosted `tools/list` or identical schema/authority behavior. See the [source/npm comparison](../mcp-surface-parity.md). The snapshot does not prove a deployed hosted endpoint.
 
 ## Discover what the installed server supports
 

@@ -1,6 +1,6 @@
 # MCP integration
 
-Client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp), Node.js 20+. The registry-verified npm **`0.1.90` package advertises 99 tools**, exactly matching the 99 names in the maintained shared MCP source catalog. The [versioned tool snapshot](mcp-published-tools.json) was checked against the published npm tarball. Name parity does not prove live hosted deployment, identical runtime schemas or permission parity. See the [source-versus-npm comparison](../mcp-surface-parity.md). Check installed version and `tools/list` before use.
+Client: [`@tryvira/mcp`](https://www.npmjs.com/package/@tryvira/mcp), Node.js 20+. The registry-verified npm **`0.1.90` package advertises 99 tools**, matching the 99 names in the maintained **`0.1.91` source candidate**. Candidate `0.1.91` is not yet published; the [versioned tool snapshot](mcp-published-tools.json) describes published `0.1.90`. Name parity does not prove live hosted deployment, identical runtime schemas or permission parity. See the [source-versus-npm comparison](../mcp-surface-parity.md). Check installed version and `tools/list` before use.
 
 ```bash
 npx -y @tryvira/mcp

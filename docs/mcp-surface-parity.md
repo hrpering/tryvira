@@ -4,11 +4,11 @@ This report is generated from the reviewed maintained **source declaration** and
 
 | Surface | Version | Advertised tools | Evidence |
 | --- | --- | ---: | --- |
-| Maintained Vira server/client shared catalog (source) | `0.1.90` | **99** | Reviewed source declaration on 2026-11-27; **not** a live hosted endpoint check |
+| Maintained Vira server/client shared catalog (source) | `0.1.91` | **99** | Reviewed source declaration on 2026-11-27; **not** a live hosted endpoint check |
 | Published `@tryvira/mcp` npm artifact | `0.1.90` | **99** | [Versioned npm CLI snapshot](reference/mcp-published-tools.json); npm bundle compared in registry CI |
 | Common tool names | These two snapshots | **99** | Name intersection only |
 
-The two inventories **have the same advertised names**: 0 tool(s) only in the maintained source snapshot, 0 only in the published npm snapshot. Both snapshots describe the same release version; the parity test requires their names to match.
+The two inventories **have the same advertised names**: 0 tool(s) only in the maintained source snapshot, 0 only in the published npm snapshot. The tool-name sets match, but these are different package revisions: source `0.1.91` is an unpublished candidate and npm `0.1.90` is the published artifact. Name parity does not establish package, schema, authority, or live hosted parity.
 
 ## Declared by maintained source, absent from this npm snapshot (0)
 

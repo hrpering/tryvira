@@ -1,8 +1,8 @@
 {
   "kind": "maintained-source-declaration",
-  "sourceVersion": "0.1.90",
+  "sourceVersion": "0.1.91",
   "inspectedAt": "2026-11-27",
-  "sourceRevision": "3a8b85a9f719406542e23275bb4722bfabb6ccf2",
+  "sourceRevision": "aee46a3e4793af7ec82f349547c9c5f0fa3b2a9a",
   "liveHostedVerified": false,
   "tools": [
     "accept_behavior_revision_candidate",
@@ -104,5 +104,6 @@
     "submit_teach_evidence",
     "transition_pack_revision",
     "write_control_api"
-  ]
+  ],
+  "publicationStatus": "unpublished-source-candidate"
 }

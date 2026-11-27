@@ -21,6 +21,11 @@ const shared=[...sourceNames].filter(n=>npmNames.has(n)).sort();
 const sourceOnly=[...sourceNames].filter(n=>!npmNames.has(n)).sort();
 const npmOnly=[...npmNames].filter(n=>!sourceNames.has(n)).sort();
 const sameRelease=source.sourceVersion===npm.version;
+const parityNarrative=sourceOnly.length||npmOnly.length
+  ?'Their tool-name sets differ; source/npm-only names are listed below. This is a catalog difference, not a live hosted or permission result.'
+  :sameRelease
+    ?'Both snapshots describe the same release version and have matching tool names; this does not establish schema, authority, or live hosted parity.'
+    :'The tool-name sets match, but these are different package revisions: source `'+source.sourceVersion+'` is an unpublished candidate and npm `'+npm.version+'` is the published artifact. Name parity does not establish package, schema, authority, or live hosted parity.';
 if(sameRelease&& (sourceOnly.length||npmOnly.length)){
   throw new Error('MCP_MATCHING_RELEASE_CATALOG_DRIFT source='+source.sourceVersion+
     ' sourceOnly='+sourceOnly.join(',')+' npmOnly='+npmOnly.join(','));
@@ -38,7 +43,7 @@ const lines=[
   '| Published '+ticks('@tryvira/mcp')+' npm artifact | '+ticks(npm.version)+' | **'+npm.tools.length+'** | [Versioned npm CLI snapshot](reference/mcp-published-tools.json); npm bundle compared in registry CI |',
   '| Common tool names | These two snapshots | **'+shared.length+'** | Name intersection only |',
   '',
-  'The two inventories '+(sourceOnly.length||npmOnly.length?'**differ**':'**have the same advertised names**')+': '+sourceOnly.length+' tool(s) only in the maintained source snapshot, '+npmOnly.length+' only in the published npm snapshot. '+(sameRelease?'Both snapshots describe the same release version; the parity test requires their names to match.':'They describe **different package revisions**, so this difference must not be portrayed as a broken installed package or as complete public parity.'),
+  'The two inventories '+(sourceOnly.length||npmOnly.length?'**differ**':'**have the same advertised names**')+': '+sourceOnly.length+' tool(s) only in the maintained source snapshot, '+npmOnly.length+' only in the published npm snapshot. '+parityNarrative,
   '',
   '## Declared by maintained source, absent from this npm snapshot ('+sourceOnly.length+')',
   '',
